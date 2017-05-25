@@ -43,7 +43,7 @@ group :development do
 end
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-jquery'
+  gem 'rails-assets-jquery', '2.1.4'
   gem 'rails-assets-bootstrap', '3.3.7'
 end
 

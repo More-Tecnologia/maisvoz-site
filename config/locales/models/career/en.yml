@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      career: 'Career'
+    attributes:
+      career:
+        name: 'Name'
+        avatar: 'Avatar'
+        qualifying_score: 'Qualifying Score'
+        bonus: 'Bonus'
+        binary_limit: 'Binary Limit'
+        order: 'Order'

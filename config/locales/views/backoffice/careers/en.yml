@@ -1,0 +1,11 @@
+en:
+  views:
+    backoffice:
+      careers:
+        index:
+          title: 'All careers'
+          subtitle: 'Manage the careers of this system'
+          no_data: 'No career was registered'
+          new_career: 'New Career'
+        new:
+          title: 'Create a Career'

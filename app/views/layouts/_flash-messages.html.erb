@@ -1,0 +1,3 @@
+<% flash.each do |key, value| %>
+  <div data-notification="true" data-key="<%= flash_class(key) %>" data-title="<%= t("defaults.#{key}") %>" data-text="<%= value %>"></div>
+<% end %>

@@ -9,3 +9,7 @@ en:
           new_career: 'New Career'
         new:
           title: 'Create a Career'
+          subtitle: 'Create a new career'
+        edit:
+          title: 'Edit %{career}'
+          subtitle: 'Edit an existing career'

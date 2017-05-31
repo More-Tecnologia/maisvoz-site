@@ -1,0 +1,13 @@
+AllCops:
+  TargetRubyVersion:
+    2.2
+  Exclude:
+    - 'db/schema.rb'
+Rails:
+  Enabled: true
+Documentation:
+  Enabled: false
+Style/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+Metrics/LineLength:
+  Max: 100

@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'annotate'
+gem 'simple_form', '~> 3.5.0'
+gem 'virtus', '~> 1.0.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -41,11 +43,15 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
 end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '2.1.4'
   gem 'rails-assets-bootstrap', '3.3.7'
+  gem 'rails-assets-notifyjs', '0.4.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

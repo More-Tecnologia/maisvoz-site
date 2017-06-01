@@ -369,7 +369,7 @@ File: Components
 /* =============
    Checkbox and Radios
 ============= */
-.checkbox {
+/*.checkbox {
   padding-left: 20px;
 }
 .checkbox label {
@@ -499,7 +499,7 @@ File: Components
 }
 .checkbox-inverse input[type="checkbox"]:checked + label::after {
   color: #ffffff;
-}
+}*/
 /* Radios */
 .radio {
   padding-left: 20px;

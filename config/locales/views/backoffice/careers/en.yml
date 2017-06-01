@@ -3,7 +3,7 @@ en:
     backoffice:
       careers:
         index:
-          title: 'All careers'
+          title: 'Careers'
           subtitle: 'Manage the careers of this system'
           no_data: 'No career was registered'
           new_career: 'New Career'

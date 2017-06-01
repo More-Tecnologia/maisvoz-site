@@ -1,6 +1,7 @@
 en:
   defaults:
     careers: 'Careers'
+    categories: 'Categories'
     notice: 'Info'
     success: 'Success'
     error: 'Error'

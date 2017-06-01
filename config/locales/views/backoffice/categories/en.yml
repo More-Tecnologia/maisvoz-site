@@ -1,0 +1,15 @@
+en:
+  views:
+    backoffice:
+      categories:
+        index:
+          title: 'Categories'
+          subtitle: 'Manage the categories of this system'
+          no_data: 'No category was registered'
+          new_career: 'New Category'
+        new:
+          title: 'Create a Category'
+          subtitle: 'Create a new category'
+        edit:
+          title: 'Edit %{category_name}'
+          subtitle: 'Edit an existing category'

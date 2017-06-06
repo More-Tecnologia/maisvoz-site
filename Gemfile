@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'annotate'
 gem 'simple_form', '~> 3.5.0'
 gem 'virtus', '~> 1.0.5'
+gem 'money-rails', '~>1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

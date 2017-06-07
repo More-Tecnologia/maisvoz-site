@@ -13,7 +13,7 @@
 #  length            :integer
 #  width             :integer
 #  height            :integer
-#  price             :decimal(10, 2)
+#  price_cents       :integer
 #  binary_score      :integer
 #  advance_score     :integer
 #  active            :boolean
@@ -37,12 +37,13 @@
 #
 #  index_products_on_career_id    (career_id)
 #  index_products_on_category_id  (category_id)
-#  index_products_on_sku          (sku) UNIQUE
 #
 
 class Product < ApplicationRecord
 
   belongs_to :category
   belongs_to :career
+
+  monetize :price_cents
 
 end

@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170526170030) do
     t.integer "length"
     t.integer "width"
     t.integer "height"
-    t.decimal "price", precision: 10, scale: 2
+    t.bigint "price_cents"
     t.integer "binary_score"
     t.integer "advance_score"
     t.boolean "active"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20170526170030) do
     t.datetime "updated_at", null: false
     t.index ["career_id"], name: "index_products_on_career_id"
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["sku"], name: "index_products_on_sku", unique: true
   end
 
   add_foreign_key "products", "careers"

@@ -11,7 +11,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.integer :length
       t.integer :width
       t.integer :height
-      t.decimal :price, precision: 10, scale: 2
+      t.bigint :price_cents
       t.integer :binary_score
       t.integer :advance_score
       t.boolean :active
@@ -31,6 +31,5 @@ class CreateProducts < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :products, :sku, unique: true
   end
 end

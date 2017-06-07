@@ -2,6 +2,7 @@ en:
   defaults:
     careers: 'Careers'
     categories: 'Categories'
+    products: 'Products'
     notice: 'Info'
     success: 'Success'
     error: 'Error'
@@ -13,3 +14,5 @@ en:
     confirm_removal: 'Are you sure you want to delete this record?'
     put: 'Update'
     post: 'Create'
+    error:
+      not_unique: 'Choose another one'

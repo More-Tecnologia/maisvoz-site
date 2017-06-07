@@ -1,0 +1,18 @@
+en:
+  views:
+    backoffice:
+      admin:
+        products:
+          basic_info: 'Basic Info'
+          dimensions: 'Dimensions'
+          bonus: 'Bonus'
+          index:
+            title: 'Products'
+            subtitle: 'Manage your products'
+            new_product: 'New Product'
+          new:
+            title: 'New Product'
+            subtitle: 'Create a new product'
+          edit:
+            title: 'Edit %{product_name}'
+            subtitle: 'Make changes to an existing product'

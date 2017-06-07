@@ -18,7 +18,7 @@
               <div class="col-lg-12">
 
                 <div class="m-b-20">
-                  <%= link_to new_backoffice_career_path, class: 'btn btn-primary waves-effect waves-light' do %>
+                  <%= link_to new_backoffice_admin_career_path, class: 'btn btn-primary waves-effect waves-light' do %>
                     <i class="md md-add"></i> <%= t('views.backoffice.careers.index.new_career') %>
                   <% end %>
                 </div>
@@ -44,11 +44,11 @@
                         <td><%= career.bonus %></td>
                         <td><%= career.binary_limit %></td>
                         <td>
-                          <%= link_to edit_backoffice_career_path(career), class: 'action-edit' do %>
+                          <%= link_to edit_backoffice_admin_career_path(career), class: 'action-edit' do %>
                             <i class="fa fa-pencil"></i>
                           <% end %>
                           <%= link_to(
-                            backoffice_career_path(career),
+                            backoffice_admin_career_path(career),
                             class: 'action-remove',
                             method: :delete,
                             data: { confirm: t('defaults.confirm_removal') }

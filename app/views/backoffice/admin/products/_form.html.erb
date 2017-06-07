@@ -1,0 +1,111 @@
+<%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
+
+  <ul class="nav nav-tabs tabs">
+      <li class="active tab">
+          <a href="#info" data-toggle="tab" aria-expanded="false">
+              <span class="visible-xs"><i class="fa fa-home"></i></span>
+              <span class="hidden-xs"><%= t('views.backoffice.admin.products.basic_info') %></span>
+          </a>
+      </li>
+      <li class="tab">
+          <a href="#dimensions" data-toggle="tab" aria-expanded="false">
+              <span class="visible-xs"><i class="fa fa-user"></i></span>
+              <span class="hidden-xs"><%= t('views.backoffice.admin.products.dimensions') %></span>
+          </a>
+      </li>
+      <li class="tab">
+          <a href="#bonus" data-toggle="tab" aria-expanded="false">
+              <span class="visible-xs"><i class="fa fa-cog"></i></span>
+              <span class="hidden-xs"><%= t('views.backoffice.admin.products.bonus') %></span>
+          </a>
+      </li>
+  </ul>
+
+  <div class="tab-content">
+    <%= f.error_notification %>
+    <div class="tab-pane active" id="info">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="p-20">
+            <%= f.input :name %>
+            <%= f.input :price do %>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                <%= f.input_field :price, class: "form-control", value: form.price %>
+              </div>
+            <% end %>
+            <%= f.input :description %>
+            <%= f.input :short_description %>
+            <%= f.input :sku %>
+            <%= f.input :quantity %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-20">
+            <%= f.input :low_stock_alert %>
+            <%= f.input :category_id, collection: Category.all %>
+            <%= f.input :career_id, collection: Career.all %>
+            <%= f.input :active, as: :boolean %>
+            <%= f.input :virtual, as: :boolean %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="dimensions">
+      <%= f.input :length do %>
+        <div class="input-group">
+          <%= f.input_field :length, class: "form-control" %>
+          <span class="input-group-addon">cm</span>
+        </div>
+      <% end %>
+      <%= f.input :width do %>
+        <div class="input-group">
+          <%= f.input_field :width, class: "form-control" %>
+          <span class="input-group-addon">cm</span>
+        </div>
+      <% end %>
+      <%= f.input :height do %>
+        <div class="input-group">
+          <%= f.input_field :height, class: "form-control" %>
+          <span class="input-group-addon">cm</span>
+        </div>
+      <% end %>
+      <%= f.input :weight do %>
+        <div class="input-group">
+          <%= f.input_field :weight, class: "form-control" %>
+          <span class="input-group-addon">kg</span>
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="bonus">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="p-20">
+            <%= f.input :binary_score %>
+            <%= f.input :advance_score %>
+            <%= f.input :paid_by %>
+            <%= f.input :bonus_1 %>
+            <%= f.input :bonus_2 %>
+            <%= f.input :bonus_3 %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-20">
+            <%= f.input :bonus_4 %>
+            <%= f.input :bonus_5 %>
+            <%= f.input :bonus_6 %>
+            <%= f.input :bonus_7 %>
+            <%= f.input :bonus_8 %>
+            <%= f.input :bonus_9 %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
+<% end %>

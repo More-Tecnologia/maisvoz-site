@@ -1,0 +1,5 @@
+en:
+  cart:
+    title: 'Cart'
+    see_cart: 'View Cart'
+    cart_updated: 'Cart updated with success'

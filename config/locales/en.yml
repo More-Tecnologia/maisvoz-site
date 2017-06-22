@@ -30,4 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  app_name: 'MoreMMN'
   hello: "Hello world"
+  time:
+    formats:
+      short: '%b %d, %Y'

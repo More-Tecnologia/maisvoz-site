@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      product: 'Product'
+    attributes:
+      product:
+        name: 'Name'
+        weight: 'Weight'
+        height: 'Height'
+        width: 'Width'
+        length: 'Length'
+        binary_score: 'Binary Score'
+        advance_score: 'Advance Score'

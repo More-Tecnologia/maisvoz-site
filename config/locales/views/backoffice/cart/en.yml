@@ -1,0 +1,9 @@
+en:
+  views:
+    backoffice:
+      cart:
+        show:
+          title: 'Cart'
+          subtitle: 'Review your order'
+          no_data: 'Add some products to your cart first'
+          place_order: 'Place Order'

@@ -1,0 +1,9 @@
+en:
+  views:
+    backoffice:
+      orders:
+        index:
+          title: 'My Orders'
+          subtitle: 'All my historical orders'
+        show:
+          title: 'Invoice'

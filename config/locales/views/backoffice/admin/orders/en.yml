@@ -1,0 +1,8 @@
+en:
+  views:
+    backoffice:
+      admin:
+        orders:
+          index:
+            title: 'All orders'
+            subtitle: 'Manage your orders'

@@ -1,4 +1,4 @@
-class AdminController < ApplicationController
+class AdminController < BackofficeController
 
   protect_from_forgery with: :exception
 

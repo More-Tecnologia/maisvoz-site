@@ -1,6 +1,4 @@
-class PagesController < BackofficeController
-
-  layout 'admin'
+class PagesController < ApplicationController
 
   def index
   end

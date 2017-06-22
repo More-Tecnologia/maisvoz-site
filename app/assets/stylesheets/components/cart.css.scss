@@ -1,0 +1,13 @@
+.order-items-list {
+  .list-group-item {
+    border: none;
+
+    a {
+      display: block;
+    }
+
+    &:hover {
+      background: #ebeff2;
+    }
+  }
+}

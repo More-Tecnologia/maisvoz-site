@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.1'
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -22,6 +24,11 @@ gem 'annotate'
 gem 'simple_form', '~> 3.5.0'
 gem 'virtus', '~> 1.0.5'
 gem 'money-rails', '~>1'
+gem 'devise', '~> 4'
+gem 'email_validator'
+gem 'country_select'
+gem 'simple_command'
+gem 'kaminari'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -47,6 +54,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
+  gem 'letter_opener'
+  gem 'letter_opener_web'
 end
 
 source 'https://rails-assets.org' do

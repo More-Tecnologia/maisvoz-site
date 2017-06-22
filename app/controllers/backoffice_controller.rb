@@ -4,8 +4,6 @@ class BackofficeController < ApplicationController
 
   layout 'admin'
 
-  # helper_method :current_order
-
-
+  before_action :authenticate_user!
 
 end

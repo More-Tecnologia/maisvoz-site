@@ -1,6 +1,6 @@
 module Backoffice
   module Admin
-    class CategoriesController < BackofficeController
+    class CategoriesController < AdminController
 
       def index
         @categories = Category.all

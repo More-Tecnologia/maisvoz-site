@@ -1,0 +1,57 @@
+<div class="content-page">
+  <div class="content">
+    <div class="container">
+
+      <!-- Page-Title -->
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 class="page-title"><%= t('views.backoffice.products.index.title') %></h4>
+          <p class="text-muted page-title-alt"><%= t('views.backoffice.products.index.subtitle') %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="m-b-15">
+
+          <% @products.each do |product| %>
+          <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
+            <div class="product-list-box thumb">
+              <a href="javascript:void(0);" class="image-popup" title="Screenshot-1">
+                <img src="assets/images/products/big/1.jpg" class="thumb-img" alt="work-thumbnail">
+              </a>
+
+              <% if current_user.admin? %>
+              <div class="product-action">
+                <%= link_to edit_backoffice_admin_product_path(product), class: 'btn btn-success btn-sm' do %>
+                  <i class="md md-mode-edit"></i>
+                <% end %>
+              </div>
+              <% end %>
+
+              <div class="price-tag">
+                <%= number_to_currency product.price %>
+              </div>
+              <div class="detail">
+                <h4 class="m-t-0">
+                  <a href="" class="text-dark"><%= product.name %></a>
+                </h4>
+                <h5 class="m-0">
+                  <span class="text-muted">
+                    <%= product.sku %>
+                  </span>
+                </h5>
+                <%= link_to t('views.backoffice.products.index.details'), backoffice_product_path(product), class: 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
+          <% end %>
+
+        </div>
+      </div>
+      <!-- End row -->
+
+    </div>
+    <!-- container -->
+
+  </div>
+</div>

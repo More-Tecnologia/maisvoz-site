@@ -1,0 +1,65 @@
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
+
+      <!-- Page-Title -->
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 class="page-title"><%= t('views.backoffice.admin.orders.index.title') %></h4>
+          <p class="text-muted page-title-alt"><%= t('views.backoffice.admin.orders.index.subtitle') %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-box">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <table class="table table-bordered m-0">
+
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th><%= User.human_attribute_name(:username) %></th>
+                      <th><%= Order.human_attribute_name(:total) %></th>
+                      <th><%= Order.human_attribute_name(:status) %></th>
+                      <th><%= Order.human_attribute_name(:created_at) %></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @orders.each do |order| %>
+                      <tr>
+                        <th><%= order.id %></th>
+                        <td><%= order.user.username %></td>
+                        <td><%= number_to_currency order.total %></td>
+                        <td><%= t("defaults.#{order.status}") %></td>
+                        <td><%= l order.created_at, format: :short %></td>
+                        <td>
+                          <%= link_to backoffice_admin_order_path(order) do %>
+                            <i class="icon-eye"></i>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                    <% if @orders.empty? %>
+                      <tr>
+                        <td colspan="7" class="text-center"><%= t('views.backoffice.admin.orders.index.no_data') %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+
+                <%= paginate @orders %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

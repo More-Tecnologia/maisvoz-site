@@ -1,0 +1,42 @@
+<div class="account-pages"></div>
+<div class="clearfix"></div>
+<div class="wrapper-page">
+  <div class=" card-box">
+    <div class="panel-heading">
+      <h3 class="text-center"> Sign Up</h3>
+    </div>
+
+    <div class="panel-body">
+
+      <%= simple_form_for(form, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :sponsor_username, autofocus: true %>
+          <%= f.input :username %>
+          <%= f.input :name %>
+          <%= f.input :phone %>
+          <%= f.input :skype %>
+          <%= f.input :email %>
+          <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :password_confirmation %>
+          <%= f.input :accept_terms, as: :boolean, checked_value: true, unchecked_value: false %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up", class: 'btn btn-block text-uppercase' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <p>
+        <%= render "devise/shared/links" %>
+      </p>
+    </div>
+  </div>
+
+</div>

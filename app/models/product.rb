@@ -46,4 +46,6 @@ class Product < ApplicationRecord
 
   monetize :price_cents
 
+  scope :active, -> { where(active: true) }
+
 end

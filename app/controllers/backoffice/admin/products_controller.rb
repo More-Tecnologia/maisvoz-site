@@ -3,7 +3,7 @@ module Backoffice
     class ProductsController < AdminController
 
       def index
-        @products = Product.all
+        @products = Product.all.order(:id)
       end
 
       def new

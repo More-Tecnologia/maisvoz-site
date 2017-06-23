@@ -27,7 +27,6 @@
                       <th><%= OrderItem.human_attribute_name(:quantity) %></th>
                       <th><%= OrderItem.human_attribute_name(:unit_price) %></th>
                       <th><%= OrderItem.human_attribute_name(:total) %></th>
-                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -84,6 +83,7 @@
 
             <div class="row m-t-30">
               <div class="col-md-12">
+                <%= link_to t('views.backoffice.cart.show.continue_shopping'), backoffice_products_path, class: 'btn btn-default text-uppercase' %>
                 <% if current_order.order_items.present? %>
                   <%= link_to backoffice_checkout_path, method: :put, class: 'btn btn-default pull-right text-uppercase' do %>
                     <%= t('views.backoffice.cart.show.place_order') %>

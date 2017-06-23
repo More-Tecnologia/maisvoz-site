@@ -41,7 +41,7 @@
                     <% @products.each do |product| %>
                       <tr>
                         <th><%= product.id %></th>
-                        <td><%= cl_image_tag(product.thumbnail, class: 'thumb-sm') %></td>
+                        <td><%= cl_image_tag(product.thumbnail.url, class: 'thumb-sm') %></td>
                         <td><%= product.name %></td>
                         <td><%= product.short_description %></td>
                         <td><%= product.quantity %></td>

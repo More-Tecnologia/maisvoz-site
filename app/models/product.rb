@@ -50,12 +50,12 @@ class Product < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   def thumbnail
-    return unless cloudinary_image
+    return CloudinaryImage.new.public_id unless cloudinary_image
     cloudinary_image.public_id.thumbnail
   end
 
   def image
-    return unless cloudinary_image
+    return CloudinaryImage.new.public_id unless cloudinary_image
     cloudinary_image.public_id
   end
 

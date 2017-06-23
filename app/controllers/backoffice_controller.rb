@@ -6,4 +6,14 @@ class BackofficeController < ApplicationController
 
   before_action :authenticate_user!
 
+  helper_method :current_order
+
+  def current_order
+   if !session[:order_id].nil?
+     @current_order ||= Order.find(session[:order_id])
+   else
+     @current_order ||= Order.new(user: current_user)
+   end
+  end
+
 end

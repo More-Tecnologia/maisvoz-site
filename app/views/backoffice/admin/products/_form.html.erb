@@ -1,4 +1,4 @@
-<%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(form, url: url, method: method, validate: true, html: { class: 'form-horizontal', multipart: true }) do |f| %>
 
   <ul class="nav nav-tabs tabs">
       <li class="active tab">
@@ -29,8 +29,8 @@
           <div class="p-20">
             <%= cl_image_tag(form.try(:public_id), class: 'thumb-lg') %>
 
-            <%= f.input :public_id_cache, as: :hidden %>
             <%= f.input :public_id, as: :file %>
+
             <%= f.input :name %>
             <%= f.input :price do %>
               <div class="input-group">

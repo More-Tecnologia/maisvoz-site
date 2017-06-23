@@ -60,4 +60,9 @@ class User < ApplicationRecord
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   belongs_to :sponsor, class_name: 'User', optional: true
 
+  def avatar
+    return CloudinaryImage.new.public_id unless cloudinary_image
+    cloudinary_image.public_id
+  end
+
 end

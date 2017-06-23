@@ -10,6 +10,7 @@ class CreateProduct
       create_product
       create_cloudinary_image
     end
+    true
   end
 
   private
@@ -22,9 +23,7 @@ class CreateProduct
   end
 
   def create_cloudinary_image
-    image = CloudinaryImage.new(public_id: form.public_id)
-    image.imageable = product
-    image.save!
+    CreateOrUpdateClImage.new(product, product.cloudinary_image, form.public_id).call
   end
 
   def form_attributes

@@ -148,7 +148,8 @@
             </a>
           </li>
           <li class="dropdown top-menu-item-xs">
-            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle">
+            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+              <%= cl_image_tag(current_user.avatar.thumbnail.url, class: 'img-circle') %>
             </a>
             <ul class="dropdown-menu">
               <li>

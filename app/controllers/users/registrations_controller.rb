@@ -36,17 +36,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    render_edit
+  end
 
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    resource_updated = update_resource(resource, account_update_params)
+    update_resource(resource, edit_form.attributes.except(:public_id))
+
     yield resource if block_given?
-    if resource_updated
+    if edit_form.valid? && resource_updated = resource.save
+      CreateOrUpdateClImage.new(resource, resource.cloudinary_image, edit_form.public_id).call
+
       if is_flashing_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
           :update_needs_confirmation : :updated
@@ -57,7 +60,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      respond_with resource
+      render_edit
     end
   end
 
@@ -82,13 +85,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  def render_edit
+    render :edit, locals: { form: edit_form }
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:sponsor_username, :username, :name, :phone, :skype])
   end
 
   def form
-    @form ||= NewRegistrationForm.new(params.fetch(:user).permit!)
+    @form ||= NewRegistrationForm.new(params.fetch(:user, {}).permit!)
+  end
+
+  def edit_form
+    @form ||= EditRegistrationForm.new(params.fetch(:user, resource.attributes).permit!)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

@@ -6,7 +6,10 @@ class CreateProduct
 
   def call
     return false unless form.valid?
-    create_product
+    ActiveRecord::Base.transaction do
+      create_product
+      create_cloudinary_image
+    end
   end
 
   private
@@ -14,8 +17,18 @@ class CreateProduct
   attr_reader :form, :product
 
   def create_product
-    @product = Product.new(form.attributes)
+    @product = Product.new(form_attributes)
     product.save!
+  end
+
+  def create_cloudinary_image
+    image = CloudinaryImage.new(public_id: form.public_id)
+    image.imageable = product
+    image.save!
+  end
+
+  def form_attributes
+    form.attributes.except(:public_id_cache, :public_id)
   end
 
 end

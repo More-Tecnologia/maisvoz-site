@@ -28,6 +28,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th></th>
                       <th><%= Product.human_attribute_name(:name) %></th>
                       <th><%= Product.human_attribute_name(:short_description) %></th>
                       <th><%= Product.human_attribute_name(:quantity) %></th>
@@ -40,6 +41,7 @@
                     <% @products.each do |product| %>
                       <tr>
                         <th><%= product.id %></th>
+                        <td><%= cl_image_tag(product.thumbnail, class: 'thumb-sm') %></td>
                         <td><%= product.name %></td>
                         <td><%= product.short_description %></td>
                         <td><%= product.quantity %></td>

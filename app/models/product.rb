@@ -41,11 +41,22 @@
 
 class Product < ApplicationRecord
 
+  has_one :cloudinary_image, as: :imageable
   belongs_to :category
   belongs_to :career
 
   monetize :price_cents
 
   scope :active, -> { where(active: true) }
+
+  def thumbnail
+    return unless cloudinary_image
+    cloudinary_image.public_id.thumbnail
+  end
+
+  def image
+    return unless cloudinary_image
+    cloudinary_image.public_id
+  end
 
 end

@@ -22,6 +22,7 @@
                   <thead>
                     <tr>
                       <th></th>
+                      <th></th>
                       <th><%= Product.human_attribute_name(:name) %></th>
                       <th><%= OrderItem.human_attribute_name(:quantity) %></th>
                       <th><%= OrderItem.human_attribute_name(:unit_price) %></th>
@@ -37,6 +38,7 @@
                             <i class="icon-trash"></i>
                           <% end %>
                         </td>
+                        <td><%= cl_image_tag(order_item.product.thumbnail, class: 'thumb-sm') %></td>
                         <td><%= link_to order_item.name, backoffice_product_path(order_item.product) %></td>
                         <td>
                           <%= simple_form_for order_item, url: backoffice_order_item_path(order_item) do |f| %>

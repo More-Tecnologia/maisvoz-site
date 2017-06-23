@@ -17,7 +17,7 @@
           <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
             <div class="product-list-box thumb">
               <a href="javascript:void(0);" class="image-popup" title="Screenshot-1">
-                <img src="assets/images/products/big/1.jpg" class="thumb-img" alt="work-thumbnail">
+                <%= cl_image_tag(product.cloudinary_image.try(:public_id), class: 'thumb-img') %>
               </a>
 
               <% if current_user.admin? %>

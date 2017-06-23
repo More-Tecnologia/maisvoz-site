@@ -6,6 +6,9 @@
         <% current_order.order_items.each do |order_item| %>
         <li class="list-group-item">
           <%= link_to backoffice_product_path(order_item.product) do %>
+            <div class="avatar">
+              <%= cl_image_tag order_item.product.thumbnail %>
+            </div>
             <span class="name"><%= order_item.product.name %></span>
             <span class="pull-right"><strong>x <%= order_item.quantity %></strong></span>
           <% end %>

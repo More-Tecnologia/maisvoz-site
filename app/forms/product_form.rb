@@ -29,6 +29,9 @@ class ProductForm < Form
   attribute :bonus_8
   attribute :bonus_9
 
+  attribute :public_id_cache
+  attribute :public_id
+
   validates :name, :quantity, :price, :binary_score, :category_id, :career_id, presence: true
 
   validates :quantity, :low_stock_alert, :length, :width, :height, :binary_score,

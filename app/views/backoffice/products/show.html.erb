@@ -26,8 +26,14 @@
                <div class="card-box product-detail-box">
                    <div class="row">
                        <div class="col-sm-4">
+                         <div class="sp-loading"><%= image_tag 'sp-loading' %>
+                             <br>LOADING IMAGES
+                         </div>
+
                            <div class="sp-wrap">
-                               <a href="assets/images/products/big/1.jpg"><img src="assets/images/products/big/1.jpg" alt=""></a>
+                               <a href="<%= @product.cloudinary_image.try(:public_id) %>">
+                                 <%= cl_image_tag(@product.cloudinary_image.try(:public_id)) %>
+                               </a>
                            </div>
                        </div>
 
@@ -107,3 +113,10 @@
     </div> <!-- content -->
 
 </div>
+
+<script type="text/javascript">
+    // wait for images to load
+    $(window).load(function() {
+        $('.sp-wrap').smoothproducts();
+    });
+</script>

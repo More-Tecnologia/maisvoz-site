@@ -55,6 +55,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :lockable
 
+  has_one :cloudinary_image, as: :imageable
   has_many :orders
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   belongs_to :sponsor, class_name: 'User', optional: true

@@ -14,4 +14,6 @@
 //= require rails-ujs
 //= require bootstrap
 //= require notifyjs
+//= require rails.validations
+//= require rails.validations.simple_form
 //= require_tree .

@@ -31,4 +31,6 @@ class Order < ApplicationRecord
   monetize :shipping_cents
   monetize :total_cents
 
+  scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day)}
+
 end

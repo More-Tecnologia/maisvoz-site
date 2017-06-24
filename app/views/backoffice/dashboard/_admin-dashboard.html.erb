@@ -1,0 +1,90 @@
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
+
+      <!-- Page-Title -->
+      <div class="row">
+        <div class="col-sm-12">
+            <h4 class="page-title"><%= t('views.dashboard.admin.title') %></h4>
+            <p class="text-muted page-title-alt"><%= t('views.dashboard.admin.subtitle') %></p>
+        </div>
+      </div>
+
+       <div class="row">
+          <div class="col-lg-3 col-sm-6">
+              <div class="widget-panel widget-style-2 bg-white">
+                  <i class="md md-attach-money text-primary"></i>
+                  <h2 class="m-0 text-dark counter font-600"><%= Order.where.not(status: Order.statuses[:open]).or(Order.where.not(status: Order.statuses[:cancelled])).today.count %></h2>
+                  <div class="text-muted m-t-5"><%= t('views.dashboard.admin.today_orders') %></div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+              <div class="widget-panel widget-style-2 bg-white">
+                  <i class="md md-add-shopping-cart text-pink"></i>
+                  <h2 class="m-0 text-dark counter font-600"><%= Order.where.not(status: Order.statuses[:open]).count %></h2>
+                  <div class="text-muted m-t-5"><%= t('views.dashboard.admin.total_orders') %></div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+              <div class="widget-panel widget-style-2 bg-white">
+                  <i class="md md-store-mall-directory text-info"></i>
+                  <h2 class="m-0 text-dark counter font-600"><%= Product.active.count %></h2>
+                  <div class="text-muted m-t-5"><%= t('views.dashboard.admin.active_products') %></div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+              <div class="widget-panel widget-style-2 bg-white">
+                  <i class="md md-account-child text-custom"></i>
+                  <h2 class="m-0 text-dark counter font-600"><%= User.count %></h2>
+                  <div class="text-muted m-t-5"><%= t('views.dashboard.admin.total_users') %></div>
+              </div>
+          </div>
+       </div> <!-- end row -->
+
+       <div class="row">
+        	<div class="col-lg-6">
+        		<div class="card-box">
+              <%= link_to t(:view_all), backoffice_admin_orders_path, class: 'pull-right btn btn-default btn-sm waves-effect waves-light' %>
+        			<h4 class="text-dark header-title m-t-0">Recent Orders</h4>
+        			<p class="text-muted m-b-30 font-13">Your awesome text goes here.</p>
+
+        			<div class="table-responsive">
+                <table class="table table-actions-bar">
+                    <thead>
+                      <tr>
+                        <th>User</th>
+                        <th>Order Date</th>
+                        <th>Order Number</th>
+                        <th>Amount</th>
+                        <th style="min-width: 80px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% last_orders.each do |last_order| %>
+                      <tr>
+                        <td><%= last_order.user.username %></td>
+                        <td><%= l last_order.created_at, format: :short %></td>
+                        <td>#<%= last_order.id %></td>
+                        <td><%= number_to_currency last_order.total %></td>
+                        <td><%= link_to backoffice_admin_order_path(last_order) do %>
+                          <i class="icon-eye"></i>
+                        <% end %></td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                </table>
+              </div>
+
+        		</div>
+        	</div> <!-- end col -->
+
+
+        </div>
+
+
+    </div> <!-- container -->
+
+  </div> <!-- content -->
+
+</div>

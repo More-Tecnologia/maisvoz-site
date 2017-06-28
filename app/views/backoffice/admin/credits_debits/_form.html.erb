@@ -1,0 +1,14 @@
+<%= simple_form_for(form, url: url, method: method, validate: true, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.input :username %>
+  <%= f.input :amount %>
+  <div class="checkbox">
+    <%= f.collection_radio_buttons(
+      :credit,
+      [[true, t('views.backoffice.admin.credits_debits.credit')], [false, t('views.backoffice.admin.credits_debits.debit')]],
+      :first,
+      :last
+    ) %>
+  </div>
+  <%= f.input :master_password %>
+  <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
+<% end %>

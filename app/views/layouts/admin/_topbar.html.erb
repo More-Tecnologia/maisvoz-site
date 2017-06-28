@@ -28,6 +28,12 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right pull-right">
+          <li>
+            <%= link_to backoffice_financial_entries_path do %>
+              <i class="ti-money"></i>
+              <%= current_user.account.balance %>
+            <% end %>
+          </li>
           <li class="dropdown top-menu-item-xs">
             <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
               <i class="icon-bell"></i>

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622193414) do
+ActiveRecord::Schema.define(version: 20170627183940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "balance_cents", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id", unique: true
+  end
 
   create_table "careers", force: :cascade do |t|
     t.string "name"
@@ -43,6 +51,28 @@ ActiveRecord::Schema.define(version: 20170622193414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_cloudinary_images_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "financial_entries", force: :cascade do |t|
+    t.string "description"
+    t.bigint "credit_cents", default: 0, null: false
+    t.bigint "debit_cents", default: 0, null: false
+    t.string "type"
+    t.integer "kind", default: 0
+    t.jsonb "metadata", null: false
+    t.bigint "from_id"
+    t.bigint "to_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_id"], name: "index_financial_entries_on_from_id"
+    t.index ["to_id"], name: "index_financial_entries_on_to_id"
+  end
+
+  create_table "options", force: :cascade do |t|
+    t.string "option_name"
+    t.string "option_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -145,6 +175,9 @@ ActiveRecord::Schema.define(version: 20170622193414) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "accounts", "users"
+  add_foreign_key "financial_entries", "accounts", column: "from_id"
+  add_foreign_key "financial_entries", "accounts", column: "to_id"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"

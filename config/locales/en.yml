@@ -132,6 +132,7 @@ en:
       odd: must be odd
       required: must exist
       taken: has already been taken
+      wrong_master_pw: wrong master password
       too_long:
         one: is too long (maximum is 1 character)
         other: is too long (maximum is %{count} characters)

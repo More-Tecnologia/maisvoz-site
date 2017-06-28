@@ -48,6 +48,8 @@
 
 class User < ApplicationRecord
 
+  before_create :create_default_account
+
   enum role: { client: 0, admin: 1337 }
 
   # Include default devise modules. Others available are:
@@ -56,13 +58,21 @@ class User < ApplicationRecord
          :trackable, :validatable, :confirmable, :lockable
 
   has_one :cloudinary_image, as: :imageable
+  has_one :account
   has_many :orders
+  has_many :financial_entries
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   belongs_to :sponsor, class_name: 'User', optional: true
 
   def avatar
     return CloudinaryImage.new.public_id unless cloudinary_image
     cloudinary_image.public_id
+  end
+
+  private
+
+  def create_default_account
+    build_account
   end
 
 end

@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      financial_entry: 'Financial History'
+    attributes:
+      financial_entry:
+        name: 'Name'
+        description: 'Description'
+        type: 'Type'
+        credit: 'Credit'
+        debit: 'Debit'
+        start_balance: 'Start Balance'
+        end_balance: 'End Balance'
+  CreditEntry: 'Credit'
+  DebitEntry: 'Debit'

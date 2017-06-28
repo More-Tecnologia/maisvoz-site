@@ -1,0 +1,7 @@
+en:
+  backoffice:
+    financial_entries:
+      index:
+        title: 'Your Financial History'
+        subtitle: 'The financial history of your account'
+        no_data: 'No financial events till the moment'

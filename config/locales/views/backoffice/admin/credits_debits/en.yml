@@ -1,0 +1,7 @@
+en:
+  views:
+    backoffice:
+      admin:
+        credits_debits:
+          credit: 'Credit'
+          debit: 'Debit'

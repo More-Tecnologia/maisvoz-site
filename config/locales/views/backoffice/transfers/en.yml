@@ -1,0 +1,6 @@
+en:
+  backoffice:
+    transfers:
+      new:
+        title: 'Credit Transfer'
+        subtitle: 'Transfer credits to another account'

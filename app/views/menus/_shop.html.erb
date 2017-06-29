@@ -1,10 +1,30 @@
 <li class="has_sub">
   <a href="javascript:void(0);" class="waves-effect"><i class="ti-shopping-cart"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
   <ul class="list-unstyled">
-    <li><%= link_to t('defaults.careers'), backoffice_admin_careers_path %></li>
-    <li><%= link_to t('defaults.categories'), backoffice_admin_categories_path %></li>
-    <li><%= link_to t('defaults.products'), backoffice_admin_products_path %></li>
-    <li><%= link_to t('defaults.orders'), backoffice_admin_orders_path %></li>
+    <li>
+      <%= link_to backoffice_admin_careers_path do %>
+        <%= t('defaults.careers') %>
+        <span class="label label-pink pull-right">A</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to backoffice_admin_categories_path do %>
+        <%= t('defaults.categories') %>
+        <span class="label label-pink pull-right">A</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to backoffice_admin_products_path do %>
+        <%= t('defaults.products') %>
+        <span class="label label-pink pull-right">A</span>
+      <% end %>
+    </li>
+      <li>
+      <%= link_to backoffice_admin_orders_path do %>
+        <%= t('defaults.orders') %>
+        <span class="label label-pink pull-right">A</span>
+      <% end %>
+    </li>
     <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
     <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
   </ul>

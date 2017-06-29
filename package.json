@@ -1,5 +1,11 @@
 {
   "name": "moremmn",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap-datepicker": "^1.7.0"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Guilherme <guilhermekfe@outlook.com>",
+  "license": "MIT"
 }

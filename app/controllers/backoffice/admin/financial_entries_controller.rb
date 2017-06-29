@@ -3,13 +3,19 @@ module Backoffice
     class FinancialEntriesController < AdminController
 
       def index
-        render(:index, locals: { financial_entries: financial_entries })
+        render(:index, locals: { financial_entries: financial_entries, q: q })
       end
 
       private
 
       def financial_entries
-        FinancialEntry.all.order(created_at: :desc).page(params[:page])
+        @financial_entries ||= q.result.page(params[:page])
+      end
+
+      def q
+        @q ||= FinancialEntry.ransack(params[:q])
+        @q.sorts = 'created_at desc' if @q.sorts.empty?
+        @q
       end
 
     end

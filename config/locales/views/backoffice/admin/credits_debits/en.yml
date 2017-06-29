@@ -1,7 +1,10 @@
 en:
-  views:
     backoffice:
       admin:
         credits_debits:
-          credit: 'Credit'
-          debit: 'Debit'
+          form:
+            credit: 'Credit'
+            debit: 'Debit'
+          new:
+            title: 'Credit / Debit'
+            subtitle: Add or remove credit from a user's account

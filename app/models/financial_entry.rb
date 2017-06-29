@@ -40,4 +40,8 @@ class FinancialEntry < ApplicationRecord
     from.user
   end
 
+  ransacker :date_created_at do
+    Arel.sql("DATE(#{table_name}.created_at)")
+  end
+
 end

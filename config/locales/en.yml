@@ -3,6 +3,8 @@ en:
   app_name: 'MoreMMN'
   hello: "Hello world"
   view_all: 'View All'
+  search: 'Search'
+  filters: 'Filters'
   activerecord:
     errors:
       messages:
@@ -133,6 +135,9 @@ en:
       required: must exist
       taken: has already been taken
       wrong_master_pw: wrong master password
+      invalid_password: invalid password
+      not_enough_balance: not enough balance
+      not_found: not found
       too_long:
         one: is too long (maximum is 1 character)
         other: is too long (maximum is %{count} characters)

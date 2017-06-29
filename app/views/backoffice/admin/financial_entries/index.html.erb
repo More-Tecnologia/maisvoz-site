@@ -11,13 +11,15 @@
         </div>
       </div>
 
+      <%= render 'filters', q: q %>
+
       <div class="row">
         <div class="col-sm-12">
           <div class="card-box">
             <div class="row">
               <div class="col-lg-12">
 
-                <table class="table table-bordered m-0">
+                <table class="table table-bordered table-hover m-0">
 
                   <thead>
                     <tr>
@@ -26,9 +28,9 @@
                       <th><%= FinancialEntry.human_attribute_name(:from) %></th>
                       <th><%= FinancialEntry.human_attribute_name(:to) %></th>
                       <th><%= FinancialEntry.human_attribute_name(:type) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:credit) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:debit) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:created_at) %></th>
+                      <th><%= sort_link(q, :credit_cents, FinancialEntry.human_attribute_name(:credit)) %></th>
+                      <th><%= sort_link(q, :debit_cents, FinancialEntry.human_attribute_name(:debit)) %></th>
+                      <th><%= sort_link(q, :created_at, FinancialEntry.human_attribute_name(:created_at), default_order: :desc) %></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -38,7 +40,11 @@
                         <th><%= financial_entry.description %></th>
                         <th><%= financial_entry.from_user.try(:username) %></th>
                         <th><%= financial_entry.to.user.username %></th>
-                        <td><%= t financial_entry.type %></td>
+                        <td>
+                          <span class="<%= FinancialEntryTypeDecorator.status_class(financial_entry) %>">
+                            <%= t financial_entry.type %>
+                          </span>
+                        </td>
                         <td><%= number_to_currency financial_entry.credit %></td>
                         <td><%= number_to_currency financial_entry.debit %></td>
                         <td><%= l financial_entry.created_at, format: :short %></td>

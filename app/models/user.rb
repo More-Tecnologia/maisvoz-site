@@ -48,6 +48,8 @@
 
 class User < ApplicationRecord
 
+  delegate :balance, to: :account
+
   before_create :create_default_account
 
   enum role: { client: 0, admin: 1337 }

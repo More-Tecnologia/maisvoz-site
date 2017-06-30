@@ -11,5 +11,6 @@ en:
         debit: 'Debit'
         start_balance: 'Start Balance'
         end_balance: 'End Balance'
-  CreditEntry: 'Credit'
-  DebitEntry: 'Debit'
+  credit_by_admin: 'Credit'
+  debit_by_admin: 'Debit'
+  transfer: 'Transfer'

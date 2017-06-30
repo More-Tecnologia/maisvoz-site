@@ -5,7 +5,7 @@ module Financial
 
     def initialize(from_user, params)
       @from_user = from_user
-      @form = TransferForm.new(params[:transfer_form].merge(from_user: from_user))
+      @form = TransferWizard::TransferForm.new(params[:transfer_form].merge(from_user: from_user))
     end
 
     def call
@@ -41,7 +41,7 @@ module Financial
 
         financial_entry.from = from_acc
         financial_entry.to = to_acc
-        financial_entry.credit_cents = amount_cents
+        financial_entry.amount_cents = amount_cents
         financial_entry.save!
       end
     end
@@ -60,7 +60,7 @@ module Financial
     end
 
     def amount_cents
-      @amount_cents ||= BigDecimal(form.amount) * 100
+      @amount_cents ||= (BigDecimal(form.amount) * 100).to_i
     end
 
   end

@@ -19,4 +19,12 @@ class Account < ApplicationRecord
 
   monetize :balance_cents
 
+  def credits
+    FinancialEntry.where(to_id: id)
+  end
+
+  def debits
+    FinancialEntry.where(from_id: id)
+  end
+
 end

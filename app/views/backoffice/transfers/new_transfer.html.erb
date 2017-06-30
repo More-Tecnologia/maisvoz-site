@@ -1,0 +1,57 @@
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
+
+      <!-- Page-Title -->
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 class="page-title"><%= t('.title') %></h4>
+          <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
+        </div>
+      </div>
+
+      <!-- STEPS -->
+      <div class="row">
+        <div class="col-sm-12">
+          <ul class="steps m-b-30">
+            <li class="step"><%= t('backoffice.transfers.step_1') %></li>
+            <li class="step step--active"><%= t('backoffice.transfers.step_2') %></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default panel-border">
+						<div class="panel-heading">
+							<h3 class="panel-title"><%= t('.transfer_to') %></h3>
+						</div>
+						<div class="panel-body">
+              <ul class="list-unstyled w-list">
+                <li><b><%= User.human_attribute_name(:name) %>:</b> <%= form.to_user.name %> </li>
+                <li><b><%= User.human_attribute_name(:document_value) %>:</b> <%= form.to_user.document_value %> </li>
+                <li><b><%= User.human_attribute_name(:email) %>:</b> <%= form.to_user.email %></li>
+              </ul>
+						</div>
+					</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-box">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="p-20">
+                  <%= render partial: 'form', locals: { form: form, url: backoffice_transfers_path, method: :post } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

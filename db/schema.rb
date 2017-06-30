@@ -55,9 +55,7 @@ ActiveRecord::Schema.define(version: 20170627183940) do
 
   create_table "financial_entries", force: :cascade do |t|
     t.string "description"
-    t.bigint "credit_cents", default: 0, null: false
-    t.bigint "debit_cents", default: 0, null: false
-    t.string "type"
+    t.bigint "amount_cents", default: 0, null: false
     t.integer "kind", default: 0
     t.jsonb "metadata", null: false
     t.bigint "from_id"
@@ -65,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170627183940) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["from_id"], name: "index_financial_entries_on_from_id"
+    t.index ["kind"], name: "index_financial_entries_on_kind"
     t.index ["to_id"], name: "index_financial_entries_on_to_id"
   end
 

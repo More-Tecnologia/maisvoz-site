@@ -20,3 +20,4 @@
 
 .keep
 .DS_Store
+.env

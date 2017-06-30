@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :orders, only: [:index, :show]
 
       # Financial Admin
-      resources :credits_debits, only: [:new, :create]
+      resources :credits_debits, only: [:show, :update, :create]
       resources :financial_entries, only: [:index]
     end
 
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
     # Financial
     resources :withdrawals, only: [:new, :create]
-    resources :transfers, only: [:new, :create]
+    resources :transfers, only: [:show, :update, :create]
     resources :financial_entries, only: [:index]
     resources :bonus_entries, only: [:index]
 

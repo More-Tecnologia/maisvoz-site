@@ -1,5 +1,5 @@
-<%= simple_form_for(form, url: url, method: method, validate: true, html: { class: 'form-horizontal' }) do |f| %>
-  <%= f.input :to_username %>
+<%= simple_form_for(form, as: :transfer_form, url: url, method: method, validate: true, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.input :to_username, as: :hidden %>
   <%= f.input :amount %>
   <%= f.input :password %>
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>

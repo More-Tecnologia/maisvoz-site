@@ -2,6 +2,27 @@ module Backoffice
   module Admin
     class CreditsDebitsController < AdminController
 
+      def show
+        case step_path
+        when :find_user
+          form = find_user_form
+        when :credit_debit
+          form = create_form
+        end
+        render(step_path, locals: { form: form })
+      end
+
+      def update
+        case step_path
+        when :find_user
+          if find_user_form.valid?
+            render(:credit_debit, locals: { form: create_form })
+          else
+            render(:find_user, locals: { form: find_user_form })
+          end
+        end
+      end
+
       def new
         render(:new, locals: { form: CreditDebitForm.new })
       end
@@ -15,6 +36,20 @@ module Backoffice
         else
           render(:new, locals: { form: command.result })
         end
+      end
+
+      private
+
+      def step_path
+        @step_path ||= params[:id].to_sym
+      end
+
+      def find_user_form
+        @find_user_form ||= CreditDebitWizard::FindUserForm.new(params[:credit_debit_form])
+      end
+
+      def create_form
+        @create_form ||= CreditDebitWizard::CreateForm.new(params[:credit_debit_form])
       end
 
     end

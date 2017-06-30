@@ -26,8 +26,7 @@
                       <th><%= FinancialEntry.human_attribute_name(:from) %></th>
                       <th><%= FinancialEntry.human_attribute_name(:to) %></th>
                       <th><%= FinancialEntry.human_attribute_name(:type) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:credit) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:debit) %></th>
+                      <th><%= FinancialEntry.human_attribute_name(:amount) %></th>
                       <th><%= FinancialEntry.human_attribute_name(:created_at) %></th>
                     </tr>
                   </thead>
@@ -37,14 +36,9 @@
                         <th><%= financial_entry.id %></th>
                         <th><%= financial_entry.description %></th>
                         <th><%= financial_entry.from_user.try(:username) %></th>
-                        <th><%= financial_entry.to.user.username %></th>
-                        <td>
-                          <span class="<%= FinancialEntryTypeDecorator.status_class(financial_entry) %>">
-                            <%= t financial_entry.type %>
-                          </span>
-                        </td>
-                        <td><%= number_to_currency financial_entry.credit %></td>
-                        <td><%= number_to_currency financial_entry.debit %></td>
+                        <th><%= financial_entry.to_user.try(:username) %></th>
+                        <td><%= t financial_entry.kind %></td>
+                        <td><%= FinancialEntryAmountDecorator.new(financial_entry, current_user).amount %></td>
                         <td><%= l financial_entry.created_at, format: :short %></td>
                       </tr>
                     <% end %>

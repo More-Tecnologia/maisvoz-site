@@ -1,6 +1,12 @@
 en:
   backoffice:
     transfers:
-      new:
+      step_1: '1 - Find the user'
+      step_2: '2 - Make the transfer'
+      new_transfer:
         title: 'Credit Transfer'
         subtitle: 'Transfer credits to another account'
+        transfer_to: 'Transfer to'
+      find_user:
+        title: 'New Transfer'
+        subtitle: 'Find a user to transfer money'

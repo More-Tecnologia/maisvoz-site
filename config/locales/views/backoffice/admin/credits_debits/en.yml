@@ -2,9 +2,14 @@ en:
     backoffice:
       admin:
         credits_debits:
+          step_1: '1 - Find the user'
+          step_2: '2 - Generate Credit / Debit'
           form:
             credit: 'Credit'
             debit: 'Debit'
-          new:
+          find_user:
+            title: 'Credit / Debit'
+            subtitle: Add or remove credit from a user's account
+          credit_debit:
             title: 'Credit / Debit'
             subtitle: Add or remove credit from a user's account

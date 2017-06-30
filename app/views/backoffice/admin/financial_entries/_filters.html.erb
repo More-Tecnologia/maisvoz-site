@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-4">
               <%= f.label t('.type') %>
-              <%= f.select :type_eq, [['Credit', 'CreditEntry'], ['Debit', 'DebitEntry']], { include_blank: true }, { class: 'form-control input-sm' } %>
+              <%= f.select :kind_eq, FinancialEntry.kinds.map { |k, v| [t(k), v] }, { include_blank: true }, { class: 'form-control input-sm' } %>
             </div>
           </div>
         </div>

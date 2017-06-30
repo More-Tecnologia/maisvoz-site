@@ -23,6 +23,7 @@ en:
     confirm_removal: 'Are you sure you want to delete this record?'
     put: 'Update'
     post: 'Create'
+    search: 'Search'
     order_placed: 'Your order was placed with success'
     open: 'Open'
     pending_payment: 'Pending Payment'

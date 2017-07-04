@@ -1,0 +1,6 @@
+en:
+  backoffice:
+    withdrawals:
+      index:
+        title: 'Your Withdrawals Requests'
+        subtitle: ''

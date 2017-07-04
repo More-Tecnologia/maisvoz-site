@@ -26,7 +26,7 @@ class FinancialEntry < ApplicationRecord
 
   serialize :metadata, FinancialEntryMetadata
 
-  enum kind: [:transfer, :credit_by_admin, :debit_by_admin]
+  enum kind: [:transfer, :credit_by_admin, :debit_by_admin, :tax, :withdrawal, :bonus, :bonus_chargeback, :product_return]
 
   belongs_to :from, class_name: 'Account', optional: true
   belongs_to :to, class_name: 'Account', optional: true

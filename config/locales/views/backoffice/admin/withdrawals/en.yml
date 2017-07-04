@@ -1,0 +1,13 @@
+en:
+  backoffice:
+    admin:
+      withdrawals:
+        index:
+          title: 'Withdrawals Requests'
+          subtitle: ''
+          refuse_withdraw: 'Refuse this withdraw?'
+          approve_withdraw: 'Approve this withdraw?'
+        filters:
+          status: 'Status'
+          created_from: 'Created From'
+          created_until: 'Created Until'

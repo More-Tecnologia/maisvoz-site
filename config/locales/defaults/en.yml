@@ -32,3 +32,4 @@ en:
     cancelled: 'Cancelled'
     error:
       not_unique: 'Choose another one'
+      no_funds: 'Not enough funds'

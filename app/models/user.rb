@@ -63,6 +63,7 @@ class User < ApplicationRecord
   has_one :account
   has_many :orders
   has_many :financial_entries
+  has_many :withdrawals
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   belongs_to :sponsor, class_name: 'User', optional: true
 

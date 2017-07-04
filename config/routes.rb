@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]
       resources :financial_entries, only: [:index]
+      resources :withdrawals, only: [:index, :update]
     end
 
     resources :dashboard, only: :index
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show]
 
     # Financial
-    resources :withdrawals, only: [:new, :create]
+    resources :withdrawals, only: [:index, :new, :create]
     resources :transfers, only: [:show, :update, :create]
     resources :financial_entries, only: [:index]
     resources :bonus_entries, only: [:index]

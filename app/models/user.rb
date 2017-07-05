@@ -48,7 +48,7 @@
 
 class User < ApplicationRecord
 
-  delegate :balance, to: :account
+  delegate :available_balance, to: :account
 
   before_create :create_default_account
 

@@ -29,7 +29,7 @@ module Financial
         account.lock!
 
         # Atualiza apenas o balance da conta a ser creditada/debitada
-        account.balance_cents += form.credit? ? amount_in_cents : -amount_in_cents
+        account.available_balance_cents += form.credit? ? amount_in_cents : -amount_in_cents
         account.save!
 
         if form.credit?
@@ -48,7 +48,7 @@ module Financial
       financial_entry.metadata = FinancialEntryMetadata.new(
         created_by_id: from_user.id,
         created_by_username: from_user.username,
-        dest_account_balance_was: form.user.account.balance.to_s
+        dest_account_available_balance_was: form.user.account.available_balance.to_s
       )
     end
 

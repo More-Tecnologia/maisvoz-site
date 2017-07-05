@@ -31,7 +31,7 @@
           <li>
             <%= link_to backoffice_financial_entries_path do %>
               <i class="ti-money"></i>
-              <%= current_user.account.balance %>
+              <%= current_user.account.available_balance %>
             <% end %>
           </li>
           <li class="dropdown top-menu-item-xs">

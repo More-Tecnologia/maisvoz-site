@@ -32,9 +32,9 @@ module Financial
         from_acc.lock!
         to_acc.lock!
 
-        # Atualiza apenas o balance da conta a ser creditada/debitada
-        from_acc.balance_cents = from_acc.balance_cents - amount_cents
-        to_acc.balance_cents = to_acc.balance_cents + amount_cents
+        # Atualiza apenas o available_balance da conta a ser creditada/debitada
+        from_acc.available_balance_cents = from_acc.available_balance_cents - amount_cents
+        to_acc.available_balance_cents = to_acc.available_balance_cents + amount_cents
 
         from_acc.save!
         to_acc.save!
@@ -50,8 +50,8 @@ module Financial
       financial_entry.metadata = FinancialEntryMetadata.new(
         created_by_id: from_user.id,
         created_by_username: from_user.username,
-        origin_account_balance_was: from_user.balance.to_s,
-        dest_account_balance_was: form.to_user.balance.to_s
+        origin_account_available_balance_was: from_user.available_balance.to_s,
+        dest_account_available_balance_was: form.to_user.available_balance.to_s
       )
     end
 

@@ -34,7 +34,7 @@ module TransferWizard
     private
 
     def from_user_has_balance
-      return if from_user.balance.to_f >= BigDecimal(amount)
+      return if from_user.available_balance.to_f >= BigDecimal(amount)
       errors.add(:amount, I18n.t('errors.messages.not_enough_balance'))
     end
 

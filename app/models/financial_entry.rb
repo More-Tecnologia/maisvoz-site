@@ -6,7 +6,7 @@
 #  description  :string
 #  amount_cents :integer          default("0"), not null
 #  kind         :integer          default("0")
-#  metadata     :jsonb            not null
+#  metadata     :jsonb
 #  from_id      :integer
 #  to_id        :integer
 #  created_at   :datetime         not null

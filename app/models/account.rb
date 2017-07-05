@@ -2,11 +2,12 @@
 #
 # Table name: accounts
 #
-#  id            :integer          not null, primary key
-#  balance_cents :integer          default("0"), not null
-#  user_id       :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id                      :integer          not null, primary key
+#  available_balance_cents :integer          default("0"), not null
+#  blocked_balance_cents   :integer          default("0"), not null
+#  user_id                 :integer
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
 #
 # Indexes
 #
@@ -17,7 +18,8 @@ class Account < ApplicationRecord
 
   belongs_to :user
 
-  monetize :balance_cents
+  monetize :available_balance_cents
+  monetize :blocked_balance_cents
 
   def credits
     FinancialEntry.where(to_id: id)

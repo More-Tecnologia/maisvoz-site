@@ -15,7 +15,7 @@ class WithdrawalForm < Form
   private
 
   def user_has_balance
-    return if amount <= user.balance.to_f
+    return if amount <= user.available_balance.to_f
     errors.add(:amount, I18n.t('defaults.error.no_funds'))
   end
 

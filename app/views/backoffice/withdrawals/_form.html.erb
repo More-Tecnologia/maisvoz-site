@@ -1,4 +1,16 @@
-<%= simple_form_for(form, url: url, method: method, validate: true, html: { class: 'form-horizontal' }) do |f| %>
-  <%= f.input :amount %>
-  <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
+<%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
+  <div data-withdraw-simulator="true">
+    <%= f.input :amount do %>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+        <%= f.input_field :amount, class: "form-control autonumber", value: form.amount, data: { input: true, autonumeric: { aSep: '.', aDec: ',' } } %>
+      </div>
+    <% end %>
+    <ul class="list-unstyled w-list m-b-30">
+      <% fee = form.amount ? form.amount * AppConfig.get(:withdrawal_fee).to_f : 0 %>
+      <li><b><%= t('.fees') %>:</b> $ <span data-fee><%= fee %></span> </li>
+      <li><b><%= t('.total') %>:</b> $ <span data-total><%= form.amount ? form.amount - fee : 0 %></span> </li>
+    </ul>
+    <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
+  </div>
 <% end %>

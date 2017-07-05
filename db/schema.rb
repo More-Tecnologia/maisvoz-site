@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20170630211313) do
     t.string "description"
     t.bigint "amount_cents", default: 0, null: false
     t.integer "kind", default: 0
-    t.jsonb "metadata", null: false
+    t.jsonb "metadata"
     t.bigint "from_id"
     t.bigint "to_id"
     t.datetime "created_at", null: false

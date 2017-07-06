@@ -2,8 +2,9 @@ $(document).ready(function() {
 
   function WithdrawSimulator($el) {
     this.$el = $el;
-    this.fee = $el.find('[data-fee]');
-    this.total = $el.find('[data-total]');
+    this.$fee = $el.find('[data-fee-text]');
+    this.$total = $el.find('[data-total-text]');
+    this.withdrawalFee = parseFloat($el.data('fee'));
   }
 
   WithdrawSimulator.prototype.init = function() {
@@ -15,14 +16,11 @@ $(document).ready(function() {
     input.on('keyup', function() {
       var val = $(this).autoNumeric('get') || 0;
 
-      console.log($(this).val());
-      console.log($(this).autoNumeric('get'));
-
-      var feeTotal = (val * 0.02).toFixed(2);
+      var feeTotal = (val * $this.withdrawalFee).toFixed(2);
       var total = val - feeTotal;
 
-      $this.fee.text($.fn.autoFormat(feeTotal, autonumericOptions));
-      $this.total.text($.fn.autoFormat(total.toFixed(2), autonumericOptions));
+      $this.$fee.text($.fn.autoFormat(feeTotal, autonumericOptions));
+      $this.$total.text($.fn.autoFormat(total.toFixed(2), autonumericOptions));
     })
   }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630211313) do
+ActiveRecord::Schema.define(version: 20170706233412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,8 +130,13 @@ ActiveRecord::Schema.define(version: 20170630211313) do
     t.integer "bonus_9"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "kind"
+    t.bigint "upgrade_from_career_id"
+    t.bigint "upgrade_to_career_id"
     t.index ["career_id"], name: "index_products_on_career_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["upgrade_from_career_id"], name: "index_products_on_upgrade_from_career_id"
+    t.index ["upgrade_to_career_id"], name: "index_products_on_upgrade_to_career_id"
   end
 
   create_table "users", force: :cascade do |t|

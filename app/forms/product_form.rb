@@ -6,6 +6,7 @@ class ProductForm < Form
   attribute :short_description
   attribute :sku
   attribute :quantity
+  attribute :kind
   attribute :low_stock_alert
   attribute :weight
   attribute :length
@@ -19,6 +20,8 @@ class ProductForm < Form
   attribute :paid_by
   attribute :category_id
   attribute :career_id
+  attribute :upgrade_from_career_id
+  attribute :upgrade_to_career_id
   attribute :bonus_1
   attribute :bonus_2
   attribute :bonus_3
@@ -30,7 +33,7 @@ class ProductForm < Form
   attribute :bonus_9
   attribute :public_id
 
-  validates :name, :quantity, :price, :binary_score, :category_id, :career_id, presence: true
+  validates :name, :quantity, :price, :kind, :binary_score, :category_id, :career_id, presence: true
 
   validates :quantity, :low_stock_alert, :length, :width, :height, :binary_score,
             :advance_score, :bonus_1, :bonus_2, :bonus_3, :bonus_4, :bonus_5, :bonus_6, :bonus_7,

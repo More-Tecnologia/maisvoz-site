@@ -38,6 +38,7 @@ gem 'ransack'
 gem 'autonumeric-rails'
 
 gem 'rails-assets-bootstrap-datepicker', source: 'https://rails-assets.org'
+gem 'rails-assets-raphael', source: 'https://rails-assets.org'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

@@ -217,8 +217,11 @@ GEM
       rails-assets-jquery (>= 1.9.1, < 4)
     rails-assets-bootstrap-datepicker (1.7.0)
       rails-assets-jquery (>= 1.7.1, < 4.0.0)
+    rails-assets-eve-raphael (0.5.0)
     rails-assets-jquery (2.1.4)
     rails-assets-notifyjs (0.4.2)
+    rails-assets-raphael (2.2.7)
+      rails-assets-eve-raphael (= 0.5.0)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -364,6 +367,7 @@ DEPENDENCIES
   rails-assets-bootstrap-datepicker!
   rails-assets-jquery (= 2.1.4)!
   rails-assets-notifyjs (= 0.4.2)!
+  rails-assets-raphael!
   ransack
   rollbar
   rspec-rails (~> 3.5)

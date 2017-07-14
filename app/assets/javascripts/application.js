@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require notifyjs
 //= require bootstrap-datepicker
+//= require raphael
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require autonumeric

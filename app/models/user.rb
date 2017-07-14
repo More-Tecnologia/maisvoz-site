@@ -35,6 +35,8 @@
 #  state                  :string
 #  city                   :string
 #  role                   :integer          default("0"), not null
+#  binary_strategy        :integer          default("0")
+#  binary_position        :integer
 #
 # Indexes
 #
@@ -53,6 +55,8 @@ class User < ApplicationRecord
   before_create :create_default_account
 
   enum role: { client: 0, admin: 1337 }
+  enum binary_strategy: { balanced_strategy: 0, left_strategy: 1, right_strategy: 2 }
+  enum binary_position: { left: 0, right: 1 }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -61,6 +65,7 @@ class User < ApplicationRecord
 
   has_one :cloudinary_image, as: :imageable
   has_one :account
+  has_one :binary_node
   has_many :orders
   has_many :financial_entries
   has_many :withdrawals

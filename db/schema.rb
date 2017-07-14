@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706233412) do
+ActiveRecord::Schema.define(version: 20170710133004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,25 @@ ActiveRecord::Schema.define(version: 20170706233412) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id", unique: true
+  end
+
+  create_table "binary_nodes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "sponsored_by_id"
+    t.bigint "parent_id"
+    t.bigint "left_child_id"
+    t.bigint "right_child_id"
+    t.bigint "left_pv", default: 0
+    t.bigint "right_pv", default: 0
+    t.bigint "left_count", default: 0
+    t.bigint "right_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["left_child_id"], name: "index_binary_nodes_on_left_child_id"
+    t.index ["parent_id"], name: "index_binary_nodes_on_parent_id"
+    t.index ["right_child_id"], name: "index_binary_nodes_on_right_child_id"
+    t.index ["sponsored_by_id"], name: "index_binary_nodes_on_sponsored_by_id"
+    t.index ["user_id"], name: "index_binary_nodes_on_user_id", unique: true
   end
 
   create_table "careers", force: :cascade do |t|
@@ -172,6 +191,8 @@ ActiveRecord::Schema.define(version: 20170706233412) do
     t.string "state"
     t.string "city"
     t.integer "role", default: 0, null: false
+    t.integer "binary_strategy", default: 0
+    t.integer "binary_position"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -190,6 +211,8 @@ ActiveRecord::Schema.define(version: 20170706233412) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "binary_nodes", "users"
+  add_foreign_key "binary_nodes", "users", column: "sponsored_by_id"
   add_foreign_key "financial_entries", "accounts", column: "from_id"
   add_foreign_key "financial_entries", "accounts", column: "to_id"
   add_foreign_key "order_items", "orders"

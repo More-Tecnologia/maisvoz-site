@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
-      resources :orders, only: [:index, :show]
+      resources :orders, only: [:index, :show] do
+        post :approve
+      end
 
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]
@@ -34,6 +36,10 @@ Rails.application.routes.draw do
     resources :transfers, only: [:show, :update, :create]
     resources :financial_entries, only: [:index]
     resources :bonus_entries, only: [:index]
+
+    # Network
+    resources :binary_strategies, only: [:index, :create]
+    resources :binary_tree, only: [:index, :show]
 
   end
 

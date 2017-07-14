@@ -41,6 +41,14 @@
                           <%= link_to backoffice_admin_order_path(order) do %>
                             <i class="icon-eye"></i>
                           <% end %>
+                          <%= link_to(
+                            backoffice_admin_order_approve_path(order),
+                            method: :post,
+                            data: { confirm: t('.approve_withdraw') },
+                            class: 'm-r-10'
+                            ) do %>
+                            <i class="icon-check"></i>
+                          <% end %>
                         </td>
                       </tr>
                     <% end %>

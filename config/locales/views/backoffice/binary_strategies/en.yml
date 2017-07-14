@@ -1,0 +1,11 @@
+en:
+  backoffice:
+    binary_strategies:
+      index:
+        title: 'Binary Strategies'
+        subtitle: 'Define the binary strategies for your network'
+        default_strategy: 'Default strategy'
+        default_strategy_sub: 'This is the strategy for any new client that you indicate'
+        save: 'Save strategy'
+        indicated_strategy: 'Custom strategy'
+        indicated_strategy_sub: 'Customize where each client will be inserted when they buy the adhesion'

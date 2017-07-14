@@ -1,0 +1,11 @@
+.tree-node {
+  text-align: center;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+}
+
+.tree-node:hover {
+  background-color: rgb(224, 202, 255);
+  border-radius: 50%;
+}

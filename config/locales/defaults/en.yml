@@ -10,6 +10,7 @@ en:
     financial_entries: 'Financial History'
     bonus_entries: 'Bonus History'
     financial: 'Financial'
+    network: 'Network'
     new_transfer: 'New Transfer'
     withdrawals: 'Withdrawals'
     notice: 'Info'

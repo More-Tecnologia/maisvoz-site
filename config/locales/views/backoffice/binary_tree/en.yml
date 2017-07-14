@@ -1,0 +1,6 @@
+en:
+  backoffice:
+    binary_tree:
+      index:
+        title: 'Binary Tree'
+        subtitle: 'This is the tree below you'

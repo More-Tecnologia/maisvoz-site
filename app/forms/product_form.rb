@@ -49,7 +49,7 @@ class ProductForm < Form
   def sku_is_unique
     return if sku.blank?
     return unless Product.where(sku: sku).where.not(id: id).any?
-    errors.add(:sku, I18n.t('defaults.error.not_unique'))
+    errors.add(:sku, I18n.t('defaults.errors.not_unique'))
   end
 
 end

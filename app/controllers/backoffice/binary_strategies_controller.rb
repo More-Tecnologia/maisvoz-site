@@ -11,7 +11,7 @@ module Backoffice
       if command.success?
         flash[:success] = I18n.t('defaults.success')
       else
-        flash[:error] = command.errors
+        flash[:error] = command.result.errors.values.join(',')
       end
 
       redirect_to backoffice_binary_strategies_path

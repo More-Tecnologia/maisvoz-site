@@ -31,6 +31,7 @@ en:
     processing: 'Processing'
     completed: 'Completed'
     cancelled: 'Cancelled'
-    error:
+    errors:
       not_unique: 'Choose another one'
       no_funds: 'Not enough funds'
+      different_sponsor: You don't sponsor this user

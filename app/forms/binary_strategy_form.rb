@@ -12,4 +12,17 @@ class BinaryStrategyForm < Form
     ).call
   end
 
+  private
+
+  def valid_binary_positions
+    return if binary_positions.blank?
+    binary_positions.each do |k, v|
+      user = User.find(k)
+      if user.sponsor != sponsor
+        errors.add(:binary_positions, I18n.t('defaults.errors.different_sponsor'))
+        return
+      end
+    end
+  end
+
 end

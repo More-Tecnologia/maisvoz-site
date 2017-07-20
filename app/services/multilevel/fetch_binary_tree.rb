@@ -9,7 +9,6 @@ module Multilevel
     def call
       if node_below_user?
         BinaryTreeSerializer.new(node).to_builder
-      else
       end
     end
 

@@ -7,7 +7,7 @@ class BinaryTreeSerializer
 
   def to_builder
     {
-      root: node(root_node, 0)
+      root: build_tree
     }.to_json
   end
 
@@ -15,11 +15,27 @@ class BinaryTreeSerializer
 
   attr_reader :root_node, :max_levels
 
-  def node(node, counter)
-    return more_node if counter >= max_levels
-    return empty_node if node.nil?
+  def build_tree
+    tree = create_tree
+    tree = fill_tree(tree, root_node)
+    tree
+  end
 
-    counter += 1
+  def create_tree(counter = 0)
+    return more_node if counter >= max_levels
+
+    {
+      image: h.asset_path('packages/default.png'),
+      children: [
+        create_tree(counter + 1),
+        create_tree(counter + 1)
+      ]
+    }
+  end
+
+  def fill_tree(tree_node, node, counter = 0)
+    return tree_node if counter >= max_levels
+    return tree_node if node.nil?
 
     {
       image: h.asset_path('packages/pkg.png'),
@@ -27,21 +43,16 @@ class BinaryTreeSerializer
       HTMLid: node.id,
       children:
       [
-        node(node.left_child, counter),
-        node(node.right_child, counter)
+        fill_tree(tree_node[:children][0], node.left_child, counter + 1),
+        fill_tree(tree_node[:children][1], node.right_child, counter + 1)
       ]
-    }
-  end
-
-  def empty_node
-    @empty_node ||= {
-      image: h.asset_path('packages/default.png')
     }
   end
 
   def more_node
     @more_node ||= {
-      image: h.asset_path('packages/more.png')
+      image: h.asset_path('packages/more.png'),
+      end: true
     }
   end
 

@@ -12,7 +12,7 @@ module Backoffice
     end
 
     def max_generation
-      @max_generation ||= unilevel.map { |d| d[:generations].size }.max
+      @max_generation ||= unilevel.map { |d| d[:generations].size }.max || 0
     end
 
   end

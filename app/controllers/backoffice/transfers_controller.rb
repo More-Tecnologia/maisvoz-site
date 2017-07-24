@@ -31,7 +31,7 @@ module Backoffice
 
       if command.success?
         flash[:success] = I18n.t('defaults.success')
-        redirect_to backoffice_admin_financial_entries_path
+        redirect_to backoffice_financial_entries_path
       else
         render(:new, locals: { form: command.result })
       end

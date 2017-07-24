@@ -11,10 +11,11 @@ module Financial
     def call
       if form.valid?
         create_credit_debit
+        return form
       else
         errors.add(:form, 'invalid')
       end
-      form
+      nil
     end
 
     private

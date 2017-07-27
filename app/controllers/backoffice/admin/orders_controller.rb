@@ -51,7 +51,7 @@ module Backoffice
 
       def q_params
         qparams = params[:q]
-        qparams[:id_in] = params[:q][:id_in].split(' ') if params[:q].fetch(:id_in, nil).present?
+        qparams[:id_in] = params[:q][:id_in].split(' ') if params[:q].present? && params[:q].fetch(:id_in, nil).present?
         qparams
       end
 

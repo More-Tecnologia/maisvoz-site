@@ -4,17 +4,26 @@
 #
 #  id               :integer          not null, primary key
 #  name             :string
-#  avatar           :string
 #  qualifying_score :integer          default("0")
 #  bonus            :integer          default("0")
 #  binary_limit     :integer          default("0")
-#  order            :integer          default("0")
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  kind             :integer          default("0"), not null
 #
 
 class Career < ApplicationRecord
 
+  enum kind: [:qualification, :adhesion]
+
+  has_one :cloudinary_image, as: :imageable
+
   has_many :products
+  has_many :binary_nodes
+
+  def thumbnail
+    return CloudinaryImage.new.public_id unless cloudinary_image
+    cloudinary_image.public_id.thumbnail
+  end
 
 end

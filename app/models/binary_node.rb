@@ -14,9 +14,11 @@
 #  right_count     :integer          default("0")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  career_id       :integer
 #
 # Indexes
 #
+#  index_binary_nodes_on_career_id        (career_id)
 #  index_binary_nodes_on_left_child_id    (left_child_id)
 #  index_binary_nodes_on_parent_id        (parent_id)
 #  index_binary_nodes_on_right_child_id   (right_child_id)
@@ -31,6 +33,7 @@ class BinaryNode < ApplicationRecord
   has_one :upper_left_parent, class_name: 'BinaryNode', foreign_key: 'left_child_id'
 
   belongs_to :user
+  belongs_to :career
   belongs_to :sponsored_by, class_name: 'User', optional: true
   belongs_to :parent, class_name: 'BinaryNode', optional: true
   belongs_to :left_child, class_name: 'BinaryNode', optional: true

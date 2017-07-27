@@ -59,7 +59,10 @@ class BinaryTreeSerializer
   def node_data(node)
     {
       username: node.user.username,
-      sponsor: node.sponsored_by.try(:username)
+      sponsor: node.sponsored_by.try(:username),
+      career: node.career.try(:name),
+      left_pv: node.left_pv,
+      right_pv: node.right_pv
     }
   end
 

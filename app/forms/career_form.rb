@@ -1,11 +1,11 @@
 class CareerForm < Form
 
+  attribute :public_id
   attribute :name
-  attribute :avatar
   attribute :qualifying_score
   attribute :bonus
   attribute :binary_limit
-  attribute :order
+  attribute :kind
 
   validates :name, :qualifying_score, :bonus, :binary_limit, presence: true
 

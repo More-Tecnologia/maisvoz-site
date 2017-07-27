@@ -27,9 +27,11 @@
       <div class="row">
         <div class="col-md-6">
           <div class="p-20">
-            <%= cl_image_tag(form.try(:public_id), class: 'thumb-lg') %>
+            <% product && product.cloudinary_images.each do |cl| %>
+              <%= cl_image_tag(cl.public_id, class: 'thumb-lg') %>
+            <% end %>
 
-            <%= f.input :public_id, as: :file %>
+            <%= f.input :images, as: :file,  input_html: { multiple: true } %>
 
             <%= f.input :name %>
             <%= f.input :price do %>
@@ -50,8 +52,11 @@
             <%= f.input :category_id, collection: Category.active %>
             <%= f.input :career_id, collection: Career.all %>
             <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>
-            <%= f.input :upgrade_from_career_id, collection: Career.all %>
-            <%= f.input :upgrade_to_career_id, collection: Career.all %>
+            <div class="upgrade-section <%= form.kind != 'upgrade' && 'hide' %>">
+              <%= f.input :upgrade_from_career_id, collection: Career.all %>
+              <%= f.input :upgrade_to_career_id, collection: Career.all %>
+            </div>
+            <%= f.input :paid_by, collection: Product.paid_bies.map { |k,v| [t(k), k] } %>
             <%= f.input :active, as: :boolean %>
             <%= f.input :virtual, as: :boolean %>
           </div>
@@ -90,7 +95,6 @@
           <div class="p-20">
             <%= f.input :binary_score %>
             <%= f.input :advance_score %>
-            <%= f.input :paid_by %>
             <%= f.input :bonus_1 %>
             <%= f.input :bonus_2 %>
             <%= f.input :bonus_3 %>

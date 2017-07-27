@@ -39,7 +39,11 @@ Rails.application.routes.draw do
 
     # Network
     resources :binary_strategies, only: [:index, :create]
-    resources :binary_tree, only: [:index, :show]
+    resources :binary_tree, only: [:index, :show] do
+      collection do
+        get :search_by_user
+      end
+    end
     resources :unilevel, only: [:index]
 
   end

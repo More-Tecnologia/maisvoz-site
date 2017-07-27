@@ -12,6 +12,7 @@
 #  payment_status :integer          default("0")
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  paid_at        :datetime
 #
 # Indexes
 #
@@ -32,5 +33,9 @@ class Order < ApplicationRecord
   monetize :total_cents
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day)}
+
+  ransacker :date_paid_at do
+    Arel.sql("DATE(#{table_name}.paid_at)")
+  end
 
 end

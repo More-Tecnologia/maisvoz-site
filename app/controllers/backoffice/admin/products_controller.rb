@@ -66,7 +66,6 @@ module Backoffice
           params[:product_form] ||= product.attributes
           params[:product_form][:id] ||= product.id
           params[:product_form][:price] ||= product.price
-          params[:product_form][:public_id] ||= product.image
         end
         params.fetch(:product_form, {}).permit!
       end

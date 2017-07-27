@@ -23,11 +23,13 @@ class UpdateProduct
   end
 
   def cl_update
-    CreateOrUpdateClImage.new(product, product.cloudinary_image, form.public_id).call
+    form.images.each do |image|
+      CreateOrUpdateClImage.new(product, nil, image).call
+    end
   end
 
   def form_attributes
-    form.attributes.except(:id, :public_id_cache, :public_id)
+    form.attributes.except(:id, :public_id_cache, :images)
   end
 
 end

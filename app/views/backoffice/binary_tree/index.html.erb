@@ -15,8 +15,40 @@
         <div class="col-sm-12">
           <div class="card-box">
             <div class="row">
+              <div class="col-md-6">
+                <button data-binary-tree-top class="btn btn-icon waves-effect btn-default waves-light">
+                  <i class="fa fa-angle-double-up"></i>
+                </button>
+                <button data-binary-tree-parent class="btn btn-icon waves-effect waves-light btn-primary">
+                  <i class="fa fa-angle-up"></i>
+                </button>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group" data-binary-tree-search>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn waves-effect waves-light btn-default"><i class="fa fa-search"></i></button>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+              </div>
+            </div>
+            <!-- Binary Tree -->
+            <div class="row">
               <div class="col-lg-12">
-                <div id="binary-tree"></div>
+                <div id="binary-tree" data-binary-tree></div>
+              </div>
+            </div>
+            <!-- Careers -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="friend-list text-center">
+                  <% Career.find_each do |career| %>
+                    <div class="career-legend m-l-10 m-r-10">
+                      <%= cl_image_tag(career.thumbnail, class: 'img-circle thumb-md') %>
+                      <h5><%= career.name %></h5>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
@@ -29,76 +61,6 @@
 
 <script>
 
-  var nodz = <%= raw nodes %>
-
-  var initTree = function (nodes) {
-    var config = {
-      chart: {
-        container: "#binary-tree",
-        connectors: {
-          type: "curve",
-          style: {
-            "stroke-width": 2,
-            "stroke-linecap": "round",
-            "stroke": "#ccc"
-          }
-        },
-        padding:    50,
-        levelSeparation:    25,
-        siblingSeparation:  50,
-        subTeeSeparation:   50,
-        node: {
-    			HTMLclass: "tree-node"
-    		}
-      },
-      nodeStructure: nodes.root
-    }
-
-    new Treant(config);
-
-    var find_node_by_id = function(id, rootNode) {
-      if (rootNode == null) { return false }
-      if (rootNode.children == null) { return false }
-      if (rootNode.HTMLid == id) { return rootNode.data }
-
-      var left  = find_node_by_id(id, rootNode.children[0]);
-      var right = find_node_by_id(id, rootNode.children[1]);
-
-      return left ? left : right;
-    }
-
-    $('.tree-node').popover({
-      trigger: 'hover',
-      html: true,
-      content: function() {
-        var id = $(this).attr('id');
-        var html = '';
-
-        var node = find_node_by_id(id, nodes.root)
-
-        if (id) {
-          html += 'Sponsor: <strong>' + node.sponsor + '</strong><br />';
-          html += 'Username: <strong>' + node.username + '</strong>';
-        } else {
-          html = 'no data';
-        }
-
-        return html;
-      }
-    });
-
-    $('.tree-node').click(function() {
-      var id = $(this).attr('id');
-
-      if (id) {
-        $.get('/backoffice/binary_tree/' + id, function(data) {
-          initTree(data);
-        });
-      }
-
-    });
-  }
-
-  initTree(nodz);
+  window.user_binary_node_id = <%= user_binary_node_id %>;
 
 </script>

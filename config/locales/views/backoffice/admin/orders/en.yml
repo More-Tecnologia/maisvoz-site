@@ -1,8 +1,14 @@
 en:
-  views:
-    backoffice:
-      admin:
-        orders:
-          index:
-            title: 'All orders'
-            subtitle: 'Manage your orders'
+  backoffice:
+    admin:
+      orders:
+        index:
+          title: 'All orders'
+          subtitle: 'Manage your orders'
+        filters:
+          user: 'User'
+          total: 'Total'
+          status: 'Status'
+          paid_from: 'Paid From'
+          paid_until: 'Paid Until'
+          id_in: 'Order Ids (separated by space)'

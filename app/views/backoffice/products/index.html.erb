@@ -23,9 +23,9 @@
           <% @products.each do |product| %>
           <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
             <div class="product-list-box thumb">
-              <a href="javascript:void(0);" class="image-popup" title="Screenshot-1">
+              <%= link_to backoffice_product_path(product), class: 'image-popup' do %>
                 <%= cl_image_tag(product.image.url, class: 'thumb-img') %>
-              </a>
+              <% end %>
 
               <% if current_user.admin? %>
               <div class="product-action">
@@ -47,7 +47,16 @@
                     <%= product.sku %>
                   </span>
                 </h5>
-                <%= link_to t('views.backoffice.products.index.details'), backoffice_product_path(product), class: 'btn btn-primary' %>
+
+                <%= link_to t('views.backoffice.products.index.details'), backoffice_product_path(product), class: 'btn btn-primary pull-left m-r-10' %>
+
+                <%= simple_form_for product, url: backoffice_order_items_path, method: :post, class: 'pull-left' do |f| %>
+                  <%= f.input :id, as: :hidden %>
+                  <button type="submit" class="btn btn-danger waves-effect waves-light">
+                    <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
+                  </button>
+                <% end %>
+
               </div>
             </div>
           </div>

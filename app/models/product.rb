@@ -47,8 +47,9 @@
 class Product < ApplicationRecord
 
   enum kind: [:product, :monthly_payment, :adhesion, :promotion, :renovation, :upgrade]
+  enum paid_by: [:paid_by_user, :paid_by_company]
 
-  has_one :cloudinary_image, as: :imageable
+  has_many :cloudinary_images, as: :imageable
   belongs_to :category
   belongs_to :career
   belongs_to :upgrade_from_career, class_name: 'Career', optional: true
@@ -59,13 +60,13 @@ class Product < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   def thumbnail
-    return CloudinaryImage.new.public_id unless cloudinary_image
-    cloudinary_image.public_id.thumbnail
+    return CloudinaryImage.new.public_id if cloudinary_images.blank?
+    cloudinary_images.first.public_id.thumbnail
   end
 
   def image
-    return CloudinaryImage.new.public_id unless cloudinary_image
-    cloudinary_image.public_id
+    return CloudinaryImage.new.public_id if cloudinary_images.blank?
+    cloudinary_images.first.public_id
   end
 
 end

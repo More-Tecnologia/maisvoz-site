@@ -17,28 +17,34 @@
             <div class="row">
               <div class="col-lg-12">
 
-                <table class="table table-bordered">
-                  <thead>
-                    <th>1º <%= t('.generation') %></th>
-                    <% unilevel.each do |level| %>
-                      <th><%= level[:sponsor] %></th>
+                <% if unilevel.present? %>
+                  <table class="table table-bordered">
+                    <thead>
+                      <th>1º <%= t('.generation') %></th>
+                      <% unilevel.each do |level| %>
+                        <th><%= level[:sponsor] %></th>
+                      <% end %>
+                    </thead>
+                    <% max_generation.times do |i| %>
+                      <tr data-toggle="collapse" data-target="#accordion_<%= i %>" class="clickable">
+                        <td><%= i + 2 %>º <%= t('.generation') %></td>
+                        <% unilevel.each do |level| %>
+                          <td><%= level[:generations][i].present? ? level[:generations][i][:count] : 0 %></td>
+                        <% end %>
+                      </tr>
+                      <tr id="accordion_<%= i %>" class="collapse warning">
+                        <td></td>
+                        <% unilevel.each do |level| %>
+                          <td><%= level[:generations][i].present? ? level[:generations][i][:sponsors].join(', ') : '-' %></td>
+                        <% end %>
+                      </tr>
                     <% end %>
-                  </thead>
-                  <% max_generation.times do |i| %>
-                    <tr data-toggle="collapse" data-target="#accordion_<%= i %>" class="clickable">
-                      <td><%= i + 2 %>º <%= t('.generation') %></td>
-                      <% unilevel.each do |level| %>
-                        <td><%= level[:generations][i].present? ? level[:generations][i][:count] : 0 %></td>
-                      <% end %>
-                    </tr>
-                    <tr id="accordion_<%= i %>" class="collapse warning">
-                      <td></td>
-                      <% unilevel.each do |level| %>
-                        <td><%= level[:generations][i].present? ? level[:generations][i][:sponsors].join(', ') : '-' %></td>
-                      <% end %>
-                    </tr>
-                  <% end %>
-                </table>
+                  </table>
+                <% else %>
+                  <div class="alert alert-warning">
+                    <%= t('.no_binary_node') %>
+                  </div>
+                <% end %>
 
               </div>
             </div>

@@ -5,3 +5,4 @@ en:
         title: 'Unilevel'
         subtitle: 'These are your sponsored users and following generations'
         generation: 'Generation'
+        no_binary_node: You can't see this section because you're not active on the binary.

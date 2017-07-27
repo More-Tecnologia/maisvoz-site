@@ -2,7 +2,7 @@ module Backoffice
   class BinaryTreeController < BackofficeController
 
     def index
-      render(:index, locals: { user_binary_node_id: current_user.binary_node.id })
+      render(:index, locals: { user_binary_node_id: current_binary_node_id })
     end
 
     def show
@@ -23,6 +23,11 @@ module Backoffice
 
     def binary_node
       @binary_node ||= BinaryNodeSearchByUserQuery.new(current_user, params[:username]).call
+    end
+
+    def current_binary_node_id
+      return unless current_user.binary_node
+      current_user.binary_node.id
     end
 
   end

@@ -9,7 +9,12 @@ module Multilevel
     end
 
     def call
-      direct_sponsored
+      if root_binary_node
+        direct_sponsored
+      else
+        errors.add(:sponsor, 'no binary node')
+      end
+      []
     end
 
     private

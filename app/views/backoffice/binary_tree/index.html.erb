@@ -14,43 +14,50 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="card-box">
-            <div class="row">
-              <div class="col-md-6">
-                <button data-binary-tree-top class="btn btn-icon waves-effect btn-default waves-light">
-                  <i class="fa fa-angle-double-up"></i>
-                </button>
-                <button data-binary-tree-parent class="btn btn-icon waves-effect waves-light btn-primary">
-                  <i class="fa fa-angle-up"></i>
-                </button>
-              </div>
-              <div class="col-md-6">
-                <div class="input-group" data-binary-tree-search>
-                  <span class="input-group-btn">
-                    <button type="button" class="btn waves-effect waves-light btn-default"><i class="fa fa-search"></i></button>
-                  </span>
-                  <input type="text" class="form-control" placeholder="Search">
+            <% if current_user.binary_node.present? %>
+              <!-- Controls -->
+              <div class="row">
+                <div class="col-md-6">
+                  <button data-binary-tree-top class="btn btn-icon waves-effect btn-default waves-light">
+                    <i class="fa fa-angle-double-up"></i>
+                  </button>
+                  <button data-binary-tree-parent class="btn btn-icon waves-effect waves-light btn-primary">
+                    <i class="fa fa-angle-up"></i>
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group" data-binary-tree-search>
+                    <span class="input-group-btn">
+                      <button type="button" class="btn waves-effect waves-light btn-default"><i class="fa fa-search"></i></button>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- Binary Tree -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div id="binary-tree" data-binary-tree></div>
-              </div>
-            </div>
-            <!-- Careers -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="friend-list text-center">
-                  <% Career.find_each do |career| %>
-                    <div class="career-legend m-l-10 m-r-10">
-                      <%= cl_image_tag(career.thumbnail, class: 'img-circle thumb-md') %>
-                      <h5><%= career.name %></h5>
-                    </div>
-                  <% end %>
+              <!-- Binary Tree -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div id="binary-tree" data-binary-tree></div>
                 </div>
               </div>
-            </div>
+              <!-- Careers -->
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="friend-list text-center">
+                    <% Career.find_each do |career| %>
+                      <div class="career-legend m-l-10 m-r-10">
+                        <%= cl_image_tag(career.thumbnail, class: 'img-circle thumb-md') %>
+                        <h5><%= career.name %></h5>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <div class="alert alert-warning">
+                <%= t('.no_binary_node') %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

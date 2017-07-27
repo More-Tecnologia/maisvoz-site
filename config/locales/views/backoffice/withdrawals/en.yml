@@ -4,6 +4,7 @@ en:
       index:
         title: 'Your Withdrawals Requests'
         subtitle: ''
+        no_data: You don't have any withdraw request
       new:
         title: 'Make a withdraw'
         subtitle: ''

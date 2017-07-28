@@ -25,6 +25,7 @@ module Financial
       ActiveRecord::Base.transaction do
         update_order_status
         create_binary_node
+        propagate_binary_score
       end
     end
 
@@ -37,14 +38,16 @@ module Financial
     end
 
     def create_binary_node
-      return unless adhesion_product?
-      Multilevel::CreateBinaryNode.new(user).call
+      return unless adhesion_product.present?
+      Multilevel::CreateBinaryNode.new(user, adhesion_product.career).call
     end
 
-    def adhesion_product?
-      order.order_items.any? do |oi|
-        oi.product.adhesion?
-      end
+    def propagate_binary_score
+      Bonus::PropagateBinaryScore.call(order)
+    end
+
+    def adhesion_product
+      @adhesion_product ||= order.order_items.map(&:product).find(&:adhesion?)
     end
 
     def any_product?

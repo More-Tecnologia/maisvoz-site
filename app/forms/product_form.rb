@@ -33,7 +33,7 @@ class ProductForm < Form
   attribute :bonus_9
   attribute :images
 
-  validates :name, :quantity, :price, :kind, :binary_score, :category_id, :career_id, presence: true
+  validates :name, :quantity, :price, :kind, :binary_score, :category_id, presence: true
 
   validates :quantity, :low_stock_alert, :length, :width, :height, :binary_score,
             :advance_score, :bonus_1, :bonus_2, :bonus_3, :bonus_4, :bonus_5, :bonus_6, :bonus_7,
@@ -43,6 +43,7 @@ class ProductForm < Form
   validates :weight, :price, numericality: { greater_than_or_equal_to: 0.0, allow_blank: true }
 
   validate :sku_is_unique
+  validate :career_presence_on_adhesion
 
   private
 
@@ -50,6 +51,12 @@ class ProductForm < Form
     return if sku.blank?
     return unless Product.where(sku: sku).where.not(id: id).any?
     errors.add(:sku, I18n.t('defaults.errors.not_unique'))
+  end
+
+  def career_presence_on_adhesion
+    return if kind != 'adhesion'
+    return if career_id.present?
+    errors.add(:kind, I18n.t('defaults.errors.career_required'))
   end
 
 end

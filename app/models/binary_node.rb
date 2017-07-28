@@ -33,7 +33,7 @@ class BinaryNode < ApplicationRecord
   has_one :upper_left_parent, class_name: 'BinaryNode', foreign_key: 'left_child_id'
 
   belongs_to :user
-  belongs_to :career
+  belongs_to :career, optional: true
   belongs_to :sponsored_by, class_name: 'User', optional: true
   belongs_to :parent, class_name: 'BinaryNode', optional: true
   belongs_to :left_child, class_name: 'BinaryNode', optional: true

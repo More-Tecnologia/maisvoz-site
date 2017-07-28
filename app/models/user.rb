@@ -50,11 +50,11 @@
 
 class User < ApplicationRecord
 
-  delegate :available_balance, to: :account
+  delegate :available_balance, :blocked_balance, to: :account
 
   before_create :create_default_account
 
-  enum role: { client: 0, admin: 1337 }
+  enum role: { client: 0, financial: 1, support: 2, admin: 1337 }
   enum binary_strategy: { balanced_strategy: 0, left_strategy: 1, right_strategy: 2 }
   enum binary_position: { left: 0, right: 1 }
 

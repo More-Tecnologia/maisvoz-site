@@ -19,13 +19,13 @@ class NewRegistrationForm < Form
   validate :username_is_unique
 
   def sponsor
-    User.find_by(username: sponsor_username)
+    User.find_by(username: sponsor_username, role: :client)
   end
 
   private
 
   def sponsor_exists
-    return if User.where(username: sponsor_username).any?
+    return if User.where(username: sponsor_username, role: :client).any?
     errors.add(:sponsor_username, 'sponsor doesnt exist')
   end
 

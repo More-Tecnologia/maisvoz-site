@@ -3,6 +3,12 @@
   cursor: pointer;
   width: 55px;
   height: 55px;
+
+  img {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+  }
 }
 
 .tree-node:hover {

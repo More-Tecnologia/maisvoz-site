@@ -8,7 +8,7 @@ class CreateProduct
     return false unless form.valid?
     ActiveRecord::Base.transaction do
       create_product
-      create_cloudinary_image
+      create_cloudinary_images
     end
     true
   end
@@ -22,7 +22,8 @@ class CreateProduct
     product.save!
   end
 
-  def create_cloudinary_image
+  def create_cloudinary_images
+    return if form.images.blank?
     form.images.each do |image|
       CreateOrUpdateClImage.new(product, nil, image).call
     end

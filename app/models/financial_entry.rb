@@ -24,7 +24,7 @@ class FinancialEntry < ApplicationRecord
   delegate :user, to: :to, prefix: true, allow_nil: true
   delegate :user, to: :from, prefix: true, allow_nil: true
 
-  serialize :metadata, FinancialEntryMetadata
+  serialize :metadata, JsonModelSerializer.new(FinancialEntryMetadata)
 
   enum kind: [:transfer, :credit_by_admin, :debit_by_admin, :tax, :withdrawal, :bonus, :bonus_chargeback, :product_return, :fee]
 

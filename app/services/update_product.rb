@@ -23,6 +23,7 @@ class UpdateProduct
   end
 
   def cl_update
+    return if form.images.blank?
     form.images.each do |image|
       CreateOrUpdateClImage.new(product, nil, image).call
     end

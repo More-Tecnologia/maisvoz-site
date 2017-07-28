@@ -51,7 +51,7 @@ class Product < ApplicationRecord
 
   has_many :cloudinary_images, as: :imageable
   belongs_to :category
-  belongs_to :career
+  belongs_to :career, optional: true
   belongs_to :upgrade_from_career, class_name: 'Career', optional: true
   belongs_to :upgrade_to_career, class_name: 'Career', optional: true
 

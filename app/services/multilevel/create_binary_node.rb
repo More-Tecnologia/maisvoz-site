@@ -4,9 +4,10 @@ module Multilevel
     LEFT = :left
     RIGHT = :right
 
-    def initialize(user)
+    def initialize(user, career)
       @user = user
       @sponsor = user.sponsor
+      @career = career
     end
 
     def call
@@ -22,7 +23,7 @@ module Multilevel
 
     private
 
-    attr_reader :user, :sponsor, :position, :parent_node
+    attr_reader :user, :sponsor, :career, :position, :parent_node
 
     def update_user_binary_position
       if position == LEFT
@@ -55,8 +56,6 @@ module Multilevel
     end
 
     def find_left_node(node)
-      # return node if node.left_child.nil?
-      # find_left_node(node.left_child)
       while node.left_child.present?
         node = node.left_child
       end
@@ -106,7 +105,8 @@ module Multilevel
       @binary_node ||= BinaryNode.new(
         user: user,
         sponsored_by: sponsor,
-        parent: parent_node
+        parent: parent_node,
+        career: career
       )
     end
 

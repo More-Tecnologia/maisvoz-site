@@ -92,7 +92,7 @@ $(function() {
     if (id) {
       var thiz = this;
       $.get('/backoffice/binary_tree/' + id, function(data) {
-        thiz.nodes = JSON.parse(data.nodes);
+        thiz.nodes = data.nodes;
         window.tree_parent_id = data.parent_id;
         thiz.createTree();
       });

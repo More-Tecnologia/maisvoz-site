@@ -8,7 +8,7 @@ class BinaryTreeSerializer
   def to_builder
     {
       root: build_tree
-    }.to_json
+    }.as_json
   end
 
   private
@@ -37,8 +37,10 @@ class BinaryTreeSerializer
     return tree_node if counter >= max_levels
     return tree_node if node.nil?
 
+    package_img = node.career.present? ? node.career.cloudinary_image.public_id.thumbnail.url : h.asset_path('packages/pkg.png')
+
     {
-      image: h.asset_path('packages/pkg.png'),
+      image: package_img,
       data: node_data(node),
       HTMLid: node.id,
       children:

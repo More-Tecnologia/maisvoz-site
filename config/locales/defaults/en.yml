@@ -38,3 +38,4 @@ en:
       not_unique: 'Choose another one'
       no_funds: 'Not enough funds'
       different_sponsor: You don't sponsor this user
+      career_required: 'Career required for adhesion'

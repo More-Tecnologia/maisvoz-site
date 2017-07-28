@@ -50,8 +50,10 @@
           <div class="p-20">
             <%= f.input :low_stock_alert %>
             <%= f.input :category_id, collection: Category.active %>
-            <%= f.input :career_id, collection: Career.all %>
             <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>
+            <div class="career-section <%= form.kind != 'adhesion' && 'hide' %>"">
+              <%= f.input :career_id, collection: Career.all %>
+            </div>
             <div class="upgrade-section <%= form.kind != 'upgrade' && 'hide' %>">
               <%= f.input :upgrade_from_career_id, collection: Career.all %>
               <%= f.input :upgrade_to_career_id, collection: Career.all %>

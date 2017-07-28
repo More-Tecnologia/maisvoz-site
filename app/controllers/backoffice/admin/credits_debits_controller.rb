@@ -34,7 +34,10 @@ module Backoffice
           flash[:success] = I18n.t('defaults.success')
           redirect_to backoffice_admin_financial_entries_path
         else
-          render(:new, locals: { form: command.result })
+          Rollbar.error command.errors
+          flash[:error] = command.errors
+          # render(:show, locals: { form: command.result })
+          redirect_back fallback_location: backoffice_admin_financial_entries_path
         end
       end
 

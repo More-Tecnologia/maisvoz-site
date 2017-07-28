@@ -13,7 +13,7 @@ module Financial
         create_credit_debit
         return form
       else
-        errors.add(:form, 'invalid')
+        errors.add(:form, form.errors)
       end
       nil
     end

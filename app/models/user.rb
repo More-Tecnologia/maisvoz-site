@@ -50,6 +50,8 @@
 
 class User < ApplicationRecord
 
+  attr_accessor :login
+
   delegate :available_balance, :blocked_balance, to: :account
 
   before_create :create_default_account
@@ -75,6 +77,12 @@ class User < ApplicationRecord
   def avatar
     return CloudinaryImage.new.public_id unless cloudinary_image
     cloudinary_image.public_id
+  end
+
+  def self.find_for_database_authentication warden_conditions
+    conditions = warden_conditions.dup
+    login = conditions.delete(:login)
+    where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
   end
 
   private

@@ -17,6 +17,7 @@ class NewRegistrationForm < Form
   validate :terms_accepted
   validate :sponsor_exists
   validate :username_is_unique
+  validate :email_is_unique
 
   def sponsor
     User.find_by(username: sponsor_username, role: :client)
@@ -32,6 +33,11 @@ class NewRegistrationForm < Form
   def username_is_unique
     return unless User.where(username: username).any?
     errors.add(:username, 'already exists')
+  end
+
+  def email_is_unique
+    return unless User.where(email: email).any?
+    errors.add(:email, 'already exists')
   end
 
   def terms_accepted

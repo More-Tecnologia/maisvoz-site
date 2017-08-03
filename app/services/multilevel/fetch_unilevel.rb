@@ -10,7 +10,7 @@ module Multilevel
 
     def call
       if root_binary_node
-        direct_sponsored
+        return direct_sponsored
       else
         errors.add(:sponsor, 'no binary node')
       end

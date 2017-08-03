@@ -25,6 +25,7 @@ class Order < ApplicationRecord
   enum payment_status: { pending: 0, paid: 2, expired: 3 }
 
   has_many :order_items
+  has_many :pv_histories
   belongs_to :user
 
   monetize :subtotal_cents

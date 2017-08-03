@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727023125) do
+ActiveRecord::Schema.define(version: 20170802144048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170727023125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "kind", default: 0, null: false
+    t.decimal "binary_percentage", precision: 5, scale: 2, default: "0.0", null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -160,6 +161,18 @@ ActiveRecord::Schema.define(version: 20170727023125) do
     t.index ["upgrade_to_career_id"], name: "index_products_on_upgrade_to_career_id"
   end
 
+  create_table "pv_histories", force: :cascade do |t|
+    t.bigint "order_id"
+    t.integer "direction", default: 0, null: false
+    t.bigint "amount_cents", default: 0, null: false
+    t.bigint "balance_cents", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_pv_histories_on_order_id"
+    t.index ["user_id"], name: "index_pv_histories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -223,5 +236,7 @@ ActiveRecord::Schema.define(version: 20170727023125) do
   add_foreign_key "orders", "users"
   add_foreign_key "products", "careers"
   add_foreign_key "products", "categories"
+  add_foreign_key "pv_histories", "orders"
+  add_foreign_key "pv_histories", "users"
   add_foreign_key "withdrawals", "users"
 end

@@ -1,0 +1,80 @@
+<div class="content-page">
+  <!-- Start content -->
+  <div class="content">
+    <div class="container">
+
+      <!-- Page-Title -->
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 class="page-title"><%= t('.title') %></h4>
+          <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-box">
+            <div class="row">
+              <div class="col-lg-12">
+                <ul class="nav nav-tabs navtab-bg">
+                  <li class="<%= params[:direction] == 'left' && 'active' %>">
+                    <%= link_to backoffice_pv_histories_path(direction: :left) do %>
+                      <span>
+                        <i class="fa fa-chevron-left"></i>
+                        <%= t('.left') %>
+                      </span>
+                    <% end %>
+                  </li>
+                  <li class="<%= params[:direction] == 'right' && 'active' %>">
+                    <%= link_to backoffice_pv_histories_path(direction: :right) do %>
+                      <span>
+                        <i class="fa fa-chevron-right"></i>
+                        <%= t('.right') %>
+                      </span>
+                    <% end %>
+                  </li>
+                </ul>
+
+                <table class="table table-bordered m-0 m-t-30">
+
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th><%= PvHistory.human_attribute_name(:description) %></th>
+                      <th><%= PvHistory.human_attribute_name(:direction) %></th>
+                      <th><%= PvHistory.human_attribute_name(:amount) %></th>
+                      <th><%= PvHistory.human_attribute_name(:balance) %></th>
+                      <th><%= PvHistory.human_attribute_name(:created_at) %></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% pv_histories.each do |pv_history| %>
+                      <tr>
+                        <th><%= pv_history.id %></th>
+                        <td><%= t('.invoice_no', id: pv_history.order_id) %></td>
+                        <td><%= pv_history.direction %></td>
+                        <td><%= pv_history.amount %></td>
+                        <td><%= pv_history.balance %></td>
+                        <td><%= l(pv_history.created_at, format: :short) %></td>
+                      </tr>
+                    <% end %>
+                    <% if pv_histories.empty? %>
+                      <tr>
+                        <td colspan="6" class="text-center"><%= t('.no_data') %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+
+                <%= paginate pv_histories %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

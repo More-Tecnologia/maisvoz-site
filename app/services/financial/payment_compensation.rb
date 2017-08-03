@@ -9,7 +9,9 @@ module Financial
     end
 
     def call
-      if compensate_order
+      if !order.pending_payment?
+        errors.add(:order, 'já foi aprovado')
+      elsif compensate_order
         return order
       else
         errors.add(:order, 'error')

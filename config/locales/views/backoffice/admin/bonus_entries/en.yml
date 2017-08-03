@@ -1,0 +1,8 @@
+en:
+  backoffice:
+    admin:
+      bonus_entries:
+        index:
+          title: 'All the bonus entries'
+          subtitle: 'Those are all the bonus entries of the system'
+          no_data: 'No bonus entries yet'

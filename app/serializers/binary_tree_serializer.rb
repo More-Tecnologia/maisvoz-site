@@ -37,7 +37,7 @@ class BinaryTreeSerializer
     return tree_node if counter >= max_levels
     return tree_node if node.nil?
 
-    package_img = node.career.present? ? node.career.cloudinary_image.public_id.thumbnail.url : h.asset_path('packages/pkg.png')
+    package_img = node.career.present? ? node.career.thumbnail.url : h.asset_path('packages/pkg.png')
 
     {
       image: package_img,

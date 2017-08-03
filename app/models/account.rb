@@ -18,6 +18,9 @@ class Account < ApplicationRecord
 
   belongs_to :user
 
+  has_many :origin_financial_entries, foreign_key: 'from_id'
+  has_many :dest_financial_entries, foreign_key: 'to_id'
+
   monetize :available_balance_cents
   monetize :blocked_balance_cents
 

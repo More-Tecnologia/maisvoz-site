@@ -1,0 +1,9 @@
+en:
+  backoffice:
+    pv_histories:
+      index:
+        title: 'Your PV History'
+        subtitle: 'All your PV entries'
+        no_data: 'No PVs yet'
+        left: 'Left'
+        right: 'Right'

@@ -1,7 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   root 'pages#index'
@@ -20,6 +26,7 @@ Rails.application.routes.draw do
       resources :credits_debits, only: [:show, :update, :create]
       resources :financial_entries, only: [:index]
       resources :withdrawals, only: [:index, :update]
+      resources :bonus_entries, only: [:index]
     end
 
     resources :dashboard, only: :index
@@ -36,6 +43,7 @@ Rails.application.routes.draw do
     resources :transfers, only: [:show, :update, :create]
     resources :financial_entries, only: [:index]
     resources :bonus_entries, only: [:index]
+    resources :pv_histories, only: [:index]
 
     # Network
     resources :binary_strategies, only: [:index, :create]

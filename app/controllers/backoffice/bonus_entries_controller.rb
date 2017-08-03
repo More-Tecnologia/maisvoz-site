@@ -1,14 +1,14 @@
 module Backoffice
-  class BonusEntriesController < AdminController
+  class BonusEntriesController < BackofficeController
 
     def index
-      render(:index, locals: { financial_entries: financial_entries })
+      render(:index, locals: { bonus_entries: bonus_entries })
     end
 
     private
 
-    def financial_entries
-      current_user.financial_entries.page(params[:page])
+    def bonus_entries
+      FinancialEntry.where(kind: :binary_bonus, to: current_user.account).page(params[:page])
     end
 
   end

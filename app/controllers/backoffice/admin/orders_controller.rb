@@ -17,9 +17,9 @@ module Backoffice
         command = Financial::PaymentCompensation.call(order)
 
         if command.success?
-          flash[:success] = 'sucess'
+          flash[:success] = I18n.t('defaults.approved_success')
         else
-          flash[:error] = 'error'
+          flash[:error] = command.errors[:order].join(',')
         end
         redirect_to backoffice_admin_orders_path
       end

@@ -26,7 +26,17 @@ class FinancialEntry < ApplicationRecord
 
   serialize :metadata, JsonModelSerializer.new(FinancialEntryMetadata)
 
-  enum kind: [:transfer, :credit_by_admin, :debit_by_admin, :tax, :withdrawal, :bonus, :bonus_chargeback, :product_return, :fee]
+  enum kind: [
+    :transfer,
+    :credit_by_admin,
+    :debit_by_admin,
+    :tax,
+    :withdrawal,
+    :bonus_chargeback,
+    :product_return,
+    :fee,
+    :binary_bonus
+  ]
 
   belongs_to :from, class_name: 'Account', optional: true
   belongs_to :to, class_name: 'Account', optional: true

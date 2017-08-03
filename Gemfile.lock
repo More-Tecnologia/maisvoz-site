@@ -91,6 +91,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     countries (2.0.8)
       i18n_data (~> 0.7.0)
       money (~> 6.7)
@@ -199,6 +200,8 @@ GEM
     public_suffix (2.0.5)
     puma (3.8.2)
     rack (2.0.3)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.1)
@@ -243,6 +246,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    redis (3.3.3)
     regexp_parser (0.4.3)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
@@ -283,6 +287,11 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    sidekiq (5.0.0)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (~> 3.3, >= 3.3.3)
     simple_command (0.0.9)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
@@ -373,6 +382,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   selenium-webdriver
+  sidekiq
   simple_command
   simple_form (~> 3.5.0)
   spring

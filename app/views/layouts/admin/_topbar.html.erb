@@ -30,8 +30,18 @@
         <ul class="nav navbar-nav navbar-right pull-right">
           <li>
             <%= link_to backoffice_financial_entries_path do %>
-              <i class="ti-money"></i>
-              <%= current_user.account.available_balance %>
+              <span class="text-success">
+                <i class="fa fa-dollar"></i>
+                <%= current_user.account.available_balance %>
+              </span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to backoffice_financial_entries_path do %>
+              <span class="text-warning">
+                <i class="ti-money"></i>
+                <%= current_user.account.blocked_balance %>
+              </span>
             <% end %>
           </li>
           <li class="dropdown top-menu-item-xs">

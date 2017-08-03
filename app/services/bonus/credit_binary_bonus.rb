@@ -25,6 +25,7 @@ module Bonus
     def credit_binary_bonus
       ActiveRecord::Base.transaction do
         account.lock!
+        binary_node.lock!
 
         create_financial_entry
         update_account_balance
@@ -42,7 +43,7 @@ module Bonus
     end
 
     def update_account_balance
-      account.update!(blocked_balance: binary_bonus)
+      account.update!(blocked_balance: account.blocked_balance.to_f + binary_bonus)
     end
 
     def debit_pv_from_both_legs
@@ -58,7 +59,7 @@ module Bonus
     end
 
     def binary_bonus
-      @binary_bonus ||= pv_to_be_credited * (career.binary_percentage / 100.0)
+      @binary_bonus ||= (pv_to_be_credited * (career.binary_percentage / 100.0)).to_f
     end
 
     def pv_to_be_credited

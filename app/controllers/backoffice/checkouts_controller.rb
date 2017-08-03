@@ -5,7 +5,7 @@ module Backoffice
       current_order.pending_payment!
       session[:order_id] = nil
       flash[:success] = I18n.t('defaults.order_placed')
-      redirect_to backoffice_products_path
+      redirect_to backoffice_orders_path
     end
 
   end

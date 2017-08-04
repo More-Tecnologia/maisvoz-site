@@ -26,7 +26,8 @@ class NewRegistrationForm < Form
   private
 
   def sponsor_exists
-    return if User.where(username: sponsor_username, role: :client).any?
+    user = User.where(username: sponsor_username, role: :client).first
+    return if user.present? && user.binary_node.present?
     errors.add(:sponsor_username, 'sponsor doesnt exist')
   end
 

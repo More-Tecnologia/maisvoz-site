@@ -1,8 +1,6 @@
 module Bonus
   class PropagateBinaryScore
 
-    prepend SimpleCommand
-
     def initialize(order)
       @order = order
     end
@@ -37,16 +35,10 @@ module Bonus
       end
 
       create_pv_history(direction, parent_node.user, total_score)
-      verify_binary_bonus(parent_node)
     end
 
     def create_pv_history(direction, user, score)
       Bonus::CreatePvHistory.call(direction, user, order, score)
-    end
-
-    def verify_binary_bonus(node)
-      return if [node.left_pv, node.right_pv].min < 1000
-      VerifyBinaryBonusWorker.perform_async(node.id)
     end
 
     def user_binary_node

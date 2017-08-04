@@ -9,6 +9,13 @@ module ApplicationHelper
     end
   end
 
+  def decorate_amount(amount)
+    style_class = amount < 0 ? 'text-danger' : amount > 0 ? 'text-success' : 'text-primary'
+    content_tag :span, class: style_class do
+      number_to_currency amount
+    end
+  end
+
   def current_order
    if !session[:order_id].nil? && Order.exists?(session[:order_id])
      @current_order ||= Order.find(session[:order_id])

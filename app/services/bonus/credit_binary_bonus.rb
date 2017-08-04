@@ -3,19 +3,16 @@ module Bonus
 
     PV_CYCLE = 1000
 
-    prepend SimpleCommand
-
     def initialize(binary_node)
       @binary_node = binary_node
     end
 
     def call
       if min_pv < PV_CYCLE
-        errors.add(:binary_node, 'insufficient bonus')
+        raise 'insufficient bonus'
       elsif credit_binary_bonus
-        return binary_node
+        binary_node
       end
-      nil
     end
 
     private

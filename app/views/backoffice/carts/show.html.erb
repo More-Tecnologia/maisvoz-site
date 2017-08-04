@@ -85,7 +85,7 @@
               <div class="col-md-12">
                 <%= link_to t('views.backoffice.cart.show.continue_shopping'), backoffice_products_path, class: 'btn btn-default text-uppercase' %>
                 <% if current_order.order_items.present? %>
-                  <%= link_to backoffice_checkout_path, method: :put, class: 'btn btn-default pull-right text-uppercase' do %>
+                  <%= link_to backoffice_checkout_path, method: :put, class: 'btn btn-default pull-right text-uppercase', data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>...".html_safe } do %>
                     <%= t('views.backoffice.cart.show.place_order') %>
                     <i class="icon-arrow-right"></i>
                   <% end %>

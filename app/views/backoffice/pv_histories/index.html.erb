@@ -42,7 +42,6 @@
                     <tr>
                       <th>#</th>
                       <th><%= PvHistory.human_attribute_name(:description) %></th>
-                      <th><%= PvHistory.human_attribute_name(:direction) %></th>
                       <th><%= PvHistory.human_attribute_name(:amount) %></th>
                       <th><%= PvHistory.human_attribute_name(:balance) %></th>
                       <th><%= PvHistory.human_attribute_name(:created_at) %></th>
@@ -52,10 +51,15 @@
                     <% pv_histories.each do |pv_history| %>
                       <tr>
                         <th><%= pv_history.id %></th>
-                        <td><%= t('.invoice_no', id: pv_history.order_id) %></td>
-                        <td><%= pv_history.direction %></td>
-                        <td><%= pv_history.amount %></td>
-                        <td><%= pv_history.balance %></td>
+                        <td>
+                          <% if pv_history.order.present? %>
+                            <%= t('.invoice_no', id: pv_history.order_id) %>
+                          <% else %>
+                            <%= t('.binary_bonus_debit') %>
+                          <% end %>
+                        </td>
+                        <td><%= decorate_amount pv_history.amount %></td>
+                        <td><%= decorate_amount pv_history.balance %></td>
                         <td><%= l(pv_history.created_at, format: :short) %></td>
                       </tr>
                     <% end %>

@@ -16,6 +16,11 @@
               <%= render 'menus/financial' %>
               <%= render 'menus/network' %>
 
+              <% if current_user.admin? %>
+                <%= render 'menus/admin' %>
+                <%= render 'menus/settings' %>
+              <% end %>
+
             </ul>
             <div class="clearfix"></div>
         </div>

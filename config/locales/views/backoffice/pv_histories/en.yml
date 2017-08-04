@@ -7,3 +7,5 @@ en:
         no_data: 'No PVs yet'
         left: 'Left'
         right: 'Right'
+        invoice_no: 'Invoice #%{id}'
+        binary_bonus_debit: 'Binary Bonus Payment'

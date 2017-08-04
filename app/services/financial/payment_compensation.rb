@@ -29,6 +29,7 @@ module Financial
         create_binary_node
         propagate_binary_score
       end
+      binary_bonus_nodes_verifier
     end
 
     def update_order_status
@@ -45,7 +46,12 @@ module Financial
     end
 
     def propagate_binary_score
-      Bonus::PropagateBinaryScore.call(order)
+      Bonus::PropagateBinaryScore.new(order).call
+    end
+
+    def binary_bonus_nodes_verifier
+      return if order.user.binary_node.blank?
+      NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
     end
 
     def adhesion_product

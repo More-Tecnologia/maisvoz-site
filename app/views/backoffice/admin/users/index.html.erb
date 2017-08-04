@@ -22,25 +22,31 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th><%= FinancialEntry.human_attribute_name(:from_user) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:to_user) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:kind) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:amount) %></th>
-                      <th><%= FinancialEntry.human_attribute_name(:created_at) %></th>
+                      <th><%= User.human_attribute_name(:sponsor) %></th>
+                      <th><%= User.human_attribute_name(:username) %></th>
+                      <th><%= User.human_attribute_name(:email) %></th>
+                      <th><%= User.human_attribute_name(:binary_position) %></th>
+                      <th><%= User.human_attribute_name(:created_at) %></th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <% bonus_entries.each do |bonus_entry| %>
+                    <% users.each do |user| %>
                       <tr>
-                        <th><%= bonus_entry.id %></th>
-                        <td><%= bonus_entry.from_user.username if bonus_entry.from_user %></td>
-                        <td><%= bonus_entry.to_user.username %></td>
-                        <td><%= t "defaults.#{bonus_entry.kind}" %></td>
-                        <td><%= decorate_amount bonus_entry.amount %></td>
-                        <td><%= l bonus_entry.created_at, format: :short %></td>
+                        <th><%= user.id %></th>
+                        <td><%= user.sponsor.try :username %></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.binary_position %></td>
+                        <td><%= l user.created_at, format: :short %></td>
+                        <td>
+                          <%= link_to backoffice_admin_user_path(user) do %>
+                            <i class="fa fa-eye"></i>
+                          <% end %>
+                        </td>
                       </tr>
                     <% end %>
-                    <% if bonus_entries.empty? %>
+                    <% if users.empty? %>
                       <tr>
                         <td colspan="7" class="text-center"><%= t('.no_data') %></td>
                       </tr>
@@ -48,7 +54,7 @@
                   </tbody>
                 </table>
 
-                <%= paginate bonus_entries %>
+                <%= paginate users %>
 
               </div>
             </div>

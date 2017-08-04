@@ -19,6 +19,19 @@ teste1_node = BinaryNode.create!(user: teste1, sponsored_by: master, parent: mas
 
 master_node.update!(right_child: teste1_node)
 
+# Create mass users
+users = [
+  { username: 'user1', email: 'user1@email.com', password: 111111, sponsor: teste1 },
+  { username: 'user2', email: 'user2@email.com', password: 111111, sponsor: teste1 },
+  { username: 'user3', email: 'user3@email.com', password: 111111, sponsor: teste1 },
+  { username: 'user4', email: 'user4@email.com', password: 111111, sponsor: teste1 },
+  { username: 'user5', email: 'user5@email.com', password: 111111, sponsor: teste1 },
+  { username: 'user6', email: 'user6@email.com', password: 111111, sponsor: teste1 },
+  { username: 'user7', email: 'user7@email.com', password: 111111, sponsor: teste1 },
+  { username: 'user8', email: 'user8@email.com', password: 111111, sponsor: teste1 },
+]
+
+users.each { |u| User.create!(u) }
 
 # Create Career
 career = Career.create!(name: 'Carreira 1', kind: :adhesion, binary_percentage: 20.0)

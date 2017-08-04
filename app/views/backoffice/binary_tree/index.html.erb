@@ -11,6 +11,33 @@
         </div>
       </div>
 
+      <% if binary_node.present? %>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-box">
+            <table class="table table-bordered">
+              <tr>
+                <td><strong><%= t('.left_pv') %></strong></td>
+                <td><%= binary_node.left_pv %></td>
+              </tr>
+              <tr>
+                <td><strong><%= t('.right_pv') %></strong></td>
+                <td><%= binary_node.right_pv %></td>
+              </tr>
+              <tr>
+                <td><strong><%= t('.username') %></strong></td>
+                <td><%= current_user.username %> (<%= binary_node.career.name %>)</td>
+              </tr>
+              <tr>
+                <td><strong><%= t('.sponsor') %></strong></td>
+                <td><%= current_user.sponsor.username %></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
       <div class="row">
         <div class="col-sm-12">
           <div class="card-box">

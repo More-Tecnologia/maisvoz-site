@@ -2,7 +2,7 @@ module Backoffice
   class BinaryTreeController < BackofficeController
 
     def index
-      render(:index, locals: { user_binary_node_id: current_binary_node_id })
+      render(:index, locals: { user_binary_node_id: current_binary_node_id, binary_node: current_user.binary_node })
     end
 
     def show

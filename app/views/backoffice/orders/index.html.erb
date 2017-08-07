@@ -24,6 +24,7 @@
                       <th>#</th>
                       <th><%= Order.human_attribute_name(:total) %></th>
                       <th><%= Order.human_attribute_name(:status) %></th>
+                      <th><%= Order.human_attribute_name(:paid_at) %></th>
                       <th></th>
                     </tr>
                   </thead>
@@ -33,6 +34,7 @@
                         <th><%= order.id %></th>
                         <td><%= number_to_currency order.total %></td>
                         <td><%= t "defaults.#{order.status}" %></td>
+                        <td><%= l(order.paid_at, format: :short) if order.paid_at.present? %></td>
                         <td>
                           <%= link_to backoffice_order_path(order) do %>
                             <i class="icon-eye"></i>

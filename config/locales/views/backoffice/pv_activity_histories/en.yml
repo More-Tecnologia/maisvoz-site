@@ -1,0 +1,8 @@
+en:
+  backoffice:
+    pv_activity_histories:
+      index:
+        title: Your Activities' PV History
+        subtitle: All your Activities' PV entries
+        no_data: No Activities' PVs yet
+        invoice_no: 'Invoice #%{id}'

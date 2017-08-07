@@ -34,11 +34,11 @@ module Bonus
         direction = :right
       end
 
-      create_pv_history(direction, parent_node.user, total_score)
+      create_pv_history(direction, parent_node.user)
     end
 
-    def create_pv_history(direction, user, score)
-      Bonus::CreatePvHistory.call(direction, user, order, score)
+    def create_pv_history(direction, user)
+      Bonus::CreatePvHistory.call(direction, user, order, total_score)
     end
 
     def user_binary_node

@@ -18,12 +18,17 @@ module Multilevel
         insert_node
         update_parent_node
         update_user_binary_position
+        update_user_role
       end
     end
 
     private
 
     attr_reader :user, :sponsor, :career, :position, :parent_node
+
+    def update_user_role
+      user.partner!
+    end
 
     def update_user_binary_position
       if position == LEFT
@@ -106,7 +111,9 @@ module Multilevel
         user: user,
         sponsored_by: sponsor,
         parent: parent_node,
-        career: career
+        career: career,
+        active: true,
+        active_until: 180.days.from_now.end_of_day
       )
     end
 

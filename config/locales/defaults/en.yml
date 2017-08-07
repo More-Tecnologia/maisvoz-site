@@ -10,6 +10,7 @@ en:
     financial_entries: 'Financial History'
     bonus_entries: 'Bonus History'
     pv_history: 'PV History'
+    pv_activity_history: 'PV Activity History'
     financial: 'Financial'
     network: 'Network'
     new_transfer: 'New Transfer'

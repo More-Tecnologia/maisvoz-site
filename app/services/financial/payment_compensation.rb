@@ -28,16 +28,20 @@ module Financial
         update_order_status
         create_binary_node
         propagate_binary_score
+        create_pv_activity_history
       end
       binary_bonus_nodes_verifier
     end
 
     def update_order_status
       if any_product?
-        order.processing!
+        order.status = Order.statuses[:processing]
       else
-        order.completed!
+        order.status = Order.statuses[:completed]
       end
+
+      order.paid_at = Time.zone.now
+      order.save!
     end
 
     def create_binary_node
@@ -47,6 +51,10 @@ module Financial
 
     def propagate_binary_score
       Bonus::PropagateBinaryScore.new(order).call
+    end
+
+    def create_pv_activity_history
+      Bonus::CreatePvActivityHistory.new(order).call
     end
 
     def binary_bonus_nodes_verifier

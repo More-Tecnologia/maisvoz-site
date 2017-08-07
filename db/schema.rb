@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802144048) do
+ActiveRecord::Schema.define(version: 20170807134507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20170802144048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "career_id"
+    t.boolean "active", default: true, null: false
+    t.date "active_until"
     t.index ["career_id"], name: "index_binary_nodes_on_career_id"
     t.index ["left_child_id"], name: "index_binary_nodes_on_left_child_id"
     t.index ["parent_id"], name: "index_binary_nodes_on_parent_id"
@@ -161,6 +163,16 @@ ActiveRecord::Schema.define(version: 20170802144048) do
     t.index ["upgrade_to_career_id"], name: "index_products_on_upgrade_to_career_id"
   end
 
+  create_table "pv_activity_histories", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "amount_cents", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_pv_activity_histories_on_order_id"
+    t.index ["user_id"], name: "index_pv_activity_histories_on_user_id"
+  end
+
   create_table "pv_histories", force: :cascade do |t|
     t.bigint "order_id"
     t.integer "direction", default: 0, null: false
@@ -236,6 +248,8 @@ ActiveRecord::Schema.define(version: 20170802144048) do
   add_foreign_key "orders", "users"
   add_foreign_key "products", "careers"
   add_foreign_key "products", "categories"
+  add_foreign_key "pv_activity_histories", "orders"
+  add_foreign_key "pv_activity_histories", "users"
   add_foreign_key "pv_histories", "orders"
   add_foreign_key "pv_histories", "users"
   add_foreign_key "withdrawals", "users"

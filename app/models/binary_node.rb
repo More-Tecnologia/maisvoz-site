@@ -15,6 +15,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  career_id       :integer
+#  active          :boolean          default("true"), not null
+#  active_until    :date
 #
 # Indexes
 #

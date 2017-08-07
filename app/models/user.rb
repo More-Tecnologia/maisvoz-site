@@ -56,7 +56,7 @@ class User < ApplicationRecord
 
   before_create :create_default_account
 
-  enum role: { client: 0, financial: 1, support: 2, admin: 1337 }
+  enum role: { client: 0, partner: 1, financial: 2, support: 3, admin: 1337 }
   enum binary_strategy: { balanced_strategy: 0, left_strategy: 1, right_strategy: 2 }
   enum binary_position: { left: 0, right: 1 }
 
@@ -72,6 +72,7 @@ class User < ApplicationRecord
   has_many :financial_entries
   has_many :withdrawals
   has_many :pv_histories
+  has_many :pv_activity_histories
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   belongs_to :sponsor, class_name: 'User', optional: true
 

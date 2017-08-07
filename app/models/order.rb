@@ -26,6 +26,7 @@ class Order < ApplicationRecord
 
   has_many :order_items
   has_many :pv_histories
+  has_one :pv_activity_history
   belongs_to :user
 
   monetize :subtotal_cents

@@ -37,6 +37,7 @@ gem 'rollbar'
 gem 'ransack'
 gem 'autonumeric-rails'
 gem 'sidekiq'
+gem 'devise_masquerade'
 gem 'rails-assets-bootstrap-datepicker', source: 'https://rails-assets.org'
 gem 'rails-assets-raphael', source: 'https://rails-assets.org'
 # Use Redis adapter to run Action Cable in production

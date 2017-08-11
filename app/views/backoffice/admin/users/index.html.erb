@@ -40,8 +40,11 @@
                         <td><%= user.binary_position %></td>
                         <td><%= l user.created_at, format: :short %></td>
                         <td>
-                          <%= link_to backoffice_admin_user_path(user) do %>
+                          <%= link_to backoffice_admin_user_path(user), title: 'Ver perfil' do %>
                             <i class="fa fa-eye"></i>
+                          <% end %>
+                          <%= link_to masquerade_path(user), title: 'Logar como usuário' do %>
+                            <i class="fa fa-user"></i>
                           <% end %>
                         </td>
                       </tr>

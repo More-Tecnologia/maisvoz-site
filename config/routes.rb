@@ -64,7 +64,8 @@ Rails.application.routes.draw do
     :users,
     controllers: {
       sessions: 'users/sessions',
-      registrations: 'users/registrations'
+      registrations: 'users/registrations',
+      masquerades: 'masquerades'
     }
   )
 

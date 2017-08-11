@@ -29,6 +29,11 @@
 
         <ul class="nav navbar-nav navbar-right pull-right">
           <li>
+            <% if user_masquerade? %>
+              <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
+            <% end %>
+          </li>
+          <li>
             <%= link_to backoffice_financial_entries_path do %>
               <span class="text-success">
                 <i class="fa fa-dollar"></i>

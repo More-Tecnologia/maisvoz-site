@@ -5,7 +5,7 @@ module Multilevel
 
     def initialize(node, date)
       @node = node
-      @date = date
+      @date = Date.parse(date)
     end
 
     def call

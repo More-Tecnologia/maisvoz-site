@@ -30,6 +30,8 @@
 
 class BinaryNode < ApplicationRecord
 
+  delegate :name, to: :career, allow_nil: true, prefix: true
+
   has_many :children_nodes, class_name: 'BinaryNode', foreign_key: 'parent_id'
   has_one :upper_right_parent, class_name: 'BinaryNode', foreign_key: 'right_child_id'
   has_one :upper_left_parent, class_name: 'BinaryNode', foreign_key: 'left_child_id'

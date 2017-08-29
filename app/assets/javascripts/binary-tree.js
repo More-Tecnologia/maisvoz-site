@@ -12,9 +12,12 @@ $(function() {
   }
 
   BinaryTree.prototype.createTree = function () {
+    this.$el.fadeOut()
+
     new Treant(this.getConfig());
     this.registerPopovers();
     this.registerOnClick();
+    this.$el.fadeIn()
   }
 
   BinaryTree.prototype.getConfig = function() {
@@ -91,6 +94,7 @@ $(function() {
   BinaryTree.prototype.fetchTree = function(id) {
     if (id) {
       var thiz = this;
+
       $.get('/backoffice/binary_tree/' + id, function(data) {
         thiz.nodes = data.nodes;
         window.tree_parent_id = data.parent_id;

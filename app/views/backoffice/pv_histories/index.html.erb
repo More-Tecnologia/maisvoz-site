@@ -18,7 +18,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <ul class="nav nav-tabs navtab-bg">
-                  <li class="<%= params[:direction] == 'left' && 'active' %>">
+                  <li class="<%= (params[:direction].blank? || params[:direction] == 'left') && 'active' %>">
                     <%= link_to backoffice_pv_histories_path(direction: :left) do %>
                       <span>
                         <i class="fa fa-chevron-left"></i>

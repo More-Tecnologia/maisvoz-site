@@ -15,8 +15,14 @@
     <div id="wrapper">
       <%= render 'layouts/admin/topbar' %>
       <%= render 'layouts/admin/sidebar' %>
-      <%= render 'layouts/flash-messages' %>
-      <%= yield %>
+      <div class="content-page">
+        <div class="content">
+          <div class="container">
+            <%= render 'layouts/flash-messages' %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
       <%= render 'layouts/admin/footer' %>
       <%= render 'layouts/admin/right-sidebar' %>
     </div>

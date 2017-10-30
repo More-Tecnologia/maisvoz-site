@@ -1,78 +1,69 @@
-<div class="content-page">
-  <!-- Start content -->
-  <div class="content">
-    <div class="container">
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title"><%= t('.title') %></h4>
+    <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
+  </div>
+</div>
 
-      <!-- Page-Title -->
-      <div class="row">
-        <div class="col-sm-12">
-          <h4 class="page-title"><%= t('.title') %></h4>
-          <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
-        </div>
+<%= render 'filters', q: q %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box table-responsive">
+
+      <div class="dt-buttons btn-group m-b-15">
+        <%= link_to backoffice_admin_orders_path(params.merge(format: 'csv')), class: 'btn btn-default buttons-csv buttons-html5 btn-sm' do %>
+          <i class="fa fa-file-text-o"></i> <span>CSV</span>
+        <% end %>
       </div>
 
-      <%= render 'filters', q: q %>
+      <table class="table table-bordered m-t-10">
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="card-box table-responsive">
-
-            <div class="dt-buttons btn-group m-b-15">
-              <%= link_to backoffice_admin_orders_path(params.merge(format: 'csv')), class: 'btn btn-default buttons-csv buttons-html5 btn-sm' do %>
-                <i class="fa fa-file-text-o"></i> <span>CSV</span>
-              <% end %>
-            </div>
-
-            <table class="table table-bordered m-t-10">
-
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th><%= User.human_attribute_name(:username) %></th>
-                  <th><%= Order.human_attribute_name(:total) %></th>
-                  <th><%= Order.human_attribute_name(:status) %></th>
-                  <th><%= Order.human_attribute_name(:created_at) %></th>
-                  <th><%= Order.human_attribute_name(:paid_at) %></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% orders.each do |order| %>
-                  <tr>
-                    <th><%= order.id %></th>
-                    <td><%= order.user.username %></td>
-                    <td><%= number_to_currency order.total %></td>
-                    <td><%= t("defaults.#{order.status}") %></td>
-                    <td><%= l order.created_at, format: :short %></td>
-                    <td><%= order.paid_at && l(order.paid_at, format: :short) %></td>
-                    <td>
-                      <%= link_to backoffice_admin_order_path(order) do %>
-                        <i class="fa fa-eye"></i>
-                      <% end %>
-                      <%= link_to(
-                        backoffice_admin_order_approve_path(order),
-                        method: :post,
-                        data: { confirm: t('.approve_withdraw') },
-                        class: 'm-r-10'
-                        ) do %>
-                        <i class="fa fa-check"></i>
-                      <% end if order.pending_payment? %>
-                    </td>
-                  </tr>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th><%= User.human_attribute_name(:username) %></th>
+            <th><%= Order.human_attribute_name(:total) %></th>
+            <th><%= Order.human_attribute_name(:status) %></th>
+            <th><%= Order.human_attribute_name(:created_at) %></th>
+            <th><%= Order.human_attribute_name(:paid_at) %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% orders.each do |order| %>
+            <tr>
+              <th><%= order.id %></th>
+              <td><%= order.user.username %></td>
+              <td><%= number_to_currency order.total %></td>
+              <td><%= t("defaults.#{order.status}") %></td>
+              <td><%= l order.created_at, format: :short %></td>
+              <td><%= order.paid_at && l(order.paid_at, format: :short) %></td>
+              <td>
+                <%= link_to backoffice_admin_order_path(order) do %>
+                  <i class="fa fa-eye"></i>
                 <% end %>
-                <% if orders.empty? %>
-                  <tr>
-                    <td colspan="7" class="text-center"><%= t('views.backoffice.admin.orders.index.no_data') %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+                <%= link_to(
+                  backoffice_admin_order_approve_path(order),
+                  method: :post,
+                  data: { confirm: t('.approve_withdraw') },
+                  class: 'm-r-10'
+                  ) do %>
+                  <i class="fa fa-check"></i>
+                <% end if order.pending_payment? %>
+              </td>
+            </tr>
+          <% end %>
+          <% if orders.empty? %>
+            <tr>
+              <td colspan="7" class="text-center"><%= t('views.backoffice.admin.orders.index.no_data') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-            <%= paginate orders %>
-
-          </div>
-        </div>
-      </div>
+      <%= paginate orders %>
 
     </div>
   </div>

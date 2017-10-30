@@ -1,79 +1,70 @@
-<div class="content-page">
-  <!-- Start content -->
-  <div class="content">
-    <div class="container">
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title"><%= t('views.backoffice.categories.index.title') %></h4>
+    <p class="text-muted page-title-alt"><%= t('views.backoffice.categories.index.subtitle') %></p>
+  </div>
+</div>
 
-      <!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
       <div class="row">
-        <div class="col-sm-12">
-          <h4 class="page-title"><%= t('views.backoffice.categories.index.title') %></h4>
-          <p class="text-muted page-title-alt"><%= t('views.backoffice.categories.index.subtitle') %></p>
-        </div>
-      </div>
+        <div class="col-lg-12">
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="card-box">
-            <div class="row">
-              <div class="col-lg-12">
-
-                <div class="m-b-20">
-                  <%= link_to new_backoffice_admin_category_path, class: 'btn btn-primary waves-effect waves-light' do %>
-                    <i class="md md-add"></i> <%= t('views.backoffice.categories.index.new_category') %>
-                  <% end %>
-                </div>
-
-                <table class="table table-bordered m-0">
-
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th><%= Category.human_attribute_name(:name) %></th>
-                      <th><%= Category.human_attribute_name(:description) %></th>
-                      <th><%= Category.human_attribute_name(:active_session) %></th>
-                      <th><%= Category.human_attribute_name(:active) %></th>
-                      <th><%= Category.human_attribute_name(:order) %></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @categories.each do |category| %>
-                      <tr>
-                        <th><%= category.id %></th>
-                        <td><%= category.name %></td>
-                        <td><%= category.description %></td>
-                        <td><%= category.active_session %></td>
-                        <td><%= category.active %></td>
-                        <td><%= category.order %></td>
-                        <td>
-                          <%= link_to edit_backoffice_admin_category_path(category), class: 'action-edit' do %>
-                            <i class="fa fa-pencil"></i>
-                          <% end %>
-                          <%= link_to(
-                            backoffice_admin_category_path(category),
-                            class: 'action-remove',
-                            method: :delete,
-                            data: { confirm: t('defaults.confirm_removal') }
-                            ) do %>
-                            <i class="fa fa-trash-o"></i>
-                          <% end %>
-                        </td>
-                      </tr>
-                    <% end %>
-                    <% if @categories.empty? %>
-                      <tr>
-                        <td colspan="5" class="text-center"><%= t('views.backoffice.categories.index.no_data') %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-
-              </div>
-            </div>
+          <div class="m-b-20">
+            <%= link_to new_backoffice_admin_category_path, class: 'btn btn-primary waves-effect waves-light' do %>
+              <i class="md md-add"></i> <%= t('views.backoffice.categories.index.new_category') %>
+            <% end %>
           </div>
+
+          <table class="table table-bordered m-0">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th><%= Category.human_attribute_name(:name) %></th>
+                <th><%= Category.human_attribute_name(:description) %></th>
+                <th><%= Category.human_attribute_name(:active_session) %></th>
+                <th><%= Category.human_attribute_name(:active) %></th>
+                <th><%= Category.human_attribute_name(:order) %></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @categories.each do |category| %>
+                <tr>
+                  <th><%= category.id %></th>
+                  <td><%= category.name %></td>
+                  <td><%= category.description %></td>
+                  <td><%= category.active_session %></td>
+                  <td><%= category.active %></td>
+                  <td><%= category.order %></td>
+                  <td>
+                    <%= link_to edit_backoffice_admin_category_path(category), class: 'action-edit' do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to(
+                      backoffice_admin_category_path(category),
+                      class: 'action-remove',
+                      method: :delete,
+                      data: { confirm: t('defaults.confirm_removal') }
+                      ) do %>
+                      <i class="fa fa-trash-o"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              <% if @categories.empty? %>
+                <tr>
+                  <td colspan="5" class="text-center"><%= t('views.backoffice.categories.index.no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
         </div>
       </div>
-
     </div>
   </div>
 </div>

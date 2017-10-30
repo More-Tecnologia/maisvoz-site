@@ -1,30 +1,21 @@
-<div class="content-page">
-  <!-- Start content -->
-  <div class="content">
-    <div class="container">
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title"><%= t('views.backoffice.admin.products.new.title') %></h4>
+    <p class="text-muted page-title-alt"><%= t('views.backoffice.admin.products.new.subtitle') %></p>
+  </div>
+</div>
 
-      <!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
       <div class="row">
-        <div class="col-sm-12">
-          <h4 class="page-title"><%= t('views.backoffice.admin.products.new.title') %></h4>
-          <p class="text-muted page-title-alt"><%= t('views.backoffice.admin.products.new.subtitle') %></p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="card-box">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="p-20">
-                  <%= render partial: 'form', locals: { form: form, product: nil, url: backoffice_admin_products_path, method: :post } %>
-                </div>
-              </div>
-            </div>
+        <div class="col-lg-12">
+          <div class="p-20">
+            <%= render partial: 'form', locals: { form: form, product: nil, url: backoffice_admin_products_path, method: :post } %>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

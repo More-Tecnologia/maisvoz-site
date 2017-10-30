@@ -1,73 +1,63 @@
-<div class="content-page">
-  <div class="content">
-    <div class="container">
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title"><%= t('views.backoffice.products.index.title') %></h4>
+    <p class="text-muted page-title-alt"><%= t('views.backoffice.products.index.subtitle') %></p>
+  </div>
+</div>
 
-      <!-- Page-Title -->
-      <div class="row">
-        <div class="col-sm-12">
-          <h4 class="page-title"><%= t('views.backoffice.products.index.title') %></h4>
-          <p class="text-muted page-title-alt"><%= t('views.backoffice.products.index.subtitle') %></p>
-        </div>
-      </div>
+<div class="portfolioFilter">
+  <%= link_to t('.all'), backoffice_products_path %>
+  <% Category.all.each do |category| %>
+    <%= link_to category.name, q: { category_id_eq: category.id } %>
+  <% end %>
+</div>
 
-      <div class="portfolioFilter">
-        <%= link_to t('.all'), backoffice_products_path %>
-        <% Category.all.each do |category| %>
-          <%= link_to category.name, q: { category_id_eq: category.id } %>
+<div class="row">
+  <div class="m-b-15">
+
+    <% @products.each do |product| %>
+    <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
+      <div class="product-list-box thumb">
+        <%= link_to backoffice_product_path(product), class: 'image-popup' do %>
+          <%= cl_image_tag(product.image.url, class: 'thumb-img') %>
         <% end %>
-      </div>
 
-      <div class="row">
-        <div class="m-b-15">
+        <% if current_user.admin? %>
+        <div class="product-action">
+          <%= link_to edit_backoffice_admin_product_path(product), class: 'btn btn-success btn-sm' do %>
+            <i class="md md-mode-edit"></i>
+          <% end %>
+        </div>
+        <% end %>
 
-          <% @products.each do |product| %>
-          <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
-            <div class="product-list-box thumb">
-              <%= link_to backoffice_product_path(product), class: 'image-popup' do %>
-                <%= cl_image_tag(product.image.url, class: 'thumb-img') %>
-              <% end %>
+        <div class="price-tag">
+          <%= number_to_currency product.price %>
+        </div>
+        <div class="detail">
+          <h4 class="m-t-0">
+            <a href="" class="text-dark"><%= product.name %></a>
+          </h4>
+          <h5 class="m-0">
+            <span class="text-muted">
+              <%= product.sku %>
+            </span>
+          </h5>
 
-              <% if current_user.admin? %>
-              <div class="product-action">
-                <%= link_to edit_backoffice_admin_product_path(product), class: 'btn btn-success btn-sm' do %>
-                  <i class="md md-mode-edit"></i>
-                <% end %>
-              </div>
-              <% end %>
+          <%= link_to t('views.backoffice.products.index.details'), backoffice_product_path(product), class: 'btn btn-primary pull-left m-r-10' %>
 
-              <div class="price-tag">
-                <%= number_to_currency product.price %>
-              </div>
-              <div class="detail">
-                <h4 class="m-t-0">
-                  <a href="" class="text-dark"><%= product.name %></a>
-                </h4>
-                <h5 class="m-0">
-                  <span class="text-muted">
-                    <%= product.sku %>
-                  </span>
-                </h5>
-
-                <%= link_to t('views.backoffice.products.index.details'), backoffice_product_path(product), class: 'btn btn-primary pull-left m-r-10' %>
-
-                <%= simple_form_for product, url: backoffice_order_items_path, method: :post, class: 'pull-left' do |f| %>
-                  <%= f.input :id, as: :hidden %>
-                  <button type="submit" class="btn btn-danger waves-effect waves-light">
-                    <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
-                  </button>
-                <% end %>
-
-              </div>
-            </div>
-          </div>
+          <%= simple_form_for product, url: backoffice_order_items_path, method: :post, class: 'pull-left' do |f| %>
+            <%= f.input :id, as: :hidden %>
+            <button type="submit" class="btn btn-danger waves-effect waves-light">
+              <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
+            </button>
           <% end %>
 
         </div>
       </div>
-      <!-- End row -->
-
     </div>
-    <!-- container -->
+    <% end %>
 
   </div>
 </div>
+<!-- End row -->

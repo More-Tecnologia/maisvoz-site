@@ -1,99 +1,90 @@
-<div class="content-page">
-  <!-- Start content -->
-  <div class="content">
-    <div class="container">
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title"><%= t('views.backoffice.cart.show.title') %></h4>
+    <p class="text-muted page-title-alt"><%= t('views.backoffice.cart.show.subtitle') %></p>
+  </div>
+</div>
 
-      <!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
       <div class="row">
-        <div class="col-sm-12">
-          <h4 class="page-title"><%= t('views.backoffice.cart.show.title') %></h4>
-          <p class="text-muted page-title-alt"><%= t('views.backoffice.cart.show.subtitle') %></p>
+        <div class="col-lg-12">
+
+          <table class="table table-bordered m-0">
+
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th><%= Product.human_attribute_name(:name) %></th>
+                <th><%= OrderItem.human_attribute_name(:quantity) %></th>
+                <th><%= OrderItem.human_attribute_name(:unit_price) %></th>
+                <th><%= OrderItem.human_attribute_name(:total) %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% current_order.order_items.each do |order_item| %>
+                <tr>
+                  <td>
+                    <%= link_to backoffice_order_item_path(order_item), method: :delete do %>
+                      <i class="icon-trash"></i>
+                    <% end %>
+                  </td>
+                  <td><%= cl_image_tag(order_item.product.thumbnail, class: 'thumb-sm') %></td>
+                  <td><%= link_to order_item.name, backoffice_product_path(order_item.product) %></td>
+                  <td>
+                    <%= simple_form_for order_item, url: backoffice_order_item_path(order_item) do |f| %>
+                      <%= f.input :id, as: :hidden %>
+                      <div class="col-sm-4 col-md-2">
+                        <%= f.input :quantity, input_html: { class: 'form-control input-sm' }, label: false %>
+                      </div>
+                      <button type="submit" class="btn btn-default btn-sm">
+                        <i class="icon-refresh"></i>
+                      </button>
+                    <% end %>
+                  </td>
+                  <td><%= number_to_currency order_item.unit_price %></td>
+                  <td><%= number_to_currency order_item.total %></td>
+                </tr>
+              <% end %>
+              <% if current_order.order_items.empty? %>
+                <tr>
+                  <td colspan="6" class="text-center"><%= t('views.backoffice.cart.show.no_data') %></td>
+                </tr>
+              <% end %>
+
+              <tr>
+                  <th colspan="5"><span class="pull-right">Sub Total</span></th>
+                  <th><%= number_to_currency current_order.subtotal %></th>
+              </tr>
+              <tr>
+                  <th colspan="5"><span class="pull-right">Taxes</span></th>
+                  <th><%= number_to_currency current_order.tax %></th>
+              </tr>
+              <tr>
+                  <th colspan="5"><span class="pull-right">Shipping</span></th>
+                  <th><%= number_to_currency current_order.shipping %></th>
+              </tr>
+              <tr>
+                  <th colspan="5"><span class="pull-right">Total</span></th>
+                  <th><%= number_to_currency current_order.total %></th>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="card-box">
-            <div class="row">
-              <div class="col-lg-12">
-
-                <table class="table table-bordered m-0">
-
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th></th>
-                      <th><%= Product.human_attribute_name(:name) %></th>
-                      <th><%= OrderItem.human_attribute_name(:quantity) %></th>
-                      <th><%= OrderItem.human_attribute_name(:unit_price) %></th>
-                      <th><%= OrderItem.human_attribute_name(:total) %></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% current_order.order_items.each do |order_item| %>
-                      <tr>
-                        <td>
-                          <%= link_to backoffice_order_item_path(order_item), method: :delete do %>
-                            <i class="icon-trash"></i>
-                          <% end %>
-                        </td>
-                        <td><%= cl_image_tag(order_item.product.thumbnail, class: 'thumb-sm') %></td>
-                        <td><%= link_to order_item.name, backoffice_product_path(order_item.product) %></td>
-                        <td>
-                          <%= simple_form_for order_item, url: backoffice_order_item_path(order_item) do |f| %>
-                            <%= f.input :id, as: :hidden %>
-                            <div class="col-sm-4 col-md-2">
-                              <%= f.input :quantity, input_html: { class: 'form-control input-sm' }, label: false %>
-                            </div>
-                            <button type="submit" class="btn btn-default btn-sm">
-                              <i class="icon-refresh"></i>
-                            </button>
-                          <% end %>
-                        </td>
-                        <td><%= number_to_currency order_item.unit_price %></td>
-                        <td><%= number_to_currency order_item.total %></td>
-                      </tr>
-                    <% end %>
-                    <% if current_order.order_items.empty? %>
-                      <tr>
-                        <td colspan="6" class="text-center"><%= t('views.backoffice.cart.show.no_data') %></td>
-                      </tr>
-                    <% end %>
-
-                    <tr>
-                        <th colspan="5"><span class="pull-right">Sub Total</span></th>
-                        <th><%= number_to_currency current_order.subtotal %></th>
-                    </tr>
-                    <tr>
-                        <th colspan="5"><span class="pull-right">Taxes</span></th>
-                        <th><%= number_to_currency current_order.tax %></th>
-                    </tr>
-                    <tr>
-                        <th colspan="5"><span class="pull-right">Shipping</span></th>
-                        <th><%= number_to_currency current_order.shipping %></th>
-                    </tr>
-                    <tr>
-                        <th colspan="5"><span class="pull-right">Total</span></th>
-                        <th><%= number_to_currency current_order.total %></th>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="row m-t-30">
-              <div class="col-md-12">
-                <%= link_to t('views.backoffice.cart.show.continue_shopping'), backoffice_products_path, class: 'btn btn-default text-uppercase' %>
-                <% if current_order.order_items.present? %>
-                  <%= link_to backoffice_checkout_path, method: :put, class: 'btn btn-default pull-right text-uppercase', data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>...".html_safe } do %>
-                    <%= t('views.backoffice.cart.show.place_order') %>
-                    <i class="icon-arrow-right"></i>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-
-          </div>
+      <div class="row m-t-30">
+        <div class="col-md-12">
+          <%= link_to t('views.backoffice.cart.show.continue_shopping'), backoffice_products_path, class: 'btn btn-default text-uppercase' %>
+          <% if current_order.order_items.present? %>
+            <%= link_to backoffice_checkout_path, method: :put, class: 'btn btn-default pull-right text-uppercase', data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>...".html_safe } do %>
+              <%= t('views.backoffice.cart.show.place_order') %>
+              <i class="icon-arrow-right"></i>
+            <% end %>
+          <% end %>
         </div>
       </div>
 

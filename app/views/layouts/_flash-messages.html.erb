@@ -1,5 +1,21 @@
-<% flash.each do |key, value| %>
+<!-- <% flash.each do |key, value| %>
   <% if value.is_a?(String) %>
     <div data-notification="true" data-key="<%= flash_class(key) %>" data-title="<%= t("defaults.#{key}") %>" data-text="<%= value %>"></div>
   <% end %>
+<% end %> -->
+
+<% if flash[:success] %>
+  <div class="alert alert-success"><%= flash[:success] %></div>
+<% end %>
+
+<% if flash[:error] %>
+  <div class="alert alert-danger"><%= flash[:error] %></div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="alert alert-info"><%= flash[:notice] %></div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-warning"><%= flash[:alert] %></div>
 <% end %>

@@ -35,7 +35,7 @@ module Multilevel
     def update_binary_positions
       return if form.binary_positions.blank?
       form.binary_positions.each do |id, position|
-        User.find(id).update!(binary_position: position)
+        sponsor.sponsored.find(id).update!(binary_position: position)
       end
     end
 

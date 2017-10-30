@@ -27,7 +27,7 @@ module Multilevel
     attr_reader :user, :sponsor, :career, :position, :parent_node
 
     def update_user_role
-      user.partner!
+      user.empreendedor!
     end
 
     def update_user_binary_position

@@ -1,4 +1,4 @@
-module Bonus
+module Bonification
   class CreatePvActivityHistory
 
     def initialize(order)
@@ -6,7 +6,7 @@ module Bonus
     end
 
     def call
-      if user.partner?
+      if user.empreendedor?
         create_pv_activity(user)
       else
         create_pv_activity(user.sponsor)
@@ -16,6 +16,8 @@ module Bonus
     private
 
     attr_reader :order
+
+    delegate :user, to: :order
 
     def create_pv_activity(user)
       PvActivityHistory.create!(
@@ -27,10 +29,6 @@ module Bonus
 
     def total_score
       @total_score ||= order.order_items.sum { |item| item.quantity * item.product.binary_score }
-    end
-
-    def user
-      @user ||= order.user
     end
 
   end

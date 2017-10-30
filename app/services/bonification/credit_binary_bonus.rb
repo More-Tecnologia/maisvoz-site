@@ -1,4 +1,4 @@
-module Bonus
+module Bonification
   class CreditBinaryBonus
 
     PV_CYCLE = 1000
@@ -8,6 +8,7 @@ module Bonus
     end
 
     def call
+      return unless user.can_receive_commission?
       if min_pv < PV_CYCLE
         raise 'insufficient bonus'
       elsif credit_binary_bonus
@@ -19,40 +20,41 @@ module Bonus
 
     attr_reader :binary_node
 
+    delegate :user, to: :binary_node
+
     def credit_binary_bonus
       ActiveRecord::Base.transaction do
         account.lock!
         binary_node.lock!
 
-        create_financial_entry
+        create_bonus
         update_account_balance
         debit_pv_from_both_legs
         create_pv_history
       end
     end
 
-    def create_financial_entry
-      financial_entry = FinancialEntry.new
-      financial_entry.kind = FinancialEntry.kinds[:binary_bonus]
-      financial_entry.to_id = account.id
-      financial_entry.amount = binary_bonus
-      financial_entry.save!
+    def create_bonus
+      Bonus.new.tap do |bonus|
+        bonus.user   = user
+        bonus.kind   = Bonus.kinds[:binary]
+        bonus.amount = binary_bonus
+        bonus.save!
+      end
     end
 
     def update_account_balance
-      account.update!(blocked_balance: account.blocked_balance.to_f + binary_bonus)
+      account.increment(blocked_balance: binary_bonus)
     end
 
     def debit_pv_from_both_legs
-      binary_node.update!(
-        left_pv: binary_node.left_pv - pv_to_be_credited,
-        right_pv: binary_node.right_pv - pv_to_be_credited
-      )
+      binary_node.decrement(:left_pv, pv_to_be_credited)
+      binary_node.decrement(:right_pv, pv_to_be_credited)
     end
 
     def create_pv_history
-      Bonus::CreatePvHistory.call(:left, binary_node.user, nil, -pv_to_be_credited)
-      Bonus::CreatePvHistory.call(:right, binary_node.user, nil, -pv_to_be_credited)
+      Bonification::CreatePvHistory.call(:left, user, nil, -pv_to_be_credited)
+      Bonification::CreatePvHistory.call(:right, user, nil, -pv_to_be_credited)
     end
 
     def binary_bonus
@@ -60,7 +62,11 @@ module Bonus
     end
 
     def pv_to_be_credited
-      @pv_to_be_credited ||= min_pv.div(PV_CYCLE) * PV_CYCLE
+      if user.bought_product?
+        @pv_to_be_credited ||= (min_pv.div(PV_CYCLE) * PV_CYCLE) / 2.0
+      else
+        @pv_to_be_credited ||= min_pv.div(PV_CYCLE) * PV_CYCLE
+      end
     end
 
     def min_pv
@@ -68,7 +74,7 @@ module Bonus
     end
 
     def account
-      @account ||= binary_node.user.account
+      @account ||= user.account
     end
 
     def career

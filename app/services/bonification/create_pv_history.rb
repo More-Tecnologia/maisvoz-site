@@ -1,4 +1,4 @@
-module Bonus
+module Bonification
   class CreatePvHistory
 
     prepend SimpleCommand
@@ -37,7 +37,7 @@ module Bonus
       @pv_history ||= PvHistory.where(
         direction: direction,
         user: user
-      ).order(id: :desc).first
+      ).order(created_at: :desc).first
     end
 
   end

@@ -12,6 +12,8 @@ module Shopping
       ActiveRecord::Base.transaction do
         if !product.active?
           errors.add(:product, 'product is not active')
+        elsif find_order_item.present? && product.adhesion?
+          errors.add(:product, 'cant add product to cart')
         elsif add_to_order
           update_order_total
           return order

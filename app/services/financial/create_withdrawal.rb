@@ -22,15 +22,13 @@ module Financial
     attr_reader :user, :params
 
     def create_withdrawal
-      ActiveRecord::Base.transaction do
-        withdrawal.amount_cents = form.amount_cents
-        withdrawal.pending!
+      Withdrawal.new.tap do |withdrawal|
+        withdrawal.user               = user
+        withdrawal.status             = Withdrawal.statuses[:pending]
+        withdrawal.gross_amount_cents = form.amount_cents
+        withdrawal.net_amount_cents   = form.net_amount_cents
         withdrawal.save!
       end
-    end
-
-    def withdrawal
-      @withdrawal ||= Withdrawal.new(user: user)
     end
 
     def form_params

@@ -1,4 +1,4 @@
-module Bonus
+module Bonification
   class PropagateBinaryScore
 
     def initialize(order)
@@ -24,21 +24,20 @@ module Bonus
 
     def credit_binary_score(child_node)
       parent_node = child_node.parent
-      direction = nil
+
+      return unless parent_node.user.can_receive_commission?
 
       if parent_node.left_child == child_node
-        parent_node.update!(left_pv: parent_node.left_pv + total_score)
-        direction = :left
+        parent_node.increment(:left_pv, total_score)
+        create_pv_history(:left, parent_node.user)
       elsif parent_node.right_child == child_node
-        parent_node.update!(right_pv: parent_node.right_pv + total_score)
-        direction = :right
+        parent_node.increment(:right_pv, total_score)
+        create_pv_history(:right, parent_node.user)
       end
-
-      create_pv_history(direction, parent_node.user)
     end
 
     def create_pv_history(direction, user)
-      Bonus::CreatePvHistory.call(direction, user, order, total_score)
+      Bonification::CreatePvHistory.call(direction, user, order, total_score)
     end
 
     def user_binary_node

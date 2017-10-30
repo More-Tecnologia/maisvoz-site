@@ -9,7 +9,9 @@ module Financial
     end
 
     def call
-      if !order.pending_payment?
+      if order.open?
+        errors.add(:order, 'no carrinho ainda')
+      elsif !order.pending_payment?
         errors.add(:order, 'já foi aprovado')
       elsif compensate_order
         return order
@@ -29,6 +31,7 @@ module Financial
         create_binary_node
         propagate_binary_score
         create_pv_activity_history
+        update_user_flags
       end
       binary_bonus_nodes_verifier
     end
@@ -50,11 +53,16 @@ module Financial
     end
 
     def propagate_binary_score
-      Bonus::PropagateBinaryScore.new(order).call
+      Bonification::PropagateBinaryScore.new(order).call
     end
 
     def create_pv_activity_history
-      Bonus::CreatePvActivityHistory.new(order).call
+      Bonification::CreatePvActivityHistory.new(order).call
+    end
+
+    def update_user_flags
+      user.update(bought_adhesion: true) if !user.bought_adhesion && adhesion_product.present?
+      user.update(bought_product: true) if !user.bought_product && regular_product.present?
     end
 
     def binary_bonus_nodes_verifier
@@ -64,6 +72,10 @@ module Financial
 
     def adhesion_product
       @adhesion_product ||= order.order_items.map(&:product).find(&:adhesion?)
+    end
+
+    def regular_product
+      @regular_product ||= order.order_items.map(&:product).find(&:product?)
     end
 
     def any_product?

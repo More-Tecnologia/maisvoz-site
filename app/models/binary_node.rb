@@ -8,14 +8,14 @@
 #  parent_id       :integer
 #  left_child_id   :integer
 #  right_child_id  :integer
-#  left_pv         :integer          default("0")
-#  right_pv        :integer          default("0")
-#  left_count      :integer          default("0")
-#  right_count     :integer          default("0")
+#  left_pv         :integer          default(0)
+#  right_pv        :integer          default(0)
+#  left_count      :integer          default(0)
+#  right_count     :integer          default(0)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  career_id       :integer
-#  active          :boolean          default("true"), not null
+#  active          :boolean          default(TRUE), not null
 #  active_until    :date
 #
 # Indexes

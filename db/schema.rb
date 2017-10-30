@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807134507) do
+ActiveRecord::Schema.define(version: 20171030151955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,37 @@ ActiveRecord::Schema.define(version: 20170807134507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_accounts_on_user_id", unique: true
+  end
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "binary_nodes", force: :cascade do |t|
@@ -45,6 +76,18 @@ ActiveRecord::Schema.define(version: 20170807134507) do
     t.index ["right_child_id"], name: "index_binary_nodes_on_right_child_id"
     t.index ["sponsored_by_id"], name: "index_binary_nodes_on_sponsored_by_id"
     t.index ["user_id"], name: "index_binary_nodes_on_user_id", unique: true
+  end
+
+  create_table "bonus", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "order_id"
+    t.string "kind", null: false
+    t.bigint "amount_cents", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kind"], name: "index_bonus_on_kind"
+    t.index ["order_id"], name: "index_bonus_on_order_id"
+    t.index ["user_id"], name: "index_bonus_on_user_id"
   end
 
   create_table "careers", force: :cascade do |t|
@@ -75,6 +118,28 @@ ActiveRecord::Schema.define(version: 20170807134507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_cloudinary_images_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "credits", force: :cascade do |t|
+    t.bigint "operated_by_id"
+    t.bigint "user_id", null: false
+    t.string "message"
+    t.bigint "amount_cents", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["operated_by_id"], name: "index_credits_on_operated_by_id"
+    t.index ["user_id"], name: "index_credits_on_user_id"
+  end
+
+  create_table "debits", force: :cascade do |t|
+    t.bigint "operated_by_id"
+    t.bigint "user_id", null: false
+    t.string "message"
+    t.bigint "amount_cents", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["operated_by_id"], name: "index_debits_on_operated_by_id"
+    t.index ["user_id"], name: "index_debits_on_user_id"
   end
 
   create_table "financial_entries", force: :cascade do |t|
@@ -175,7 +240,7 @@ ActiveRecord::Schema.define(version: 20170807134507) do
 
   create_table "pv_histories", force: :cascade do |t|
     t.bigint "order_id"
-    t.integer "direction", default: 0, null: false
+    t.string "direction", default: "left", null: false
     t.bigint "amount_cents", default: 0, null: false
     t.bigint "balance_cents", default: 0, null: false
     t.bigint "user_id"
@@ -183,6 +248,16 @@ ActiveRecord::Schema.define(version: 20170807134507) do
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_pv_histories_on_order_id"
     t.index ["user_id"], name: "index_pv_histories_on_user_id"
+  end
+
+  create_table "transfers", force: :cascade do |t|
+    t.bigint "from_user_id", null: false
+    t.bigint "to_user_id", null: false
+    t.bigint "amount_cents", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_user_id"], name: "index_transfers_on_from_user_id"
+    t.index ["to_user_id"], name: "index_transfers_on_to_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -217,9 +292,11 @@ ActiveRecord::Schema.define(version: 20170807134507) do
     t.string "country"
     t.string "state"
     t.string "city"
-    t.integer "role", default: 0, null: false
-    t.integer "binary_strategy", default: 0
-    t.integer "binary_position"
+    t.string "role", default: "consumidor", null: false
+    t.string "binary_strategy", default: "balanced_strategy", null: false
+    t.string "binary_position"
+    t.boolean "bought_adhesion", default: false, null: false
+    t.boolean "bought_product", default: false, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -229,11 +306,13 @@ ActiveRecord::Schema.define(version: 20170807134507) do
   end
 
   create_table "withdrawals", force: :cascade do |t|
-    t.bigint "amount_cents", null: false
-    t.integer "status", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", null: false
+    t.bigint "gross_amount_cents", null: false
+    t.bigint "net_amount_cents", null: false
+    t.index ["status"], name: "index_withdrawals_on_status"
     t.index ["user_id"], name: "index_withdrawals_on_user_id"
   end
 
@@ -241,6 +320,12 @@ ActiveRecord::Schema.define(version: 20170807134507) do
   add_foreign_key "binary_nodes", "careers"
   add_foreign_key "binary_nodes", "users"
   add_foreign_key "binary_nodes", "users", column: "sponsored_by_id"
+  add_foreign_key "bonus", "orders"
+  add_foreign_key "bonus", "users"
+  add_foreign_key "credits", "users"
+  add_foreign_key "credits", "users", column: "operated_by_id"
+  add_foreign_key "debits", "users"
+  add_foreign_key "debits", "users", column: "operated_by_id"
   add_foreign_key "financial_entries", "accounts", column: "from_id"
   add_foreign_key "financial_entries", "accounts", column: "to_id"
   add_foreign_key "order_items", "orders"
@@ -252,5 +337,7 @@ ActiveRecord::Schema.define(version: 20170807134507) do
   add_foreign_key "pv_activity_histories", "users"
   add_foreign_key "pv_histories", "orders"
   add_foreign_key "pv_histories", "users"
+  add_foreign_key "transfers", "users", column: "from_user_id"
+  add_foreign_key "transfers", "users", column: "to_user_id"
   add_foreign_key "withdrawals", "users"
 end

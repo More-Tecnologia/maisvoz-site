@@ -4,12 +4,12 @@
 #
 #  id             :integer          not null, primary key
 #  user_id        :integer
-#  subtotal_cents :integer          default("0")
-#  tax_cents      :integer          default("0")
-#  shipping_cents :integer          default("0")
-#  total_cents    :integer          default("0")
-#  status         :integer          default("0")
-#  payment_status :integer          default("0")
+#  subtotal_cents :integer          default(0)
+#  tax_cents      :integer          default(0)
+#  shipping_cents :integer          default(0)
+#  total_cents    :integer          default(0)
+#  status         :integer          default("open")
+#  payment_status :integer          default("pending")
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  paid_at        :datetime
@@ -26,6 +26,7 @@ class Order < ApplicationRecord
 
   has_many :order_items
   has_many :pv_histories
+  has_many :bonus, class_name: 'Bonus'
   has_one :pv_activity_history
   belongs_to :user
 

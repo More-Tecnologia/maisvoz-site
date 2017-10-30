@@ -2,25 +2,27 @@
 #
 # Table name: withdrawals
 #
-#  id           :integer          not null, primary key
-#  amount_cents :integer          not null
-#  status       :integer          not null
-#  user_id      :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                 :integer          not null, primary key
+#  user_id            :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  status             :string           not null
+#  gross_amount_cents :integer          not null
+#  net_amount_cents   :integer          not null
 #
 # Indexes
 #
+#  index_withdrawals_on_status   (status)
 #  index_withdrawals_on_user_id  (user_id)
 #
 
 class Withdrawal < ApplicationRecord
 
-  enum status: [:pending, :approved, :refused]
+  enum status: { pending: 'pending', approved: 'approved', refused: 'refused' }
 
   belongs_to :user
 
-  monetize :amount_cents
+  monetize :gross_amount_cents, :net_amount_cents
 
   ransacker :date_created_at do
     Arel.sql("DATE(#{table_name}.created_at)")

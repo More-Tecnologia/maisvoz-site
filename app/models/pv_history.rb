@@ -4,9 +4,9 @@
 #
 #  id            :integer          not null, primary key
 #  order_id      :integer
-#  direction     :integer          default("0"), not null
-#  amount_cents  :integer          default("0"), not null
-#  balance_cents :integer          default("0"), not null
+#  direction     :string           default("left"), not null
+#  amount_cents  :integer          default(0), not null
+#  balance_cents :integer          default(0), not null
 #  user_id       :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -22,7 +22,7 @@ class PvHistory < ApplicationRecord
   belongs_to :order, optional: true
   belongs_to :user
 
-  enum direction: [:left, :right]
+  enum direction: { left: 'left', right: 'right' }
 
   monetize :amount_cents
   monetize :balance_cents

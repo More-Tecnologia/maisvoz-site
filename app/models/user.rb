@@ -8,7 +8,7 @@
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
-#  sign_in_count          :integer          default("0"), not null
+#  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
@@ -17,7 +17,7 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  failed_attempts        :integer          default("0"), not null
+#  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string
 #  locked_at              :datetime
 #  created_at             :datetime         not null
@@ -34,9 +34,11 @@
 #  country                :string
 #  state                  :string
 #  city                   :string
-#  role                   :integer          default("0"), not null
-#  binary_strategy        :integer          default("0")
-#  binary_position        :integer
+#  role                   :string           default("consumidor"), not null
+#  binary_strategy        :string           default("balanced_strategy"), not null
+#  binary_position        :string
+#  bought_adhesion        :boolean          default(FALSE), not null
+#  bought_product         :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -56,9 +58,13 @@ class User < ApplicationRecord
 
   before_create :create_default_account
 
-  enum role: { client: 0, partner: 1, financial: 2, support: 3, admin: 1337 }
-  enum binary_strategy: { balanced_strategy: 0, left_strategy: 1, right_strategy: 2 }
-  enum binary_position: { left: 0, right: 1 }
+  enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin' }
+  enum binary_strategy: {
+    balanced_strategy: 'balanced_strategy',
+    left_strategy: 'left_strategy',
+    right_strategy: 'right_strategy'
+  }
+  enum binary_position: { left: 'left', right: 'right' }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -76,9 +82,17 @@ class User < ApplicationRecord
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   belongs_to :sponsor, class_name: 'User', optional: true
 
+  has_many :credits
+  has_many :debits
+  has_many :bonus, class_name: 'Bonus'
+
   def avatar
     return CloudinaryImage.new.public_id unless cloudinary_image
     cloudinary_image.public_id
+  end
+
+  def can_receive_commission?
+    bought_adhesion? && bought_product?
   end
 
   def self.find_for_database_authentication warden_conditions

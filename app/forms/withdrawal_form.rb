@@ -12,11 +12,19 @@ class WithdrawalForm < Form
     Integer(amount * 100)
   end
 
+  def net_amount_cents
+    amount_cents * fee
+  end
+
   private
 
   def user_has_balance
     return if amount <= user.available_balance.to_f
     errors.add(:amount, I18n.t('defaults.errors.no_funds'))
+  end
+
+  def fee
+    1 - ENV['WITHDRAWAL_FEE'].to_f
   end
 
 end

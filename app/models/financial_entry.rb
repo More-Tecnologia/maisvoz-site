@@ -4,8 +4,8 @@
 #
 #  id           :integer          not null, primary key
 #  description  :string
-#  amount_cents :integer          default("0"), not null
-#  kind         :integer          default("0")
+#  amount_cents :integer          default(0), not null
+#  kind         :integer          default("transfer")
 #  metadata     :jsonb
 #  from_id      :integer
 #  to_id        :integer

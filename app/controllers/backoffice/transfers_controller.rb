@@ -33,7 +33,8 @@ module Backoffice
         flash[:success] = I18n.t('defaults.success')
         redirect_to backoffice_financial_entries_path
       else
-        render(:new, locals: { form: command.result })
+        flash[:error] = I18n.t('defaults.error')
+        render(:new_transfer, locals: { form: transfer_form })
       end
     end
 

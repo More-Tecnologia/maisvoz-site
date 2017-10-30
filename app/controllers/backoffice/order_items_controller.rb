@@ -14,7 +14,7 @@ module Backoffice
     def update
       order = current_order
       order_item = order.order_items.find(order_item_params[:id])
-      order_item.update!(quantity: order_item_params[:quantity].to_i.abs)
+      order_item.update!(quantity: order_item_params[:quantity].to_i.abs) unless order_item.adhesion?
       update_order_total
       flash[:success] = I18n.t('cart.cart_updated')
       redirect_to backoffice_cart_path

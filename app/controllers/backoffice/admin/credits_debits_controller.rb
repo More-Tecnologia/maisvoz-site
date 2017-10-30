@@ -36,7 +36,6 @@ module Backoffice
         else
           Rollbar.error command.errors
           flash[:error] = command.errors
-          # render(:show, locals: { form: command.result })
           redirect_back fallback_location: backoffice_admin_financial_entries_path
         end
       end

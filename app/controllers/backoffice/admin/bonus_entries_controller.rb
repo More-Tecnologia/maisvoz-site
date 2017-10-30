@@ -9,7 +9,7 @@ module Backoffice
       private
 
       def bonus_entries
-        FinancialEntry.where(kind: :binary_bonus).page(params[:page])
+        Bonus.all.page(params[:page])
       end
 
     end

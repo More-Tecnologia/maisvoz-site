@@ -4,13 +4,13 @@
 #
 #  id                :integer          not null, primary key
 #  name              :string
-#  qualifying_score  :integer          default("0")
-#  bonus             :integer          default("0")
-#  binary_limit      :integer          default("0")
+#  qualifying_score  :integer          default(0)
+#  bonus             :integer          default(0)
+#  binary_limit      :integer          default(0)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  kind              :integer          default("0"), not null
-#  binary_percentage :decimal(5, 2)    default("0.0"), not null
+#  kind              :integer          default("qualification"), not null
+#  binary_percentage :decimal(5, 2)    default(0.0), not null
 #
 
 class Career < ApplicationRecord

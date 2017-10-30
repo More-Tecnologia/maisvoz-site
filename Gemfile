@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.1.1'
+gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -40,6 +40,9 @@ gem 'sidekiq'
 gem 'devise_masquerade'
 gem 'rails-assets-bootstrap-datepicker', source: 'https://rails-assets.org'
 gem 'rails-assets-raphael', source: 'https://rails-assets.org'
+gem 'lograge'
+gem 'shog'
+gem 'activeadmin', github: 'activeadmin'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -52,10 +55,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'dotenv-rails'
-end
-
-group :test do
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.6'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do

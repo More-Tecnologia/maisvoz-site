@@ -28,7 +28,7 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessor :email, :password, :password_confirmation, :remember_me, :login
+  attr_accessor :login
 
  def self.find_for_database_authentication(warden_conditions)
    conditions = warden_conditions.dup

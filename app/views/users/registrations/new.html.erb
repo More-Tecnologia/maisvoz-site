@@ -1,6 +1,12 @@
+<%= content_for :body_class, 'login-page' %>
+
 <div class="account-pages"></div>
 <div class="clearfix"></div>
 <div class="wrapper-page">
+  <div class="text-center">
+    <%= image_tag 'logo.png' %>
+  </div>
+  <br>
   <div class=" card-box">
     <div class="panel-heading">
       <h3 class="text-center"> Sign Up</h3>
@@ -24,18 +30,11 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: 'btn btn-block text-uppercase' %>
+          <%= f.button :submit, "Sign up", class: 'btn btn-primary btn-block text-uppercase' %>
         </div>
+        <hr>
       <% end %>
-
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <p>
-        <%= render "devise/shared/links" %>
-      </p>
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 

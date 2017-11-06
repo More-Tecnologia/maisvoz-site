@@ -1,0 +1,25 @@
+.login-page {
+  background-image: image-url('bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  color: white;
+
+  .wrapper-page .card-box {
+    background-color: rgba(193, 193, 193, 0.5);
+    border: none;
+  }
+
+  .form-control {
+    border: none;
+  }
+
+  a {
+    color: white;
+  }
+
+  h3 {
+    color: white;
+  }
+}

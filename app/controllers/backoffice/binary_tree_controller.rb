@@ -1,33 +1,28 @@
 module Backoffice
   class BinaryTreeController < BackofficeController
 
+    before_action :can_access_node?, only: :show
+
     def index
-      render(:index, locals: { user_binary_node_id: current_binary_node_id, binary_node: current_user.binary_node })
+      @node = current_user.binary_node
+      render(:show, locals: { node: @node, current_user_node: current_user.binary_node })
     end
 
     def show
-      render json: tree
-    end
-
-    def search_by_user
-      render json: {
-        id: binary_node ? binary_node.id : nil
-      }
+      @node = binary_node
+      render(:show, locals: { node: @node, current_user_node: current_user.binary_node })
     end
 
     private
 
-    def tree
-      Multilevel::FetchBinaryTree.new(current_user, BinaryNode.find(params[:id])).call
-    end
-
     def binary_node
-      @binary_node ||= BinaryNodeSearchByUserQuery.new(current_user, params[:username]).call
+      @binary_node ||= BinaryNodeSearchByUserQuery.new(params).call
     end
 
-    def current_binary_node_id
-      return unless current_user.binary_node
-      current_user.binary_node.id
+    def can_access_node?
+      return if BinaryNodePolicy.new(current_user.binary_node).can_access_node?(binary_node)
+      flash[:error] = I18n.t('errors.cant_access_binary_node')
+      redirect_to backoffice_dashboard_index_path
     end
 
   end

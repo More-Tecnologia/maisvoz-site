@@ -1,35 +1,28 @@
 class BinaryNodeSearchByUserQuery
 
-  def initialize(parent_user, username)
-    @parent_user = parent_user
-    @username = username
+  def initialize(params)
+    @username = params[:username]
+    @id = params[:id]
   end
 
   def call
-    return unless node_below_user?
-    binary_node
+    if username.present?
+      find_by_username
+    else
+      find_by_id
+    end
   end
 
   private
 
-  attr_reader :parent_user, :username
+  attr_reader :username, :id
 
-  def node_below_user?
-    user_node = parent_user.binary_node
-    child_node = binary_node
-    while child_node != nil
-      return true if user_node == child_node
-      child_node = child_node.parent
-    end
-    false
+  def find_by_username
+    User.find_by(username: username).try(:binary_node)
   end
 
-  def binary_node
-    @binary_node ||= BinaryNode.find_by(user: user)
-  end
-
-  def user
-    @user ||= User.where(username: username).first
+  def find_by_id
+    BinaryNode.find(id)
   end
 
 end

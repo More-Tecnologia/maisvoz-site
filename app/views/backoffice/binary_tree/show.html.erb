@@ -1,0 +1,143 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title"><%= t('.title') %></h4>
+    <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
+  </div>
+</div>
+
+<% if current_user_node.present? %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <table class="table table-bordered">
+        <tr>
+          <td><strong><%= t('.left_pv') %></strong></td>
+          <td><%= current_user_node.left_pv %></td>
+        </tr>
+        <tr>
+          <td><strong><%= t('.right_pv') %></strong></td>
+          <td><%= current_user_node.right_pv %></td>
+        </tr>
+        <tr>
+          <td><strong><%= t('.username') %></strong></td>
+          <td><%= current_user.username %> (<%= current_user_node.career_name %>)</td>
+        </tr>
+        <tr>
+          <td><strong><%= t('.sponsor') %></strong></td>
+          <td><%= current_user.sponsor && current_user.sponsor.username %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title">Your binary network</h3>
+          </div>
+          <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <%= link_to backoffice_binary_tree_path(current_user.binary_node), class: 'btn btn-default' do %>
+                    <i class="fa fa-angle-double-up"></i>
+                  <% end %>
+                  <%= link_to backoffice_binary_tree_path(node.parent), class: 'btn btn-primary' do %>
+                    <i class="fa fa-angle-up"></i>
+                  <% end %>
+                </div>
+                <div class="col-md-6">
+                  <%= form_tag backoffice_binary_tree_path(node), method: 'get' do %>
+                    <div class="form-group">
+                      <div class="input-group">
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn waves-effect waves-light btn-default"><i class="fa fa-search"></i></button>
+                          </span>
+                          <input type="text" class="form-control" name="username" placeholder="Search">
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-xs-12">
+                    <table class="table binary-tree">
+                      <% cols = 4 %>
+                      <% nodes = [@node] %>
+                      <tr class="text-center">
+                        <td colspan="<%= 2 ** cols %>"><%= node.user.username %></td>
+                      </tr>
+                      <tr class="text-center">
+                        <td colspan="<%= 2 ** cols %>">|</td>
+                      </tr>
+
+                      <% for x in 1..cols %>
+
+                        <% new_nodes = Array.new(2 ** (x-1)) %>
+
+                        <tr class="text-center">
+                          <% (2 ** (x - 1)).times do |i| %>
+                            <% current_node = nodes[i] %>
+                            <td colspan="<%= 2 ** (cols - x) %>">
+                              <% if current_node && current_node.left_child_id %>
+                                <%= link_to backoffice_binary_tree_path(current_node.left_child) do %>
+                                  <%= current_node.left_child.user.username %>
+                                  <!-- (<%= current_node.career.name %>) -->
+                                <% end %>
+                              <% else %>
+                                x
+                              <% end %>
+                            </td>
+                            <td colspan="<%= 2 ** (cols - x) %>">
+                              <% if current_node && current_node.right_child_id %>
+                                <%= link_to backoffice_binary_tree_path(current_node.right_child) do %>
+                                  <%= current_node.right_child.user.username %>
+                                  <!-- (<%= current_node.career.name %>) -->
+                                <% end %>
+                              <% else %>
+                                x
+                              <% end %>
+                            </td>
+
+                            <% if current_node.present? %>
+                              <% new_nodes[2*i]     = current_node.left_child %>
+                              <% new_nodes[2*i + 1] = current_node.right_child %>
+                            <% end %>
+                          <% end %>
+                        </tr>
+
+                        <% nodes = new_nodes %>
+
+                        <% if x != cols %>
+                          <tr class="text-center">
+                            <% (2 ** x).times do %>
+                              <td colspan="<%= 2 ** (cols - x) %>">|</td>
+                            <% end %>
+                          </tr>
+                        <% end %>
+
+                      <% end %>
+                    </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Careers -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="friend-list text-center">
+      <% Career.find_each do |career| %>
+        <div class="career-legend m-l-10 m-r-10">
+          <%= cl_image_tag(career.thumbnail, class: 'img-circle thumb-md') %>
+          <h5><%= career.name %></h5>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

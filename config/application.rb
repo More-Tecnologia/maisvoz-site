@@ -14,7 +14,7 @@ module Moremmn
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = 'pt-BR'
     config.i18n.available_locales = [:en, 'pt-BR', :es]
 
     config.action_controller.permit_all_parameters = true

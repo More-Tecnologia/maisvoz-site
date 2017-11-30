@@ -2,43 +2,45 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :inet
-#  last_sign_in_ip        :inet
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string
-#  failed_attempts        :integer          default(0), not null
-#  unlock_token           :string
-#  locked_at              :datetime
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  name                   :string
-#  phone                  :string
-#  skype                  :string
-#  sponsor_id             :integer
-#  username               :string           not null
-#  document_value         :string
-#  birthdate              :date
-#  address                :string
-#  address_2              :string
-#  country                :string
-#  state                  :string
-#  city                   :string
-#  role                   :string           default("consumidor"), not null
-#  binary_strategy        :string           default("balanced_strategy"), not null
-#  binary_position        :string
-#  bought_adhesion        :boolean          default(FALSE), not null
-#  bought_product         :boolean          default(FALSE), not null
+#  id                      :integer          not null, primary key
+#  email                   :string           default(""), not null
+#  encrypted_password      :string           default(""), not null
+#  reset_password_token    :string
+#  reset_password_sent_at  :datetime
+#  remember_created_at     :datetime
+#  sign_in_count           :integer          default(0), not null
+#  current_sign_in_at      :datetime
+#  last_sign_in_at         :datetime
+#  current_sign_in_ip      :inet
+#  last_sign_in_ip         :inet
+#  confirmation_token      :string
+#  confirmed_at            :datetime
+#  confirmation_sent_at    :datetime
+#  unconfirmed_email       :string
+#  failed_attempts         :integer          default(0), not null
+#  unlock_token            :string
+#  locked_at               :datetime
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  name                    :string
+#  phone                   :string
+#  skype                   :string
+#  sponsor_id              :integer
+#  username                :string           not null
+#  document_value          :string
+#  birthdate               :date
+#  address                 :string
+#  address_2               :string
+#  country                 :string
+#  state                   :string
+#  city                    :string
+#  available_balance_cents :integer          default(0), not null
+#  blocked_balance_cents   :integer          default(0), not null
+#  role                    :string           default("consumidor"), not null
+#  binary_strategy         :string           default("balanced_strategy"), not null
+#  binary_position         :string
+#  bought_adhesion         :boolean          default(FALSE), not null
+#  bought_product          :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -54,9 +56,7 @@ class User < ApplicationRecord
 
   attr_accessor :login
 
-  delegate :available_balance, :blocked_balance, to: :account
-
-  before_create :create_default_account
+  monetize :available_balance_cents, :blocked_balance_cents
 
   enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin' }
   enum binary_strategy: {
@@ -92,7 +92,7 @@ class User < ApplicationRecord
   end
 
   def can_receive_commission?
-    bought_adhesion? && bought_product?
+    binary_active? && qualified?
   end
 
   def self.find_for_database_authentication warden_conditions
@@ -101,10 +101,12 @@ class User < ApplicationRecord
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
   end
 
-  private
+  def binary_active?
+    binary_node && binary_node.active && binary_node.active_until >= Time.zone.today
+  end
 
-  def create_default_account
-    build_account
+  def qualified?
+    binary_node && binary_node.qualified?
   end
 
 end

@@ -1,8 +1,7 @@
 <!-- Page-Title -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 m-b-23">
     <h4 class="page-title"><%= t('.title') %></h4>
-    <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
   </div>
 </div>
 
@@ -14,7 +13,7 @@
       </div>
       <div class="panel-body">
         <ul class="list-unstyled w-list">
-          <li><b><%= Account.human_attribute_name(:available_balance) %>:</b> <%= current_user.available_balance %> </li>
+          <li><b><%= t('.available_balance') %>:</b> <%= current_user.available_balance %> </li>
           <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= AppConfig.get(:withdrawal_fee).to_f * 100 %> %</li>
         </ul>
       </div>

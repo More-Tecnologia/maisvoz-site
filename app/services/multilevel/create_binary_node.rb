@@ -5,13 +5,13 @@ module Multilevel
     RIGHT = :right
 
     def initialize(user, career)
-      @user = user
-      @sponsor = user.sponsor
-      @career = career
+      @user           = user
+      @sponsor        = user.sponsor
+      @career         = career
     end
 
     def call
-      return false if user.binary_node.present?
+      return if user.binary_node.present?
       ActiveRecord::Base.transaction do
         define_position
         find_parent_node
@@ -107,14 +107,14 @@ module Multilevel
     end
 
     def binary_node
-      @binary_node ||= BinaryNode.new(
-        user: user,
-        sponsored_by: sponsor,
-        parent: parent_node,
-        career: career,
-        active: true,
-        active_until: 180.days.from_now.end_of_day
-      )
+      @binary_node ||= BinaryNode.new.tap do |node|
+        node.user         = user
+        node.sponsored_by = sponsor
+        node.parent       = parent_node
+        node.career       = career
+        node.active       = user.bought_product ? true : false
+        node.active_until = 6.months.from_now if user.bought_product
+      end
     end
 
   end

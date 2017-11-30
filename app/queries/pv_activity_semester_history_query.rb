@@ -12,7 +12,7 @@ class PvActivitySemesterHistoryQuery
       'DATE(created_at) >= ?', six_months_ago
     ).where(
       'DATE(created_at) <= ?', until_date
-    )
+    ).sum(:amount_cents)
   end
 
   private

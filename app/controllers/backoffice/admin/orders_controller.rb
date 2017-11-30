@@ -44,7 +44,7 @@ module Backoffice
       end
 
       def q
-        @q ||= Order.where.not(status: :open).ransack(q_params)
+        @q ||= Order.where.not(status: :cart).ransack(q_params)
         @q.sorts = 'created_at desc' if @q.sorts.blank?
         @q
       end

@@ -152,23 +152,23 @@ jQuery(document).ready(function() {
 
        //on doc load
        App.prototype.onDocReady = function(e) {
-        FastClick.attach(document.body);
-        resizefunc.push("initscrolls");
-        resizefunc.push("changeptype");
-
-        $('.animate-number').each(function(){
-          $(this).animateNumbers($(this).attr("data-value"), true, parseInt($(this).attr("data-duration")));
-        });
-
-        //RUN RESIZE ITEMS
-        $(window).resize(debounce(resizeitems,100));
-        $("body").trigger("resize");
-
-        // right side-bar toggle
-        $('.right-bar-toggle').on('click', function(e){
-
-            $('#wrapper').toggleClass('right-bar-enabled');
-        });
+        // FastClick.attach(document.body);
+        // resizefunc.push("initscrolls");
+        // resizefunc.push("changeptype");
+        //
+        // $('.animate-number').each(function(){
+        //   $(this).animateNumbers($(this).attr("data-value"), true, parseInt($(this).attr("data-duration")));
+        // });
+        //
+        // //RUN RESIZE ITEMS
+        // $(window).resize(debounce(resizeitems,100));
+        // $("body").trigger("resize");
+        //
+        // // right side-bar toggle
+        // $('.right-bar-toggle').on('click', function(e){
+        //
+        //     $('#wrapper').toggleClass('right-bar-enabled');
+        // });
 
 
       },

@@ -1,7 +1,0 @@
-en:
-  backoffice:
-    binary_tree:
-      index:
-        title: 'Binary Tree'
-        subtitle: 'This is the tree below you'
-        no_binary_node: You can't see this section because you're not active on the binary.

@@ -3,10 +3,10 @@ class CreateFinancialEntries < ActiveRecord::Migration[5.1]
     create_table :financial_entries do |t|
       t.string :description
       t.bigint :amount_cents, default: 0, null: false
-      t.integer :kind, index: true, default: 0
-      t.jsonb :metadata
-      t.references :from, index: true, foreign_key: { to_table: :accounts }
-      t.references :to, index: true, foreign_key: { to_table: :accounts }
+      t.bigint :balance_cents, default: 0, null: false
+      t.string :kind, index: true, default: 0
+      t.references :user, foreign_key: true
+      t.references :order, foreign_key: true
 
       t.timestamps
     end

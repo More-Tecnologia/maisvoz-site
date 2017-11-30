@@ -34,6 +34,7 @@ module Bonification
     end
 
     def last_pv_history
+      # TODO otimizar aqui buscando o pv pelo binary_node
       @pv_history ||= PvHistory.where(
         direction: direction,
         user: user

@@ -1,0 +1,408 @@
+.dashboard {
+  .item {
+      img {
+          width: 100%;
+          height: auto;
+      }
+  }
+
+  .carousel-indicators {
+      float: right !important;
+  }
+
+  .itensback {
+      margin-top: 20px;
+      padding: 0px;
+
+      .corbloco {
+          padding: 20px 20px;
+
+          img {
+              float: left;
+              padding-right: 10px;
+              position: relative;
+              top: 9px;
+          }
+
+          p {
+              font-size: 1.3em;
+              text-transform: uppercase;
+              line-height: bold;
+              color: #fff;
+              line-height: 30px;
+              position: relative;
+              top: 5px;
+          }
+      }
+  }
+
+  .corbloco2 {
+      padding: 20px 20px;
+
+      img {
+          float: left;
+          padding-right: 10px;
+          position: relative;
+          top: 4px;
+      }
+
+      p {
+          font-size: 1.4em;
+          text-transform: normal;
+          line-height: bold;
+          color: #fff;
+          line-height: 30px;
+          position: relative;
+          top: 5px;
+      }
+  }
+
+  .execc {
+      h3 {
+          font-size: 1.4em;
+      }
+  }
+
+  .executivo {
+      display: flex;
+  }
+
+  .statusBloco {
+      padding: 20px 15px;
+      display: block;
+
+      p {
+          color: #fff;
+          text-transform: uppercase;
+          display: block;
+          font-size: 1.7em;
+          font-weight: bold;
+          position: relative;
+          top: 15px;
+      }
+  }
+
+  .itemPanel {
+      img {
+          position: -4px !important;
+      }
+  }
+
+  .panel {
+      padding: 20px 0px;
+      background: none;
+
+      h3 {
+          color: #fff;
+      }
+
+      img {
+          float: left;
+          padding-right: 5px;
+          position: relative;
+          top: 3px;
+      }
+  }
+
+  .statusB {
+      width: 50%;
+      float: left;
+
+      h3 {
+          text-transform: none;
+          font-size: 1.2em;
+      }
+
+      img {
+          float: left;
+          margin-top: -5px;
+      }
+  }
+
+  .statusB2 {
+      width: 50%;
+      float: right;
+
+      h3 {
+          font-size: 1.4em;
+          text-transform: uppercase;
+          font-weight: bold;
+          text-align: center;
+      }
+  }
+
+  .statusB3 {
+      h3 {
+          text-align: center;
+      }
+  }
+
+  .tituloQualificados {
+      padding: 20px 10px;
+
+      h4 {
+          color: #fff;
+          text-transform: none;
+          font-size: 1.3em;
+      }
+
+      img {
+          float: left;
+          padding-right: 10px;
+          margin-top: -6px;
+      }
+  }
+
+  .tituloQualificados2 {
+      padding: 20px 10px;
+      margin-bottom: 10px;
+      width: 60%;
+      float: left;
+
+      h4 {
+          color: #fff;
+          text-transform: none;
+          font-size: 1.3em;
+      }
+
+      img {
+          float: left;
+          padding-right: 10px;
+          margin-top: -6px;
+      }
+  }
+
+  .statusQualificado {
+      padding: 20px 11px;
+      width: auto;
+
+      h4 {
+          text-align: center;
+          color: #fff;
+      }
+  }
+
+  .equipeBinario {
+      padding: 16px 10px;
+
+      h3 {
+          text-align: center;
+          text-transform: none;
+          font-size: 1.3em;
+      }
+
+      img {
+          padding-right: 10px;
+          position: relative;
+          top: -2px;
+          left: 70px;
+          text-align: center;
+      }
+  }
+
+  .conteudoWidget {
+      text-align: center;
+
+      div:first-child {
+          border-bottom: 1px solid #ccc;
+      }
+
+      h3 {
+          color: #a2a2a1;
+      }
+
+      h4 {
+          color: #a2a2a1;
+      }
+  }
+
+  .conteudoBackOffice {
+    .panel {
+      border-radius: 0;
+    }
+    .panel-heading {
+      border-radius: 0;
+    }
+      .panel-body {
+          background: #fff;
+      }
+
+      .panel-default {
+          background: #none;
+          box-shadow: none;
+          border: none;
+      }
+
+      .panel-color {
+          background: #none;
+          box-shadow: none;
+          border: none;
+      }
+
+      .ox-item-author {
+          float: left;
+      }
+  }
+
+  .itemsaque {
+      display: flex;
+
+      div:first-child {
+          float: left;
+          color: #a2a2a1;
+          padding-right: 10px;
+          width: 40%;
+      }
+
+      div:first-child {
+          float: right;
+          font-weight: bold;
+          width: 50%;
+      }
+  }
+
+  .clear2 {
+      width: 100%;
+      display: block;
+      height: 3px;
+  }
+
+  .corDourado {
+      background: #bb9438;
+  }
+
+  .corAzul {
+      background: #243a5a;
+  }
+
+  .corVermelho {
+      background: #d78181;
+  }
+
+  .corVerde {
+      background: #9fb575;
+  }
+
+  .corCinza {
+      background: #ccc;
+  }
+
+  @media only screen and (max-width: 468px) {
+      .statusBloco {
+          padding: 4px 15px !important;
+          display: block;
+
+          p {
+              color: #fff;
+              text-transform: uppercase;
+              display: block;
+              font-size: 1em;
+              font-weight: bold;
+              position: relative;
+              top: 15px;
+          }
+      }
+
+      .statusB2 {
+          width: 50%;
+          float: right;
+
+          h3 {
+              font-size: 1.2em;
+              text-transform: uppercase;
+              font-weight: bold;
+              text-align: center;
+              padding: 15px;
+          }
+      }
+
+      .equipeBinario {
+          img {
+              padding-right: 10px;
+              position: relative;
+              top: -2px;
+              left: 30px;
+              text-align: center;
+          }
+      }
+
+      .tituloQualificados2 {
+          padding: 10px 5px;
+          width: 40%;
+          float: left;
+
+          h4 {
+              color: #fff;
+              text-transform: none;
+              font-size: 1em;
+          }
+
+          img {
+              display: none;
+          }
+      }
+
+      .statusQualificado {
+          padding: 21px 11px;
+          width: auto;
+
+          h4 {
+              text-align: center;
+              color: #fff;
+          }
+      }
+  }
+
+  /*Cores clientes*/
+  .cliente {
+      background: #bfe882;
+  }
+
+  .empreendedor {
+      background: #b2b6ff;
+  }
+
+  .empreendedorStart {
+      background: #e278b9;
+  }
+
+  .executivoBronze {
+      background: #d18355;
+  }
+
+  .executivoPrata {
+      background: #c5c1c0;
+  }
+
+  .executivoOuro {
+      background: #ccaa51;
+  }
+
+  .executivoEsmeralda {
+      background: #8fecd1;
+  }
+
+  .executivoRubi {
+      background: #b33934;
+  }
+
+  .diamond {
+      background: #98d0e9;
+  }
+
+  .whiteDiamond {
+      background: #f3fdff;
+  }
+
+  .blueDiamond {
+      background: #7fa6e9;
+  }
+
+  .blackDiamond {
+      background: #333333;
+  }
+
+  .charmas {
+      background: #ca9b31;
+  }
+}

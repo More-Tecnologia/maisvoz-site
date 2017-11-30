@@ -1,11 +1,11 @@
 <!-- Page-Title -->
 <div class="row">
     <div class="col-sm-12">
-        <h4 class="page-title"><%= t('views.backoffice.orders.show.title') %></h4>
+        <h4 class="page-title"><%= t('.title') %></h4>
         <ol class="breadcrumb">
           <li><a href="#"><%= t('app_name') %></a></li>
           <li><%= link_to t('views.backoffice.orders.index.title'), backoffice_orders_path %></li>
-          <li class="active"><%= t('views.backoffice.orders.show.title') %></li>
+          <li class="active"><%= t('.title') %></li>
     </div>
 </div>
 
@@ -18,7 +18,7 @@
             <div class="panel-body">
                 <div class="clearfix">
                     <div class="pull-right">
-                        <h4>Invoice # <br>
+                        <h4><%= t('.invoice') %> # <br>
                             <strong><%= @order.id %></strong>
                         </h4>
                     </div>
@@ -36,9 +36,9 @@
                               </address>
                         </div>
                         <div class="pull-right m-t-30">
-                            <p><strong>Order Date: </strong> <%= l @order.created_at, format: :short %></p>
-                            <p class="m-t-10"><strong>Order Status: </strong> <span class="label label-default"><%= t "defaults.#{@order.status}" %></span></p>
-                            <p class="m-t-10"><strong>Order ID: </strong> #<%= @order.id %></p>
+                            <p><strong><%= t('.order_date') %>: </strong> <%= l @order.created_at, format: :short %></p>
+                            <p class="m-t-10"><strong><%= t('.status') %>: </strong> <span class="label label-default"><%= t "defaults.#{@order.status}" %></span></p>
+                            <p class="m-t-10"><strong><%= t('.id') %>: </strong> #<%= @order.id %></p>
                         </div>
                     </div>
                 </div>
@@ -49,11 +49,11 @@
                             <table class="table m-t-30">
                                 <thead>
                                     <tr><th>#</th>
-                                    <th>Item</th>
-                                    <th>Description</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Cost</th>
-                                    <th>Total</th>
+                                    <th><%= OrderItem.human_attribute_name(:product) %></th>
+                                    <th><%= OrderItem.human_attribute_name(:description) %></th>
+                                    <th><%= OrderItem.human_attribute_name(:quantity) %></th>
+                                    <th><%= OrderItem.human_attribute_name(:unit_cost) %></th>
+                                    <th><%= OrderItem.human_attribute_name(:total) %></th>
                                 </tr></thead>
                                 <tbody>
                                   <% @order.order_items.each do |oi| %>
@@ -73,9 +73,9 @@
                 </div>
                 <div class="row" style="border-radius: 0px;">
                     <div class="col-md-3 col-md-offset-9">
-                        <p class="text-right"><b>Sub-total:</b> <%= @order.subtotal %></p>
-                        <p class="text-right">Shipping: <%= @order.shipping %></p>
-                        <p class="text-right">Tax: <%= @order.tax %></p>
+                        <p class="text-right"><b><%= t('.subtotal') %>:</b> <%= @order.subtotal %></p>
+                        <p class="text-right"><%= t('.delivery_fee') %>: <%= @order.shipping %></p>
+                        <p class="text-right"><%= t('.taxes') %>: <%= @order.tax %></p>
                         <hr>
                         <h3 class="text-right"><%= number_to_currency @order.total %></h3>
                     </div>

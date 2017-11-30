@@ -29,22 +29,37 @@ module Financial
     end
 
     def create_credit
-      Credit.new.tap do |credit|
-        credit.operated_by  = operated_by
-        credit.user         = form.user
-        credit.message      = form.message
-        credit.amount_cents = amount_in_cents
-        credit.save!
+      FinancialEntry.new.tap do |entry|
+        entry.user          = form.user
+        entry.description   = form.message
+        entry.kind          = FinancialEntry.kinds[:credit_by_admin]
+        entry.amount_cents  = amount_in_cents
+        entry.balance_cents = form.user.available_balance_cents + amount_in_cents
+        entry.save!
       end
+      form.user.increment!(:available_balance_cents, amount_in_cents)
+      create_system_financial_log(-amount_in_cents)
     end
 
     def create_debit
-      Debit.new.tap do |debit|
-        debit.operated_by  = operated_by
-        debit.user         = form.user
-        debit.message      = form.message
-        debit.amount_cents = amount_in_cents
-        debit.save!
+      FinancialEntry.new.tap do |entry|
+        entry.user          = form.user
+        entry.description   = form.message
+        entry.kind          = FinancialEntry.kinds[:debit_by_admin]
+        entry.amount_cents  = -amount_in_cents
+        entry.balance_cents = form.user.available_balance_cents - amount_in_cents
+        entry.save!
+      end
+      form.user.decrement!(:available_balance_cents, amount_in_cents)
+      create_system_financial_log(amount_in_cents)
+    end
+
+    def create_system_financial_log(amount_cents)
+      SystemFinancialLog.new.tap do |entry|
+        entry.description  = form.message
+        entry.amount_cents = amount_cents
+        entry.kind = form.credit? ? SystemFinancialLog.kinds[:credit_by_admin] : SystemFinancialLog.kinds[:debit_by_admin]
+        entry.save!
       end
     end
 

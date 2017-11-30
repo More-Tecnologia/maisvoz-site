@@ -21,7 +21,6 @@
                 <th>#</th>
                 <th><%= FinancialEntry.human_attribute_name(:description) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:from) %></th>
-                <th><%= FinancialEntry.human_attribute_name(:to) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:type) %></th>
                 <th><%= sort_link(q, :amount_cents, FinancialEntry.human_attribute_name(:amount)) %></th>
                 <th><%= sort_link(q, :created_at, FinancialEntry.human_attribute_name(:created_at), default_order: :desc) %></th>
@@ -32,8 +31,7 @@
                 <tr>
                   <th><%= financial_entry.id %></th>
                   <th><%= financial_entry.description %></th>
-                  <th><%= financial_entry.from_user.try(:username) %></th>
-                  <th><%= financial_entry.to_user.try(:username) %></th>
+                  <th><%= financial_entry.user.username %></th>
                   <td><%= t financial_entry.kind %></td>
                   <td><%= number_to_currency financial_entry.amount %></td>
                   <td><%= l financial_entry.created_at, format: :short %></td>

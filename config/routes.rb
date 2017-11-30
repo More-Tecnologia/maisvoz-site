@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :admin_user do
     mount Sidekiq::Web => '/sidekiq'
   end
 

@@ -1,9 +1,182 @@
-<!-- Page-Title -->
 <div class="row">
-  <div class="col-sm-12">
-      <h4 class="page-title"><%= t('views.dashboard.client.title') %></h4>
-      <p class="text-muted page-title-alt"><%= t('views.dashboard.client.subtitle') %></p>
+  <div class="col-md-12">
+    <div class="dashboard-carousel">
+      <div><%= image_tag('slides/slide1.jpg', style: 'width: 100%') %></div>
+      <div><%= image_tag('slides/slide2.png', style: 'width: 100%') %></div>
+    </div>
   </div>
 </div>
 
-user
+<div class="dashboard">
+  <div class="conteudoBackOffice">
+    <div class="row itensback dashboard">
+        <div class="col-lg-3 col-md-3 col-xs-12">
+            <div class="panel corDourado execc">
+                <div class="panel-heading">
+                  <% if current_user.binary_node %>
+                    <%= image_tag(current_user.binary_node.career.image_path, class: 'thumb-sm') %>
+                    <h3 class="panel-title"><%= current_user.binary_node.career.name %></h3>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-xs-12 itemPanel">
+            <div class="panel corAzul statusB">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Status do binário:</h3>
+                </div>
+            </div>
+            <% if current_user.qualified? %>
+              <div class="panel corVerde statusB2">
+                <h3>Qualificado</h3>
+              </div>
+            <% else %>
+              <div class="panel corVermelho statusB2">
+                <h3>Desqualificado</h3>
+              </div>
+            <% end %>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12 itemPanel">
+            <div class="panel corAzul statusB">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Conta</h3>
+                </div>
+
+            </div>
+            <% if current_user.binary_active? %>
+              <div class="panel corVerde statusB3 ">
+                  <h3>Ativo</h3>
+                  <small>Vence em <%= current_user.binary_node.active_until %></small>
+              </div>
+            <% else %>
+              <div class="panel corVermelho statusB3 ">
+                  <h3>Inativo</h3>
+              </div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="row segundalinha dashboard">
+      <!-- INBOX -->
+      <div class="col-lg-3 col-md-3 col-xs-12">
+          <div class="panel panel-default">
+              <div class="corAzul tituloQualificados">
+                  <img src="img/ultimosQualificados.png" alt=""><h4 class="panel-title">Últimos Qualificados</h4>
+              </div>
+              <div class="panel-body">
+                  <div class="inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
+                      <a href="#">
+                          <div class="inbox-item">
+                              <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div>
+                              <p class="inbox-item-author">Chadengle</p>
+                              <p class="inbox-item-text">Hey! there I'm available...</p>
+                              <p class="inbox-item-date">13:40 PM</p>
+                          </div>
+                      </a>
+                      <a href="#">
+                          <div class="inbox-item">
+                              <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="img-circle" alt=""></div>
+                              <p class="inbox-item-author">Tomaslau</p>
+                              <p class="inbox-item-text">I've finished it! See you so...</p>
+                              <p class="inbox-item-date">13:34 PM</p>
+                          </div>
+                      </a>
+                      <a href="#">
+                          <div class="inbox-item">
+                              <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="img-circle" alt=""></div>
+                              <p class="inbox-item-author">Stillnotdavid</p>
+                              <p class="inbox-item-text">This theme is awesome!</p>
+                              <p class="inbox-item-date">13:17 PM</p>
+                          </div>
+                      </a>
+                      <a href="#">
+                          <div class="inbox-item">
+                              <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="img-circle" alt=""></div>
+                              <p class="inbox-item-author">Kurafire</p>
+                              <p class="inbox-item-text">Nice to meet you</p>
+                              <p class="inbox-item-date">12:20 PM</p>
+                          </div>
+                      </a>
+                      <a href="#">
+                          <div class="inbox-item">
+                              <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="img-circle" alt=""></div>
+                              <p class="inbox-item-author">Shahedk</p>
+                              <p class="inbox-item-text">Hey! there I'm available...</p>
+                              <p class="inbox-item-date">10:15 AM</p>
+                          </div>
+                      </a>
+                      <a href="#">
+                          <div class="inbox-item">
+                              <div class="inbox-item-img"><img src="assets/images/users/avatar-6.jpg" class="img-circle" alt=""></div>
+                              <p class="inbox-item-author">Adhamdannaway</p>
+                              <p class="inbox-item-text">This theme is awesome!</p>
+                              <p class="inbox-item-date">9:56 AM</p>
+                          </div>
+                      </a>
+                      <a href="#">
+                          <div class="inbox-item">
+                              <div class="inbox-item-img"><img src="assets/images/users/avatar-8.jpg" class="img-circle" alt=""></div>
+                              <p class="inbox-item-author">Arashasghari</p>
+                              <p class="inbox-item-text">Hey! there I'm available...</p>
+                              <p class="inbox-item-date">10:15 AM</p>
+                          </div>
+                      </a>
+                      <a href="#">
+                          <div class="inbox-item">
+                              <div class="inbox-item-img"><img src="assets/images/users/avatar-9.jpg" class="img-circle" alt=""></div>
+                              <p class="inbox-item-author">Joshaustin</p>
+                              <p class="inbox-item-text">I've finished it! See you so...</p>
+                              <p class="inbox-item-date">9:56 AM</p>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+          </div>
+          </div> <!-- end col -->
+          <div class="col-lg-5 col-md-5 col-xs-12">
+              <div class="panel panel-default">
+                  <div class="linhatitulo-s">
+                      <div class="corAzul tituloQualificados2">
+                          <img src="img/solicitacaoSaque.png" alt=""><h4 class="panel-title">Solicitação de saque:</h4>
+                      </div>
+                      <div class="corDourado statusQualificado">
+                          <h4 class="panel-title">Em andamento</h4>
+                      </div>
+                  </div>
+                  <div class="panel-body">
+
+                      <div class="itemsaque">
+                          <div class="dataSaque">23-09-2018</div>
+                          <div class="valorSaque">R$ 2000,00</div>
+                      </div>
+                  </div>
+              </div>
+              </div> <!-- end col -->
+              <div class="col-lg-4 col-md-4 col-xs-12">
+                <% if current_user.binary_node %>
+                  <div class="panel panel-color">
+                      <div class="panel-heading corAzul equipeBinario">
+                          <h3 class="panel-title"> <img src="img/statusBinario.png" alt="">Equipe do Binário</h3>
+                      </div>
+                      <div class="panel-body conteudoWidget">
+                          <div class="direita">
+                              <h3>Direita: <%= current_user.binary_node.right_pv %></h3>
+                          </div>
+                          <div class="esquerda">
+                              <h3>Esquerda: <%= current_user.binary_node.left_pv %></h3>
+                          </div>
+                      </div>
+                  </div>
+                <% end %>
+                  <div class="panel panel-color">
+                      <div class="panel-heading corAzul equipeBinario">
+                          <h3 class="panel-title"> <img src="img/solicitacaoSaque.png" alt="">Saldo disponível</h3>
+                      </div>
+                      <div class="panel-body conteudoWidget">
+                          <h4><%= number_to_currency current_user.available_balance %></h4>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>

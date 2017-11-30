@@ -8,7 +8,7 @@ module Backoffice
     private
 
     def financial_entries
-      AccountFinancialEntriesQuery.new(current_user.account).call.page(params[:page])
+      AccountFinancialEntriesQuery.new(current_user).call.page(params[:page])
     end
 
   end

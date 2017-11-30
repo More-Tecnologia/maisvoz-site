@@ -25,13 +25,11 @@ module Bonification
     def credit_binary_score(child_node)
       parent_node = child_node.parent
 
-      return unless parent_node.user.can_receive_commission?
-
       if parent_node.left_child == child_node
-        parent_node.increment(:left_pv, total_score)
+        parent_node.increment!(:left_pv, total_score)
         create_pv_history(:left, parent_node.user)
       elsif parent_node.right_child == child_node
-        parent_node.increment(:right_pv, total_score)
+        parent_node.increment!(:right_pv, total_score)
         create_pv_history(:right, parent_node.user)
       end
     end

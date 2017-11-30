@@ -2,7 +2,7 @@ class FinancialEntryAmountDecorator < BaseDecorator
 
   def initialize(financial_entry, user)
     @financial_entry = financial_entry
-    @account = user.account
+    @user = user
   end
 
   def amount
@@ -13,10 +13,10 @@ class FinancialEntryAmountDecorator < BaseDecorator
 
   private
 
-  attr_reader :financial_entry, :account
+  attr_reader :financial_entry, :user
 
   def style_class
-    return 'text-success' if financial_entry.to == account
+    return 'text-success' if financial_entry.amount_cents > 0
     'text-danger'
   end
 

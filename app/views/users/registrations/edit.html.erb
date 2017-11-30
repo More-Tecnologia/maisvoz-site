@@ -1,13 +1,7 @@
-<div class="content-page">
-  <!-- Start content -->
-  <div class="content">
-    <div class="container">
-
       <!-- Page-Title -->
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 m-b-23">
           <h4 class="page-title"><%= t('registrations.user.edit.title') %></h4>
-          <p class="text-muted page-title-alt"><%= t('registrations.user.edit.subtitle') %></p>
         </div>
       </div>
 
@@ -21,7 +15,7 @@
                     <%= f.error_notification %>
 
                     <div class="form-inputs">
-                      <h4>Basic info</h4>
+                      <h4><%= t('.basic_info') %></h4>
                       <hr>
 
                       <%= cl_image_tag(resource.avatar, class: 'thumb-lg') %>
@@ -34,7 +28,7 @@
                       <%= f.input :email %>
                       <%= f.input :document_value %>
 
-                      <h4>Address</h4>
+                      <h4><%= t('.address') %></h4>
                       <hr>
 
                       <%= f.input :address %>
@@ -47,13 +41,13 @@
                         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
                       <% end %>
 
-                      <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+                      <%= f.input :password, autocomplete: "off", hint: t('.leave_blank'), required: false %>
                       <%= f.input :password_confirmation, required: false %>
                       <%#= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
                     </div>
 
                     <div class="form-actions">
-                      <%= f.button :submit, "Update" %>
+                      <%= f.button :submit, t('.update') %>
                     </div>
                   <% end %>
                 </div>
@@ -62,7 +56,3 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
-</div>

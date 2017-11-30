@@ -25,7 +25,9 @@ ActiveAdmin.register Order do
 
   index do
     id_column
-    column :user
+    column :user do |obj|
+      link_to obj.user.username, admin_user_path(obj.user)
+    end
     column :total, sortable: :total_cents do |o|
       number_to_currency o.total
     end

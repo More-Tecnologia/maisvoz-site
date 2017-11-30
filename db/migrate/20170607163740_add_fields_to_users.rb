@@ -12,6 +12,8 @@ class AddFieldsToUsers < ActiveRecord::Migration[5.1]
     add_column :users, :country, :string
     add_column :users, :state, :string
     add_column :users, :city, :string
+    add_column :users, :available_balance_cents, :bigint, default: 0, null: false
+    add_column :users, :blocked_balance_cents, :bigint, default: 0, null: false
 
     add_index :users, :username, unique: true
   end

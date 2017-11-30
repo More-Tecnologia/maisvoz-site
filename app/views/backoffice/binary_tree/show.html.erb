@@ -1,8 +1,7 @@
 <!-- Page-Title -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 m-b-23">
     <h4 class="page-title"><%= t('.title') %></h4>
-    <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
   </div>
 </div>
 
@@ -31,14 +30,10 @@
     </div>
   </div>
 </div>
-<% end %>
 
 <div class="row">
   <div class="col-md-12">
       <div class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">Your binary network</h3>
-          </div>
           <div class="panel-body">
               <div class="row">
                 <div class="col-md-6">
@@ -47,16 +42,17 @@
                   <% end %>
                   <%= link_to backoffice_binary_tree_path(node.parent), class: 'btn btn-primary' do %>
                     <i class="fa fa-angle-up"></i>
-                  <% end %>
+                  <% end if node.parent.present? %>
                 </div>
                 <div class="col-md-6">
-                  <%= form_tag backoffice_binary_tree_path(node), method: 'get' do %>
+                  <%= form_tag backoffice_binary_tree_path(node), method: :get do %>
                     <div class="form-group">
                       <div class="input-group">
                           <span class="input-group-btn">
                             <button type="submit" class="btn waves-effect waves-light btn-default"><i class="fa fa-search"></i></button>
                           </span>
-                          <input type="text" class="form-control" name="username" placeholder="Search">
+                          <input type="hidden" name="locale" value="<%= params[:locale] %>">
+                          <input type="text" class="form-control" name="username" value="<%= params[:username] %>" placeholder="<%= t('.search') %>">
                       </div>
                     </div>
                   <% end %>
@@ -68,10 +64,22 @@
                       <% cols = 4 %>
                       <% nodes = [@node] %>
                       <tr class="text-center">
-                        <td colspan="<%= 2 ** cols %>"><%= node.user.username %></td>
+                        <td colspan="<%= 2 ** cols %>">
+                          <%= image_tag(
+                            node.career.image_path,
+                            class: 'tree-node',
+                              data: {
+                                username: node.user.username,
+                                sponsor: node.user.sponsor.username,
+                                left_pv: node.left_pv,
+                                right_pv: node.right_pv,
+                                career: node.career.name,
+                              }
+                            ) if node.career %>
+                        </td>
                       </tr>
                       <tr class="text-center">
-                        <td colspan="<%= 2 ** cols %>">|</td>
+                        <td colspan="<%= 2 ** cols %>"></td>
                       </tr>
 
                       <% for x in 1..cols %>
@@ -83,22 +91,40 @@
                             <% current_node = nodes[i] %>
                             <td colspan="<%= 2 ** (cols - x) %>">
                               <% if current_node && current_node.left_child_id %>
-                                <%= link_to backoffice_binary_tree_path(current_node.left_child) do %>
-                                  <%= current_node.left_child.user.username %>
-                                  <!-- (<%= current_node.career.name %>) -->
+                                <%= link_to(
+                                    backoffice_binary_tree_path(current_node.left_child),
+                                    class: 'tree-node',
+                                    data: {
+                                      username: current_node.left_child.user.username,
+                                      sponsor: current_node.left_child.user.sponsor.username,
+                                      left_pv: current_node.left_child.left_pv,
+                                      right_pv: current_node.left_child.right_pv,
+                                      career: current_node.left_child.career.name,
+                                    }
+                                  ) do %>
+                                  <%= image_tag(current_node.left_child.career.image_path) %>
                                 <% end %>
                               <% else %>
-                                x
+                                <%= image_tag('packages/desativado.png') %>
                               <% end %>
                             </td>
                             <td colspan="<%= 2 ** (cols - x) %>">
                               <% if current_node && current_node.right_child_id %>
-                                <%= link_to backoffice_binary_tree_path(current_node.right_child) do %>
-                                  <%= current_node.right_child.user.username %>
-                                  <!-- (<%= current_node.career.name %>) -->
+                                <%= link_to(
+                                    backoffice_binary_tree_path(current_node.right_child),
+                                    class: 'tree-node',
+                                    data: {
+                                      username: current_node.right_child.user.username,
+                                      sponsor: current_node.right_child.user.sponsor.username,
+                                      left_pv: current_node.right_child.left_pv,
+                                      right_pv: current_node.right_child.right_pv,
+                                      career: current_node.right_child.career.name
+                                    }
+                                  ) do %>
+                                  <%= image_tag(current_node.right_child.career.image_path) %>
                                 <% end %>
                               <% else %>
-                                x
+                                <%= image_tag('packages/desativado.png') %>
                               <% end %>
                             </td>
 
@@ -114,7 +140,7 @@
                         <% if x != cols %>
                           <tr class="text-center">
                             <% (2 ** x).times do %>
-                              <td colspan="<%= 2 ** (cols - x) %>">|</td>
+                              <td colspan="<%= 2 ** (cols - x) %>"></td>
                             <% end %>
                           </tr>
                         <% end %>
@@ -127,6 +153,7 @@
       </div>
   </div>
 </div>
+<% end %>
 
 <!-- Careers -->
 <div class="row">
@@ -134,10 +161,32 @@
     <div class="friend-list text-center">
       <% Career.find_each do |career| %>
         <div class="career-legend m-l-10 m-r-10">
-          <%= cl_image_tag(career.thumbnail, class: 'img-circle thumb-md') %>
+          <%= image_tag(career.image_path, class: 'img-circle thumb-md') %>
           <h5><%= career.name %></h5>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  $('.tree-node').webuiPopover({
+    trigger: 'hover',
+    html: true,
+    content: function() {
+      let $this = $(this);
+
+      var html = '' +
+      '<strong>Usuário:</strong> ' + $this.data('username') +
+      '<br /> <strong>Patrocinador:</strong> ' + $this.data('sponsor') +
+      '<br /> <strong>Carreira:</strong> ' + $this.data('career') +
+      '<br /> <strong>PV Esquerda:</strong> ' + $this.data('left-pv') +
+      '<br /> <strong>PV Direita:</strong> ' + $this.data('right-pv');
+
+      return html;
+    }
+  });
+})
+
+</script>

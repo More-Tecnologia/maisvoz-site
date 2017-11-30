@@ -12,11 +12,31 @@
 //
 //= require jquery
 //= require rails-ujs
-//= require bootstrap
+//= require 'bootstrap/dist/js/bootstrap'
+//= require 'slick-carousel/slick/slick'
+//= require 'webui-popover/dist/jquery.webui-popover'
+//= require 'autonumeric/dist/autoNumeric.min'
 //= require notifyjs
 //= require bootstrap-datepicker
 //= require raphael
+//= require product-form-kind
+//= require withdraw-simulator
+//= require dashboard-carousel
 //= require rails.validations
 //= require rails.validations.simple_form
-//= require autonumeric
-//= require_tree .
+//= require theme/jquery.core
+//= require theme/wow.min
+//= require theme/jquery.app
+
+$(document).ready(function() {
+  $("#sidebar-menu a").each(function() {
+    if (this.href == window.location.href) {
+      $(this).addClass("active");
+      $(this).parent().addClass("active"); // add active to li of the current link
+      $(this).parent().parent().prev().addClass("active"); // add active class to an anchor
+      $(this).parent().parent().prev().addClass("subdrop"); // add active class to an anchor
+      $(this).parent().parent().show();
+      $(this).parent().parent().prev().click(); // click the item to make it drop
+    }
+  });
+});

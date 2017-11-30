@@ -17,11 +17,11 @@ module ApplicationHelper
   end
 
   def current_order
-   if !session[:order_id].nil? && Order.exists?(session[:order_id])
-     @current_order ||= Order.find(session[:order_id])
-   else
-     @current_order ||= Order.new(user: current_user)
-   end
+    if session[:order_id].present? && current_user.orders.exists?(session[:order_id])
+      @current_order ||= Order.find(session[:order_id])
+    else
+      @current_order ||= Order.new(user: current_user)
+    end
   end
 
 end

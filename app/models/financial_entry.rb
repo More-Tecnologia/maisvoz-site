@@ -2,46 +2,31 @@
 #
 # Table name: financial_entries
 #
-#  id           :integer          not null, primary key
-#  description  :string
-#  amount_cents :integer          default(0), not null
-#  kind         :integer          default("transfer")
-#  metadata     :jsonb
-#  from_id      :integer
-#  to_id        :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  description   :string
+#  amount_cents  :integer          default(0), not null
+#  balance_cents :integer          default(0), not null
+#  kind          :string           default(NULL)
+#  user_id       :integer
+#  order_id      :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
-#  index_financial_entries_on_from_id  (from_id)
-#  index_financial_entries_on_kind     (kind)
-#  index_financial_entries_on_to_id    (to_id)
+#  index_financial_entries_on_kind      (kind)
+#  index_financial_entries_on_order_id  (order_id)
+#  index_financial_entries_on_user_id   (user_id)
 #
 
 class FinancialEntry < ApplicationRecord
 
-  delegate :user, to: :to, prefix: true, allow_nil: true
-  delegate :user, to: :from, prefix: true, allow_nil: true
+  include FinancialTypes
 
-  serialize :metadata, JsonModelSerializer.new(FinancialEntryMetadata)
+  belongs_to :user
+  belongs_to :order, optional: true
 
-  enum kind: [
-    :transfer,
-    :credit_by_admin,
-    :debit_by_admin,
-    :tax,
-    :withdrawal,
-    :bonus_chargeback,
-    :product_return,
-    :fee,
-    :binary_bonus
-  ]
-
-  belongs_to :from, class_name: 'Account', optional: true
-  belongs_to :to, class_name: 'Account', optional: true
-
-  monetize :amount_cents
+  monetize :amount_cents, :balance_cents
 
   ransacker :date_created_at do
     Arel.sql("DATE(#{table_name}.created_at)")

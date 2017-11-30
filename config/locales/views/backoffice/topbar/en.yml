@@ -1,6 +1,0 @@
-en:
-  views:
-    backoffice:
-      topbar:
-        my_account: 'My Account'
-        logout: 'Logout'

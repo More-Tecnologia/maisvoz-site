@@ -6,7 +6,7 @@ module Financial
     def initialize(creator, params)
       @creator = creator
       @id = params[:id]
-      @status = params[:status].to_i
+      @status = params[:status]
     end
 
     def call

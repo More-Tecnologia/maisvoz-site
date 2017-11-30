@@ -17,6 +17,7 @@
 #  career_id       :integer
 #  active          :boolean          default(TRUE), not null
 #  active_until    :date
+#  qualified       :boolean          default(FALSE), not null
 #
 # Indexes
 #

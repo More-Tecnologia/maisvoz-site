@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030151955) do
+ActiveRecord::Schema.define(version: 20171130135841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20171030151955) do
     t.bigint "career_id"
     t.boolean "active", default: true, null: false
     t.date "active_until"
+    t.boolean "qualified", default: false, null: false
     t.index ["career_id"], name: "index_binary_nodes_on_career_id"
     t.index ["left_child_id"], name: "index_binary_nodes_on_left_child_id"
     t.index ["parent_id"], name: "index_binary_nodes_on_parent_id"
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 20171030151955) do
     t.datetime "updated_at", null: false
     t.integer "kind", default: 0, null: false
     t.decimal "binary_percentage", precision: 5, scale: 2, default: "0.0", null: false
+    t.string "image_path"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -145,15 +147,15 @@ ActiveRecord::Schema.define(version: 20171030151955) do
   create_table "financial_entries", force: :cascade do |t|
     t.string "description"
     t.bigint "amount_cents", default: 0, null: false
-    t.integer "kind", default: 0
-    t.jsonb "metadata"
-    t.bigint "from_id"
-    t.bigint "to_id"
+    t.bigint "balance_cents", default: 0, null: false
+    t.string "kind", default: "0"
+    t.bigint "user_id"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["from_id"], name: "index_financial_entries_on_from_id"
     t.index ["kind"], name: "index_financial_entries_on_kind"
-    t.index ["to_id"], name: "index_financial_entries_on_to_id"
+    t.index ["order_id"], name: "index_financial_entries_on_order_id"
+    t.index ["user_id"], name: "index_financial_entries_on_user_id"
   end
 
   create_table "options", force: :cascade do |t|
@@ -182,7 +184,6 @@ ActiveRecord::Schema.define(version: 20171030151955) do
     t.integer "shipping_cents", default: 0
     t.integer "total_cents", default: 0
     t.integer "status", default: 0
-    t.integer "payment_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "paid_at"
@@ -250,6 +251,16 @@ ActiveRecord::Schema.define(version: 20171030151955) do
     t.index ["user_id"], name: "index_pv_histories_on_user_id"
   end
 
+  create_table "system_financial_logs", force: :cascade do |t|
+    t.string "description"
+    t.bigint "amount_cents"
+    t.string "kind"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_system_financial_logs_on_order_id"
+  end
+
   create_table "transfers", force: :cascade do |t|
     t.bigint "from_user_id", null: false
     t.bigint "to_user_id", null: false
@@ -292,6 +303,8 @@ ActiveRecord::Schema.define(version: 20171030151955) do
     t.string "country"
     t.string "state"
     t.string "city"
+    t.bigint "available_balance_cents", default: 0, null: false
+    t.bigint "blocked_balance_cents", default: 0, null: false
     t.string "role", default: "consumidor", null: false
     t.string "binary_strategy", default: "balanced_strategy", null: false
     t.string "binary_position"
@@ -306,10 +319,10 @@ ActiveRecord::Schema.define(version: 20171030151955) do
   end
 
   create_table "withdrawals", force: :cascade do |t|
+    t.string "status", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", null: false
     t.bigint "gross_amount_cents", null: false
     t.bigint "net_amount_cents", null: false
     t.index ["status"], name: "index_withdrawals_on_status"
@@ -326,8 +339,8 @@ ActiveRecord::Schema.define(version: 20171030151955) do
   add_foreign_key "credits", "users", column: "operated_by_id"
   add_foreign_key "debits", "users"
   add_foreign_key "debits", "users", column: "operated_by_id"
-  add_foreign_key "financial_entries", "accounts", column: "from_id"
-  add_foreign_key "financial_entries", "accounts", column: "to_id"
+  add_foreign_key "financial_entries", "orders"
+  add_foreign_key "financial_entries", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
@@ -337,6 +350,7 @@ ActiveRecord::Schema.define(version: 20171030151955) do
   add_foreign_key "pv_activity_histories", "users"
   add_foreign_key "pv_histories", "orders"
   add_foreign_key "pv_histories", "users"
+  add_foreign_key "system_financial_logs", "orders"
   add_foreign_key "transfers", "users", column: "from_user_id"
   add_foreign_key "transfers", "users", column: "to_user_id"
   add_foreign_key "withdrawals", "users"

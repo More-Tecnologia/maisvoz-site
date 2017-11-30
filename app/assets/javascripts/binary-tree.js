@@ -99,12 +99,12 @@ $(function() {
         thiz.nodes = data.nodes;
         window.tree_parent_id = data.parent_id;
         thiz.createTree();
-      });
+      }, "json");
     }
   }
 
 
-  $("[data-binary-tree]").each(function() {
-    new BinaryTree(window.user_binary_node_id).init();
-  })
+  // $("[data-binary-tree]").each(function() {
+  //   new BinaryTree(window.user_binary_node_id).init();
+  // })
 })

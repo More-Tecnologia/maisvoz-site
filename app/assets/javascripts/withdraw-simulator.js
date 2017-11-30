@@ -8,19 +8,20 @@ $(document).ready(function() {
   }
 
   WithdrawSimulator.prototype.init = function() {
-    var input = this.$el.find("[data-input]");
-    var autonumericOptions = input.data('autonumeric');
+    var input = new AutoNumeric('[data-input]', AutoNumeric.getPredefinedOptions().commaDecimalCharDotSeparator)
+    var feeText = new AutoNumeric('[data-fee-text]', AutoNumeric.getPredefinedOptions().commaDecimalCharDotSeparator)
+    var totalText = new AutoNumeric('[data-total-text]', AutoNumeric.getPredefinedOptions().commaDecimalCharDotSeparator)
 
     var $this = this;
 
-    input.on('keyup', function() {
-      var val = $(this).autoNumeric('get') || 0;
+    $('[data-input]').on('keyup', function() {
+      var val = input.get() || 0;
 
       var feeTotal = (val * $this.withdrawalFee).toFixed(2);
       var total = val - feeTotal;
 
-      $this.$fee.text($.fn.autoFormat(feeTotal, autonumericOptions));
-      $this.$total.text($.fn.autoFormat(total.toFixed(2), autonumericOptions));
+      feeText.set(feeTotal)
+      totalText.set(total)
     })
   }
 

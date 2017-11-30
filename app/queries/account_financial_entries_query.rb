@@ -1,20 +1,18 @@
 class AccountFinancialEntriesQuery
 
-  def initialize(account, relation = FinancialEntry.all)
+  def initialize(user, relation = FinancialEntry.all)
     @financial_entries = relation
-    @account = account
+    @user = user
   end
 
   def call
     financial_entries.where(
-      to: account
-    ).or(
-      financial_entries.where(from: account)
+      user: user
     ).order(created_at: :desc)
   end
 
   private
 
-  attr_reader :financial_entries, :account
+  attr_reader :financial_entries, :user
 
 end

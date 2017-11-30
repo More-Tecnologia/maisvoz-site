@@ -1,7 +1,0 @@
-en:
-  backoffice:
-    bonus_entries:
-      index:
-        title: 'Your bonus entries'
-        subtitle: 'Those are the bonus entries of your account'
-        no_data: 'No bonus entries yet'

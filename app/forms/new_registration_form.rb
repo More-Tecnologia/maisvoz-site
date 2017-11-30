@@ -20,7 +20,10 @@ class NewRegistrationForm < Form
   validate :email_is_unique
 
   def sponsor
-    @sponsor ||= User.find_by(username: sponsor_username, role: :empreendedor)
+    @sponsor ||= User.where(
+      'LOWER(username) = ? AND role = ?',
+      sponsor_username.downcase, :empreendedor
+    ).first
   end
 
   private
@@ -31,7 +34,7 @@ class NewRegistrationForm < Form
   end
 
   def username_is_unique
-    return unless User.where(username: username).any?
+    return unless User.where('LOWER(username) = ?', username.downcase).any?
     errors.add(:username, 'already exists')
   end
 

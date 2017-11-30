@@ -1,8 +1,7 @@
 <!-- Page-Title -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 m-b-23">
     <h4 class="page-title"><%= t('.title') %></h4>
-    <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
   </div>
 </div>
 
@@ -18,10 +17,10 @@
               <tr>
                 <th>#</th>
                 <th><%= FinancialEntry.human_attribute_name(:description) %></th>
-                <th><%= FinancialEntry.human_attribute_name(:from) %></th>
-                <th><%= FinancialEntry.human_attribute_name(:to) %></th>
+                <th><%= FinancialEntry.human_attribute_name(:user) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:type) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:amount) %></th>
+                <th><%= FinancialEntry.human_attribute_name(:balance) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:created_at) %></th>
               </tr>
             </thead>
@@ -30,10 +29,10 @@
                 <tr>
                   <th><%= financial_entry.id %></th>
                   <th><%= financial_entry.description %></th>
-                  <th><%= financial_entry.from_user.try(:username) %></th>
-                  <th><%= financial_entry.to_user.try(:username) %></th>
+                  <th><%= financial_entry.user.username %></th>
                   <td><%= t financial_entry.kind %></td>
                   <td><%= FinancialEntryAmountDecorator.new(financial_entry, current_user).amount %></td>
+                  <td><%= number_to_currency financial_entry.balance %></td>
                   <td><%= l financial_entry.created_at, format: :short %></td>
                 </tr>
               <% end %>

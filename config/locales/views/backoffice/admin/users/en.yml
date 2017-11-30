@@ -1,7 +1,0 @@
-en:
-  backoffice:
-    admin:
-      users:
-        index:
-          title: 'All orders'
-          subtitle: 'Manage your orders'

@@ -6,16 +6,16 @@ module Financial
     def initialize(creator, withdrawal)
       @creator = creator
       @withdrawal = withdrawal
-      @account = withdrawal.user.account
+      @user = withdrawal.user
     end
 
     def call
-      account.lock!
+      user.lock!
 
-      create_withdraw_financial_entry
+      create_withdrawal_financial_entry
       create_fee_entry
+      create_system_financial_log
 
-      generate_metadata
       debit_account
 
       financial_entry.save!
@@ -23,46 +23,44 @@ module Financial
 
     private
 
-    attr_reader :creator, :withdrawal, :account
+    attr_reader :creator, :withdrawal, :user
 
-    def create_withdraw_financial_entry
-      financial_entry.from = account
-      financial_entry.amount_cents = withdrawal.amount_cents - fee_cents
-      financial_entry.kind = FinancialEntry.kinds[:withdrawal]
+    def create_withdrawal_financial_entry
+      financial_entry.user         = user
+      financial_entry.description  = "Correspondente ao saque ID: #{withdrawal.id}"
+      financial_entry.amount_cents = -withdrawal.net_amount_cents
+      fee_entry.balance_cents      = user.available_balance_cents - withdrawal.net_amount_cents
+      financial_entry.kind         = FinancialEntry.kinds[:withdrawal]
     end
 
     def create_fee_entry
-      fee_entry = FinancialEntry.new
-      fee_entry.from = account
-      fee_entry.to = master_financial_account
-      fee_entry.amount_cents = fee_cents
-      fee_entry.kind = FinancialEntry.kinds[:fee]
+      fee_entry               = FinancialEntry.new
+      fee_entry.description   = "Correspondente ao saque ID: #{withdrawal.id}"
+      fee_entry.user          = user
+      fee_entry.amount_cents  = -fee_cents
+      fee_entry.balance_cents = user.available_balance_cents - fee_cents
+      fee_entry.kind          = FinancialEntry.kinds[:fee]
       fee_entry.save!
     end
 
-    def generate_metadata
-      financial_entry.metadata = FinancialEntryMetadata.new(
-        created_by_id: creator.id,
-        created_by_username: creator.username,
-        origin_account_available_balance_was: account.available_balance
-      )
+    def create_system_financial_log
+      system_log              = SystemFinancialLog.new
+      system_log.description  = "Comissão sobre saque ID: #{withdrawal.id} de $#{withdrawal.gross_amount}"
+      system_log.amount_cents = fee_cents
+      system_log.kind         = SystemFinancialLog.kinds[:fee]
+      system_log.save!
     end
 
     def debit_account
-      account.available_balance_cents -= withdrawal.amount_cents
-      account.save!
+      user.decrement!(:available_balance_cents, withdrawal.gross_amount_cents)
     end
 
     def fee_cents
-      AppConfig.get(:withdrawal_fee).to_f * withdrawal.amount_cents
+      @fee_cents ||= AppConfig.get(:withdrawal_fee).to_f * withdrawal.gross_amount_cents
     end
 
     def financial_entry
       @financial_entry ||= FinancialEntry.new
-    end
-
-    def master_financial_account
-      @master_financial_account ||= Account.find(AppConfig.get(:master_financial_account_id))
     end
 
   end

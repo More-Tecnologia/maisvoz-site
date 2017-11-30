@@ -2,9 +2,10 @@ module Backoffice
   class CheckoutsController < BackofficeController
 
     def update
-      current_order.pending_payment!
-      session[:order_id] = nil
-      flash[:success] = I18n.t('defaults.order_placed')
+      if current_order.pending_payment!
+        session.delete(:order_id)
+        flash[:success] = I18n.t('defaults.order_placed')
+      end
       redirect_to backoffice_orders_path
     end
 

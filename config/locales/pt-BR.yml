@@ -1,0 +1,486 @@
+---
+pt-BR:
+  '':
+    success: Success
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      call_to_action: Call to action
+      welcome: Welcome
+  activerecord:
+    attributes:
+      pv_activity_history:
+        from: De
+        order: Pedido
+      pv_history:
+        balance: Saldo
+        description: Descrição
+      user:
+        login: Email/Login
+    errors:
+      messages:
+        blank: Não pode ficar em branco
+        record_invalid: 'A validação falhou: %{errors}'
+        restrict_dependent_destroy:
+          has_many: Não é possível excluir o registro pois existem %{record} dependentes
+          has_one: Não é possível excluir o registro pois existe um %{record} dependente
+  app_name: Future Motors
+  attributes:
+    accept_terms: Aceitar termos
+    amount: Valor
+    created_at: Data de criação
+    description: Descrição
+    gross_amount: Valor bruto
+    name: Nome
+    net_amount: Valor líquido
+    paid_at: Pago em
+    password: Senha
+    password_confirmation: Confirmação de Senha
+    phone: Telefone
+    product: Produto
+    quantity: Quantidade
+    remember_me: Lembrar
+    sponsor_username: Usuário do Patrocinador
+    unit_cost: Custo Unitário
+    username: Nome de Usuário
+    from: De
+    to: Para
+    type: Tipo
+    from_user: De
+    to_user: Para
+    kind: Tipo
+    birthdate: Data de Nascimento
+    document_value: Documento (CPF)
+    address: Endereço
+    address_2: Endereço 2
+    country: País
+    state: Estado
+    city: Cidade
+  backoffice:
+    orders:
+      show:
+        delivery_fee: Taxa de entrega
+        id: Id da fatura
+        invoice: Fatura
+        order_date: Data da fatura
+        status: Status da fatura
+        subtotal: Subtotal
+        taxes: Impostos
+        title: Fatura
+    withdrawals:
+      index:
+        no_data: Nenhum saque realizado
+        title: Meus Saques
+      new:
+        available_balance: Saldo Disponível
+        title: Novo Saque
+      form:
+        fees: Taxas
+        total: Total
+    binary_strategies:
+      index:
+        title: Estratégia do Binário
+        subtitle: Defina a estratégia da sua rede
+        save: Salvar Estratégia
+        default_strategy: Estratégia Padrão
+        default_strategy_sub: Esta é a estratégia padrão para sua rede
+        indicated_strategy: Estratégia dos Indicados Diretos
+        indicated_strategy_sub: Defina com precisão onde cada indicado direto será distribuido
+    binary_tree:
+      show:
+        title: Árvore Binária
+        left_pv: PV Esquerdo
+        right_pv: PV Direito
+        username: Nome de usuário
+        sponsor: Patrocinador
+        search: Pesquisar
+    unilevel:
+      index:
+        title: Unilevel
+        no_binary_node: Você ainda não está ativo na rede
+    financial_entries:
+      index:
+        title: Histórico Financeiro
+        no_data: Nenhum registro financeiro até o momento
+    bonus_entries:
+      index:
+        title: Meus Bônus
+        no_data: Nenhum registro de bônus até o momento
+    pv_histories:
+      index:
+        title: Histórico de PV
+        left: Esquerda
+        right: Direita
+        no_data: Nenhum registro de PV até o momento
+        invoice_no: 'PV gerado da fatura ID: %{id}'
+    pv_activity_histories:
+      index:
+        title: Histórico de PV de Atividade
+        no_data: Nenhum registro de pv de atividade até o momento
+    admin:
+      financial_entries:
+        filters:
+          from_user: Nome de usuário
+          type: Tipo de evento financeiro
+          created_from: Criado a partir de
+          created_until: Criado até
+
+      withdrawals:
+        filters:
+          status: Status
+          created_from: Criado a partir de
+          created_until: Criado até
+  balanced_strategy: Balanceado
+  cart:
+    cart_updated: Carrinho atualizado
+    see_cart: Ver carrinho
+    title: Title
+  date:
+    abbr_day_names:
+    - Dom
+    - Seg
+    - Ter
+    - Qua
+    - Qui
+    - Sex
+    - Sáb
+    abbr_month_names:
+    -
+    - Jan
+    - Fev
+    - Mar
+    - Abr
+    - Mai
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Out
+    - Nov
+    - Dez
+    day_names:
+    - Domingo
+    - Segunda-feira
+    - Terça-feira
+    - Quarta-feira
+    - Quinta-feira
+    - Sexta-feira
+    - Sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
+    month_names:
+    -
+    - Janeiro
+    - Fevereiro
+    - Março
+    - Abril
+    - Maio
+    - Junho
+    - Julho
+    - Agosto
+    - Setembro
+    - Outubro
+    - Novembro
+    - Dezembro
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente 1 hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente 1 mês
+        other: aproximadamente %{count} meses
+      about_x_years:
+        one: aproximadamente 1 ano
+        other: aproximadamente %{count} anos
+      almost_x_years:
+        one: quase 1 ano
+        other: quase %{count} anos
+      half_a_minute: meio minuto
+      less_than_x_minutes:
+        one: menos de um minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: mais de 1 ano
+        other: mais de %{count} anos
+      x_days:
+        one: 1 dia
+        other: "%{count} dias"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mês
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+      x_years:
+        one: 1 ano
+        other: "%{count} anos"
+    prompts:
+      day: Dia
+      hour: Hora
+      minute: Minuto
+      month: Mês
+      second: Segundo
+      year: Ano
+  defaults:
+    admin: Admin
+    approved_success: Approved success
+    binary_strategy: Estratégia Binária
+    binary_tree: Árvore Binária
+    bonus_entries: Entradas de bônus
+    careers: Carreiras
+    categories: Categorias
+    completed: Pago
+    confirm_removal: Confirmar remoção
+    credits_debits: Credits debits
+    destroying_error: Destroying error
+    destroying_success: Destroying success
+    error: Erro
+    errors:
+      career_required: Carreira obrigatória
+      different_sponsor: Different sponsor
+      no_funds: Você não possui saldo suficiente
+      not_unique: Não é único
+    financial: Financeiro
+    financial_entries: Entradas financeiras
+    manage_withdrawals: Gerenciar Saques
+    my_orders: Meus pedidos
+    network: Rede
+    new_transfer: New transfer
+    new_withdraw: Novo Saque
+    order_placed: Pedido realizado
+    orders: Pedidos
+    post: Enviar
+    processing: Processando
+    products: Produtos
+    pv_activity_history: Histórico de PV de Atividade
+    pv_history: Histórico de PV
+    saving_error: Saving error
+    saving_success: Saving success
+    search: Search
+    settings: Settings
+    shop: Loja
+    success: Sucesso
+    unilevel: Unilevel
+    users: Usuários
+    withdrawal_fee: Taxa de Saque
+    withdrawals: Saques
+  errors:
+    cant_access_binary_node: Cant access binary node
+    messages:
+      invalid: Invalid
+      invalid_password: Invalid password
+      not_enough_balance: Not enough balance
+      not_found: Not found
+      required: Required
+      wrong_master_pw: Wrong master pw
+  filters: Filters
+  helpers:
+    select:
+      prompt: Por favor selecione
+    submit:
+      create: Criar %{model}
+      submit: Salvar %{model}
+      update: Atualizar %{model}
+  left: Esquerda
+  left_strategy: Sempre para Esquerda
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u %n"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: R$
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: bilhão
+            other: bilhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+          thousand: mil
+          trillion:
+            one: trilhão
+            other: trilhões
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
+  registrations:
+    user:
+      edit:
+        title: Editar Conta
+  right: Direita
+  right_strategy: Sempre para Direita
+  rotateZ: Rotatez
+  scale: Scale
+  scaleX: Scalex
+  scaleY: Scaley
+  search: Search
+  skewX: Skewx
+  skewY: Skewy
+  support:
+    array:
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      long: "%d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+    pm: ''
+  translateX: Translatex
+  translateY: Translatey
+  users:
+    sessions:
+      new:
+        login: Entrar
+    shared:
+      links:
+        didnt_receive_instructions: Não recebeu instruções de confirmação?
+        forgot_password: Esqueceu sua senha?
+        login: Login
+        sign_up: Cadastrar
+        unlock_instructions: Não recebeu as instruções de desbloqueio?
+    registrations:
+      edit:
+        basic_info: Informações Básicas
+        address: Endereço
+        leave_blank: Deixe em branco se não pretende mudar a senha
+        update: Atualizar Conta
+  view_all: View all
+  views:
+    backoffice:
+      admin:
+        orders:
+          index:
+            no_data: No data
+            title: Title
+        products:
+          basic_info: Basic info
+          bonus: Bonus
+          dimensions: Dimensions
+          edit:
+            subtitle: Subtitle
+            title: Title
+          index:
+            new_product: New product
+            no_data: No data
+            subtitle: Subtitle
+            title: Title
+          new:
+            subtitle: Subtitle
+            title: Title
+      careers:
+        edit:
+          subtitle: Subtitle
+          title: Title
+        index:
+          new_career: New career
+          no_data: No data
+          subtitle: Subtitle
+          title: Title
+        new:
+          subtitle: Subtitle
+          title: Title
+      cart:
+        show:
+          continue_shopping: Continuar Comprando
+          no_data: No data
+          place_order: Place order
+          subtitle: Subtitle
+          title: Title
+      categories:
+        edit:
+          subtitle: Subtitle
+          title: Title
+        index:
+          new_category: New category
+          no_data: No data
+          subtitle: Subtitle
+          title: Title
+        new:
+          subtitle: Subtitle
+          title: Title
+      orders:
+        index:
+          no_data: Nenhuma compra realizada
+          title: Meus Pedidos
+        show:
+          title: Title
+      products:
+        index:
+          details: Detalhes
+          title: Loja
+        show:
+          buy: Comprar
+          description: Descrição
+          specifications: Especificações
+          title: Produto
+      topbar:
+        edit_account: Editar conta
+        logout: Sair
+    dashboard:
+      admin:
+        active_products: Active products
+        subtitle: Subtitle
+        title: Title
+        today_orders: Today orders
+        total_orders: Total orders
+        total_users: Total users
+      client:
+        subtitle: Subtitle
+        title: Title
+    pagination:
+      first: Primeiro
+      last: Último
+      next: Próximo
+      previous: Anterior

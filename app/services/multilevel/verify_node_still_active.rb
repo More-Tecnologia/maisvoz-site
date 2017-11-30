@@ -11,10 +11,11 @@ module Multilevel
     def call
       if pv_activities_sum >= MINIMUM_PV_ACTIVITY
         node.active = true
-        node.active_until = node.active_until + 6.months
+        node.active_until = 6.months.from_now
       else
         node.active = false
       end
+      verify_sponsor_qualification
       node.save!
     end
 
@@ -23,11 +24,11 @@ module Multilevel
     attr_reader :node, :date
 
     def pv_activities_sum
-      @pv_activities_sum ||= pv_activities.sum(&:amount).to_f
+      @pv_activities_sum ||= PvActivitySemesterHistoryQuery.new(user, date).call / 100.0
     end
 
-    def pv_activities
-      @pv_activities ||= PvActivitySemesterHistoryQuery.new(user, date).call
+    def verify_sponsor_qualification
+      Multilevel::QualifyUser.new(node.sponsor).call
     end
 
     def user

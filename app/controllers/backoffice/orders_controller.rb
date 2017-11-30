@@ -2,7 +2,7 @@ module Backoffice
   class OrdersController < BackofficeController
 
     def index
-      @orders = current_user.orders.where.not(status: :open).order(created_at: :desc)
+      @orders = current_user.orders.where.not(status: :cart).order(created_at: :desc)
     end
 
     def show

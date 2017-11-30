@@ -11,6 +11,7 @@
 #  updated_at        :datetime         not null
 #  kind              :integer          default("qualification"), not null
 #  binary_percentage :decimal(5, 2)    default(0.0), not null
+#  image_path        :string
 #
 
 class Career < ApplicationRecord

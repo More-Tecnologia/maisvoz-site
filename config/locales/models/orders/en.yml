@@ -1,8 +1,0 @@
-en:
-  activerecord:
-    models:
-      order: 'Order'
-    attributes:
-      order:
-        total: 'Total'
-        status: 'Status'

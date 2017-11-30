@@ -8,8 +8,7 @@
 #  tax_cents      :integer          default(0)
 #  shipping_cents :integer          default(0)
 #  total_cents    :integer          default(0)
-#  status         :integer          default("open")
-#  payment_status :integer          default("pending")
+#  status         :integer          default("cart")
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  paid_at        :datetime
@@ -21,8 +20,7 @@
 
 class Order < ApplicationRecord
 
-  enum status: { open: 0, pending_payment: 1, processing: 2, completed: 3, cancelled: 4 }
-  enum payment_status: { pending: 0, paid: 2, expired: 3 }
+  enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, cancelled: 4 }
 
   has_many :order_items
   has_many :pv_histories

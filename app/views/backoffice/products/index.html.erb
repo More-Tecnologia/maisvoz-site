@@ -1,8 +1,7 @@
 <!-- Page-Title -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 m-b-23">
     <h4 class="page-title"><%= t('views.backoffice.products.index.title') %></h4>
-    <p class="text-muted page-title-alt"><%= t('views.backoffice.products.index.subtitle') %></p>
   </div>
 </div>
 
@@ -12,6 +11,7 @@
     <%= link_to category.name, q: { category_id_eq: category.id } %>
   <% end %>
 </div>
+
 
 <div class="row">
   <div class="m-b-15">
@@ -31,12 +31,10 @@
         </div>
         <% end %>
 
-        <div class="price-tag">
-          <%= number_to_currency product.price %>
-        </div>
         <div class="detail">
           <h4 class="m-t-0">
             <a href="" class="text-dark"><%= product.name %></a>
+            <%= number_to_currency product.price %>
           </h4>
           <h5 class="m-0">
             <span class="text-muted">

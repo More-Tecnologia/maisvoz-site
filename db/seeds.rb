@@ -59,7 +59,7 @@ users = [
   { username: 'itamar', email: 'itamar@email.com', password: 111111, sponsor_username: 'futuremotors', binary_position: 'left' },
   { username: 'bernardo', email: 'bernardo@email.com', password: 111111, sponsor_username: 'futuremotors', binary_position: 'right' },
   { username: 'cleiton', email: 'cleiton@email.com', password: 111111, sponsor_username: 'futuremotors', binary_position: 'left' },
-  { username: 'cristiane', email: 'cristiane@email.com', password: 111111, sponsor_username: 'futuremotors', binary_position: 'right' },
+  { username: 'cristiene', email: 'cristiene@email.com', password: 111111, sponsor_username: 'futuremotors', binary_position: 'right' },
   { username: 'jubio', email: 'jubio@email.com', password: 111111, sponsor_username: 'rubem', binary_position: 'left' },
   { username: 'herica', email: 'herica@email.com', password: 111111, sponsor_username: 'futuremotors', binary_position: 'left' },
   { username: 'marcelo', email: 'marcelo@email.com', password: 111111, sponsor_username: 'rubem', binary_position: 'right' },
@@ -72,7 +72,7 @@ users = [
 
 users.each do |u|
   user = User.new(u.except(:sponsor_username))
-  user.sponsor = User.find_by(username: u.sponsor_username)
+  user.sponsor = User.find_by(username: u[:sponsor_username])
   user.save!
 end
 
@@ -80,6 +80,6 @@ end
 adhCategory = Category.create!(name: 'Adesão', active: true)
 
 # Create Product
-product = Product.create!(name: 'Adesão', price: 150, binary_score: 0, category: adhCategory, career: Career.find(1), active: true, kind: :adhesion)
+product = Product.create!(name: 'Adesão', price: 150, binary_score: 0, category: adhCategory, active: true, kind: :adhesion)
 
 AdminUser.create!(email: 'guilhermekfe@outlook.com', password: '111111', password_confirmation: '111111') if Rails.env.development?

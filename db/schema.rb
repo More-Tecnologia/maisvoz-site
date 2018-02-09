@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130135841) do
+ActiveRecord::Schema.define(version: 20180127192409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,11 +67,6 @@ ActiveRecord::Schema.define(version: 20171130135841) do
     t.bigint "right_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "career_id"
-    t.boolean "active", default: true, null: false
-    t.date "active_until"
-    t.boolean "qualified", default: false, null: false
-    t.index ["career_id"], name: "index_binary_nodes_on_career_id"
     t.index ["left_child_id"], name: "index_binary_nodes_on_left_child_id"
     t.index ["parent_id"], name: "index_binary_nodes_on_parent_id"
     t.index ["right_child_id"], name: "index_binary_nodes_on_right_child_id"
@@ -89,6 +84,15 @@ ActiveRecord::Schema.define(version: 20171130135841) do
     t.index ["kind"], name: "index_bonus_on_kind"
     t.index ["order_id"], name: "index_bonus_on_order_id"
     t.index ["user_id"], name: "index_bonus_on_user_id"
+  end
+
+  create_table "career_histories", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "old_career"
+    t.string "new_career"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_career_histories_on_user_id"
   end
 
   create_table "careers", force: :cascade do |t|
@@ -187,6 +191,7 @@ ActiveRecord::Schema.define(version: 20171130135841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "paid_at"
+    t.bigint "pv_total", default: 0, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -231,11 +236,15 @@ ActiveRecord::Schema.define(version: 20171130135841) do
 
   create_table "pv_activity_histories", force: :cascade do |t|
     t.bigint "order_id", null: false
-    t.bigint "amount_cents", null: false
+    t.integer "amount", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "balance", default: 0, null: false
+    t.string "kind"
+    t.bigint "height"
     t.index ["order_id"], name: "index_pv_activity_histories_on_order_id"
+    t.index ["user_id", "order_id"], name: "index_pv_activity_histories_on_user_id_and_order_id", unique: true
     t.index ["user_id"], name: "index_pv_activity_histories_on_user_id"
   end
 
@@ -310,6 +319,12 @@ ActiveRecord::Schema.define(version: 20171130135841) do
     t.string "binary_position"
     t.boolean "bought_adhesion", default: false, null: false
     t.boolean "bought_product", default: false, null: false
+    t.string "career_kind"
+    t.bigint "pva_total", default: 0, null: false
+    t.boolean "active", default: false, null: false
+    t.date "active_until"
+    t.boolean "binary_qualified", default: false, null: false
+    t.index ["career_kind"], name: "index_users_on_career_kind"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -330,11 +345,11 @@ ActiveRecord::Schema.define(version: 20171130135841) do
   end
 
   add_foreign_key "accounts", "users"
-  add_foreign_key "binary_nodes", "careers"
   add_foreign_key "binary_nodes", "users"
   add_foreign_key "binary_nodes", "users", column: "sponsored_by_id"
   add_foreign_key "bonus", "orders"
   add_foreign_key "bonus", "users"
+  add_foreign_key "career_histories", "users"
   add_foreign_key "credits", "users"
   add_foreign_key "credits", "users", column: "operated_by_id"
   add_foreign_key "debits", "users"

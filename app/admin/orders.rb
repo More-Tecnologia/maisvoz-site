@@ -36,7 +36,7 @@ ActiveAdmin.register Order do
     column :paid_at
     column :created_at
     column :pay do |obj|
-      link_to 'Pay Order', pay_order_admin_order_path(obj), method: :post unless obj.completed?
+      link_to 'Pay Order', pay_order_admin_order_path(obj), method: :post unless obj.completed? || obj.cart?
     end
     actions
   end

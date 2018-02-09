@@ -1,4 +1,4 @@
-ActiveAdmin.register PvHistory do
+ActiveAdmin.register CareerHistory do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -14,13 +14,11 @@ ActiveAdmin.register PvHistory do
 
   index do
     id_column
-    column :order
-    column :user do |pv_history|
-      link_to pv_history.user.username, admin_user_path(pv_history.user)
+    column :user do |history|
+      link_to history.user.username, admin_user_path(history.user)
     end
-    column :amount
-    column :balance
-    column :direction
+    column :old_career
+    column :new_career
     column :created_at
     actions
   end

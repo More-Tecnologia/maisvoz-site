@@ -69,7 +69,8 @@ group :development do
   gem 'letter_opener'
   gem 'letter_opener_web'
   gem 'i18n-tasks', '~> 0.9.19'
-  gem 'i18n-debug'
+  gem 'derailed_benchmarks'
+  # gem 'i18n-debug'
 end
 
 source 'https://rails-assets.org' do

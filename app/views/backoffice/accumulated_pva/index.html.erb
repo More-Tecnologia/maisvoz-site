@@ -1,0 +1,37 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title"><%= t('.title') %></h4>
+    <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
+  </div>
+</div>
+
+<% total_pva = 0 %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <table class="table">
+        <tr>
+          <td><strong>Meus PVAs acumulados</strong></td>
+          <td><%= current_user.binary_position %></td>
+          <td><%= current_user.binary_qualified %></td>
+          <td><%= number_with_delimiter current_user.pva_total %></td>
+        </tr>
+        <% current_user.sponsored.each do |user| %>
+          <% total_pva += user.pva_total %>
+          <tr>
+            <td><strong><%= user.username %></strong></td>
+            <td><%= user.binary_position %></td>
+            <td><%= user.binary_qualified %></td>
+            <td><%= number_with_delimiter user.pva_total %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>Total Acumulado:</td>
+          <td colspan="3"><%= number_with_delimiter total_pva %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

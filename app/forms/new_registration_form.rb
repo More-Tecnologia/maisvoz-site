@@ -29,7 +29,7 @@ class NewRegistrationForm < Form
   private
 
   def sponsor_exists
-    return if sponsor.present? && sponsor.binary_node.present?
+    return if sponsor.present? && sponsor.active?
     errors.add(:sponsor_username, 'sponsor doesnt exist')
   end
 

@@ -11,8 +11,8 @@ class UserDecorator < SimpleDelegator
   end
 
   def career_name
-    return '-' if binary_node.blank?
-    @career_name ||= binary_node.career.try(:name)
+    return '-' if user.career_kind.blank?
+    @career_name ||= user.career_kind
   end
 
   def pretty_address

@@ -41,9 +41,15 @@
 #  binary_position         :string
 #  bought_adhesion         :boolean          default(FALSE), not null
 #  bought_product          :boolean          default(FALSE), not null
+#  career_kind             :string
+#  pva_total               :integer          default(0), not null
+#  active                  :boolean          default(FALSE), not null
+#  active_until            :date
+#  binary_qualified        :boolean          default(FALSE), not null
 #
 # Indexes
 #
+#  index_users_on_career_kind           (career_kind)
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
@@ -59,12 +65,31 @@ class User < ApplicationRecord
   monetize :available_balance_cents, :blocked_balance_cents
 
   enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin' }
+
   enum binary_strategy: {
     balanced_strategy: 'balanced_strategy',
     left_strategy: 'left_strategy',
     right_strategy: 'right_strategy'
   }
+
   enum binary_position: { left: 'left', right: 'right' }
+
+  enum career_kind: {
+    affiliate: 'affiliate',
+    executive: 'executive',
+    bronze: 'bronze',
+    silver: 'silver',
+    gold: 'gold',
+    ruby: 'ruby',
+    emerald: 'emerald',
+    diamond: 'diamond',
+    white_diamond: 'white_diamond',
+    blue_diamond: 'blue_diamond',
+    black_diamond: 'black_diamond',
+    chairman_club: 'chairman_club',
+    chairman_club_two_star: 'chairman_club_two_star',
+    chairman_club_three_star: 'chairman_club_three_star'
+  }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -75,7 +100,7 @@ class User < ApplicationRecord
   has_one :account
   has_one :binary_node
   has_many :orders
-  has_many :financial_entries
+  has_many :financial_entries, class_name: 'FinancialEntry'
   has_many :withdrawals
   has_many :pv_histories
   has_many :pv_activity_histories
@@ -85,14 +110,15 @@ class User < ApplicationRecord
   has_many :credits
   has_many :debits
   has_many :bonus, class_name: 'Bonus'
+  has_many :career_histories
 
   def avatar
     return CloudinaryImage.new.public_id unless cloudinary_image
     cloudinary_image.public_id
   end
 
-  def can_receive_commission?
-    binary_active? && qualified?
+  def balance
+    (available_balance + blocked_balance).to_f
   end
 
   def self.find_for_database_authentication warden_conditions
@@ -101,12 +127,9 @@ class User < ApplicationRecord
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
   end
 
-  def binary_active?
-    binary_node && binary_node.active && binary_node.active_until >= Time.zone.today
-  end
-
-  def qualified?
-    binary_node && binary_node.qualified?
+  def leader?
+    emerald?
+    true
   end
 
 end

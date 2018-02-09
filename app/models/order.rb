@@ -12,6 +12,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  paid_at        :datetime
+#  pv_total       :integer          default(0), not null
 #
 # Indexes
 #
@@ -25,7 +26,7 @@ class Order < ApplicationRecord
   has_many :order_items
   has_many :pv_histories
   has_many :bonus, class_name: 'Bonus'
-  has_one :pv_activity_history
+  has_many :pv_activity_histories
   belongs_to :user
 
   monetize :subtotal_cents
@@ -37,6 +38,14 @@ class Order < ApplicationRecord
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")
+  end
+
+  def total_score
+    @total_score ||= order_items.sum { |item| item.quantity * item.product.binary_score }
+  end
+
+  def max_product_score
+    @max_product_score ||= order_items.map { |item| item.product.binary_score }.max
   end
 
 end

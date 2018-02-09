@@ -6,7 +6,7 @@ module Bonification
     end
 
     def call
-      return if user_binary_node.blank?
+      return if user_binary_node.blank? || total_score <= 0
       navigate_tree_to_top
     end
 
@@ -43,7 +43,7 @@ module Bonification
     end
 
     def total_score
-      @total_score ||= order.order_items.sum { |item| item.quantity * item.product.binary_score }
+      @total_score ||= order.total_score
     end
 
   end

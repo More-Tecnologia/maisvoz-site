@@ -13,9 +13,9 @@
         <div class="col-lg-3 col-md-3 col-xs-12">
             <div class="panel corDourado execc">
                 <div class="panel-heading">
-                  <% if current_user.binary_node %>
-                    <%= image_tag(current_user.binary_node.career.image_path, class: 'thumb-sm') %>
-                    <h3 class="panel-title"><%= current_user.binary_node.career.name %></h3>
+                  <% if current_user.career_kind %>
+                    <%= image_tag("careers/#{current_user.career_kind}", class: 'thumb-sm') %>
+                    <h3 class="panel-title"><%= current_user.career_kind %></h3>
                   <% end %>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     <h3 class="panel-title">Status do binário:</h3>
                 </div>
             </div>
-            <% if current_user.qualified? %>
+            <% if current_user.binary_qualified? %>
               <div class="panel corVerde statusB2">
                 <h3>Qualificado</h3>
               </div>
@@ -43,10 +43,10 @@
                 </div>
 
             </div>
-            <% if current_user.binary_active? %>
+            <% if current_user.active? %>
               <div class="panel corVerde statusB3 ">
                   <h3>Ativo</h3>
-                  <small>Vence em <%= current_user.binary_node.active_until %></small>
+                  <small>Vence em <%= current_user.active_until %></small>
               </div>
             <% else %>
               <div class="panel corVermelho statusB3 ">
@@ -65,70 +65,15 @@
               </div>
               <div class="panel-body">
                   <div class="inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
+                    <% last_qualifications.each do |qualification| %>
                       <a href="#">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="img-circle" alt=""></div>
-                              <p class="inbox-item-author">Chadengle</p>
-                              <p class="inbox-item-text">Hey! there I'm available...</p>
-                              <p class="inbox-item-date">13:40 PM</p>
-                          </div>
+                        <div class="inbox-item">
+                          <p class="inbox-item-author"><%= qualification.user.username %></p>
+                          <p class="inbox-item-text"><%= qualification.old_career %> <i class="fa fa-arrow-right"></i> <%= qualification.new_career %></p>
+                          <p class="inbox-item-date"><%=  %></p>
+                        </div>
                       </a>
-                      <a href="#">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="img-circle" alt=""></div>
-                              <p class="inbox-item-author">Tomaslau</p>
-                              <p class="inbox-item-text">I've finished it! See you so...</p>
-                              <p class="inbox-item-date">13:34 PM</p>
-                          </div>
-                      </a>
-                      <a href="#">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="img-circle" alt=""></div>
-                              <p class="inbox-item-author">Stillnotdavid</p>
-                              <p class="inbox-item-text">This theme is awesome!</p>
-                              <p class="inbox-item-date">13:17 PM</p>
-                          </div>
-                      </a>
-                      <a href="#">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="img-circle" alt=""></div>
-                              <p class="inbox-item-author">Kurafire</p>
-                              <p class="inbox-item-text">Nice to meet you</p>
-                              <p class="inbox-item-date">12:20 PM</p>
-                          </div>
-                      </a>
-                      <a href="#">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="img-circle" alt=""></div>
-                              <p class="inbox-item-author">Shahedk</p>
-                              <p class="inbox-item-text">Hey! there I'm available...</p>
-                              <p class="inbox-item-date">10:15 AM</p>
-                          </div>
-                      </a>
-                      <a href="#">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img"><img src="assets/images/users/avatar-6.jpg" class="img-circle" alt=""></div>
-                              <p class="inbox-item-author">Adhamdannaway</p>
-                              <p class="inbox-item-text">This theme is awesome!</p>
-                              <p class="inbox-item-date">9:56 AM</p>
-                          </div>
-                      </a>
-                      <a href="#">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img"><img src="assets/images/users/avatar-8.jpg" class="img-circle" alt=""></div>
-                              <p class="inbox-item-author">Arashasghari</p>
-                              <p class="inbox-item-text">Hey! there I'm available...</p>
-                              <p class="inbox-item-date">10:15 AM</p>
-                          </div>
-                      </a>
-                      <a href="#">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img"><img src="assets/images/users/avatar-9.jpg" class="img-circle" alt=""></div>
-                              <p class="inbox-item-author">Joshaustin</p>
-                              <p class="inbox-item-text">I've finished it! See you so...</p>
-                              <p class="inbox-item-date">9:56 AM</p>
-                          </div>
-                      </a>
+                    <% end %>
                   </div>
               </div>
           </div>
@@ -170,10 +115,10 @@
                 <% end %>
                   <div class="panel panel-color">
                       <div class="panel-heading corAzul equipeBinario">
-                          <h3 class="panel-title"> <img src="img/solicitacaoSaque.png" alt="">Saldo disponível</h3>
+                          <h3 class="panel-title"> <img src="img/solicitacaoSaque.png" alt="">Saldo Total</h3>
                       </div>
                       <div class="panel-body conteudoWidget">
-                          <h4><%= number_to_currency current_user.available_balance %></h4>
+                          <h4><%= number_to_currency current_user.balance %></h4>
                       </div>
                   </div>
               </div>

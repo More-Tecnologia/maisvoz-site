@@ -21,7 +21,7 @@
         </tr>
         <tr>
           <td><strong><%= t('.username') %></strong></td>
-          <td><%= current_user.username %> (<%= binary_node.career_name %>)</td>
+          <td><%= current_user.username %> (<%= t current_user.career_kind %>)</td>
         </tr>
         <tr>
           <td><strong><%= t('.sponsor') %></strong></td>

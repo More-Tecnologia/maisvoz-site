@@ -7,9 +7,9 @@
       </div>
     <% end %>
     <ul class="list-unstyled w-list m-b-30">
-      <% fee = form.amount ? form.amount * AppConfig.get(:withdrawal_fee).to_f : 0 %>
+      <% fee = form.amount ? form.amount.to_f * AppConfig.get(:withdrawal_fee).to_f : 0 %>
       <li><b><%= t('.fees') %>:</b> $ <span data-fee-text><%= fee %></span> </li>
-      <li><b><%= t('.total') %>:</b> $ <span data-total-text><%= form.amount ? form.amount - fee : 0 %></span> </li>
+      <li><b><%= t('.total') %>:</b> $ <span data-total-text><%= form.amount ? form.amount.to_f - fee : 0 %></span> </li>
     </ul>
     <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
   </div>

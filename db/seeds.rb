@@ -39,7 +39,7 @@ fm = User.new(username: 'futuremotors', email: 'teste1@morenwm.com', password: 1
 fm.save!
 
 master_node = BinaryNode.create!(user: master)
-teste1_node = BinaryNode.create!(user: fm, sponsored_by: master, parent: master_node, active_until: 1.year.from_now)
+teste1_node = BinaryNode.create!(user: fm, sponsored_by: master, parent: master_node)
 #
 master_node.update!(left_child: teste1_node)
 

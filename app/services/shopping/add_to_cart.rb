@@ -16,6 +16,7 @@ module Shopping
           errors.add(:product, 'cant add product to cart')
         elsif add_to_order
           update_order_total
+          update_order_pv_total
           return order
         else
           errors.add(:product, 'cant add product to cart')
@@ -56,6 +57,10 @@ module Shopping
 
     def update_order_total
       Shopping::UpdateCartTotals.call(order)
+    end
+
+    def update_order_pv_total
+      order.update(pv_total: order.total_score)
     end
 
     def find_order_item

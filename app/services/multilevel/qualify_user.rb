@@ -6,24 +6,35 @@ module Multilevel
     end
 
     def call
-      return if binary_node.blank?
-      binary_node.update!(qualified: qualified?)
+      return if binary_node.blank? || user.binary_qualified?
+      user.update_column(:binary_qualified, qualified?)
+      update_user_career
+      credit_bonus
     end
 
     private
 
     attr_reader :user
 
+    def update_user_career
+      return unless user.affiliate? && qualified?
+      user.update_column(:career_kind, User.career_kinds[:executive])
+    end
+
+    def credit_bonus
+      Bonification::CreditFlexBonus.new(user).call
+    end
+
     def qualified?
-      left_active? && right_active?
+      @qualified ||= left_active? && right_active?
     end
 
     def left_active?
-      user.sponsored.left.joins(:binary_node).where('binary_nodes.active = true').any?
+      BinaryNode.where(user: user.sponsored.left.where('active = true')).any?
     end
 
     def right_active?
-      user.sponsored.right.joins(:binary_node).where('binary_nodes.active = true').any?
+      BinaryNode.where(user: user.sponsored.right.where('active = true')).any?
     end
 
     def binary_node

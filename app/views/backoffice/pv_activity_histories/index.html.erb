@@ -18,7 +18,9 @@
                 <th>#</th>
                 <th><%= PvActivityHistory.human_attribute_name(:order) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:from) %></th>
+                <th><%= PvActivityHistory.human_attribute_name(:kind) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:amount) %></th>
+                <th><%= PvActivityHistory.human_attribute_name(:balance) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:created_at) %></th>
               </tr>
             </thead>
@@ -30,7 +32,9 @@
                     <%= t('.invoice_no', id: pv_activity_history.order_id) %>
                   </td>
                   <td><%= pv_activity_history.order.user.username %></td>
-                  <td><%= decorate_amount pv_activity_history.amount %></td>
+                  <td><%= pv_activity_history.kind %></td>
+                  <td><%= pv_activity_history.amount %></td>
+                  <td><%= pv_activity_history.balance %></td>
                   <td><%= l(pv_activity_history.created_at, format: :short) %></td>
                 </tr>
               <% end %>

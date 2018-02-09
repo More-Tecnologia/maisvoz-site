@@ -4,10 +4,9 @@ module Multilevel
     LEFT = :left
     RIGHT = :right
 
-    def initialize(user, career)
-      @user           = user
-      @sponsor        = user.sponsor
-      @career         = career
+    def initialize(user)
+      @user    = user
+      @sponsor = user.sponsor
     end
 
     def call
@@ -18,17 +17,12 @@ module Multilevel
         insert_node
         update_parent_node
         update_user_binary_position
-        update_user_role
       end
     end
 
     private
 
-    attr_reader :user, :sponsor, :career, :position, :parent_node
-
-    def update_user_role
-      user.empreendedor!
-    end
+    attr_reader :user, :sponsor, :position, :parent_node
 
     def update_user_binary_position
       if position == LEFT
@@ -111,9 +105,6 @@ module Multilevel
         node.user         = user
         node.sponsored_by = sponsor
         node.parent       = parent_node
-        node.career       = career
-        node.active       = user.bought_product ? true : false
-        node.active_until = 6.months.from_now if user.bought_product
       end
     end
 

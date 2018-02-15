@@ -278,15 +278,16 @@ pt-BR:
     withdrawal_fee: Taxa de Saque
     withdrawals: Saques
   errors:
-    cant_access_binary_node: Cant access binary node
+    cant_access_binary_node: Não é possível acessar o nó binário
     messages:
-      invalid: Invalid
-      invalid_password: Invalid password
-      not_enough_balance: Not enough balance
-      not_found: Not found
-      required: Required
-      wrong_master_pw: Wrong master pw
-  filters: Filters
+      invalid: Inválido
+      invalid_password: Senha inválida
+      not_enough_balance: Saldo insuficiente
+      not_found: Não encontrado
+      required: Obrigatório
+      wrong_master_pw: Senha master incorreta
+      blank: Não pode ficar em branco
+  filters: Filtros
   helpers:
     select:
       prompt: Por favor selecione
@@ -470,12 +471,12 @@ pt-BR:
         logout: Sair
     dashboard:
       admin:
-        active_products: Active products
+        active_products: Produtos ativos
         subtitle: Subtitle
         title: Title
-        today_orders: Today orders
-        total_orders: Total orders
-        total_users: Total users
+        today_orders: Pedidos de hoje
+        total_orders: Total de pedidos
+        total_users: Total de usuários
       client:
         subtitle: Subtitle
         title: Title
@@ -484,3 +485,6 @@ pt-BR:
       last: Último
       next: Próximo
       previous: Anterior
+  pending: Pendente
+  approved: Aprovado
+  refused: Rejeitado

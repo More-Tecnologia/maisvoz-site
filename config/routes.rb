@@ -30,7 +30,6 @@ Rails.application.routes.draw do
       resources :financial_entries, only: [:index]
       resources :withdrawals, only: [:index, :update]
       resources :bonus_entries, only: [:index]
-      resources :accumulated_pva, only: [:index]
 
       # Admin
       resources :users, only: [:index, :show]
@@ -52,6 +51,7 @@ Rails.application.routes.draw do
     resources :bonus_entries, only: [:index]
     resources :pv_histories, only: [:index]
     resources :pv_activity_histories, only: [:index]
+    resources :accumulated_pva, only: [:index]
 
     # Network
     resources :binary_strategies, only: [:index, :create]

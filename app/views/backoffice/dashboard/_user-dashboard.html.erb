@@ -14,7 +14,7 @@
             <div class="panel corDourado execc">
                 <div class="panel-heading">
                   <% if current_user.career_kind %>
-                    <%= image_tag("careers/#{current_user.career_kind}", class: 'thumb-sm') %>
+                    <%= image_tag("careers/#{current_user.career_kind}.png", class: 'thumb-sm') %>
                     <h3 class="panel-title"><%= current_user.career_kind %></h3>
                   <% end %>
                 </div>
@@ -61,7 +61,7 @@
       <div class="col-lg-3 col-md-3 col-xs-12">
           <div class="panel panel-default">
               <div class="corAzul tituloQualificados">
-                  <img src="img/ultimosQualificados.png" alt=""><h4 class="panel-title">Últimos Qualificados</h4>
+                <h4 class="panel-title">Últimos Qualificados</h4>
               </div>
               <div class="panel-body">
                   <div class="inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
@@ -82,7 +82,7 @@
               <div class="panel panel-default">
                   <div class="linhatitulo-s">
                       <div class="corAzul tituloQualificados2">
-                          <img src="img/solicitacaoSaque.png" alt=""><h4 class="panel-title">Solicitação de saque:</h4>
+                        <h4 class="panel-title">Solicitação de saque:</h4>
                       </div>
                       <div class="corDourado statusQualificado">
                           <h4 class="panel-title">Em andamento</h4>
@@ -115,7 +115,7 @@
                 <% end %>
                   <div class="panel panel-color">
                       <div class="panel-heading corAzul equipeBinario">
-                          <h3 class="panel-title"> <img src="img/solicitacaoSaque.png" alt="">Saldo Total</h3>
+                          <h3 class="panel-title"> Saldo Total</h3>
                       </div>
                       <div class="panel-body conteudoWidget">
                           <h4><%= number_to_currency current_user.balance %></h4>

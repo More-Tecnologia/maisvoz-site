@@ -33,6 +33,7 @@ module Financial
 
     def form_params
       params[:withdrawal_form][:user] = user
+      params[:withdrawal_form][:amount] = params[:withdrawal_form][:amount].gsub('.', '').gsub(',','.')
       params[:withdrawal_form]
     end
 

@@ -66,34 +66,32 @@
               <div class="panel-body">
                   <div class="inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
                     <% last_qualifications.each do |qualification| %>
-                      <a href="#">
                         <div class="inbox-item">
                           <p class="inbox-item-author"><%= qualification.user.username %></p>
-                          <p class="inbox-item-text"><%= qualification.old_career %> <i class="fa fa-arrow-right"></i> <%= qualification.new_career %></p>
-                          <p class="inbox-item-date"><%=  %></p>
+                          <p class="inbox-item-text"><%= t qualification.old_career %> <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %></p>
                         </div>
-                      </a>
                     <% end %>
                   </div>
               </div>
           </div>
           </div> <!-- end col -->
           <div class="col-lg-5 col-md-5 col-xs-12">
-              <div class="panel panel-default">
-                  <div class="linhatitulo-s">
-                      <div class="corAzul tituloQualificados2">
-                        <h4 class="panel-title">Solicitação de saque:</h4>
-                      </div>
-                      <div class="corDourado statusQualificado">
-                          <h4 class="panel-title">Em andamento</h4>
-                      </div>
+              <div class="panel panel-color">
+                  <div class="panel-heading corAzul equipeBinario">
+                      <h3 class="panel-title">Solicitações de Saque</h3>
                   </div>
                   <div class="panel-body">
 
-                      <div class="itemsaque">
-                          <div class="dataSaque">23-09-2018</div>
-                          <div class="valorSaque">R$ 2000,00</div>
-                      </div>
+                    <table class="table">
+                      <% last_withdrawals.each do |withdraw| %>
+                        <tr>
+                          <td><%= l withdraw.created_at, format: :short %></td>
+                          <td><%= t withdraw.status %></td>
+                          <td><%= number_to_currency withdraw.gross_amount %></td>
+                        </tr>
+                      <% end %>
+                    </table>
+
                   </div>
               </div>
               </div> <!-- end col -->

@@ -5,7 +5,8 @@ class Backoffice::DashboardController < BackofficeController
       :index,
       locals: {
         last_orders: last_orders,
-        last_qualifications: last_qualifications
+        last_qualifications: last_qualifications,
+        last_withdrawals: last_withdrawals
       }
     )
   end
@@ -19,6 +20,10 @@ class Backoffice::DashboardController < BackofficeController
 
   def last_qualifications
     @last_qualifications ||= CareerHistory.order(created_at: :desc).includes(:user).first(10)
+  end
+
+  def last_withdrawals
+    @last_withdrawals ||= current_user.withdrawals.order(created_at: :desc).first(5)
   end
 
 end

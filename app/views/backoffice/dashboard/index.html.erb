@@ -1,5 +1,5 @@
 <% if current_user.admin? %>
   <%= render 'admin-dashboard', last_orders: last_orders %>
 <% else %>
-  <%= render 'user-dashboard', last_qualifications: last_qualifications %>
+  <%= render 'user-dashboard', last_qualifications: last_qualifications, last_withdrawals: last_withdrawals %>
 <% end %>

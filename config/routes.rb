@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  mount Attachinary::Engine => "/attachinary"
+
   root 'pages#index'
 
   namespace :backoffice do
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
     end
 
     resources :dashboard, only: :index
+    resource :documents, only: [:edit, :update]
 
     # Shopping
     resources :products, only: [:index, :show]

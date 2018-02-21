@@ -46,6 +46,7 @@
 #  active                  :boolean          default(FALSE), not null
 #  active_until            :date
 #  binary_qualified        :boolean          default(FALSE), not null
+#  verified                :boolean          default(FALSE), not null
 #
 # Indexes
 #
@@ -97,6 +98,11 @@ class User < ApplicationRecord
          :trackable, :validatable, :lockable, :masqueradable
 
   has_one :cloudinary_image, as: :imageable
+  has_attachment :document_rg_photo
+  has_attachment :document_cpf_photo
+  has_attachment :document_pis_photo
+  has_attachment :document_address_photo
+  has_attachment :document_scontract_photo
   has_one :account
   has_one :binary_node
   has_many :orders

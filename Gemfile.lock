@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/ThomasConnolly/attachinary.git
+  revision: c7bbc9d5d5ea6aee7584e381c82d0b5bea73e49b
+  specs:
+    attachinary (1.3.1)
+      cloudinary (~> 1.1)
+      rails (>= 3.2)
+
+GIT
   remote: https://github.com/activeadmin/activeadmin.git
   revision: f71b375325eb3060d40d1fafd6d8d31254921b76
   specs:
@@ -444,6 +452,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   annotate
+  attachinary!
   autonumeric-rails
   binding_of_caller
   capybara (~> 2.13)

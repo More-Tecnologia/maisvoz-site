@@ -43,6 +43,7 @@ gem 'rails-assets-raphael', source: 'https://rails-assets.org'
 gem 'lograge'
 gem 'shog'
 gem 'activeadmin', github: 'activeadmin'
+gem 'attachinary', :git => 'git://github.com/ThomasConnolly/attachinary.git'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

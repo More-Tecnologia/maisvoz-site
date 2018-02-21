@@ -82,14 +82,15 @@
             <ul class="dropdown-menu">
               <li>
                 <%= link_to edit_user_registration_path do %>
-                <i class="ti-user m-r-10 text-custom"></i>
-                <%= t('views.backoffice.topbar.edit_account') %>
+                  <i class="ti-user m-r-10 text-custom"></i>
+                  <%= t('views.backoffice.topbar.edit_account') %>
                 <% end %>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <%= link_to edit_backoffice_documents_path do %>
                   <i class="ti-settings m-r-10 text-custom"></i>
-                  Settings</a>
+                  <%= t('views.backoffice.topbar.documents') %>
+                <% end %>
               </li>
               <li class="divider"></li>
               <li>

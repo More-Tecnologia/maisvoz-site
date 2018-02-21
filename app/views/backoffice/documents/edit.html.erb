@@ -1,0 +1,69 @@
+
+<%= cloudinary_js_config %>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card-box">
+      <h4 class="header-title m-t-0">Documentos</h4>
+      <p class="text-muted m-b-20">Lista de documentos necessários para aprovar sua conta na Future Motors</p>
+
+      <p>
+        <strong>Situação da conta:</strong> <%= t "account_#{current_user.verified}" %>
+      </p>
+
+      <%= simple_form_for current_user, url: backoffice_documents_path, method: :put,  html: { novalidate: true, multipart: true } do |f| %>
+
+        <table class="table table-bordered">
+          <tr>
+            <td>RG</td>
+            <td>
+              <% if current_user.document_rg_photo? %>
+                <%= cl_image_tag current_user.document_rg_photo.path, { size: '150x150', class: 'm-b-20' } %>
+              <% end %>
+              <%= f.input :document_rg_photo, as: :file, label: false %>
+            </td>
+          </tr>
+          <tr>
+            <td>CPF</td>
+            <td>
+              <% if current_user.document_cpf_photo? %>
+                <%= cl_image_tag current_user.document_cpf_photo.path, { size: '150x150', class: 'm-b-20' } %>
+              <% end %>
+              <%= f.input :document_cpf_photo, as: :file, label: false %>
+            </td>
+          </tr>
+          <tr>
+            <td>PIS</td>
+            <td>
+              <% if current_user.document_pis_photo? %>
+                <%= cl_image_tag current_user.document_pis_photo.path, { size: '150x150', class: 'm-b-20' } %>
+              <% end %>
+              <%= f.input :document_pis_photo, as: :file, label: false %>
+            </td>
+          </tr>
+              <tr>
+            <td>Comprovante de Endereço</td>
+            <td>
+              <% if current_user.document_address_photo? %>
+                <%= cl_image_tag current_user.document_address_photo.path, { size: '150x150', class: 'm-b-20' } %>
+              <% end %>
+              <%= f.input :document_address_photo, as: :file, label: false %>
+            </td>
+              </tr>
+          <tr>
+            <td>Contrato Social</td>
+            <td>
+              <% if current_user.document_scontract_photo? %>
+                <%= cl_image_tag current_user.document_scontract_photo.path, { size: '150x150', class: 'm-b-20' } %>
+              <% end %>
+              <%= f.input :document_scontract_photo, as: :file, label: false %>
+            </td>
+          </tr>
+        </table>
+
+        <%= submit_tag 'Enviar Documentos', class: 'btn btn-default', data: { disable_with: "Enviando...".html_safe } %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

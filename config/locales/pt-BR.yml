@@ -468,6 +468,7 @@ pt-BR:
           title: Produto
       topbar:
         edit_account: Editar conta
+        documents: Documentos
         logout: Sair
     dashboard:
       admin:
@@ -488,3 +489,5 @@ pt-BR:
   pending: Pendente
   approved: Aprovado
   refused: Rejeitado
+  account_false: Conta não verificada
+  account_true: Conta verificada

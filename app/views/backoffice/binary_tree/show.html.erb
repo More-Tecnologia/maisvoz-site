@@ -102,7 +102,7 @@
                                       career: current_node.left_child.user.career_kind,
                                     }
                                   ) do %>
-                                  <%= image_tag("careers/#{current_node.left_child.user.career_kind}") %>
+                                  <%= image_tag("careers/#{current_node.left_child.user.career_kind}.png") %>
                                 <% end %>
                               <% else %>
                                 <%= image_tag('packages/desativado.png') %>
@@ -121,7 +121,7 @@
                                       career: current_node.right_child.user.career_kind
                                     }
                                   ) do %>
-                                  <%= image_tag("careers/#{current_node.right_child.user.career_kind}") %>
+                                  <%= image_tag("careers/#{current_node.right_child.user.career_kind}.png") %>
                                 <% end %>
                               <% else %>
                                 <%= image_tag('packages/desativado.png') %>

@@ -363,10 +363,10 @@ ActiveRecord::Schema.define(version: 20180221191456) do
   end
 
   create_table "withdrawals", force: :cascade do |t|
-    t.string "status", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", null: false
     t.bigint "gross_amount_cents", null: false
     t.bigint "net_amount_cents", null: false
     t.index ["status"], name: "index_withdrawals_on_status"

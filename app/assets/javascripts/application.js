@@ -16,11 +16,14 @@
 //= require 'slick-carousel/slick/slick'
 //= require 'webui-popover/dist/jquery.webui-popover'
 //= require 'autonumeric/dist/autoNumeric.min'
+//= require twitter-bootstrap-wizard/jquery.bootstrap.wizard
+//= require jquery-mask-plugin/dist/jquery.mask
 //= require notifyjs
 //= require bootstrap-datepicker
 //= require raphael
 //= require product-form-kind
 //= require withdraw-simulator
+//= require zipcode-fill
 //= require dashboard-carousel
 //= require rails.validations
 //= require rails.validations.simple_form

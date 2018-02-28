@@ -62,7 +62,7 @@ en:
           birthdate: Birthdate
           blocked_balance: Blocked balance
           direct_users: Direct users
-          document_value: Document value
+          document_cpf: Document value
           email: Email
           left_pv: Left pv
           name: Name

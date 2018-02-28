@@ -3,14 +3,32 @@ class NewRegistrationForm < Form
   attribute :sponsor_username
   attribute :username
   attribute :name
+  attribute :birthdate
+  attribute :marital_status
+  attribute :document_rg
+  attribute :document_cpf
+  attribute :document_pis
+  attribute :document_cnpj
+  attribute :document_ie
+  attribute :document_company_name
+  attribute :document_fantasy_name
+  attribute :address
+  attribute :address_2
+  attribute :address_number
+  attribute :district
+  attribute :city
+  attribute :state
+  attribute :country
+  attribute :zipcode
+  attribute :registration_type, String, default: 'pf'
+  attribute :gender
   attribute :phone
-  attribute :skype
   attribute :email
   attribute :password
   attribute :password_confirmation
   attribute :accept_terms, Boolean
 
-  validates :sponsor_username, :username, :name, :phone, :skype, :email, :password,
+  validates :sponsor_username, :username, :name, :phone, :email, :password,
             :password_confirmation, presence: true
   validates :email, email: true
 
@@ -18,6 +36,8 @@ class NewRegistrationForm < Form
   validate :sponsor_exists
   validate :username_is_unique
   validate :email_is_unique
+
+  before_validation :normalize_username
 
   def sponsor
     @sponsor ||= User.where(
@@ -27,6 +47,12 @@ class NewRegistrationForm < Form
   end
 
   private
+
+  def normalize_username
+    if username.present?
+      self.username = username.gsub(/\s+/, '').downcase
+    end
+  end
 
   def sponsor_exists
     return if sponsor.present? && sponsor.active?

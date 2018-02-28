@@ -2,12 +2,12 @@ module CreditDebitWizard
   class FindUserForm < Form
 
     attribute :username, String
-    attribute :document_value, String
+    attribute :document_cpf, String
 
     validate :user_exists
 
     def user
-      @user ||= User.find_by(username: username, document_value: document_value)
+      @user ||= User.find_by(username: username, document_cpf: document_cpf)
     end
 
     private
@@ -26,7 +26,7 @@ module CreditDebitWizard
     attribute :credit, Boolean, default: true
     attribute :master_password, String
 
-    validates :username, :document_value, :amount, :master_password, presence: true
+    validates :username, :document_cpf, :amount, :master_password, presence: true
     validates :amount, numericality: { greater_than: 0 }
 
     validate :correct_master_password

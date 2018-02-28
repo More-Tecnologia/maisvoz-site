@@ -6,7 +6,7 @@ class EditRegistrationForm < Form
   attribute :phone
   attribute :skype
   attribute :email
-  attribute :document_value
+  attribute :document_cpf
   attribute :address
   attribute :address_2
   attribute :country

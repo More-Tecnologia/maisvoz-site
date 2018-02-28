@@ -22,13 +22,25 @@
 #  locked_at               :datetime
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
+#  sponsor_id              :integer
 #  name                    :string
+#  marital_status          :string
+#  gender                  :string
 #  phone                   :string
 #  skype                   :string
-#  sponsor_id              :integer
 #  username                :string           not null
-#  document_value          :string
+#  registration_type       :string
+#  document_cpf            :string
+#  document_rg             :string
+#  document_pis            :string
+#  document_cnpj           :string
+#  document_ie             :string
+#  document_company_name   :string
+#  document_fantasy_name   :string
 #  birthdate               :date
+#  zipcode                 :string
+#  address_number          :string
+#  district                :string
 #  address                 :string
 #  address_2               :string
 #  country                 :string
@@ -66,6 +78,9 @@ class User < ApplicationRecord
   monetize :available_balance_cents, :blocked_balance_cents
 
   enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin' }
+  enum marital_status: { single: 'single', married: 'married', widowed: 'widowed', divorced: 'divorced' }
+  enum gender: { male: 'male', female: 'female' }
+  enum registration_type: { pf: 'pf', pj: 'pj' }
 
   enum binary_strategy: {
     balanced_strategy: 'balanced_strategy',

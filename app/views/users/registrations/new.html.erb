@@ -1,8 +1,17 @@
 <%= content_for :body_class, 'login-page' %>
 
+<style media="screen">
+  label, .help-block {
+    color: white;
+  }
+  .wrapper-page {
+    width: 900px;
+  }
+</style>
+
 <div class="account-pages"></div>
 <div class="clearfix"></div>
-<div class="wrapper-page">
+<div id="rootwizard" class="wrapper-page">
   <div class="text-center">
     <%= image_tag 'logo.png' %>
   </div>
@@ -12,31 +21,139 @@
       <h3 class="text-center"><%= t('.sign_up') %></h3>
     </div>
 
+
     <div class="panel-body">
+      <ul>
+        <li><a href="#tab1" data-toggle="tab">1 - Dados Pessoais</a></li>
+        <li><a href="#tab2" data-toggle="tab">2 - Tipo de Cadastro</a></li>
+        <li><a href="#tab3" data-toggle="tab">3 - Endereço</a></li>
+        <li><a href="#tab4" data-toggle="tab">4 - Contrato de Adesão</a></li>
+      </ul>
+
+      <br>
+
+      <div id="bar" class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+      </div>
 
       <%= simple_form_for(form, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs">
-          <%= f.input :sponsor_username, autofocus: true %>
-          <%= f.input :username %>
-          <%= f.input :name %>
-          <%= f.input :phone %>
-          <%= f.input :skype %>
-          <%= f.input :email %>
-          <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-          <%= f.input :password_confirmation %>
-          <%= f.input :accept_terms, as: :boolean, checked_value: true, unchecked_value: false %>
+        <div class="tab-content">
+
+          <!-- TAB 1 -->
+          <div class="tab-pane" id="tab1">
+            <div class="form-inputs">
+              <div class="col-md-6">
+                <%= f.input :sponsor_username, autofocus: true %>
+                <%= f.input :username %>
+                <%= f.input :name %>
+                <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 18 %>
+                <%= f.input :marital_status, collection: User.marital_statuses.map {|k,v| [t(v), v]} %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :gender, collection: User.genders.map {|k, v| [t(v), v]} %>
+                <%= f.input :phone, input_html: { class: 'input-phone' } %>
+                <%= f.input :email %>
+                <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+                <%= f.input :password_confirmation %>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab2">
+            <div class="form-inputs">
+              <div class="col-md-12">
+                <%= f.collection_radio_buttons :registration_type, User.registration_types, :first, :last do |b| %>
+                  <%= b.label { b.radio_button + t(b.text) } %>
+                  <br>
+                <% end %>
+
+                <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
+                <div id="pf-inputs">
+                  <%= f.input :document_rg %>
+                  <%= f.input :document_pis, input_html: { class: 'input-pis' } %>
+                </div>
+                <div id="pj-inputs">
+                  <%= f.input :document_cnpj, input_html: { class: 'input-cnpj' } %>
+                  <%= f.input :document_ie %>
+                  <%= f.input :document_company_name %>
+                  <%= f.input :document_fantasy_name %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab3">
+            <div class="form-inputs">
+              <div class="col-md-12">
+                <%= f.input :zipcode, input_html: { data: { zipcode_input: true }, class: 'input-zipcode' } %>
+                <%= f.input :address %>
+                <%= f.input :address_2 %>
+                <%= f.input :address_number %>
+                <%= f.input :district %>
+                <%= f.input :city %>
+                <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
+                <%= f.input :country, collection: ['Brazil'], include_blank: false %>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab4">
+            <%= f.input :accept_terms, as: :boolean, checked_value: true, unchecked_value: false %>
+            <div class="form-actions">
+              <%= f.button :submit, t('.sign_up'), class: 'btn btn-primary btn-block text-uppercase' %>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <ul class="pager wizard">
+              <li class="previous"><a href="#" class="btn btn-default"><%= t('.previous') %></a></li>
+              <li class="next"><a href="#" class="btn btn-default"><%= t('.next') %></a></li>
+            </ul>
+            <hr>
+            <%= render "users/shared/links" %>
+            <%= render "users/shared/flags" %>
+          </div>
+
         </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: 'btn btn-primary btn-block text-uppercase' %>
-        </div>
-        <hr>
       <% end %>
-      <%= render "users/shared/links" %>
-      <%= render "users/shared/flags" %>
     </div>
   </div>
 
 </div>
+
+<script>
+$(document).ready(function() {
+  $('#rootwizard').bootstrapWizard({
+      onTabShow: function(tab, navigation, index) {
+      var $total = navigation.find('li').length;
+      var $current = index+1;
+      var $percent = ($current/$total) * 100;
+      $('#rootwizard .progress-bar').css({width:$percent+'%'});
+    },
+    onShow: function() {
+    }
+  });
+
+  $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})
+  $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
+  $('.input-cnpj').mask('00.000.000/0000-00', {clearIfNotMatch: true})
+  $('.input-pis').mask('000.0000.000-0', {clearIfNotMatch: true})
+  $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
+
+  $('#pj-inputs').hide()
+
+  $("input[name='user[registration_type]']").change(function (e) {
+    if ($(this).val() == 'pf') {
+      $('#pf-inputs').show()
+      $('#pj-inputs').hide()
+    } else {
+      $('#pj-inputs').show()
+      $('#pf-inputs').hide()
+    }
+  })
+
+});
+</script>

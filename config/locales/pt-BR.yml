@@ -50,12 +50,23 @@ pt-BR:
     to_user: Para
     kind: Tipo
     birthdate: Data de Nascimento
-    document_value: Documento (CPF)
-    address: Endereço
-    address_2: Endereço 2
+    document_cpf: CPF
+    document_cnpj: CNPJ
+    document_ie: IE
+    document_rg: RG
+    document_pis: PIS/PASEP
+    document_company_name: Razão Social
+    document_fantasy_name: Nome Fantasia
+    gender: Gênero
+    marital_status: Estado Civil
+    address: Logradouro
+    address_2: Complemento
+    address_number: Número
+    district: Bairro
     country: País
     state: Estado
     city: Cidade
+    zipcode: CEP
   backoffice:
     orders:
       show:
@@ -397,6 +408,10 @@ pt-BR:
         address: Endereço
         leave_blank: Deixe em branco se não pretende mudar a senha
         update: Atualizar Conta
+      new:
+        sign_up: Cadastrar
+        next: Próximo
+        previous: Anterior
   view_all: View all
   views:
     backoffice:
@@ -491,3 +506,11 @@ pt-BR:
   refused: Rejeitado
   account_false: Conta não verificada
   account_true: Conta verificada
+  pf: Pessoa Física
+  pj: Pessoa Jurídica
+  male: Homem
+  female: Mulher
+  single: Solteiro(a)
+  married: Casado(a)
+  widowed: Viúvo(a)
+  divorced: Divorciado(a)

@@ -89,7 +89,7 @@ module Financial
 
     def activate_user
       return unless user.empreendedor? && !user.active? && regular_product?
-      user.update(active: true, active_until: 180.days.from_now)
+      user.update!(active: true, active_until: 180.days.from_now)
     end
 
     def binary_bonus_nodes_verifier

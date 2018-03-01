@@ -36,7 +36,7 @@
         <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
       </div>
 
-      <%= simple_form_for(form, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= simple_form_for(form, as: resource_name, url: registration_path(resource_name), validate: true) do |f| %>
         <%= f.error_notification %>
 
         <div class="tab-content">
@@ -55,7 +55,7 @@
                 <%= f.input :gender, collection: User.genders.map {|k, v| [t(v), v]} %>
                 <%= f.input :phone, input_html: { class: 'input-phone' } %>
                 <%= f.input :email %>
-                <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+                <%= f.input :password, hint: ("#{@minimum_password_length} caracteres no mínimo" if @minimum_password_length) %>
                 <%= f.input :password_confirmation %>
               </div>
             </div>
@@ -125,35 +125,64 @@
 </div>
 
 <script>
-$(document).ready(function() {
-  $('#rootwizard').bootstrapWizard({
-      onTabShow: function(tab, navigation, index) {
-      var $total = navigation.find('li').length;
-      var $current = index+1;
-      var $percent = ($current/$total) * 100;
-      $('#rootwizard .progress-bar').css({width:$percent+'%'});
-    },
-    onShow: function() {
+  $(document).ready(function() {
+    $('#rootwizard').bootstrapWizard({
+        onTabShow: function(tab, navigation, index) {
+        var $total = navigation.find('li').length;
+        var $current = index+1;
+        var $percent = ($current/$total) * 100;
+        $('#rootwizard .progress-bar').css({width:$percent+'%'});
+      },
+      onNext: function(tab, navigation, index) {
+        var steps1 = ['#user_sponsor_username', '#user_username', '#user_name', '#user_phone', '#user_email', '#user_marital_status', '#user_gender', '#user_password']
+        var steps2 = ['#user_document_cpf']
+        var steps3 = ['#user_zipcode', '#user_district', '#user_city', '#user_state']
+
+        $form      = $('#new_user');
+
+        $form.enableClientSideValidations()
+
+        if (index == 1 && !isValid(steps1)) {
+          return false
+        } else if (index == 2 && !isValid(steps2)) {
+          return false
+        } else if (index == 3 && !isValid(steps3)) {
+          return false
+        }
+  		}
+    });
+
+    var isValid = function (ids) {
+      var validations = []
+
+      var $form      = $('#new_user');
+      var validators = $form[0].ClientSideValidations.settings.validators;
+
+      $.each(ids, function (i, id) {
+        $input = $(id);
+        validations.push($input.isValid(validators))
+      })
+
+      return validations.every(function (v) { return v == true })
     }
+
+    $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})
+    $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
+    $('.input-cnpj').mask('00.000.000/0000-00', {clearIfNotMatch: true})
+    $('.input-pis').mask('000.0000.000-0', {clearIfNotMatch: true})
+    $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
+
+    $('#pj-inputs').hide()
+
+    $("input[name='user[registration_type]']").change(function (e) {
+      if ($(this).val() == 'pf') {
+        $('#pf-inputs').show()
+        $('#pj-inputs').hide()
+      } else {
+        $('#pj-inputs').show()
+        $('#pf-inputs').hide()
+      }
+    })
+
   });
-
-  $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})
-  $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
-  $('.input-cnpj').mask('00.000.000/0000-00', {clearIfNotMatch: true})
-  $('.input-pis').mask('000.0000.000-0', {clearIfNotMatch: true})
-  $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
-
-  $('#pj-inputs').hide()
-
-  $("input[name='user[registration_type]']").change(function (e) {
-    if ($(this).val() == 'pf') {
-      $('#pf-inputs').show()
-      $('#pj-inputs').hide()
-    } else {
-      $('#pj-inputs').show()
-      $('#pf-inputs').hide()
-    }
-  })
-
-});
 </script>

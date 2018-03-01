@@ -29,8 +29,12 @@ class NewRegistrationForm < Form
   attribute :accept_terms, Boolean
 
   validates :sponsor_username, :username, :name, :phone, :email, :password,
-            :password_confirmation, presence: true
+            :password_confirmation, :zipcode, :district, :city, :state,
+            :gender, :marital_status, :document_cpf, presence: true
   validates :email, email: true
+
+  validates :document_rg, :document_pis, presence: true, if: -> { registration_type == 'pf' }
+  validates :document_cnpj, :document_ie, :document_company_name, :document_fantasy_name, presence: true, if: -> { registration_type == 'pj' }
 
   validate :terms_accepted
   validate :sponsor_exists

@@ -72,7 +72,6 @@ module Financial
     end
 
     def credit_bonus
-      Bonification::CreditDirectIndicationBonus.new(order).call
       Bonification::CreditExecutiveSaleBonus.new(order).call
     end
 
@@ -90,6 +89,7 @@ module Financial
     def activate_user
       return unless user.empreendedor? && !user.active? && regular_product?
       user.update!(active: true, active_until: 180.days.from_now)
+      Bonification::CreditDirectIndicationBonus.new(order).call
     end
 
     def binary_bonus_nodes_verifier

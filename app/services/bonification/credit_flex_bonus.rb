@@ -14,6 +14,7 @@ module Bonification
     end
 
     def call
+      return unless user.active?
       return unless user.empreendedor? && qualified_in_less_than_7_days? && bonus_amount > 0
 
       ActiveRecord::Base.transaction do

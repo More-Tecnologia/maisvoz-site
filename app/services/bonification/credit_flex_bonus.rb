@@ -81,7 +81,7 @@ module Bonification
 
     def bonus_amount
       if indication_bonus.count == 2
-        @bonus_amount ||= (indication_bonus.first.amount.to_f + indication_bonus.second.amount.to_f) * PERCENTAGE
+        @bonus_amount ||= (indication_bonus.first.order.max_product_score + indication_bonus.second.order.max_product_score) * PERCENTAGE
       else
         @bonus_amount ||= 0
       end

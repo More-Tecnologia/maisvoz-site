@@ -116,7 +116,7 @@ module Bonification
     end
 
     def can_receive_bonus?
-      user.active? && user.binary_qualified? && binary_bonus > 0 && !monthly_limit_reached?
+      user.active? && user.binary_qualified? && binary_bonus > 0 && !monthly_limit_reached? && user.career_kind.present?
     end
 
     def exceeded_weekly_limit?

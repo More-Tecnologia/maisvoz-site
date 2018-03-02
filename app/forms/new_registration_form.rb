@@ -40,6 +40,7 @@ class NewRegistrationForm < Form
   validate :sponsor_exists
   validate :username_is_unique
   validate :email_is_unique
+  validate :document_cpf_is_unique
 
   before_validation :normalize_username
 
@@ -64,13 +65,18 @@ class NewRegistrationForm < Form
   end
 
   def username_is_unique
-    return unless User.where('LOWER(username) = ?', username.downcase).any?
+    return unless User.where('LOWER(username) = ?', username).any?
     errors.add(:username, 'already exists')
   end
 
   def email_is_unique
     return unless User.where(email: email).any?
     errors.add(:email, 'already exists')
+  end
+
+  def document_cpf_is_unique
+    return unless User.where(document_cpf: document_cpf).any?
+    errors.add(:document_cpf, 'already exists')
   end
 
   def terms_accepted

@@ -5,9 +5,9 @@ module Bonification
 
     def initialize(direction, user, order, score)
       @direction = direction
-      @user = user
-      @order = order
-      @score = score
+      @user      = user
+      @order     = order
+      @score     = score
     end
 
     def call
@@ -30,15 +30,15 @@ module Bonification
 
     def last_balance
       return 0 if last_pv_history.blank?
-      last_pv_history.balance.to_f
+      last_pv_history
     end
 
     def last_pv_history
-      # TODO otimizar aqui buscando o pv pelo binary_node
-      @pv_history ||= PvHistory.where(
-        direction: direction,
-        user: user
-      ).order(created_at: :desc).first
+      @last_pv_history ||= user.binary_node.send(leg_pv)
+    end
+
+    def leg_pv
+      direction == :left ? :left_pv : :right_pv
     end
 
   end

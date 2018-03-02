@@ -37,7 +37,7 @@
                   <td>
                     <%= simple_form_for order_item, url: backoffice_order_item_path(order_item) do |f| %>
                       <%= f.input :id, as: :hidden %>
-                      <div class="col-sm-4 col-md-2">
+                      <div class="col-xs-4">
                         <%= f.input :quantity, input_html: { class: 'form-control input-sm' }, label: false %>
                       </div>
                       <button type="submit" class="btn btn-default btn-sm">

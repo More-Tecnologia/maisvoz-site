@@ -1,8 +1,7 @@
 <!-- Page-Title -->
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-12 m-b-15">
     <h4 class="page-title"><%= t('.title') %></h4>
-    <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
   </div>
 </div>
 
@@ -11,24 +10,34 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
-      <table class="table">
-        <tr>
-          <td><strong>Meus PVAs acumulados</strong></td>
-          <td><%= current_user.binary_position %></td>
-          <td><%= current_user.binary_qualified %></td>
-          <td><%= number_with_delimiter current_user.pva_total %></td>
-        </tr>
-        <% current_user.sponsored.each do |user| %>
-          <% total_pva += user.pva_total %>
+      <table class="table table-bordered">
+        <thead>
           <tr>
-            <td><strong><%= user.username %></strong></td>
-            <td><%= user.binary_position %></td>
-            <td><%= user.binary_qualified %></td>
-            <td><%= number_with_delimiter user.pva_total %></td>
+            <th><%= t('attributes.username') %></th>
+            <th><%= t('attributes.binary_position') %></th>
+            <th><%= t('attributes.binary_qualified') %></th>
+            <th><%= t('attributes.pva_total') %></th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <tr class="text-success">
+            <td><strong><%= current_user.username %></strong></td>
+            <td><%= t current_user.binary_position %></td>
+            <td><%= t current_user.binary_qualified %></td>
+            <td><%= number_with_delimiter current_user.pva_total %></td>
+          </tr>
+          <% current_user.sponsored.order(pva_total: :desc).each do |user| %>
+            <% total_pva += user.pva_total %>
+            <tr>
+              <td><strong><%= user.username %></strong></td>
+              <td><%= t user.binary_position %></td>
+              <td><%= t user.binary_qualified %></td>
+              <td><%= number_with_delimiter user.pva_total %></td>
+            </tr>
+          <% end %>
+        </tbody>
         <tr>
-          <td>Total Acumulado:</td>
+          <td><%= t('attributes.pva_total') %>:</td>
           <td colspan="3"><%= number_with_delimiter total_pva %></td>
         </tr>
       </table>

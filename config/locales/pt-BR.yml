@@ -43,6 +43,9 @@ pt-BR:
     sponsor_username: Usuário do Patrocinador
     unit_cost: Custo Unitário
     username: Nome de Usuário
+    binary_position: Posição no Binário
+    binary_qualified: Qualificação no Binário
+    pva_total: Total de PVA
     from: De
     to: Para
     type: Tipo
@@ -109,6 +112,7 @@ pt-BR:
       index:
         title: Unilevel
         no_binary_node: Você ainda não está ativo na rede
+        generation: Geração
     financial_entries:
       index:
         title: Histórico Financeiro
@@ -129,6 +133,9 @@ pt-BR:
         title: Histórico de PV de Atividade
         invoice_no: 'PV gerado da fatura ID: %{id}'
         no_data: Nenhum registro de pv de atividade até o momento
+    accumulated_pva:
+      index:
+        title: PVA Acumulado
     admin:
       financial_entries:
         filters:
@@ -289,6 +296,7 @@ pt-BR:
     users: Usuários
     withdrawal_fee: Taxa de Saque
     withdrawals: Saques
+    accumulated_pva: PVA Acumulado
   errors:
     cant_access_binary_node: Não é possível acessar o nó binário
     messages:
@@ -515,3 +523,19 @@ pt-BR:
   married: Casado(a)
   widowed: Viúvo(a)
   divorced: Divorciado(a)
+  direct_indication_bonus: Bônus de Indicação Direta
+  executive_sale_bonus: Bônus de Venda Executiva
+  binary_bonus: Bônus Binário
+  reverse_binary_bonus: Estorno de Bônus Binário
+  flex_bonus: Bônus Flex
+  activity_bonus: Bônus de Atividade
+  social_leader_bonus: Bônus Social Líder
+  reverse_bonus: Estorno de Bônus
+  bonus_chargeback:
+  credit_by_admin: Crédito do Admin
+  debit_by_admin: Débito do Admin
+  fee: Taxa de Adm.
+  product_return: Retorno de Produto
+  tax: Impostos
+  transfer: Transferência
+  withdrawal: Saque

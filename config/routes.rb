@@ -37,6 +37,10 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show]
     end
 
+    namespace :support do
+      resources :documents_validation, only: [:index, :update]
+    end
+
     resources :dashboard, only: :index
     resource :documents, only: [:edit, :update]
 

@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-sm-12 m-b-23">
+        <h4 class="page-title">Aprovação de documentos</h4>
+    </div>
+</div>
+
+<div class="card-box">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>CPF</th>
+        <th>RG</th>
+        <th>PIS</th>
+        <th>CNPJ</th>
+        <th>IE</th>
+        <th>Empresa</th>
+        <th>Nome Fantasia</th>
+        <th>Documentos</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @non_verified_accounts.each do |account| %>
+      <tr>
+        <td><%= account.name %></td>
+        <td><%= account.username %></td>
+        <td><%= account.email %></td>
+        <td><%= account.document_cpf %></td>
+        <td><%= account.document_rg %></td>
+        <td><%= account.document_pis %></td>
+        <td><%= account.document_cnpj %></td>
+        <td><%= account.document_ie %></td>
+        <td><%= account.document_company_name %></td>
+        <td><%= account.document_fantasy_name %></td>
+        <td>
+          <%= link_to(cl_image_tag(account.document_rg_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(account.document_rg_photo.path), target: '_blank') if account.document_rg_photo %>
+          <%= link_to(cl_image_tag(account.document_cpf_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(account.document_cpf_photo.path), target: '_blank') if account.document_cpf_photo %>
+          <%= link_to(cl_image_tag(account.document_pis_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(account.document_pis_photo.path), target: '_blank') if account.document_pis_photo %>
+          <%= link_to(cl_image_tag(account.document_address_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(account.document_address_photo.path), target: '_blank') if account.document_address_photo %>
+          <%= link_to(cl_image_tag(account.document_scontract_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(account.document_scontract_photo.path), target: '_blank') if account.document_scontract_photo %>
+        </td>
+        <td>
+          <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: account.id), method: :put %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @non_verified_accounts %>
+</div>

@@ -12,14 +12,7 @@
                 <% end %>
               </li>
 
-              <%= render 'menus/shop' %>
-              <%= render 'menus/financial' %>
-              <%= render 'menus/network' %>
-
-              <% if current_user.admin? %>
-                <%= render 'menus/admin' %>
-                <%= render 'menus/settings' %>
-              <% end %>
+              <%= render "menus/#{current_user.role}_menu" %>
 
             </ul>
             <div class="clearfix"></div>

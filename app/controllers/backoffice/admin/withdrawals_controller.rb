@@ -1,6 +1,6 @@
 module Backoffice
   module Admin
-    class WithdrawalsController < AdminController
+    class WithdrawalsController < FinancialController
 
       def index
         render(:index, locals: { withdrawals: withdrawals, q: q })

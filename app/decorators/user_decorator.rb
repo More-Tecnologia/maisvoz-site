@@ -11,8 +11,8 @@ class UserDecorator < SimpleDelegator
   end
 
   def career_name
-    return '-' if user.career_kind.blank?
-    @career_name ||= user.career_kind
+    return '-' if career_kind.blank?
+    @career_name ||= career_kind
   end
 
   def pretty_address

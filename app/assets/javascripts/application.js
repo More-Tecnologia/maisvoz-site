@@ -18,11 +18,13 @@
 //= require 'autonumeric/dist/autoNumeric.min'
 //= require twitter-bootstrap-wizard/jquery.bootstrap.wizard
 //= require jquery-mask-plugin/dist/jquery.mask
+//= require footable/dist/footable.all
 //= require notifyjs
 //= require bootstrap-datepicker
 //= require raphael
 //= require product-form-kind
 //= require withdraw-simulator
+//= require table-filtering
 //= require zipcode-fill
 //= require dashboard-carousel
 //= require rails.validations

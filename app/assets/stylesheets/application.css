@@ -14,6 +14,7 @@
  *= require 'webui-popover/dist/jquery.webui-popover'
  *= require 'slick-carousel/slick/slick'
  *= require 'slick-carousel/slick/slick-theme'
+ *= require footable/css/footable.core
  *= require bootstrap-datepicker
  *= require_tree .
  *= require_self

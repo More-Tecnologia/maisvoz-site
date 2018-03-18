@@ -55,6 +55,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (5.1.5)
       activesupport (= 5.1.5)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (5.1.5)
       activemodel (= 5.1.5)
       activesupport (= 5.1.5)
@@ -162,6 +166,12 @@ GEM
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
+    draper (3.0.1)
+      actionpack (~> 5.0)
+      activemodel (~> 5.0)
+      activemodel-serializers-xml (~> 1.0)
+      activesupport (~> 5.0)
+      request_store (~> 1.0)
     easy_translate (0.5.1)
       thread
       thread_safe
@@ -466,6 +476,7 @@ DEPENDENCIES
   devise (~> 4)
   devise_masquerade
   dotenv-rails
+  draper
   email_validator
   factory_girl_rails (~> 4.0)
   i18n-tasks (~> 0.9.19)

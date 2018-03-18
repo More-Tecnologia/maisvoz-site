@@ -1,4 +1,35 @@
-class UserDecorator < SimpleDelegator
+class UserDecorator < ApplicationDecorator
+
+  delegate_all
+
+  def activity
+    if active?
+      h.content_tag(:span, h.t('active'), class: 'label label-success')
+    else
+      h.content_tag(:span, h.t('inactive'), class: 'label label-warning')
+    end
+  end
+
+  def qualification
+    if binary_qualified?
+      h.content_tag(:span, h.t('qualified'), class: 'label label-success')
+    else
+      h.content_tag(:span, h.t('unqualified'), class: 'label label-warning')
+    end
+  end
+
+  def pretty_name
+    return name if pf?
+    "#{document_company_name} - #{name}"
+  end
+
+  def main_document
+    if pj?
+      document_cnpj
+    else
+      document_cpf
+    end
+  end
 
   def left_pv
     return '-' if binary_node.blank?
@@ -26,12 +57,6 @@ class UserDecorator < SimpleDelegator
 
   def sponsored_count
     @sponsored_count ||= sponsored.count
-  end
-
-  private
-
-  def h
-    ApplicationController.helpers
   end
 
 end

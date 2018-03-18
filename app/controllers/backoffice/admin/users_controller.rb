@@ -13,11 +13,11 @@ module Backoffice
       private
 
       def users
-        User.order(id: :desc).page(params[:page])
+        User.order(id: :desc).page(params[:page]).decorate
       end
 
       def user
-        UserDecorator.new(User.find(params[:id]))
+        User.find(params[:id]).decorate
       end
 
     end

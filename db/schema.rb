@@ -369,6 +369,7 @@ ActiveRecord::Schema.define(version: 20180221191456) do
     t.string "status", null: false
     t.bigint "gross_amount_cents", null: false
     t.bigint "net_amount_cents", null: false
+    t.string "fiscal_document_link"
     t.index ["status"], name: "index_withdrawals_on_status"
     t.index ["user_id"], name: "index_withdrawals_on_user_id"
   end

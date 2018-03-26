@@ -48,22 +48,30 @@
               <%= image_tag('countries/br.svg') %>
             </a>
           </li>
-          <li>
-            <%= link_to backoffice_financial_entries_path do %>
+          <% if current_user.pj? %>
+            <li>
+              <%= link_to backoffice_financial_entries_path do %>
               <span class="text-success">
-                <i class="fa fa-dollar"></i>
-                <%= current_user.available_balance %>
+                <%= number_to_currency current_user.balance %>
               </span>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to backoffice_financial_entries_path do %>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to backoffice_financial_entries_path do %>
+              <span class="text-success">
+                <%= number_to_currency current_user.available_balance %>
+              </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to backoffice_financial_entries_path do %>
               <span class="text-warning">
-                <i class="fa fa-dollar"></i>
-                <%= current_user.blocked_balance %>
+                <%= number_to_currency current_user.blocked_balance %>
               </span>
-            <% end %>
-          </li>
+              <% end %>
+            </li>
+          <% end %>
           <li class="hidden-xs">
             <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
               <i class="icon-size-fullscreen"></i>

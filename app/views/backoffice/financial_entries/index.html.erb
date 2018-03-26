@@ -17,7 +17,6 @@
               <tr>
                 <th>#</th>
                 <th><%= FinancialEntry.human_attribute_name(:description) %></th>
-                <th><%= FinancialEntry.human_attribute_name(:user) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:type) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:amount) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:balance) %></th>
@@ -29,7 +28,6 @@
                 <tr>
                   <th><%= financial_entry.id %></th>
                   <th><%= financial_entry.description %></th>
-                  <th><%= financial_entry.user.username %></th>
                   <td><%= t financial_entry.kind %></td>
                   <td><%= FinancialEntryAmountDecorator.new(financial_entry, current_user).amount %></td>
                   <td><%= number_to_currency financial_entry.balance %></td>

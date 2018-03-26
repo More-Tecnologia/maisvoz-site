@@ -21,7 +21,7 @@ module Backoffice
       private
 
       def withdrawals
-        @withdrawals ||= q.result.page(params[:page])
+        @withdrawals ||= q.result.page(params[:page]).decorate
       end
 
       def q

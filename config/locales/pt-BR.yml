@@ -70,6 +70,8 @@ pt-BR:
     state: Estado
     city: Cidade
     zipcode: CEP
+    fiscal_document_link: Link para Nota Fiscal
+    fiscal_document_photo: Nota Fiscal
   backoffice:
     orders:
       show:
@@ -307,6 +309,8 @@ pt-BR:
       required: Obrigatório
       wrong_master_pw: Senha master incorreta
       blank: Não pode ficar em branco
+      greater_than: Deve ser maior que %{count}
+      greater_than_or_equal_to: Deve ser maior ou igual a %{count}
   filters: Filtros
   helpers:
     select:

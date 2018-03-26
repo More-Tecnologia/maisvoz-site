@@ -14,6 +14,7 @@ module FinancialTypes
       credit_by_admin:         'credit_by_admin',
       debit_by_admin:          'debit_by_admin',
       fee:                     'fee',
+      withdrawal_fee:          'withdrawal_fee',
       product_return:          'product_return',
       tax:                     'tax',
       transfer:                'transfer',

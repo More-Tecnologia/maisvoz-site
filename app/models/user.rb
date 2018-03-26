@@ -142,6 +142,10 @@ class User < ApplicationRecord
     (available_balance + blocked_balance).to_f
   end
 
+  def balance_cents
+    available_balance_cents + blocked_balance_cents
+  end
+
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)

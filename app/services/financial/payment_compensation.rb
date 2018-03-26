@@ -36,6 +36,7 @@ module Financial
         propagate_binary_score
         propagate_pv_activity_history
         credit_bonus
+        create_system_fee
         order.completed!
       end
       binary_bonus_nodes_verifier
@@ -73,6 +74,10 @@ module Financial
 
     def credit_bonus
       Bonification::CreditExecutiveSaleBonus.new(order).call
+    end
+
+    def create_system_fee
+      Fee::CreateSystemFee.new(order).call
     end
 
     def update_user_flags

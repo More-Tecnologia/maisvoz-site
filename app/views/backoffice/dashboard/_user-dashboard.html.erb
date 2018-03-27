@@ -1,124 +1,103 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="dashboard-carousel">
-      <div><%= image_tag('slides/slide1.jpg', style: 'width: 100%') %></div>
-      <div><%= image_tag('slides/slide2.png', style: 'width: 100%') %></div>
+    <div class="label">
+      <h5><i class="md md-person-outline"></i> Olá, <%= current_user.name %></h5>
+      <h5>Seja Bem vindo!</h5>
     </div>
   </div>
 </div>
 
-<div class="dashboard">
-  <div class="conteudoBackOffice">
-    <div class="row itensback dashboard">
-        <div class="col-lg-3 col-md-3 col-xs-12">
-            <div class="panel corDourado execc">
-                <div class="panel-heading">
-                  <% if current_user.career_kind %>
-                    <%= image_tag("careers/#{current_user.career_kind}.png", class: 'thumb-sm') %>
-                    <h3 class="panel-title"><%= current_user.career_kind %></h3>
-                  <% end %>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5 col-md-5 col-xs-12 itemPanel">
-            <div class="panel corAzul statusB">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Status do binário:</h3>
-                </div>
-            </div>
-            <% if current_user.binary_qualified? %>
-              <div class="panel corVerde statusB2">
-                <h3>Qualificado</h3>
-              </div>
-            <% else %>
-              <div class="panel corVermelho statusB2">
-                <h3>Desqualificado</h3>
-              </div>
-            <% end %>
-        </div>
-        <div class="col-lg-4 col-md-4 col-xs-12 itemPanel">
-            <div class="panel corAzul statusB">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Conta</h3>
-                </div>
+<div class="row linhaHome">
+  <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <div class="mini-stat clearfix card-box">
+          <h4>Status do Binário</h4>
+      </div>
+      <% if current_user.binary_qualified? %>
+        <div class="statusBinario label-default">Qualificado</div>
+      <% else %>
+        <div class="statusBinario label-danger">Desqualificado</div>
+      <% end %>
+  </div>
 
-            </div>
-            <% if current_user.active? %>
-              <div class="panel corVerde statusB3 ">
-                  <h3>Ativo</h3>
-              </div>
-            <% else %>
-              <div class="panel corVermelho statusB3 ">
-                  <h3>Inativo</h3>
-              </div>
-            <% end %>
-        </div>
-    </div>
+  <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <div class="mini-stat clearfix card-box">
+          <h4>Status da Conta</h4>
+      </div>
 
-    <div class="row segundalinha dashboard">
-      <!-- INBOX -->
-      <div class="col-lg-3 col-md-3 col-xs-12">
-          <div class="panel panel-default">
-              <div class="corAzul tituloQualificados">
-                <h4 class="panel-title">Últimos Qualificados</h4>
-              </div>
-              <div class="panel-body">
-                  <div class="inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
-                    <% last_qualifications.each do |qualification| %>
-                        <div class="inbox-item">
-                          <p class="inbox-item-author"><%= qualification.user.username %></p>
-                          <p class="inbox-item-text"><%= t qualification.old_career %> <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %></p>
-                        </div>
-                    <% end %>
-                  </div>
-              </div>
-          </div>
-          </div> <!-- end col -->
-          <div class="col-lg-5 col-md-5 col-xs-12">
-              <div class="panel panel-color">
-                  <div class="panel-heading corAzul equipeBinario">
-                      <h3 class="panel-title">Solicitações de Saque</h3>
-                  </div>
-                  <div class="panel-body">
+      <% if current_user.active? %>
+        <div class="statusBinario label-default">ativo</div>
+      <% else %>
+        <div class="statusBinario label-danger">inativo</div>
+      <% end %>
 
-                    <table class="table">
-                      <% last_withdrawals.each do |withdraw| %>
-                        <tr>
-                          <td><%= l withdraw.created_at, format: :short %></td>
-                          <td><%= t withdraw.status %></td>
-                          <td><%= number_to_currency withdraw.gross_amount %></td>
-                        </tr>
-                      <% end %>
-                    </table>
+  </div>
 
-                  </div>
+  <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <div class="mini-stat clearfix card-box">
+          <h4>PV Carreira</h4>
+      </div>
+
+      <div class="statusBinario label-success">
+        <%= current_user.pva_total %>
+      </div>
+
+  </div>
+</div>
+
+<div class="row linhaHome">
+  <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
+      <div class="mini-stat clearfix card-box">
+          <h4>Carreira</h4>
+      </div>
+      <div class="statusBinario label-warning"><%= current_user.career_kind %></div>
+
+  </div>
+  <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
+      <div class="mini-stat clearfix card-box">
+          <h4>Próximo Título</h4>
+      </div>
+      <div class="statusBinario label-info"><%= current_user.next_career_kind %></div>
+
+  </div>
+</div>
+
+<div class="row widgetHome">
+  <div class="col-md-6">
+      <h4 class="m-t-0 m-b-20 header-title">
+          <b>Saques</b>
+      </h4>
+      <div class="card-box">
+        <table class="table table-bordered">
+          <thead class="titulosColunas">
+            <tr>
+              <th>Data</th>
+              <th>Status</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <% last_withdrawals.each do |withdraw| %>
+            <tr>
+              <td><%= l withdraw.created_at, format: :short %></td>
+              <td><%= t withdraw.status %></td>
+              <td><%= number_to_currency withdraw.gross_amount %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+  </div>
+  <div class="col-md-6">
+      <h4 class="m-t-0 m-b-20 header-title">
+          <b>Últimos Qualificados</b>
+      </h4>
+      <div class="card-box">
+        <div class="inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
+          <% last_qualifications.each do |qualification| %>
+              <div class="inbox-item">
+                <p class="inbox-item-author"><%= qualification.user.username %></p>
+                <p class="inbox-item-text"><%= t qualification.old_career %> <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %></p>
               </div>
-              </div> <!-- end col -->
-              <div class="col-lg-4 col-md-4 col-xs-12">
-                <% if current_user.binary_node %>
-                  <div class="panel panel-color">
-                      <div class="panel-heading corAzul equipeBinario">
-                          <h3 class="panel-title">Equipe do Binário</h3>
-                      </div>
-                      <div class="panel-body conteudoWidget">
-                          <div class="direita">
-                              <h3>Direita: <%= current_user.binary_node.right_pv %></h3>
-                          </div>
-                          <div class="esquerda">
-                              <h3>Esquerda: <%= current_user.binary_node.left_pv %></h3>
-                          </div>
-                      </div>
-                  </div>
-                <% end %>
-                  <div class="panel panel-color">
-                      <div class="panel-heading corAzul equipeBinario">
-                          <h3 class="panel-title"> Saldo Total</h3>
-                      </div>
-                      <div class="panel-body conteudoWidget">
-                          <h4><%= number_to_currency current_user.balance %></h4>
-                      </div>
-                  </div>
-              </div>
-          </div>
+          <% end %>
         </div>
       </div>
+  </div>
+</div>

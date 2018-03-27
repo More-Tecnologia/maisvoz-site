@@ -1142,7 +1142,8 @@ pre {
   display: none;
 }
 .navbar-default {
-  background-color: #36404a;
+  /* background-color: #36404a; */
+  background-color: #073f84;
   border-radius: 0px;
   border: none;
   margin-bottom: 0px;

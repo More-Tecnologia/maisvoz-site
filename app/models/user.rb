@@ -76,6 +76,8 @@
 
 class User < ApplicationRecord
 
+  include Careerable
+
   attr_accessor :login
 
   monetize :available_balance_cents, :blocked_balance_cents
@@ -92,23 +94,6 @@ class User < ApplicationRecord
   }
 
   enum binary_position: { left: 'left', right: 'right' }
-
-  enum career_kind: {
-    affiliate: 'affiliate',
-    executive: 'executive',
-    bronze: 'bronze',
-    silver: 'silver',
-    gold: 'gold',
-    ruby: 'ruby',
-    emerald: 'emerald',
-    diamond: 'diamond',
-    white_diamond: 'white_diamond',
-    blue_diamond: 'blue_diamond',
-    black_diamond: 'black_diamond',
-    chairman_club: 'chairman_club',
-    chairman_club_two_star: 'chairman_club_two_star',
-    chairman_club_three_star: 'chairman_club_three_star'
-  }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -134,7 +119,6 @@ class User < ApplicationRecord
   has_many :credits
   has_many :debits
   has_many :bonus, class_name: 'Bonus'
-  has_many :career_histories
 
   def avatar
     return CloudinaryImage.new.public_id unless cloudinary_image

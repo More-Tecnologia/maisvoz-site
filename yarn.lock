@@ -24,10 +24,6 @@ jquery@1.11.1, jquery@>=1.4.4:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.11.1.tgz#b6ec928590112ebed69e1e49cbfd0025ccd60ddb"
 
-slick-carousel@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/slick-carousel/-/slick-carousel-1.8.1.tgz#a4bfb29014887bb66ce528b90bd0cda262cc8f8d"
-
 twitter-bootstrap-wizard@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/twitter-bootstrap-wizard/-/twitter-bootstrap-wizard-1.2.0.tgz#801c695f6b01e52dd622e9522b13fcb809421ef0"

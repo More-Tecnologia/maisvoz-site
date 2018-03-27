@@ -5,7 +5,6 @@
     "footable": "^2.0.6",
     "jquery": "1.11.1",
     "jquery-mask-plugin": "^1.14.13",
-    "slick-carousel": "^1.8.1",
     "twitter-bootstrap-wizard": "^1.2.0",
     "webui-popover": "^1.2.18"
   }

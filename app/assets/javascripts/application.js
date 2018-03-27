@@ -13,7 +13,6 @@
 //= require jquery
 //= require rails-ujs
 //= require 'bootstrap/dist/js/bootstrap'
-//= require 'slick-carousel/slick/slick'
 //= require 'webui-popover/dist/jquery.webui-popover'
 //= require 'autonumeric/dist/autoNumeric.min'
 //= require twitter-bootstrap-wizard/jquery.bootstrap.wizard
@@ -26,7 +25,6 @@
 //= require withdraw-simulator
 //= require table-filtering
 //= require zipcode-fill
-//= require dashboard-carousel
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require theme/jquery.core

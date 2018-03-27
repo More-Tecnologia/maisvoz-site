@@ -72,6 +72,11 @@ pt-BR:
     zipcode: CEP
     fiscal_document_link: Link para Nota Fiscal
     fiscal_document_photo: Nota Fiscal
+    bank_code: Banco
+    account_number: Conta
+    account_digit: Dígito da Conta
+    agency_number: Agência
+    agency_digit: Dígito da Agência
   backoffice:
     orders:
       show:
@@ -151,6 +156,12 @@ pt-BR:
           status: Status
           created_from: Criado a partir de
           created_until: Criado até
+    bank_accounts:
+      edit:
+        title: Conta Bancária
+        subtitle: Esta conta será utilizada nos saques da plataforma
+        save: Salvar conta bancária
+        ownership_info: Só aceitamos contas bancárias em sua titularidade
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
@@ -495,7 +506,8 @@ pt-BR:
           specifications: Especificações
           title: Produto
       topbar:
-        edit_account: Editar conta
+        edit_account: Editar Conta
+        edit_bank_account: Conta Bancária
         documents: Documentos
         logout: Sair
     dashboard:
@@ -543,3 +555,4 @@ pt-BR:
   tax: Impostos
   transfer: Transferência
   withdrawal: Saque
+  save: Salvar

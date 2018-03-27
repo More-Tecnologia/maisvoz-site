@@ -59,6 +59,9 @@
 #  active_until            :date
 #  binary_qualified        :boolean          default(FALSE), not null
 #  verified                :boolean          default(FALSE), not null
+#  bank_account            :string
+#  bank_agency             :string
+#  bank_code               :string
 #
 # Indexes
 #

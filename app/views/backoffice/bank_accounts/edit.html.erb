@@ -1,0 +1,36 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title"><%= t('.title') %></h4>
+    <p class="text-muted page-title-alt"><%= t('.subtitle') %></p>
+  </div>
+</div>
+
+<%= simple_form_for form, url: backoffice_bank_account_path, method: :put do |f| %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+
+      <div class="alert alert-info"><%= t('.ownership_info') %></div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label for="" class="control-label">Nome</label>
+            <input type="text" class="form-control" disabled value="<%= current_user.name %>">
+          </div>
+          <div class="form-group">
+            <label for="" class="control-label">CPF/CNPJ</label>
+            <input type="text" class="form-control" disabled value="<%= current_user.decorate.main_document %>">
+          </div>
+
+          <%= render partial: 'form', locals: { f: f, form: form } unless form.user.bank_account_present? %>
+          <%= render partial: 'form_disabled', locals: { f: f, form: form } if form.user.bank_account_present? %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% end %>

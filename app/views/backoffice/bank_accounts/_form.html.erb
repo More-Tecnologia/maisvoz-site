@@ -1,0 +1,10 @@
+<%= f.input :bank_code, collection: form.bank_codes %>
+
+<div class="form-row">
+  <%= f.input :account_number, as: :integer, wrapper_html: { class: 'col-sm-4 p-l-0' } %>
+  <%= f.input :account_digit, as: :integer, wrapper_html: { class: 'col-sm-2' } %>
+  <%= f.input :agency_number, as: :integer, wrapper_html: { class: 'col-sm-4' } %>
+  <%= f.input :agency_digit, as: :integer, wrapper_html: { class: 'col-sm-2 p-r-0' } %>
+</div>
+
+<%= f.submit t('save'), class: 'btn btn-default' %>

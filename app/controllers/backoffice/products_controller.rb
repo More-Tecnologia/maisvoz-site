@@ -8,6 +8,7 @@ module Backoffice
     end
 
     def show
+      render(:show, locals: { product: product })
     end
 
     private

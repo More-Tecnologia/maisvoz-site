@@ -18,7 +18,7 @@
 
     <% @products.each do |product| %>
     <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
-      <div class="product-list-box thumb">
+      <div class="product-list-box thumb text-center">
         <%= link_to backoffice_product_path(product), class: 'image-popup' do %>
           <%= cl_image_tag(product.image.url, class: 'thumb-img') %>
         <% end %>
@@ -31,27 +31,21 @@
         </div>
         <% end %>
 
-        <div class="detail">
-          <h4 class="m-t-0">
-            <a href="" class="text-dark"><%= product.name %></a>
-            <%= number_to_currency product.price %>
-          </h4>
-          <h5 class="m-0">
-            <span class="text-muted">
-              <%= product.sku %>
-            </span>
-          </h5>
-
-          <%= link_to t('views.backoffice.products.index.details'), backoffice_product_path(product), class: 'btn btn-primary pull-left m-r-10' %>
-
-          <%= simple_form_for product, url: backoffice_order_items_path, method: :post, class: 'pull-left' do |f| %>
-            <%= f.input :id, as: :hidden %>
-            <button type="submit" class="btn btn-danger waves-effect waves-light">
-              <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
-            </button>
-          <% end %>
-
+        <div>
+          <h3 class="product-card__name"><%= product.name %></h3>
+          <h4 class="product-card__price"><%= number_to_currency product.price %></h4>
         </div>
+
+      </div>
+      <div class="product-card__btns">
+        <%= link_to backoffice_product_path(product), class: 'btn product-card__btn text-center' do %>
+          <i class="icon-plus"></i>
+          <%= t('views.backoffice.products.index.details') %>
+        <% end %>
+        <%= link_to backoffice_order_items_path(product: {id: product.id}), method: :post, class: 'btn product-card__btn text-center' do %>
+          <i class="icon-basket"></i>
+          <%= t('views.backoffice.products.show.buy') %>
+        <% end %>
       </div>
     </div>
     <% end %>

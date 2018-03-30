@@ -39,11 +39,23 @@
                   <td class="text-primary"><%= t user.career_kind %></td>
                   <td><%= l user.created_at, format: :short %></td>
                   <td>
-                    <%= link_to backoffice_admin_user_path(user), title: 'Ver perfil' do %>
+                    <%= link_to backoffice_admin_user_path(user), title: 'Ver perfil', target: '_blank' do %>
                       <i class="fa fa-eye"></i>
                     <% end %>
                     <%= link_to masquerade_path(user), title: 'Logar como usuário' do %>
                       <i class="fa fa-user"></i>
+                    <% end %>
+                    <%= link_to backoffice_admin_bonus_entries_path(username: user.username), title: 'Histórico de Bônus', target: '_blank' do %>
+                      <i class="fa fa-star"></i>
+                    <% end %>
+                    <%= link_to backoffice_admin_financial_entries_path('q[user_username_cont]' => user.username), title: 'Histórico Financeiro', target: '_blank' do %>
+                      <i class="fa fa-dollar"></i>
+                    <% end %>
+                    <%= link_to backoffice_admin_pv_activity_histories_path(username: user.username), title: 'Histórico PV Atividade', target: '_blank' do %>
+                      <i class="fa fa-plus-square"></i>
+                    <% end %>
+                    <%= link_to backoffice_admin_pv_histories_path(username: user.username), title: 'Histórico de PVs', target: '_blank' do %>
+                      <i class="fa fa-clock-o"></i>
                     <% end %>
                   </td>
                 </tr>

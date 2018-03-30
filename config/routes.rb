@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       resources :financial_entries, only: [:index]
       resources :withdrawals, only: [:index, :update]
       resources :bonus_entries, only: [:index]
+      resources :pv_activity_histories, only: [:index]
+      resources :pv_histories, only: [:index]
 
       # Admin
       resources :users, only: [:index, :show]

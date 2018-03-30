@@ -1,0 +1,76 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('.title') %></h4>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="nav nav-tabs navtab-bg">
+            <li class="<%= (params[:direction].blank? || params[:direction] == 'left') && 'active' %>">
+              <%= link_to backoffice_admin_pv_histories_path(direction: :left) do %>
+                <span>
+                  <i class="fa fa-chevron-left"></i>
+                  <%= t('.left') %>
+                </span>
+              <% end %>
+            </li>
+            <li class="<%= params[:direction] == 'right' && 'active' %>">
+              <%= link_to backoffice_admin_pv_histories_path(direction: :right) do %>
+                <span>
+                  <i class="fa fa-chevron-right"></i>
+                  <%= t('.right') %>
+                </span>
+              <% end %>
+            </li>
+          </ul>
+
+          <table class="table table-striped table-bordered toggle-circle m-t-30">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th><%= User.human_attribute_name(:username) %></th>
+                <th><%= PvHistory.human_attribute_name(:description) %></th>
+                <th><%= PvHistory.human_attribute_name(:amount) %></th>
+                <th><%= PvHistory.human_attribute_name(:balance) %></th>
+                <th><%= PvHistory.human_attribute_name(:created_at) %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% pv_histories.each do |pv_history| %>
+                <tr>
+                  <th><%= pv_history.id %></th>
+                  <td><%= pv_history.user.username %></td>
+                  <td>
+                    <% if pv_history.order.present? %>
+                      Fatura ID: <%= pv_history.order_id %>
+                    <% else %>
+                      <%= t('.binary_bonus_debit') %>
+                    <% end %>
+                  </td>
+                  <td><%= pv_history.amount %></td>
+                  <td><%= pv_history.balance %></td>
+                  <td><%= l(pv_history.created_at, format: :short) %></td>
+                </tr>
+              <% end %>
+              <% if pv_histories.empty? %>
+                <tr>
+                  <td colspan="6" class="text-center"><%= t('.no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <%= paginate pv_histories %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

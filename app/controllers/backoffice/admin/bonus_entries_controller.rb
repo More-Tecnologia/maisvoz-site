@@ -9,7 +9,7 @@ module Backoffice
       private
 
       def bonus_entries
-        Bonus.all.page(params[:page])
+        BonusQuery.new.call(params)
       end
 
     end

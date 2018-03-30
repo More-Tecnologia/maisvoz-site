@@ -78,10 +78,10 @@
             </a>
           </li>
           <li class="hidden-xs">
-            <a href="#" class="right-bar-toggle waves-effect waves-light">
+            <%= link_to backoffice_cart_path, class: 'right-bar-toggle waves-effect waves-light' do %>
               <i class="icon-basket"></i>
               <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
-            </a>
+            <% end %>
           </li>
           <li class="dropdown top-menu-item-xs">
             <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">

@@ -16,6 +16,7 @@ module Moremmn
     config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
     config.i18n.default_locale = 'pt-BR'
     config.i18n.available_locales = [:en, 'pt-BR', :es]
+    config.i18n.enforce_available_locales = false
 
     config.action_controller.permit_all_parameters = true
 

@@ -36,7 +36,7 @@
                   <td><%= user.main_document %></td>
                   <td><%= user.activity %></td>
                   <td><%= user.qualification %></td>
-                  <td class="text-primary"><%= t user.career_kind %></td>
+                  <td class="text-primary"><%= user.pretty_career %></td>
                   <td><%= l user.created_at, format: :short %></td>
                   <td>
                     <%= link_to backoffice_admin_user_path(user), title: 'Ver perfil', target: '_blank' do %>

@@ -12,9 +12,9 @@
       <div class="row">
         <div class="col-lg-12">
 
-          <table class="table table-bordered m-0">
+          <table class="table table-bordered cart-table">
 
-            <thead>
+            <thead class="cart-table__title">
               <tr>
                 <th></th>
                 <th></th>
@@ -24,7 +24,7 @@
                 <th><%= OrderItem.human_attribute_name(:total) %></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="cart-table__body">
               <% current_order.order_items.each do |order_item| %>
                 <tr>
                   <td>

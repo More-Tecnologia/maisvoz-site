@@ -63,4 +63,9 @@ class UserDecorator < ApplicationDecorator
     bank_code? && bank_account? && bank_agency?
   end
 
+  def pretty_career
+    return unless career_kind
+    h.t(career_kind)
+  end
+
 end

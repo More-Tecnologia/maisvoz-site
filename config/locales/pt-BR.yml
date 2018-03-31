@@ -166,7 +166,7 @@ pt-BR:
   cart:
     cart_updated: Carrinho atualizado
     see_cart: Ver carrinho
-    title: Title
+    title: Carrinho
   date:
     abbr_day_names:
     - Dom
@@ -461,27 +461,26 @@ pt-BR:
             title: Title
       careers:
         edit:
-          subtitle: Subtitle
-          title: Title
+          subtitle: Editar Carreira
+          title: Editar Carreira
         index:
-          new_career: New career
+          new_career: Nova Carreira
           no_data: No data
           subtitle: Subtitle
-          title: Title
+          title: Carreiras
         new:
-          subtitle: Subtitle
-          title: Title
+          subtitle: Nova Carreira
+          title: Nova Carreira
       cart:
         show:
           continue_shopping: Continuar Comprando
-          no_data: No data
-          place_order: Place order
-          subtitle: Subtitle
-          title: Title
+          no_data: Carrinho vazio
+          place_order: Fechar Compra
+          title: Carrinho
       categories:
         edit:
-          subtitle: Subtitle
-          title: Title
+          subtitle: Editar Categoria
+          title: Editar Categoria
         index:
           new_category: New category
           no_data: No data
@@ -499,7 +498,7 @@ pt-BR:
       products:
         index:
           details: Detalhes
-          title: Loja
+          title: Loja Future Motors
         show:
           buy: Comprar
           description: Descrição
@@ -556,3 +555,7 @@ pt-BR:
   transfer: Transferência
   withdrawal: Saque
   save: Salvar
+  active: Ativo
+  inactive: Inativo
+  qualified: Qualificado
+  unqualified: Desqualificado

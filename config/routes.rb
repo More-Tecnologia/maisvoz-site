@@ -45,6 +45,7 @@ Rails.application.routes.draw do
 
     resources :dashboard, only: :index
     resource :documents, only: [:edit, :update]
+    resources :downloads, only: [:index]
 
     resource :bank_account, only: [:edit, :update]
 

@@ -10,17 +10,11 @@ bootstrap@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
 
-footable@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/footable/-/footable-2.0.6.tgz#24e2d0c4a61648e03fc0313817be853aa59c09d0"
-  dependencies:
-    jquery ">=1.4.4"
-
 jquery-mask-plugin@^1.14.13:
   version "1.14.13"
   resolved "https://registry.yarnpkg.com/jquery-mask-plugin/-/jquery-mask-plugin-1.14.13.tgz#a80368d3b1d1402e4d6963a8ae7797c49bc21fc6"
 
-jquery@1.11.1, jquery@>=1.4.4:
+jquery@1.11.1:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.11.1.tgz#b6ec928590112ebed69e1e49cbfd0025ccd60ddb"
 

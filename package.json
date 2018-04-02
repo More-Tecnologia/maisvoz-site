@@ -2,7 +2,6 @@
   "dependencies": {
     "autonumeric": "^4.1.0-beta.16",
     "bootstrap": "^3.3.7",
-    "footable": "^2.0.6",
     "jquery": "1.11.1",
     "jquery-mask-plugin": "^1.14.13",
     "twitter-bootstrap-wizard": "^1.2.0",

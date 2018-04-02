@@ -12,8 +12,6 @@
  *
  *= require 'bootstrap/dist/css/bootstrap'
  *= require 'webui-popover/dist/jquery.webui-popover'
- *= require footable/css/footable.core
- *= require bootstrap-datepicker
  *= require_tree .
  *= require_self
  */

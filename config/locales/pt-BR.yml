@@ -131,7 +131,7 @@ pt-BR:
         no_data: Nenhum registro de bônus até o momento
     pv_histories:
       index:
-        title: Histórico de PV
+        title: PV Binário
         left: Esquerda
         right: Direita
         no_data: Nenhum registro de PV até o momento
@@ -269,7 +269,7 @@ pt-BR:
       year: Ano
   defaults:
     admin: Admin
-    approved_success: Approved success
+    approved_success: Aprovado com Sucesso
     binary_strategy: Estratégia Binária
     binary_tree: Árvore Binária
     bonus_entries: Entradas de bônus
@@ -277,40 +277,41 @@ pt-BR:
     categories: Categorias
     completed: Pago
     confirm_removal: Confirmar remoção
-    credits_debits: Credits debits
-    destroying_error: Destroying error
-    destroying_success: Destroying success
+    credits_debits: Créditos e Débitos
+    destroying_error: Erro ao remover
+    destroying_success: Sucesso ao remover
     error: Erro
     errors:
       career_required: Carreira obrigatória
-      different_sponsor: Different sponsor
+      different_sponsor: Patrocinador diferente
       no_funds: Você não possui saldo suficiente
       not_unique: Não é único
     financial: Financeiro
-    financial_entries: Entradas financeiras
+    financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques
     my_orders: Meus pedidos
     network: Rede
-    new_transfer: New transfer
-    new_withdraw: Novo Saque
+    new_transfer: Solicitar Transferência
+    new_withdraw: Solicitar Saque
     order_placed: Pedido realizado
     orders: Pedidos
     post: Enviar
     processing: Processando
     products: Produtos
-    pv_activity_history: Histórico de PV de Atividade
-    pv_history: Histórico de PV
-    saving_error: Saving error
-    saving_success: Saving success
-    search: Search
-    settings: Settings
+    pv_activity_history: PV Atividade
+    pv_history: Histórico PV's
+    pv_binary_history: PV Binário
+    saving_error: Erro ao salvar
+    saving_success: Sucesso ao salvar
+    search: Pesquisar
+    settings: Configurações
     shop: Loja
     success: Sucesso
     unilevel: Unilevel
     users: Usuários
     withdrawal_fee: Taxa de Saque
-    withdrawals: Saques
-    accumulated_pva: PVA Acumulado
+    withdrawals: Histórico de Saque
+    accumulated_pva: PV Avanço de Título
   errors:
     cant_access_binary_node: Não é possível acessar o nó binário
     messages:

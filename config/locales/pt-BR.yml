@@ -77,6 +77,7 @@ pt-BR:
     account_digit: Dígito da Conta
     agency_number: Agência
     agency_digit: Dígito da Agência
+    balance: Saldo
   backoffice:
     orders:
       show:
@@ -118,7 +119,7 @@ pt-BR:
     unilevel:
       index:
         title: Unilevel
-        no_binary_node: Você ainda não está ativo na rede
+        no_binary_node: Seu cadastro precisa ser ativado primeiro
         generation: Geração
     financial_entries:
       index:

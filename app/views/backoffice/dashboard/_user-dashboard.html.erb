@@ -4,7 +4,7 @@
 </div>
 
 <div class="row linhaHome">
-  <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+  <div class="col-md-3">
       <div class="mini-stat clearfix card-box">
           <h4>Status do Binário</h4>
       </div>
@@ -15,7 +15,7 @@
       <% end %>
   </div>
 
-  <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+  <div class="col-md-3">
       <div class="mini-stat clearfix card-box">
           <h4>Status da Conta</h4>
       </div>
@@ -25,35 +25,30 @@
       <% else %>
         <div class="statusBinario label-danger">inativo</div>
       <% end %>
-
   </div>
 
-  <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+  <div class="col-md-2">
       <div class="mini-stat clearfix card-box">
           <h4>PV Carreira</h4>
       </div>
 
       <div class="statusBinario label-success">
-        <%= current_user.pva_total %>
+        <%= number_with_delimiter current_user.pva_total %>
       </div>
-
   </div>
-</div>
 
-<div class="row linhaHome">
-  <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
+  <div class="col-md-2">
       <div class="mini-stat clearfix card-box">
           <h4>Carreira</h4>
       </div>
       <div class="statusBinario label-warning"><%= current_user.career_kind %></div>
-
   </div>
-  <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4">
+
+  <div class="col-md-2">
       <div class="mini-stat clearfix card-box">
           <h4>Próximo Título</h4>
       </div>
       <div class="statusBinario label-info"><%= current_user.next_career_kind %></div>
-
   </div>
 </div>
 

@@ -14,31 +14,31 @@
         <thead>
           <tr>
             <th><%= t('attributes.username') %></th>
-            <th><%= t('attributes.binary_position') %></th>
             <th><%= t('attributes.binary_qualified') %></th>
+            <th><%= t('attributes.binary_position') %></th>
             <th><%= t('attributes.pva_total') %></th>
           </tr>
         </thead>
         <tbody>
           <tr class="text-success">
-            <td><strong><%= current_user.username %></strong></td>
-            <td><%= t current_user.binary_position %></td>
-            <td><%= t current_user.binary_qualified %></td>
-            <td><%= number_with_delimiter current_user.pva_total %></td>
+            <td><strong><%= user.username %></strong></td>
+            <td><%= user.qualification %></td>
+            <td><%= t user.binary_position %></td>
+            <td><%= number_with_delimiter user.pva_total %></td>
           </tr>
-          <% current_user.sponsored.order(pva_total: :desc).each do |user| %>
+          <% sponsored.each do |user| %>
             <% total_pva += user.pva_total %>
             <tr>
               <td><strong><%= user.username %></strong></td>
+              <td><%= user.qualification %></td>
               <td><%= t user.binary_position %></td>
-              <td><%= t user.binary_qualified %></td>
               <td><%= number_with_delimiter user.pva_total %></td>
             </tr>
           <% end %>
         </tbody>
         <tr>
-          <td><%= t('attributes.pva_total') %>:</td>
-          <td colspan="3"><%= number_with_delimiter total_pva %></td>
+          <td colspan="3"><%= t('attributes.pva_total') %>:</td>
+          <td><%= number_with_delimiter total_pva %></td>
         </tr>
       </table>
     </div>

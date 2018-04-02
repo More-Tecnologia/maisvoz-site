@@ -5,50 +5,56 @@
 
 <div class="row linhaHome">
   <div class="col-md-3">
-      <div class="mini-stat clearfix card-box">
-          <h4>Status do Binário</h4>
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span>Status do Binário</span>
       </div>
       <% if current_user.binary_qualified? %>
-        <div class="statusBinario label-default">Qualificado</div>
+        <div class="dashboard-card__value label-default">Qualificado</div>
       <% else %>
-        <div class="statusBinario label-danger">Desqualificado</div>
+        <div class="dashboard-card__value label-danger">Desqualificado</div>
       <% end %>
+    </div>
   </div>
 
   <div class="col-md-3">
-      <div class="mini-stat clearfix card-box">
-          <h4>Status da Conta</h4>
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span>Status da Conta</span>
       </div>
-
       <% if current_user.active? %>
-        <div class="statusBinario label-default">ativo</div>
+        <div class="dashboard-card__value label-default">Ativo</div>
       <% else %>
-        <div class="statusBinario label-danger">inativo</div>
+        <div class="dashboard-card__value label-danger">Inativo</div>
       <% end %>
+    </div>
   </div>
 
   <div class="col-md-2">
-      <div class="mini-stat clearfix card-box">
-          <h4>PV Carreira</h4>
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span>PV Carreira</span>
       </div>
-
-      <div class="statusBinario label-success">
-        <%= number_with_delimiter current_user.pva_total %>
-      </div>
+      <div class="dashboard-card__value label-success"><%= number_with_delimiter current_user.pva_total %></div>
+    </div>
   </div>
 
   <div class="col-md-2">
-      <div class="mini-stat clearfix card-box">
-          <h4>Carreira</h4>
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span>Título</span>
       </div>
-      <div class="statusBinario label-warning"><%= current_user.career_kind %></div>
+      <div class="dashboard-card__value label-warning"><%= current_user.career_kind %></div>
+    </div>
   </div>
 
   <div class="col-md-2">
-      <div class="mini-stat clearfix card-box">
-          <h4>Próximo Título</h4>
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span>Próximo Título</span>
       </div>
-      <div class="statusBinario label-info"><%= current_user.next_career_kind %></div>
+      <div class="dashboard-card__value label-info"><%= current_user.next_career_kind %></div>
+    </div>
   </div>
 </div>
 

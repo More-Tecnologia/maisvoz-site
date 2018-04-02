@@ -17,7 +17,7 @@
           </div>
           <div class="col-md-4 form-group">
             <label for="">Tipo de bônus:</label>
-            <%= select_tag(:bonus_kind, options_for_select(FinancialTypes::BONUS_KINDS.map {|k| [t(k), k]}, params[:bonus_kind]), include_blank: true, :onchange => "this.form.submit();", class: 'form-control') %>
+            <%= select_tag(:bonus_kind, options_for_select(FinancialTypes::BONUS_KINDS.map {|k| [t(k), k]}, params[:bonus_kind]), include_blank: 'Todos', :onchange => "this.form.submit();", class: 'form-control') %>
           </div>
           <div class="col-md-4 form-group">
               <div class="row">

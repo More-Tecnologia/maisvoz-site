@@ -18,7 +18,7 @@ class BonusQuery
   attr_reader :initial_scope
 
   def filter_by_username(scoped, username)
-    username.present? ? User.find_by(username: username).financial_entries : scoped
+    username.present? ? scoped.where(user: User.find_by(username: username)) : scoped
   end
 
   def filter_by_bonus(scoped, bonus_kind)

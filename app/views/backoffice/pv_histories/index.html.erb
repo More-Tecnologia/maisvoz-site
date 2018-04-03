@@ -44,16 +44,16 @@
             <tbody>
               <% pv_histories.each do |pv_history| %>
                 <tr>
-                  <th><%= pv_history.id %></th>
+                  <th><%= pv_history.hashid %></th>
                   <td>
                     <% if pv_history.order.present? %>
-                      <%= t('.invoice_no', id: pv_history.order_id) %>
+                      <%= t('.invoice_no', id: pv_history.order.hashid) %>
                     <% else %>
                       <%= t('.binary_bonus_debit') %>
                     <% end %>
                   </td>
-                  <td><%= pv_history.amount %></td>
-                  <td><%= pv_history.balance %></td>
+                  <td><%= number_with_delimiter pv_history.amount %></td>
+                  <td><%= number_with_delimiter pv_history.balance %></td>
                   <td><%= l(pv_history.created_at, format: :short) %></td>
                 </tr>
               <% end %>

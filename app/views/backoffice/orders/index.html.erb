@@ -25,7 +25,7 @@
             <tbody>
               <% @orders.each do |order| %>
                 <tr>
-                  <th><%= order.id %></th>
+                  <th><%= order.hashid %></th>
                   <td><%= number_to_currency order.total %></td>
                   <td><%= t "defaults.#{order.status}" %></td>
                   <td><%= l(order.paid_at, format: :short) if order.paid_at.present? %></td>

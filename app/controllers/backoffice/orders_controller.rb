@@ -6,7 +6,7 @@ module Backoffice
     end
 
     def show
-      @order = current_user.orders.find(params[:id])
+      @order = current_user.orders.find_by_hashid(params[:id])
     end
 
   end

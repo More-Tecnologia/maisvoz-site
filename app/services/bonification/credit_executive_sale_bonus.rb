@@ -43,7 +43,7 @@ module Bonification
 
     def create_system_financial_log
       SystemFinancialLog.new.tap do |log|
-        log.description = "Bônus de venda executiva da compra do usuário #{user.username}. Bônus de #{h.number_to_currency bonus_amount}, fatura ID: #{order.id}"
+        log.description = "Bônus de venda executiva da compra do usuário #{user.username}. Bônus de #{h.number_to_currency bonus_amount}, fatura ID: #{order.hashid}"
         log.kind        = SystemFinancialLog.kinds[:executive_sale_bonus]
         log.amount      = -bonus_amount
         log.order       = order

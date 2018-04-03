@@ -19,6 +19,8 @@
 
 class PvHistory < ApplicationRecord
 
+  include Hashid::Rails
+
   belongs_to :order, optional: true
   belongs_to :user
 

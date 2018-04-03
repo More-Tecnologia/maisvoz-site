@@ -26,7 +26,7 @@
             <tbody>
               <% financial_entries.each do |financial_entry| %>
                 <tr>
-                  <th><%= financial_entry.id %></th>
+                  <th><%= financial_entry.hashid %></th>
                   <th><%= financial_entry.description %></th>
                   <td><%= t financial_entry.kind %></td>
                   <td><%= FinancialEntryAmountDecorator.new(financial_entry, current_user).amount %></td>

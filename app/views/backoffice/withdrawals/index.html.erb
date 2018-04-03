@@ -25,7 +25,7 @@
             <tbody>
               <% withdrawals.each do |withdraw| %>
                 <tr>
-                  <th><%= withdraw.id %></th>
+                  <th><%= withdraw.hashid %></th>
                   <th><%= number_to_currency withdraw.gross_amount %></th>
                   <th><%= number_to_currency withdraw.net_amount %></th>
                   <td><%= withdraw.pretty_status %></td>

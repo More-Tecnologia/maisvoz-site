@@ -42,7 +42,7 @@ module Bonification
     def credit_bonus
       FinancialEntry.new.tap do |bonus|
         bonus.user        = user
-        bonus.description = "Bônus flex. Bônus de #{h.number_to_currency bonus_amount}, faturas: #{indication_bonus.collect(&:id).join(', ')}"
+        bonus.description = "Bônus flex. Bônus de #{h.number_to_currency bonus_amount}, faturas: #{indication_bonus.collect(&:hashid).join(', ')}"
         bonus.kind        = FinancialEntry.kinds[:flex_bonus]
         bonus.amount      = bonus_amount
         bonus.balance     = user.balance + bonus_amount
@@ -52,7 +52,7 @@ module Bonification
 
     def create_system_financial_log
       SystemFinancialLog.new.tap do |log|
-        log.description = "Bônus flex. Bônus de #{h.number_to_currency bonus_amount}, usuário ID: #{user.id}, username: #{user.username}, faturas: #{indication_bonus.collect(&:id).join(', ')}"
+        log.description = "Bônus flex. Bônus de #{h.number_to_currency bonus_amount}, usuário ID: #{user.id}, username: #{user.username}, faturas: #{indication_bonus.collect(&:hashid).join(', ')}"
         log.kind        = SystemFinancialLog.kinds[:flex_bonus]
         log.amount      = -bonus_amount
         log.save!
@@ -62,7 +62,7 @@ module Bonification
     def reverse_bonus(reason)
       FinancialEntry.new.tap do |bonus|
         bonus.user        = user
-        bonus.description = "[Estorno] Bônus flex. #{reason} Bônus de #{h.number_to_currency bonus_amount}. Faturas: #{indication_bonus.collect(&:id).join(', ')}"
+        bonus.description = "[Estorno] Bônus flex. #{reason} Bônus de #{h.number_to_currency bonus_amount}. Faturas: #{indication_bonus.collect(&:hashid).join(', ')}"
         bonus.kind        = FinancialEntry.kinds[:reverse_bonus]
         bonus.amount      = -bonus_amount
         bonus.balance     = user.balance

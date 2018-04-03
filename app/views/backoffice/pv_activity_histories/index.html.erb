@@ -27,14 +27,14 @@
             <tbody>
               <% pv_activity_histories.each do |pv_activity_history| %>
                 <tr>
-                  <th><%= pv_activity_history.id %></th>
+                  <th><%= pv_activity_history.hashid %></th>
                   <td>
-                    <%= t('.invoice_no', id: pv_activity_history.order_id) %>
+                    <%= t('.invoice_no', id: pv_activity_history.order.hashid) %>
                   </td>
                   <td><%= pv_activity_history.order.user.username %></td>
                   <td><%= pv_activity_history.kind.upcase %></td>
-                  <td><%= pv_activity_history.amount %></td>
-                  <td><%= pv_activity_history.balance %></td>
+                  <td><%= number_with_delimiter pv_activity_history.amount %></td>
+                  <td><%= number_with_delimiter pv_activity_history.balance %></td>
                   <td><%= l(pv_activity_history.created_at, format: :short) %></td>
                 </tr>
               <% end %>

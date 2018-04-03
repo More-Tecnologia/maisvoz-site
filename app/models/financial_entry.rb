@@ -21,6 +21,7 @@
 
 class FinancialEntry < ApplicationRecord
 
+  include Hashid::Rails
   include FinancialTypes
 
   belongs_to :user

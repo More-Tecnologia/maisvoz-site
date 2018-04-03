@@ -55,15 +55,15 @@
               <% end %>
 
               <tr>
+                <th colspan="5"><span class="pull-right">PVs</span></th>
+                <th><%= number_with_delimiter current_order.total_score %></th>
+              </tr>
+              <tr>
                   <th colspan="5"><span class="pull-right">Sub Total</span></th>
                   <th><%= number_to_currency current_order.subtotal %></th>
               </tr>
               <tr>
-                  <th colspan="5"><span class="pull-right">Taxes</span></th>
-                  <th><%= number_to_currency current_order.tax %></th>
-              </tr>
-              <tr>
-                  <th colspan="5"><span class="pull-right">Shipping</span></th>
+                  <th colspan="5"><span class="pull-right">Frete</span></th>
                   <th><%= number_to_currency current_order.shipping %></th>
               </tr>
               <tr>

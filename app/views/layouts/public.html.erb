@@ -10,20 +10,15 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="fixed-left">
+  <body>
     <div id="wrapper">
-      <%= render 'layouts/admin/topbar' %>
-      <%= render 'layouts/admin/sidebar' %>
-      <div class="content-page">
+      <%= render 'layouts/public/topbar' %>
         <div class="content">
           <div class="container">
             <%= render 'layouts/flash-messages' %>
             <%= yield %>
           </div>
         </div>
-      </div>
-      <%= render 'layouts/admin/footer' %>
-      <%= render 'layouts/admin/right-sidebar' %>
     </div>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>

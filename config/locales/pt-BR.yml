@@ -78,6 +78,7 @@ pt-BR:
     agency_number: Agência
     agency_digit: Dígito da Agência
     balance: Saldo
+    unit_price: Preço Unitário
   backoffice:
     orders:
       show:
@@ -561,3 +562,6 @@ pt-BR:
   inactive: Inativo
   qualified: Qualificado
   unqualified: Desqualificado
+  shop: Loja
+  signup: Cadastrar
+  login: Login

@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   mount Attachinary::Engine => "/attachinary"
 
-  root 'pages#index'
+  root 'shop#index'
+
+  resources :shop, only: [:index]
 
   namespace :backoffice do
     namespace :admin do

@@ -1,0 +1,39 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12 m-b-23">asdfasdf
+    <h4 class="page-title"><%= t('views.backoffice.products.index.title') %></h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="m-b-15">
+
+    <% products.each do |product| %>
+    <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
+      <div class="product-list-box thumb text-center">
+        <%= link_to backoffice_product_path(product), class: 'image-popup' do %>
+          <%= cl_image_tag(product.image.url, class: 'thumb-img') %>
+        <% end %>
+
+        <div>
+          <h3 class="product-card__name"><%= product.name %></h3>
+          <h4 class="product-card__price"><%= number_to_currency product.price %></h4>
+        </div>
+
+      </div>
+      <div class="product-card__btns">
+        <%= link_to backoffice_product_path(product), class: 'btn product-card__btn text-center' do %>
+          <i class="icon-plus"></i>
+          <%= t('views.backoffice.products.index.details') %>
+        <% end %>
+        <%= link_to backoffice_order_items_path(product: {id: product.hashid}), method: :post, class: 'btn product-card__btn text-center' do %>
+          <i class="icon-basket"></i>
+          <%= t('views.backoffice.products.show.buy') %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+</div>
+<!-- End row -->

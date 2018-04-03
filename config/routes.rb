@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   root 'shop#index'
 
-  resources :shop, only: [:index]
+  resources :shop, only: [:index, :show]
 
   namespace :backoffice do
     namespace :admin do

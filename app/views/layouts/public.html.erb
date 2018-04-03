@@ -13,12 +13,14 @@
   <body>
     <div id="wrapper">
       <%= render 'layouts/public/topbar' %>
+      <div class="content-page no-margin">
         <div class="content">
           <div class="container">
             <%= render 'layouts/flash-messages' %>
             <%= yield %>
           </div>
         </div>
+      </div>
     </div>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>

@@ -1,0 +1,19 @@
+.dashboard-card-box {
+ border: 1px solid rgba(54, 64, 74, 0.05);
+ border-radius: 5px;
+ background-color: white;
+ background-clip: padding-box;
+ overflow: hidden;
+ margin-bottom: 20px;
+}
+
+.dashboard-card-box__title {
+  color: #fff;
+  background-color: #052753;
+  padding: 15px 20px;
+  text-transform: uppercase;
+}
+
+.dashboard-card-box__container {
+  padding: 20px;
+}

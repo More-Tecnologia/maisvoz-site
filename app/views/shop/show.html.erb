@@ -1,0 +1,118 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title m-b-30"><%= t('views.backoffice.products.show.title') %></h4>
+  </div>
+</div>
+
+<div class="row">
+
+   <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
+     <div class="product-detail">
+       <div class="sp-loading">
+          <%= image_tag 'sp-loading.gif' %>
+          <br>CARREGANDO
+       </div>
+
+         <div class="sp-wrap">
+
+           <div class="carousel">
+              <div class="carousel-inner" role="listbox">
+                <% product.cloudinary_images.each do |cl| %>
+                  <div class="item">
+                    <a href="<%= cl.public_id %>">
+                      <%= cl_image_tag(cl.public_id) %>
+                    </a>
+                  </div>
+                <% end %>
+              </div>
+           </div>
+
+         </div>
+      </div>
+   </div>
+
+   <div class="col-md-7 col-sm-7 col-xs-12 col-lg-7">
+      <div class="product-detail">
+         <h3><b><%= product.name %></b></h3>
+
+         <h2><b><%= number_to_currency product.price %></b></h2>
+         <h4>PONTUAÇÃO: <%= product.binary_score %></h4>
+
+         <div class="m-t-30">
+            <%= simple_form_for product, url: backoffice_order_items_path, method: :post do |f| %>
+              <%= f.input :id, as: :hidden %>
+              <button type="submit" class="btn btn-primary waves-effect waves-light">
+                <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
+              </button>
+            <% end %>
+         </div>
+
+         <hr>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h4><b><%= t('views.backoffice.products.show.specifications') %></b></h4>
+              <div class="table-responsive m-t-20">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td width="400">Sku</td>
+                      <td><%= product.sku %></td>
+                    </tr>
+                    <tr>
+                      <td><%= Product.human_attribute_name('weight') %></td>
+                      <td><%= product.weight %> grams</td>
+                    </tr>
+                    <tr>
+                      <td><%= Product.human_attribute_name('height') %></td>
+                      <td><%= product.height %> cm</td>
+                    </tr>
+                    <tr>
+                      <td><%= Product.human_attribute_name('width') %></td>
+                      <td><%= product.width %> cm</td>
+                    </tr>
+                    <tr>
+                      <td><%= Product.human_attribute_name('length') %></td>
+                      <td><%= product.length %> cm</td>
+                    </tr>
+                    <tr>
+                      <td><%= Product.human_attribute_name('binary_score') %></td>
+                      <td><%= product.binary_score %></td>
+                    </tr>
+                    <tr>
+                      <td><%= Product.human_attribute_name('advance_score') %></td>
+                      <td><%= product.advance_score %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h4><b><%= t('views.backoffice.products.show.description') %></b></h4>
+              <p class="text-muted"><%= product.description %></p>
+            </div>
+          </div>
+       </div>
+   </div>
+
+   <div class="col-sm-8">
+       <div class="product-right-info">
+
+       </div>
+   </div>
+
+</div>
+<!-- end row -->
+
+             <div class="row m-t-30">
+             </div>
+
+
+
+<script type="text/javascript">
+    // wait for images to load
+    $(window).load(function() {
+        $('.sp-wrap').smoothproducts();
+    });
+</script>

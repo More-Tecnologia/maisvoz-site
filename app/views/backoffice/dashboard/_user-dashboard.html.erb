@@ -44,7 +44,7 @@
       <div class="dashboard-card__label">
         <span>Título</span>
       </div>
-      <div class="dashboard-card__value label-warning"><%= current_user.career_kind %></div>
+      <div class="dashboard-card__value label-warning"><%= current_user.career_kind || '---' %></div>
     </div>
   </div>
 
@@ -58,47 +58,63 @@
   </div>
 </div>
 
-<div class="row widgetHome">
+<div class="row">
   <div class="col-md-4">
-      <h4 class="m-t-0 m-b-20 header-title">
-          <b>Saques</b>
-      </h4>
-      <div class="card-box">
-        <table class="table table-bordered">
-          <thead class="titulosColunas">
-            <tr>
-              <th>Data</th>
-              <th>Status</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <% last_withdrawals.each do |withdraw| %>
-            <tr>
-              <td><%= l withdraw.created_at, format: :short %></td>
-              <td><%= t withdraw.status %></td>
-              <td><%= number_to_currency withdraw.gross_amount %></td>
-            </tr>
-          <% end %>
-        </table>
+    <div class="dashboard-card-box">
+      <div class="dashboard-card-box__title">
+        <span>Saques</span>
       </div>
-  </div>
-  <div class="col-md-4">
-    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffuturemotorsoficial%2F&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-  </div>
-  <div class="col-md-4">
-      <h4 class="m-t-0 m-b-20 header-title">
-          <b>Últimos Qualificados</b>
-      </h4>
-      <div class="card-box">
         <div class="inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
-          <% last_qualifications.each do |qualification| %>
-              <div class="inbox-item">
-                <p class="inbox-item-author"><%= qualification.user.username %></p>
-                <p class="inbox-item-text"><%= t qualification.old_career %> <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %></p>
-              </div>
-          <% end %>
+          <table class="table table-bordered table-highlight">
+            <thead class="table-highlight__head">
+              <tr>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <% last_withdrawals.each do |withdraw| %>
+              <tr>
+                <td><%= l withdraw.created_at, format: :short %></td>
+                <td><%= t withdraw.status %></td>
+                <td><%= number_to_currency withdraw.gross_amount %></td>
+              </tr>
+            <% end %>
+            <% if last_withdrawals.blank? %>
+              <tr>
+                <td colspan="3" class="text-center"><%= t('no_data') %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="dashboard-card-box">
+      <div class="dashboard-card-box__title">
+        <span>Últimos Qualificados</span>
+      </div>
+      <div class="dashboard-card-box__container inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
+        <% last_qualifications.each do |qualification| %>
+        <div class="inbox-item">
+          <p class="inbox-item-author"><%= qualification.user.username %></p>
+          <p class="inbox-item-text"><%= t qualification.old_career %> <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %></p>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="dashboard-card-box">
+      <div class="dashboard-card-box__title">
+        <span>Últimas Postagens</span>
+      </div>
+      <div class="dashboard-card-box__containe">
+        <div class="inbox-widget nicescroll mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
+          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffuturemotorsoficial&tabs=timeline&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
         </div>
       </div>
+    </div>
   </div>
 </div>
 

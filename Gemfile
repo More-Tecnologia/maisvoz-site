@@ -73,6 +73,7 @@ group :development do
   gem 'letter_opener_web'
   gem 'i18n-tasks', '~> 0.9.19'
   gem 'derailed_benchmarks'
+  gem 'bullet'
   # gem 'i18n-debug'
 end
 

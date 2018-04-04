@@ -44,12 +44,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    update_resource(resource, edit_form.attributes.except(:public_id))
+    update_resource(resource, edit_form.attributes)
 
     yield resource if block_given?
     if edit_form.valid? && resource_updated = resource.save
-      CreateOrUpdateClImage.new(resource, resource.cloudinary_image, edit_form.public_id).call
-
       if is_flashing_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
           :update_needs_confirmation : :updated
@@ -109,7 +107,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,
-      keys: [:name, :birthdate, :marital_status, :phone, :email, :document_cpf, :address, :address_2, :country, :state, :city]
+      keys: [:name, :birthdate, :marital_status, :phone, :email, :document_cpf, :address, :address_2, :country, :state, :city, :avatar]
     )
   end
 

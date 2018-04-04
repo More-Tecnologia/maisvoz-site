@@ -68,4 +68,13 @@ class UserDecorator < ApplicationDecorator
     h.t(career_kind)
   end
 
+  def avatar_image_tag
+    if avatar?
+      h.cl_image_tag(avatar.path, class: 'img-circle')
+    else
+      hash = Digest::MD5.hexdigest(email)
+      h.image_tag("https://www.gravatar.com/avatar/#{hash}?d=identicon", class: 'img-circle')
+    end
+  end
+
 end

@@ -100,7 +100,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :lockable, :masqueradable
 
-  has_one :cloudinary_image, as: :imageable
+  has_attachment :avatar, accept: [:jpg, :png]
   has_attachment :document_rg_photo
   has_attachment :document_cpf_photo
   has_attachment :document_pis_photo
@@ -119,11 +119,6 @@ class User < ApplicationRecord
   has_many :credits
   has_many :debits
   has_many :bonus, class_name: 'Bonus'
-
-  def avatar
-    return CloudinaryImage.new.public_id unless cloudinary_image
-    cloudinary_image.public_id
-  end
 
   def balance
     (available_balance + blocked_balance).to_f

@@ -78,7 +78,7 @@
           </li>
           <li class="dropdown top-menu-item-xs">
             <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-              <%= current_user.username %>&nbsp;&nbsp;<%= cl_image_tag(current_user.avatar.thumbnail, class: 'img-circle') %>
+              <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
             </a>
             <ul class="dropdown-menu">
               <li>

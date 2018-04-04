@@ -1,6 +1,6 @@
 class EditRegistrationForm < Form
 
-  attribute :public_id
+  attribute :avatar
   attribute :name
   attribute :birthdate
   attribute :phone

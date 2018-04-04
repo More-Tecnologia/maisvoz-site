@@ -22,7 +22,7 @@ module Multilevel
     attr_reader :sponsor, :root_binary_node
 
     def direct_sponsored
-      BinaryNode.where(sponsored_by_id: root_binary_node.user_id).map do |binary_node|
+      BinaryNode.where(sponsored_by_id: root_binary_node.user_id).includes(:user).map do |binary_node|
         {
           sponsor: binary_node.user.username,
           generations: generations(binary_node.user_id).flatten

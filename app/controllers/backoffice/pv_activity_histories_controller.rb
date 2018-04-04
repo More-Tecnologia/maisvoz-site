@@ -8,7 +8,9 @@ module Backoffice
     private
 
     def pv_activity_histories
-      current_user.pv_activity_histories.order(created_at: :desc).page(params[:page])
+      current_user.pv_activity_histories.order(
+        created_at: :desc
+      ).page(params[:page]).includes(order: :user)
     end
 
   end

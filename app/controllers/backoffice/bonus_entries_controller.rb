@@ -8,7 +8,7 @@ module Backoffice
     private
 
     def bonus_entries
-      BonusQuery.new(current_user.financial_entries).call(params)
+      BonusQuery.new(current_user.financial_entries).call(params).includes(order: :user)
     end
 
   end

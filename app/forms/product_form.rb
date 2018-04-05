@@ -31,7 +31,8 @@ class ProductForm < Form
   attribute :bonus_7
   attribute :bonus_8
   attribute :bonus_9
-  attribute :images
+  attribute :main_photo
+  attribute :photos
 
   validates :name, :quantity, :price, :kind, :binary_score, :category_id, presence: true
 

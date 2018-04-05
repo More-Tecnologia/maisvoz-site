@@ -27,11 +27,18 @@
       <div class="row">
         <div class="col-md-6">
           <div class="p-20">
-            <% product && product.cloudinary_images.each do |cl| %>
+
+            <% if product && product.main_photo %>
+              <%= cl_image_tag(product.main_photo.public_id, class: 'thumb-lg') %>
+            <% end %>
+            <label for="">Foto Principal</label>
+            <%= f.input :main_photo, as: :file %>
+
+            <% product && product.photos.each do |cl| %>
               <%= cl_image_tag(cl.public_id, class: 'thumb-lg') %>
             <% end %>
-
-            <%= f.input :images, as: :file,  input_html: { multiple: true } %>
+            <label for="">Galeria de fotos</label>
+            <%= f.input :photos, as: :file,  input_html: { multiple: true } %>
 
             <%= f.input :name %>
             <%= f.input :price do %>

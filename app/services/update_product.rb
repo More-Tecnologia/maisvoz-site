@@ -9,7 +9,6 @@ class UpdateProduct
     return false unless form.valid?
     ActiveRecord::Base.transaction do
       update_product
-      cl_update
     end
     true
   end
@@ -22,15 +21,11 @@ class UpdateProduct
     product.update!(form_attributes)
   end
 
-  def cl_update
-    return if form.images.blank?
-    form.images.each do |image|
-      CreateOrUpdateClImage.new(product, nil, image).call
-    end
-  end
-
   def form_attributes
-    form.attributes.except(:id, :public_id_cache, :images)
+    attrs = form.attributes.except(:id)
+    attrs = attrs.except(:main_photo) if form.main_photo.blank?
+    attrs = attrs.except(:photos) if form.photos.blank?
+    attrs
   end
 
 end

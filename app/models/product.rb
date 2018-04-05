@@ -51,7 +51,8 @@ class Product < ApplicationRecord
   enum kind: [:product, :monthly_payment, :adhesion, :promotion, :renovation, :upgrade]
   enum paid_by: [:paid_by_user, :paid_by_company]
 
-  has_many :cloudinary_images, as: :imageable
+  has_attachment :main_photo
+  has_attachments :photos
   belongs_to :category, optional: true
   belongs_to :career, optional: true
   belongs_to :upgrade_from_career, class_name: 'Career', optional: true
@@ -61,9 +62,9 @@ class Product < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-  def thumbnail
-    return CloudinaryImage.new.public_id if cloudinary_images.blank?
-    cloudinary_images.first.public_id.thumbnail
+  def main_photo_id
+    return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?
+    main_photo.public_id
   end
 
   def image

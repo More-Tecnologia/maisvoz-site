@@ -25,6 +25,12 @@
 //= require zipcode-fill
 //= require rails.validations
 //= require rails.validations.simple_form
+//= require theme/fastclick
+//= require theme/jquery.slimscroll
+//= require theme/jquery.blockUI
+//= require theme/waves
+//= require theme/wow.min
+//= require theme/smoothproducts
 //= require theme/jquery.core
 //= require theme/wow.min
 //= require theme/jquery.app

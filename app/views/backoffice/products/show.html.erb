@@ -8,7 +8,7 @@
 <div class="row">
 
    <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
-     <div class="product-detail">
+     <div class="product-detail" style="display: flex;">
        <div class="sp-loading">
           <%= image_tag 'sp-loading.gif' %>
           <br>CARREGANDO
@@ -18,9 +18,14 @@
 
            <div class="carousel">
               <div class="carousel-inner" role="listbox">
-                <% @product.cloudinary_images.each do |cl| %>
+                <div class="item">
+                  <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+                    <%= cl_image_tag(@product.main_photo_id) %>
+                  </a>
+                </div>
+                <% @product.photos.each do |cl| %>
                   <div class="item">
-                    <a href="<%= cl.public_id %>">
+                    <a href="<%= cloudinary_url(cl.path) %>">
                       <%= cl_image_tag(cl.public_id) %>
                     </a>
                   </div>
@@ -76,14 +81,6 @@
                       <td><%= Product.human_attribute_name('length') %></td>
                       <td><%= @product.length %> cm</td>
                     </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('binary_score') %></td>
-                      <td><%= @product.binary_score %></td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('advance_score') %></td>
-                      <td><%= @product.advance_score %></td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -105,14 +102,14 @@
 </div>
 <!-- end row -->
 
-             <div class="row m-t-30">
-             </div>
+<div class="row m-t-30">
+</div>
 
 
 
 <script type="text/javascript">
     // wait for images to load
-    $(window).load(function() {
-        $('.sp-wrap').smoothproducts();
-    });
+    window.onload = function() {
+      $('.sp-wrap').smoothproducts();
+    };
 </script>

@@ -1,5 +1,5 @@
 module Backoffice
-  class BinaryTreeController < BackofficeController
+  class BinaryTreeController < EntrepreneurController
 
     before_action :can_access_node?, only: :show
 

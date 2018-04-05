@@ -1,5 +1,5 @@
 module Backoffice
-  class WithdrawalsController < BackofficeController
+  class WithdrawalsController < EntrepreneurController
 
     before_action :should_be_verified
 

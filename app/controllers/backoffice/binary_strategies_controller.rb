@@ -1,5 +1,5 @@
 module Backoffice
-  class BinaryStrategiesController < BackofficeController
+  class BinaryStrategiesController < EntrepreneurController
 
     def index
       render(:index, locals: { form: form })

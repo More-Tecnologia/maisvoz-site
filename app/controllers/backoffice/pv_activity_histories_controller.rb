@@ -1,5 +1,5 @@
 module Backoffice
-  class PvActivityHistoriesController < BackofficeController
+  class PvActivityHistoriesController < EntrepreneurController
 
     def index
       render(:index, locals: { pv_activity_histories: pv_activity_histories })

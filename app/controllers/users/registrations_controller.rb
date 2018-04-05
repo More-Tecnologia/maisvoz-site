@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
-  layout 'admin', only: [:edit, :update]
+  layout :define_layout, only: [:edit, :update]
 
   # GET /resource/sign_up
   def new
@@ -117,7 +117,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(resource)
-    backoffice_dashboard_index_path
+    root_path
+  end
+
+  private def define_layout
+    current_user.consumidor? ? 'consumer' : 'admin'
   end
 
   # The path used after sign up for inactive accounts.

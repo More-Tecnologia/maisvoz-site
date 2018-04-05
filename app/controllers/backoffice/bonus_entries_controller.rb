@@ -1,5 +1,5 @@
 module Backoffice
-  class BonusEntriesController < BackofficeController
+  class BonusEntriesController < EntrepreneurController
 
     def index
       render(:index, locals: { bonus_entries: bonus_entries })

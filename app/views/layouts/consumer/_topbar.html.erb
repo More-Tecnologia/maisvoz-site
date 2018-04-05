@@ -20,36 +20,25 @@
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="">
+        <ul class="nav navbar-nav navbar-left pull-left">
+          <li><a href="">Seja bem vindo, <%= current_user.name %></a></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right pull-right">
           <li>
             <% if user_masquerade? %>
               <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
             <% end %>
           </li>
-          <% if current_user.pj? %>
-            <li>
-              <%= link_to backoffice_financial_entries_path do %>
-              <span class="text-success">
-                <%= number_to_currency current_user.balance %>
-              </span>
-              <% end %>
-            </li>
-          <% else %>
-            <li>
-              <%= link_to backoffice_financial_entries_path do %>
-              <span class="text-success">
-                <%= number_to_currency current_user.available_balance %>
-              </span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to backoffice_financial_entries_path do %>
-              <span class="text-warning">
-                <%= number_to_currency current_user.blocked_balance %>
-              </span>
-              <% end %>
-            </li>
-          <% end %>
+          <li>
+            <%= link_to shop_index_path do %>
+            <i class="fa fa-home"></i> <%= t('shop') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to backoffice_orders_path do %>
+            <i class="fa fa-bars"></i> <%= t('defaults.orders') %>
+            <% end %>
+          </li>
           <li class="hidden-xs">
             <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
               <i class="icon-size-fullscreen"></i>
@@ -85,18 +74,6 @@
                 <%= link_to edit_user_registration_path do %>
                   <i class="fa fa-user m-r-10 text-custom"></i>
                   <%= t('views.backoffice.topbar.edit_account') %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to edit_backoffice_bank_account_path do %>
-                  <i class="fa fa-university m-r-10 text-custom"></i>
-                  <%= t('views.backoffice.topbar.edit_bank_account') %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to edit_backoffice_documents_path do %>
-                  <i class="fa fa-cog m-r-10 text-custom"></i>
-                  <%= t('views.backoffice.topbar.documents') %>
                 <% end %>
               </li>
               <li class="divider"></li>

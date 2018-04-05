@@ -1,5 +1,5 @@
 module Backoffice
-  class AccumulatedPvaController < BackofficeController
+  class AccumulatedPvaController < EntrepreneurController
 
     def index
       render(:index, locals: { sponsored: sponsored, user: user })

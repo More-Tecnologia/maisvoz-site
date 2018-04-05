@@ -1,5 +1,5 @@
 module Backoffice
-  class DownloadsController < BackofficeController
+  class DownloadsController < EntrepreneurController
 
     def index
     end

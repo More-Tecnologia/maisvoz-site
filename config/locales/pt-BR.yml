@@ -298,6 +298,7 @@ pt-BR:
     orders: Pedidos
     post: Enviar
     processing: Processando
+    pending_payment: Pagamento Pendente
     products: Produtos
     pv_activity_history: PV Atividade
     pv_history: Histórico PV's

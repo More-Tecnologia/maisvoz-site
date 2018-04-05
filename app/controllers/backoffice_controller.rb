@@ -2,7 +2,7 @@ class BackofficeController < ApplicationController
 
   protect_from_forgery with: :exception
 
-  layout 'admin'
+  layout :define_layout
 
   before_action :authenticate_user!
 
@@ -14,6 +14,10 @@ class BackofficeController < ApplicationController
    else
      @current_order ||= Order.new(user: current_user)
    end
+  end
+
+  private def define_layout
+    current_user.consumidor? ? 'consumer' : 'admin'
   end
 
 end

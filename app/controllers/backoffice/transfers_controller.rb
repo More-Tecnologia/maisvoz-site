@@ -1,5 +1,5 @@
 module Backoffice
-  class TransfersController < BackofficeController
+  class TransfersController < EntrepreneurController
 
     def show
       case step_path

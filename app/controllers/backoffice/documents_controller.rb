@@ -1,5 +1,5 @@
 module Backoffice
-  class DocumentsController < BackofficeController
+  class DocumentsController < EntrepreneurController
 
     def edit
     end

@@ -1,5 +1,5 @@
 module Backoffice
-  class UnilevelController < BackofficeController
+  class UnilevelController < EntrepreneurController
 
     def index
       render(:index, locals: { unilevel: unilevel, max_generation: max_generation })

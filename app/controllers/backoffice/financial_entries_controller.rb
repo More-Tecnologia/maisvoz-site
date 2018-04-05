@@ -1,5 +1,5 @@
 module Backoffice
-  class FinancialEntriesController < BackofficeController
+  class FinancialEntriesController < EntrepreneurController
 
     def index
       render(:index, locals: { financial_entries: financial_entries })

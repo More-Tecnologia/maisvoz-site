@@ -16,22 +16,17 @@
             <thead class="cart-table__title">
               <tr>
                 <th></th>
-                <th></th>
                 <th><%= Product.human_attribute_name(:name) %></th>
                 <th><%= OrderItem.human_attribute_name(:quantity) %></th>
                 <th><%= OrderItem.human_attribute_name(:unit_price) %></th>
                 <th><%= OrderItem.human_attribute_name(:total) %></th>
+                <th></th>
               </tr>
             </thead>
             <tbody class="cart-table__body">
               <% current_order.order_items.each do |order_item| %>
                 <tr>
-                  <td>
-                    <%= link_to backoffice_order_item_path(order_item), method: :delete do %>
-                      <i class="icon-trash"></i>
-                    <% end %>
-                  </td>
-                  <td><%= cl_image_tag(order_item.product.thumbnail, class: 'thumb-sm') %></td>
+                  <td><%= cl_image_tag(order_item.product.main_photo_id, class: 'thumb-md') %></td>
                   <td><%= link_to order_item.name, backoffice_product_path(order_item.product) %></td>
                   <td>
                     <%= simple_form_for order_item, url: backoffice_order_item_path(order_item) do |f| %>
@@ -46,6 +41,11 @@
                   </td>
                   <td><%= number_to_currency order_item.unit_price %></td>
                   <td><%= number_to_currency order_item.total %></td>
+                  <td>
+                    <%= link_to backoffice_order_item_path(order_item), method: :delete do %>
+                      <i class="icon-trash"></i>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
               <% if current_order.order_items.empty? %>

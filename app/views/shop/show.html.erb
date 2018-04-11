@@ -64,8 +64,8 @@
                 <table class="table">
                   <tbody>
                     <tr>
-                      <td width="400">Sku</td>
-                      <td><%= product.sku %></td>
+                      <td width="400">Quantidade</td>
+                      <td><%= product.quantity %></td>
                     </tr>
                     <tr>
                       <td><%= Product.human_attribute_name('weight') %></td>
@@ -90,6 +90,10 @@
                     <tr>
                       <td><%= Product.human_attribute_name('advance_score') %></td>
                       <td><%= product.advance_score %></td>
+                    </tr>
+                    <tr>
+                      <td width="400">Sku</td>
+                      <td><%= product.sku %></td>
                     </tr>
                   </tbody>
                 </table>

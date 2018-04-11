@@ -62,12 +62,12 @@
                 <table class="table">
                   <tbody>
                     <tr>
-                      <td width="400">Sku</td>
-                      <td><%= @product.sku %></td>
+                      <td width="400">Quantidade</td>
+                      <td><%= @product.quantity %></td>
                     </tr>
                     <tr>
                       <td><%= Product.human_attribute_name('weight') %></td>
-                      <td><%= @product.weight %> grams</td>
+                      <td><%= @product.weight %> kg</td>
                     </tr>
                     <tr>
                       <td><%= Product.human_attribute_name('height') %></td>
@@ -80,6 +80,10 @@
                     <tr>
                       <td><%= Product.human_attribute_name('length') %></td>
                       <td><%= @product.length %> cm</td>
+                    </tr>
+                    <tr>
+                      <td width="400">Sku</td>
+                      <td><%= @product.sku %></td>
                     </tr>
                   </tbody>
                 </table>

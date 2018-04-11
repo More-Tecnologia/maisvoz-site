@@ -7,12 +7,12 @@
 #  description            :text
 #  short_description      :string
 #  sku                    :string(10)
-#  quantity               :integer
+#  quantity               :string
 #  low_stock_alert        :integer
 #  weight                 :decimal(10, 2)
-#  length                 :integer
-#  width                  :integer
-#  height                 :integer
+#  length                 :decimal(10, 2)
+#  width                  :decimal(10, 2)
+#  height                 :decimal(10, 2)
 #  price_cents            :integer
 #  binary_score           :integer
 #  advance_score          :integer

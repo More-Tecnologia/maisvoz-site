@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326123304) do
+ActiveRecord::Schema.define(version: 20180411170937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,12 +216,12 @@ ActiveRecord::Schema.define(version: 20180326123304) do
     t.text "description"
     t.string "short_description"
     t.string "sku", limit: 10
-    t.integer "quantity"
+    t.string "quantity"
     t.integer "low_stock_alert"
     t.decimal "weight", precision: 10, scale: 2
-    t.integer "length"
-    t.integer "width"
-    t.integer "height"
+    t.decimal "length", precision: 10, scale: 2
+    t.decimal "width", precision: 10, scale: 2
+    t.decimal "height", precision: 10, scale: 2
     t.bigint "price_cents"
     t.integer "binary_score"
     t.integer "advance_score"

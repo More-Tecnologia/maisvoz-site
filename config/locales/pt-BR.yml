@@ -297,6 +297,7 @@ pt-BR:
     order_placed: Pedido realizado
     orders: Pedidos
     post: Enviar
+    put: Atualizar
     processing: Processando
     pending_payment: Pagamento Pendente
     products: Produtos
@@ -449,20 +450,20 @@ pt-BR:
             no_data: No data
             title: Title
         products:
-          basic_info: Basic info
-          bonus: Bonus
-          dimensions: Dimensions
+          basic_info: Informações Básicas
+          bonus: Bônus
+          dimensions: Dimensões
           edit:
-            subtitle: Subtitle
-            title: Title
+            subtitle: Editar detalhes do produto
+            title: Editar
           index:
-            new_product: New product
-            no_data: No data
+            new_product: Novo Produto
+            no_data: Nenhum produto cadastrado
             subtitle: Subtitle
-            title: Title
+            title: Lista de Produtos
           new:
-            subtitle: Subtitle
-            title: Title
+            subtitle: Criar novo produto
+            title: Novo produto
       careers:
         edit:
           subtitle: Editar Carreira

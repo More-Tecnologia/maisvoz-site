@@ -25,6 +25,8 @@ class UpdateProduct
     attrs = form.attributes.except(:id)
     attrs = attrs.except(:main_photo) if form.main_photo.blank?
     attrs = attrs.except(:photos) if form.photos.blank?
+    attrs = attrs.except(:price)
+    attrs[:price_cents] = form.price.to_f * 1e2
     attrs
   end
 

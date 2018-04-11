@@ -9,7 +9,11 @@
   </head>
 
   <body class="<%= yield :body_class %>">
-    <%= render 'layouts/flash-messages' %>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 m-t-30">
+        <%= render 'layouts/flash-messages' %>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>

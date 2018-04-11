@@ -97,25 +97,15 @@
             </div>
             <div class="col-md-6">
               <h4><b><%= t('views.backoffice.products.show.description') %></b></h4>
-              <p class="text-muted"><%= description(product.description) %></p>
+              <p class="text-muted"><%= simple_format(product.description) %></p>
+              <% description(product.short_description || product.description) %>
             </div>
           </div>
        </div>
    </div>
 
-   <div class="col-sm-8">
-       <div class="product-right-info">
-
-       </div>
-   </div>
-
 </div>
 <!-- end row -->
-
-             <div class="row m-t-30">
-             </div>
-
-
 
 <script type="text/javascript">
     // wait for images to load

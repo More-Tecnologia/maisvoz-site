@@ -44,10 +44,10 @@
             <%= f.input :price do %>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                <%= f.input_field :price, class: "form-control", value: form.price %>
+                <%= f.input_field :price, class: "form-control", value: form.price.to_f %>
               </div>
             <% end %>
-            <%= f.input :description %>
+            <%= f.input :description, as: :text %>
             <%= f.input :short_description %>
             <%= f.input :sku %>
             <%= f.input :quantity %>

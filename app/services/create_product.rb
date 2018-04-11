@@ -22,7 +22,10 @@ class CreateProduct
   end
 
   def form_attributes
-    form.attributes
+    attrs = form.attributes
+    attrs = attrs.except(:price)
+    attrs[:price_cents] = form.price.to_f * 1e2
+    attrs
   end
 
 end

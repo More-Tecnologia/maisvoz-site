@@ -8,9 +8,9 @@ module LevelUp
       white_diamond: 350_000,
       blue_diamond: 650_000,
       black_diamond: 950_000,
-      chairman_club: 1_150_000,
-      chairman_club_two_star: 1_500_000,
-      chairman_club_three_star: 3_500_000
+      chairman: 1_150_000,
+      chairman_two_star: 1_500_000,
+      chairman_three_star: 3_500_000
     }.freeze
 
     def initialize(user)
@@ -38,11 +38,11 @@ module LevelUp
       elsif user.blue_diamond?
         advance_level(User.career_kinds[:black_diamond])
       elsif user.black_diamond?
-        advance_level(User.career_kinds[:chairman_club])
-      elsif user.chairman_club?
-        advance_level(User.career_kinds[:chairman_club_two_star])
-      elsif user.chairman_club_two_star?
-        advance_level(User.career_kinds[:chairman_club_three_star])
+        advance_level(User.career_kinds[:chairman])
+      elsif user.chairman?
+        advance_level(User.career_kinds[:chairman_two_star])
+      elsif user.chairman_two_star?
+        advance_level(User.career_kinds[:chairman_three_star])
       end
     end
 

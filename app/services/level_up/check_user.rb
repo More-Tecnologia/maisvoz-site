@@ -29,8 +29,8 @@ module LevelUp
         user.white_diamond? && sum_pva_limits(800_000, 6, 500_000) >= 6_800_000 ||
         user.blue_diamond? && sum_pva_limits(1_300_000, 8, 600_000) >= 12_800_000 ||
         user.black_diamond? && sum_pva_limits(1_500_000, 8, 800_000) >= 35_000_000 ||
-        user.chairman_club? && sum_pva_limits(2_000_000, 9, 1_000_000) >= 70_000_000 ||
-        user.chairman_club_two_star? && sum_pva_limits(5_000_000, 10, 1_000_000) >= 100_000_000
+        user.chairman? && sum_pva_limits(2_000_000, 9, 1_000_000) >= 70_000_000 ||
+        user.chairman_two_star? && sum_pva_limits(5_000_000, 10, 1_000_000) >= 100_000_000
     end
 
     def advance_user_career

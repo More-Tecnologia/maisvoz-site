@@ -11,9 +11,9 @@ class CalculateBinaryBonusLimit
     white_diamond: 7600,
     blue_diamond: 10_000,
     black_diamond: 20_000,
-    chairman_club: 30_000,
-    chairman_club_two_star: 35_000,
-    chairman_club_three_star: 40_000
+    chairman: 30_000,
+    chairman_two_star: 35_000,
+    chairman_three_star: 40_000
   }.freeze
 
   def initialize(user)

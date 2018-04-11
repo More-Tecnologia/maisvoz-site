@@ -16,9 +16,9 @@ class User
         white_diamond
         blue_diamond
         black_diamond
-        chairman_club
-        chairman_club_two_star
-        chairman_club_three_star
+        chairman
+        chairman_two_star
+        chairman_three_star
       ].freeze
 
       enum career_kind: {
@@ -33,9 +33,9 @@ class User
         white_diamond: 'white_diamond',
         blue_diamond: 'blue_diamond',
         black_diamond: 'black_diamond',
-        chairman_club: 'chairman_club',
-        chairman_club_two_star: 'chairman_club_two_star',
-        chairman_club_three_star: 'chairman_club_three_star'
+        chairman: 'chairman',
+        chairman_two_star: 'chairman_two_star',
+        chairman_three_star: 'chairman_three_star'
       }
 
       has_many :career_histories

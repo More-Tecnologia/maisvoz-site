@@ -84,8 +84,8 @@ module Bonification
       user.active? && (
         user.gold? || user.ruby? ||
         user.emerald? || user.diamond? || user.white_diamond? ||
-        user.blue_diamond? || user.black_diamond? || user.chairman_club? ||
-        user.chairman_club_two_star? || user.chairman_club_three_star?
+        user.blue_diamond? || user.black_diamond? || user.chairman? ||
+        user.chairman_two_star? || user.chairman_three_star?
       )
     end
 

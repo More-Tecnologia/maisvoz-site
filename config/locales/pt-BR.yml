@@ -147,17 +147,42 @@ pt-BR:
         title: PVA Acumulado
     admin:
       financial_entries:
+        index:
+          title: Relatório Financeiro
         filters:
           from_user: Nome de usuário
           type: Tipo de evento financeiro
           created_from: Criado a partir de
           created_until: Criado até
-
+      bonus_entries:
+        index:
+          title: Histórico de Bônus
+      orders:
+        index:
+          title: Relatório de Pedidos
+        filters:
+          user: Usuário
+          total: Total
+          status: Status
+          paid_from: Pago a partir de
+          paid_until: Pago até
+          id_in: ID na lista
       withdrawals:
+        index:
+          title: Gerenciar Saques
         filters:
           status: Status
           created_from: Criado a partir de
           created_until: Criado até
+      pv_activity_histories:
+        index:
+          title: Histórico de PVA
+      pv_histories:
+        index:
+          title: Histórico de PV
+      users:
+        index:
+          title: Gerenciar Usuários
     bank_accounts:
       edit:
         title: Conta Bancária
@@ -315,6 +340,8 @@ pt-BR:
     withdrawal_fee: Taxa de Saque
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
+    pv_activity_histories: Histórico de PVA
+    pv_histories: Histórico de PV
   errors:
     cant_access_binary_node: Não é possível acessar o nó binário
     messages:
@@ -459,7 +486,6 @@ pt-BR:
           index:
             new_product: Novo Produto
             no_data: Nenhum produto cadastrado
-            subtitle: Subtitle
             title: Lista de Produtos
           new:
             subtitle: Criar novo produto

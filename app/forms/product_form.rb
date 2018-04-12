@@ -36,7 +36,7 @@ class ProductForm < Form
 
   validates :name, :quantity, :price, :kind, :binary_score, :category_id, presence: true
 
-  validates :quantity, :low_stock_alert, :length, :width, :height, :binary_score,
+  validates :low_stock_alert, :length, :width, :height, :binary_score,
             :advance_score, :bonus_1, :bonus_2, :bonus_3, :bonus_4, :bonus_5, :bonus_6, :bonus_7,
             :bonus_8, :bonus_9,
             numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_blank: true }

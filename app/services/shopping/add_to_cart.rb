@@ -60,7 +60,7 @@ module Shopping
     end
 
     def update_order_pv_total
-      order.update(pv_total: order.total_score)
+      order.update!(pv_total: order.total_score)
     end
 
     def find_order_item

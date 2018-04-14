@@ -55,7 +55,7 @@ module Financial
     end
 
     def create_binary_node
-      return unless user.active? && user.binary_node.blank? && regular_product?
+      return unless user.binary_node.blank? && adhesion_product?
       Multilevel::CreateBinaryNode.new(user).call
     end
 

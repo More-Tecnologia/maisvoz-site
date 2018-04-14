@@ -30,6 +30,7 @@
                 <th>#</th>
                 <th><%= PvActivityHistory.human_attribute_name(:order) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:from) %></th>
+                <th><%= PvActivityHistory.human_attribute_name(:to) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:kind) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:amount) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:balance) %></th>
@@ -44,6 +45,7 @@
                     Fatura ID: <%= pv_activity_history.order_id %>
                   </td>
                   <td><%= pv_activity_history.order.user.username %></td>
+                  <td><%= pv_activity_history.user.username %></td>
                   <td><%= pv_activity_history.kind %></td>
                   <td><%= pv_activity_history.amount %></td>
                   <td><%= pv_activity_history.balance %></td>

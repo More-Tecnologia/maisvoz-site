@@ -47,7 +47,7 @@ module Bonification
     def reverse_bonus
       FinancialEntry.new.tap do |bonus|
         bonus.user        = user
-        bonus.description = "[Estorno] Bônus de atividade. Bônus de #{h.number_to_currency(bonus_amount)}. Motivo: Inatividade ou carreira não adequada"
+        bonus.description = "[Estorno] Bônus de atividade. Bônus de #{h.number_to_currency(bonus_amount)}. Motivo: Inatividade."
         bonus.kind        = FinancialEntry.kinds[:reverse_bonus]
         bonus.amount      = -bonus_amount
         bonus.balance     = user.balance
@@ -77,16 +77,11 @@ module Bonification
     end
 
     def total_pv_activity
-      user.pv_activity_histories.where('height < 6').sum(:amount)
+      user.pv_activity_histories.where('height <= 6').sum(:amount)
     end
 
     def can_receive_bonus?
-      user.active? && (
-        user.gold? || user.ruby? ||
-        user.emerald? || user.diamond? || user.white_diamond? ||
-        user.blue_diamond? || user.black_diamond? || user.chairman? ||
-        user.chairman_two_star? || user.chairman_three_star?
-      )
+      user.active?
     end
 
     def financial_entry_policy

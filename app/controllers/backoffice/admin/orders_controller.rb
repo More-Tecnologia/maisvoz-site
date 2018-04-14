@@ -14,14 +14,14 @@ module Backoffice
       end
 
       def approve
-        # command = Financial::PaymentCompensation.call(order)
-        #
-        # if command.success?
-        #   flash[:success] = I18n.t('defaults.approved_success')
-        # else
-        #   flash[:error] = command.errors[:order].join(',')
-        # end
-        # redirect_to backoffice_admin_orders_path
+        command = Financial::PaymentCompensation.call(order)
+
+        if command.success?
+          flash[:success] = I18n.t('defaults.approved_success')
+        else
+          flash[:error] = command.errors[:order].join(',')
+        end
+        redirect_to backoffice_admin_orders_path
       end
 
       private

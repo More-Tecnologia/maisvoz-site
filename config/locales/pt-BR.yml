@@ -145,6 +145,9 @@ pt-BR:
     accumulated_pva:
       index:
         title: PVA Acumulado
+    pv_generations_history:
+      index:
+        title: Histórico de PV por geração
     admin:
       financial_entries:
         index:
@@ -176,10 +179,10 @@ pt-BR:
           created_until: Criado até
       pv_activity_histories:
         index:
-          title: Histórico de PVA
+          title: Histórico de PVA/PVG
       pv_histories:
         index:
-          title: Histórico de PV
+          title: Histórico de PVG
       users:
         index:
           title: Gerenciar Usuários
@@ -340,8 +343,9 @@ pt-BR:
     withdrawal_fee: Taxa de Saque
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
-    pv_activity_histories: Histórico de PVA
-    pv_histories: Histórico de PV
+    pv_activity_histories: Histórico de PVA/PVG
+    pv_histories: Histórico de PVG
+    pv_generations_history: PV por geração
   errors:
     cant_access_binary_node: Não é possível acessar o nó binário
     messages:

@@ -35,7 +35,7 @@ module Fee
     end
 
     def amount
-      @amount ||= order.total * fee
+      @amount ||= order.total.to_d * fee
     end
 
     def fee

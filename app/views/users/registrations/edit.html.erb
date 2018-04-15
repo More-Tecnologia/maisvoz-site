@@ -23,6 +23,8 @@
                       <% end %>
                       <%= f.input :avatar, as: :file, label: false, input_html: { accept: 'image/*'} %>
 
+                      <h4><%= t('attributes.sponsor_username') %>: <%= current_user.sponsor.try(:username) %></h4>
+
                       <%= f.input :name, autofocus: true %>
                       <%= f.input :birthdate, start_year: Time.now.year - 90, end_year: Time.now.year - 8, as: :date, html5: true %>
                       <%= f.input :phone, input_html: { data: { mask: '(99) 9999-9999?9' } } %>

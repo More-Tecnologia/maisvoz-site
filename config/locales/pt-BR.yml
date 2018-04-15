@@ -330,7 +330,8 @@ pt-BR:
     pending_payment: Pagamento Pendente
     products: Produtos
     pv_activity_history: PV Atividade
-    pv_history: Histórico PV's
+    pv_history: Histórico PV
+    pv_histories: PV Binário
     pv_binary_history: PV Binário
     saving_error: Erro ao salvar
     saving_success: Sucesso ao salvar
@@ -344,7 +345,7 @@ pt-BR:
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
     pv_activity_histories: Histórico de PVA/PVG
-    pv_histories: Histórico de PVG
+    pv_admin_histories: PVs Binário
     pv_generations_history: PV por geração
   errors:
     cant_access_binary_node: Não é possível acessar o nó binário

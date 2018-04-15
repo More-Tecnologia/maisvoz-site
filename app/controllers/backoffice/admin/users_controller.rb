@@ -13,7 +13,7 @@ module Backoffice
       private
 
       def users
-        User.order(id: :desc).page(params[:page]).decorate
+        UsersQuery.new.call(params).decorate
       end
 
       def user

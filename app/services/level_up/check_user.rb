@@ -14,6 +14,8 @@ module LevelUp
     attr_reader :user
 
     def verify_career
+      return unless user.active?
+      return unless user.binary_qualified?
       return unless can_advance_career?
       advance_user_career
     end

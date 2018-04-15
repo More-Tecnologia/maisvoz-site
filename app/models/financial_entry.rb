@@ -33,4 +33,9 @@ class FinancialEntry < ApplicationRecord
     Arel.sql("DATE(#{table_name}.created_at)")
   end
 
+  def from_username
+    return 'futuremotors' if order.blank?
+    order.user.username
+  end
+
 end

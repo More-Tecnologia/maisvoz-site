@@ -49,7 +49,7 @@
               <% bonus_entries.each do |bonus_entry| %>
                 <tr>
                   <th><%= bonus_entry.hashid %></th>
-                  <td><%= bonus_entry.order.user.username if bonus_entry.order %></td>
+                  <td><%= bonus_entry.from_username %></td>
                   <td><%= bonus_entry.user.username %></td>
                   <td><%= t bonus_entry.kind %></td>
                   <td><%= number_to_currency bonus_entry.amount %></td>

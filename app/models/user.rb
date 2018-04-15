@@ -128,6 +128,10 @@ class User < ApplicationRecord
     available_balance_cents + blocked_balance_cents
   end
 
+  def unilevel_pva_count
+    sponsored.sum(:pva_total)
+  end
+
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)

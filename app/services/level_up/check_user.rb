@@ -19,9 +19,9 @@ module LevelUp
     end
 
     def can_advance_career?
-      user.executive? && user.pva_total >= 3_500 ||
-        user.bronze? && user.pva_total >= 10_500 ||
-        user.silver? && user.pva_total >= 35_000 ||
+      user.executive? && generations_pva_sum >= 3_500 ||
+        user.bronze? && generations_pva_sum >= 10_500 ||
+        user.silver? && generations_pva_sum >= 35_000 ||
         user.gold? && sum_pva_limit(25_000) >= 150_000 ||
         user.ruby? && sum_pva_limit(50_000) >= 350_000 ||
         user.emerald? && sum_pva_limit(150_000) >= 1_050_000 ||

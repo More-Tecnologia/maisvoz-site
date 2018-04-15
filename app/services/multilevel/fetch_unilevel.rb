@@ -5,11 +5,10 @@ module Multilevel
 
     def initialize(sponsor)
       @sponsor = sponsor
-      @root_binary_node = sponsor.binary_node
     end
 
     def call
-      if root_binary_node
+      if sponsor.present?
         return direct_sponsored
       else
         errors.add(:sponsor, 'no binary node')
@@ -19,13 +18,13 @@ module Multilevel
 
     private
 
-    attr_reader :sponsor, :root_binary_node
+    attr_reader :sponsor
 
     def direct_sponsored
-      BinaryNode.where(sponsored_by_id: root_binary_node.user_id).includes(:user).map do |binary_node|
+      User.where(sponsor: sponsor).map do |user|
         {
-          sponsor: binary_node.user.username,
-          generations: generations(binary_node.user_id).flatten
+          sponsor: user.username,
+          generations: generations(user.id).flatten
         }
       end
     end
@@ -33,10 +32,10 @@ module Multilevel
     def generations(ids)
       return [] if ids.blank?
 
-      children = BinaryNode.where(sponsored_by_id: ids).pluck(:user_id)
+      children = User.where(sponsor_id: ids).pluck(:id)
       sponsors = User.where(sponsor_id: ids).pluck(:username)
 
-      return [] if children.size == 0
+      return [] if children.size.zero?
 
       [
         {

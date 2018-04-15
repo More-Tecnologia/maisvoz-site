@@ -33,7 +33,7 @@
             <tbody>
               <% pv_activity_sum.each do |k, v| %>
                 <tr>
-                  <td><%= k %>˚</td>
+                  <td><%= k - 1 %>˚</td>
                   <td><%= number_with_delimiter v %></td>
                 </tr>
               <% end %>

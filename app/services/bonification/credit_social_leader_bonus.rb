@@ -75,7 +75,7 @@ module Bonification
     end
 
     def total_pv_activity
-      user.pv_activity_histories.where('height < 5').sum(:amount)
+      user.pv_activity_histories.where('height > 1 AND <= 6').sum(:amount)
     end
 
     def can_receive_bonus?

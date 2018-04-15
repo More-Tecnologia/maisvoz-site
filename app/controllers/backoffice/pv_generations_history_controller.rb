@@ -8,7 +8,7 @@ module Backoffice
     private
 
     def pv_activity_sum
-      PvActivityHistory.where(user: current_user).group('height').sum('amount')
+      PvActivityHistory.where(user: current_user).where('height > 1').group('height').sum('amount')
     end
 
   end

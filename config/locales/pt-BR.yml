@@ -79,6 +79,8 @@ pt-BR:
     agency_digit: Dígito da Agência
     balance: Saldo
     unit_price: Preço Unitário
+    role: Tipo
+    career_kind: Carreira
   backoffice:
     orders:
       show:

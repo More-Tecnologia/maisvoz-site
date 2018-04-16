@@ -72,8 +72,7 @@ module LevelUp
 
     def origin_qualification_line?(min_limit)
       user.sponsored.where(binary_position: user.binary_position)
-        .where('pva_total >= ?', min_limit)
-        .where(binary_qualified: true).any?
+        .where('pva_total >= ?', min_limit).any?
     end
 
   end

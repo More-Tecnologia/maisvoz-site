@@ -43,7 +43,7 @@ class BonusQuery
   end
 
   def convert_date(str)
-    DateTime.strptime(str, '%m/%d/%Y')
+    DateTime.strptime(str, '%m/%d/%Y').in_time_zone(Time.zone)
   end
 
 end

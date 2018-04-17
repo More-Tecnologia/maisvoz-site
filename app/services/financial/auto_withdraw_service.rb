@@ -3,7 +3,7 @@ module Financial
 
     def initialize(user, ref_date)
       @user = user
-      @ref_date = DateTime.parse(ref_date)
+      @ref_date = Time.zone.parse(ref_date)
     end
 
     def call

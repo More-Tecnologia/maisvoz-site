@@ -18,6 +18,8 @@ module Moremmn
     config.i18n.available_locales = [:en, 'pt-BR', :es]
     config.i18n.enforce_available_locales = false
 
+    config.time_zone = 'Brasilia'
+
     config.action_controller.permit_all_parameters = true
 
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater

@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       resources :pv_activity_histories, only: [:index]
       resources :pv_histories, only: [:index]
       resources :accumulated_pva, only: [:index]
+      resources :career_histories, only: [:index]
 
       # Admin
       resources :users, only: [:index, :show]

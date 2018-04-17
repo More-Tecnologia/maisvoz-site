@@ -113,6 +113,7 @@ class User < ApplicationRecord
   has_many :withdrawals
   has_many :pv_histories
   has_many :pv_activity_histories
+  has_many :career_histories
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   belongs_to :sponsor, class_name: 'User', optional: true
 

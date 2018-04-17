@@ -1,0 +1,63 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title m-b-30"><%= t('.title') %></h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <%= form_tag backoffice_admin_career_histories_path, method: :get do %>
+          <div class="col-md-4 form-group">
+            <label for="">Username:</label>
+            <%= text_field_tag :username, params[:username], class: 'form-control' %>
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="">Carreira:</label>
+            <%= select_tag(:career, options_for_select(User::CAREERS.map {|k| [t(k), k]}, params[:career]), include_blank: 'Todos', :onchange => "this.form.submit();", class: 'form-control') %>
+          </div>
+          <div class="col-md-12 m-b-30">
+            <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <table class="table table-striped table-bordered toggle-circle m-b-0">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th><%= FinancialEntry.human_attribute_name(:username) %></th>
+                <th><%= FinancialEntry.human_attribute_name(:old_career) %></th>
+                <th><%= FinancialEntry.human_attribute_name(:new_career) %></th>
+                <th><%= FinancialEntry.human_attribute_name(:created_at) %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% career_histories.each do |hist| %>
+                <tr>
+                  <th><%= hist.id %></th>
+                  <th><%= hist.user.username %></th>
+                  <th><%= hist.old_career %></th>
+                  <th><%= hist.new_career %></th>
+                  <td><%= l hist.created_at, format: :short %></td>
+                </tr>
+              <% end %>
+              <% if career_histories.empty? %>
+                <tr>
+                  <td colspan="7" class="text-center"><%= t('.no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <%= paginate career_histories %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

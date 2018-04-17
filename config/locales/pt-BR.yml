@@ -81,6 +81,8 @@ pt-BR:
     unit_price: Preço Unitário
     role: Tipo
     career_kind: Carreira
+    old_career: Carreira Antiga
+    new_career: Nova Carreira
   backoffice:
     orders:
       show:
@@ -151,6 +153,9 @@ pt-BR:
       index:
         title: Histórico de PV por geração
     admin:
+      career_histories:
+        index:
+          title: Histórico de Carreiras
       financial_entries:
         index:
           title: Relatório Financeiro
@@ -349,6 +354,7 @@ pt-BR:
     pv_activity_histories: Histórico de PVA/PVG
     pv_admin_histories: PVs Binário
     pv_generations_history: PV por geração
+    career_histories: Histórico de Carreiras
   errors:
     cant_access_binary_node: Não é possível acessar o nó binário
     messages:

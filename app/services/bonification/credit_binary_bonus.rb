@@ -22,7 +22,7 @@ module Bonification
           reverse_binary_bonus("Limite mensal atingido", binary_bonus)
           debit_pv_from_both_legs
         elsif gross_bonus + bonus_received_this_week > weekly_limit
-          reverse_binary_bonus("Limite semanal de #{h.number_to_currency weekly_limit} atingido para a carreira #{I18n.t(user.career_kind)}", gross_bonus)
+          reverse_binary_bonus("Limite semanal de #{h.number_to_currency weekly_limit} atingido para a carreira #{user.career_kind.upcase}", gross_bonus)
           debit_pv_from_both_legs
         end
       end
@@ -62,7 +62,7 @@ module Bonification
 
       FinancialEntry.new.tap do |entry|
         entry.user        = user
-        entry.description = "[Estorno] Bônus binário de #{h.number_to_currency amount}. Motivo: Limite semanal de #{h.number_to_currency weekly_limit} atingido para a carreira #{I18n.t(user.career_kind)}"
+        entry.description = "[Estorno] Bônus binário de #{h.number_to_currency amount}. Motivo: Limite semanal de #{h.number_to_currency weekly_limit} atingido para a carreira #{user.career_kind.upcase}"
         entry.amount      = -amount
         entry.balance     = (user.balance + gross_bonus) - amount
         entry.kind        = FinancialEntry.kinds[:reverse_binary_bonus]

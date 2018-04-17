@@ -27,8 +27,8 @@ class BonusQuery
   end
 
   def filter_by_created_at(scoped, gteq, lteq)
-    scoped = scoped.where('created_at >= ?', gteq) if gteq.present?
-    scoped = scoped.where('created_at <= ?', lteq) if lteq.present?
+    scoped = scoped.where('created_at >= ?', convert_date(gteq).beginning_of_day) if gteq.present?
+    scoped = scoped.where('created_at <= ?', convert_date(lteq).end_of_day) if lteq.present?
     scoped
   end
 
@@ -41,4 +41,9 @@ class BonusQuery
     sort_direction ||= :desc
     scoped.order(sort_type => sort_direction)
   end
+
+  def convert_date(str)
+    DateTime.strptime(str, '%m/%d/%Y')
+  end
+
 end

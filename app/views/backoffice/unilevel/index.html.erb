@@ -28,9 +28,19 @@
                 </tr>
                 <tr id="accordion_<%= i %>" class="collapse warning">
                   <td></td>
-                  <% unilevel.each do |level| %>
-                    <td><%= level[:generations][i].present? ? level[:generations][i][:sponsors].join(', ') : '-' %></td>
-                  <% end %>
+                  <td>
+                    <table class="table">
+                      <% unilevel.each do |level| %>
+                        <% level[:generations][i].present? && level[:generations][i][:sponsors].each do |s| %>
+                          <tr>
+                            <td><%= s[0] %></td>
+                            <td><%= s[1] ? t('active') : t('inactive') %></td>
+                            <td><%= s[2] && s[2].upcase %></td>
+                          </tr>
+                        <% end %>
+                      <% end %>
+                    </table>
+                  </td>
                 </tr>
               <% end %>
             </table>

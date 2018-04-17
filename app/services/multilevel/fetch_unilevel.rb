@@ -33,7 +33,7 @@ module Multilevel
       return [] if ids.blank?
 
       children = User.where(sponsor_id: ids).pluck(:id)
-      sponsors = User.where(sponsor_id: ids).pluck(:username)
+      sponsors = User.where(sponsor_id: ids).pluck(:username, :active, :career_kind)
 
       return [] if children.size.zero?
 

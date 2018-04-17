@@ -25,9 +25,9 @@
           <tr class="text-success">
             <td><strong><%= user.username %></strong></td>
             <td><%= user.qualification %></td>
-            <td><%= t user.binary_position %></td>
+            <td><%= user.pretty_binary_position %></td>
             <td><%= t user.role %></td>
-            <td><%= t user.career_kind %></td>
+            <td><%= user.pretty_career %></td>
             <td><%= number_with_delimiter user.pva_total %></td>
           </tr>
           <% sponsored.each do |user| %>
@@ -35,9 +35,9 @@
             <tr>
               <td><strong><%= user.username %></strong></td>
               <td><%= user.qualification %></td>
-              <td><%= t user.binary_position %></td>
+              <td><%= user.pretty_binary_position %></td>
               <td><%= t user.role %></td>
-              <td><%= t user.career_kind if user.career_kind %></td>
+              <td><%= user.pretty_career %></td>
               <td><%= number_with_delimiter user.pva_total %></td>
             </tr>
           <% end %>

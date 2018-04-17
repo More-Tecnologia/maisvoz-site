@@ -47,8 +47,8 @@
                   <td><%= pv_activity_history.order.user.username %></td>
                   <td><%= pv_activity_history.user.username %></td>
                   <td><%= pv_activity_history.kind %></td>
-                  <td><%= pv_activity_history.amount %></td>
-                  <td><%= pv_activity_history.balance %></td>
+                  <td><%= number_with_delimiter pv_activity_history.amount %></td>
+                  <td><%= number_with_delimiter pv_activity_history.balance %></td>
                   <td><%= l(pv_activity_history.created_at, format: :short) %></td>
                 </tr>
               <% end %>

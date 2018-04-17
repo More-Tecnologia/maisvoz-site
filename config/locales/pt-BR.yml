@@ -153,6 +153,9 @@ pt-BR:
       index:
         title: Histórico de PV por geração
     admin:
+      accumulated_pva:
+        index:
+          title: PVs Avanço de Título
       career_histories:
         index:
           title: Histórico de Carreiras
@@ -351,10 +354,12 @@ pt-BR:
     withdrawal_fee: Taxa de Saque
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
+    admin_accumulated_pva: PVs Avanço de Título
     pv_activity_histories: Histórico de PVA/PVG
     pv_admin_histories: PVs Binário
     pv_generations_history: PV por geração
     career_histories: Histórico de Carreiras
+    documents_validation: Aprovação de documentos
   errors:
     cant_access_binary_node: Não é possível acessar o nó binário
     messages:
@@ -606,3 +611,4 @@ pt-BR:
   signup: Cadastrar
   login: Login
   no_data: Nenhuma entrada
+  all: Todos

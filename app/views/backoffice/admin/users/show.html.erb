@@ -2,16 +2,16 @@
   <div class="col-md-4 col-lg-4">
       <div class="profile-detail card-box">
           <div>
-              <%= cl_image_tag(user.avatar, class: 'img-circle') %>
+              <%= user.avatar_image_tag %>
 
               <ul class="list-inline status-list m-t-20">
                   <li>
-                      <h3 class="text-primary m-b-5"><%= user.left_pv %></h3>
+                      <h3 class="text-primary m-b-5"><%= number_with_delimiter user.left_pv %></h3>
                       <p class="text-muted"><%= t('.left_pv') %></p>
                   </li>
 
                   <li>
-                      <h3 class="text-success m-b-5"><%= user.right_pv %></h3>
+                      <h3 class="text-success m-b-5"><%= number_with_delimiter user.right_pv %></h3>
                       <p class="text-muted"><%= t('.right_pv') %></p>
                   </li>
               </ul>

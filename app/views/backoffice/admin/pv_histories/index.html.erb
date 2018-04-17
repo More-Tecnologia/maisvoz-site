@@ -54,8 +54,8 @@
                       <%= t('.binary_bonus_debit') %>
                     <% end %>
                   </td>
-                  <td><%= pv_history.amount %></td>
-                  <td><%= pv_history.balance %></td>
+                  <td><%= number_with_delimiter pv_history.amount %></td>
+                  <td><%= number_with_delimiter pv_history.balance %></td>
                   <td><%= l(pv_history.created_at, format: :short) %></td>
                 </tr>
               <% end %>

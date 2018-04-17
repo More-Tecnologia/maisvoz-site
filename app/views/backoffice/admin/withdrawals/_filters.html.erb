@@ -13,7 +13,7 @@
           <div class="row">
             <div class="col-md-4">
               <%= f.label t('.status') %>
-              <%= f.select :status_eq, Withdrawal.statuses.map { |k, v| [t(k), v] }, { include_blank: true }, { class: 'form-control input-sm' } %>
+              <%= f.select :status_eq, Withdrawal.statuses.map { |k, v| [t(k), v] }, { include_blank: t('all') }, { class: 'form-control input-sm' } %>
             </div>
             <div class="col-md-4">
               <%= f.label t('.created_from') %>

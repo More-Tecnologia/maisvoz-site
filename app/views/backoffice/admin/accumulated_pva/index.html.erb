@@ -8,26 +8,28 @@
 <% total_pva = 0 %>
 
 <div class="row">
-  <%= form_tag backoffice_admin_accumulated_pva_index_path, method: :get do %>
-    <div class="col-md-4 form-group">
-      <label for="">Username:</label>
-      <%= text_field_tag :username, params[:username], class: 'form-control' %>
-    </div>
-    <div class="col-md-12 m-b-30">
-      <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
-</div>
-
-<div class="row">
   <div class="col-sm-12">
     <div class="card-box">
+      <div class="row">
+        <%= form_tag backoffice_admin_accumulated_pva_index_path, method: :get do %>
+        <div class="col-md-4 form-group">
+          <label for="">Username:</label>
+          <%= text_field_tag :username, params[:username], class: 'form-control' %>
+        </div>
+        <div class="col-md-12 m-b-30">
+          <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
+        </div>
+        <% end %>
+      </div>
+
       <table class="table table-bordered">
         <thead>
           <tr>
             <th><%= t('attributes.username') %></th>
             <th><%= t('attributes.binary_qualified') %></th>
             <th><%= t('attributes.binary_position') %></th>
+            <th><%= t('attributes.role') %></th>
+            <th><%= t('attributes.career_kind') %></th>
             <th><%= t('attributes.pva_total') %></th>
           </tr>
         </thead>
@@ -35,7 +37,9 @@
           <tr class="text-success">
             <td><strong><%= user.username %></strong></td>
             <td><%= user.qualification %></td>
-            <td><%= t user.binary_position %></td>
+            <td><%= user.pretty_binary_position %></td>
+            <td><%= t user.role %></td>
+            <td><%= user.pretty_career %></td>
             <td><%= number_with_delimiter user.pva_total %></td>
           </tr>
           <% sponsored.each do |user| %>
@@ -43,13 +47,15 @@
             <tr>
               <td><strong><%= user.username %></strong></td>
               <td><%= user.qualification %></td>
-              <td><%= t user.binary_position %></td>
+              <td><%= user.pretty_binary_position %></td>
+              <td><%= t user.role %></td>
+              <td><%= user.pretty_career %></td>
               <td><%= number_with_delimiter user.pva_total %></td>
             </tr>
           <% end %>
         </tbody>
         <tr>
-          <td colspan="3"><%= t('attributes.pva_total') %>:</td>
+          <td colspan="5"><%= t('attributes.pva_total') %>:</td>
           <td><%= number_with_delimiter total_pva %></td>
         </tr>
       </table>

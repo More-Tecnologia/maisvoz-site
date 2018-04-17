@@ -16,7 +16,7 @@
           </div>
           <div class="col-md-4 form-group">
             <label for="">Carreira:</label>
-            <%= select_tag(:career, options_for_select(User::CAREERS.map {|k| [t(k), k]}, params[:career]), include_blank: 'Todos', :onchange => "this.form.submit();", class: 'form-control') %>
+            <%= select_tag(:career, options_for_select(User::CAREERS.map {|k| [t(k), k]}, params[:career]), include_blank: t('all'), :onchange => "this.form.submit();", class: 'form-control') %>
           </div>
           <div class="col-md-12 m-b-30">
             <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>

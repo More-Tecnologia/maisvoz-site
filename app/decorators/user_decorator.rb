@@ -43,7 +43,7 @@ class UserDecorator < ApplicationDecorator
 
   def career_name
     return '-' if career_kind.blank?
-    @career_name ||= career_kind
+    @career_name ||= career_kind.upcase
   end
 
   def pretty_address
@@ -64,8 +64,13 @@ class UserDecorator < ApplicationDecorator
   end
 
   def pretty_career
-    return unless career_kind
+    return '-' unless career_kind
     h.t(career_kind)
+  end
+
+  def pretty_binary_position
+    return '-' unless binary_position
+    h.t(binary_position)
   end
 
   def avatar_image_tag

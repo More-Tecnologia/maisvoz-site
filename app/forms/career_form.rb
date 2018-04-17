@@ -1,6 +1,5 @@
 class CareerForm < Form
 
-  attribute :public_id
   attribute :name
   attribute :qualifying_score
   attribute :bonus

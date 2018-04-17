@@ -67,9 +67,4 @@ class Product < ApplicationRecord
     main_photo.public_id
   end
 
-  def image
-    return CloudinaryImage.new.public_id if cloudinary_images.blank?
-    cloudinary_images.first.public_id
-  end
-
 end

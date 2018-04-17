@@ -1,6 +1,4 @@
 <%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
-  <%= career && cl_image_tag(career.cloudinary_image.try(:public_id), class: 'thumb-lg') %>
-  <%= f.input :public_id, as: :file %>
 
   <%= f.input :name %>
   <%= f.input :qualifying_score %>

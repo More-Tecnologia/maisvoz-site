@@ -8,7 +8,6 @@ class CreateCareer
     return false unless form.valid?
     ActiveRecord::Base.transaction do
       create_career
-      create_cloudinary_image
     end
     true
   end
@@ -22,12 +21,8 @@ class CreateCareer
     career.save!
   end
 
-  def create_cloudinary_image
-    CreateOrUpdateClImage.new(career, career.cloudinary_image, form.public_id).call
-  end
-
   def form_attributes
-    form.attributes.except(:public_id)
+    form.attributes
   end
 
 end

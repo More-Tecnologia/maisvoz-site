@@ -18,14 +18,7 @@ class Career < ApplicationRecord
 
   enum kind: [:qualification, :adhesion]
 
-  has_one :cloudinary_image, as: :imageable
-
   has_many :products
   has_many :binary_nodes
-
-  def thumbnail
-    return CloudinaryImage.new.public_id unless cloudinary_image.present?
-    cloudinary_image.public_id.thumbnail
-  end
 
 end

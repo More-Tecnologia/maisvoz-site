@@ -9,7 +9,6 @@ class UpdateCareer
     return false unless form.valid?
     ActiveRecord::Base.transaction do
       update_career
-      cl_update
     end
     true
   end
@@ -22,12 +21,8 @@ class UpdateCareer
     career.update!(form_attributes)
   end
 
-  def cl_update
-    CreateOrUpdateClImage.new(career, career.cloudinary_image, form.public_id).call
-  end
-
   def form_attributes
-    form.attributes.except(:public_id)
+    form.attributes
   end
 
 end

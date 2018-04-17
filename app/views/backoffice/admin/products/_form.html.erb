@@ -55,6 +55,7 @@
         </div>
         <div class="col-md-6">
           <div class="p-20">
+            <%= f.input :sap_code %>
             <%= f.input :low_stock_alert %>
             <%= f.input :category_id, collection: Category.active %>
             <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>

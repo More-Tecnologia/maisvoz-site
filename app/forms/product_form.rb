@@ -7,6 +7,7 @@ class ProductForm < Form
   attribute :sku
   attribute :quantity
   attribute :kind
+  attribute :sap_code
   attribute :low_stock_alert
   attribute :weight
   attribute :length

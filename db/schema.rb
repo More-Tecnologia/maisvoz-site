@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417124355) do
+ActiveRecord::Schema.define(version: 20180417205451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -235,8 +235,10 @@ ActiveRecord::Schema.define(version: 20180417124355) do
     t.integer "kind"
     t.bigint "upgrade_from_career_id"
     t.bigint "upgrade_to_career_id"
+    t.string "sap_code"
     t.index ["career_id"], name: "index_products_on_career_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["sap_code"], name: "index_products_on_sap_code", unique: true
     t.index ["upgrade_from_career_id"], name: "index_products_on_upgrade_from_career_id"
     t.index ["upgrade_to_career_id"], name: "index_products_on_upgrade_to_career_id"
   end

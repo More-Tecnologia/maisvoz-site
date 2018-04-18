@@ -18,7 +18,7 @@ module Multilevel
 
     def update_user_career
       return unless user.affiliate? && qualified?
-      ActiveRecord::Base.transacton do
+      ActiveRecord::Base.transaction do
         create_career_history
         user.update_column(:career_kind, User::EXECUTIVE)
       end
@@ -28,7 +28,7 @@ module Multilevel
       CareerHistory.new.tap do |log|
         log.user       = user
         log.old_career = user.career_kind
-        log.new_career = USER::EXECUTIVE
+        log.new_career = User::EXECUTIVE
         log.save!
       end
     end

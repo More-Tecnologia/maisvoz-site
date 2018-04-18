@@ -91,7 +91,7 @@ module Financial
       user.affiliate!
       CareerHistory.new.tap do |log|
         log.user       = user
-        log.new_career = USER::AFFILIATE
+        log.new_career = User::AFFILIATE
         log.save!
       end
     end

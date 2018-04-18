@@ -62,6 +62,7 @@
 #  bank_account            :string
 #  bank_agency             :string
 #  bank_code               :string
+#  address_ibge            :string
 #
 # Indexes
 #

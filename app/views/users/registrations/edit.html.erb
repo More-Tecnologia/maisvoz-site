@@ -35,6 +35,8 @@
                       <h4><%= t('.address') %></h4>
                       <hr>
 
+                      <%= f.input :zipcode, input_html: { data: { zipcode_input: true }, class: 'input-zipcode' } %>
+                      <%= f.input :address_ibge, as: :hidden %>
                       <%= f.input :address %>
                       <%= f.input :address_2 %>
                       <%= f.input :country, only: ['BR'] %>

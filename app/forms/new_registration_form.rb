@@ -12,6 +12,7 @@ class NewRegistrationForm < Form
   attribute :document_ie
   attribute :document_company_name
   attribute :document_fantasy_name
+  attribute :address_ibge
   attribute :address
   attribute :address_2
   attribute :address_number
@@ -29,7 +30,7 @@ class NewRegistrationForm < Form
   attribute :accept_terms, Boolean
 
   validates :sponsor_username, :username, :name, :phone, :email, :password,
-            :password_confirmation, :zipcode, :district, :city, :state,
+            :password_confirmation, :zipcode, :address_ibge, :district, :city, :state,
             :gender, :marital_status, :document_cpf, presence: true
   validates :email, email: true
 

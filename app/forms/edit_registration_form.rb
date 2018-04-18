@@ -7,6 +7,8 @@ class EditRegistrationForm < Form
   attribute :skype
   attribute :email
   attribute :document_cpf
+  attribute :zipcode
+  attribute :address_ibge
   attribute :address
   attribute :address_2
   attribute :country

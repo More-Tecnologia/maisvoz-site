@@ -37,6 +37,7 @@ module Backoffice
     end
 
     def withdraw_day?
+      return true
       Time.zone.today.day <= 21 && Time.zone.today.monday?
     end
 

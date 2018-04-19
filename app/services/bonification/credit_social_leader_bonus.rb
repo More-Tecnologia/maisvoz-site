@@ -29,7 +29,7 @@ module Bonification
     def credit_bonus
       FinancialEntry.new.tap do |bonus|
         bonus.user        = user
-        bonus.description = "Bônus social líder. Bônus de #{h.number_to_currency(bonus_amount)}"
+        bonus.description = "Bônus social líder. Bônus de #{h.number_to_currency(bonus_amount)} sobre #{h.number_with_delimiter(total_pv_activity)} PVA/PVG"
         bonus.kind        = FinancialEntry.kinds[:social_leader_bonus]
         bonus.amount      = bonus_amount
         bonus.balance     = user.balance + bonus_amount
@@ -75,7 +75,7 @@ module Bonification
     end
 
     def total_pv_activity
-      user.pv_activity_histories.where('height > 1 AND <= 6').sum(:amount)
+      @total_pv_activity ||= user.pv_activity_histories.where('height > 1 AND height <= 6').sum(:amount)
     end
 
     def can_receive_bonus?

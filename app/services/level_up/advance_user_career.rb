@@ -6,11 +6,11 @@ module LevelUp
       emerald: 50_000,
       diamond: 150_000,
       white_diamond: 350_000,
-      blue_diamond: 650_000,
-      black_diamond: 950_000,
-      chairman: 1_150_000,
-      chairman_two_star: 1_500_000,
-      chairman_three_star: 3_500_000
+      blue_diamond: 800_000,
+      black_diamond: 1_300_000,
+      chairman: 1_500_000,
+      chairman_two_star: 2_000_000,
+      chairman_three_star: 5_000_000
     }.freeze
 
     def initialize(user)

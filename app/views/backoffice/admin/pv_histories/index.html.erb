@@ -46,7 +46,7 @@
               <% pv_histories.each do |pv_history| %>
                 <tr>
                   <th><%= pv_history.id %></th>
-                  <td><%= pv_history.user.username %></td>
+                  <td><%= link_to_user pv_history.user %></td>
                   <td>
                     <% if pv_history.order.present? %>
                       Fatura ID: <%= pv_history.order_id %>

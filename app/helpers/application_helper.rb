@@ -24,4 +24,9 @@ module ApplicationHelper
     end
   end
 
+  def link_to_user(user)
+    return unless user
+    link_to(user.username, backoffice_admin_user_path(user))
+  end
+
 end

@@ -83,6 +83,11 @@ pt-BR:
     career_kind: Carreira
     old_career: Carreira Antiga
     new_career: Nova Carreira
+    available_balance: Saldo Disponível
+    blocked_balance: Saldo Bloqueado
+    left_pv: PV Esquerdo
+    right_pv: PV Direito
+    sponsor: Patrocinador
   backoffice:
     orders:
       show:
@@ -196,6 +201,8 @@ pt-BR:
       users:
         index:
           title: Gerenciar Usuários
+        show:
+          direct_users: Indicados Diretos
     bank_accounts:
       edit:
         title: Conta Bancária
@@ -597,7 +604,8 @@ pt-BR:
   bonus_chargeback:
   credit_by_admin: Crédito do Admin
   debit_by_admin: Débito do Admin
-  fee: Taxa de Adm.
+  fee: Taxa de Administração
+  withdrawal_fee: Taxa de Saque
   product_return: Retorno de Produto
   tax: Impostos
   transfer: Transferência

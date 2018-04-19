@@ -54,7 +54,7 @@
                 <tr>
                   <th><%= bonus_entry.id %></th>
                   <td><%= bonus_entry.from_username %></td>
-                  <td><%= bonus_entry.user.username %></td>
+                  <td><%= link_to_user(bonus_entry.user) %></td>
                   <td><%= t bonus_entry.kind %></td>
                   <td><%= number_to_currency bonus_entry.amount %></td>
                   <td><%= l bonus_entry.created_at, format: :short %></td>

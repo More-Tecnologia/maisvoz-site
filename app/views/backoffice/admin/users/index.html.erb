@@ -43,7 +43,7 @@
               <% users.each do |user| %>
                 <tr>
                   <th><%= user.id %></th>
-                  <td><%= user.username %></td>
+                  <td><%= link_to_user user %></td>
                   <td><%= user.pretty_name %></td>
                   <td><%= user.main_document %></td>
                   <td><%= user.activity %></td>

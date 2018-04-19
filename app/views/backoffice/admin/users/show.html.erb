@@ -7,12 +7,12 @@
               <ul class="list-inline status-list m-t-20">
                   <li>
                       <h3 class="text-primary m-b-5"><%= number_with_delimiter user.left_pv %></h3>
-                      <p class="text-muted"><%= t('.left_pv') %></p>
+                      <p class="text-muted"><%= BinaryNode.human_attribute_name(:left_pv) %></p>
                   </li>
 
                   <li>
                       <h3 class="text-success m-b-5"><%= number_with_delimiter user.right_pv %></h3>
-                      <p class="text-muted"><%= t('.right_pv') %></p>
+                      <p class="text-muted"><%= BinaryNode.human_attribute_name(:right_pv) %></p>
                   </li>
               </ul>
 
@@ -22,22 +22,43 @@
 
               <hr>
 
-              <div class="text-left">
-                  <p class="text-muted font-13"><strong><%= t('.sponsor') %>:</strong> <span class="m-l-15"><%= link_to(user.sponsor.username, backoffice_admin_user_path(user.sponsor)) if user.sponsor.present? %></span></p>
+              <%= link_to 'Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-lg' %>
 
-                  <p class="text-muted font-13"><strong><%= t('.name') %>:</strong> <span class="m-l-15"><%= user.name %></span></p>
-
-                  <p class="text-muted font-13"><strong><%= t('.birthdate') %>:</strong> <span class="m-l-15"><%= user.long_birthdate %></span></p>
-
-                  <p class="text-muted font-13"><strong><%= t('.skype') %>:</strong> <span class="m-l-15"><%= user.skype %></span></p>
-
-                  <p class="text-muted font-13"><strong><%= t('.phone') %>:</strong><span class="m-l-15"><%= user.phone %></span></p>
-
-                  <p class="text-muted font-13"><strong><%= t('.document_cpf') %>:</strong> <span class="m-l-15"><%= user.document_cpf %></span></p>
-
-                  <p class="text-muted font-13"><strong><%= t('.email') %>:</strong> <span class="m-l-15"><%= user.email %></span></p>
-
-                  <p class="text-muted font-13"><strong><%= t('.address') %>:</strong> <span class="m-l-15"><%= user.pretty_address %></span></p>
+              <div class="text-left m-t-30">
+                <table>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:sponsor) %>:</strong></td>
+                    <td><%= link_to_user user.sponsor %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:name) %>:</strong></td>
+                    <td><%= user.name %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:birthdate) %>:</strong></td>
+                    <td><%= user.long_birthdate %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:skype) %>:</strong></td>
+                    <td><%= user.skype %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:phone) %>:</strong></td>
+                    <td><%= user.phone %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:document_cpf) %>:</strong></td>
+                    <td><%= user.document_cpf %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:email) %>:</strong></td>
+                    <td><%= user.email %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:address) %>:</strong></td>
+                    <td><%= user.pretty_address %></td>
+                  </tr>
+                </table>
 
               </div>
 
@@ -53,14 +74,14 @@
         <div class="widget-panel widget-style-2 bg-white">
           <i class="md md-attach-money text-success"></i>
           <h2 class="m-0 text-dark counter font-600"><span><%= user.available_balance %></span></h2>
-          <div class="text-muted m-t-5"><%= t('.available_balance') %></div>
+          <div class="text-muted m-t-5"><%= User.human_attribute_name(:available_balance) %></div>
         </div>
       </div>
       <div class="col-lg-6 col-sm-6">
         <div class="widget-panel widget-style-2 bg-white">
           <i class="md md-attach-money text-warning"></i>
           <h2 class="m-0 text-dark counter font-600"><span><%= user.blocked_balance %></span></h2>
-          <div class="text-muted m-t-5"><%= t('.blocked_balance') %></div>
+          <div class="text-muted m-t-5"><%= User.human_attribute_name(:blocked_balance) %></div>
         </div>
       </div>
     </div>

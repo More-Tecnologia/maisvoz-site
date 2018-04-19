@@ -30,7 +30,7 @@
                 <tr>
                   <th><%= financial_entry.id %></th>
                   <th><%= financial_entry.description %></th>
-                  <th><%= financial_entry.user.username %></th>
+                  <th><%= link_to_user financial_entry.user %></th>
                   <td><%= t financial_entry.kind %></td>
                   <td><%= number_to_currency financial_entry.amount %></td>
                   <td><%= l financial_entry.created_at, format: :short %></td>

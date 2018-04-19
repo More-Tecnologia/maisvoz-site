@@ -45,7 +45,7 @@
           <% sponsored.each do |user| %>
             <% total_pva += user.pva_total %>
             <tr>
-              <td><strong><%= user.username %></strong></td>
+              <td><strong><%= link_to_user user %></strong></td>
               <td><%= user.qualification %></td>
               <td><%= user.pretty_binary_position %></td>
               <td><%= t user.role %></td>

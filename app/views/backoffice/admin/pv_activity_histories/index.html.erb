@@ -44,7 +44,7 @@
                   <td>
                     Fatura ID: <%= pv_activity_history.order_id %>
                   </td>
-                  <td><%= link_to_user pv_activity_history.order.user %></td>
+                  <td><%= link_to_user pv_activity_history.order.user %> <%= pv_activity_history.order.user.career_kind && "(#{t pv_activity_history.order.user.career_kind})" %></td>
                   <td><%= link_to_user pv_activity_history.user %></td>
                   <td><%= pv_activity_history.kind %></td>
                   <td><%= number_with_delimiter pv_activity_history.amount %></td>

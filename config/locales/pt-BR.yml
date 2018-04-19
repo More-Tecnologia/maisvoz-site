@@ -88,6 +88,7 @@ pt-BR:
     left_pv: PV Esquerdo
     right_pv: PV Direito
     sponsor: Patrocinador
+    active: Ativo
   backoffice:
     orders:
       show:

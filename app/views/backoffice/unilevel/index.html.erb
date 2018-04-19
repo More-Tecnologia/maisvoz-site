@@ -30,12 +30,21 @@
                   <td></td>
                   <td>
                     <table class="table">
+                      <thead>
+                        <tr>
+                          <th><%= User.human_attribute_name(:sponsor) %></th>
+                          <th><%= User.human_attribute_name(:username) %></th>
+                          <th><%= User.human_attribute_name(:active) %></th>
+                          <th><%= User.human_attribute_name(:career_kind) %></th>
+                        </tr>
+                      </thead>
                       <% unilevel.each do |level| %>
                         <% level[:generations][i].present? && level[:generations][i][:sponsors].each do |s| %>
                           <tr>
                             <td><%= s[0] %></td>
-                            <td><%= s[1] ? t('active') : t('inactive') %></td>
-                            <td><%= s[2] && s[2].upcase %></td>
+                            <td><%= s[1] %></td>
+                            <td><%= s[2] ? t('active') : t('inactive') %></td>
+                            <td><%= s[3] && s[3].upcase %></td>
                           </tr>
                         <% end %>
                       <% end %>

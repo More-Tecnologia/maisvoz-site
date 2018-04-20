@@ -46,5 +46,10 @@ class User
       i ? CAREERS[i + 1] : '---'
     end
 
+    def leader?
+      emerald? || diamond? || white_diamond? || blue_diamond? ||
+      black_diamond? || chairman? || chairman_two_star? || chairman_three_star?
+    end
+
   end
 end

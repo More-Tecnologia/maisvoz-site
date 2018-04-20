@@ -75,11 +75,15 @@ module Bonification
     end
 
     def total_pv_activity
-      @total_pv_activity ||= user.pv_activity_histories.where('height > 1 AND height <= 6').sum(:amount)
+      @total_pv_activity ||= generation_users.sum { |u| u.pva_total }
+    end
+
+    def generation_users
+      @generation_users ||= Multilevel::FetchUnilevelLeaderGenerations.new(user).call
     end
 
     def can_receive_bonus?
-      user.active? && (
+      user.active? && user.binary_qualified? && (
         user.emerald? || user.diamond? || user.white_diamond? ||
         user.blue_diamond? || user.black_diamond? || user.chairman? ||
         user.chairman_two_star? || user.chairman_three_star?

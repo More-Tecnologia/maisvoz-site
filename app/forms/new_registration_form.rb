@@ -37,6 +37,8 @@ class NewRegistrationForm < Form
   validates :document_rg, :document_pis, presence: true, if: -> { registration_type == 'pf' }
   validates :document_cnpj, :document_ie, :document_company_name, :document_fantasy_name, presence: true, if: -> { registration_type == 'pj' }
 
+  validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
+
   validate :terms_accepted
   validate :sponsor_exists
   validate :username_is_unique

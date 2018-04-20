@@ -16,9 +16,9 @@ module Multilevel
 
     def find_users(users, all = [], leader_count = 0)
       users.each do |user|
-        all << user
 
-        if leader_count < max_generation_level - 1
+        if leader_count < max_generation_level
+          all << user
           find_users(
             user.sponsored,
             all,

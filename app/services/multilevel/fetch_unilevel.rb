@@ -33,7 +33,9 @@ module Multilevel
       return [] if ids.blank?
 
       children = User.where(sponsor_id: ids).pluck(:id)
-      sponsors = User.where(sponsor_id: ids).map {|u| [u.sponsor.username, u.username, u.active, u.career_kind] }
+      sponsors = User.where(sponsor_id: ids).map do |u|
+        [u.sponsor.username, u.username, u.active, u.career_kind]
+      end
 
       return [] if children.size.zero?
 

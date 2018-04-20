@@ -145,4 +145,8 @@ class User < ApplicationRecord
     true
   end
 
+  def month_pva(ref_time = Time.zone.now)
+    pv_activity_histories.where(height: 1).where('created_at >= ? AND created_at <= ?', ref_time.beginning_of_month, ref_time.end_of_month).sum(:amount)
+  end
+
 end

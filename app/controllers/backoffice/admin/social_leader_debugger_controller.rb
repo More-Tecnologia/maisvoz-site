@@ -9,7 +9,7 @@ module Backoffice
       private
 
       def generations
-        Multilevel::FetchUnilevelLeaderGenerations.new(user).call
+        @generations ||= Multilevel::FetchUnilevelLeaderGenerations.new(user).call
       end
 
       def user

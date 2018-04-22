@@ -8,10 +8,10 @@ module Backoffice
 
       def update
         if params[:status] == 'verified'
-          user.verified!
+          user.update!(document_verification_status: 'verified', document_verification_updated_at: Time.now)
         elsif params[:status] == User.document_verification_statuses['refused_verification']
           ActiveRecord::Base.transaction do
-            user.update!(document_refused_reason: params[:reason])
+            user.update!(document_refused_reason: params[:reason], document_verification_updated_at: Time.now)
             user.refused_verification!
             user.destroy_documents!
           end

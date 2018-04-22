@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422172053) do
+ActiveRecord::Schema.define(version: 20180422183813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -362,6 +362,7 @@ ActiveRecord::Schema.define(version: 20180422172053) do
     t.string "address_ibge"
     t.string "document_refused_reason"
     t.string "document_verification_status"
+    t.datetime "document_verification_updated_at"
     t.index ["career_kind"], name: "index_users_on_career_kind"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["document_verification_status"], name: "index_users_on_document_verification_status"

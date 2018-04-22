@@ -42,7 +42,7 @@ module Bonification
     def credit_bonus
       FinancialEntry.new.tap do |bonus|
         bonus.user        = user
-        bonus.description = "Bônus flex. Bônus de #{h.number_to_currency bonus_amount}, faturas: #{indication_bonus.collect(&:hashid).join(', ')}"
+        bonus.description = "Bônus flex. Bônus de #{h.number_to_currency bonus_amount}, faturas: #{indication_bonus.map {|b| b.order.user.username }.join(', ')}"
         bonus.kind        = FinancialEntry.kinds[:flex_bonus]
         bonus.amount      = bonus_amount
         bonus.balance     = user.balance + bonus_amount

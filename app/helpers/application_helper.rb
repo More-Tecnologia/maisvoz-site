@@ -24,9 +24,9 @@ module ApplicationHelper
     end
   end
 
-  def link_to_user(user)
+  def link_to_user(user, *opts)
     return unless user
-    link_to(user.username, backoffice_admin_user_path(user))
+    link_to(user.username, backoffice_admin_user_path(user), *opts)
   end
 
 end

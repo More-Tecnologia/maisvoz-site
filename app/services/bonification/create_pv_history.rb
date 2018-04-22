@@ -15,7 +15,7 @@ module Bonification
         direction: direction,
         user: user,
         order: order,
-        origin_username: order.user.username,
+        origin_username: origin_username,
         amount: score,
         balance: final_balance
       )
@@ -40,6 +40,11 @@ module Bonification
 
     def leg_pv
       direction == :left ? :left_pv : :right_pv
+    end
+
+    def origin_username
+      return if order.blank?
+      order.user.username
     end
 
   end

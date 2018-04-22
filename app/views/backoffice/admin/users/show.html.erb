@@ -29,8 +29,16 @@
               <div class="text-left m-t-30">
                 <table>
                   <tr>
-                    <td><strong><%= User.human_attribute_name(:sponsor) %>:</strong></td>
-                    <td><%= link_to_user user.sponsor %></td>
+                    <td><strong><%= User.human_attribute_name(:active) %>:</strong></td>
+                    <td><%= user.activity %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:binary_qualified) %>:</strong></td>
+                    <td><%= user.qualification %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:active_until) %>:</strong></td>
+                    <td><%= user.active_until %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:name) %>:</strong></td>
@@ -49,8 +57,36 @@
                     <td><%= user.phone %></td>
                   </tr>
                   <tr>
+                    <td><strong><%= User.human_attribute_name(:registration_type) %>:</strong></td>
+                    <td><%= user.registration_type %></td>
+                  </tr>
+                  <tr>
                     <td><strong><%= User.human_attribute_name(:document_cpf) %>:</strong></td>
                     <td><%= user.document_cpf %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:document_rg) %>:</strong></td>
+                    <td><%= user.document_rg %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:document_pis) %>:</strong></td>
+                    <td><%= user.document_pis %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:document_cnpj) %>:</strong></td>
+                    <td><%= user.document_cnpj %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:document_ie) %>:</strong></td>
+                    <td><%= user.document_ie %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:document_company_name) %>:</strong></td>
+                    <td><%= user.document_company_name %></td>
+                  </tr>
+                  <tr>
+                    <td><strong><%= User.human_attribute_name(:document_fantasy_name) %>:</strong></td>
+                    <td><%= user.document_fantasy_name %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:email) %>:</strong></td>

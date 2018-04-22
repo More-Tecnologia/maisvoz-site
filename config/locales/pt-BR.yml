@@ -369,7 +369,7 @@ pt-BR:
     career_histories: Histórico de Carreiras
     documents_validation: Aprovação de documentos
   errors:
-    cant_access_binary_node: Não é possível acessar o nó binário
+    cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
       invalid: Inválido
       invalid_password: Senha inválida

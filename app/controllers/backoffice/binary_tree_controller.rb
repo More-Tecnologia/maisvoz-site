@@ -22,7 +22,7 @@ module Backoffice
     def can_access_node?
       return if BinaryNodePolicy.new(current_user.binary_node).can_access_node?(binary_node)
       flash[:error] = I18n.t('errors.cant_access_binary_node')
-      redirect_to backoffice_dashboard_index_path
+      redirect_to backoffice_binary_tree_index_path
     end
 
   end

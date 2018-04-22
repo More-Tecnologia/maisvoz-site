@@ -28,12 +28,12 @@ module Bonification
       parent_node = child_node.parent
 
       if parent_node.left_child == child_node
-        parent_node.increment!(:left_pv, total_score)
         create_pv_history(:left, parent_node.user)
+        parent_node.increment!(:left_pv, total_score)
         check_should_reverse_pv(:left_pv, parent_node)
       elsif parent_node.right_child == child_node
-        parent_node.increment!(:right_pv, total_score)
         create_pv_history(:right, parent_node.user)
+        parent_node.increment!(:right_pv, total_score)
         check_should_reverse_pv(:right_pv, parent_node)
       end
     end
@@ -50,8 +50,8 @@ module Bonification
       direction   = leg == :left_pv ? :left : :right
 
       if node.send(leg) <= node.send(counter_leg) && (node.send(leg) + total_score) > MAX_UNQUALIFIED_PV
-        node.decrement!(leg, total_score)
         create_pv_history(direction, node.user, -total_score)
+        node.decrement!(leg, total_score)
       end
     end
 

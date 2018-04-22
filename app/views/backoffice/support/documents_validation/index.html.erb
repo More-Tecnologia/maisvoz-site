@@ -5,6 +5,18 @@
 </div>
 
 <div class="card-box">
+  <div class="row">
+    <%= form_tag backoffice_support_documents_validation_index_path, method: :get do %>
+    <div class="col-md-4 form-group">
+      <label for="">Username:</label>
+      <%= select_tag(:document_verification_status, options_for_select(User.document_verification_statuses.keys.map {|k| [t(k), k]}, params[:document_verification_status]), include_blank: t('all'), :onchange => "this.form.submit();", class: 'form-control') %>
+    </div>
+    <div class="col-md-12 m-b-30">
+      <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+  </div>
+
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -26,7 +38,7 @@
       <% @non_verified_accounts.each do |account| %>
       <tr>
         <td><%= account.name %></td>
-        <td><%= account.username %></td>
+        <td><%= link_to_user account %></td>
         <td><%= account.email %></td>
         <td><%= account.document_cpf %></td>
         <td><%= account.document_rg %></td>
@@ -43,7 +55,7 @@
           <%= link_to(cl_image_tag(account.document_scontract_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(account.document_scontract_photo.path), target: '_blank') if account.document_scontract_photo %>
         </td>
         <td>
-          <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: account.id), method: :put %>
+          <%= link_to('Aprovar', backoffice_support_documents_validation_path(id: account.id, status: 'verified'), method: :put) unless account.verified? %>
         </td>
       </tr>
       <% end %>

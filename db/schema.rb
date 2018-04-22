@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422133143) do
+ActiveRecord::Schema.define(version: 20180422172053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -356,13 +356,15 @@ ActiveRecord::Schema.define(version: 20180422133143) do
     t.boolean "active", default: false, null: false
     t.date "active_until"
     t.boolean "binary_qualified", default: false, null: false
-    t.boolean "verified", default: false, null: false
     t.string "bank_account"
     t.string "bank_agency"
     t.string "bank_code"
     t.string "address_ibge"
+    t.string "document_refused_reason"
+    t.string "document_verification_status"
     t.index ["career_kind"], name: "index_users_on_career_kind"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["document_verification_status"], name: "index_users_on_document_verification_status"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["sponsor_id"], name: "index_users_on_sponsor_id"

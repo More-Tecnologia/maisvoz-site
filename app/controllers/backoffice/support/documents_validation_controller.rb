@@ -7,14 +7,26 @@ module Backoffice
       end
 
       def update
-        user.update! verified: true
+        if params[:status] == 'verified'
+          user.verified!
+        elsif params[:status] == User.document_verification_statuses['refused_verification']
+          ActiveRecord::Base.transaction do
+            user.update!(document_refused_reason: params[:reason])
+            user.refused_verification!
+            user.destroy_documents!
+          end
+        end
         redirect_back(fallback_location: backoffice_support_documents_validation_index_path)
       end
 
       private
 
       def non_verified_accounts
-        @non_verified_accounts ||= User.where(verified: false).page(params[:page] || 1)
+        if params[:document_verification_status].blank?
+          @non_verified_accounts ||= User.all.page(params[:page] || 1)
+        else
+          @non_verified_accounts ||= User.where(document_verification_status: params[:document_verification_status]).page(params[:page] || 1)
+        end
       end
 
       def user

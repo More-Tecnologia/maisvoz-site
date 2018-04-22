@@ -7,7 +7,7 @@ class LastDayAutoWithdrawWorker
 
     today = Time.zone.now
 
-    User.pf.where(verified: true).where(
+    User.pf.verified.where(
       'available_balance_cents > 0 OR blocked_balance_cents > 0'
     ).find_each do |user|
       AutoWithdrawWorker.perform_async(user.id, today)

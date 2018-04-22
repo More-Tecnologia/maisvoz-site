@@ -18,6 +18,9 @@
         <div class="content">
           <div class="container">
             <%= render 'layouts/flash-messages' %>
+            <% if current_user.refused_verification? %>
+              <div class="alert alert-danger"><%= current_user.document_refused_reason %></div>
+            <% end %>
             <%= yield %>
           </div>
         </div>

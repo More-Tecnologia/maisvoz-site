@@ -76,10 +76,10 @@ module Bonification
     end
 
     def debit_pv_from_both_legs
-      binary_node.decrement!(:left_pv, pv_to_be_credited)
-      binary_node.decrement!(:right_pv, pv_to_be_credited)
       Bonification::CreatePvHistory.call(:left, user, nil, -pv_to_be_credited)
       Bonification::CreatePvHistory.call(:right, user, nil, -pv_to_be_credited)
+      binary_node.decrement!(:left_pv, pv_to_be_credited)
+      binary_node.decrement!(:right_pv, pv_to_be_credited)
     end
 
     def create_system_financial_log

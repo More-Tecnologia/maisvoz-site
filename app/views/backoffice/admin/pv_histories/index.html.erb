@@ -49,7 +49,7 @@
                   <td><%= link_to_user pv_history.user %></td>
                   <td>
                     <% if pv_history.order.present? %>
-                      Fatura ID: <%= pv_history.order_id %>
+                      PV gerado do usuário <%= pv_history.origin_username %>
                     <% else %>
                       <%= t('.binary_bonus_debit') %>
                     <% end %>

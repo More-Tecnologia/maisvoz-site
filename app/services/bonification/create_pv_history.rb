@@ -15,6 +15,7 @@ module Bonification
         direction: direction,
         user: user,
         order: order,
+        origin_username: order.user.username,
         amount: score,
         balance: final_balance
       )

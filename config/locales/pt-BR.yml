@@ -146,7 +146,7 @@ pt-BR:
         left: Esquerda
         right: Direita
         no_data: Nenhum registro de PV até o momento
-        invoice_no: 'PV gerado da fatura ID: %{id}'
+        invoice_no: 'PV gerado do usuário %{username}'
     pv_activity_histories:
       index:
         title: Histórico de PV de Atividade

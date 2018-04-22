@@ -47,7 +47,7 @@
                   <th><%= pv_history.hashid %></th>
                   <td>
                     <% if pv_history.order.present? %>
-                      <%= t('.invoice_no', id: pv_history.order.hashid) %>
+                      <%= t('.invoice_no', username: pv_history.origin_username) %>
                     <% else %>
                       <%= t('.binary_bonus_debit') %>
                     <% end %>

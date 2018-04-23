@@ -20,6 +20,15 @@
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="">
+        <ul class="nav navbar-nav">
+          <% if current_user.empreendedor? %>
+          <li>
+            <%= link_to shop_index_url(sponsor: current_user.username) do %>
+              <i class="fa fa-link"></i> Link de Indicação
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
         <ul class="nav navbar-nav navbar-right pull-right">
           <li>
             <% if user_masquerade? %>

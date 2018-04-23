@@ -17,6 +17,7 @@
               <tr>
                 <th>#</th>
                 <th><%= FinancialEntry.human_attribute_name(:gross_amount) %></th>
+                <th><%= t('withdrawal_fee') %></th>
                 <th><%= FinancialEntry.human_attribute_name(:net_amount) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:status) %></th>
                 <th><%= FinancialEntry.human_attribute_name(:created_at) %></th>
@@ -27,6 +28,7 @@
                 <tr>
                   <th><%= withdraw.hashid %></th>
                   <th><%= number_to_currency withdraw.gross_amount %></th>
+                  <th><%= number_to_currency (withdraw.gross_amount - withdraw.net_amount) %></th>
                   <th><%= number_to_currency withdraw.net_amount %></th>
                   <td><%= withdraw.pretty_status %></td>
                   <td><%= l withdraw.created_at, format: :short %></td>

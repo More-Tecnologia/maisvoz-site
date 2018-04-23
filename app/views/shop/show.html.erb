@@ -47,11 +47,9 @@
          <h4>PONTUAÇÃO: <%= product.binary_score %></h4>
 
          <div class="m-t-30">
-            <%= simple_form_for product, url: backoffice_order_items_path, method: :post do |f| %>
-              <%= f.input :id, as: :hidden %>
-              <button type="submit" class="btn btn-primary waves-effect waves-light">
-                <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
-              </button>
+            <%= link_to(new_user_registration_path(sponsor: sponsor_from_username(params)), class: 'btn btn-primary waves-effect waves-light') do %>
+              <span class="btn-label"><i class="fa fa-shopping-cart"></i></span>
+              <%= t('views.backoffice.products.show.buy') %>
             <% end %>
          </div>
 

@@ -29,4 +29,8 @@ module ApplicationHelper
     link_to(user.username, backoffice_admin_user_path(user), *opts)
   end
 
+  def sponsor_from_username(params)
+    @sponsor_from_username ||= User.empreendedor.find_by(username: params[:sponsor]).try :username
+  end
+
 end

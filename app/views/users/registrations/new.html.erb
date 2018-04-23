@@ -45,7 +45,11 @@
           <div class="tab-pane" id="tab1">
             <div class="form-inputs">
               <div class="col-md-6">
-                <%= f.input :sponsor_username, autofocus: true %>
+                <% if form.sponsor_username %>
+                  <%= f.input :sponsor_username, autofocus: true, readonly: true %>
+                <% else %>
+                  <%= f.input :sponsor_username, autofocus: true %>
+                <% end %>
                 <%= f.input :username %>
                 <%= f.input :name %>
                 <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 18 %>

@@ -9,10 +9,10 @@
         <%= image_tag('logo.png') %>
       </a> -->
       <!-- Image Logo here -->
-      <a href="/" class="logo">
+      <%= link_to root_path(sponsor: params[:sponsor]), class: 'logo' do %>
         <i class="icon-c-logo"> <%= image_tag('logo_sm.png', height: 42) %> </i>
         <span><%= image_tag('logo.png', height: 40) %></span>
-      </a>
+      <% end %>
     </div>
   </div>
 
@@ -20,17 +20,24 @@
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="">
+        <div class="nav navbar-nav">
+          <% if sponsor_from_username(params).present? %>
+            <li>
+              <a href="">Olá, você está sendo indicado por <strong><%= params[:sponsor] %></strong></a>
+            </li>
+          <% end %>
+        </div>
         <ul class="nav navbar-nav navbar-right pull-right">
           <li>
-            <%= link_to shop_index_path do %>
+            <%= link_to shop_index_path(sponsor: params[:sponsor]) do %>
             <i class="fa fa-home"></i> <%= t('shop') %>
             <% end %>
           </li>
           <li>
-            <%= link_to t('login'), new_user_session_path %>
+            <%= link_to t('login'), new_user_session_path(sponsor: params[:sponsor]) %>
           </li>
           <li>
-            <%= link_to t('signup'), new_user_registration_path %>
+            <%= link_to t('signup'), new_user_registration_path(sponsor: params[:sponsor]) %>
           </li>
           <li>
             <a href="?locale=en" class="flag">

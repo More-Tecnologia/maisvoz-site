@@ -7,7 +7,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     build_resource({})
-    form = NewRegistrationForm.new
+    sponsor_username = User.empreendedor.find_by(username: params[:sponsor]).try(:username)
+
+    form = NewRegistrationForm.new(sponsor_username: sponsor_username)
     render locals: { form: form }
   end
 
@@ -31,7 +33,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      render(:new, locals: { form: form })
+      render(:new, locals: { form: form, sponsor: params[:sponsor] })
     end
   end
 

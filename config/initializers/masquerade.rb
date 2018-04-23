@@ -1,1 +1,1 @@
-Devise.masquerade_routes_back = true
+Devise.masquerade_routes_back = false

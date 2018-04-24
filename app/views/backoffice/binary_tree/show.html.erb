@@ -121,7 +121,7 @@
                                       career: current_node.right_child.user.career_kind
                                     }
                                   ) do %>
-                                  <%= image_tag("careers/#{current_node.right_child.user.career_kind}.png") %>
+                                  <%= image_tag("careers/#{current_node.right_child.user.career_kind || 'desativado'}.png") %>
                                 <% end %>
                               <% else %>
                                 <%= image_tag('packages/desativado.png') %>

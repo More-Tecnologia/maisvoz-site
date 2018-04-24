@@ -1,7 +1,5 @@
 class SupportController < BackofficeController
 
-  protect_from_forgery with: :exception
-
   before_action :ensure_admin_or_support
 
   private

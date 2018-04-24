@@ -1,7 +1,5 @@
 class FinancialController < BackofficeController
 
-  protect_from_forgery with: :exception
-
   before_action :ensure_admin_or_financial
 
   private

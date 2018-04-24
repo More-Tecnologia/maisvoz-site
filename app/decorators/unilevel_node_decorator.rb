@@ -27,7 +27,7 @@ class UnilevelNodeDecorator < ApplicationDecorator
         open_ul -= diff
       end
       prev_depth = curr_depth
-      html += block_given? ? yield(node) : "<a href=# class='#{node.leader? ? 'node-leader' : ''}'>#{node.username} <small>#{h.t node.career_kind}</small></a>"
+      html += block_given? ? yield(node) : "<a href=# class='#{node.leader? ? 'node-leader' : ''}'>#{node.username} <small>#{node.career_kind && h.t(node.career_kind)}</small></a>"
     end
     html += '</li></ul>' * open_ul.abs
     html += '</div>'

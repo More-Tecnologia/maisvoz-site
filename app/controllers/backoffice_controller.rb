@@ -1,7 +1,5 @@
 class BackofficeController < ApplicationController
 
-  protect_from_forgery with: :exception
-
   layout :define_layout
 
   before_action :authenticate_user!

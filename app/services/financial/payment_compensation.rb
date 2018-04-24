@@ -89,6 +89,7 @@ module Financial
       return unless user.consumidor? && adhesion_product?
       user.empreendedor!
       user.affiliate!
+      user.unilevel_node.affiliate!
       CareerHistory.new.tap do |log|
         log.user       = user
         log.new_career = User::AFFILIATE

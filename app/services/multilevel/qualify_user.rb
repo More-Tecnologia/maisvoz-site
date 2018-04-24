@@ -20,6 +20,7 @@ module Multilevel
       return unless user.affiliate? && qualified?
       ActiveRecord::Base.transaction do
         create_career_history
+        user.unilevel_node.executive!
         user.update_column(:career_kind, User::EXECUTIVE)
       end
     end

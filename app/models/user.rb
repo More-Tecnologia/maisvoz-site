@@ -113,6 +113,7 @@ class User < ApplicationRecord
   has_attachment :document_scontract_photo
   has_one :account
   has_one :binary_node
+  has_one :unilevel_node
   has_many :orders
   has_many :financial_entries, class_name: 'FinancialEntry'
   has_many :withdrawals
@@ -125,6 +126,8 @@ class User < ApplicationRecord
   has_many :credits
   has_many :debits
   has_many :bonus, class_name: 'Bonus'
+
+  after_create :touch_unilevel_node
 
   def balance
     (available_balance + blocked_balance).to_f
@@ -154,6 +157,12 @@ class User < ApplicationRecord
     document_pis_photo.destroy! if document_pis_photo?
     document_address_photo.destroy! if document_address_photo?
     document_scontract_photo.destroy! if document_scontract_photo?
+  end
+
+  def touch_unilevel_node
+    return if unilevel_node.present?
+    sponsor_node = sponsor.present? ? sponsor.unilevel_node : nil
+    UnilevelNode.create!(user: self, username: username, career_kind: career_kind, parent: sponsor_node)
   end
 
 end

@@ -60,6 +60,7 @@ module LevelUp
         end
         user.update!(career_kind: new_career)
         limit_sponsored_pva(new_career)
+        update_unilevel_node_leadership(new_career)
       end
     end
 
@@ -71,6 +72,13 @@ module LevelUp
       user.sponsored.each do |direct|
         direct.update!(pva_total: limit) if direct.pva_total > limit
       end
+    end
+
+    def update_unilevel_node_leadership(new_career)
+      node = user.unilevel_node
+      node.leader = true if new_career == User.career_kinds[:emerald]
+      node.career_kind = new_career
+      node.save!
     end
 
   end

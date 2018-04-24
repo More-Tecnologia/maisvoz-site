@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422183813) do
+ActiveRecord::Schema.define(version: 20180423171546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,16 +270,6 @@ ActiveRecord::Schema.define(version: 20180422183813) do
     t.index ["user_id"], name: "index_pv_histories_on_user_id"
   end
 
-  create_table "social_leaders", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "leader_id", null: false
-    t.integer "generation", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["leader_id"], name: "index_social_leaders_on_leader_id"
-    t.index ["user_id"], name: "index_social_leaders_on_user_id"
-  end
-
   create_table "system_financial_logs", force: :cascade do |t|
     t.string "description"
     t.bigint "amount_cents"
@@ -298,6 +288,18 @@ ActiveRecord::Schema.define(version: 20180422183813) do
     t.datetime "updated_at", null: false
     t.index ["from_user_id"], name: "index_transfers_on_from_user_id"
     t.index ["to_user_id"], name: "index_transfers_on_to_user_id"
+  end
+
+  create_table "unilevel_nodes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "username"
+    t.string "career_kind"
+    t.boolean "leader", default: false, null: false
+    t.string "ancestry", limit: 300
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_unilevel_nodes_on_ancestry"
+    t.index ["user_id"], name: "index_unilevel_nodes_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -374,10 +376,10 @@ ActiveRecord::Schema.define(version: 20180422183813) do
   end
 
   create_table "withdrawals", force: :cascade do |t|
+    t.string "status", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", null: false
     t.bigint "gross_amount_cents", null: false
     t.bigint "net_amount_cents", null: false
     t.string "fiscal_document_link"
@@ -409,5 +411,6 @@ ActiveRecord::Schema.define(version: 20180422183813) do
   add_foreign_key "system_financial_logs", "orders"
   add_foreign_key "transfers", "users", column: "from_user_id"
   add_foreign_key "transfers", "users", column: "to_user_id"
+  add_foreign_key "unilevel_nodes", "users"
   add_foreign_key "withdrawals", "users"
 end

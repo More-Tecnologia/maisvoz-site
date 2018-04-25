@@ -27,7 +27,7 @@
 
                       <%= f.input :name, autofocus: true %>
                       <%= f.input :birthdate, start_year: Time.now.year - 90, end_year: Time.now.year - 18, as: :date, html5: true %>
-                      <%= f.input :phone, input_html: { data: { mask: '(99) 9999-9999?9' } } %>
+                      <%= f.input :phone, input_html: { class: 'input-phone'} %>
                       <%= f.input :skype %>
                       <%= f.input :email %>
                       <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
@@ -35,7 +35,7 @@
                       <h4><%= t('.address') %></h4>
                       <hr>
 
-                      <%= f.input :zipcode, input_html: { data: { zipcode_input: true }, class: 'input-zipcode' } %>
+                      <%= f.input :zipcode, input_html: { class: 'input-zipcode' } %>
                       <%= f.input :address_ibge, as: :hidden %>
                       <%= f.input :district %>
                       <%= f.input :address %>
@@ -65,7 +65,9 @@
       </div>
 
       <script>
-        $(document).ready(function() {
+        window.onload = function(){
+          $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})
           $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
-        })
+          $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
+        }
       </script>

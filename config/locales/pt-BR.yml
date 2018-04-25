@@ -57,6 +57,7 @@ pt-BR:
     document_cnpj: CNPJ
     document_ie: IE
     document_rg: RG
+    document_rg_expeditor: Órgão Expeditor
     document_pis: PIS/PASEP
     document_company_name: Razão Social
     document_fantasy_name: Nome Fantasia

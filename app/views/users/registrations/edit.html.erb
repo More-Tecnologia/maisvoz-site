@@ -30,13 +30,14 @@
                       <%= f.input :phone, input_html: { data: { mask: '(99) 9999-9999?9' } } %>
                       <%= f.input :skype %>
                       <%= f.input :email %>
-                      <%= f.input :document_cpf %>
+                      <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
 
                       <h4><%= t('.address') %></h4>
                       <hr>
 
                       <%= f.input :zipcode, input_html: { data: { zipcode_input: true }, class: 'input-zipcode' } %>
                       <%= f.input :address_ibge, as: :hidden %>
+                      <%= f.input :district %>
                       <%= f.input :address %>
                       <%= f.input :address_2 %>
                       <%= f.input :country, only: ['BR'] %>
@@ -62,3 +63,9 @@
           </div>
         </div>
       </div>
+
+      <script>
+        $(document).ready(function() {
+          $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
+        })
+      </script>

@@ -11,6 +11,7 @@ class EditRegistrationForm < Form
   attribute :address_ibge
   attribute :address
   attribute :address_2
+  attribute :district
   attribute :country
   attribute :state
   attribute :city

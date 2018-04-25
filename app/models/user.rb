@@ -65,11 +65,13 @@
 #  document_refused_reason          :string
 #  document_verification_status     :string
 #  document_verification_updated_at :datetime
+#  document_rg_expeditor            :string
 #
 # Indexes
 #
 #  index_users_on_career_kind                   (career_kind)
 #  index_users_on_confirmation_token            (confirmation_token) UNIQUE
+#  index_users_on_document_cpf                  (document_cpf) UNIQUE
 #  index_users_on_document_verification_status  (document_verification_status)
 #  index_users_on_email                         (email) UNIQUE
 #  index_users_on_reset_password_token          (reset_password_token) UNIQUE

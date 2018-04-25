@@ -54,6 +54,7 @@ namespace :import_products do
         product.width        = p[:width]
         product.length       = p[:length]
         product.weight       = p[:weight]
+        product.sap_code     = p[:sap_code]
       end
     end
 

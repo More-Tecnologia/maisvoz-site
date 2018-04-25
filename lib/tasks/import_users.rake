@@ -9,7 +9,7 @@ namespace :import_users do
 
     ActiveRecord::Base.transaction do
 
-      master = User.new(id: 1, username: 'sistema', email: 'sistema@morenwm.com', password: 111111, role: :admin)
+      master = User.new(username: 'sistema', email: 'sistema@morenwm.com', password: 111111, role: :admin)
       master.save!
       BinaryNode.create!(user: master)
 

@@ -9,20 +9,22 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
-      <table class="table table-bordered">
+      <table class="table table-bordered table-sm">
         <tr>
           <td><strong><%= t('.left_pv') %></strong></td>
           <td><%= number_with_delimiter node.left_pv %></td>
+          <td><strong><%= t('left_count') %></strong></td>
+          <td><%= number_with_delimiter node.left_count %></td>
         </tr>
         <tr>
           <td><strong><%= t('.right_pv') %></strong></td>
           <td><%= number_with_delimiter node.right_pv %></td>
+          <td><strong><%= t('right_count') %></strong></td>
+          <td><%= number_with_delimiter node.right_count %></td>
         </tr>
         <tr>
           <td><strong><%= t('.username') %></strong></td>
-          <td><%= node.user.username %> (<%= node.user.career_kind %>)</td>
-        </tr>
-        <tr>
+          <td><%= node.user.username %> (<%= t node.user.career_kind %>)</td>
           <td><strong><%= t('.sponsor') %></strong></td>
           <td><%= node.user.sponsor && node.user.sponsor.username %></td>
         </tr>
@@ -60,7 +62,7 @@
               </div>
               <div class="row">
                   <div class="col-xs-12">
-                    <table class="table binary-tree">
+                    <table class="table binary-tree m-t-30">
                       <% cols = 4 %>
                       <% nodes = [@node] %>
                       <tr class="text-center">

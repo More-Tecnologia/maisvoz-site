@@ -17,12 +17,25 @@ module Multilevel
         insert_node
         update_parent_node
         update_user_binary_position
+        update_parent_counters
       end
     end
 
     private
 
     attr_reader :user, :sponsor, :position, :parent_node
+
+    def update_parent_counters
+      parent = binary_node.parent
+      curr_id = binary_node.id
+      while parent.present?
+        parent.increment!(:left_count) if parent.left_child_id == curr_id
+        parent.increment!(:right_count) if parent.right_child_id == curr_id
+
+        curr_id = parent.id
+        parent = parent.parent
+      end
+    end
 
     def update_user_binary_position
       if position == LEFT
@@ -95,9 +108,7 @@ module Multilevel
     end
 
     def last_sponsored_user
-      @last_sponsored_user ||= LastActiveSponsoredUserQuery.new(
-        sponsor
-      ).call
+      @last_sponsored_user ||= LastActiveSponsoredUserQuery.new(sponsor).call
     end
 
     def binary_node

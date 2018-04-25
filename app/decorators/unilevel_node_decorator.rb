@@ -8,7 +8,7 @@ class UnilevelNodeDecorator < ApplicationDecorator
     # if params[:conditions].is_a?(Array) || params[:conditions].is_a?(Hash)
     #   subtree = subtree.where(params[:conditions])
     # end
-    subtree = UnilevelNode.sort_by_ancestry(self.subtree.arrange)
+    subtree = UnilevelNode.sort_by_ancestry(self.subtree.includes(:user).arrange)
     html = '<div class="ancestry-treeview">'
     open_ul = 0
     prev_depth = self.depth - 1
@@ -27,7 +27,7 @@ class UnilevelNodeDecorator < ApplicationDecorator
         open_ul -= diff
       end
       prev_depth = curr_depth
-      html += block_given? ? yield(node) : "<a href=# class='#{node.leader? ? 'node-leader' : ''}'>#{node.username} <small>#{node.career_kind && h.t(node.career_kind)}</small></a>"
+      html += block_given? ? yield(node) : "<a href=# class='#{node.leader? ? 'node-leader' : ''}'><strong>#{node.username}</strong> [#{node.career_kind && h.t(node.career_kind)}:#{h.t(node.user.binary_position)}]</a>"
     end
     html += '</li></ul>' * open_ul.abs
     html += '</div>'

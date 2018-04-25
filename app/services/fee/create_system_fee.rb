@@ -31,7 +31,7 @@ module Fee
     end
 
     def master_user
-      @master_user ||= User.find(master_id)
+      @master_user ||= User.find_by(username: master_username)
     end
 
     def amount
@@ -42,8 +42,8 @@ module Fee
       @fee ||= AppConfig.get('SYSTEM_FEE').to_d
     end
 
-    def master_id
-      AppConfig.get('MASTER_FINANCIAL_ACCOUNT_ID')
+    def master_username
+      AppConfig.get('MASTER_FINANCIAL_ACCOUNT')
     end
 
     def h

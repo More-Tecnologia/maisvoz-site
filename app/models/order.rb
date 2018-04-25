@@ -25,7 +25,7 @@ class Order < ApplicationRecord
 
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, cancelled: 4 }
 
-  has_many :order_items
+  has_many :order_items, dependent: :destroy
   has_many :pv_histories
   has_many :bonus, class_name: 'Bonus'
   has_many :pv_activity_histories

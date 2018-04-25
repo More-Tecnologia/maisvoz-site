@@ -127,6 +127,8 @@ class User < ApplicationRecord
   has_many :debits
   has_many :bonus, class_name: 'Bonus'
 
+  validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
+
   after_create :touch_unilevel_node
 
   def balance

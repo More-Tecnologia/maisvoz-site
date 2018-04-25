@@ -16,7 +16,7 @@ class UsersQuery
   attr_reader :initial_scope
 
   def filter_by_username(scoped, username)
-    username.present? ? scoped.where(username: username) : scoped
+    username.present? ? scoped.where("username LIKE ?", "%#{username}%") : scoped
   end
 
   def paginate(scoped, page = 0)

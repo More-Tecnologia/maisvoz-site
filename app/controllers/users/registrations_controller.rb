@@ -6,17 +6,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    redirect_to root_path
-    # build_resource({})
-    # sponsor_username = User.empreendedor.find_by(username: params[:sponsor]).try(:username)
-    #
-    # form = NewRegistrationForm.new(sponsor_username: sponsor_username)
-    # render locals: { form: form }
+    build_resource({})
+    sponsor_username = User.empreendedor.find_by(username: params[:sponsor]).try(:username)
+
+    form = NewRegistrationForm.new(sponsor_username: sponsor_username)
+    render locals: { form: form }
   end
 
   # POST /resource
   def create
-    redirect_to root_path
     # super
     build_resource(form.attributes.except(:sponsor_username, :accept_terms))
 

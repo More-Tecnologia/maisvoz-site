@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'FutureMotors <no-reply@futuremotors.com.br>'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -112,7 +112,7 @@ Devise.setup do |config|
   # config.pepper = '7939257c8b984c54689e4204799a0dd596fb6f03c4c4ba7e880d71bbebb49f2a633a99cb6ab8730b3ea3101954ca68aa0c3cde6c0db1094f0fe1bce5b0272713'
 
   # Send a notification to the original email when the user's email is changed.
-  # config.send_email_changed_notification = false
+  config.send_email_changed_notification = true
 
   # Send a notification email when the user's password is changed.
   # config.send_password_change_notification = false

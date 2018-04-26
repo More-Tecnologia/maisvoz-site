@@ -98,7 +98,7 @@
         <% last_qualifications.each do |qualification| %>
         <div class="inbox-item">
           <p class="inbox-item-author"><%= qualification.user.username %></p>
-          <p class="inbox-item-text"><%= t qualification.old_career %> <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %></p>
+          <p class="inbox-item-text"><%= qualification.old_career ? t(qualification.old_career) : 'Cliente' %> <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %></p>
         </div>
         <% end %>
       </div>

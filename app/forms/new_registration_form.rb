@@ -64,8 +64,8 @@ class NewRegistrationForm < Form
   end
 
   def sponsor_exists
-    return if sponsor.present? && sponsor.active?
-    errors.add(:sponsor_username, 'sponsor doesnt exist')
+    return if sponsor.present?
+    errors.add(:sponsor_username, 'patrocinador não encontrado, ou não está ativo')
   end
 
   def username_is_unique

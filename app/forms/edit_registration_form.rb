@@ -19,9 +19,10 @@ class EditRegistrationForm < Form
   attribute :password_confirmation
   attribute :current_password
 
-  validates :name, :phone, :skype, :email, presence: true
+  validates :name, :phone, :skype, :document_cpf, :email, presence: true
   validates :email, email: true
 
+  validate :document_cpf_is_unique
   validate :valid_password
 
   def sponsor
@@ -33,10 +34,15 @@ class EditRegistrationForm < Form
   def valid_password
     return if password.blank? && current_password.blank?
     if password.size < 6
-      errors.add(:password, 'too short')
+      errors.add(:password, 'muito pequeno')
     elsif password != password_confirmation
-      errors.add(:password, 'passwords dont match')
+      errors.add(:password, 'as senhas não são as mesmas')
     end
+  end
+
+  def document_cpf_is_unique
+    return unless User.where(document_cpf: document_cpf).any?
+    errors.add(:document_cpf, 'Já está registrado em outra conta')
   end
 
 end

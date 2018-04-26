@@ -70,22 +70,22 @@ class NewRegistrationForm < Form
 
   def username_is_unique
     return unless User.where('LOWER(username) = ?', username).any?
-    errors.add(:username, 'already exists')
+    errors.add(:username, 'já existe')
   end
 
   def email_is_unique
     return unless User.where(email: email).any?
-    errors.add(:email, 'already exists')
+    errors.add(:email, 'já existe')
   end
 
   def document_cpf_is_unique
     return unless User.where(document_cpf: document_cpf).any?
-    errors.add(:document_cpf, 'already exists')
+    errors.add(:document_cpf, 'já existe')
   end
 
   def terms_accepted
     return if accept_terms
-    errors.add(:accept_terms, 'must accept terms')
+    errors.add(:accept_terms, 'deve aceitar os termos')
   end
 
 end

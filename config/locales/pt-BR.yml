@@ -18,6 +18,11 @@ pt-BR:
       user:
         login: Email/Login
     errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: Senhas diferentes
       messages:
         blank: Não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'

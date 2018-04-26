@@ -41,10 +41,10 @@ Rails.application.routes.draw do
       resources :social_leader_debugger, only: [:index]
 
       # Admin
-      resources :users, only: [:index, :show]
     end
 
     namespace :support do
+      resources :users, only: [:index, :show, :edit, :update]
       resources :documents_validation, only: [:index, :update]
     end
 

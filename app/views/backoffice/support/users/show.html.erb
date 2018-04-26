@@ -24,7 +24,7 @@
 
               <hr>
 
-              <%= link_to 'Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-lg' %>
+              <%= link_to('Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-lg') if current_user.username == 'sistema' %>
 
               <div class="text-left m-t-30">
                 <table>

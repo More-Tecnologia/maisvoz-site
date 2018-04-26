@@ -1,0 +1,30 @@
+<%= simple_form_for(user_form, url: url, method: method, validate: true, html: { class: 'form-horizontal', multipart: true }) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :birthdate %>
+  <%= f.input :phone, input_html: { class: 'input-phone'} %>
+  <%= f.input :skype %>
+  <%= f.input :document_cpf, input_html: { class: 'input-cpf'} %>
+  <%= f.input :document_rg %>
+  <%= f.input :document_rg_expeditor %>
+  <%= f.input :zipcode, input_html: { class: 'input-zipcode'} %>
+  <%= f.input :address_ibge %>
+  <%= f.input :address %>
+  <%= f.input :address_2 %>
+  <%= f.input :district %>
+  <%= f.input :country %>
+  <%= f.input :state %>
+  <%= f.input :city %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+  <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
+<% end %>
+
+<script>
+  window.onload = function(){
+    $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})
+    $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
+    $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
+  }
+</script>

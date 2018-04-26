@@ -6,7 +6,7 @@ class MasqueradesController < Devise::MasqueradesController
   end
 
   def after_back_masquerade_path_for(resource)
-    backoffice_admin_users_path(locale: 'pt-BR')
+    backoffice_support_users_path(locale: 'pt-BR')
   end
 
 end

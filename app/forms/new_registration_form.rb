@@ -31,7 +31,7 @@ class NewRegistrationForm < Form
   attribute :accept_terms, Boolean
 
   validates :sponsor_username, :username, :name, :phone, :email, :password,
-            :password_confirmation, :zipcode, :address_ibge, :district, :city, :state,
+            :password_confirmation, :zipcode, :district, :city, :state,
             :gender, :marital_status, :document_cpf, presence: true
   validates :email, email: true
 

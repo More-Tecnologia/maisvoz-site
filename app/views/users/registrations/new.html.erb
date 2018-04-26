@@ -45,7 +45,7 @@
           <div class="tab-pane" id="tab1">
             <div class="form-inputs">
               <div class="col-md-6">
-                <% if form.sponsor_username %>
+                <% if form.sponsor_username && params[:sponsor].present? %>
                   <%= f.input :sponsor_username, autofocus: true, readonly: true %>
                 <% else %>
                   <%= f.input :sponsor_username, autofocus: true %>

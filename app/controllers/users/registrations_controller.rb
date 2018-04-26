@@ -21,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.sponsor = form.sponsor
 
     if form.valid? && resource.save
+      SlackMessageWorker.perform_async('#usuarios', "Novo usuário registrado: *#{form.username}*")
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)

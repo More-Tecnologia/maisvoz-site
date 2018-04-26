@@ -11,7 +11,7 @@
     <% products.each do |product| %>
     <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
       <div class="product-list-box thumb text-center">
-        <%= link_to shop_path(product, sponsor: sponsor_from_username(params)), class: 'image-popup' do %>
+        <%= link_to shop_path(product, sponsor: params[:sponsor]), class: 'image-popup' do %>
           <%= cl_image_tag(product.main_photo_id, class: 'thumb-img') %>
         <% end %>
 
@@ -22,11 +22,11 @@
 
       </div>
       <div class="product-card__btns">
-        <%= link_to shop_path(product, sponsor: sponsor_from_username(params)), class: 'btn product-card__btn text-center' do %>
+        <%= link_to shop_path(product, sponsor: params[:sponsor]), class: 'btn product-card__btn text-center' do %>
           <i class="icon-plus"></i>
           <%= t('views.backoffice.products.index.details') %>
         <% end %>
-        <%= link_to(new_user_registration_path(sponsor: sponsor_from_username(params)), class: 'btn product-card__btn text-center') do %>
+        <%= link_to(new_user_registration_path(sponsor: params[:sponsor]), class: 'btn product-card__btn text-center') do %>
           <i class="icon-basket"></i>
           <%= t('views.backoffice.products.show.buy') %>
         <% end %>

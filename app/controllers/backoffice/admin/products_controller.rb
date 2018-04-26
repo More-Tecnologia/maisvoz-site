@@ -1,6 +1,6 @@
 module Backoffice
   module Admin
-    class ProductsController < AdminController
+    class ProductsController < EcommerceController
 
       def index
         @products = Product.all.order(:id)

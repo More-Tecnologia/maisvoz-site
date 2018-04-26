@@ -21,6 +21,8 @@ pt-BR:
       models:
         user:
           attributes:
+            email:
+              taken: Este email já está sendo utilizado
             password_confirmation:
               confirmation: Senhas diferentes
       messages:

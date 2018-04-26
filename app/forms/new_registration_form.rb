@@ -35,7 +35,7 @@ class NewRegistrationForm < Form
             :gender, :marital_status, :document_cpf, presence: true
   validates :email, email: true
 
-  validates :document_rg, :document_rg_expeditor, :document_pis, presence: true, if: -> { registration_type == 'pf' }
+  validates :document_rg, :document_rg_expeditor, presence: true, if: -> { registration_type == 'pf' }
   validates :document_cnpj, :document_ie, :document_company_name, :document_fantasy_name, presence: true, if: -> { registration_type == 'pj' }
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }

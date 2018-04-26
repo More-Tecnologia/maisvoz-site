@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  redis_url = ENV["REDISTOGO_URL"]
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -56,6 +58,15 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+
+  config.session_store :redis_session_store, {
+    key: '_futuremotors_session',
+    redis: {
+      expire_after: 2.days,
+      key_prefix: 'futuremotors:session:',
+      url: redis_url,
+    }
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque

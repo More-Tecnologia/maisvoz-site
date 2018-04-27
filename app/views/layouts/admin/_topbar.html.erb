@@ -24,7 +24,7 @@
           <% if current_user.empreendedor? %>
           <li>
             <%= link_to shop_index_url(sponsor: current_user.username) do %>
-              <i class="fa fa-link"></i> Link de Indicação
+              <i class="fa fa-link"></i> <%= shop_index_url(sponsor: current_user.username, locale: '').remove('locale=&') %>
             <% end %>
           </li>
           <% end %>

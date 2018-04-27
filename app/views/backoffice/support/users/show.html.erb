@@ -29,6 +29,10 @@
               <div class="text-left m-t-30">
                 <table>
                   <tr>
+                    <td><strong><%= User.human_attribute_name(:sponsor) %>:</strong></td>
+                    <td><%= user.sponsor && link_to_user(user.sponsor) %></td>
+                  </tr>
+                  <tr>
                     <td><strong><%= User.human_attribute_name(:active) %>:</strong></td>
                     <td><%= user.activity %></td>
                   </tr>
@@ -41,7 +45,7 @@
                     <td><%= user.active_until %></td>
                   </tr>
                   <tr>
-                    <td><strong><%= User.human_attribute_name(:name) %>:</strong></td>
+                    <td><strong><%= User.human_attribute_name(:user) %>:</strong></td>
                     <td><%= user.name %></td>
                   </tr>
                   <tr>

@@ -14,7 +14,13 @@ jquery-mask-plugin@^1.14.13:
   version "1.14.13"
   resolved "https://registry.yarnpkg.com/jquery-mask-plugin/-/jquery-mask-plugin-1.14.13.tgz#a80368d3b1d1402e4d6963a8ae7797c49bc21fc6"
 
-jquery@1.11.1:
+jquery-slimscroll@^1.3.8:
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/jquery-slimscroll/-/jquery-slimscroll-1.3.8.tgz#8481c44e7a47687653908a28f7f70aed64c84e36"
+  dependencies:
+    jquery ">= 1.7"
+
+jquery@1.11.1, "jquery@>= 1.7":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.11.1.tgz#b6ec928590112ebed69e1e49cbfd0025ccd60ddb"
 

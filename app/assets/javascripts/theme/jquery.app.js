@@ -216,10 +216,6 @@ jQuery(document).ready(function() {
       dw = $(document).width();
       dh = $(document).height();
 
-      if(jQuery.browser.mobile === true){
-          $("body").addClass("mobile").removeClass("fixed-left");
-      }
-
       if(!$("#wrapper").hasClass("forced")){
         if(w > 990){
           $("body").removeClass("smallscreen").addClass("widescreen");
@@ -264,23 +260,6 @@ jQuery(document).ready(function() {
     }
   }
 
-  window.initscrolls = function(){
-      if(jQuery.browser.mobile !== true){
-        //SLIM SCROLL
-        $('.slimscroller').slimscroll({
-          height: 'auto',
-          size: "5px"
-        });
-
-        $('.slimscrollleft').slimScroll({
-            height: 'auto',
-            position: 'right',
-            size: "5px",
-            color: '#98a6ad',
-            wheelStep: 5
-        });
-    }
-  }
   function toggle_slimscroll(item){
       if($("#wrapper").hasClass("enlarged")){
         $(item).css("overflow","inherit").parent().css("overflow","inherit");

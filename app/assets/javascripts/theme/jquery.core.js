@@ -200,18 +200,6 @@ function($) {
         });
     },
 
-    //initializing nicescroll
-    Components.prototype.initNiceScrollPlugin = function() {
-        //You can change the color of scroll bar here
-        $.fn.niceScroll &&  $(".nicescroll").niceScroll({ cursorcolor: '#98a6ad',cursorwidth:'6px', cursorborderradius: '5px'});
-    },
-
-    //initializing Slimscroll
-    Components.prototype.initSlimScrollPlugin = function() {
-        //You can change the color of scroll bar here
-        $.fn.niceScroll &&  $(".slimscroll-noti").slimScroll({ position: 'right',size: "5px", color: '#98a6ad',height: '230px',wheelStep: 10});
-    },
-
     //range slider
     Components.prototype.initRangeSlider = function() {
         $.fn.slider && $('[data-plugin="range-slider"]').slider({});
@@ -299,8 +287,6 @@ function($) {
         var $this = this;
         this.initTooltipPlugin(),
         this.initPopoverPlugin(),
-        this.initNiceScrollPlugin(),
-        this.initSlimScrollPlugin(),
         this.initCustomModalPlugin(),
         this.initRangeSlider(),
         this.initSwitchery(),

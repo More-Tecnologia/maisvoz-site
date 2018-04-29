@@ -18,7 +18,7 @@ module Backoffice
 
     def last_orders
       return unless current_user.admin?
-      Order.order(created_at: :desc).last(10)
+      Order.order(created_at: :desc).first(10)
     end
 
     def last_qualifications

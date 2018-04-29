@@ -1,11 +1,3 @@
-<!-- Page-Title -->
-<div class="row">
-  <div class="col-sm-12">
-      <h4 class="page-title"><%= t('views.dashboard.admin.title') %></h4>
-      <p class="text-muted page-title-alt"><%= t('views.dashboard.admin.subtitle') %></p>
-  </div>
-</div>
-
  <div class="row">
     <div class="col-lg-3 col-sm-6">
         <div class="widget-panel widget-style-2 bg-white">
@@ -40,9 +32,8 @@
  <div class="row">
   	<div class="col-lg-6">
   		<div class="card-box">
-        <%= link_to t(:view_all), backoffice_admin_orders_path, class: 'pull-right btn btn-default btn-sm waves-effect waves-light' %>
-  			<h4 class="text-dark header-title m-t-0">Recent Orders</h4>
-  			<p class="text-muted m-b-30 font-13">Your awesome text goes here.</p>
+        <%= link_to 'Ver todos', backoffice_admin_orders_path, class: 'pull-right btn btn-default btn-sm waves-effect waves-light' %>
+  			<h4 class="text-dark header-title m-t-0">Pedidos Recentes</h4>
 
   			<div class="table-responsive">
           <table class="table table-actions-bar">
@@ -52,19 +43,15 @@
                   <th>Order Date</th>
                   <th>Order Number</th>
                   <th>Amount</th>
-                  <th style="min-width: 80px;">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <% last_orders.each do |last_order| %>
                 <tr>
-                  <td><%= last_order.user.username %></td>
+                  <td><%= link_to_user last_order.user %></td>
                   <td><%= l last_order.created_at, format: :short %></td>
-                  <td>#<%= last_order.id %></td>
+                  <td><%= link_to "\##{last_order.id}", backoffice_admin_order_path(last_order) %></td>
                   <td><%= number_to_currency last_order.total %></td>
-                  <td><%= link_to backoffice_admin_order_path(last_order) do %>
-                    <i class="icon-eye"></i>
-                  <% end %></td>
                 </tr>
                 <% end %>
               </tbody>

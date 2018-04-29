@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180424124922) do
+ActiveRecord::Schema.define(version: 20180427162743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,6 +200,25 @@ ActiveRecord::Schema.define(version: 20180424124922) do
     t.datetime "paid_at"
     t.bigint "pv_total", default: 0, null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "pagarme_transactions", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "user_id"
+    t.string "boleto_url"
+    t.string "boleto_barcode"
+    t.datetime "boleto_expiration_date"
+    t.string "status"
+    t.bigint "pagarme_tid"
+    t.bigint "amount_cents"
+    t.bigint "paid_amount_cents", default: 0
+    t.integer "installments", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_pagarme_transactions_on_order_id"
+    t.index ["pagarme_tid"], name: "index_pagarme_transactions_on_pagarme_tid", unique: true
+    t.index ["status"], name: "index_pagarme_transactions_on_status"
+    t.index ["user_id"], name: "index_pagarme_transactions_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -404,6 +423,8 @@ ActiveRecord::Schema.define(version: 20180424124922) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "pagarme_transactions", "orders"
+  add_foreign_key "pagarme_transactions", "users"
   add_foreign_key "products", "careers"
   add_foreign_key "products", "categories"
   add_foreign_key "pv_activity_histories", "orders"

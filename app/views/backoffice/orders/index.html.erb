@@ -30,8 +30,9 @@
                   <td><%= t "defaults.#{order.status}" %></td>
                   <td><%= l(order.paid_at, format: :short) if order.paid_at.present? %></td>
                   <td>
-                    <%= link_to backoffice_order_path(order) do %>
-                      <i class="icon-eye"></i>
+                    <%= link_to 'Detalhes', backoffice_order_path(order) %>
+                    <% unless order.completed? %>
+                      <%= link_to 'Boleto', order.current_transaction.boleto_url, target: '_blank' if order.current_transaction %>
                     <% end %>
                   </td>
                 </tr>

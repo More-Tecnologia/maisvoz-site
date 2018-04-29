@@ -291,6 +291,9 @@ GEM
       mini_portile2 (~> 2.3.0)
     oj (3.5.1)
     orm_adapter (0.5.0)
+    pagarme (2.2.2)
+      multi_json
+      rest-client
     parser (2.5.0.2)
       ast (~> 2.4.0)
     pg (0.21.0)
@@ -526,6 +529,7 @@ DEPENDENCIES
   money-rails (~> 1)
   newrelic_rpm
   oj
+  pagarme
   pg (~> 0.18)
   pry-rails
   puma (~> 3.7)

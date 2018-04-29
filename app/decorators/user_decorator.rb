@@ -82,4 +82,14 @@ class UserDecorator < ApplicationDecorator
     end
   end
 
+  def phone_ddd
+    return '' if phone.blank?
+    phone[/\d{2}/, 0]
+  end
+
+  def phone_number
+    return '' if phone.blank?
+    phone[/\d+.\d+/, 0]
+  end
+
 end

@@ -29,6 +29,7 @@ class Order < ApplicationRecord
   has_many :pv_histories
   has_many :bonus, class_name: 'Bonus'
   has_many :pv_activity_histories
+  has_many :pagarme_transactions
   belongs_to :user
 
   monetize :subtotal_cents
@@ -48,6 +49,11 @@ class Order < ApplicationRecord
 
   def max_product_score
     @max_product_score ||= order_items.map { |item| item.product.binary_score }.max
+  end
+
+  def current_transaction
+    return unless pagarme_transactions
+    pagarme_transactions.paid.first || pagarme_transactions.order(:created_at).last
   end
 
 end

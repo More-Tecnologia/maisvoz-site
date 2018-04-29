@@ -12,7 +12,7 @@ class ShoppingMailer < ApplicationMailer
     @order = params[:order]
     @user = @order.user
 
-    mail to: @user.email
+    mail to: @user.email, subject: 'FutureMotors - Pedido Realizado'
   end
 
   def order_paid
@@ -21,7 +21,7 @@ class ShoppingMailer < ApplicationMailer
     @order = params[:order]
     @user = @order.user
 
-    mail to: @user.email
+    mail to: @user.email, subject: 'FutureMotors - Pagamento Recebido'
   end
 
 end

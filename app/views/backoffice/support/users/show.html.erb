@@ -27,7 +27,7 @@
               <%= link_to('Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-lg') if current_user.username == 'sistema' %>
 
               <div class="text-left m-t-30">
-                <table>
+                <table class="table table-striped" style="word-break: break-word;">
                   <tr>
                     <td><strong><%= User.human_attribute_name(:sponsor) %>:</strong></td>
                     <td><%= user.sponsor && link_to_user(user.sponsor) %></td>

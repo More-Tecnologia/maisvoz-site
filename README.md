@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Passos iniciais:
 
-Things you may want to cover:
+* Rodar migrações
+* Adicionar admin
+* AdminUser.create!(email: 'guilhermekfe@outlook.com', password: '111111', password_confirmation: '111111')
+* Rodar rake import_products:run
+* Rodar rake import_users:run
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+heroku pg:copy futuremotors-production::DATABASE DATABASE -a futuremotors-staging

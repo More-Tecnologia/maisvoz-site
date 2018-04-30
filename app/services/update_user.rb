@@ -18,6 +18,7 @@ class UpdateUser
   attr_reader :form, :user
 
   def update_user
+    user.update_column(:email, form.email)
     user.update!(form_attributes)
   end
 
@@ -27,7 +28,7 @@ class UpdateUser
       attrs.delete(:password)
       attrs.delete(:password_confirmation)
     end
-    attrs.except(:user_id)
+    attrs.except(:user_id, :email)
   end
 
 end

@@ -36,6 +36,7 @@
 //= require theme/jquery.app
 //= require init-slimscroll
 
+
 $(document).ready(function() {
   $("#sidebar-menu a").each(function() {
     if (this.href == window.location.href) {

@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'charts' %>
+
  <div class="row">
     <div class="col-lg-3 col-sm-6">
         <div class="widget-panel widget-style-2 bg-white">
@@ -30,10 +32,25 @@
  </div> <!-- end row -->
 
  <div class="row">
+   <div class="col-md-6">
+     <div class="card-box">
+       <h4>Histórico de Pedidos</h4>
+       <%= column_chart Order.group_by_day(:created_at).count %>
+     </div>
+   </div>
+   <div class="col-md-6">
+     <div class="card-box">
+       <h4>Histórico de Usuários</h4>
+       <%= area_chart User.group_by_day(:created_at).count %>
+     </div>
+   </div>
+ </div>
+
+ <div class="row">
   	<div class="col-lg-6">
   		<div class="card-box">
         <%= link_to 'Ver todos', backoffice_admin_orders_path, class: 'pull-right btn btn-default btn-sm waves-effect waves-light' %>
-  			<h4 class="text-dark header-title m-t-0">Pedidos Recentes</h4>
+  			<h4 class="text-dark header-title m-t-0">Últimos Pedidos</h4>
 
   			<div class="table-responsive">
           <table class="table table-actions-bar">

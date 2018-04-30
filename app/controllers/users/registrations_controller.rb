@@ -103,7 +103,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit_form
-    @form ||= EditRegistrationForm.new(params.fetch(:user, resource.attributes).permit!)
+    update_params = params.fetch(:user, resource.attributes).permit!
+    update_params[:id] = resource.id
+    @form ||= EditRegistrationForm.new(update_params)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

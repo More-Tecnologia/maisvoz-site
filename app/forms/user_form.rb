@@ -38,7 +38,7 @@ class UserForm < Form
   end
 
   def document_cpf_is_unique
-    return unless User.where(document_cpf: document_cpf).where.not(id: user_id).any?
+    return unless User.where(document_cpf: document_cpf).where('id != ?', user_id).exists?
     errors.add(:document_cpf, 'Já está registrado em outra conta')
   end
 

@@ -1,5 +1,6 @@
 class EditRegistrationForm < Form
 
+  attribute :id
   attribute :avatar
   attribute :name
   attribute :birthdate
@@ -41,7 +42,7 @@ class EditRegistrationForm < Form
   end
 
   def document_cpf_is_unique
-    return unless User.where(document_cpf: document_cpf).any?
+    return unless User.where(document_cpf: document_cpf).where('id != ?', id).exists?
     errors.add(:document_cpf, 'Já está registrado em outra conta')
   end
 

@@ -1,20 +1,29 @@
 <%= simple_form_for(user_form, url: url, method: method, validate: true, html: { class: 'form-horizontal', multipart: true }) do |f| %>
   <%= f.input :name %>
   <%= f.input :email %>
-  <%= f.input :birthdate %>
+  <%= f.input :birthdate, as: :date %>
   <%= f.input :phone, input_html: { class: 'input-phone'} %>
   <%= f.input :skype %>
+  <%= f.collection_radio_buttons :registration_type, User.registration_types, :first, :last do |b| %>
+    <%= b.label { b.radio_button + t(b.text) } %>
+    <br>
+  <% end %>
   <%= f.input :document_cpf, input_html: { class: 'input-cpf'} %>
   <%= f.input :document_rg %>
   <%= f.input :document_rg_expeditor %>
+  <%= f.input :document_pis %>
+  <%= f.input :document_cnpj %>
+  <%= f.input :document_ie %>
+  <%= f.input :document_company_name %>
+  <%= f.input :document_fantasy_name %>
   <%= f.input :zipcode, input_html: { class: 'input-zipcode'} %>
   <%= f.input :address_ibge %>
   <%= f.input :address %>
   <%= f.input :address_2 %>
   <%= f.input :district %>
-  <%= f.input :country %>
-  <%= f.input :state %>
   <%= f.input :city %>
+  <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
+  <%= f.input :country, only: ['BR'] %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
 

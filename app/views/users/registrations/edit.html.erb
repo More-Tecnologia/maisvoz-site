@@ -41,7 +41,7 @@
                       <%= f.input :address %>
                       <%= f.input :address_2 %>
                       <%= f.input :country, only: ['BR'] %>
-                      <%= f.input :state %>
+                      <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
                       <%= f.input :city %>
 
                       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

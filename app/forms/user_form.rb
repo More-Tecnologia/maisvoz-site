@@ -6,9 +6,15 @@ class UserForm < Form
   attribute :phone
   attribute :skype
   attribute :email
+  attribute :registration_type
   attribute :document_cpf
   attribute :document_rg
+  attribute :document_pis
   attribute :document_rg_expeditor
+  attribute :document_cnpj
+  attribute :document_ie
+  attribute :document_company_name
+  attribute :document_fantasy_name
   attribute :zipcode
   attribute :address_ibge
   attribute :address

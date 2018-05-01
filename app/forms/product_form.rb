@@ -44,7 +44,7 @@ class ProductForm < Form
   validates :length, :width, :height, :weight, :price, numericality: { greater_than_or_equal_to: 0.0, allow_blank: true }
 
   validate :sku_is_unique
-  validate :career_presence_on_adhesion
+  # validate :career_presence_on_adhesion
 
   private
 
@@ -57,7 +57,7 @@ class ProductForm < Form
   def career_presence_on_adhesion
     return if kind != 'adhesion'
     return if career_id.present?
-    errors.add(:kind, I18n.t('defaults.errors.career_required'))
+    errors.add(:career_id, I18n.t('defaults.errors.career_required'))
   end
 
 end

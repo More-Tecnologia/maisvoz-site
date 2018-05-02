@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427162743) do
+ActiveRecord::Schema.define(version: 20180502172351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 20180427162743) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "pagarme_transactions", force: :cascade do |t|
+  create_table "payment_transactions", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "user_id"
     t.string "boleto_url"
@@ -215,10 +215,13 @@ ActiveRecord::Schema.define(version: 20180427162743) do
     t.integer "installments", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_pagarme_transactions_on_order_id"
-    t.index ["pagarme_tid"], name: "index_pagarme_transactions_on_pagarme_tid", unique: true
-    t.index ["status"], name: "index_pagarme_transactions_on_status"
-    t.index ["user_id"], name: "index_pagarme_transactions_on_user_id"
+    t.string "type"
+    t.text "provider_response"
+    t.index ["order_id"], name: "index_payment_transactions_on_order_id"
+    t.index ["pagarme_tid"], name: "index_payment_transactions_on_pagarme_tid", unique: true, where: "(pagarme_tid IS NOT NULL)"
+    t.index ["status"], name: "index_payment_transactions_on_status"
+    t.index ["type"], name: "index_payment_transactions_on_type"
+    t.index ["user_id"], name: "index_payment_transactions_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -423,8 +426,8 @@ ActiveRecord::Schema.define(version: 20180427162743) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
-  add_foreign_key "pagarme_transactions", "orders"
-  add_foreign_key "pagarme_transactions", "users"
+  add_foreign_key "payment_transactions", "orders"
+  add_foreign_key "payment_transactions", "users"
   add_foreign_key "products", "careers"
   add_foreign_key "products", "categories"
   add_foreign_key "pv_activity_histories", "orders"

@@ -27,14 +27,16 @@
 #  index_payment_transactions_on_user_id      (user_id)
 #
 
-class PagarmeTransaction < PaymentTransaction
+class BradescoTransaction < PaymentTransaction
 
-  enum status: PagarmeTransactionType.enum
+  enum status: BradescoTransactionType.enum
 
-  validates :status, presence: true, inclusion: { in: PagarmeTransactionType.all }
+  validates :status, presence: true, inclusion: { in: BradescoTransactionType.all }
 
   def paid?
-    status == PagarmeTransactionType::PAID
+    status == BradescoTransactionType::PAID_MANUAL ||
+    status == BradescoTransactionType::PAID_MORE ||
+    status == BradescoTransactionType::PAID_EQUAL
   end
 
 end

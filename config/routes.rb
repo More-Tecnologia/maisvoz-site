@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :shop, only: [:index, :show]
   resources :pagarme_postback, only: :create
+  resources :bradesco_check_order, only: :index
 
   namespace :backoffice do
     namespace :admin do

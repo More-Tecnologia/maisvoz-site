@@ -545,6 +545,7 @@ DEPENDENCIES
   ransack
   redis-rails
   redis-session-store
+  rest-client
   rollbar
   rspec-rails (~> 3.6)
   sass-rails (~> 5.0)

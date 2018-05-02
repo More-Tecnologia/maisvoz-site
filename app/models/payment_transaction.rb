@@ -27,14 +27,11 @@
 #  index_payment_transactions_on_user_id      (user_id)
 #
 
-class PagarmeTransaction < PaymentTransaction
+class PaymentTransaction < ApplicationRecord
 
-  enum status: PagarmeTransactionType.enum
+  serialize :provider_response, JSON
 
-  validates :status, presence: true, inclusion: { in: PagarmeTransactionType.all }
-
-  def paid?
-    status == PagarmeTransactionType::PAID
-  end
+  belongs_to :order
+  belongs_to :user
 
 end

@@ -29,7 +29,7 @@ class Order < ApplicationRecord
   has_many :pv_histories
   has_many :bonus, class_name: 'Bonus'
   has_many :pv_activity_histories
-  has_many :pagarme_transactions
+  has_many :payment_transactions
   belongs_to :user
 
   monetize :subtotal_cents
@@ -52,8 +52,12 @@ class Order < ApplicationRecord
   end
 
   def current_transaction
-    return unless pagarme_transactions
-    pagarme_transactions.paid.first || pagarme_transactions.order(:created_at).last
+    return unless payment_transactions
+    payment_transactions.any? {|tx| tx.paid? } || payment_transactions.order(:created_at).last
+  end
+
+  def token
+    Digest::MD5.hexdigest("#{id * 1337}:#{hashid}")
   end
 
 end

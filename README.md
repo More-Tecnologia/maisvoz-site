@@ -8,4 +8,4 @@ Passos iniciais:
 * Rodar rake import_products:run
 * Rodar rake import_users:run
 
-heroku pg:copy futuremotors-production::DATABASE DATABASE -a futuremotors-staging
+`heroku pg:copy futuremotors-production::DATABASE DATABASE -a futuremotors-staging`

@@ -14,11 +14,13 @@ module Payment
     end
 
     def call
+      return unless AppConfig.is?('BOLETO_ON')
       create_payload
       res = RestClient.post(url, params.to_json, DEFAULT_HEADERS)
       if res.code == 201
         json = JSON.parse(res.body)
         create_bradesco_transaction(json)
+        ShoppingMailer.with(order: current_order).order_made.deliver_later
       else
         raise res.body
       end

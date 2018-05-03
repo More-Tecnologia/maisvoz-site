@@ -49,7 +49,12 @@ pt-BR:
     remember_me: Lembrar
     sponsor_username: Usuário do Patrocinador
     unit_cost: Custo Unitário
+    subtotal: Subtotal
+    shipping: Frete
+    tax: Impostos
     username: Nome de Usuário
+    order_date: Data da Fatura
+    order_status: Status da Fatura
     binary_position: Posição no Binário
     binary_qualified: Binário
     pva_total: Total de PVA
@@ -100,8 +105,6 @@ pt-BR:
   backoffice:
     orders:
       show:
-        delivery_fee: Taxa de entrega
-        id: Id da fatura
         invoice: Fatura
         order_date: Data da fatura
         status: Status da fatura
@@ -648,3 +651,4 @@ pt-BR:
   refused_verification: Recusado
   left_count: Quantidade Esquerda
   right_count: Quantidade Direita
+  invoice: Fatura

@@ -18,6 +18,7 @@
 //= require twitter-bootstrap-wizard/jquery.bootstrap.wizard
 //= require jquery-mask-plugin/dist/jquery.mask
 //= require jquery-slimscroll/jquery.slimscroll
+//= require print-this/printThis
 //= require notifyjs
 //= require bootstrap-datepicker
 //= require raphael

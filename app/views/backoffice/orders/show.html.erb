@@ -12,10 +12,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <!-- <div class="panel-heading">
-                <h4>Invoice</h4>
-            </div> -->
-            <div class="panel-body">
+            <div class="panel-body" id="page-print">
                 <div class="clearfix">
                     <div class="pull-right">
                         <h4><%= t('.invoice') %> # <br>
@@ -30,6 +27,7 @@
                         <div class="pull-left m-t-30">
                             <address>
                               <strong><%= @order.user.name %></strong><br>
+                              <strong><%= @order.user.username %></strong><br>
                               <%= @order.user.address %><br>
                               <%= @order.user.address_2 %>, <%= @order.user.city %>, <%= @order.user.state %> <%= @order.user.country %><br>
                               <abbr title="Phone">P:</abbr> <%= @order.user.phone %>
@@ -38,7 +36,7 @@
                         <div class="pull-right m-t-30">
                             <p><strong><%= t('.order_date') %>: </strong> <%= l @order.created_at, format: :short %></p>
                             <p class="m-t-10"><strong><%= t('.status') %>: </strong> <span class="label label-default"><%= t "defaults.#{@order.status}" %></span></p>
-                            <p class="m-t-10"><strong><%= t('.id') %>: </strong> #<%= @order.hashid %></p>
+                            <p class="m-t-10"><strong><%= Order.human_attribute_name(:id) %>: </strong> #<%= @order.hashid %></p>
                         </div>
                     </div>
                 </div>
@@ -49,8 +47,7 @@
                             <table class="table m-t-30">
                                 <thead>
                                     <tr><th>#</th>
-                                    <th><%= OrderItem.human_attribute_name(:product) %></th>
-                                    <th><%= OrderItem.human_attribute_name(:description) %></th>
+                                    <th><%= OrderItem.human_attribute_name(:item) %></th>
                                     <th><%= OrderItem.human_attribute_name(:quantity) %></th>
                                     <th><%= OrderItem.human_attribute_name(:unit_cost) %></th>
                                     <th><%= OrderItem.human_attribute_name(:total) %></th>
@@ -60,7 +57,6 @@
                                   <tr>
                                     <td><%= oi.product.id %></td>
                                     <td><%= link_to oi.product.name, backoffice_product_path(oi.product) %></td>
-                                    <td><%= oi.product.short_description %></td>
                                     <td><%= oi.quantity %></td>
                                     <td><%= number_to_currency oi.unit_price %></td>
                                     <td><%= number_to_currency oi.total %></td>
@@ -74,7 +70,7 @@
                 <div class="row" style="border-radius: 0px;">
                     <div class="col-md-3 col-md-offset-9">
                         <p class="text-right"><b><%= t('.subtotal') %>:</b> <%= @order.subtotal %></p>
-                        <p class="text-right"><%= t('.delivery_fee') %>: <%= @order.shipping %></p>
+                        <p class="text-right"><%= Order.human_attribute_name(:shipping) %>: <%= @order.shipping %></p>
                         <p class="text-right"><%= t('.taxes') %>: <%= @order.tax %></p>
                         <hr>
                         <h3 class="text-right"><%= number_to_currency @order.total %></h3>
@@ -83,7 +79,7 @@
                 <hr>
                 <div class="hidden-print">
                     <div class="pull-right">
-                        <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
+                        <a href="javascript:$('#page-print').printThis()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
                     </div>
                 </div>
             </div>

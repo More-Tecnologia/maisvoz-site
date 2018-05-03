@@ -52,7 +52,7 @@ class Order < ApplicationRecord
   end
 
   def current_transaction
-    return unless payment_transactions
+    return if completed? || payment_transactions.blank?
     payment_transactions.any? {|tx| tx.paid? } || payment_transactions.order(:created_at).last
   end
 

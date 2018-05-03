@@ -652,3 +652,8 @@ pt-BR:
   left_count: Quantidade Esquerda
   right_count: Quantidade Direita
   invoice: Fatura
+  cart: Carrinho
+  pending_payment: Pagamento Pendente
+  processing: Processando
+  completed: Pago
+  cancelled: Cancelado

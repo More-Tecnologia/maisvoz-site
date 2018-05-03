@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-4">
               <%= f.label t('.status') %>
-              <%= f.select :status_eq, Order.statuses.map { |k, v| [t(k), v] }, { include_blank: true }, { class: 'form-control input-sm' } %>
+              <%= f.select :status_eq, Order.statuses.map { |k, v| [t(k), v] }, { include_blank: 'Todos' }, { class: 'form-control input-sm' } %>
             </div>
           </div>
         </div>

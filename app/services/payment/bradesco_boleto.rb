@@ -20,7 +20,7 @@ module Payment
       if res.code == 201
         json = JSON.parse(res.body)
         create_bradesco_transaction(json)
-        ShoppingMailer.with(order: current_order).order_made.deliver_later
+        ShoppingMailer.with(order: order).order_made.deliver_later
       else
         raise res.body
       end

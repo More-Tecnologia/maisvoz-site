@@ -13,6 +13,7 @@
 #  updated_at     :datetime         not null
 #  paid_at        :datetime
 #  pv_total       :integer          default(0), not null
+#  sap_recorded   :boolean          default(FALSE)
 #
 # Indexes
 #

@@ -23,6 +23,11 @@ class UserDecorator < ApplicationDecorator
     "#{document_company_name} - #{name}"
   end
 
+  def name_or_company_name
+    return name if pf?
+    document_company_name
+  end
+
   def main_document
     if pj?
       document_cnpj

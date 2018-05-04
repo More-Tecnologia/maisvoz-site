@@ -7,9 +7,9 @@ module Backoffice
     def update
       if params.key?(:user) && current_user.update!(documents_params)
         current_user.update!(document_verification_status: 'pending_verification', document_verification_updated_at: Time.now)
-        flash[:success] = 'Documentos atualizados com sucesso'
+        flash.now[:success] = 'Documentos atualizados com sucesso'
       else
-        flash[:notice] = 'Não foi possível fazer o upload dos documentos'
+        flash.now[:notice] = 'Não foi possível fazer o upload dos documentos'
       end
       render :edit
     end

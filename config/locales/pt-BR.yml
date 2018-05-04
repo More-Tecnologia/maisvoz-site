@@ -215,6 +215,7 @@ pt-BR:
       pv_histories:
         index:
           title: Histórico de PVG
+    support:
       users:
         index:
           title: Gerenciar Usuários

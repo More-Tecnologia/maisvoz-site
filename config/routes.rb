@@ -1,19 +1,16 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   authenticate :admin_user do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  mount Attachinary::Engine => "/attachinary"
+  mount Attachinary::Engine => '/attachinary'
 
   root 'shop#index'
 
@@ -22,6 +19,7 @@ Rails.application.routes.draw do
   resources :bradesco_check_order, only: :index
 
   namespace :backoffice do
+    # Admin
     namespace :admin do
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -41,14 +39,14 @@ Rails.application.routes.draw do
       resources :accumulated_pva, only: [:index]
       resources :career_histories, only: [:index]
       resources :social_leader_debugger, only: [:index]
-
-      # Admin
     end
 
     namespace :support do
       resources :users, only: [:index, :show, :edit, :update]
       resources :documents_validation, only: [:index, :update]
     end
+
+    # Backoffice
 
     resources :dashboard, only: :index
     resource :documents, only: [:edit, :update]
@@ -71,13 +69,13 @@ Rails.application.routes.draw do
     resources :pv_histories, only: [:index]
     resources :pv_activity_histories, only: [:index]
     resources :accumulated_pva, only: [:index]
+    resources :pay_third_order, only: [:new, :create]
 
     # Network
     resources :binary_strategies, only: [:index, :create]
     resources :binary_tree, only: [:index, :show]
     resources :unilevel, only: [:index]
     resources :pv_generations_history, only: [:index]
-
   end
 
   devise_for(
@@ -91,5 +89,4 @@ Rails.application.routes.draw do
       masquerades: 'masquerades'
     }
   )
-
 end

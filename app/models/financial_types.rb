@@ -24,7 +24,8 @@ module FinancialTypes
       product_return:          'product_return',
       tax:                     'tax',
       transfer:                'transfer',
-      withdrawal:              'withdrawal'
+      withdrawal:              'withdrawal',
+      third_order_payment:     'third_order_payment',
     }
   end
 

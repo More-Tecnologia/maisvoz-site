@@ -1,0 +1,7 @@
+<%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
+  <div data-withdraw-simulator="true" data-fee="<%= AppConfig.get(:withdrawal_fee) %>">
+    <%= f.input :invoice_id %>
+    <%= f.input :document_cpf %>
+    <%= f.button :button, t("defaults.pay"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Processando...".html_safe } %>
+  </div>
+<% end %>

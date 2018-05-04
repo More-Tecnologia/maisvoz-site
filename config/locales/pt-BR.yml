@@ -102,6 +102,7 @@ pt-BR:
     right_pv: PV Direito
     sponsor: Patrocinador
     active: Ativo
+    invoice_id: ID da Fatura
   backoffice:
     orders:
       show:
@@ -169,6 +170,10 @@ pt-BR:
     pv_generations_history:
       index:
         title: Histórico de PV por geração
+    pay_third_order:
+      new:
+        title: Pagar fatura para terceiro
+        instructions: Esta ferramenta funciona apenas para pagamento de faturas de adesão de terceiros
     admin:
       accumulated_pva:
         index:
@@ -379,6 +384,8 @@ pt-BR:
     pv_generations_history: PV por geração
     career_histories: Histórico de Carreiras
     documents_validation: Aprovação de documentos
+    pay_third_order: Pagar Fatura de Terceiro
+    pay: Pagar
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

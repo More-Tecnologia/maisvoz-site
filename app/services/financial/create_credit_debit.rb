@@ -34,7 +34,7 @@ module Financial
         entry.description   = form.message
         entry.kind          = FinancialEntry.kinds[:credit_by_admin]
         entry.amount_cents  = amount_in_cents
-        entry.balance_cents = form.user.available_balance_cents + amount_in_cents
+        entry.balance_cents = form.user.balance_cents + amount_in_cents
         entry.save!
       end
       form.user.increment!(:available_balance_cents, amount_in_cents)
@@ -47,7 +47,7 @@ module Financial
         entry.description   = form.message
         entry.kind          = FinancialEntry.kinds[:debit_by_admin]
         entry.amount_cents  = -amount_in_cents
-        entry.balance_cents = form.user.available_balance_cents - amount_in_cents
+        entry.balance_cents = form.user.balance_cents - amount_in_cents
         entry.save!
       end
       form.user.decrement!(:available_balance_cents, amount_in_cents)

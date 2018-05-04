@@ -4,6 +4,8 @@ module CreditDebitWizard
     attribute :username, String
     attribute :document_cpf, String
 
+    validates :username, :document_cpf, presence: true
+
     validate :user_exists
 
     def user
@@ -26,7 +28,7 @@ module CreditDebitWizard
     attribute :credit, Boolean, default: true
     attribute :master_password, String
 
-    validates :username, :document_cpf, :amount, :master_password, presence: true
+    validates :amount, :master_password, presence: true
     validates :amount, numericality: { greater_than: 0 }
 
     validate :correct_master_password

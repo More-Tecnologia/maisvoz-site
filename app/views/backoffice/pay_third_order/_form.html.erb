@@ -2,6 +2,7 @@
   <div data-withdraw-simulator="true" data-fee="<%= AppConfig.get(:withdrawal_fee) %>">
     <%= f.input :invoice_id %>
     <%= f.input :document_cpf %>
+    <%= f.input :password %>
     <%= f.button :button, t("defaults.pay"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Processando...".html_safe } %>
   </div>
 <% end %>

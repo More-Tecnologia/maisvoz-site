@@ -2,10 +2,12 @@ class PayThirdOrderForm < Form
 
   attribute :invoice_id
   attribute :document_cpf
+  attribute :password
   attribute :payer
 
-  validates :invoice_id, :document_cpf, presence: true
+  validates :invoice_id, :document_cpf, :password, presence: true
 
+  validate :correct_password
   validate :user_exists
   validate :order_exists
   validate :not_your_invoice, if: -> { order.present? }
@@ -18,6 +20,11 @@ class PayThirdOrderForm < Form
   end
 
   private
+
+  def correct_password
+    return if payer.valid_password?(password)
+    errors.add(:password, 'Senha incorreta')
+  end
 
   def user_exists
     return if User.exists?(document_cpf: document_cpf)

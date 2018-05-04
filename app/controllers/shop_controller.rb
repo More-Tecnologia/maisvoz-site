@@ -15,7 +15,7 @@ class ShopController < ApplicationController
   private
 
   def products
-    Product.active.order(:price_cents).includes(:photo_files, :main_photo_files)
+    Product.active.order(:price_cents).includes(:main_photo_files)
   end
 
   def product

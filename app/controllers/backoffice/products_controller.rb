@@ -19,9 +19,9 @@ module Backoffice
 
     def q
       if current_user.consumidor?
-        @q ||= Product.active.order(:price_cents).includes(:photo_files, :main_photo_files).ransack(params[:q])
+        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
       else
-        @q ||= Product.active.order(:price_cents).includes(:photo_files, :main_photo_files).where.not(kind: :adhesion).ransack(params[:q])
+        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).where.not(kind: :adhesion).ransack(params[:q])
       end
     end
 

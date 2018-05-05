@@ -14,6 +14,7 @@
 #  paid_at        :datetime
 #  pv_total       :integer          default(0), not null
 #  sap_recorded   :boolean          default(FALSE)
+#  sap_response   :text
 #
 # Indexes
 #
@@ -21,6 +22,8 @@
 #
 
 class Order < ApplicationRecord
+
+  serialize :sap_response, JSON
 
   include Hashid::Rails
 

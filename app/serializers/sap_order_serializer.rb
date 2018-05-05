@@ -1,8 +1,9 @@
 class SAPOrderSerializer
 
-  def initialize(order)
-    @order = order
-    @user = order.user.decorate
+  def initialize(order, filial)
+    @order  = order
+    @user   = order.user.decorate
+    @filial = filial
   end
 
   def serialize
@@ -14,7 +15,7 @@ class SAPOrderSerializer
       dataLancamento: order.created_at.rfc3339,
       dataVencimento: order.created_at.rfc3339,
       observacao: '',
-      filial: 1,
+      filial: filial,
       condicaoPagamento: 14,
       formaPagamento: 'Boleto Bradesco',
       codigoVendedor: 2,
@@ -26,19 +27,19 @@ class SAPOrderSerializer
 
   private
 
-  attr_reader :order, :user
+  attr_reader :order, :user, :filial
 
   def user_attrs
     {
       codigoSap: '',
-      codigoIntegracao: 'C991',
+      codigoIntegracao: "C#{user.id}",
       razaoSocial: user.name_or_company_name,
       fantasia: user.document_fantasy_name,
       FornecedorCliente: 'C',
       codigoGrupo: 103,
       descricaoGrupo: 'Clientes',
-      cnpj: user.document_cnpj,
-      cpf: user.document_cpf,
+      cnpj: user.document_cnpj_digits,
+      cpf: user.document_cpf_digits,
       inscricaoEstadual: user.document_ie,
       telefone: user.phone,
       telefone2: '',

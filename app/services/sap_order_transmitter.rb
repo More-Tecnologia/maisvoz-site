@@ -8,30 +8,32 @@ class SAPOrderTransmitter
     'Accept'        => 'application/json'
   }.freeze
 
-  def initialize(order)
-    @order = order
+  def initialize(order, filial = 1)
+    @order  = order
+    @filial = filial
   end
 
   def call
     return if order.sap_recorded?
     post_order
-    order.update!(sap_recorded: true)
   end
 
   private
 
-  attr_reader :order
+  attr_reader :order, :filial
 
   def post_order
     res = RestClient.post(URL, serialized_order, DEFAULT_HEADERS)
 
-    raise(res.body) if res.code != 200
+    order.update!(sap_recorded: true, sap_response: res.body)
 
     res.body
+  rescue RestClient::ExceptionWithResponse => err
+    order.update!(sap_response: err.response)
   end
 
   def serialized_order
-    SAPOrderSerializer.new(order).serialize
+    SAPOrderSerializer.new(order, filial).serialize
   end
 
 end

@@ -97,4 +97,14 @@ class UserDecorator < ApplicationDecorator
     phone[/\d+.\d+/, 0]
   end
 
+  def document_cpf_digits
+    return '' unless document_cpf
+    document_cpf.scan(/\d+/).join
+  end
+
+  def document_cnpj_digits
+    return '' unless document_cnpj
+    document_cnpj.scan(/\d+/).join
+  end
+
 end

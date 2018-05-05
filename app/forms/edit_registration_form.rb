@@ -4,6 +4,7 @@ class EditRegistrationForm < Form
   attribute :avatar
   attribute :name
   attribute :birthdate
+  attribute :marital_status
   attribute :phone
   attribute :skype
   attribute :email

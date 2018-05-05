@@ -45,6 +45,7 @@
           <div class="tab-pane" id="tab1">
             <div class="form-inputs">
               <div class="col-md-6">
+                <%= f.input :role, collection: [['Pessoa física', 'pf'], ['Pessoa Jurídica', 'pj'], ['Instalador', 'installer']], include_blank: false %>
                 <% if form.sponsor_username && params[:sponsor].present? %>
                   <%= f.input :sponsor_username, autofocus: true, readonly: true %>
                 <% else %>
@@ -53,7 +54,6 @@
                 <%= f.input :username %>
                 <%= f.input :name %>
                 <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 18 %>
-                <%= f.input :marital_status, collection: User.marital_statuses.map {|k,v| [t(v), v]} %>
               </div>
               <div class="col-md-6">
                 <%= f.input :gender, collection: User.genders.map {|k, v| [t(v), v]} %>
@@ -68,11 +68,6 @@
           <div class="tab-pane" id="tab2">
             <div class="form-inputs">
               <div class="col-md-12">
-                <%= f.collection_radio_buttons :registration_type, User.registration_types, :first, :last do |b| %>
-                  <%= b.label { b.radio_button + t(b.text) } %>
-                  <br>
-                <% end %>
-
                 <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
                 <div id="pf-inputs">
                   <%= f.input :document_rg %>
@@ -144,7 +139,7 @@
         $('#rootwizard .progress-bar').css({width:$percent+'%'});
       },
       onNext: function(tab, navigation, index) {
-        var steps1 = ['#user_sponsor_username', '#user_username', '#user_name', '#user_phone', '#user_email', '#user_marital_status', '#user_gender', '#user_password']
+        var steps1 = ['#user_sponsor_username', '#user_username', '#user_name', '#user_phone', '#user_email', '#user_gender', '#user_password']
         var steps2 = ['#user_document_cpf']
         var steps3 = ['#user_zipcode', '#user_district', '#user_city', '#user_state']
 
@@ -184,7 +179,7 @@
 
     $('#pj-inputs').hide()
 
-    $("input[name='user[registration_type]']").change(function (e) {
+    $("select[name='user[role]']").change(function (e) {
       if ($(this).val() == 'pf') {
         $('#pf-inputs').show()
         $('#pj-inputs').hide()
@@ -192,7 +187,16 @@
         $('#pj-inputs').show()
         $('#pf-inputs').hide()
       }
+      if ($(this).val() == 'installer') {
+        $('#user_sponsor_username').val('-')
+        $('#user_sponsor_username').prop('disabled', true)
+      } else {
+        $('#user_sponsor_username').val('')
+        $('#user_sponsor_username').prop('disabled', false)
+      }
     })
+
+    $("select[name='user[role]']").change()
 
   });
 </script>

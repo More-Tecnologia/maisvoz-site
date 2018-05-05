@@ -27,6 +27,7 @@
 
                       <%= f.input :name, autofocus: true %>
                       <%= f.input :birthdate, start_year: Time.now.year - 90, end_year: Time.now.year - 18, as: :date, html5: true %>
+                      <%= f.input :marital_status, collection: User.marital_statuses.map {|k,v| [t(v), v]} %>
                       <%= f.input :phone, input_html: { class: 'input-phone'} %>
                       <%= f.input :skype %>
                       <%= f.input :email %>

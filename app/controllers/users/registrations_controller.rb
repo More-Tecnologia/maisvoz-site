@@ -16,11 +16,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # super
-    build_resource(form.attributes.except(:sponsor_username, :accept_terms))
+    build_resource(form.attributes.except(:sponsor_username, :role, :accept_terms))
 
-    resource.sponsor = form.sponsor
+    unless form.installer?
+      resource.sponsor = form.sponsor
+      resource.registration_type = form.role
+    end
 
     if form.valid? && resource.save
+      resource.instalador! && resource.pj! if form.installer?
       SlackMessageWorker.perform_async('#usuarios', "Novo usuário registrado: *#{form.username}*")
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
@@ -94,7 +98,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(
       :sign_up,
-      keys: [:sponsor_username, :username, :name, :birthdate, :marital_status, :phone]
+      keys: [:sponsor_username, :username, :name, :birthdate, :phone]
     )
   end
 

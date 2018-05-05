@@ -1,10 +1,10 @@
 class NewRegistrationForm < Form
 
+  attribute :role
   attribute :sponsor_username
   attribute :username
   attribute :name
   attribute :birthdate
-  attribute :marital_status
   attribute :document_rg
   attribute :document_rg_expeditor
   attribute :document_cpf
@@ -22,7 +22,6 @@ class NewRegistrationForm < Form
   attribute :state
   attribute :country
   attribute :zipcode
-  attribute :registration_type, String, default: 'pf'
   attribute :gender
   attribute :phone
   attribute :email
@@ -30,18 +29,19 @@ class NewRegistrationForm < Form
   attribute :password_confirmation
   attribute :accept_terms, Boolean
 
-  validates :sponsor_username, :username, :name, :phone, :email, :password,
+  validates :role, :username, :name, :phone, :email, :password,
             :password_confirmation, :zipcode, :district, :city, :state,
-            :country, :gender, :marital_status, :document_cpf, presence: true
+            :country, :gender, :document_cpf, presence: true
   validates :email, email: true
+  validates :sponsor_username, presence: true, unless: -> { installer? }
 
-  validates :document_rg, :document_rg_expeditor, presence: true, if: -> { registration_type == 'pf' }
-  validates :document_cnpj, :document_ie, :document_company_name, :document_fantasy_name, presence: true, if: -> { registration_type == 'pj' }
+  validates :document_rg, :document_rg_expeditor, presence: true, if: -> { pf? }
+  validates :document_cnpj, :document_ie, :document_company_name, :document_fantasy_name, presence: true, if: -> { pj? }
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
   validate :terms_accepted
-  validate :sponsor_exists
+  validate :sponsor_exists, unless: -> { installer? }
   validate :username_is_unique
   validate :email_is_unique
   validate :document_cpf_is_unique
@@ -53,6 +53,18 @@ class NewRegistrationForm < Form
       'LOWER(username) = ? AND role = ?',
       sponsor_username.downcase, :empreendedor
     ).first
+  end
+
+  def pf?
+    role == 'pf'
+  end
+
+  def pj?
+    role == 'pj'
+  end
+
+  def installer?
+    role == 'installer'
   end
 
   private

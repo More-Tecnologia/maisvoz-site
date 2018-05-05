@@ -32,7 +32,7 @@ class NewRegistrationForm < Form
 
   validates :sponsor_username, :username, :name, :phone, :email, :password,
             :password_confirmation, :zipcode, :district, :city, :state,
-            :gender, :marital_status, :document_cpf, presence: true
+            :country, :gender, :marital_status, :document_cpf, presence: true
   validates :email, email: true
 
   validates :document_rg, :document_rg_expeditor, presence: true, if: -> { registration_type == 'pf' }

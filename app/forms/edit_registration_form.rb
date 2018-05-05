@@ -20,7 +20,7 @@ class EditRegistrationForm < Form
   attribute :password_confirmation
   attribute :current_password
 
-  validates :name, :phone, :skype, :document_cpf, :email, presence: true
+  validates :name, :phone, :document_cpf, :email, presence: true
   validates :email, email: true
 
   validate :document_cpf_is_unique

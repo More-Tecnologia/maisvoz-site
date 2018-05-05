@@ -26,7 +26,7 @@ class UserForm < Form
   attribute :password
   attribute :password_confirmation
 
-  validates :name, :phone, :skype, :document_cpf, :email, presence: true
+  validates :name, :email, presence: true
   validates :email, email: true
 
   validate :document_cpf_is_unique

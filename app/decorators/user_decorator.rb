@@ -52,7 +52,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def pretty_address
-    @pretty_address ||= [address, address_2, city, state, country].delete_if(&:blank?).join(', ')
+    @pretty_address ||= [address, address_2, district, city, state, country].delete_if(&:blank?).join(', ')
   end
 
   def long_birthdate

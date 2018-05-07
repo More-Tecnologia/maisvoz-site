@@ -52,4 +52,19 @@ ActiveAdmin.register Order do
     redirect_to resource_path
   end
 
+  csv do
+    column :hashid
+    column :id
+    column(:name) { |o| o.user.name }
+    column(:username) { |o| o.user.username }
+    column(:cpf) { |o| o.user.document_cpf }
+    column(:cnpj) { |o| o.user.document_cnpj }
+    column(:cep) { |o| o.user.zipcode }
+    column(:address) { |o| o.user.decorate.pretty_address }
+    column(:created_at) { |o| o.user.created_at }
+    column(:itens) { |o| o.order_items.map { |i| [i.product.name, i.quantity] } }
+    column :status
+    column(:total) { |o| o.total }
+  end
+
 end

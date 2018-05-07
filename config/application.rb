@@ -22,6 +22,7 @@ module Moremmn
 
     config.action_controller.permit_all_parameters = true
 
+    config.middleware.use Rack::Attack
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
 
     # Settings in config/environments/* take precedence over those specified here.

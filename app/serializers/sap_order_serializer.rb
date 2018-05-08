@@ -18,6 +18,7 @@ class SAPOrderSerializer
       filial: filial,
       condicaoPagamento: 14,
       formaPagamento: 'Boleto Bradesco',
+      modFrete: '9',
       codigoVendedor: 2,
       parceiroNegocio: user_attrs,
       linhas: order_items,

@@ -37,7 +37,7 @@ class SAPOrderSerializer
       razaoSocial: user.name_or_company_name,
       fantasia: user.document_fantasy_name,
       FornecedorCliente: 'C',
-      codigoGrupo: 103,
+      codigoGrupo: 101,
       descricaoGrupo: 'Clientes',
       cnpj: user.document_cnpj_digits,
       cpf: user.document_cpf_digits,

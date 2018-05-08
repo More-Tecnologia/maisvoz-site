@@ -226,6 +226,27 @@ ActiveRecord::Schema.define(version: 20180505141748) do
     t.index ["user_id"], name: "index_payment_transactions_on_user_id"
   end
 
+  create_table "product_setups", force: :cascade do |t|
+    t.bigint "installer_id"
+    t.string "name"
+    t.string "document_cpf"
+    t.string "phone"
+    t.string "email"
+    t.string "car_brand"
+    t.string "car_year"
+    t.string "car_model"
+    t.string "car_mileage"
+    t.string "car_plate"
+    t.string "product_model"
+    t.string "product_serial"
+    t.string "status"
+    t.string "status_message"
+    t.datetime "status_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["installer_id"], name: "index_product_setups_on_installer_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -430,6 +451,7 @@ ActiveRecord::Schema.define(version: 20180505141748) do
   add_foreign_key "orders", "users"
   add_foreign_key "payment_transactions", "orders"
   add_foreign_key "payment_transactions", "users"
+  add_foreign_key "product_setups", "users", column: "installer_id"
   add_foreign_key "products", "careers"
   add_foreign_key "products", "categories"
   add_foreign_key "pv_activity_histories", "orders"

@@ -46,6 +46,11 @@ Rails.application.routes.draw do
       resources :documents_validation, only: [:index, :update]
     end
 
+    namespace :installer do
+      resources :dashboard, only: [:index]
+      resources :product_setups, only: [:index, :show, :new, :create]
+    end
+
     # Backoffice
 
     resources :dashboard, only: :index

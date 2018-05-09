@@ -1,0 +1,37 @@
+<%= simple_form_for(form, url: url, method: method) do |f| %>
+  <%= f.input :name %>
+
+  <div class="row">
+    <%= f.input :document_cpf, wrapper_html: { class: 'col-md-6' }, input_html: { class: 'cpf-mask' } %>
+    <%= f.input :phone, wrapper_html: { class: 'col-md-6' }, input_html: { class: 'phone-mask' } %>
+  </div>
+
+  <%= f.input :email %>
+
+  <h4 class="m-t-0 header-title">
+    <b>Informações do veículo</b>
+  </h4>
+  <div class="row">
+    <%= f.input :car_brand, wrapper_html: { class: 'col-md-6' } %>
+    <%= f.input :car_model, wrapper_html: { class: 'col-md-6' } %>
+  </div>
+  <div class="row">
+    <%= f.input :car_year, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :car_mileage, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :car_plate, wrapper_html: { class: 'col-md-4' } %>
+  </div>
+
+  <h4 class="m-t-0 header-title">
+    <b>Informações do H-Max</b>
+  </h4>
+  <div class="row">
+    <%= f.input :product_id, collection: Product.where('binary_score > 0'), wrapper_html: { class: 'col-md-6' } %>
+    <%= f.input :product_serial, wrapper_html: { class: 'col-md-6' } %>
+  </div>
+
+  <%= f.input :checkin, as: :file, label: false %>
+  <%= f.input :checkout, as: :file, label: false %>
+  <%= f.input :installation, as: :file, label: false %>
+
+  <%= f.submit 'Salvar', class: 'btn btn-primary' %>
+<% end %>

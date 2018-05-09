@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title">Instalação #<%= product_setup.hashid %></h4>
+    <br>
+  </div>
+  <div class="col-sm-12">
+    <div class="card-box">
+      <h4 class="m-t-0 header-title">
+        <b>Informações do proprietário</b>
+      </h4>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:name) %>:</strong> <span class="m-l-15"><%= product_setup.name %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:email) %>:</strong> <span class="m-l-15"><%= product_setup.email %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:document_cpf) %>:</strong> <span class="m-l-15"><%= product_setup.document_cpf %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:phone) %>:</strong> <span class="m-l-15"><%= product_setup.phone %></span></p>
+        </div>
+      </div>
+
+      <br>
+
+      <h4 class="m-t-0 header-title">
+        <b>Informações do carro</b>
+      </h4>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:car_brand) %>:</strong> <span class="m-l-15"><%= product_setup.car_brand %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:car_year) %>:</strong> <span class="m-l-15"><%= product_setup.car_year %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:car_model) %>:</strong> <span class="m-l-15"><%= product_setup.car_model %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:car_mileage) %>:</strong> <span class="m-l-15"><%= product_setup.car_mileage %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:car_plate) %>:</strong> <span class="m-l-15"><%= product_setup.car_plate %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:product_model) %>:</strong> <span class="m-l-15"><%= product_setup.product_model %></span></p>
+          <p class="text-muted font-13"><strong><%= ProductSetup.human_attribute_name(:product_serial) %>:</strong> <span class="m-l-15"><%= product_setup.product_serial %></span></p>
+        </div>
+      </div>
+
+      <br>
+
+      <h4 class="m-t-0 header-title">
+        <b>Imagens</b>
+      </h4>
+
+      <% if product_setup.checkin.present? %>
+        <%= cl_image_tag product_setup.checkin.path, { size: '150x150', class: 'm-b-20' } %>
+      <% end %>
+
+      <% if product_setup.checkout.present? %>
+        <%= cl_image_tag product_setup.checkout.path, { size: '150x150', class: 'm-b-20' } %>
+      <% end %>
+
+      <% if product_setup.installation.present? %>
+        <%= cl_image_tag product_setup.installation.path, { size: '150x150', class: 'm-b-20' } %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -103,6 +103,15 @@ pt-BR:
     sponsor: Patrocinador
     active: Ativo
     invoice_id: ID da Fatura
+    car_plate: Placa
+    car_brand: Marca do Carro
+    car_model: Modelo do Carro
+    car_year: Ano do Carro
+    car_mileage: Kilometragem
+    product_id: Produto
+    product_serial: Serial do Produto
+    status_message: Mensagem de Status
+    updated_at: Data da última atualização
   backoffice:
     orders:
       show:
@@ -387,6 +396,8 @@ pt-BR:
     documents_validation: Aprovação de documentos
     pay_third_order: Pagar Fatura de Terceiro
     pay: Pagar
+    product_setups: Instalações
+    new_product_setup: Nova Instalação
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

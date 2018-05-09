@@ -57,7 +57,7 @@ class SAPOrderSerializer
       uf: user.state,
       pais: user.country,
       municipio: user.city,
-      codigoIbge: user.address_ibge,
+      codigoIbge: address_ibge,
       email: user.email
     }
   end
@@ -81,6 +81,10 @@ class SAPOrderSerializer
       transfConta: '1.1.01.02.004',
       transfValor: order.total.to_f
     }
+  end
+
+  def address_ibge
+    City.find_by(name: user.city).ibge
   end
 
 end

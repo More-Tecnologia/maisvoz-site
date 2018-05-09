@@ -45,6 +45,7 @@ class NewRegistrationForm < Form
   validate :username_is_unique
   validate :email_is_unique
   validate :document_cpf_is_unique
+  validate :city_exists
 
   before_validation :normalize_username
 
@@ -98,6 +99,11 @@ class NewRegistrationForm < Form
   def terms_accepted
     return if accept_terms
     errors.add(:accept_terms, 'deve aceitar os termos')
+  end
+
+  def city_exists
+    return if City.exists?(name: city)
+    errors.add(:city, 'não existe')
   end
 
 end

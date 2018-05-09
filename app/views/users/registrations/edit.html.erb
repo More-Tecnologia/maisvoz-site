@@ -41,9 +41,12 @@
                       <%= f.input :district %>
                       <%= f.input :address %>
                       <%= f.input :address_2 %>
-                      <%= f.input :country, default: ['BR'] %>
+
+                      <%= hidden_field :user, :city_temp, value: form.city, class: 'city_temp' %>
+                      <%= f.input :city, collection: [], input_html: { class: 'city' } %>
+
                       <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
-                      <%= f.input :city %>
+                      <%= f.input :country, default: ['BR'] %>
 
                       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>

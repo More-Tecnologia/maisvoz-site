@@ -22,6 +22,7 @@ $(document).ready(function () {
                  $("#user_address").val(dados.logradouro);
                  $("#user_district").val(dados.bairro);
                  $("#user_city").val(dados.localidade);
+                 $("#user_city").trigger('change');
                  $("#user_state").val(dados.uf);
                  $("#user_address_ibge").val(dados.ibge);
              } //end if.
@@ -46,6 +47,7 @@ $(document).ready(function () {
     $('#user_district').val('');
     $('#user_address').val('');
     $('#user_city').val('');
+    $("#user_city").trigger('change');
     $('#user_state').val('');
     $('#user_address_ibge').val('');
   }

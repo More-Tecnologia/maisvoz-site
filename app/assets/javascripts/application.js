@@ -15,6 +15,7 @@
 //= require 'bootstrap/dist/js/bootstrap'
 //= require 'webui-popover/dist/jquery.webui-popover'
 //= require 'autonumeric/dist/autoNumeric.min'
+//= require 'select2/dist/js/select2.min'
 //= require twitter-bootstrap-wizard/jquery.bootstrap.wizard
 //= require jquery-mask-plugin/dist/jquery.mask
 //= require jquery-slimscroll/jquery.slimscroll
@@ -36,6 +37,7 @@
 //= require theme/wow.min
 //= require theme/jquery.app
 //= require init-slimscroll
+//= require cities-select
 
 
 $(document).ready(function() {

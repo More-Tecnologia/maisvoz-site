@@ -2,11 +2,11 @@
 #
 # Table name: debits
 #
-#  id             :integer          not null, primary key
-#  operated_by_id :integer
-#  user_id        :integer          not null
+#  id             :bigint(8)        not null, primary key
+#  operated_by_id :bigint(8)
+#  user_id        :bigint(8)        not null
 #  message        :string
-#  amount_cents   :integer          not null
+#  amount_cents   :bigint(8)        not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

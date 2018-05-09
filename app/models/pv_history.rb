@@ -2,12 +2,12 @@
 #
 # Table name: pv_histories
 #
-#  id              :integer          not null, primary key
-#  order_id        :integer
+#  id              :bigint(8)        not null, primary key
+#  order_id        :bigint(8)
 #  direction       :string           default("left"), not null
-#  amount_cents    :integer          default(0), not null
-#  balance_cents   :integer          default(0), not null
-#  user_id         :integer
+#  amount_cents    :bigint(8)        default(0), not null
+#  balance_cents   :bigint(8)        default(0), not null
+#  user_id         :bigint(8)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  origin_username :string

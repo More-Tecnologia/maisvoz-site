@@ -2,13 +2,13 @@
 #
 # Table name: withdrawals
 #
-#  id                   :integer          not null, primary key
-#  user_id              :integer
+#  id                   :bigint(8)        not null, primary key
+#  status               :string           not null
+#  user_id              :bigint(8)
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  status               :string           not null
-#  gross_amount_cents   :integer          not null
-#  net_amount_cents     :integer          not null
+#  gross_amount_cents   :bigint(8)        not null
+#  net_amount_cents     :bigint(8)        not null
 #  fiscal_document_link :string
 #
 # Indexes

@@ -2,10 +2,10 @@
 #
 # Table name: transfers
 #
-#  id           :integer          not null, primary key
-#  from_user_id :integer          not null
-#  to_user_id   :integer          not null
-#  amount_cents :integer          not null
+#  id           :bigint(8)        not null, primary key
+#  from_user_id :bigint(8)        not null
+#  to_user_id   :bigint(8)        not null
+#  amount_cents :bigint(8)        not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

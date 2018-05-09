@@ -2,11 +2,11 @@
 #
 # Table name: system_financial_logs
 #
-#  id           :integer          not null, primary key
+#  id           :bigint(8)        not null, primary key
 #  description  :string
-#  amount_cents :integer
+#  amount_cents :bigint(8)
 #  kind         :string
-#  order_id     :integer
+#  order_id     :bigint(8)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

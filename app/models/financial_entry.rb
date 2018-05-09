@@ -2,13 +2,13 @@
 #
 # Table name: financial_entries
 #
-#  id            :integer          not null, primary key
+#  id            :bigint(8)        not null, primary key
 #  description   :string
-#  amount_cents  :integer          default(0), not null
-#  balance_cents :integer          default(0), not null
+#  amount_cents  :bigint(8)        default(0), not null
+#  balance_cents :bigint(8)        default(0), not null
 #  kind          :string           default(NULL)
-#  user_id       :integer
-#  order_id      :integer
+#  user_id       :bigint(8)
+#  order_id      :bigint(8)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

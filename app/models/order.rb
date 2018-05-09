@@ -2,8 +2,8 @@
 #
 # Table name: orders
 #
-#  id             :integer          not null, primary key
-#  user_id        :integer
+#  id             :bigint(8)        not null, primary key
+#  user_id        :bigint(8)
 #  subtotal_cents :integer          default(0)
 #  tax_cents      :integer          default(0)
 #  shipping_cents :integer          default(0)
@@ -12,7 +12,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  paid_at        :datetime
-#  pv_total       :integer          default(0), not null
+#  pv_total       :bigint(8)        default(0), not null
 #  sap_recorded   :boolean          default(FALSE)
 #  sap_response   :text
 #

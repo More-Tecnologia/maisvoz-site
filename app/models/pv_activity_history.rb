@@ -2,15 +2,15 @@
 #
 # Table name: pv_activity_histories
 #
-#  id         :integer          not null, primary key
-#  order_id   :integer          not null
+#  id         :bigint(8)        not null, primary key
+#  order_id   :bigint(8)        not null
 #  amount     :integer          not null
-#  user_id    :integer          not null
+#  user_id    :bigint(8)        not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  balance    :integer          default(0), not null
+#  balance    :bigint(8)        default(0), not null
 #  kind       :string
-#  height     :integer
+#  height     :bigint(8)
 #
 # Indexes
 #

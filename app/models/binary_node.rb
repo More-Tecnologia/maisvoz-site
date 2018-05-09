@@ -2,16 +2,16 @@
 #
 # Table name: binary_nodes
 #
-#  id              :integer          not null, primary key
-#  user_id         :integer          not null
-#  sponsored_by_id :integer
-#  parent_id       :integer
-#  left_child_id   :integer
-#  right_child_id  :integer
-#  left_pv         :integer          default(0)
-#  right_pv        :integer          default(0)
-#  left_count      :integer          default(0)
-#  right_count     :integer          default(0)
+#  id              :bigint(8)        not null, primary key
+#  user_id         :bigint(8)        not null
+#  sponsored_by_id :bigint(8)
+#  parent_id       :bigint(8)
+#  left_child_id   :bigint(8)
+#  right_child_id  :bigint(8)
+#  left_pv         :bigint(8)        default(0)
+#  right_pv        :bigint(8)        default(0)
+#  left_count      :bigint(8)        default(0)
+#  right_count     :bigint(8)        default(0)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

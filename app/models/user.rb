@@ -2,7 +2,7 @@
 #
 # Table name: users
 #
-#  id                               :integer          not null, primary key
+#  id                               :bigint(8)        not null, primary key
 #  email                            :string           default(""), not null
 #  encrypted_password               :string           default(""), not null
 #  reset_password_token             :string
@@ -22,7 +22,7 @@
 #  locked_at                        :datetime
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
-#  sponsor_id                       :integer
+#  sponsor_id                       :bigint(8)
 #  name                             :string
 #  marital_status                   :string
 #  gender                           :string
@@ -46,15 +46,15 @@
 #  country                          :string
 #  state                            :string
 #  city                             :string
-#  available_balance_cents          :integer          default(0), not null
-#  blocked_balance_cents            :integer          default(0), not null
+#  available_balance_cents          :bigint(8)        default(0), not null
+#  blocked_balance_cents            :bigint(8)        default(0), not null
 #  role                             :string           default("consumidor"), not null
 #  binary_strategy                  :string           default("balanced_strategy"), not null
 #  binary_position                  :string
 #  bought_adhesion                  :boolean          default(FALSE), not null
 #  bought_product                   :boolean          default(FALSE), not null
 #  career_kind                      :string
-#  pva_total                        :integer          default(0), not null
+#  pva_total                        :bigint(8)        default(0), not null
 #  active                           :boolean          default(FALSE), not null
 #  active_until                     :date
 #  binary_qualified                 :boolean          default(FALSE), not null

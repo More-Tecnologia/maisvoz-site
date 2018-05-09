@@ -2,7 +2,7 @@
 #
 # Table name: products
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint(8)        not null, primary key
 #  name                   :string
 #  description            :text
 #  short_description      :string
@@ -13,14 +13,14 @@
 #  length                 :decimal(10, 2)
 #  width                  :decimal(10, 2)
 #  height                 :decimal(10, 2)
-#  price_cents            :integer
+#  price_cents            :bigint(8)
 #  binary_score           :integer
 #  advance_score          :integer
 #  active                 :boolean
 #  virtual                :boolean
 #  paid_by                :integer
-#  category_id            :integer
-#  career_id              :integer
+#  category_id            :bigint(8)
+#  career_id              :bigint(8)
 #  bonus_1                :integer
 #  bonus_2                :integer
 #  bonus_3                :integer
@@ -33,8 +33,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  kind                   :integer
-#  upgrade_from_career_id :integer
-#  upgrade_to_career_id   :integer
+#  upgrade_from_career_id :bigint(8)
+#  upgrade_to_career_id   :bigint(8)
 #  sap_code               :string
 #
 # Indexes

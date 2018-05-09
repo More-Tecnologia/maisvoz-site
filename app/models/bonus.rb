@@ -2,11 +2,11 @@
 #
 # Table name: bonus
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  order_id     :integer
+#  id           :bigint(8)        not null, primary key
+#  user_id      :bigint(8)
+#  order_id     :bigint(8)
 #  kind         :string           not null
-#  amount_cents :integer          not null
+#  amount_cents :bigint(8)        not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

@@ -2,8 +2,8 @@
 #
 # Table name: unilevel_nodes
 #
-#  id          :integer          not null, primary key
-#  user_id     :integer          not null
+#  id          :bigint(8)        not null, primary key
+#  user_id     :bigint(8)        not null
 #  username    :string
 #  career_kind :string
 #  leader      :boolean          default(FALSE), not null

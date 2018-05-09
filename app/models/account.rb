@@ -2,10 +2,10 @@
 #
 # Table name: accounts
 #
-#  id                      :integer          not null, primary key
-#  available_balance_cents :integer          default(0), not null
-#  blocked_balance_cents   :integer          default(0), not null
-#  user_id                 :integer
+#  id                      :bigint(8)        not null, primary key
+#  available_balance_cents :bigint(8)        default(0), not null
+#  blocked_balance_cents   :bigint(8)        default(0), not null
+#  user_id                 :bigint(8)
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #

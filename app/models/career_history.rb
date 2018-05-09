@@ -2,8 +2,8 @@
 #
 # Table name: career_histories
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
+#  id         :bigint(8)        not null, primary key
+#  user_id    :bigint(8)
 #  old_career :string
 #  new_career :string
 #  created_at :datetime         not null

@@ -6,12 +6,6 @@
         <div id="sidebar-menu">
             <ul>
 
-              <li>
-                <%= link_to backoffice_dashboard_index_path, class: 'waves-effect' do %>
-                  <i class="ti-home"></i> <span>Dashboard</span>
-                <% end %>
-              </li>
-
               <%= render "menus/#{current_user.role}_menu" %>
 
             </ul>

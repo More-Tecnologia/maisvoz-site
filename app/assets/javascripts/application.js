@@ -36,6 +36,8 @@
 //= require theme/jquery.core
 //= require theme/wow.min
 //= require theme/jquery.app
+//= require ui/cpf-mask
+//= require ui/phone-mask
 //= require init-slimscroll
 //= require cities-select
 

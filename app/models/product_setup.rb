@@ -30,7 +30,7 @@ class ProductSetup < ApplicationRecord
 
   include Hashid::Rails
 
-  enum status: { pending: 'pending', rejected: 'rejected', approved: 'approved' }
+  enum status: { pending: 'pending', in_analysis: 'in_analysis', rejected: 'rejected', approved: 'approved' }
 
   belongs_to :installer, class_name: 'User', foreign_key: 'installer_id'
 

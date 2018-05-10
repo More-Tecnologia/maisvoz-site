@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-sm-12 m-b-23">
+        <h4 class="page-title">Instalações</h4>
+    </div>
+</div>
+
+<div class="card-box">
+  <div class="row">
+    <%= form_tag backoffice_admin_product_setups_path, method: :get do %>
+    <div class="col-md-4 form-group">
+      <label for="">Status:</label>
+      <%= select_tag(:status, options_for_select(ProductSetup.statuses.keys.map {|k| [t(k), k]}, params[:status]), include_blank: t('all'), :onchange => "this.form.submit();", class: 'form-control') %>
+    </div>
+    <div class="col-md-12 m-b-30">
+      <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Username</th>
+        <th>Status</th>
+        <th>Criação</th>
+        <th>Última Análise</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% product_setups.each do |setup| %>
+        <tr>
+          <td><%= setup.id %></td>
+          <td><%= link_to_user setup.installer, target: '_blank' %></td>
+          <td><%= t setup.status %></td>
+          <td><%= l setup.created_at, format: :short %></td>
+          <td><%= setup.status_updated_at && l(setup.status_updated_at, format: :short) %></td>
+          <td><%= link_to 'Detalhes', backoffice_admin_product_setup_path(setup) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate product_setups %>
+</div>

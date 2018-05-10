@@ -1,5 +1,5 @@
 module Backoffice
-  class BankAccountsController < EntrepreneurController
+  class BankAccountsController < BackofficeController
 
     def edit
       render_edit

@@ -6,6 +6,7 @@ class UsersQuery
 
   def call(params)
     scoped = filter_by_username(initial_scope, params[:username])
+    scoped = filter_by_role(scoped, params[:role])
     scoped = filter_by_name(scoped, params[:name])
     scoped = filter_by_email(scoped, params[:email])
     scoped = filter_by_cpf(scoped, params[:document_cpf])
@@ -20,6 +21,10 @@ class UsersQuery
 
   def filter_by_username(scoped, username)
     username.present? ? scoped.where("username LIKE ?", "%#{username}%") : scoped
+  end
+
+  def filter_by_role(scoped, role)
+    role.present? ? scoped.where(role: role) : scoped
   end
 
   def filter_by_name(scoped, name)

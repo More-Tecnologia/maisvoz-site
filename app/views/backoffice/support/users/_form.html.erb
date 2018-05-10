@@ -1,35 +1,52 @@
-<%= simple_form_for(user_form, url: url, method: method, validate: true, html: { class: 'form-horizontal', multipart: true }) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :email %>
-  <%= f.input :birthdate, as: :date %>
-  <%= f.input :phone, input_html: { class: 'input-phone'} %>
-  <%= f.input :skype %>
+<%= simple_form_for(user_form, url: url, method: method, validate: true, html: { class: 'form-', multipart: true }) do |f| %>
+  <div class="row">
+    <%= f.input :name, wrapper_html: { class: 'col-md-6' } %>
+    <%= f.input :email, wrapper_html: { class: 'col-md-6' } %>
+  </div>
+  <div class="row">
+    <%= f.input :birthdate, as: :date, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :phone, input_html: { class: 'input-phone'}, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :skype, wrapper_html: { class: 'col-md-4' } %>
+
+  </div>
   <%= f.collection_radio_buttons :registration_type, User.registration_types, :first, :last do |b| %>
-    <%= b.label { b.radio_button + t(b.text) } %>
-    <br>
+    <div class="radio radio-info form-check-inline m-r-15 radio-inline">
+      <%= b.radio_button %>
+      <%= b.label { t(b.text) } %>
+    </div>
   <% end %>
-  <%= f.input :document_cpf, input_html: { class: 'input-cpf'} %>
-  <%= f.input :document_rg %>
-  <%= f.input :document_rg_expeditor %>
-  <%= f.input :document_pis %>
-  <%= f.input :document_cnpj %>
-  <%= f.input :document_ie %>
-  <%= f.input :document_company_name %>
-  <%= f.input :document_fantasy_name %>
-  <%= f.input :zipcode, input_html: { class: 'input-zipcode'} %>
-  <%= f.input :address_ibge %>
-  <%= f.input :address %>
-  <%= f.input :address_2 %>
-  <%= f.input :district %>
-  <%= f.input :city %>
-  <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
-  <%= f.input :country, only: ['BR'] %>
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
+  <div class="row">
+    <%= f.input :document_cpf, input_html: { class: 'input-cpf'}, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :document_rg, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :document_rg_expeditor, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :document_pis, wrapper_html: { class: 'col-md-3' } %>
+  </div>
+  <div class="row">
+    <%= f.input :document_company_name, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :document_fantasy_name, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :document_cnpj, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :document_ie, wrapper_html: { class: 'col-md-3' } %>
+  </div>
+  <div class="row">
+    <%= f.input :zipcode, input_html: { class: 'input-zipcode'}, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :address, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :address_2, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :district, wrapper_html: { class: 'col-md-3' } %>
+  </div>
+  <div class="row">
+    <%= f.input :address_number, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :city, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'], wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :country, only: ['BR'], wrapper_html: { class: 'col-md-3' } %>
+  </div>
   <div class="row">
     <%= f.input :bank_code, collection: user_form.bank_codes, wrapper_html: { class: 'col-md-4' } %>
     <%= f.input :bank_account, wrapper_html: { class: 'col-md-4' } %>
     <%= f.input :bank_agency, wrapper_html: { class: 'col-md-4' } %>
+  </div>
+  <div class="row">
+    <%= f.input :password, wrapper_html: { class: 'col-md-6' } %>
+    <%= f.input :password_confirmation, wrapper_html: { class: 'col-md-6' } %>
   </div>
 
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>

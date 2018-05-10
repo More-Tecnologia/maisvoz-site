@@ -26,6 +26,11 @@
   <%= f.input :country, only: ['BR'] %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
+  <div class="row">
+    <%= f.input :bank_code, collection: user_form.bank_codes, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :bank_account, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :bank_agency, wrapper_html: { class: 'col-md-4' } %>
+  </div>
 
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
 <% end %>

@@ -1,5 +1,7 @@
 class UserForm < Form
 
+  include BankCodes
+
   attribute :user_id
   attribute :name
   attribute :birthdate
@@ -19,10 +21,14 @@ class UserForm < Form
   attribute :address_ibge
   attribute :address
   attribute :address_2
+  attribute :address_number
   attribute :district
   attribute :country
   attribute :state
   attribute :city
+  attribute :bank_code
+  attribute :bank_agency
+  attribute :bank_account
   attribute :password
   attribute :password_confirmation
 

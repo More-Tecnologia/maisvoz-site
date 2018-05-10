@@ -1,11 +1,6 @@
 class BankAccountForm < Form
 
-  BANK_CODES = [
-    ['BANCO DO BRASIL S.A.', '001'],
-    ['BANCO ITAÚ S.A.', '341'],
-    ['CAIXA ECONOMICA FEDERAL', '104'],
-    ['BANCO BRADESCO S.A.', '237']
-  ].freeze
+  include BankCodes
 
   attribute :account_number, Integer
   attribute :account_digit, Integer
@@ -15,10 +10,6 @@ class BankAccountForm < Form
   attribute :user
 
   validates :account_number, :agency_number, :bank_code, presence: true
-
-  def bank_codes
-    BANK_CODES
-  end
 
   def bank_account
     return account_number if account_digit.blank?

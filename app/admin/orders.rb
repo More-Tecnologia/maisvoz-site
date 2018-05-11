@@ -57,6 +57,7 @@ ActiveAdmin.register Order do
     column :id
     column(:name) { |o| o.user.name }
     column(:username) { |o| o.user.username }
+    column(:phone) { |o| o.user.phone }
     column(:cpf) { |o| o.user.document_cpf }
     column(:cnpj) { |o| o.user.document_cnpj }
     column(:cep) { |o| o.user.zipcode }

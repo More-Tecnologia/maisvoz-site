@@ -16,6 +16,14 @@ module Payment
     def call
       return unless AppConfig.is?('BOLETO_ON')
       create_payload
+      create_boleto
+    end
+
+    private
+
+    attr_reader :order, :user, :params
+
+    def create_boleto
       res = RestClient.post(url, params.to_json, DEFAULT_HEADERS)
       if res.code == 201
         json = JSON.parse(res.body)
@@ -25,10 +33,6 @@ module Payment
         raise res.body
       end
     end
-
-    private
-
-    attr_reader :order, :user, :params
 
     def create_payload
       params[:merchant_id] = '100007991'

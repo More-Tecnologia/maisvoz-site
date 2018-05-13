@@ -20,6 +20,11 @@
 #  status_updated_at :datetime
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  checkin_data      :json
+#  checkout_data     :json
+#  scanner_in_data   :json
+#  scanner_out_data  :json
+#  installation_data :json
 #
 # Indexes
 #
@@ -29,13 +34,22 @@
 class ProductSetup < ApplicationRecord
 
   include Hashid::Rails
+  include ProductSetupUploader::Attachment.new(:checkin)
+  include ProductSetupUploader::Attachment.new(:checkout)
+  include ProductSetupUploader::Attachment.new(:scanner_in)
+  include ProductSetupUploader::Attachment.new(:scanner_out)
+  include ProductSetupUploader::Attachment.new(:installation)
 
   enum status: { pending: 'pending', in_analysis: 'in_analysis', refused: 'refused', approved: 'approved' }
 
   belongs_to :installer, class_name: 'User', foreign_key: 'installer_id'
 
-  has_attachment :checkin
-  has_attachment :checkout
-  has_attachment :installation
+  validates :name, :document_cpf, :phone, :email, :car_brand, :car_year,
+            :car_model, :car_mileage, :car_plate, :product_model,
+            :product_serial, presence: true
+  
+  validates :checkin, :checkout, :scanner_in, :scanner_out, :installation, presence: true
+
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
 end

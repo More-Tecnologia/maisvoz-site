@@ -71,17 +71,7 @@
         <b>Imagens</b>
       </h4>
 
-      <% if product_setup.checkin.present? %>
-        <%= cl_image_tag product_setup.checkin.path, { size: '150x150', class: 'm-b-20' } %>
-      <% end %>
-
-      <% if product_setup.checkout.present? %>
-        <%= cl_image_tag product_setup.checkout.path, { size: '150x150', class: 'm-b-20' } %>
-      <% end %>
-
-      <% if product_setup.installation.present? %>
-        <%= cl_image_tag product_setup.installation.path, { size: '150x150', class: 'm-b-20' } %>
-      <% end %>
+      <%= render partial: 'table', locals: { product_setup: product_setup } %>
 
     </div>
   </div>

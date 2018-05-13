@@ -83,7 +83,7 @@
 class User < ApplicationRecord
 
   include Careerable
-
+  
   attr_accessor :login
 
   monetize :available_balance_cents, :blocked_balance_cents

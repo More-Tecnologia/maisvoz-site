@@ -11,15 +11,21 @@ module Backoffice
       end
 
       def new
-        render_new
+        @product_setup = ProductSetup.new
       end
 
       def create
-        if form.valid? && ProductSetupSave.new(form).call
+        @product_setup = ProductSetup.new(product_setup_params)
+
+        @product_setup.installer = current_user
+        @product_setup.status = 'pending'
+
+        if @product_setup.valid?
+          @product_setup.save!
           flash.now[:success] = 'Instalação salva com sucesso'
           render_index
         else
-          render_new
+          render :new
         end
       end
 
@@ -29,18 +35,8 @@ module Backoffice
         render :index, locals: { product_setups: product_setups }
       end
 
-      def render_new
-        render :new, locals: { form: form }
-      end
-
-      def form
-        @form ||= ProductSetupForm.new(form_params)
-      end
-
-      def form_params
-        params[:product_setup_form] ||= {}
-        params[:product_setup_form][:installer] = current_user
-        params[:product_setup_form]
+      def product_setup_params
+        params.require(:product_setup).permit!
       end
 
       def product_setup

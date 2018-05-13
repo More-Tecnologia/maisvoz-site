@@ -34,8 +34,12 @@ class ProductSetup < ApplicationRecord
 
   belongs_to :installer, class_name: 'User', foreign_key: 'installer_id'
 
-  has_attachment :checkin
-  has_attachment :checkout
-  has_attachment :installation
+  validates :name, :document_cpf, :phone, :email, :car_brand, :car_year,
+            :car_model, :car_mileage, :car_plate, :product_model,
+            :product_serial, presence: true
+  
+  validates :checkin, :checkout, :scanner_in, :scanner_out, :installation, presence: true
+
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
 end

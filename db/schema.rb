@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508142304) do
+ActiveRecord::Schema.define(version: 20180512110232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,6 +252,11 @@ ActiveRecord::Schema.define(version: 20180508142304) do
     t.datetime "status_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "checkin_data"
+    t.json "checkout_data"
+    t.json "scanner_in_data"
+    t.json "scanner_out_data"
+    t.json "installation_data"
     t.index ["installer_id"], name: "index_product_setups_on_installer_id"
   end
 

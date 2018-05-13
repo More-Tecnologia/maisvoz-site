@@ -1,0 +1,52 @@
+<table class="table-bordered">
+  <tr>
+    <td>Checkin</td>
+    <td>
+    <% if product_setup.checkin.present? %>
+      <%= link_to product_setup.checkin_url(:original), target: '_blank' do %>
+        <%= image_tag product_setup.checkin_url(:thumbnail) %>
+      <% end %>
+    <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Checkout</td>
+    <td>
+    <% if product_setup.checkout.present? %>
+      <%= link_to product_setup.checkout_url(:original), target: '_blank' do %>
+        <%= image_tag product_setup.checkout_url(:thumbnail) %>
+      <% end %>
+    <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Scanner In</td>
+    <td>
+    <% if product_setup.scanner_in.present? %>
+      <%= link_to product_setup.scanner_in_url(:original), target: '_blank' do %>
+        <%= image_tag product_setup.scanner_in_url(:thumbnail) %>
+      <% end %>
+    <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Scanner Out</td>
+    <td>
+    <% if product_setup.scanner_out.present? %>
+      <%= link_to product_setup.scanner_out_url(:original), target: '_blank' do %>
+        <%= image_tag product_setup.scanner_out_url(:thumbnail) %>
+      <% end %>
+    <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Instalação</td>
+    <td>
+    <% if product_setup.installation.present? %>
+      <%= link_to product_setup.installation_url(:original), target: '_blank' do %>
+        <%= image_tag product_setup.installation_url(:thumbnail) %>
+      <% end %>
+    <% end %>
+    </td>
+  </tr>
+</table>

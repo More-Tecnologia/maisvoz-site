@@ -35,13 +35,13 @@
    <div class="col-md-6">
      <div class="card-box">
        <h4>Histórico de Pedidos</h4>
-       <%= column_chart Order.group_by_day(:created_at).count %>
+       <%= column_chart Order.where('created_at >= ?', 10.days.ago.beginning_of_day).group_by_day(:created_at).count %>
      </div>
    </div>
    <div class="col-md-6">
      <div class="card-box">
        <h4>Histórico de Usuários</h4>
-       <%= area_chart User.group_by_day(:created_at).count %>
+       <%= area_chart User.where('created_at >= ?', 10.days.ago.beginning_of_day).group_by_day(:created_at).count %>
      </div>
    </div>
  </div>

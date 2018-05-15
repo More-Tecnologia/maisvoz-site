@@ -16,9 +16,7 @@ module Backoffice
 
       def create
         @product_setup = ProductSetup.new(product_setup_params)
-
         @product_setup.installer = current_user
-        @product_setup.status = 'pending'
 
         if @product_setup.valid?
           @product_setup.save!
@@ -44,7 +42,7 @@ module Backoffice
       end
 
       def product_setups
-        current_user.product_setups.page(params[:page])
+        current_user.product_setups.order(created_at: :desc).page(params[:page])
       end
 
     end

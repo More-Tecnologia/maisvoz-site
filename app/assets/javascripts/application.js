@@ -38,6 +38,7 @@
 //= require theme/jquery.app
 //= require ui/cpf-mask
 //= require ui/phone-mask
+//= require ui/car-plate-mask
 //= require init-slimscroll
 //= require cities-select
 

@@ -66,7 +66,7 @@ class ProductSetup < ApplicationRecord
   private
 
   def set_defaults
-    self.car_plate = car_plate.upcase
+    self.car_plate = car_plate.upcase if car_plate.present?
     self.status ||= 'pending'
   end
 

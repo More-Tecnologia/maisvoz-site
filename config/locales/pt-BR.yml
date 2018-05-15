@@ -111,7 +111,10 @@ pt-BR:
     product_id: Produto
     product_serial: Serial do Produto
     status_message: Mensagem de Status
+    product_name: Nome do Produto
+    status_updated_at: Status Atualizado Em
     updated_at: Data da última atualização
+    bonus_1: Bônus Instalador
   backoffice:
     orders:
       show:

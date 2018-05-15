@@ -28,6 +28,8 @@ pt-BR:
       messages:
         blank: Não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
+        wrong_length: Tamanho errado
+        taken: Já está sendo utilizado
         restrict_dependent_destroy:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
           has_one: Não é possível excluir o registro pois existe um %{record} dependente

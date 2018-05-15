@@ -12,7 +12,7 @@
 #  car_year          :string
 #  car_model         :string
 #  car_mileage       :string
-#  car_plate         :string
+#  car_plate         :string(7)
 #  product_serial    :string
 #  status            :string
 #  status_message    :string
@@ -28,6 +28,7 @@
 #
 # Indexes
 #
+#  index_product_setups_on_car_plate     (car_plate) UNIQUE
 #  index_product_setups_on_installer_id  (installer_id)
 #  index_product_setups_on_product_id    (product_id)
 #
@@ -51,9 +52,22 @@ class ProductSetup < ApplicationRecord
   validates :name, :document_cpf, :phone, :car_brand, :car_year,
             :car_model, :car_mileage, :car_plate, :product,
             :product_serial, presence: true
+
+  validates :car_plate, length: { is: 7 }
   
   validates :checkin, :checkout, :scanner_in, :scanner_out, :installation, presence: true
 
+  validates :car_plate, uniqueness: true, case_sensitive: false
+
+  after_initialize :set_defaults  
+
   # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+
+  private
+
+  def set_defaults
+    self.car_plate = car_plate.upcase
+    self.status ||= 'pending'
+  end
 
 end

@@ -39,7 +39,7 @@
                     <%= withdraw.fiscal_document_link && link_to(withdraw.fiscal_document_link, withdraw.fiscal_document_link, target: '_blank') %>
                     <% if withdraw.fiscal_document_photo? %>
                       <%= link_to withdraw.fiscal_document_photo.fullpath, target: '_blank' do %>
-                        <%= cl_image_tag withdraw.fiscal_document_photo.path, { size: '150x150', class: 'm-b-20' }) %>
+                        <%= cl_image_tag withdraw.fiscal_document_photo.path, { size: '150x150', class: 'm-b-20' } %>
                       <% end %>
                     <% end %>
                   </th>
@@ -71,7 +71,7 @@
               <% end %>
               <% if withdrawals.empty? %>
                 <tr>
-                  <td colspan="8" class="text-center"><%= t('.no_data') %></td>
+                  <td colspan="10" class="text-center"><%= t('.no_data') %></td>
                 </tr>
               <% end %>
             </tbody>

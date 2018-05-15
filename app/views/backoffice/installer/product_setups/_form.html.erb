@@ -25,7 +25,7 @@
     <b>Informações do H-Max</b>
   </h4>
   <div class="row">
-    <%= f.input :product_model, collection: Product.where('binary_score > 0'), wrapper_html: { class: 'col-md-6' } %>
+    <%= f.association :product, collection: Product.where('binary_score > 0'), wrapper_html: { class: 'col-md-6' } %>
     <%= f.input :product_serial, wrapper_html: { class: 'col-md-6' } %>
   </div>
 

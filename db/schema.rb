@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512110232) do
+ActiveRecord::Schema.define(version: 20180515000645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,7 +245,6 @@ ActiveRecord::Schema.define(version: 20180512110232) do
     t.string "car_model"
     t.string "car_mileage"
     t.string "car_plate"
-    t.string "product_model"
     t.string "product_serial"
     t.string "status"
     t.string "status_message"
@@ -257,7 +256,9 @@ ActiveRecord::Schema.define(version: 20180512110232) do
     t.json "scanner_in_data"
     t.json "scanner_out_data"
     t.json "installation_data"
+    t.bigint "product_id"
     t.index ["installer_id"], name: "index_product_setups_on_installer_id"
+    t.index ["product_id"], name: "index_product_setups_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -464,6 +465,7 @@ ActiveRecord::Schema.define(version: 20180512110232) do
   add_foreign_key "orders", "users"
   add_foreign_key "payment_transactions", "orders"
   add_foreign_key "payment_transactions", "users"
+  add_foreign_key "product_setups", "products"
   add_foreign_key "product_setups", "users", column: "installer_id"
   add_foreign_key "products", "careers"
   add_foreign_key "products", "categories"

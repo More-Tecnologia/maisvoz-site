@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515000645) do
+ActiveRecord::Schema.define(version: 20180515170033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(version: 20180515000645) do
     t.string "car_year"
     t.string "car_model"
     t.string "car_mileage"
-    t.string "car_plate"
+    t.string "car_plate", limit: 7
     t.string "product_serial"
     t.string "status"
     t.string "status_message"
@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(version: 20180515000645) do
     t.json "scanner_out_data"
     t.json "installation_data"
     t.bigint "product_id"
+    t.index ["car_plate"], name: "index_product_setups_on_car_plate", unique: true
     t.index ["installer_id"], name: "index_product_setups_on_installer_id"
     t.index ["product_id"], name: "index_product_setups_on_product_id"
   end

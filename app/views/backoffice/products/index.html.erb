@@ -6,7 +6,7 @@
 </div>
 
 <div class="portfolioFilter">
-  <%= link_to t('.all'), backoffice_products_path %>
+  <%= link_to t('all'), backoffice_products_path %>
   <% Category.all.each do |category| %>
     <%= link_to category.name, q: { category_id_eq: category.id } %>
   <% end %>

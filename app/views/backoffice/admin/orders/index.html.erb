@@ -22,6 +22,7 @@
         <thead>
           <tr>
             <th>#</th>
+            <th>#</th>
             <th><%= User.human_attribute_name(:username) %></th>
             <th><%= Order.human_attribute_name(:total) %></th>
             <th><%= Order.human_attribute_name(:status) %></th>
@@ -34,6 +35,7 @@
           <% orders.each do |order| %>
             <tr>
               <th><%= order.id %></th>
+              <th><%= order.hashid %></th>
               <td><%= link_to_user order.user %></td>
               <td><%= number_to_currency order.total %></td>
               <td><%= t("defaults.#{order.status}") %></td>

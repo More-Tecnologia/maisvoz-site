@@ -96,6 +96,8 @@ module Financial
         log.new_career = User::AFFILIATE
         log.save!
       end
+
+      EmpreendedorMailer.welcome_email(user).deliver_later
     end
 
     def activate_user

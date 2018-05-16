@@ -1,6 +1,8 @@
 class SAPOrderSerializer
 
-  def initialize(order, filial)
+  FILIAL_GOIANIA = 3
+
+  def initialize(order, filial = FILIAL_GOIANIA)
     @order  = order
     @user   = order.user.decorate
     @filial = filial

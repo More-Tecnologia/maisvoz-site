@@ -8,9 +8,8 @@ class SAPOrderTransmitter
     'Accept'        => 'application/json'
   }.freeze
 
-  def initialize(order, filial = 1)
+  def initialize(order)
     @order  = order
-    @filial = filial
   end
 
   def call
@@ -20,7 +19,7 @@ class SAPOrderTransmitter
 
   private
 
-  attr_reader :order, :filial
+  attr_reader :order
 
   def post_order
     res = RestClient.post(URL, serialized_order, DEFAULT_HEADERS)
@@ -33,7 +32,7 @@ class SAPOrderTransmitter
   end
 
   def serialized_order
-    SAPOrderSerializer.new(order, filial).serialize
+    SAPOrderSerializer.new(order).serialize
   end
 
 end

@@ -1,6 +1,14 @@
 class SAPOrderSerializer
 
-  FILIAL_GOIANIA = 3
+  FILIAL_GOIANIA = {
+    code: 3,
+    deposito: '02'
+  }.freeze
+
+  FILIAL_SAO_PAULO = {
+    code: 1,
+    deposito: '01'
+  }.freeze
 
   def initialize(order, filial = FILIAL_GOIANIA)
     @order  = order
@@ -17,7 +25,7 @@ class SAPOrderSerializer
       dataLancamento: order.created_at.rfc3339,
       dataVencimento: order.created_at.rfc3339,
       observacao: '',
-      filial: filial,
+      filial: filial[:code],
       condicaoPagamento: 14,
       formaPagamento: 'Boleto Bradesco',
       modFrete: '9',
@@ -39,7 +47,7 @@ class SAPOrderSerializer
       razaoSocial: user.name_or_company_name,
       fantasia: user.document_fantasy_name,
       FornecedorCliente: 'C',
-      codigoGrupo: 101,
+      codigoGrupo: 100,
       descricaoGrupo: 'Clientes',
       cnpj: user.document_cnpj_digits,
       cpf: user.document_cpf_digits,
@@ -72,7 +80,7 @@ class SAPOrderSerializer
         },
         quantidade: item.quantity,
         preco: item.unit_price.to_f,
-        deposito: '01',
+        deposito: filial[:deposito],
         utilizacao: 9
       }
     end

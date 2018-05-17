@@ -55,6 +55,11 @@ class UserDecorator < ApplicationDecorator
     @pretty_address ||= [address, address_2, district, city, state, country].delete_if(&:blank?).join(', ')
   end
 
+  def pretty_address_number
+    return 'SN' if address_number.blank?
+    address_number
+  end
+
   def long_birthdate
     return '-' unless birthdate.present?
     @long_birthdate ||= h.l(birthdate, format: :long)

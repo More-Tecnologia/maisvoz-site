@@ -51,7 +51,7 @@ class SAPOrderSerializer
       textoLivre: "username: #{user.username}",
       tipoLogradouro: '',
       endereco: user.address,
-      numero: user.address_number,
+      numero: user.pretty_address_number,
       complemento: user.address_2,
       bairro: user.district,
       cep: user.zipcode,

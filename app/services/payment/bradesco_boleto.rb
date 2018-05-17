@@ -48,7 +48,7 @@ module Payment
       params[:comprador][:endereco] = {
         cep: user.zipcode.scan(/\d+/).join,
         logradouro: user.address,
-        numero: user.address_number || 'S/N',
+        numero: user.pretty_address_number,
         bairro: user.district,
         cidade: user.city,
         uf: user.state

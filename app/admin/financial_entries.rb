@@ -12,6 +12,28 @@ ActiveAdmin.register FinancialEntry do
 #   permitted
 # end
 
+
+  scope :all
+  scope :direct_indication_bonus
+  scope :executive_sale_bonus
+  scope :binary_bonus
+  scope :reverse_binary_bonus
+  scope :flex_bonus
+  scope :activity_bonus
+  scope :social_leader_bonus
+  scope :installer_bonus
+  scope :reverse_bonus
+  scope :bonus_chargeback
+  scope :credit_by_admin
+  scope :debit_by_admin
+  scope :fee
+  scope :withdrawal_fee
+  scope :product_return
+  scope :tax
+  scope :transfer
+  scope :withdrawal
+  scope :third_order_payment
+
   index do
     id_column
     column :description

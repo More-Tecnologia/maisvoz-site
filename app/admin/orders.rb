@@ -1,5 +1,12 @@
 ActiveAdmin.register Order do
 
+  scope :all
+  scope :completed
+  scope :pending_payment
+  scope :processing
+  scope :cancelled
+  scope :cart
+
   show do
     attributes_table do
       row :user

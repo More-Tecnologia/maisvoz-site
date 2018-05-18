@@ -1,5 +1,16 @@
 ActiveAdmin.register User do
 
+  scope :all
+  scope :active do |users|
+    users.where(active: true)
+  end
+  scope :inactive do |users|
+    users.where(active: false)
+  end
+  scope :binary_qualified do |users|
+    users.where(binary_qualified: true)
+  end
+
   index do
     id_column
     column :username
@@ -27,6 +38,12 @@ ActiveAdmin.register User do
     user = User.find(params[:id])
     bypass_sign_in user
     redirect_to backoffice_dashboard_index_path
+  end
+
+  controller do
+    def scoped_collection
+      User.includes(:sponsor)
+    end
   end
 
 end

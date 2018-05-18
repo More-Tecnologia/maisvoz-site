@@ -7,7 +7,7 @@ Rails:
   Enabled: true
 Documentation:
   Enabled: false
-Style/EmptyLinesAroundClassBody:
+Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
 Metrics/LineLength:
   Max: 100

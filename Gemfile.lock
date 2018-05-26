@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/activeadmin/activeadmin.git
-  revision: 1ae7e885de72ae15962a4b738e11d469423541c5
+  revision: 5d2b5b08e7404af056275cdeb746dd1584871ea1
   specs:
     activeadmin (2.0.0.alpha)
       arbre (>= 1.1.1)
@@ -81,16 +81,18 @@ GEM
     ast (2.4.0)
     autonumeric-rails (2.0.0.1)
       jquery-rails (>= 2.0.2)
-    aws-partitions (1.86.0)
-    aws-sdk-core (3.20.2)
+    aws-eventstream (1.0.0)
+    aws-partitions (1.87.0)
+    aws-sdk-core (3.21.2)
+      aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
     aws-sdk-kms (1.5.0)
       aws-sdk-core (~> 3)
       aws-sigv4 (~> 1.0)
-    aws-sdk-s3 (1.10.0)
-      aws-sdk-core (~> 3)
+    aws-sdk-s3 (1.13.0)
+      aws-sdk-core (~> 3, >= 3.21.2)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
@@ -103,12 +105,12 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    bcrypt (3.1.11)
+    bcrypt (3.1.12)
     benchmark-ips (2.7.2)
     bindex (0.5.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    brakeman (4.2.1)
+    brakeman (4.3.0)
     builder (3.2.3)
     bullet (5.7.5)
       activesupport (>= 3.0.0)
@@ -139,7 +141,7 @@ GEM
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
     concurrent-ruby (1.0.5)
-    connection_pool (2.2.1)
+    connection_pool (2.2.2)
     countries (2.1.4)
       i18n_data (~> 0.8.0)
       money (~> 6.9)
@@ -191,9 +193,9 @@ GEM
     equalizer (0.0.11)
     erubi (1.7.1)
     execjs (2.7.0)
-    factory_bot (4.8.2)
+    factory_bot (4.10.0)
       activesupport (>= 3.0.0)
-    faraday (0.15.0)
+    faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
@@ -201,7 +203,7 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
-    get_process_mem (0.2.1)
+    get_process_mem (0.2.2)
     gli (2.17.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -288,7 +290,7 @@ GEM
     memory_profiler (0.9.10)
     meta-tags (2.9.0)
       actionpack (>= 3.2.0, < 5.3)
-    method_source (0.9.0)
+    method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -299,7 +301,7 @@ GEM
     minitest (5.11.3)
     monetize (1.7.0)
       money (~> 6.9)
-    money (6.11.2)
+    money (6.11.3)
       i18n (>= 0.6.4, < 1.1)
     money-rails (1.11.0)
       activesupport (>= 3.0)
@@ -329,11 +331,12 @@ GEM
     pg (0.21.0)
     polyamorous (1.3.3)
       activerecord (>= 3.0)
-    pry (0.11.3)
+    pry (0.10.4)
       coderay (~> 1.1.0)
-      method_source (~> 0.9.0)
-    pry-rails (0.3.6)
-      pry (>= 0.10.4)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-nav (0.2.4)
+      pry (>= 0.9.10, < 0.11.0)
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.5)
@@ -414,7 +417,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rollbar (2.15.6)
+    rollbar (2.16.0)
       multi_json
     rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
@@ -448,10 +451,10 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    selenium-webdriver (3.11.0)
+    selenium-webdriver (3.12.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
-    shog (0.2.0)
+    shog (0.2.1)
       colorize (>= 0.8)
       rails (>= 4)
     shrine (2.11.0)
@@ -473,6 +476,7 @@ GEM
       gli
       hashie
       websocket-driver
+    slop (3.6.0)
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
     spring (2.0.2)
@@ -574,7 +578,8 @@ DEPENDENCIES
   pagarme
   paperclip
   pg (~> 0.18)
-  pry-rails
+  pry
+  pry-nav
   puma (~> 3.7)
   rack-attack
   rails (~> 5.1.4)
@@ -604,7 +609,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.3.1p112
+   ruby 2.4.4p296
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

@@ -117,6 +117,7 @@ pt-BR:
     status_updated_at: Status Atualizado Em
     updated_at: Data da última atualização
     bonus_1: Bônus Instalador
+    document_verification_status: Status de Verificação do Documento
   backoffice:
     orders:
       show:
@@ -638,6 +639,7 @@ pt-BR:
   activity_bonus: Bônus de Atividade
   social_leader_bonus: Bônus Social Líder
   reverse_bonus: Estorno de Bônus
+  installer_bonus: Bônus de Instalador
   bonus_chargeback:
   credit_by_admin: Crédito do Admin
   debit_by_admin: Débito do Admin

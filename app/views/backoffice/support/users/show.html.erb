@@ -37,6 +37,10 @@
                     <td><%= user.activity %></td>
                   </tr>
                   <tr>
+                    <td><strong><%= User.human_attribute_name(:document_verification_status) %>:</strong></td>
+                    <td><%= t user.document_verification_status %></td>
+                  </tr>
+                  <tr>
                     <td><strong><%= User.human_attribute_name(:binary_qualified) %>:</strong></td>
                     <td><%= user.qualification %></td>
                   </tr>

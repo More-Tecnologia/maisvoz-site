@@ -1,7 +1,7 @@
 module Backoffice
   class WithdrawalsController < EntrepreneurController
 
-    before_action :should_be_verified
+    prepend_before_action :ensure_admin_or_entrepreneur, :should_be_verified
 
     def index
       render(:index, locals: { withdrawals: withdrawals })
@@ -25,6 +25,12 @@ module Backoffice
 
     private
 
+    def ensure_admin_or_entrepreneur
+      return if signed_in? && (current_user.admin? || current_user.empreendedor? || current_user.instalador?)
+      flash[:error] = 'Você precisa ser admin ou empreendedor'
+      redirect_to root_path
+    end
+
     def withdrawals
       current_user.withdrawals.order(created_at: :desc).page(params[:page]).decorate
     end
@@ -32,13 +38,12 @@ module Backoffice
     def should_be_verified
       unless current_user.verified?
         flash[:error] = 'Sua conta precisa ser verificada antes de poder gerenciar saques'
-        redirect_to backoffice_dashboard_index_path
+        redirect_to root_path
       end
     end
 
     def withdraw_day?
-      return true
-      Time.zone.today.day <= 21 && Time.zone.today.monday?
+      Time.zone.today.day <= 21 && Time.zone.today.monday? || current_user.pj?
     end
 
   end

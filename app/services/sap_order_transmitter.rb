@@ -9,11 +9,12 @@ class SAPOrderTransmitter
   }.freeze
 
   def initialize(order)
-    @order  = order
+    @order = order
   end
 
   def call
     return if order.sap_recorded?
+    return unless order.completed?
     post_order
   end
 

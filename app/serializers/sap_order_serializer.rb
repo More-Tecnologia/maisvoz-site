@@ -52,7 +52,7 @@ class SAPOrderSerializer
       cnpj: user.document_cnpj_digits,
       cpf: user.document_cpf_digits,
       inscricaoEstadual: user.document_ie,
-      telefone: user.phone,
+      telefone: phone,
       telefone2: '',
       site: nil,
       comentario: nil,
@@ -95,6 +95,10 @@ class SAPOrderSerializer
 
   def address_ibge
     City.find_by(name: user.city).ibge
+  end
+
+  def phone
+    user.phone || '(62) 3988-8067'
   end
 
 end

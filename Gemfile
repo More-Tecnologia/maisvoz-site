@@ -55,6 +55,7 @@ gem 'slack-ruby-client'
 gem 'shrine', '~> 2.11'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'via_cep'
 gem 'virtus', '~> 1.0.5'
 
 # Use Redis adapter to run Action Cable in production

@@ -35,7 +35,7 @@ class ProductForm < Form
   attribute :main_photo
   attribute :photos
 
-  validates :name, :quantity, :price, :kind, :binary_score, :category_id, :sap_code, presence: true
+  validates :name, :quantity, :price, :kind, :binary_score, :category_id, presence: true
 
   validates :low_stock_alert, :binary_score, :advance_score, :bonus_1, :bonus_2,
             :bonus_3, :bonus_4, :bonus_5, :bonus_6, :bonus_7, :bonus_8, :bonus_9,

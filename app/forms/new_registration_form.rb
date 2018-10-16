@@ -30,8 +30,7 @@ class NewRegistrationForm < Form
   attribute :accept_terms, Boolean
 
   validates :role, :username, :name, :phone, :email, :password,
-            :password_confirmation, :zipcode, :district, :city, :state,
-            :country, :gender, :document_cpf, presence: true
+            :password_confirmation, :gender, :document_cpf, presence: true
   validates :email, email: true
   validates :sponsor_username, presence: true, unless: -> { installer? }
 
@@ -45,7 +44,7 @@ class NewRegistrationForm < Form
   validate :username_is_unique
   validate :email_is_unique
   validate :document_cpf_is_unique
-  validate :city_exists
+  # validate :city_exists
 
   before_validation :normalize_username
 

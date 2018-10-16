@@ -7,7 +7,7 @@ module Bonification
     end
 
     def call
-      return unless total_score > 0
+      return if total_score <= 0
       if user.empreendedor?
         propagate_pv_activity(order.user, 'pvv')
       else
@@ -41,7 +41,9 @@ module Bonification
     end
 
     def total_score
-      @total_score ||= order.total_score
+      @total_score ||= order.order_items.joins(:product).where(
+        'products.kind != ?', Product.kinds[:adhesion]
+      ).sum(:binary_score)
     end
 
   end

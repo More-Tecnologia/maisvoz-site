@@ -58,11 +58,13 @@ module Financial
 
     def create_binary_node
       return unless user.binary_node.blank? && adhesion_product?
+
       Multilevel::CreateBinaryNode.new(user).call
     end
 
     def qualify_sponsor
       return if user.sponsor.blank? || user.sponsor.binary_qualified?
+
       Multilevel::QualifyUser.new(user.sponsor).call
     end
 
@@ -71,7 +73,6 @@ module Financial
     end
 
     def propagate_pvv_history
-      return if adhesion_product?
       Bonification::PropagatePvvHistory.new(order).call
     end
 
@@ -91,9 +92,11 @@ module Financial
 
     def update_user_role
       return unless user.consumidor? && adhesion_product?
+
       user.empreendedor!
       user.affiliate!
       user.unilevel_node.affiliate!
+
       CareerHistory.new.tap do |log|
         log.user       = user
         log.new_career = User::AFFILIATE

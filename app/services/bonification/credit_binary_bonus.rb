@@ -35,13 +35,13 @@ module Bonification
     delegate :user, to: :binary_node
 
     def credit_binary_bonus
-      binary_node.lock!
-
-      create_bonus
-      reverse_the_excedent
-      update_user_balance
-      debit_pv_from_both_legs
-      create_system_financial_log
+      binary_node.with_lock do
+        create_bonus
+        reverse_the_excedent
+        update_user_balance
+        debit_pv_from_both_legs
+        create_system_financial_log
+      end
     end
 
     def create_bonus

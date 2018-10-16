@@ -104,7 +104,7 @@ module Financial
     end
 
     def activate_user
-      return unless user.empreendedor? && !user.active? && regular_product?
+      return if user.active? || !adhesion_product?
       user.update!(active: true, active_until: 30.days.from_now)
       Bonification::CreditDirectIndicationBonus.new(order).call
     end

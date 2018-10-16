@@ -59,11 +59,19 @@ module Bonification
     def reverse_bonus(user, level)
       FinancialEntry.new.tap do |bonus|
         bonus.user        = user
-        bonus.description = "[Estorno] Bônus indicação indireta. Bônus de #{h.number_to_currency bonus_amount}. Geração #{level}˚."
-        bonus.kind        = FinancialEntry.kinds[:reverse_bonus]
-        bonus.amount      = -bonus_amount
-        bonus.balance     = user.balance
+        bonus.description = "Bônus de indicação indireta no valor de #{h.number_to_currency bonus_amount}. Geração #{level}˚."
+        bonus.kind        = FinancialEntry.kinds[:binary_bonus]
+        bonus.amount      = bonus_amount
+        bonus.balance     = user.balance + bonus_amount
         bonus.save!
+      end
+      FinancialEntry.new.tap do |entry|
+        entry.user        = user
+        entry.description = "[Estorno] Bônus indicação indireta. Bônus de #{h.number_to_currency bonus_amount}. Geração #{level}˚."
+        entry.kind        = FinancialEntry.kinds[:reverse_bonus]
+        entry.amount      = -bonus_amount
+        entry.balance     = user.balance
+        entry.save!
       end
     end
 

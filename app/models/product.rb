@@ -35,13 +35,16 @@
 #  kind                   :integer
 #  upgrade_from_career_id :bigint(8)
 #  upgrade_to_career_id   :bigint(8)
-#  sap_code               :string
+#  main_photo_data        :json
+#  photo_one_data         :json
+#  photo_two_data         :json
+#  photo_three_data       :json
+#  binary_bonus           :decimal(, )
 #
 # Indexes
 #
 #  index_products_on_career_id               (career_id)
 #  index_products_on_category_id             (category_id)
-#  index_products_on_sap_code                (sap_code) UNIQUE
 #  index_products_on_upgrade_from_career_id  (upgrade_from_career_id)
 #  index_products_on_upgrade_to_career_id    (upgrade_to_career_id)
 #

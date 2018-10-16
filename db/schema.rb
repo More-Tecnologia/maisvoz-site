@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515170033) do
+ActiveRecord::Schema.define(version: 20181015205743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -295,10 +295,13 @@ ActiveRecord::Schema.define(version: 20180515170033) do
     t.integer "kind"
     t.bigint "upgrade_from_career_id"
     t.bigint "upgrade_to_career_id"
-    t.string "sap_code"
+    t.json "main_photo_data"
+    t.json "photo_one_data"
+    t.json "photo_two_data"
+    t.json "photo_three_data"
+    t.decimal "binary_bonus"
     t.index ["career_id"], name: "index_products_on_career_id"
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["sap_code"], name: "index_products_on_sap_code", unique: true
     t.index ["upgrade_from_career_id"], name: "index_products_on_upgrade_from_career_id"
     t.index ["upgrade_to_career_id"], name: "index_products_on_upgrade_to_career_id"
   end
@@ -426,11 +429,13 @@ ActiveRecord::Schema.define(version: 20180515170033) do
     t.string "document_verification_status"
     t.datetime "document_verification_updated_at"
     t.string "document_rg_expeditor"
+    t.bigint "product_id"
     t.index ["career_kind"], name: "index_users_on_career_kind"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["document_cpf"], name: "index_users_on_document_cpf", unique: true
     t.index ["document_verification_status"], name: "index_users_on_document_verification_status"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["product_id"], name: "index_users_on_product_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["sponsor_id"], name: "index_users_on_sponsor_id"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
@@ -478,5 +483,6 @@ ActiveRecord::Schema.define(version: 20180515170033) do
   add_foreign_key "transfers", "users", column: "from_user_id"
   add_foreign_key "transfers", "users", column: "to_user_id"
   add_foreign_key "unilevel_nodes", "users"
+  add_foreign_key "users", "products"
   add_foreign_key "withdrawals", "users"
 end

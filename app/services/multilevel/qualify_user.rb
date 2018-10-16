@@ -9,7 +9,6 @@ module Multilevel
       return if binary_node.blank? || user.binary_qualified?
       user.update_column(:binary_qualified, qualified?)
       update_user_career
-      credit_bonus
     end
 
     private
@@ -32,10 +31,6 @@ module Multilevel
         log.new_career = User::EXECUTIVE
         log.save!
       end
-    end
-
-    def credit_bonus
-      Bonification::CreditFlexBonus.new(user).call
     end
 
     def qualified?

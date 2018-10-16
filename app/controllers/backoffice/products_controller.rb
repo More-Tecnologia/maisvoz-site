@@ -23,7 +23,7 @@ module Backoffice
       elsif current_user.instalador?
         @q ||= Product.active.order(:price_cents).includes(:main_photo_files).where.not(kind: :adhesion).where('binary_score = 0').ransack(params[:q])
       else
-        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).where.not(kind: :adhesion).ransack(params[:q])
+        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
       end
     end
 

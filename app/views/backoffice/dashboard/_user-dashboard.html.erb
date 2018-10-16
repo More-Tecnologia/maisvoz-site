@@ -4,7 +4,7 @@
 </div>
 
 <div class="row linhaHome">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
         <span>Status do Binário</span>
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
         <span>Status da Conta</span>
@@ -36,6 +36,15 @@
         <span>PV Carreira</span>
       </div>
       <div class="dashboard-card__value label-success"><%= number_with_delimiter current_user.unilevel_pva_count %></div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span>Pacote</span>
+      </div>
+      <div class="dashboard-card__value label-warning"><%= current_user.product.try(:name) %></div>
     </div>
   </div>
 

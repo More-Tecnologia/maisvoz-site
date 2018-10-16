@@ -7,7 +7,6 @@ class ProductForm < Form
   attribute :sku
   attribute :quantity
   attribute :kind
-  attribute :sap_code
   attribute :low_stock_alert
   attribute :weight
   attribute :length
@@ -23,6 +22,7 @@ class ProductForm < Form
   attribute :career_id
   attribute :upgrade_from_career_id
   attribute :upgrade_to_career_id
+  attribute :binary_bonus
   attribute :bonus_1
   attribute :bonus_2
   attribute :bonus_3

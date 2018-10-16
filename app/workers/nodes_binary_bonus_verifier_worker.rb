@@ -12,7 +12,7 @@ class NodesBinaryBonusVerifierWorker
   end
 
   def verify_node(node)
-    return if [node.left_pv, node.right_pv].min < 1000
+    return if [node.left_pv, node.right_pv].min < 500
     NodeBinaryBonusVerifierWorker.perform_async(node.id)
   end
 

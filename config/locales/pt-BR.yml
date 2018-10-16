@@ -117,7 +117,9 @@ pt-BR:
     status_updated_at: Status Atualizado Em
     updated_at: Data da última atualização
     bonus_1: Bônus Instalador
-    bonus_1: Bônus PVM (x100)
+    bonus_2: Bônus PVV (x100)
+    binary_bonus: Bônus Binário
+    binary_score: Pontuação Binário
     document_verification_status: Status de Verificação do Documento
   backoffice:
     orders:
@@ -177,7 +179,7 @@ pt-BR:
         invoice_no: 'PV gerado do usuário %{username}'
     pv_activity_histories:
       index:
-        title: Histórico de PV de Atividade
+        title: Histórico de PVV e PVM
         invoice_no: 'PV gerado da fatura ID: %{id}'
         no_data: Nenhum registro de pv de atividade encontrado
     accumulated_pva:

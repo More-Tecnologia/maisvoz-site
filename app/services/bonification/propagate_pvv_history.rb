@@ -1,5 +1,5 @@
 module Bonification
-  class PropagatePvActivityHistory
+  class PropagatePvvHistory
 
     def initialize(order)
       @order = order
@@ -9,9 +9,9 @@ module Bonification
     def call
       return unless total_score > 0
       if user.empreendedor?
-        propagate_pv_activity(order.user, 'pvg')
+        propagate_pv_activity(order.user, 'pvv')
       else
-        propagate_pv_activity(order.user, 'pva')
+        propagate_pv_activity(order.user.sponsor, 'pvv')
       end
     end
 

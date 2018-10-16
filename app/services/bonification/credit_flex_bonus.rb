@@ -3,6 +3,9 @@
 # Verificar se qualificou o binário dentro de 7 dias e pagar 7,5% do bônus binário
 # gerado pelos ativos
 #
+
+# DESATIVADO !important
+
 module Bonification
   class CreditFlexBonus
 

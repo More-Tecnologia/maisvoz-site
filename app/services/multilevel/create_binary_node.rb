@@ -11,9 +11,10 @@ module Multilevel
 
     def call
       return if user.binary_node.present?
-      ActiveRecord::Base.transaction do
-        define_position
-        find_parent_node
+      define_position
+      find_parent_node
+
+      parent_node.with_lock do
         insert_node
         update_parent_node
         update_user_binary_position

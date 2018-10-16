@@ -66,6 +66,7 @@
 #  document_verification_status     :string
 #  document_verification_updated_at :datetime
 #  document_rg_expeditor            :string
+#  product_id                       :bigint(8)
 #
 # Indexes
 #
@@ -74,6 +75,7 @@
 #  index_users_on_document_cpf                  (document_cpf) UNIQUE
 #  index_users_on_document_verification_status  (document_verification_status)
 #  index_users_on_email                         (email) UNIQUE
+#  index_users_on_product_id                    (product_id)
 #  index_users_on_reset_password_token          (reset_password_token) UNIQUE
 #  index_users_on_sponsor_id                    (sponsor_id)
 #  index_users_on_unlock_token                  (unlock_token) UNIQUE
@@ -83,7 +85,7 @@
 class User < ApplicationRecord
 
   include Careerable
-  
+
   attr_accessor :login
 
   monetize :available_balance_cents, :blocked_balance_cents
@@ -126,6 +128,7 @@ class User < ApplicationRecord
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   has_many :product_setups, class_name: 'ProductSetup', foreign_key: 'installer_id'
   belongs_to :sponsor, class_name: 'User', optional: true
+  belongs_to :product, optional: true
 
   has_many :credits
   has_many :debits

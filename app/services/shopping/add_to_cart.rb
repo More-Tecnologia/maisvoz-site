@@ -16,6 +16,7 @@ module Shopping
           errors.add(:product, 'cant add product to cart')
         elsif add_to_order
           update_order_total
+          apply_discount
           update_order_pv_total
           return order
         else
@@ -57,6 +58,11 @@ module Shopping
 
     def update_order_total
       Shopping::UpdateCartTotals.call(order)
+    end
+
+    def apply_discount
+      return if !order.user.empreendedor? || order.adhesion_product.blank?
+      order.decrement!(:total_cents, 15000)
     end
 
     def update_order_pv_total

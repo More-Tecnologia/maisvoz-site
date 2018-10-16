@@ -31,10 +31,11 @@ module Financial
         update_user_flags
         update_user_role
         activate_user
+        assign_product_to_user
         create_binary_node
         qualify_sponsor
         propagate_binary_score
-        propagate_pv_activity_history
+        propagate_pvv_history
         credit_bonus
         create_system_fee
         order.completed!
@@ -69,12 +70,14 @@ module Financial
       Bonification::PropagateBinaryScore.new(order).call
     end
 
-    def propagate_pv_activity_history
-      Bonification::PropagatePvActivityHistory.new(order).call
+    def propagate_pvv_history
+      return if adhesion_product?
+      Bonification::PropagatePvvHistory.new(order).call
     end
 
     def credit_bonus
       Bonification::CreditExecutiveSaleBonus.new(order).call
+      Bonification::CreditIndirectBonus.new(order).call
     end
 
     def create_system_fee
@@ -102,8 +105,13 @@ module Financial
 
     def activate_user
       return unless user.empreendedor? && !user.active? && regular_product?
-      user.update!(active: true, active_until: 180.days.from_now)
+      user.update!(active: true, active_until: 30.days.from_now)
       Bonification::CreditDirectIndicationBonus.new(order).call
+    end
+
+    def assign_product_to_user
+      return if !adhesion_product?
+      user.update!(product: adhesion_product)
     end
 
     def binary_bonus_nodes_verifier
@@ -112,9 +120,11 @@ module Financial
     end
 
     def adhesion_product?
-      @adhesion_product ||= order.order_items.joins(:product).where(
-        'products.kind = ?', Product.kinds[:adhesion]
-      ).any?
+      adhesion_product.present?
+    end
+
+    def adhesion_product
+      order.adhesion_product
     end
 
     def regular_product?

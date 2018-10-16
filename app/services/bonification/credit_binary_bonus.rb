@@ -1,7 +1,7 @@
 module Bonification
   class CreditBinaryBonus
 
-    PV_CYCLE = 1000
+    PV_CYCLE = 500
 
     def initialize(binary_node)
       @binary_node = binary_node
@@ -125,7 +125,11 @@ module Bonification
     end
 
     def gross_bonus
-      @gross_bonus ||= (pv_to_be_credited * 0.3).to_f
+      @gross_bonus ||= (pv_to_be_credited * binary_percent).to_f
+    end
+
+    def binary_percent
+      user.product.binary_bonus
     end
 
     def bonus_received_this_week

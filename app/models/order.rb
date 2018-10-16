@@ -60,6 +60,10 @@ class Order < ApplicationRecord
     payment_transactions.any? {|tx| tx.paid? } || payment_transactions.order(:created_at).last
   end
 
+  def adhesion_product
+    @adhesion_product ||= order_items.joins(:product).where('products.kind = ?', Product.kinds[:adhesion]).first.product
+  end
+
   def token
     Digest::MD5.hexdigest("#{id * 1337}:#{hashid}")
   end

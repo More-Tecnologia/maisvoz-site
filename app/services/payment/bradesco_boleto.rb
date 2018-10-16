@@ -38,7 +38,7 @@ module Payment
       params[:merchant_id] = '100007991'
       params[:meio_pagamento] = '300'
       params[:pedido] = {
-        numero: order.hashid,
+        numero: order.id,
         valor: order.total_cents
       }
       params[:comprador] = {

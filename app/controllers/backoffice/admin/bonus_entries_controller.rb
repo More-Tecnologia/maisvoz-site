@@ -3,13 +3,23 @@ module Backoffice
     class BonusEntriesController < AdminController
 
       def index
-        render(:index, locals: { bonus_entries: bonus_entries })
+        render(
+          :index,
+          locals: {
+            bonus_entries: bonus_entries.page(params[:page]),
+            total_amount: total_amount
+          }
+        )
       end
 
       private
 
       def bonus_entries
-        BonusQuery.new.call(params)
+        @bonus_entries ||= BonusQuery.new.call(params)
+      end
+
+      def total_amount
+        bonus_entries.sum(:amount_cents) / 1e2
       end
 
     end

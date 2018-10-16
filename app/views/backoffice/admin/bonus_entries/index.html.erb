@@ -66,6 +66,12 @@
                 </tr>
               <% end %>
             </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4">Total</td>
+                <td colspan="2"><%= number_to_currency total_amount %></td>
+              </tr>
+            </tfoot>
           </table>
 
           <%= paginate bonus_entries %>

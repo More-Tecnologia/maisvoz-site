@@ -8,7 +8,6 @@ class BonusQuery
     scoped = filter_by_username(initial_scope, params[:username])
     scoped = filter_by_bonus(scoped, params[:bonus_kind])
     scoped = filter_by_created_at(scoped, params[:created_at_gteq], params[:created_at_lteq])
-    scoped = paginate(scoped, params[:page])
     scoped = sort(scoped, params[:sort_type], params[:sort_direction])
     scoped
   end

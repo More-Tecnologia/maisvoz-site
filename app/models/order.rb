@@ -61,7 +61,7 @@ class Order < ApplicationRecord
   end
 
   def adhesion_product
-    @adhesion_product ||= order_items.joins(:product).where('products.kind = ?', Product.kinds[:adhesion]).first.product
+    @adhesion_product ||= order_items.joins(:product).where('products.kind = ?', Product.kinds[:adhesion]).first.try(:product)
   end
 
   def token

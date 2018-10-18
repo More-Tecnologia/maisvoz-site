@@ -60,7 +60,7 @@ module Bonification
       FinancialEntry.new.tap do |bonus|
         bonus.user        = user
         bonus.description = "Bônus de indicação indireta no valor de #{h.number_to_currency bonus_amount}. Geração #{level}˚."
-        bonus.kind        = FinancialEntry.kinds[:binary_bonus]
+        bonus.kind        = FinancialEntry.kinds[:indirect_bonus]
         bonus.amount      = bonus_amount
         bonus.balance     = user.balance + bonus_amount
         bonus.save!

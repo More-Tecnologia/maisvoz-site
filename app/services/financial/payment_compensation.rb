@@ -74,6 +74,7 @@ module Financial
 
     def propagate_pvv_history
       Bonification::PropagatePvvHistory.new(order).call
+      Bonification::PropagatePvaPoints.new(order: order).call
     end
 
     def credit_bonus

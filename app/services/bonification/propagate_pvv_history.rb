@@ -8,7 +8,7 @@ module Bonification
 
     def call
       return if total_score <= 0
-      if user.empreendedor?
+      if user.empreendedor? || order.adhesion_product.present?
         propagate_pv_activity(order.user, 'pvv')
       else
         propagate_pv_activity(order.user.sponsor, 'pvv')
@@ -24,7 +24,6 @@ module Bonification
       while user.present?
         height += 1
         create_pv_activity(user, kind, height)
-        user.increment!(:pva_total, total_score)
         user = user.sponsor
       end
     end

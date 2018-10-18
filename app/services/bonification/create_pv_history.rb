@@ -19,7 +19,6 @@ module Bonification
         amount: score,
         balance: final_balance
       )
-      user.increment!(:pva_total, score)
     end
 
     private

@@ -10,8 +10,6 @@ module Backoffice
     def download_links
       [
         { name: 'Cartão de Visita para Empreendedor', url: 'https://www.dropbox.com/s/hydtieuwnkm3g9b/Cart%C3%A3o%20de%20Visita%20para%20Empreendedores.pdf'},
-        { name: 'Modelos de Convite para Eventos', url: 'https://www.dropbox.com/s/cilnry06058fjgy/Modelo%20de%20Convite.pdf'},
-        { name: 'Apresentação do Negócio', url: 'https://www.dropbox.com/s/5y9mbk55c9f36b6/APN%20VERS%C3%83O%20COMPLETA.pdf'},
         { name: 'Adesivos para Carros - Branco', url: 'https://www.dropbox.com/s/anm8402ogrz4uen/Adesivo%20Branco%20Carro.pdf'},
         { name: 'Adesivos para Carros - Preto', url: 'https://www.dropbox.com/s/rzuf2uivhbjsk4r/Adesivo%20Preto%20Carro.pdf'},
         { name: 'Adesivos para Carros - Espelhado', url: 'https://www.dropbox.com/s/ycrg7zzz2b241oq/Adesivo%20Espelhado%20Carro.pdf'},

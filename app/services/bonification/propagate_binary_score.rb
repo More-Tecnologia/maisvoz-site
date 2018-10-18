@@ -60,7 +60,9 @@ module Bonification
     end
 
     def total_score
-      @total_score ||= order.adhesion_product.binary_score
+      @total_score ||= order.order_items.joins(:product).where(
+        'products.kind = ?', Product.kinds[:adhesion]
+      ).sum(:binary_score)
     end
 
     def define_counter_leg(leg)

@@ -382,7 +382,7 @@ pt-BR:
     processing: Processando
     pending_payment: Pagamento Pendente
     products: Produtos
-    pv_activity_history: PVV
+    pv_activity_history: PV Geral
     pv_history: Histórico PV
     pv_histories: PV Binário
     pv_binary_history: PV Binário
@@ -398,7 +398,7 @@ pt-BR:
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
     admin_accumulated_pva: PVs Avanço de Título
-    pv_activity_histories: Histórico de PVA/PVG
+    pv_activity_histories: Geral PVV/PVM/PVG
     pv_admin_histories: PVs Binário
     pv_generations_history: PV por geração
     career_histories: Histórico de Carreiras

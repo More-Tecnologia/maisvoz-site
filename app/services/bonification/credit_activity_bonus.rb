@@ -27,7 +27,7 @@ module Bonification
     def credit_bonus
       FinancialEntry.new.tap do |bonus|
         bonus.user        = user
-        bonus.description = "Bônus de atividade. Bônus de #{h.number_to_currency(bonus_amount)}. Referente aos PVA/PVG a partir de #{30.days.ago.to_date} até #{Time.zone.today}"
+        bonus.description = "Bônus de atividade. Bônus de #{h.number_to_currency(bonus_amount)}. Referente aos PVs a partir de #{30.days.ago.to_date} até #{Time.zone.today}"
         bonus.kind        = FinancialEntry.kinds[:activity_bonus]
         bonus.amount      = bonus_amount
         bonus.balance     = user.balance + bonus_amount

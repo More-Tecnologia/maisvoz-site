@@ -17,7 +17,7 @@
           </div>
           <div class="col-md-4 form-group">
             <label for="">Tipo:</label>
-            <%= select_tag(:kind, options_for_select(PvActivityHistory.kinds), class: 'form-control') %>
+            <%= select_tag(:kind, options_for_select(PvActivityHistory.kinds, params[:kind]), include_blank: true, class: 'form-control') %>
           </div>
           <div class="col-md-12 m-b-30">
             <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
@@ -58,7 +58,7 @@
               <% end %>
               <% if pv_activity_histories.empty? %>
                 <tr>
-                  <td colspan="6" class="text-center"><%= t('.no_data') %></td>
+                  <td colspan="8" class="text-center"><%= t('.no_data') %></td>
                 </tr>
               <% end %>
             </tbody>

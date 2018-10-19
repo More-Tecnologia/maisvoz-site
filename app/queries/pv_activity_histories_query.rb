@@ -18,7 +18,9 @@ class PvActivityHistoriesQuery
   attr_reader :initial_scope
 
   def filter_by_username(scoped, username)
-    username.present? ? User.find_by(username: username).pv_activity_histories : scoped
+    return scoped if username.blank?
+
+    User.exists?(username: username) ? User.find_by(username: username).pv_activity_histories : scoped
   end
 
   def filter_by_kind(scoped, kind)

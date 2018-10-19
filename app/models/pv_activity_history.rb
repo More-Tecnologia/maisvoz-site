@@ -14,9 +14,8 @@
 #
 # Indexes
 #
-#  index_pv_activity_histories_on_order_id              (order_id)
-#  index_pv_activity_histories_on_user_id               (user_id)
-#  index_pv_activity_histories_on_user_id_and_order_id  (user_id,order_id) UNIQUE
+#  index_pv_activity_histories_on_order_id  (order_id)
+#  index_pv_activity_histories_on_user_id   (user_id)
 #
 
 class PvActivityHistory < ApplicationRecord

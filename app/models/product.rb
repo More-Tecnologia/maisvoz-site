@@ -35,10 +35,6 @@
 #  kind                   :integer
 #  upgrade_from_career_id :bigint(8)
 #  upgrade_to_career_id   :bigint(8)
-#  main_photo_data        :json
-#  photo_one_data         :json
-#  photo_two_data         :json
-#  photo_three_data       :json
 #  binary_bonus           :decimal(, )
 #
 # Indexes

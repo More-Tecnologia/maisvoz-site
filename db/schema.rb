@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181015205743) do
+ActiveRecord::Schema.define(version: 20181019131015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "available_balance_cents", default: 0, null: false
@@ -295,10 +296,6 @@ ActiveRecord::Schema.define(version: 20181015205743) do
     t.integer "kind"
     t.bigint "upgrade_from_career_id"
     t.bigint "upgrade_to_career_id"
-    t.json "main_photo_data"
-    t.json "photo_one_data"
-    t.json "photo_two_data"
-    t.json "photo_three_data"
     t.decimal "binary_bonus"
     t.index ["career_id"], name: "index_products_on_career_id"
     t.index ["category_id"], name: "index_products_on_category_id"
@@ -316,7 +313,6 @@ ActiveRecord::Schema.define(version: 20181015205743) do
     t.string "kind"
     t.bigint "height"
     t.index ["order_id"], name: "index_pv_activity_histories_on_order_id"
-    t.index ["user_id", "order_id"], name: "index_pv_activity_histories_on_user_id_and_order_id", unique: true
     t.index ["user_id"], name: "index_pv_activity_histories_on_user_id"
   end
 

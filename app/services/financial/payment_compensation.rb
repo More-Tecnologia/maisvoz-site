@@ -81,6 +81,7 @@ module Financial
     def credit_bonus
       Bonification::CreditExecutiveSaleBonus.new(order).call
       Bonification::CreditIndirectBonus.new(order).call
+      Bonification::CreditDirectIndicationBonus.new(order).call
     end
 
     def create_system_fee
@@ -111,7 +112,6 @@ module Financial
     def activate_user
       return if user.active? || !adhesion_product?
       user.update!(active: true, active_until: 30.days.from_now)
-      Bonification::CreditDirectIndicationBonus.new(order).call
     end
 
     def assign_product_to_user

@@ -9,7 +9,7 @@ module Bonification
     end
 
     def call
-      return unless user.empreendedor? && bonus_amount > 0
+      return if bonus_amount <= 0
 
       ActiveRecord::Base.transaction do
         credit_bonus
@@ -77,7 +77,7 @@ module Bonification
     end
 
     def bonus_amount
-      @bonus_amount ||= order.max_product_score * PERCENTAGE
+      @bonus_amount ||= order.pvg_score * PERCENTAGE
     end
 
     def h

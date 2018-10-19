@@ -35,7 +35,7 @@ module Financial
         create_binary_node
         qualify_sponsor
         propagate_binary_score
-        propagate_pvv_history
+        propagate_pv_history
         credit_bonus
         create_system_fee
         order.completed!
@@ -72,8 +72,9 @@ module Financial
       Bonification::PropagateBinaryScore.new(order).call
     end
 
-    def propagate_pvv_history
+    def propagate_pv_history
       Bonification::PropagatePvvHistory.new(order).call
+      Bonification::PropagatePvgHistory.new(order).call
       Bonification::PropagatePvaPoints.new(order: order).call
     end
 

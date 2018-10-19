@@ -1,5 +1,5 @@
 module Bonification
-  class PropagatePvvHistory
+  class PropagatePvgHistory
 
     def initialize(order)
       @order = order
@@ -7,7 +7,7 @@ module Bonification
 
     def call
       return if total_score <= 0
-      propagate_pv_activity(order.user, 'pvv')
+      propagate_pv_activity(order.user, 'pvg')
     end
 
     private
@@ -35,7 +35,7 @@ module Bonification
     end
 
     def total_score
-      @total_score ||= order.pvv_score
+      @total_score ||= order.pvg_score
     end
 
   end

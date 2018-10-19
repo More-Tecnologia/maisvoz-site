@@ -76,7 +76,7 @@ module Bonification
     end
 
     def bonus_amount
-      @bonus_amount ||= order.adhesion_product.binary_score * BONUS
+      @bonus_amount ||= order.pvg_score * BONUS
     end
 
     def h

@@ -1,15 +1,15 @@
 module Bonification
   class CreditExecutiveSaleBonus
 
-    # 30% dos PVs
-    PERCENTAGE = 0.3
+    # 20% dos PVs
+    PERCENTAGE = 0.2
 
     def initialize(order)
       @order = order
     end
 
     def call
-      return unless user.consumidor? && bonus_amount > 0
+      return if bonus_amount <= 0
 
       ActiveRecord::Base.transaction do
         credit_bonus
@@ -77,7 +77,7 @@ module Bonification
     end
 
     def bonus_amount
-      @bonus_amount ||= order.total_score * PERCENTAGE
+      @bonus_amount ||= order.pvv_score * PERCENTAGE
     end
 
     def h

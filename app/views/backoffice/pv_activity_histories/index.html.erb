@@ -38,6 +38,7 @@
                 <th>#</th>
                 <th><%= PvActivityHistory.human_attribute_name(:order) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:from) %></th>
+                <th><%= PvActivityHistory.human_attribute_name(:dist) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:kind) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:amount) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:balance) %></th>
@@ -46,7 +47,7 @@
             </thead>
             <tfoot>
               <tr>
-                <td colspan="6">Total</td>
+                <td colspan="7">Total</td>
                 <td><strong><%= number_with_delimiter pv_activity_histories_sum %></strong></td>
               </tr>
             </tfoot>
@@ -58,6 +59,7 @@
                     <%= t('.invoice_no', id: pv_activity_history.order.hashid) %>
                   </td>
                   <td><%= pv_activity_history.order.user.username %> <%= pv_activity_history.order.user.career_kind && "(#{t(pv_activity_history.order.user.career_kind)})" %></td>
+                  <td><%= pv_activity_history.height %></td>
                   <td><%= pv_activity_history.kind.upcase %></td>
                   <td><%= number_with_delimiter pv_activity_history.amount %></td>
                   <td><%= number_with_delimiter pv_activity_history.balance %></td>
@@ -66,7 +68,7 @@
               <% end %>
               <% if pv_activity_histories.empty? %>
                 <tr>
-                  <td colspan="7" class="text-center"><%= t('.no_data') %></td>
+                  <td colspan="8" class="text-center"><%= t('.no_data') %></td>
                 </tr>
               <% end %>
             </tbody>

@@ -6,6 +6,7 @@ class PvActivityHistoriesQuery
 
   def call(params, should_paginate = true)
     scoped = filter_by_username(initial_scope, params[:username])
+    scoped = filter_by_kind(scoped, params[:kind])
     scoped = filter_by_created_at(scoped, params[:created_at_gteq], params[:created_at_lteq])
     scoped = paginate(scoped, params[:page]) if should_paginate
     scoped = sort(scoped, params[:sort_type], params[:sort_direction])
@@ -18,6 +19,12 @@ class PvActivityHistoriesQuery
 
   def filter_by_username(scoped, username)
     username.present? ? User.find_by(username: username).pv_activity_histories : scoped
+  end
+
+  def filter_by_kind(scoped, kind)
+    return scoped if kind.blank?
+
+    scoped.where(kind: kind)
   end
 
   def filter_by_created_at(scoped, gteq, lteq)

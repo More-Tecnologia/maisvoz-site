@@ -15,6 +15,10 @@
             <label for="">Username:</label>
             <%= text_field_tag :username, params[:username], class: 'form-control' %>
           </div>
+          <div class="col-md-4 form-group">
+            <label for="">Tipo:</label>
+            <%= select_tag(:kind, options_for_select(PvActivityHistory.kinds), class: 'form-control') %>
+          </div>
           <div class="col-md-12 m-b-30">
             <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
           </div>

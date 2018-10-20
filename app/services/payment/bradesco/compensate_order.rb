@@ -7,6 +7,8 @@ module Payment
       end
 
       def call
+        return if current_transaction.blank? || !order.pending_payment? || current_transaction.paid?
+
         get_bradesco_auth_key
         get_order_from_bradesco
         update_bradesco_transaction

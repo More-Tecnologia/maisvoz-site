@@ -9,6 +9,7 @@ class EditRegistrationForm < Form
   attribute :skype
   attribute :email
   attribute :document_cpf
+  attribute :document_cnpj
   attribute :zipcode
   attribute :address_ibge
   attribute :address
@@ -26,6 +27,8 @@ class EditRegistrationForm < Form
 
   validate :document_cpf_is_unique
   validate :valid_password
+  validate :valid_cpf
+  validate :valid_cnpj
 
   def sponsor
     User.find_by(username: sponsor_username)
@@ -35,6 +38,7 @@ class EditRegistrationForm < Form
 
   def valid_password
     return if password.blank? && current_password.blank?
+
     if password.size < 6
       errors.add(:password, 'muito pequeno')
     elsif password != password_confirmation
@@ -42,8 +46,22 @@ class EditRegistrationForm < Form
     end
   end
 
+  def valid_cpf
+    return if CPF.valid? document_cpf
+
+    errors.add(:document_cpf, 'CPF Inválido')
+  end
+
+  def valid_cnpj
+    return if document_cnpj.blank?
+    return if CNPJ.valid? document_cnpj
+
+    errors.add(:document_cnpj, 'CNPJ Inválido')
+  end
+
   def document_cpf_is_unique
     return unless User.where(document_cpf: document_cpf).where('id != ?', id).exists?
+
     errors.add(:document_cpf, 'Já está registrado em outra conta')
   end
 

@@ -31,6 +31,7 @@
                       <%= f.input :phone, input_html: { class: 'input-phone'} %>
                       <%= f.input :skype %>
                       <%= f.input :email %>
+                      <%= f.input :document_cnpj, input_html: { class: 'input-cnpj' } %>
                       <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
 
                       <h4><%= t('.address') %></h4>
@@ -72,6 +73,7 @@
         window.onload = function(){
           $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})
           $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
+          $('.input-cnpj').mask('00.000.000/0000-00', {clearIfNotMatch: true})
           $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
         }
       </script>

@@ -1,6 +1,8 @@
 module Backoffice
   class OrderItemsController < BackofficeController
 
+    before_action :ensure_valid_user
+
     def create
       command = Shopping::AddToCart.call(current_order, product_params[:id])
       if command.success?
@@ -45,6 +47,13 @@ module Backoffice
 
     def update_order_pv_total
       current_order.update!(pv_total: current_order.total_score)
+    end
+
+    def ensure_valid_user
+      return if BoletoPolicy.new(user: current_user).can_generate?
+
+      flash[:error] = 'Você precisa preencher seus dados corretamente antes de poder gerar o boleto.'
+      redirect_to edit_user_registration_path
     end
 
   end

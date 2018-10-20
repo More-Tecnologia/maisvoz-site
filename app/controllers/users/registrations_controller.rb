@@ -126,7 +126,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,
-      keys: [:name, :birthdate, :marital_status, :phone, :email, :document_cpf, :address, :address_2, :country, :state, :city, :avatar]
+      keys: [:name, :birthdate, :marital_status, :phone, :email, :document_cpf, :document_cnpj, :address, :address_2, :country, :state, :city, :avatar]
     )
   end
 

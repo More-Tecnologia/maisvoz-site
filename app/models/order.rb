@@ -57,7 +57,8 @@ class Order < ApplicationRecord
 
   def current_transaction
     return if completed? || payment_transactions.blank?
-    payment_transactions.any? {|tx| tx.paid? } || payment_transactions.order(:created_at).last
+
+    payment_transactions.any?(&:paid?) || payment_transactions.order(:created_at).last
   end
 
   def adhesion_product

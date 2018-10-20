@@ -29,9 +29,18 @@
 
 class PaymentTransaction < ApplicationRecord
 
+  # 10, 13, 14 ou 15 Boleto Gerado
+  # 21 Boleto Pago igual
+  # 22 Boleto Pago a Menor
+  # 23 Boleto Pago a Maior
+
   serialize :provider_response, JSON
 
   belongs_to :order
   belongs_to :user
+
+  def paid?
+    status == '21' || status == '23'
+  end
 
 end

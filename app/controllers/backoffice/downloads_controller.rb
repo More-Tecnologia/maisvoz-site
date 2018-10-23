@@ -19,6 +19,7 @@ module Backoffice
         { name: 'Modelo para o Comece Certo - 1', url: 'https://www.dropbox.com/s/o4dtz7leqqx586g/Modelo%20para%20Comece%20Certo_01.pdf'},
         { name: 'Modelo para o Comece Certo - 2', url: 'https://www.dropbox.com/s/hc0kttojvfguzmt/Modelo%20para%20Comece%20Certo_02.pdf'},
         { name: 'Modelo para o Comece Certo - 3', url: 'https://www.dropbox.com/s/altlgrl581xz9z7/Modelo%20para%20Comece%20Certo_03.pdf'},
+        { name: 'Apresentação', url: 'https://www.dropbox.com/s/gi4rl16kikcedtl/apnfuturemotors.pdf'}
       ]
     end
 

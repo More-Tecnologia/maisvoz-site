@@ -30,7 +30,7 @@ module Payment
       def update_bradesco_transaction
         current_transaction.provider_response = provider_response
         current_transaction.paid_amount_cents = provider_response['pedidos'].first['valorPago'].to_i
-        current_transaction.status            = provider_response['pedidos'].first['status']
+        current_transaction.status            = provider_response['pedidos'].first['status'].to_s
         current_transaction.save!
       end
 

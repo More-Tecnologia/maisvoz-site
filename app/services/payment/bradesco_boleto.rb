@@ -73,7 +73,7 @@ module Payment
         tx.boleto_barcode         = res['boleto']['linha_digitavel']
         tx.boleto_expiration_date = Time.zone.today + 7.days
         tx.amount_cents           = order.total_cents
-        tx.status                 = BradescoTransactionType::WAITING_PAYMENT
+        tx.status                 = BradescoTransactionType::BOLETO_GENERATED
 
         tx.save!
       end

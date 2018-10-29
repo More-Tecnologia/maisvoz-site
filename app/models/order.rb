@@ -65,6 +65,10 @@ class Order < ApplicationRecord
     @adhesion_product ||= order_items.joins(:product).where('products.kind = ?', Product.kinds[:adhesion]).first.try(:product)
   end
 
+  def club_motors_product
+    @club_motors_product ||= order_items.joins(:product).where('products.club_motors = true').first.try(:product)
+  end
+
   def pvg_score
     @pvg_score ||= order_items.joins(:product).where(
       'products.kind = ?', Product.kinds[:adhesion]

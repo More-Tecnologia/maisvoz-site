@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181019131015) do
+ActiveRecord::Schema.define(version: 20181029180515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -297,6 +297,7 @@ ActiveRecord::Schema.define(version: 20181019131015) do
     t.bigint "upgrade_from_career_id"
     t.bigint "upgrade_to_career_id"
     t.decimal "binary_bonus"
+    t.boolean "club_motors", default: false, null: false
     t.index ["career_id"], name: "index_products_on_career_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["upgrade_from_career_id"], name: "index_products_on_upgrade_from_career_id"

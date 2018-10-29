@@ -115,8 +115,8 @@ module Financial
     end
 
     def assign_product_to_user
-      return if !adhesion_product?
-      user.update!(product: adhesion_product)
+      return if order.club_motors_product.blank?
+      user.update!(product: order.club_motors_product)
     end
 
     def binary_bonus_nodes_verifier

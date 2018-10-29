@@ -17,6 +17,7 @@ class ProductForm < Form
   attribute :advance_score
   attribute :active
   attribute :virtual
+  attribute :club_motors
   attribute :paid_by
   attribute :category_id
   attribute :career_id

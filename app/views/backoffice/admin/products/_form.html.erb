@@ -68,6 +68,7 @@
             <%= f.input :paid_by, collection: Product.paid_bies.map { |k,v| [t(k), k] } %>
             <%= f.input :active, as: :boolean %>
             <%= f.input :virtual, as: :boolean %>
+            <%= f.input :club_motors, as: :boolean %>
           </div>
         </div>
       </div>

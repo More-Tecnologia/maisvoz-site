@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181029180515) do
+ActiveRecord::Schema.define(version: 20181030170145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,28 @@ ActiveRecord::Schema.define(version: 20181029180515) do
     t.index ["user_id"], name: "index_bonus_on_user_id"
   end
 
+  create_table "car_brands", force: :cascade do |t|
+    t.integer "brand_code", null: false
+    t.string "name"
+    t.integer "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_code"], name: "index_car_brands_on_brand_code", unique: true
+  end
+
+  create_table "car_models", force: :cascade do |t|
+    t.integer "model_code"
+    t.integer "brand_code"
+    t.string "fipe_code"
+    t.string "name"
+    t.integer "type"
+    t.bigint "club_motors_fee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_code"], name: "index_car_models_on_brand_code"
+    t.index ["club_motors_fee_id"], name: "index_car_models_on_club_motors_fee_id"
+  end
+
   create_table "career_histories", force: :cascade do |t|
     t.bigint "user_id"
     t.string "old_career"
@@ -138,6 +160,15 @@ ActiveRecord::Schema.define(version: 20181029180515) do
     t.string "state"
     t.string "name"
     t.integer "ibge"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "club_motors_fees", force: :cascade do |t|
+    t.string "name"
+    t.integer "standard_fee_cents"
+    t.integer "master_fee_cents"
+    t.integer "premium_fee_cents"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -456,6 +487,8 @@ ActiveRecord::Schema.define(version: 20181029180515) do
   add_foreign_key "binary_nodes", "users", column: "sponsored_by_id"
   add_foreign_key "bonus", "orders"
   add_foreign_key "bonus", "users"
+  add_foreign_key "car_models", "car_brands", column: "brand_code", primary_key: "brand_code"
+  add_foreign_key "car_models", "club_motors_fees"
   add_foreign_key "career_histories", "users"
   add_foreign_key "credits", "users"
   add_foreign_key "credits", "users", column: "operated_by_id"

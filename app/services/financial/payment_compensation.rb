@@ -42,6 +42,7 @@ module Financial
       end
       binary_bonus_nodes_verifier
       ShoppingMailer.with(order: order).order_paid.deliver_later
+      DROrderTransmitterWorker.perform_async(order.id)
       true
     end
 

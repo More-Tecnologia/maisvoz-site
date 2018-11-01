@@ -17,6 +17,8 @@ ActiveAdmin.register Order do
       row :status
       row :payment_status
       row :paid_at
+      row :dr_recorded
+      row :dr_response
       row :created_at
     end
     panel 'Order items' do
@@ -42,6 +44,7 @@ ActiveAdmin.register Order do
     column :payment_status
     column :paid_at
     column :created_at
+    column :dr_recorded
     column :pay do |obj|
       link_to 'Pay Order', pay_order_admin_order_path(obj), method: :post unless obj.completed? || obj.cart?
     end

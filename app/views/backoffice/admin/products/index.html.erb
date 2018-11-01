@@ -24,9 +24,9 @@
                 <th>#</th>
                 <th></th>
                 <th><%= Product.human_attribute_name(:name) %></th>
-                <th><%= Product.human_attribute_name(:short_description) %></th>
                 <th><%= Product.human_attribute_name(:quantity) %></th>
                 <th><%= Product.human_attribute_name(:price) %></th>
+                <th><%= Product.human_attribute_name(:score) %></th>
                 <th><%= Product.human_attribute_name(:active) %></th>
                 <th></th>
               </tr>
@@ -37,9 +37,9 @@
                   <th><%= product.id %></th>
                   <td><%= cl_image_tag(product.main_photo_id, { class: 'thumb-sm' }) %></td>
                   <td><%= product.name %></td>
-                  <td><%= product.short_description %></td>
                   <td><%= product.quantity %></td>
-                  <td><%= product.price %></td>
+                  <td><%= number_to_currency product.price %></td>
+                  <td><%= product.binary_score %></td>
                   <td><%= product.active %></td>
                   <td>
                     <%= link_to edit_backoffice_admin_product_path(product), class: 'action-edit' do %>

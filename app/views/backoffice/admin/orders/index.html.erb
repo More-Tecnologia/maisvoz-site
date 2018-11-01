@@ -28,6 +28,7 @@
             <th><%= Order.human_attribute_name(:status) %></th>
             <th><%= Order.human_attribute_name(:created_at) %></th>
             <th><%= Order.human_attribute_name(:paid_at) %></th>
+            <th><%= Order.human_attribute_name(:dr_recorded) %></th>
             <th></th>
           </tr>
         </thead>
@@ -41,6 +42,7 @@
               <td><%= t("defaults.#{order.status}") %></td>
               <td><%= l order.created_at, format: :short %></td>
               <td><%= order.paid_at && l(order.paid_at, format: :short) %></td>
+              <th><%= order.dr_recorded %></th>
               <td>
                 <%= link_to backoffice_admin_order_path(order) do %>
                   <i class="fa fa-eye"></i>

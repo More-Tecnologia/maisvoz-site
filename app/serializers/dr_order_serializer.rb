@@ -1,7 +1,7 @@
-class SAPOrderSerializer
+class DROrderSerializer
 
   FILIAL_GOIANIA = {
-    code: 3,
+    code: 2,
     deposito: '02'
   }.freeze
 
@@ -22,8 +22,8 @@ class SAPOrderSerializer
       id: "O#{order.id}",
       tipoDocumento: 17,
       produtoServico: 'P',
-      dataLancamento: order.created_at.rfc3339,
-      dataVencimento: order.created_at.rfc3339,
+      dataLancamento: order.created_at.iso8601,
+      dataVencimento: order.created_at.iso8601,
       observacao: '',
       filial: filial[:code],
       condicaoPagamento: 14,
@@ -76,7 +76,7 @@ class SAPOrderSerializer
     order.order_items.map do |item|
       {
         item: {
-          codigoSap: item.product.sap_code
+          codigoSap: item.product.id.to_s
         },
         quantidade: item.quantity,
         preco: item.unit_price.to_f,

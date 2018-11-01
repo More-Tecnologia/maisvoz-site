@@ -13,8 +13,8 @@
 #  updated_at     :datetime         not null
 #  paid_at        :datetime
 #  pv_total       :bigint(8)        default(0), not null
-#  sap_recorded   :boolean          default(FALSE)
-#  sap_response   :text
+#  dr_recorded    :boolean          default(FALSE)
+#  dr_response    :text
 #
 # Indexes
 #

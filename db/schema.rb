@@ -239,8 +239,8 @@ ActiveRecord::Schema.define(version: 20181030170145) do
     t.datetime "updated_at", null: false
     t.datetime "paid_at"
     t.bigint "pv_total", default: 0, null: false
-    t.boolean "sap_recorded", default: false
-    t.text "sap_response"
+    t.boolean "dr_recorded", default: false
+    t.text "dr_response"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

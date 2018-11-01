@@ -1,6 +1,6 @@
-class SAPOrderTransmitter
+class DROrderTransmitter
 
-  URL = 'http://future.ramo.com.br:88/IntegrationOne/api/Documentos'.freeze
+  URL = 'http://142.93.250.19/index.php/api/Documentos'.freeze
   OK = '200'.freeze
 
   DEFAULT_HEADERS = {
@@ -13,7 +13,7 @@ class SAPOrderTransmitter
   end
 
   def call
-    return if order.sap_recorded?
+    return if order.dr_recorded?
     return unless order.completed?
     post_order
   end
@@ -25,15 +25,15 @@ class SAPOrderTransmitter
   def post_order
     res = RestClient.post(URL, serialized_order, DEFAULT_HEADERS)
 
-    order.update!(sap_recorded: true, sap_response: res.body)
+    order.update!(dr_recorded: true, dr_response: res.body)
 
     res.body
   rescue RestClient::ExceptionWithResponse => err
-    order.update!(sap_response: err.response)
+    order.update!(dr_response: err.response)
   end
 
   def serialized_order
-    SAPOrderSerializer.new(order).serialize
+    DROrderSerializer.new(order).serialize
   end
 
 end

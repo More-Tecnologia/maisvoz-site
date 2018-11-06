@@ -108,6 +108,12 @@
                   <%= t('views.backoffice.topbar.documents') %>
                 <% end %>
               </li>
+              <li>
+                <%= link_to backoffice_subscriptions_path do %>
+                  <i class="fa fa-calendar m-r-10 text-custom"></i>
+                  <%= t('views.backoffice.topbar.subscriptions') %>
+                <% end %>
+              </li>
               <li class="divider"></li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>

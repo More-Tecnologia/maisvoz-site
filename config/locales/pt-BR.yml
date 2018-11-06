@@ -121,6 +121,18 @@ pt-BR:
     binary_bonus: Bônus Binário
     binary_score: Ponto Volume
     document_verification_status: Status de Verificação do Documento
+    plate: Placa
+    cnpj_cpf: CNPJ/CPF
+    owner_name: Proprietário
+    manufacture_year: Ano de Fabricação
+    model_year: Ano do Modelo
+    fuel: Tipo de Combustível
+    mileage: Kilometragem
+    gearbox: Tipo de Câmbio
+    mercosul_code: Motorização
+    color: Cor
+    color_type: Tipo da Cor
+    origin: Importação
   backoffice:
     orders:
       show:
@@ -603,6 +615,7 @@ pt-BR:
         edit_account: Editar Conta
         edit_bank_account: Conta Bancária
         documents: Documentos
+        subscriptions: Assinaturas
         logout: Sair
     dashboard:
       admin:

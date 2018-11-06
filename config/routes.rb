@@ -68,6 +68,10 @@ Rails.application.routes.draw do
     resources :order_items, only: [:create, :update, :destroy]
     resources :orders, only: [:index, :show]
 
+    # Subscriptions
+    resources :subscriptions, only: :index
+    resources :club_motors, only: %i[new create]
+
     # Financial
     # resources :transfers, only: [:show, :update, :create]
     resources :withdrawals, only: [:index, :new, :create]

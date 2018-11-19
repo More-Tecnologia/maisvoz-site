@@ -107,7 +107,9 @@ pt-BR:
     invoice_id: ID da Fatura
     car_plate: Placa
     car_brand: Marca do Carro
+    car_brand_id: Marca do Carro
     car_model: Modelo do Carro
+    car_model_id: Modelo do Carro
     car_year: Ano do Carro
     car_mileage: Kilometragem
     product_id: Produto
@@ -431,6 +433,7 @@ pt-BR:
       blank: Não pode ficar em branco
       greater_than: Deve ser maior que %{count}
       greater_than_or_equal_to: Deve ser maior ou igual a %{count}
+      accepted: Você deve aceitar os termos antes de prosseguir
   filters: Filtros
   helpers:
     select:
@@ -701,3 +704,5 @@ pt-BR:
   processing: Processando
   completed: Pago
   cancelled: Cancelado
+  club_motors: Clube Motors
+  provide_info: Completar Informações

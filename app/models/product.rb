@@ -63,6 +63,7 @@ class Product < ApplicationRecord
   monetize :price_cents
 
   scope :active, -> { where(active: true) }
+  scope :club_motors, -> { where(club_motors: true) }
 
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?

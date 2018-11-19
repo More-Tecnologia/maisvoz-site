@@ -10,6 +10,7 @@
   <% Category.all.each do |category| %>
     <%= link_to category.name, q: { category_id_eq: category.id } %>
   <% end %>
+  <%= link_to t('club_motors'), new_backoffice_club_motor_path %>
 </div>
 
 

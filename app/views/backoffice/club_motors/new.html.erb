@@ -1,34 +1,65 @@
-<!-- Page-Title -->
-<div class="row">
-  <div class="col-sm-12">
-    <h4 class="page-title m-b-30">Assinaturas</h4>
-  </div>
-</div>
-
-
 <div class="row">
   <div class="col-lg-12">
     <div class="card-box">
-      <%= simple_form_for form, url: backoffice_club_motors_path, method: :post do |f| %>
-        <%= f.input :car_brand, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :car_model, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-6' } %>
-        <%= f.input :chassis, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :plate, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :cnpj_cpf, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :owner_name, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :manufacture_year, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :model_year, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :fuel, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.fuels.map {|k,v| [t(k), k]} %>
-        <%= f.input :mileage, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :renavam, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :gearbox, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.gearboxes.map {|k,v| [t(k), k]} %>
-        <%= f.input :taxi, wrapper_html: { class: 'col-sm-3' }, collection: ['Sim', 'Não'] %>
-        <%= f.input :mercosul_code, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.mercosul_codes.map {|k,v| [t(k), k]} %>
-        <%= f.input :color, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :color_type, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.color_types.map {|k,v| [t(k), k]} %>
-        <%= f.input :origin, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.origins.map {|k,v| [t(k), k]} %>
+      <h4 class="page-title m-b-30">Preencha os dados do seu Veículo</h4>
 
-        <%= f.submit "Adicionar Carro", class: 'btn btn-primary btn-block' %>
+      <%= simple_form_for form, url: backoffice_club_motors_path, method: :post do |f| %>
+
+        <div class="row">
+          <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' } %>
+          <%= f.input :car_model_id, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-6' } %>
+          <%= f.input :plate, wrapper_html: { class: 'col-sm-3' } %>
+        </div>
+
+        <h4 class="page-title p-t-10" style="clear: both;">Selecione seu pacote de Benefícios</h4>
+        <p>Confira o valor de sua Mensalidade</p>
+
+        <div class="row">
+          <div class="col-md-9">
+
+            <div class="card-deck-wrapper">
+              <div class="card-deck">
+                <% form.club_motors_list.each do |subscription| %>
+                  <div class="card-container">
+                    <div class="card m-b-20">
+                      <%= cl_image_tag(subscription.main_photo_id, { size: '150x150' }) %>
+                      <div class="card-body">
+                        <h3><%= subscription.name %></h3>
+                        <span><%= number_to_currency subscription.price %></span>
+                      </div>
+                    </div>
+                    <%= radio_button('club_motors_new_subscription_form', 'club_motors_id', subscription.id, checked: subscription.id == form.club_motors_id.to_i) %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-3">
+            <p>O valor da mensalidade será cobrado 30 (trinta) dias após a ativação do Pacote de Benefícios</p>
+            <% if form.monthly_fee.present? %>
+              <p>Sua mensalidade será de:</p>
+              <h5><%= number_to_currency form.monthly_fee %></h5>
+            <% end %>
+
+            <% if form.club_motors.present? %>
+              <p>Valor da Adesão</p>
+              <h2><%= number_to_currency form.club_motors.price %></h2>
+            <% end %>
+
+            <div class="card m-t-20 m-b-20">
+              <div class="card-body">
+                <p>Leia e aceite o contrato de adesão ao Clube de Benefícios Future Motors + Você</p>
+                <%= f.input :terms_of_service, as: :boolean, label: 'Termos de Serviço' %>
+              </div>
+            </div>
+
+
+            <%= f.submit "CONTRATAR", class: 'btn btn-primary btn-block' %>
+          </div>
+        </div>
+
       <% end %>
     </div>
   </div>
@@ -36,8 +67,7 @@
 
 <script>
   window.onload = function(){
-    $('#club_motors_subscription_form_car_brand').change(function () {
-      console.log($(this).val());
+    $('#club_motors_new_subscription_form_car_brand_id, #club_motors_new_subscription_form_car_model_id, input[type=radio]').change(function () {
       $(this).parents('form').submit();
     })
   }

@@ -18,6 +18,6 @@ class CarBrand < ApplicationRecord
 
   self.inheritance_column = nil
 
-  has_many :car_models, foreign_key: :brand_code, inverse_of: :brand, primary_key: :brand_code
+  has_many :car_models, foreign_key: :brand_code, primary_key: :brand_code
 
 end

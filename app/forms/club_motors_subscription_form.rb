@@ -1,8 +1,9 @@
 class ClubMotorsSubscriptionForm < Form
 
+  attribute :id
   attribute :user
-  attribute :car_brand
-  attribute :car_model
+  attribute :car_brand_id
+  attribute :car_model_id
   attribute :chassis
   attribute :plate
   attribute :cnpj_cpf
@@ -19,8 +20,8 @@ class ClubMotorsSubscriptionForm < Form
   attribute :color_type
   attribute :origin
 
-  validates :car_brand, presence: true
-  validates :car_model, presence: true
+  validates :car_brand_id, presence: true
+  validates :car_model_id, presence: true
   validates :chassis, presence: true
   validates :plate, presence: true
   validates :cnpj_cpf, presence: true
@@ -36,7 +37,41 @@ class ClubMotorsSubscriptionForm < Form
   validates :origin, presence: true
 
   def car_models_list
-    @car_models_list ||= CarModel.where(brand_code: car_brand).where.not(club_motors_fee: nil).order(:name).select(:id, :name)
+    @car_models_list ||= CarModel.where(
+      brand_code: car_brand_id
+    ).where.not(club_motors_fee: nil).order(:name).select(:id, :name)
+  end
+
+  def monthly_fee
+    return if car_brand.blank? || car_model.blank?
+
+    Subscriptions::CalculateClubMotorsFee.new(user: user, fee: club_motors_fee).call / 1e2
+  end
+
+  def club_motors_fee
+    return nil if car_model.blank?
+
+    car_model.club_motors_fee
+  end
+
+  def car_brand
+    return if car_brand_id.blank?
+
+    @car_brand ||= CarBrand.find_by(brand_code: car_brand_id)
+  end
+
+  def car_model
+    return unless CarModel.exists?(id: car_model_id)
+
+    @car_model ||= CarModel.find(car_model_id)
+  end
+
+  def club_motors_list
+    @club_motors_list ||= Product.active.club_motors.order(:price_cents)
+  end
+
+  def edit_attributes
+    attributes.except(:id, :user, :car_brand_id, :car_model_id)
   end
 
 end

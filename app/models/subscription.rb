@@ -20,7 +20,21 @@
 
 class Subscription < ApplicationRecord
 
+  include Hashid::Rails
+
+  enum status: {
+    provide_info: 'provide_info',
+    pending: 'pending',
+    active: 'active'
+  }
+
   belongs_to :user
-  belongs_to :club_motors_fee
+  belongs_to :subscriptionable, polymorphic: true
+
+  def subscription_type
+    if subscriptionable_type == 'ClubMotorsSubscription'
+      'Club Motors Subscription'
+    end
+  end
 
 end

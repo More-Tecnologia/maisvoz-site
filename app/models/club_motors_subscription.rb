@@ -34,26 +34,14 @@ class ClubMotorsSubscription < ApplicationRecord
   enum color_type: { solida: 'solida', metalica: 'metalica', perolizada: 'perolizada' }
   enum fuel: { gasolina: 'gasolina', etanol: 'etanol', diesel: 'diesel', flex: 'flex' }
   enum mercosul_code: { up_to_10: '87032100', from_10_to_15: '87032210', from_15_to_30: '87032310', from_30: '87043190', cargo: '87043190' }
-  enum origin: { national: 0, imported_direct: 1, imported_internal: 2, national_import: 3, national_2: 4, national_3: 5 }
+  enum origin: { national: '0', imported_direct: '1', imported_internal: '2', national_import: '3', national_2: '4', national_3: '5' }
   enum gearbox: { manual: 'manual', automatic: 'automatic'}
 
-  belongs_to :club_motors_fee
+  has_one :subscription, as: :subscriptionable
+
   belongs_to :user
   belongs_to :car_model
 
-  validates :car_model, presence: true
-  validates :chassis, presence: true
   validates :plate, presence: true
-  validates :cnpj_cpf, presence: true
-  validates :owner_name, presence: true
-  validates :manufacture_year, presence: true
-  validates :model_year, presence: true
-  validates :fuel, presence: true
-  validates :renavam, presence: true
-  validates :taxi, presence: true
-  validates :mercosul_code, presence: true
-  validates :color, presence: true
-  validates :color_type, presence: true
-  validates :origin, presence: true
 
 end

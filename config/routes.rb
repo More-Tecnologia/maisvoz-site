@@ -72,6 +72,10 @@ Rails.application.routes.draw do
     resources :subscriptions, only: :index
     resources :club_motors, only: %i[new create]
 
+    namespace :club_motors do
+      resources :vehicles, only: %i[index edit update]
+    end
+
     # Financial
     # resources :transfers, only: [:show, :update, :create]
     resources :withdrawals, only: [:index, :new, :create]

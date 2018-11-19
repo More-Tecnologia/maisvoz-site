@@ -26,7 +26,7 @@ module Financial
     attr_reader :order, :user
 
     def compensate_order
-      ActiveRecord::Base.transaction do
+      order.with_lock do
         update_order_status
         update_user_flags
         update_user_role

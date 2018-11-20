@@ -114,6 +114,12 @@
                   <%= t('views.backoffice.topbar.subscriptions') %>
                 <% end %>
               </li>
+              <li>
+                <%= link_to backoffice_club_motors_vehicles_path do %>
+                  <i class="md md-directions-car m-r-10 text-custom"></i>
+                  Meus Veículos
+                <% end %>
+              </li>
               <li class="divider"></li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>

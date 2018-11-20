@@ -10,6 +10,7 @@ module Backoffice
     def create
       if params[:commit].present? && form.valid?
         club_motors_signup
+        session.delete(:order_id)
         flash[:success] = I18n.t('defaults.order_placed')
         redirect_to backoffice_orders_path
       else

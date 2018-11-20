@@ -7,7 +7,7 @@
 
 <div class="portfolioFilter">
   <%= link_to t('all'), backoffice_products_path %>
-  <% Category.all.each do |category| %>
+  <% Category.active.each do |category| %>
     <%= link_to category.name, q: { category_id_eq: category.id } %>
   <% end %>
   <%= link_to t('club_motors'), new_backoffice_club_motor_path %>

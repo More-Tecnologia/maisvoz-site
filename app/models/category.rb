@@ -16,7 +16,6 @@ class Category < ApplicationRecord
 
   has_many :products
 
-  default_scope { where(active: true).order(:order) }
-  scope :active, -> { where(active: true) }
+  scope :active, -> { where(active: true).order(:order) }
 
 end

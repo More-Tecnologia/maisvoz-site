@@ -8,7 +8,7 @@
         <div class="row">
           <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' } %>
           <%= f.input :car_model_id, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-6' } %>
-          <%= f.input :plate, wrapper_html: { class: 'col-sm-3' } %>
+          <%= f.input :plate, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-plate' } %>
         </div>
 
         <h4 class="page-title p-t-10" style="clear: both;">Selecione seu pacote de Benefícios</h4>
@@ -69,6 +69,8 @@
   window.onload = function(){
     $('#club_motors_new_subscription_form_car_brand_id, #club_motors_new_subscription_form_car_model_id, input[type=radio]').change(function () {
       $(this).parents('form').submit();
-    })
+    });
+
+    $('.input-plate').mask('AAAAAAA', {clearIfNotMatch: true});
   }
 </script>

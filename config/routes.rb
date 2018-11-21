@@ -69,7 +69,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show]
 
     # Subscriptions
-    resources :subscriptions, only: :index
     resources :club_motors, only: %i[new create]
 
     namespace :club_motors do

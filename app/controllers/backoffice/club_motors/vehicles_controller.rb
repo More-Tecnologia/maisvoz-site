@@ -4,6 +4,7 @@ module Backoffice
 
       def index
         @vehicles = current_user.club_motors_subscriptions
+        @package_name = package_name
       end
 
       def edit
@@ -38,21 +39,23 @@ module Backoffice
       end
 
       def update_subscription
-        return unless subscription.provide_info?
+        return unless club_motors_subscription.provide_info?
 
         if current_user.product.present?
-          subscription.active!
+          club_motors_subscription.active!
         else
-          subscription.pending!
+          club_motors_subscription.pending!
         end
       end
 
       def club_motors_subscription
-        current_user.club_motors_subscriptions.find(params[:id])
+        current_user.club_motors_subscriptions.find_by_hashid(params[:id])
       end
 
-      def subscription
-        @subscription ||= club_motors_subscription.subscription
+      def package_name
+        return if current_user.product.blank?
+
+        @package_name ||= current_user.product.name
       end
 
     end

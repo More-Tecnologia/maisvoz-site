@@ -33,6 +33,13 @@ pt-BR:
         restrict_dependent_destroy:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
+  activemodel:
+    errors:
+      models:
+        club_motors_new_subscription_form:
+          attributes:
+            plate:
+              wrong_length: Tamanho errado
   app_name: Future Motors
   attributes:
     accept_terms: Aceitar termos

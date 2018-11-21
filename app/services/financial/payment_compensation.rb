@@ -30,6 +30,7 @@ module Financial
         update_order_status
         update_user_flags
         update_user_role
+        update_subscription
         activate_user
         assign_product_to_user
         create_binary_node
@@ -110,18 +111,27 @@ module Financial
       EmpreendedorMailer.welcome_email(user).deliver_later
     end
 
+    def update_subscription
+      return if order.club_motors_product.blank?
+
+      Subscriptions::ActivateClubMotors.new(user).call
+    end
+
     def activate_user
       return if user.active? || !adhesion_product?
+
       user.update!(active: true, active_until: 30.days.from_now)
     end
 
     def assign_product_to_user
       return if order.club_motors_product.blank?
+
       user.update!(product: order.club_motors_product)
     end
 
     def binary_bonus_nodes_verifier
       return if order.user.binary_node.blank?
+
       NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
     end
 

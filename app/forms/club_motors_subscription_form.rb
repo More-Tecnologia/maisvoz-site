@@ -35,6 +35,7 @@ class ClubMotorsSubscriptionForm < Form
   validates :color, presence: true
   validates :color_type, presence: true
   validates :origin, presence: true
+  validates :plate, length: { is: 7 }
 
   def car_models_list
     @car_models_list ||= CarModel.where(

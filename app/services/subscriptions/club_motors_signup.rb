@@ -21,20 +21,12 @@ module Subscriptions
     end
 
     def setup_subscription
-      club_motors_subscription = ClubMotorsSubscription.new.tap do |club_motors|
+      ClubMotorsSubscription.new.tap do |club_motors|
         club_motors.user      = form.user
+        club_motors.status    = ClubMotorsSubscription.statuses[:provide_info]
         club_motors.car_model = form.car_model
         club_motors.plate     = form.plate
         club_motors.save!
-      end
-
-
-      Subscription.new.tap do |subscription|
-        subscription.user             = form.user
-        subscription.status           = Subscription.statuses[:provide_info]
-        subscription.subscriptionable = club_motors_subscription
-
-        subscription.save!
       end
     end
 

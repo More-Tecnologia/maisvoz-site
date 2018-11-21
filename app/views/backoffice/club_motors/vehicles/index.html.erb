@@ -17,20 +17,34 @@
           <thead>
             <tr>
               <th>#</th>
+              <th>Pacote</th>
               <th>Modelo</th>
               <th>Placa</th>
               <th>Status</th>
+              <th>Período</th>
+              <th>Data de Ativação</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <% @vehicles.each do |vehicle| %>
               <tr>
-                <td><%= vehicle.id %></td>
+                <td><%= vehicle.hashid %></td>
+                <td><%= @package_name %></td>
                 <td><%= vehicle.car_model.name %></td>
                 <td><%= vehicle.plate %></td>
-                <td><%= t vehicle.subscription.status %></td>
-                <td><%= link_to 'Editar', edit_backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' %></td>
+                <td><%= t vehicle.status %></td>
+                <td>
+                <% if vehicle.active? %>
+                  (<%= l vehicle.current_period_start %> - <%= l vehicle.current_period_end %>)
+                <% end %>
+                </td>
+                <td><%= l(vehicle.activated_at, format: :short) if vehicle.activated_at %></td>
+                <td>
+                  <% if ClubMotorsSubscriptionPolicy.new(vehicle).can_edit? %>
+                    <%= link_to 'Editar', edit_backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>

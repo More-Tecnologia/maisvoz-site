@@ -12,6 +12,13 @@ class ClubMotorsNewSubscriptionForm < Form
   validates :club_motors_id, presence: true
   validates :plate, presence: true
   validates :terms_of_service, acceptance: true
+  validates :plate, length: { is: 7 }
+
+  validate :verify_plate_unique
+
+  def plate=(attr)
+    super attr.upcase
+  end
 
   def car_models_list
     @car_models_list ||= CarModel.where(
@@ -52,6 +59,14 @@ class ClubMotorsNewSubscriptionForm < Form
     return if club_motors_id.blank?
 
     @club_motors ||= Product.find(club_motors_id)
+  end
+
+  private
+
+  def verify_plate_unique
+    return unless ClubMotorsSubscription.exists?(plate: plate)
+
+    errors.add(:plate, 'Esta placa já consta em nosso banco de dados')
   end
 
 end

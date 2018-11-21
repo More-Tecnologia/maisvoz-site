@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181105223645) do
+ActiveRecord::Schema.define(version: 20181121134358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,6 +193,12 @@ ActiveRecord::Schema.define(version: 20181105223645) do
     t.string "origin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
+    t.string "type"
+    t.string "approved_by_username"
+    t.date "current_period_start"
+    t.date "current_period_end"
+    t.datetime "activated_at"
     t.index ["car_model_id"], name: "index_club_motors_subscriptions_on_car_model_id"
     t.index ["user_id"], name: "index_club_motors_subscriptions_on_user_id"
   end
@@ -385,19 +391,6 @@ ActiveRecord::Schema.define(version: 20181105223645) do
     t.index ["user_id"], name: "index_pv_histories_on_user_id"
   end
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "subscriptionable_type"
-    t.bigint "subscriptionable_id"
-    t.string "status"
-    t.datetime "current_period_start"
-    t.datetime "current_period_end"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subscriptionable_type", "subscriptionable_id"], name: "index_subscriptionable_id_and_type"
-    t.index ["user_id"], name: "index_subscriptions_on_user_id"
-  end
-
   create_table "system_financial_logs", force: :cascade do |t|
     t.string "description"
     t.bigint "amount_cents"
@@ -548,7 +541,6 @@ ActiveRecord::Schema.define(version: 20181105223645) do
   add_foreign_key "pv_activity_histories", "users"
   add_foreign_key "pv_histories", "orders"
   add_foreign_key "pv_histories", "users"
-  add_foreign_key "subscriptions", "users"
   add_foreign_key "system_financial_logs", "orders"
   add_foreign_key "transfers", "users", column: "from_user_id"
   add_foreign_key "transfers", "users", column: "to_user_id"

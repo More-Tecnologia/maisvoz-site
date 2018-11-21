@@ -53,7 +53,7 @@ class ClubMotorsSubscription < ApplicationRecord
     cancelled: 'cancelled',
     active: 'active'
   }
-  enum type: { clubmotors: 'clubmotors' }
+  enum type: { clubmotors: 'clubmotors', ancore: 'ancore', tracker: 'tracker' }
 
   belongs_to :user
   belongs_to :car_model

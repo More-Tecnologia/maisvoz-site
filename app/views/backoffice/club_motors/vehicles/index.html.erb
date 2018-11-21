@@ -18,6 +18,7 @@
             <tr>
               <th>#</th>
               <th>Pacote</th>
+              <th>Tipo</th>
               <th>Modelo</th>
               <th>Placa</th>
               <th>Status</th>
@@ -31,6 +32,7 @@
               <tr>
                 <td><%= vehicle.hashid %></td>
                 <td><%= @package_name %></td>
+                <td><%= t vehicle.type %></td>
                 <td><%= vehicle.car_model.name %></td>
                 <td><%= vehicle.plate %></td>
                 <td><%= t vehicle.status %></td>

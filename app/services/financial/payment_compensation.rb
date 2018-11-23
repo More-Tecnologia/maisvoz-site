@@ -78,6 +78,7 @@ module Financial
       Bonification::PropagatePvvHistory.new(order).call
       Bonification::PropagatePvgHistory.new(order).call
       Bonification::PropagatePvaPoints.new(order: order).call
+      Bonification::PropagatePvmPoints.new(order: order).call
     end
 
     def credit_bonus
@@ -112,9 +113,9 @@ module Financial
     end
 
     def update_subscription
-      return if order.club_motors_product.blank?
+      return if order.club_motors_subscription.blank?
 
-      Subscriptions::ActivateClubMotors.new(user).call
+      Subscriptions::ActivateClubMotors.new(order).call
     end
 
     def activate_user

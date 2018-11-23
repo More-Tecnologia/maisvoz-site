@@ -2,46 +2,56 @@
 #
 # Table name: orders
 #
-#  id             :bigint(8)        not null, primary key
-#  user_id        :bigint(8)
-#  subtotal_cents :integer          default(0)
-#  tax_cents      :integer          default(0)
-#  shipping_cents :integer          default(0)
-#  total_cents    :integer          default(0)
-#  status         :integer          default("cart")
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  paid_at        :datetime
-#  pv_total       :bigint(8)        default(0), not null
-#  dr_recorded    :boolean          default(FALSE)
-#  dr_response    :text
+#  id                          :bigint(8)        not null, primary key
+#  user_id                     :bigint(8)
+#  subtotal_cents              :integer          default(0)
+#  tax_cents                   :integer          default(0)
+#  shipping_cents              :integer          default(0)
+#  total_cents                 :integer          default(0)
+#  status                      :integer          default("cart")
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  paid_at                     :datetime
+#  pv_total                    :bigint(8)        default(0), not null
+#  dr_recorded                 :boolean          default(FALSE)
+#  dr_response                 :text
+#  type                        :string
+#  club_motors_subscription_id :bigint(8)
 #
 # Indexes
 #
-#  index_orders_on_user_id  (user_id)
+#  index_orders_on_club_motors_subscription_id  (club_motors_subscription_id)
+#  index_orders_on_type                         (type)
+#  index_orders_on_user_id                      (user_id)
 #
 
 class Order < ApplicationRecord
 
-  serialize :sap_response, JSON
-
   include Hashid::Rails
 
+  self.inheritance_column = nil
+
+  serialize :dr_response, JSON
+
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, cancelled: 4 }
+  enum type: { clubmotors_adhesion: 'clubmotors_adhesion', monthly_fee: 'monthly_fee' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories
   has_many :bonus, class_name: 'Bonus'
   has_many :pv_activity_histories
   has_many :payment_transactions
+
   belongs_to :user
+  belongs_to :club_motors_subscription, optional: true
 
   monetize :subtotal_cents
   monetize :tax_cents
   monetize :shipping_cents
   monetize :total_cents
 
-  scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day)}
+  scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
+  scope :monthly_fees, -> { where(type: :monthly_fee) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")
@@ -79,6 +89,10 @@ class Order < ApplicationRecord
     @pvv_score ||= order_items.joins(:product).where(
       'products.kind != ?', Product.kinds[:adhesion]
     ).sum(:binary_score)
+  end
+
+  def pvm_score
+    @pvm_score ||= (total_cents / 300).to_i
   end
 
   def token

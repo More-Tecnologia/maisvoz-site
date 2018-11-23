@@ -1,26 +1,29 @@
 module Subscriptions
   class ActivateClubMotors
 
-    def initialize(user)
-      @user = user
+    def initialize(order)
+      @order = order
     end
 
     def call
-      subscription.status = ClubMotorsSubscription.statuses[:active]
-      subscription.type = ClubMotorsSubscription.types[:clubmotors]
+      subscription.status               = ClubMotorsSubscription.statuses[:active]
       subscription.current_period_start = now
-      subscription.current_period_end = now + 30.days
-      subscription.activated_at = now
+      subscription.current_period_end   = current_period_end
+      subscription.activated_at         = now if subscription.activated_at.blank?
 
       subscription.save!
     end
 
     private
 
-    attr_reader :user
+    attr_reader :order
 
     def subscription
-      @subscription ||= user.club_motors_subscriptions.last
+      @subscription ||= order.club_motors_subscription
+    end
+
+    def current_period_end
+      Date.new((now + 1.month).year, (now + 1.month).month, subscription.billing_day_of_month)
     end
 
     def now

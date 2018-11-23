@@ -5,8 +5,7 @@ class ClubMotorsSubscriptionPolicy
   end
 
   def can_edit?
-    club_motors_subscription.provide_info? ||
-      club_motors_subscription.pending?
+    club_motors_subscription.chassis.blank?
   end
 
   private

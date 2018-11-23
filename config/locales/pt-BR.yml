@@ -266,6 +266,11 @@ pt-BR:
         subtitle: Esta conta será utilizada nos saques da plataforma
         save: Salvar conta bancária
         ownership_info: Só aceitamos contas bancárias em sua titularidade
+    club_motors:
+      monthly_fees:
+        index:
+          title: Mensalidades
+          no_data: Nenhuma mensalidade presente até o momento
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado

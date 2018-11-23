@@ -1,7 +1,7 @@
 module Backoffice
   class ClubMotorsController < BackofficeController
 
-    before_action :verify_user_has_balance
+    before_action :verify_user_has_package
 
     def new
       render_new
@@ -10,7 +10,6 @@ module Backoffice
     def create
       if params[:commit].present? && form.valid?
         club_motors_signup
-        session.delete(:order_id)
         flash[:success] = I18n.t('defaults.order_placed')
         redirect_to backoffice_orders_path
       else
@@ -35,10 +34,10 @@ module Backoffice
     end
 
     def club_motors_signup
-      Subscriptions::ClubMotorsSignup.new(form: form, cart: current_order).call
+      Subscriptions::ClubMotorsSignup.new(form: form).call
     end
 
-    def verify_user_has_balance
+    def verify_user_has_package
       return if current_user.product.blank?
 
       flash[:success] = 'Você já possui um pacote cadastrado'

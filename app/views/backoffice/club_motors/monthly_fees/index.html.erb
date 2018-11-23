@@ -1,0 +1,54 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('.title') %></h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <table class="table table-striped table-bordered m-0">
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Veículo</th>
+                <th><%= Order.human_attribute_name(:total) %></th>
+                <th><%= Order.human_attribute_name(:status) %></th>
+                <th><%= Order.human_attribute_name(:paid_at) %></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @monthly_fees.each do |order| %>
+                <tr>
+                  <th><%= order.hashid %></th>
+                  <th><%= order.club_motors_subscription.name %></th>
+                  <td><%= number_to_currency order.total %></td>
+                  <td><%= t "defaults.#{order.status}" %></td>
+                  <td><%= l(order.paid_at, format: :short) if order.paid_at.present? %></td>
+                  <td>
+                    <%= link_to 'Detalhes', backoffice_order_path(order) %>
+                    <% unless order.completed? %>
+                      <%= link_to 'Boleto', order.current_transaction.boleto_url, target: '_blank' if order.current_transaction %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              <% if @monthly_fees.empty? %>
+                <tr>
+                  <td colspan="7" class="text-center"><%= t('.no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

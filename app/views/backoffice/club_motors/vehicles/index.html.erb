@@ -12,6 +12,8 @@
   <div class="col-lg-12">
     <div class="card-box">
 
+      <%= link_to 'Minhas Mensalidades', backoffice_club_motors_monthly_fees_path, class: 'btn btn-sm btn-primary' %>
+
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
@@ -22,6 +24,7 @@
               <th>Modelo</th>
               <th>Placa</th>
               <th>Status</th>
+              <th>Valor</th>
               <th>Período</th>
               <th>Data de Ativação</th>
               <th></th>
@@ -36,6 +39,7 @@
                 <td><%= vehicle.car_model.name %></td>
                 <td><%= vehicle.plate %></td>
                 <td><%= t vehicle.status %></td>
+                <td><%= number_to_currency vehicle.price %>/mês</td>
                 <td>
                 <% if vehicle.active? %>
                   (<%= l vehicle.current_period_start %> - <%= l vehicle.current_period_end %>)

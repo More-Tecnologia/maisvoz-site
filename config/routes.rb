@@ -73,6 +73,7 @@ Rails.application.routes.draw do
 
     namespace :club_motors do
       resources :vehicles, only: %i[index edit update]
+      resources :monthly_fees, only: %i[index]
     end
 
     # Financial

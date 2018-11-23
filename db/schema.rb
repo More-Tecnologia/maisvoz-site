@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181121134358) do
+ActiveRecord::Schema.define(version: 20181122200225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +199,11 @@ ActiveRecord::Schema.define(version: 20181121134358) do
     t.date "current_period_start"
     t.date "current_period_end"
     t.datetime "activated_at"
+    t.bigint "balance_cents", default: 0, null: false
+    t.integer "billing_day_of_month"
+    t.integer "current_billing_cycle", default: 0, null: false
+    t.date "next_billing_date"
+    t.bigint "price_cents", default: 0, null: false
     t.index ["car_model_id"], name: "index_club_motors_subscriptions_on_car_model_id"
     t.index ["user_id"], name: "index_club_motors_subscriptions_on_user_id"
   end
@@ -271,6 +276,10 @@ ActiveRecord::Schema.define(version: 20181121134358) do
     t.bigint "pv_total", default: 0, null: false
     t.boolean "dr_recorded", default: false
     t.text "dr_response"
+    t.string "type"
+    t.bigint "club_motors_subscription_id"
+    t.index ["club_motors_subscription_id"], name: "index_orders_on_club_motors_subscription_id"
+    t.index ["type"], name: "index_orders_on_type"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -530,6 +539,7 @@ ActiveRecord::Schema.define(version: 20181121134358) do
   add_foreign_key "financial_entries", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "club_motors_subscriptions"
   add_foreign_key "orders", "users"
   add_foreign_key "payment_transactions", "orders"
   add_foreign_key "payment_transactions", "users"

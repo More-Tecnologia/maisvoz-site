@@ -6,7 +6,8 @@ module Bonification
     end
 
     def call
-      user = order.user
+      return if total_score <= 0
+
       while user.present?
         user.increment!(:pva_total, total_score)
         user = user.sponsor
@@ -17,7 +18,7 @@ module Bonification
 
     attr_reader :order
 
-    delegate :total_score, to: :order
+    delegate :total_score, :user, to: :order
 
   end
 end

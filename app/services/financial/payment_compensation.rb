@@ -115,7 +115,7 @@ module Financial
     def update_subscription
       return if order.club_motors_subscription.blank?
 
-      Subscriptions::ActivateClubMotors.new(order).call
+      Subscriptions::Compensate.new(order: order).call
     end
 
     def activate_user

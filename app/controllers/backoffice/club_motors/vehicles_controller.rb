@@ -13,7 +13,6 @@ module Backoffice
 
       def update
         if form.valid? && club_motors_subscription.update!(form.edit_attributes)
-          update_subscription
           flash[:success] = 'Veículo atualizado com sucesso!'
           redirect_to backoffice_club_motors_vehicles_path
         else
@@ -36,16 +35,6 @@ module Backoffice
           params[:club_motors_subscription_form] ||= club_motors_subscription.attributes
         end
         params[:club_motors_subscription_form]
-      end
-
-      def update_subscription
-        return unless club_motors_subscription.provide_info?
-
-        if current_user.product.present?
-          club_motors_subscription.active!
-        else
-          club_motors_subscription.pending!
-        end
       end
 
       def club_motors_subscription

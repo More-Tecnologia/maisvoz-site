@@ -10,7 +10,6 @@ module Subscriptions
 
       subscription.with_lock do
         create_order
-        checkout_order
         update_subscription
       end
     end
@@ -27,8 +26,8 @@ module Subscriptions
         order.type                     = Order.types[:monthly_fee]
         order.user                     = user
         order.club_motors_subscription = subscription
-        order.total_cents              = subscription.price_cents
-        order.subtotal_cents           = subscription.price_cents
+        order.total_cents              = price_cents + subscription.balance_cents
+        order.subtotal_cents           = price_cents + subscription.balance_cents
         order.tax_cents                = 0
         order.shipping_cents           = 0
 
@@ -36,14 +35,11 @@ module Subscriptions
       end
     end
 
-    def checkout_order
-      Shopping::CheckoutCart.new(cart: order).call
-    end
-
     def update_subscription
-      subscription.balance_cents += subscription.price_cents
+      subscription.status                 = ClubMotorsSubscription.statuses[:pending]
+      subscription.balance_cents         += price_cents
       subscription.current_billing_cycle += 1
-      subscription.next_billing_date.advance(months: 1)
+      subscription.next_billing_date      = next_billing_date
 
       subscription.save!
     end
@@ -54,8 +50,20 @@ module Subscriptions
       ).any?
     end
 
+    def price_cents
+      @price_cents ||= subscription.calculate_price_cents
+    end
+
     def this_month
       @this_month ||= Date.new(Time.now.year, Time.now.month)
+    end
+
+    def next_billing_date
+      @next_billing_date ||= Date.new(
+        (subscription.next_billing_date + 1.month).year,
+        (subscription.next_billing_date + 1.month).month,
+        subscription.billing_day_of_month
+      )
     end
 
   end

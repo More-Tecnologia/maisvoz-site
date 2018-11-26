@@ -54,7 +54,6 @@ class ClubMotorsSubscription < ApplicationRecord
   enum origin: { national: '0', imported_direct: '1', imported_internal: '2', national_import: '3', national_2: '4', national_3: '5' }
   enum gearbox: { manual: 'manual', automatic: 'automatic' }
   enum status: {
-    provide_info: 'provide_info',
     pending: 'pending',
     past_due: 'past_due',
     expired: 'expired',
@@ -70,8 +69,17 @@ class ClubMotorsSubscription < ApplicationRecord
 
   validates :plate, presence: true
 
+  scope :active_subscriptions, -> { where(status: %i[pending past_due active]) }
+
   def name
     "#{car_model.name} - #{plate}"
+  end
+
+  def calculate_price_cents(product = user.product)
+    Subscriptions::CalculateClubMotorsFee.new(
+      product: product,
+      fee: car_model.club_motors_fee
+    ).call
   end
 
 end

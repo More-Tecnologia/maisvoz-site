@@ -6,6 +6,7 @@ module Subscriptions
     end
 
     def call
+      subscription.status               = ClubMotorsSubscription.statuses[:active]
       subscription.current_period_start = now
       subscription.current_period_end   = current_period_end - 1.day
       subscription.price_cents          = price_cents

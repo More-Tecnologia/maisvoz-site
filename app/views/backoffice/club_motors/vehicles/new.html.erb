@@ -1,7 +1,7 @@
 <!-- Page-Title -->
 <div class="row">
   <div class="col-sm-12">
-    <h4 class="page-title m-b-30">Editar <%= form.car_model.name %> - <%= form.plate %></h4>
+    <h4 class="page-title m-b-30">Novo Veículo</h4>
   </div>
 </div>
 
@@ -20,11 +20,12 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card-box">
-      <%= simple_form_for form, url: backoffice_club_motors_path, method: :post do |f| %>
+      <%= simple_form_for form, url: backoffice_club_motors_vehicles_path, method: :post do |f| %>
+        <div class="row">
         <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' } %>
         <%= f.input :car_model_id, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-6' } %>
         <%= f.input :chassis, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :plate, wrapper_html: { class: 'col-sm-3' } %>
+        <%= f.input :plate, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-plate' } %>
         <%= f.input :cnpj_cpf, wrapper_html: { class: 'col-sm-3' } %>
         <%= f.input :owner_name, wrapper_html: { class: 'col-sm-3' } %>
         <%= f.input :manufacture_year, wrapper_html: { class: 'col-sm-3' } %>
@@ -38,6 +39,16 @@
         <%= f.input :color, wrapper_html: { class: 'col-sm-3' } %>
         <%= f.input :color_type, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.color_types.map {|k,v| [t(k), k]} %>
         <%= f.input :origin, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.origins.map {|k,v| [t(k), k]} %>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card-box">
+              <p>Leia e aceite o contrato de adesão ao Clube de Benefícios Future Motors + Você</p>
+              <%= f.input :terms_of_service, as: :boolean, label: 'Termos de Serviço' %>
+            </div>
+          </div>
+        </div>
 
         <%= f.submit "Adicionar Carro", class: 'btn btn-primary btn-block' %>
       <% end %>
@@ -48,8 +59,9 @@
 <script>
   window.onload = function(){
     $('#club_motors_subscription_form_car_brand_id, #club_motors_subscription_form_car_model_id').change(function () {
-      console.log($(this).val());
       $(this).parents('form').submit();
-    })
+    });
+
+    $('.input-plate').mask('AAAAAAA', {clearIfNotMatch: true});
   }
 </script>

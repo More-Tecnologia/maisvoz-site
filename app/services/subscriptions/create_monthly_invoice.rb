@@ -37,7 +37,6 @@ module Subscriptions
     end
 
     def update_subscription
-      subscription.status                 = ClubMotorsSubscription.statuses[:pending]
       subscription.next_billing_date      = next_billing_date
       subscription.balance_cents         += price_cents
       subscription.current_billing_cycle += 1
@@ -68,9 +67,11 @@ module Subscriptions
     end
 
     def expire_at
-      return unless user.club_motors_subscriptions.active_subscriptions.count == 1
-
-      subscription.current_period_end
+      if user.club_motors_subscriptions.active_subscriptions.count == 1
+        subscription.current_period_end
+      else
+        7.days.from_now
+      end
     end
 
   end

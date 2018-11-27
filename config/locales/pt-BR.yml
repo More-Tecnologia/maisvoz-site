@@ -45,7 +45,7 @@ pt-BR:
     accept_terms: Aceitar termos
     amount: Valor
     created_at: Data de criação
-    expire_at: Expiração
+    expire_at: Data de Vencimento
     description: Descrição
     gross_amount: Valor bruto
     name: Nome

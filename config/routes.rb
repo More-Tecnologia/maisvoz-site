@@ -72,7 +72,7 @@ Rails.application.routes.draw do
     resources :club_motors, only: %i[new create]
 
     namespace :club_motors do
-      resources :vehicles, only: %i[index edit update]
+      resources :vehicles, only: %i[index edit update new create]
       resources :monthly_fees, only: %i[index]
     end
 

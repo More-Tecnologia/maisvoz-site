@@ -25,10 +25,29 @@ module Backoffice
         end
       end
 
+      def new
+        render_new
+      end
+
+      def create
+        if form.valid?
+          Subscriptions::ClubMotorsAdd.new(form: form).call
+
+          flash[:success] = 'Veículo adicionado com sucesso!'
+          redirect_to backoffice_club_motors_monthly_fees_path
+        else
+          render_new
+        end
+      end
+
       private
 
       def render_edit
         render(:edit, locals: { form: form, club_motors_subscription: club_motors_subscription })
+      end
+
+      def render_new
+        render(:new, locals: { form: form })
       end
 
       def form
@@ -36,9 +55,12 @@ module Backoffice
       end
 
       def form_params
+        params[:club_motors_subscription_form] ||= {}
         if params[:id].present?
-          params[:club_motors_subscription_form] ||= club_motors_subscription.attributes
+          params[:club_motors_subscription_form]                ||= club_motors_subscription.attributes
+          params[:club_motors_subscription_form][:car_brand_id] ||= club_motors_subscription.car_model.car_brand.id
         end
+        params[:club_motors_subscription_form][:user] ||= current_user
         params[:club_motors_subscription_form]
       end
 

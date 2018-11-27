@@ -28,6 +28,7 @@ module Subscriptions
       subscription.billing_day_of_month = billing_day_of_month
       subscription.price_cents          = subscription.calculate_price_cents
       subscription.next_billing_date    = now
+      subscription.activated_at         = now if subscription.active?
 
       subscription.save!
     end
@@ -48,7 +49,7 @@ module Subscriptions
 
     def status
       if form.user.club_motors_subscriptions.where(status: :active).any?
-        ClubMotorsSubscription.statuses[:pending]
+        ClubMotorsSubscription.statuses[:inactive]
       else
         ClubMotorsSubscription.statuses[:active]
       end

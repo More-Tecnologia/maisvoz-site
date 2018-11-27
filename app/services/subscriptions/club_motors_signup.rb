@@ -20,7 +20,7 @@ module Subscriptions
 
     def setup_subscription
       @subscription = ClubMotorsSubscription.new.tap do |club_motors|
-        club_motors.status               = ClubMotorsSubscription.statuses[:pending]
+        club_motors.status               = ClubMotorsSubscription.statuses[:inactive]
         club_motors.type                 = ClubMotorsSubscription.types[:clubmotors]
         club_motors.user                 = form.user
         club_motors.car_model            = form.car_model

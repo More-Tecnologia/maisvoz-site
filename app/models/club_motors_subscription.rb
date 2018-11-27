@@ -55,7 +55,6 @@ class ClubMotorsSubscription < ApplicationRecord
   enum gearbox: { manual: 'manual', automatic: 'automatic' }
   enum status: {
     inactive: 'inactive',
-    pending: 'pending',
     past_due: 'past_due',
     expired: 'expired',
     canceled: 'canceled',

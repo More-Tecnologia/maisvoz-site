@@ -40,7 +40,13 @@
             <label for="">Galeria de fotos</label>
             <%= f.input :photos, as: :file,  input_html: { multiple: true } %>
 
-            <%= f.input :name %>
+            <% if product && product.club_motors? %>
+              <%= f.input :name, disabled: true %>
+              <p>Para alterações, entrar em contato com o admin</p>
+            <% else %>
+              <%= f.input :name %>
+            <% end %>
+
             <%= f.input :price do %>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-dollar"></i></span>

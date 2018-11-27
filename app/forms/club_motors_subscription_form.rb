@@ -39,6 +39,8 @@ class ClubMotorsSubscriptionForm < Form
   validates :plate, length: { is: 7 }
   validates :terms_of_service, acceptance: true
 
+  validate :verify_plate_unique, if: :new_vehicle?
+
   def plate=(attr)
     super attr.upcase
   end
@@ -88,6 +90,12 @@ class ClubMotorsSubscriptionForm < Form
 
   def new_vehicle?
     id.present?
+  end
+
+  def verify_plate_unique
+    return unless ClubMotorsSubscription.exists?(plate: plate)
+
+    errors.add(:plate, 'Esta placa já consta em nosso banco de dados')
   end
 
 end

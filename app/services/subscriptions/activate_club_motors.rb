@@ -23,6 +23,7 @@ module Subscriptions
       subscription.price_cents          = price_cents
       subscription.next_billing_date    = current_period_end
       subscription.billing_day_of_month = billing_day_of_month
+      subscription.activated_at         = now if subscription.active?
 
       subscription.save!
     end

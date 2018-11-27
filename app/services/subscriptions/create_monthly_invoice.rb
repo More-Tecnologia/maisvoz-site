@@ -67,7 +67,7 @@ module Subscriptions
     end
 
     def expire_at
-      if user.club_motors_subscriptions.where(status: :active).count == 1
+      if user.club_motors_subscriptions.where(status: :active).count == 0
         subscription.current_period_end
       else
         7.days.from_now

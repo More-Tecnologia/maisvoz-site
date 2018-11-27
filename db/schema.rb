@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181122200225) do
+ActiveRecord::Schema.define(version: 20181127000415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,6 +278,7 @@ ActiveRecord::Schema.define(version: 20181122200225) do
     t.text "dr_response"
     t.string "type"
     t.bigint "club_motors_subscription_id"
+    t.date "expire_at"
     t.index ["club_motors_subscription_id"], name: "index_orders_on_club_motors_subscription_id"
     t.index ["type"], name: "index_orders_on_type"
     t.index ["user_id"], name: "index_orders_on_user_id"

@@ -17,6 +17,7 @@
 #  dr_response                 :text
 #  type                        :string
 #  club_motors_subscription_id :bigint(8)
+#  expire_at                   :date
 #
 # Indexes
 #

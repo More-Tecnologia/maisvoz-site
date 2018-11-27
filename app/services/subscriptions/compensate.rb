@@ -6,9 +6,7 @@ module Subscriptions
     end
 
     def call
-      if order.clubmotors_adhesion?
-        Subscriptions::ActivateClubMotors.new(order: order).call
-      elsif order.monthly_fee?
+      if order.monthly_fee?
         Subscriptions::PayMonthlyFee.new(order: order).call
       end
     end

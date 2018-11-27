@@ -48,7 +48,7 @@
                 <td><%= l(vehicle.activated_at, format: :short) if vehicle.activated_at %></td>
                 <td>
                   <% if ClubMotorsSubscriptionPolicy.new(vehicle).can_edit? %>
-                    <%= link_to 'Editar', edit_backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' %>
+                    <%= link_to 'Ativar', edit_backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' %>
                   <% end %>
                 </td>
               </tr>

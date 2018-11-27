@@ -6,7 +6,7 @@ class ClubMotorsSubscriptionPolicy
 
   def can_edit?
     club_motors_subscription.chassis.blank? &&
-      club_motors_subscription.active?
+      club_motors_subscription.user.active?
   end
 
   private

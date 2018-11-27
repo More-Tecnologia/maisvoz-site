@@ -14,7 +14,6 @@ module Payment
     end
 
     def call
-      return unless AppConfig.is?('BOLETO_ON')
       create_payload
       create_boleto
     end

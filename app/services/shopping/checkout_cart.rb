@@ -9,7 +9,6 @@ module Shopping
       return false unless cart.cart? && cart.total_cents > 0
 
       update_cart
-      generate_boleto if should_generate?
       slack_message if should_generate?
 
       true
@@ -21,10 +20,6 @@ module Shopping
 
     def update_cart
       cart.pending_payment!
-    end
-
-    def generate_boleto
-      BradescoBoletoGeneratorWorker.perform_async(cart.id)
     end
 
     def slack_message

@@ -40,6 +40,10 @@ pt-BR:
           attributes:
             plate:
               wrong_length: Tamanho errado
+        club_motors_subscription_form:
+          attributes:
+            plate:
+              wrong_length: Tamanho errado
   app_name: Future Motors
   attributes:
     accept_terms: Aceitar termos
@@ -119,7 +123,7 @@ pt-BR:
     car_model: Modelo do Carro
     car_model_id: Modelo do Carro
     car_year: Ano do Carro
-    car_mileage: Kilometragem
+    car_mileage: Quilometragem
     product_id: Produto
     product_serial: Serial do Produto
     status_message: Mensagem de Status
@@ -719,3 +723,14 @@ pt-BR:
   cancelled: Cancelado
   club_motors: Clube Motors
   clubmotors: ClubMotors
+  up_to_10: Até 1.0
+  from_10_to_15: De 1.0 até 1.5
+  from_15_to_30: De 1.5 até 3.0
+  from_30: A partir de 3.0
+  cargo: Caminhão
+  manual: Manual
+  automatic: Automático
+  national: Nacional
+  imported_direct: Importação Direta
+  imported_internal: Importação Interna
+  national_import: Importado Nacional

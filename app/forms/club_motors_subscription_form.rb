@@ -23,8 +23,8 @@ class ClubMotorsSubscriptionForm < Form
 
   validates :car_brand_id, presence: true, if: :new_vehicle?
   validates :car_model_id, presence: true, if: :new_vehicle?
-  validates :chassis, presence: true
   validates :plate, presence: true, if: :new_vehicle?
+  validates :chassis, presence: true
   validates :cnpj_cpf, presence: true
   validates :owner_name, presence: true
   validates :manufacture_year, presence: true

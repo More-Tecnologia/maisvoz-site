@@ -40,7 +40,7 @@
                 <td><%= vehicle.car_model.name %></td>
                 <td><%= vehicle.plate %></td>
                 <td><%= t vehicle.status %></td>
-                <td><%= number_to_currency vehicle.price %>/mês</td>
+                <td><%= number_to_currency vehicle.calculate_price_cents / 1e2 %>/mês</td>
                 <td>
                 <% if vehicle.active? %>
                   (<%= l vehicle.current_period_start %> - <%= l vehicle.current_period_end %>)

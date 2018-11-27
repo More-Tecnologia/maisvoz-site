@@ -54,6 +54,7 @@ class ClubMotorsSubscription < ApplicationRecord
   enum origin: { national: '0', imported_direct: '1', imported_internal: '2', national_import: '3', national_2: '4', national_3: '5' }
   enum gearbox: { manual: 'manual', automatic: 'automatic' }
   enum status: {
+    inactive: 'inactive',
     pending: 'pending',
     past_due: 'past_due',
     expired: 'expired',

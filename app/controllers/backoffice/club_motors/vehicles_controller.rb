@@ -12,7 +12,7 @@ module Backoffice
       end
 
       def update
-        if form.valid? && club_motors_subscription.update!(form.edit_attributes)
+        if params[:commit].present? && form.valid? && club_motors_subscription.update!(form.edit_attributes)
           ActiveRecord::Base.transaction do
             Subscriptions::ActivateClubMotors.new(subscription: club_motors_subscription).call
             Subscriptions::CreateMonthlyInvoice.new(club_motors_subscription).call
@@ -30,7 +30,7 @@ module Backoffice
       end
 
       def create
-        if form.valid?
+        if params[:commit].present? && form.valid?
           Subscriptions::ClubMotorsAdd.new(form: form).call
 
           flash[:success] = 'Veículo adicionado com sucesso!'

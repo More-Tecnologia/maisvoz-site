@@ -6,7 +6,7 @@ module Subscriptions
     end
 
     def call
-      subscription.status               = ClubMotorsSubscription.statuses[:active]
+      subscription.status               = status
       subscription.current_period_start = now
       subscription.current_period_end   = current_period_end - 1.day
       subscription.price_cents          = price_cents
@@ -19,6 +19,14 @@ module Subscriptions
     private
 
     attr_reader :subscription
+
+    def status
+      if subscription.user.club_motors_subscriptions.any?(status: :active)
+        ClubMotorsSubscription.statuses[:inactive]
+      else
+        ClubMotorsSubscription.statuses[:active]
+      end
+    end
 
     def current_period_end
       @current_period_end ||= Date.new((now + 1.month).year, (now + 1.month).month, billing_day_of_month)

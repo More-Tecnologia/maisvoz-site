@@ -53,6 +53,7 @@ class Order < ApplicationRecord
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
   scope :monthly_fees, -> { where(type: :monthly_fee) }
+  scope :regular_orders, -> { where.not(type: :monthly_fee) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")

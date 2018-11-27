@@ -22,7 +22,7 @@ module Subscriptions
     end
 
     def update_subscription
-      subscription.status               = ClubMotorsSubscription.statuses[:pending]
+      subscription.status               = status
       subscription.type                 = ClubMotorsSubscription.types[:clubmotors]
       subscription.billing_day_of_month = billing_day_of_month
       subscription.price_cents          = subscription.calculate_price_cents
@@ -33,6 +33,14 @@ module Subscriptions
 
     def create_invoice
       Subscriptions::CreateMonthlyInvoice.new(subscription).call
+    end
+
+    def status
+      if form.user.club_motors_subscriptions.where(status: :active).any?
+        ClubMotorsSubscription.statuses[:pending]
+      else
+        ClubMotorsSubscription.statuses[:active]
+      end
     end
 
     def billing_day_of_month

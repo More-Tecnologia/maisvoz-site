@@ -6,6 +6,17 @@ module Subscriptions
     end
 
     def call
+      ActiveRecord::Base.transaction do
+        update_subscription
+        create_invoice
+      end
+    end
+
+    private
+
+    attr_reader :subscription
+
+    def update_subscription
       subscription.status               = status
       subscription.current_period_start = now
       subscription.current_period_end   = current_period_end - 1.day
@@ -16,12 +27,12 @@ module Subscriptions
       subscription.save!
     end
 
-    private
-
-    attr_reader :subscription
+    def create_invoice
+      Subscriptions::CreateMonthlyInvoice.new(subscription).call
+    end
 
     def status
-      if subscription.user.club_motors_subscriptions.any?(status: :active)
+      if subscription.user.club_motors_subscriptions.where(status: :active).any?
         ClubMotorsSubscription.statuses[:inactive]
       else
         ClubMotorsSubscription.statuses[:active]

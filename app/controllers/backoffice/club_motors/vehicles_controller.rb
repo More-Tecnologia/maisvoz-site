@@ -13,10 +13,7 @@ module Backoffice
 
       def update
         if params[:commit].present? && form.valid? && club_motors_subscription.update!(form.edit_attributes)
-          ActiveRecord::Base.transaction do
-            Subscriptions::ActivateClubMotors.new(subscription: club_motors_subscription).call
-            Subscriptions::CreateMonthlyInvoice.new(club_motors_subscription).call
-          end
+          Subscriptions::ActivateClubMotors.new(subscription: club_motors_subscription).call
 
           flash[:success] = 'Veículo atualizado com sucesso!'
           redirect_to backoffice_club_motors_monthly_fees_path

@@ -9,6 +9,7 @@ module Subscriptions
       ActiveRecord::Base.transaction do
         create_subscription
         update_subscription
+        activate_subscription
         create_invoice
       end
     end
@@ -31,6 +32,16 @@ module Subscriptions
       subscription.save!
     end
 
+    def activate_subscription
+      return if subscription.status == :active
+
+      subscription.current_period_start = now
+      subscription.current_period_end   = current_period_end - 1.day
+      subscription.next_billing_date    = current_period_end
+
+      subscription.save!
+    end
+
     def create_invoice
       Subscriptions::CreateMonthlyInvoice.new(subscription).call
     end
@@ -45,6 +56,10 @@ module Subscriptions
 
     def billing_day_of_month
       [now.day, 28].min
+    end
+
+    def current_period_end
+      @current_period_end ||= Date.new((now + 1.month).year, (now + 1.month).month, billing_day_of_month)
     end
 
     def now

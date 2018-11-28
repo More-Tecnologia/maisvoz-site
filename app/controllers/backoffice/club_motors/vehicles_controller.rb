@@ -12,7 +12,7 @@ module Backoffice
       end
 
       def update
-        if params[:commit].present? && form.valid? && club_motors_subscription.update!(form.edit_attributes)
+        if params[:commit].present? && edit_form.valid? && club_motors_subscription.update!(edit_form.edit_attributes)
           Subscriptions::ActivateClubMotors.new(subscription: club_motors_subscription).call
 
           flash[:success] = 'Veículo atualizado com sucesso!'
@@ -37,26 +37,40 @@ module Backoffice
         end
       end
 
+      def destroy
+        if club_motors_subscription.destroy!
+          flash[:success] = 'Veículo removido com sucesso!'
+        end
+        redirect_to backoffice_club_motors_vehicles_path
+      end
+
       private
 
       def render_edit
-        render(:edit, locals: { form: form, club_motors_subscription: club_motors_subscription })
+        render(:edit, locals: { form: edit_form, club_motors_subscription: club_motors_subscription })
       end
 
       def render_new
         render(:new, locals: { form: form })
       end
 
+      def edit_form
+        @edit_form ||= ClubMotorsEditSubscriptionForm.new(edit_form_params)
+      end
+
       def form
         @form ||= ClubMotorsSubscriptionForm.new(form_params)
       end
 
+      def edit_form_params
+        params[:club_motors_edit_subscription_form] ||= {}
+        params[:club_motors_edit_subscription_form] ||= club_motors_subscription.attributes
+        params[:club_motors_edit_subscription_form][:user] ||= current_user
+        params[:club_motors_edit_subscription_form]
+      end
+
       def form_params
         params[:club_motors_subscription_form] ||= {}
-        if params[:id].present?
-          params[:club_motors_subscription_form]                ||= club_motors_subscription.attributes
-          params[:club_motors_subscription_form][:car_brand_id] ||= club_motors_subscription.car_model.car_brand.id
-        end
         params[:club_motors_subscription_form][:user] ||= current_user
         params[:club_motors_subscription_form]
       end

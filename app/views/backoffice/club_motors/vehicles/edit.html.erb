@@ -19,9 +19,6 @@
   <div class="col-lg-12">
     <div class="card-box">
       <%= simple_form_for form, url: backoffice_club_motors_vehicle_path(club_motors_subscription), method: :put do |f| %>
-        <%= f.input :car_brand_id, as: :hidden, input_html: { value: club_motors_subscription.car_model.brand_code } %>
-        <%= f.input :car_model_id, as: :hidden %>
-        <%= f.input :plate, as: :hidden, input_html: { value: club_motors_subscription.plate } %>
         <%= f.input :chassis, wrapper_html: { class: 'col-sm-3' } %>
         <%= f.input :cnpj_cpf, wrapper_html: { class: 'col-sm-3' } %>
         <%= f.input :owner_name, wrapper_html: { class: 'col-sm-3' } %>

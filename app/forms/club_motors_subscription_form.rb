@@ -89,7 +89,7 @@ class ClubMotorsSubscriptionForm < Form
   end
 
   def new_vehicle?
-    id.present?
+    id.blank?
   end
 
   def verify_plate_unique

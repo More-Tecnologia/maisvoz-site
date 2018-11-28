@@ -34,7 +34,6 @@ module Subscriptions
       @cart = Order.new.tap do |cart|
         cart.user                     = form.user
         cart.type                     = Order.types[:clubmotors_adhesion]
-        cart.club_motors_subscription = subscription
       end
     end
 

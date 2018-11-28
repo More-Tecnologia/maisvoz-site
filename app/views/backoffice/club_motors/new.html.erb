@@ -37,8 +37,8 @@
           </div>
 
           <div class="col-md-3">
-            <p>O valor da mensalidade será cobrado 30 (trinta) dias após a ativação do Pacote de Benefícios</p>
             <% if form.monthly_fee.present? %>
+              <p>Valor previsto da mensalidade para o veículo indicado será de:</p>
               <p>Sua mensalidade será de:</p>
               <h5><%= number_to_currency form.monthly_fee %></h5>
             <% end %>
@@ -50,7 +50,7 @@
 
             <div class="card m-t-20 m-b-20">
               <div class="card-body">
-                <p>Leia e aceite o contrato de adesão ao Clube de Benefícios Future Motors + Você</p>
+                <p>Estou ciente de que me será cobrado uma mensalidade pelo veículo indicado</p>
                 <%= f.input :terms_of_service, as: :boolean, label: 'Termos de Serviço' %>
               </div>
             </div>

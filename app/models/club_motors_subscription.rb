@@ -72,7 +72,7 @@ class ClubMotorsSubscription < ApplicationRecord
   scope :active_subscriptions, -> { where(status: %i[pending past_due active]) }
 
   def name
-    "#{car_model.name} - #{plate}"
+    car_model.name
   end
 
   def calculate_price_cents(product = user.product)

@@ -17,6 +17,7 @@
               <tr>
                 <th>#</th>
                 <th>Veículo</th>
+                <th>Placa</th>
                 <th><%= Order.human_attribute_name(:total) %></th>
                 <th><%= Order.human_attribute_name(:created_at) %></th>
                 <th><%= Order.human_attribute_name(:expire_at) %></th>
@@ -30,6 +31,7 @@
                 <tr>
                   <th><%= order.hashid %></th>
                   <th><%= order.club_motors_subscription.name %></th>
+                  <th><%= order.club_motors_subscription.plate %></th>
                   <td><%= number_to_currency order.total %></td>
                   <td><%= l order.created_at.to_date, format: :short %></td>
                   <td><%= l(order.expire_at, format: :short) if order.expire_at.present? %></td>

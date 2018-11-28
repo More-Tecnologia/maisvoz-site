@@ -13,7 +13,7 @@ class ClubMotorsSubscriptionPolicy
 
   def can_remove?
     club_motors_subscription.inactive? &&
-      !user.active? &&
+      club_motors_subscription.chassis.blank? &&
       owner?
   end
 

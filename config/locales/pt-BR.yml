@@ -403,7 +403,7 @@ pt-BR:
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques
     my_orders: Meus pedidos
-    monthly_fees: Minhas Mensalidades
+    monthly_fees: Mensalidades
     network: Rede
     new_transfer: Solicitar Transferência
     new_withdraw: Solicitar Saque
@@ -439,6 +439,8 @@ pt-BR:
     pay: Pagar
     product_setups: Instalações
     new_product_setup: Nova Instalação
+    vehicles: Veículos
+    my_vehicles: Meus Veículos
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

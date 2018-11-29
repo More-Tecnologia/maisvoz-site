@@ -3,8 +3,12 @@ module Backoffice
     class VehiclesController < BackofficeController
 
       def index
-        @vehicles = current_user.club_motors_subscriptions
+        @vehicles = current_user.club_motors_subscriptions.includes(car_model: :club_motors_fee)
         @package_name = package_name
+      end
+
+      def show
+        @vehicle = current_user.club_motors_subscriptions.find_by_hashid(params[:id])
       end
 
       def edit

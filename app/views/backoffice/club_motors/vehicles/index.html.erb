@@ -54,6 +54,8 @@
                   <% if ClubMotorsSubscriptionPolicy.new(current_user, vehicle).can_remove? %>
                     <%= link_to 'Remover', backoffice_club_motors_vehicle_path(vehicle), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este veículo?' }, class: 'btn btn-sm btn-danger' %>
                   <% end %>
+
+                  <%= link_to 'Detalhes', backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' %>
                 </td>
               </tr>
             <% end %>

@@ -158,9 +158,9 @@ class User < ApplicationRecord
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
   end
 
-  def month_pva(ref_time = Time.zone.now)
+  def month_pvg(ref_time = Time.zone.now)
     pv_activity_histories.where(
-      'kind = ? OR kind = ?', :pvv, :pvg
+      'kind = ?', :pvg
     ).where(height: 1).where(
       'created_at >= ? AND created_at <= ?', ref_time.beginning_of_month, ref_time.end_of_month
     ).sum(:amount)

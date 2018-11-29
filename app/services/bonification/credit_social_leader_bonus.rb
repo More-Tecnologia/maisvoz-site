@@ -84,7 +84,7 @@ module Bonification
     end
 
     def total_pv_activity
-      @total_pv_activity ||= generation_users.sum { |u| u.month_pva(ref_date) }
+      @total_pv_activity ||= generation_users.sum { |u| u.month_pvg(ref_date) }
     end
 
     def generation_users

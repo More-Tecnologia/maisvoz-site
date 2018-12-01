@@ -1,6 +1,6 @@
 module Backoffice
   module Admin
-    class OrdersController < AdminController
+    class OrdersController < SupportController
 
       def index
         respond_to do |format|
@@ -14,6 +14,8 @@ module Backoffice
       end
 
       def approve
+        return unless current_user.admin?
+
         command = Financial::PaymentCompensation.call(order)
 
         if command.success?

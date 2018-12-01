@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       resources :social_leader_debugger, only: [:index]
 
       resources :product_setups, only: [:index, :show, :update]
+
+      resources :club_motors_subscriptions, only: %i[index show]
     end
 
     namespace :support do

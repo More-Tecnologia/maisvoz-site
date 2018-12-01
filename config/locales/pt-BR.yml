@@ -737,3 +737,11 @@ pt-BR:
   imported_direct: Importação Direta
   imported_internal: Importação Interna
   national_import: Importado Nacional
+  datagrid:
+    form:
+      search: Filtrar
+      reset: Resetar
+    table:
+      order:
+        asc: ASC
+        desc: DESC

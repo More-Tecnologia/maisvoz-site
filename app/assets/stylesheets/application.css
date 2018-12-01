@@ -13,6 +13,7 @@
  *= require 'bootstrap/dist/css/bootstrap'
  *= require 'select2/dist/css/select2.min'
  *= require 'webui-popover/dist/jquery.webui-popover'
+ *= require datagrid
  *= require_tree .
  *= require_self
  */

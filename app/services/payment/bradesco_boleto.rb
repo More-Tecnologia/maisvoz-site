@@ -58,7 +58,7 @@ module Payment
         carteira: 26,
         valor_titulo: order.total_cents,
         data_emissao: Time.zone.today,
-        data_vencimento: Time.zone.today + 7.days
+        data_vencimento: expiration_date
       }
       params[:token_request_confirmacao_pagamento] = order.token
     end
@@ -76,6 +76,10 @@ module Payment
 
         tx.save!
       end
+    end
+
+    def expiration_date
+      expire_at || Time.zone.today + 7.days
     end
 
     def url

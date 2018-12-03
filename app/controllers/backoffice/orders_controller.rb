@@ -8,7 +8,20 @@ module Backoffice
     end
 
     def show
-      @order = current_user.orders.find_by_hashid(params[:id])
+      @order = order
+    end
+
+    def generate_boleto
+      order = current_user.orders.find_by_hashid(params[:order_id])
+      BradescoBoletoGeneratorWorker.perform_async(order.id)
+      flash[:success] = 'Boleto adicionado a fila de processamento'
+      redirect_to backoffice_orders_path
+    end
+
+    private
+
+    def order
+      @order ||= current_user.orders.find_by_hashid(params[:id])
     end
 
   end

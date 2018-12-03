@@ -33,6 +33,7 @@
                     <%= link_to 'Detalhes', backoffice_order_path(order) %>
                     <% unless order.completed? %>
                       <%= link_to 'Boleto', order.current_transaction.boleto_url, target: '_blank' if order.current_transaction %>
+                      <%= link_to 'Gerar Boleto', backoffice_order_generate_boleto_path(order), method: :post if order.current_transaction.blank? %>
                     <% end %>
                   </td>
                 </tr>

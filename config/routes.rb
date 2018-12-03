@@ -68,7 +68,9 @@ Rails.application.routes.draw do
     resource :cart, only: :show
     resource :checkout, only: :update
     resources :order_items, only: [:create, :update, :destroy]
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [:index, :show] do
+      post :generate_boleto
+    end
     resources :upgrades, only: [:new, :create]
 
     # Subscriptions

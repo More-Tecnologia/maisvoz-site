@@ -592,7 +592,7 @@ DEPENDENCIES
   oj
   pagarme
   paperclip
-  pg (~> 0.18)
+  pg (~> 0.21)
   pry
   pry-nav
   puma (~> 3.7)

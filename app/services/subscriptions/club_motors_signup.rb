@@ -20,11 +20,11 @@ module Subscriptions
 
     def setup_subscription
       @subscription = ClubMotorsSubscription.new.tap do |club_motors|
-        club_motors.status               = ClubMotorsSubscription.statuses[:inactive]
-        club_motors.type                 = ClubMotorsSubscription.types[:clubmotors]
-        club_motors.user                 = form.user
-        club_motors.car_model            = form.car_model
-        club_motors.plate                = form.plate
+        club_motors.status    = ClubMotorsSubscription.statuses[:inactive]
+        club_motors.type      = ClubMotorsSubscription.types[:clubmotors]
+        club_motors.user      = form.user
+        club_motors.car_model = form.car_model
+        club_motors.plate     = form.plate
 
         club_motors.save!
       end
@@ -32,8 +32,8 @@ module Subscriptions
 
     def create_cart
       @cart = Order.new.tap do |cart|
-        cart.user                     = form.user
-        cart.type                     = Order.types[:clubmotors_adhesion]
+        cart.user = form.user
+        cart.type = Order.types[:clubmotors_adhesion]
       end
     end
 
@@ -43,10 +43,6 @@ module Subscriptions
 
     def checkout_cart
       Shopping::CheckoutCart.new(cart: cart).call
-    end
-
-    def today
-      @today ||= Time.zone.now
     end
 
   end

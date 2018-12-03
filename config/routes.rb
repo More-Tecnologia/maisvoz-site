@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     resource :checkout, only: :update
     resources :order_items, only: [:create, :update, :destroy]
     resources :orders, only: [:index, :show]
+    resources :upgrades, only: [:new, :create]
 
     # Subscriptions
     resources :club_motors, only: %i[new create]

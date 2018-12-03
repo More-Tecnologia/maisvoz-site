@@ -1,6 +1,8 @@
 module Backoffice
   class UpgradesController < EntrepreneurController
 
+    before_action :verify_user_has_package
+
     def new
       render_new
     end
@@ -10,6 +12,8 @@ module Backoffice
         Subscriptions::CreateUpgrade.new(form: form).call
 
         flash[:success] = 'Compra realizada'
+        redirect_to backoffice_orders_path
+      else
         render_new
       end
     end
@@ -41,6 +45,13 @@ module Backoffice
     def form_params
       params[:upgrade_form] ||= {}
       params[:upgrade_form]
+    end
+
+    def verify_user_has_package
+      return if current_user.product.present?
+
+      flash[:error] = 'Para realizar o upgrade você precisa ter adquirido um pacote de adesão'
+      redirect_to new_backoffice_club_motor_path
     end
 
   end

@@ -30,7 +30,7 @@ module Subscriptions
 
     def checkout_cart
       cart.total_cents    = form.total_cents
-      cart.subtotal_cents = form.subtotal_cents
+      cart.subtotal_cents = form.total_cents
       cart.pv_total       = form.pv_total
       cart.status         = Order.statuses[:pending_payment]
 

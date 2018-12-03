@@ -82,9 +82,13 @@ class Order < ApplicationRecord
   end
 
   def pvg_score
-    @pvg_score ||= order_items.joins(:product).where(
-      'products.kind = ?', Product.kinds[:adhesion]
-    ).sum(:binary_score)
+    if upgrade?
+      @pvg_score ||= pv_total
+    else
+      @pvg_score ||= order_items.joins(:product).where(
+        'products.kind = ?', Product.kinds[:adhesion]
+      ).sum(:binary_score)
+    end
   end
 
   def pvv_score

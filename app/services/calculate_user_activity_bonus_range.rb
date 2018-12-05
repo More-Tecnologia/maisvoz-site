@@ -5,9 +5,9 @@ class CalculateUserActivityBonusRange
   end
 
   def call
-    if pvv_score_first_gen >= 1000 && pvv_score_first_gen < 9999
+    if pvv_score_first_gen >= 1000 && pvv_score_first_gen < 4999
       0.15
-    elsif pvv_score_first_gen >= 10_000
+    elsif pvv_score_first_gen >= 5_000
       0.20
     elsif user.active?
       0.10
@@ -23,7 +23,7 @@ class CalculateUserActivityBonusRange
   def pvv_score_first_gen
     @pvv_score_first_gen ||= user.pv_activity_histories.where(
       'created_at > ?', 30.days.ago.beginning_of_day
-    ).where.not(kind: :pvg).sum(:amount)
+    ).where(kind: :pvv).sum(:amount)
   end
 
 end

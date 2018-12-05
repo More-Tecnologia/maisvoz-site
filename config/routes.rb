@@ -98,6 +98,17 @@ Rails.application.routes.draw do
     resources :pv_generations_history, only: [:index]
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: :non do
+        collection do
+          post :sign_in
+          post :find_by_cpf
+        end
+      end
+    end
+  end
+
   devise_for(
     :users,
     controllers: {

@@ -13,7 +13,7 @@ module Api
     end
 
     def user_serialized
-      user.as_json(only: [:email, :username, :document_cpf])
+      UserSerializer.new(user).serialize
     end
 
   end

@@ -79,7 +79,7 @@ module Payment
     end
 
     def expiration_date
-      expire_at || Time.zone.today + 7.days
+      order.expire_at || Time.zone.today + 7.days
     end
 
     def url

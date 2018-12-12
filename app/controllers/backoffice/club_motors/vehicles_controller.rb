@@ -2,6 +2,8 @@ module Backoffice
   module ClubMotors
     class VehiclesController < BackofficeController
 
+      before_action :can_add_vehicle, only: [:new, :create]
+
       def index
         @vehicles = current_user.club_motors_subscriptions.includes(car_model: :club_motors_fee)
         @package_name = package_name
@@ -87,6 +89,13 @@ module Backoffice
         return if current_user.product.blank?
 
         @package_name ||= current_user.product.name
+      end
+
+      def can_add_vehicle
+        return if VehiclesPolicy.new(user: current_user).can_add?
+
+        flash[:error] = 'Você não pode adicionar mais de 5 carros'
+        redirect_to backoffice_club_motors_vehicles_path
       end
 
     end

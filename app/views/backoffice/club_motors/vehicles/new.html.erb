@@ -22,21 +22,21 @@
     <div class="card-box">
       <%= simple_form_for form, url: backoffice_club_motors_vehicles_path, method: :post do |f| %>
         <div class="row">
-        <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' } %>
+        <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-brand' } %>
         <%= f.input :car_model_id, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-6' } %>
         <%= f.input :chassis, wrapper_html: { class: 'col-sm-3' } %>
         <%= f.input :plate, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-plate' } %>
-        <%= f.input :cnpj_cpf, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :owner_name, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :manufacture_year, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :model_year, wrapper_html: { class: 'col-sm-3' } %>
+        <%= f.input :cnpj_cpf, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-cnpj-cpf' } %>
+        <%= f.input :owner_name, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-owner-name' } %>
+        <%= f.input :manufacture_year, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-manufacture-year' } %>
+        <%= f.input :model_year, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-model-year' } %>
         <%= f.input :fuel, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.fuels.map {|k,v| [t(k), k]} %>
         <%= f.input :mileage, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :renavam, wrapper_html: { class: 'col-sm-3' } %>
+        <%= f.input :renavam, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-renavam' } %>
         <%= f.input :gearbox, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.gearboxes.map {|k,v| [t(k), k]} %>
         <%= f.input :taxi, wrapper_html: { class: 'col-sm-3' }, collection: ['Sim', 'Não'] %>
         <%= f.input :mercosul_code, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.mercosul_codes.map {|k,v| [t(k), k]} %>
-        <%= f.input :color, wrapper_html: { class: 'col-sm-3' } %>
+        <%= f.input :color, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-color' } %>
         <%= f.input :color_type, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.color_types.map {|k,v| [t(k), k]} %>
         <%= f.input :origin, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.origins.map {|k,v| [t(k), k]} %>
         </div>
@@ -44,7 +44,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card-box">
-              <p>Estou ciente de que me será cobrado uma mensalidade pelo veículo indicado</p>
+              <%= render partial: 'terms' %>
               <%= f.input :terms_of_service, as: :boolean, label: 'Termos de Serviço' %>
             </div>
           </div>

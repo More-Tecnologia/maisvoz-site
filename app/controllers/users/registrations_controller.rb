@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # super
-    build_resource(form.attributes.except(:sponsor_username, :role, :accept_terms))
+    build_resource(form.attributes.except(:sponsor_username, :role))
 
     unless form.installer?
       resource.sponsor = form.sponsor

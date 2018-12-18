@@ -27,7 +27,6 @@ class NewRegistrationForm < Form
   attribute :email
   attribute :password
   attribute :password_confirmation
-  attribute :accept_terms, Boolean
 
   validates :role, :username, :name, :phone, :email, :password,
             :password_confirmation, :gender, :document_cpf,
@@ -40,7 +39,6 @@ class NewRegistrationForm < Form
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
-  validate :terms_accepted
   validate :sponsor_exists, unless: -> { installer? }
   validate :username_is_unique
   validate :email_is_unique
@@ -94,11 +92,6 @@ class NewRegistrationForm < Form
   def document_cpf_is_unique
     return unless User.where(document_cpf: document_cpf).any?
     errors.add(:document_cpf, 'já existe')
-  end
-
-  def terms_accepted
-    return if accept_terms
-    errors.add(:accept_terms, 'deve aceitar os termos')
   end
 
   def city_exists

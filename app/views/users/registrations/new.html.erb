@@ -27,7 +27,6 @@
         <li><a href="#tab1" data-toggle="tab">1 - Dados Pessoais</a></li>
         <li><a href="#tab2" data-toggle="tab">2 - Tipo de Cadastro</a></li>
         <li><a href="#tab3" data-toggle="tab">3 - Endereço</a></li>
-        <li><a href="#tab4" data-toggle="tab">4 - Contrato de Adesão</a></li>
       </ul>
 
       <br>
@@ -97,18 +96,8 @@
                 <%= f.input :city, collection: [], input_html: { class: 'city' } %>
                 <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
                 <%= f.input :country, selected: 'BR', priority_countries: ['BR', 'US'] %>
+                <%= f.button :submit, t('.sign_up'), class: 'btn btn-primary btn-block text-uppercase' %>
               </div>
-            </div>
-          </div>
-
-          <div class="tab-pane" id="tab4">
-            <object data="https://res.cloudinary.com/hj5kx1tjj/image/upload/v1524772516/CONTRATO_DE_ADESA%CC%83O_DE_ASSOCIADO_EMPREENDEDOR_INDEPENDENTE_A_REDE_DE_NEGO%CC%81CIOS_FUTURE_MOTORS_20181602_Concluido.pdf" type="application/pdf" width="100%" height="300px">
-               <p>Este browser não suporta PDFs. Por favor baixe o arquivo de contrato: <a href="https://res.cloudinary.com/hj5kx1tjj/image/upload/v1524772516/CONTRATO_DE_ADESA%CC%83O_DE_ASSOCIADO_EMPREENDEDOR_INDEPENDENTE_A_REDE_DE_NEGO%CC%81CIOS_FUTURE_MOTORS_20181602_Concluido.pdf">Baixar PDF</a>.</p>
-            </object>
-
-            <%= f.input :accept_terms, as: :boolean, checked_value: true, unchecked_value: false %>
-            <div class="form-actions">
-              <%= f.button :submit, t('.sign_up'), class: 'btn btn-primary btn-block text-uppercase' %>
             </div>
           </div>
 

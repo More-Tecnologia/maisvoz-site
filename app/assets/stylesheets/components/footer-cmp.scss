@@ -44,11 +44,6 @@
   }
 }
 
-.footer-cmp__image {
-  float: left;
-  margin-right: 4px;
-}
-
 .footer-cmp__title {
   font-size: 16px;
   font-weight: 700;
@@ -67,4 +62,9 @@
   background-color: #041324;
   padding: 24px;
   font-size: 14px;
+}
+
+.footer-cmp__icon {
+  font-size: 40px;
+  margin: 0 20px;
 }

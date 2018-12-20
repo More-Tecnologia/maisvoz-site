@@ -64,7 +64,7 @@ class ClubMotorsNewSubscriptionForm < Form
   private
 
   def verify_plate_unique
-    return unless ClubMotorsSubscription.exists?(plate: plate)
+    return unless ClubMotorsSubscription.clubmotors.exists?(plate: plate)
 
     errors.add(:plate, 'Esta placa já consta em nosso banco de dados')
   end

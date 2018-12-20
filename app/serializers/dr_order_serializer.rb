@@ -44,8 +44,8 @@ class DROrderSerializer
     {
       codigoSap: '',
       codigoIntegracao: "C#{user.id}",
-      razaoSocial: user.name_or_company_name,
-      fantasia: user.document_fantasy_name,
+      razaoSocial: I18n.transliterate(user.name_or_company_name),
+      fantasia: I18n.transliterate(user.document_fantasy_name),
       FornecedorCliente: 'C',
       codigoGrupo: 100,
       descricaoGrupo: 'Clientes',

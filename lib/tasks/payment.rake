@@ -6,4 +6,8 @@ namespace :payment do
     Tasks::CheckPendingBoleto.call
   end
 
+  task generate_invoices: :environment do
+    Subscriptions::GenerateInvoices.new.call
+  end
+
 end

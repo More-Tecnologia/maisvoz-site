@@ -1,20 +1,16 @@
 module Subscriptions
   class GenerateInvoices
 
-    def initialize(subscriptions = ClubMotorsSubscription.active_subscriptions)
-      @subscriptions = subscriptions
-    end
-
     def call
       subscriptions.each do |subscription|
-        generate_invoice(subscription)
+        CreateMonthlyInvoiceWorker.perform_async(subscription.id)
       end
     end
 
-    attr_reader :subscriptions
+    private
 
-    def generate_invoice(subscription)
-      Subscriptions::CreateMonthlyInvoice.new(subscription).call
+    def subscriptions
+      ClubMotorsSubscription.active_subscriptions.where('next_billing_date <= ?', Date.today)
     end
 
   end

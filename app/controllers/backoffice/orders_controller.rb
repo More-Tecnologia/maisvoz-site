@@ -2,7 +2,7 @@ module Backoffice
   class OrdersController < BackofficeController
 
     def index
-      @orders = current_user.orders.regular_orders.where.not(
+      @orders = current_user.orders.where.not(
         status: :cart
       ).order(created_at: :desc).includes(:payment_transactions)
     end

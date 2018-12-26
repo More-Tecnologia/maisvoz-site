@@ -369,6 +369,7 @@ ActiveRecord::Schema.define(version: 20181127000415) do
     t.bigint "upgrade_to_career_id"
     t.decimal "binary_bonus"
     t.boolean "club_motors", default: false, null: false
+    t.boolean "tracker", default: false, null: false
     t.index ["career_id"], name: "index_products_on_career_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["upgrade_from_career_id"], name: "index_products_on_upgrade_from_career_id"

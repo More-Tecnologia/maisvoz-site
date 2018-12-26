@@ -37,6 +37,7 @@
 #  upgrade_to_career_id   :bigint(8)
 #  binary_bonus           :decimal(, )
 #  club_motors            :boolean          default(FALSE), not null
+#  tracker                :boolean          default(FALSE), not null
 #
 # Indexes
 #

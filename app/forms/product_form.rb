@@ -18,6 +18,7 @@ class ProductForm < Form
   attribute :active
   attribute :virtual
   attribute :club_motors
+  attribute :tracker
   attribute :paid_by
   attribute :category_id
   attribute :career_id

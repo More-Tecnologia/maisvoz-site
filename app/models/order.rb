@@ -35,7 +35,7 @@ class Order < ApplicationRecord
   serialize :dr_response, JSON
 
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, cancelled: 4 }
-  enum type: { clubmotors_adhesion: 'clubmotors_adhesion', upgrade: 'upgrade', monthly_fee: 'monthly_fee' }
+  enum type: { clubmotors_adhesion: 'clubmotors_adhesion', tracker_adhesion: 'tracker_adhesion', upgrade: 'upgrade', monthly_fee: 'monthly_fee' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories

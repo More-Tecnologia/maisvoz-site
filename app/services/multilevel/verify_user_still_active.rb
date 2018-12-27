@@ -7,9 +7,9 @@ module Multilevel
     end
 
     def call
-      if has_minimum_sales?
+      if still_active?
         user.active = true
-        user.active_until = 180.days.from_now.to_date
+        user.active_until = 30.days.from_now.to_date
       else
         user.active = false
       end
@@ -23,8 +23,10 @@ module Multilevel
 
     attr_reader :user, :date
 
-    def has_minimum_sales?
-      @has_minimum_sales ||= user_purchases_count + client_purchases_count > 0
+    def still_active?
+      user.orders.monthly_fees.completed.where(
+        'created_at >= ? AND created_at <= ?', beginning_of_activity, user.active_until
+      ).any?
     end
 
     def verify_sponsor_qualification
@@ -37,16 +39,8 @@ module Multilevel
       end
     end
 
-    def user_purchases_count
-      user.orders.completed.where('paid_at >= ?', beginning_of_activity).count
-    end
-
-    def client_purchases_count
-      Order.where(user: user.sponsored.consumidor).completed.where('paid_at >= ?', beginning_of_activity).count
-    end
-
     def beginning_of_activity
-      @beginning_of_activity ||= user.active_until - 180.days
+      user.active_until - 30.days
     end
 
   end

@@ -76,12 +76,16 @@ class ClubMotorsSubscription < ApplicationRecord
   end
 
   def calculate_price_cents(product = user.product)
-    return 0 if product.blank?
+    if clubmotors?
+      return 0 if product.blank?
 
-    Subscriptions::CalculateClubMotorsFee.new(
-      product: product,
-      fee: car_model.club_motors_fee
-    ).call
+      Subscriptions::CalculateClubMotorsFee.new(
+        product: product,
+        fee: car_model.club_motors_fee
+      ).call
+    elsif tracker?
+      4000
+    end
   end
 
 end

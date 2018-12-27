@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-lg-4 col-lg-offset-4">
+    <div class="card-box">
+      <h4 class="page-title m-b-30">Preencha os dados do seu Veículo</h4>
+
+      <%= simple_form_for form, url: backoffice_trackers_path, method: :post do |f| %>
+
+        <div class="row">
+          <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-12' } %>
+          <%= f.input :car_model_id, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-12' } %>
+          <%= f.input :plate, wrapper_html: { class: 'col-sm-12' }, input_html: { class: 'input-plate' } %>
+        </div>
+
+        <p>Confira os detalhes da compra do rastreador</p>
+
+        <div class="row">
+          <div class="col-md-12">
+            <% if form.monthly_fee.present? %>
+              <p>Sua mensalidade será de:</p>
+              <h5><%= number_to_currency form.monthly_fee %></h5>
+            <% end %>
+
+            <p>Valor do rastreador</p>
+            <h2><%= number_to_currency form.tracker_price %></h2>
+
+            <div class="card m-t-20 m-b-20">
+              <div class="card-body">
+                <p>Estou ciente de que me será cobrado uma mensalidade pelo veículo indicado</p>
+                <%= f.input :terms_of_service, as: :boolean, label: 'Termos de Serviço' %>
+              </div>
+            </div>
+
+            <%= f.submit "CONTRATAR", class: 'btn btn-primary btn-block' %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.onload = function(){
+    $('#new_tracker_form_car_brand_id, #new_tracker_form_car_model_id, input[type=radio]').change(function () {
+      $(this).parents('form').submit();
+    });
+
+    $('.input-plate').mask('AAAAAAA', {clearIfNotMatch: true});
+  }
+</script>

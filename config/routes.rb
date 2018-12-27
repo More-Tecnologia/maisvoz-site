@@ -81,6 +81,8 @@ Rails.application.routes.draw do
       resources :monthly_fees, only: %i[index]
     end
 
+    resources :trackers
+
     # Financial
     # resources :transfers, only: [:show, :update, :create]
     resources :withdrawals, only: [:index, :new, :create]

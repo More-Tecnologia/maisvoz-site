@@ -31,6 +31,7 @@ module Financial
         update_user_flags
         update_user_role
         update_subscription
+        activate_tracker
         activate_user
         assign_product_to_user
         create_binary_node
@@ -116,6 +117,12 @@ module Financial
       return if order.club_motors_subscription.blank?
 
       Subscriptions::Compensate.new(order: order).call
+    end
+
+    def activate_tracker
+      return unless order.tracker_adhesion?
+
+      Trackers::Activate.new(subscription: order.club_motors_subscription).call
     end
 
     def activate_user

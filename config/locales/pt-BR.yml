@@ -727,6 +727,7 @@ pt-BR:
   cancelled: Cancelado
   club_motors: Clube Motors
   clubmotors: ClubMotors
+  trackers: Rastreadores
   up_to_10: Até 1.0
   from_10_to_15: De 1.0 até 1.5
   from_15_to_30: De 1.5 até 3.0
@@ -738,6 +739,9 @@ pt-BR:
   imported_direct: Importação Direta
   imported_internal: Importação Interna
   national_import: Importado Nacional
+  tracker_adhesion: Compra de Rastreador
+  monthly_fee: Mensalidade
+  tracker: Rastreador
   datagrid:
     form:
       search: Filtrar

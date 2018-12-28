@@ -1,6 +1,8 @@
 module Backoffice
   class PayThirdOrderController < BackofficeController
 
+    before_action :verify_user_pf
+
     def new
       render_new
     end
@@ -30,6 +32,13 @@ module Backoffice
       params[:pay_third_order_form]         ||= {}
       params[:pay_third_order_form][:payer] ||= current_user
       params[:pay_third_order_form]
+    end
+
+    def verify_user_pf
+      return if current_user.pf?
+
+      flash[:error] = 'Disponível apenas para Pessoas Físicas'
+      redirect_to '/'
     end
 
   end

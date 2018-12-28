@@ -9,8 +9,10 @@ module Financial
 
     def call
       return unless form.valid?
+
       ActiveRecord::Base.transaction do
         debit_payer
+        create_withdrawal
         pay_order
         update_order
       end
@@ -31,6 +33,16 @@ module Financial
         debit.save!
       end
       payer.decrement!(:available_balance_cents, order.total_cents)
+    end
+
+    def create_withdrawal
+      Withdrawal.new.tap do |withdrawal|
+        withdrawal.user                  = payer
+        withdrawal.status                = Withdrawal.statuses[:approved]
+        withdrawal.gross_amount_cents    = order.total_cents
+        withdrawal.net_amount_cents      = order.total_cents
+        withdrawal.save!
+      end
     end
 
     def pay_order

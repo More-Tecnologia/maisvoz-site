@@ -18,6 +18,8 @@
 #  type                        :string
 #  club_motors_subscription_id :bigint(8)
 #  expire_at                   :date
+#  payment_type                :string
+#  paid_by                     :string
 #
 # Indexes
 #
@@ -36,6 +38,7 @@ class Order < ApplicationRecord
 
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, cancelled: 4 }
   enum type: { clubmotors_adhesion: 'clubmotors_adhesion', tracker_adhesion: 'tracker_adhesion', upgrade: 'upgrade', monthly_fee: 'monthly_fee' }
+  enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories

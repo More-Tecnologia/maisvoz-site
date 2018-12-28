@@ -55,6 +55,10 @@ ActiveAdmin.register Order do
     command = Financial::PaymentCompensation.call(resource)
 
     if command.success?
+      order.update!(
+        payment_type: Order.payment_types[:admin],
+        paid_by: current_user.username
+      )
       flash[:success] = I18n.t('defaults.approved_success')
     else
       flash[:error] = command.errors[:order].join(',')

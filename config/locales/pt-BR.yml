@@ -17,6 +17,10 @@ pt-BR:
         description: Descrição
       user:
         login: Email/Login
+      order:
+        paid_by: Pago por
+        payment_type: Tipo de Pgto.
+        dr_recorded: DR rec.
     errors:
       models:
         user:

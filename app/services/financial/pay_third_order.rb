@@ -12,6 +12,7 @@ module Financial
       ActiveRecord::Base.transaction do
         debit_payer
         pay_order
+        update_order
       end
     end
 
@@ -34,6 +35,13 @@ module Financial
 
     def pay_order
       PaymentCompensation.new(order).call
+    end
+
+    def update_order
+      order.update!(
+        payment_type: Order.payment_types[:balance],
+        paid_by: payer.username
+      )
     end
 
   end

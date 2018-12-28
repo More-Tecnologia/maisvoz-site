@@ -37,6 +37,8 @@ module Payment
       def compensate_order
         return unless current_transaction.paid?
 
+        order.boleto!
+
         PaymentCompensationWorker.perform_async(order.id)
       end
 

@@ -49,13 +49,13 @@
                 <td><%= l(vehicle.activated_at, format: :short) if vehicle.activated_at %></td>
                 <td>
                   <% if ClubMotorsSubscriptionPolicy.new(current_user, vehicle).can_edit? %>
-                    <%= link_to 'Ativar', edit_backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' %>
+                    <%= link_to 'Ativar', edit_backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' if vehicle.clubmotors? %>
                   <% end %>
                   <% if ClubMotorsSubscriptionPolicy.new(current_user, vehicle).can_remove? %>
                     <%= link_to 'Remover', backoffice_club_motors_vehicle_path(vehicle), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este veículo?' }, class: 'btn btn-sm btn-danger' %>
                   <% end %>
 
-                  <%= link_to 'Detalhes', backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' %>
+                  <%= link_to 'Detalhes', backoffice_club_motors_vehicle_path(vehicle), class: 'btn btn-sm btn-primary' if vehicle.clubmotors? %>
                 </td>
               </tr>
             <% end %>

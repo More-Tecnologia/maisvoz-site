@@ -2,30 +2,28 @@
 #
 # Table name: orders
 #
-#  id                          :bigint(8)        not null, primary key
-#  user_id                     :bigint(8)
-#  subtotal_cents              :integer          default(0)
-#  tax_cents                   :integer          default(0)
-#  shipping_cents              :integer          default(0)
-#  total_cents                 :integer          default(0)
-#  status                      :integer          default("cart")
-#  created_at                  :datetime         not null
-#  updated_at                  :datetime         not null
-#  paid_at                     :datetime
-#  pv_total                    :bigint(8)        default(0), not null
-#  dr_recorded                 :boolean          default(FALSE)
-#  dr_response                 :text
-#  type                        :string
-#  club_motors_subscription_id :bigint(8)
-#  expire_at                   :date
-#  payment_type                :string
-#  paid_by                     :string
+#  id             :bigint(8)        not null, primary key
+#  user_id        :bigint(8)
+#  subtotal_cents :integer          default(0)
+#  tax_cents      :integer          default(0)
+#  shipping_cents :integer          default(0)
+#  total_cents    :integer          default(0)
+#  status         :integer          default("cart")
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  paid_at        :datetime
+#  pv_total       :bigint(8)        default(0), not null
+#  dr_recorded    :boolean          default(FALSE)
+#  dr_response    :text
+#  type           :string
+#  expire_at      :date
+#  payment_type   :string
+#  paid_by        :string
 #
 # Indexes
 #
-#  index_orders_on_club_motors_subscription_id  (club_motors_subscription_id)
-#  index_orders_on_type                         (type)
-#  index_orders_on_user_id                      (user_id)
+#  index_orders_on_type     (type)
+#  index_orders_on_user_id  (user_id)
 #
 
 class Order < ApplicationRecord
@@ -47,7 +45,6 @@ class Order < ApplicationRecord
   has_many :payment_transactions
 
   belongs_to :user
-  belongs_to :club_motors_subscription, optional: true
 
   monetize :subtotal_cents
   monetize :tax_cents

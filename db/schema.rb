@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181228120904) do
+ActiveRecord::Schema.define(version: 20190109115245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,11 +277,9 @@ ActiveRecord::Schema.define(version: 20181228120904) do
     t.boolean "dr_recorded", default: false
     t.text "dr_response"
     t.string "type"
-    t.bigint "club_motors_subscription_id"
     t.date "expire_at"
     t.string "payment_type"
     t.string "paid_by"
-    t.index ["club_motors_subscription_id"], name: "index_orders_on_club_motors_subscription_id"
     t.index ["type"], name: "index_orders_on_type"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -543,7 +541,6 @@ ActiveRecord::Schema.define(version: 20181228120904) do
   add_foreign_key "financial_entries", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
-  add_foreign_key "orders", "club_motors_subscriptions"
   add_foreign_key "orders", "users"
   add_foreign_key "payment_transactions", "orders"
   add_foreign_key "payment_transactions", "users"

@@ -19,11 +19,14 @@
 #  expire_at      :date
 #  payment_type   :string
 #  paid_by        :string
+#  payable_type   :string
+#  payable_id     :bigint(8)
 #
 # Indexes
 #
-#  index_orders_on_type     (type)
-#  index_orders_on_user_id  (user_id)
+#  index_orders_on_payable_type_and_payable_id  (payable_type,payable_id)
+#  index_orders_on_type                         (type)
+#  index_orders_on_user_id                      (user_id)
 #
 
 class Order < ApplicationRecord
@@ -45,6 +48,7 @@ class Order < ApplicationRecord
   has_many :payment_transactions
 
   belongs_to :user
+  belongs_to :payable, polymorphic: true
 
   monetize :subtotal_cents
   monetize :tax_cents

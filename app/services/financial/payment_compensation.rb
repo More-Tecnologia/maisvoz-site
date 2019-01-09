@@ -114,7 +114,7 @@ module Financial
     end
 
     def update_subscription
-      return if order.club_motors_subscription.blank?
+      return if order.payable_type != 'ClubMotorsSubscription'
 
       Subscriptions::Compensate.new(order: order).call
     end
@@ -122,7 +122,7 @@ module Financial
     def activate_tracker
       return unless order.tracker_adhesion?
 
-      Trackers::Activate.new(subscription: order.club_motors_subscription).call
+      Trackers::Activate.new(subscription: order.payable).call
     end
 
     def activate_user

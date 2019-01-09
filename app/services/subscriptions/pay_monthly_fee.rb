@@ -51,7 +51,7 @@ module Subscriptions
     end
 
     def subscription
-      @subscription ||= order.club_motors_subscription
+      @subscription ||= order.payable
     end
 
   end

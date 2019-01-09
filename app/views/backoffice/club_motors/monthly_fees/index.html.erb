@@ -30,8 +30,8 @@
               <% @monthly_fees.each do |order| %>
                 <tr>
                   <th><%= order.hashid %></th>
-                  <th><%= order.club_motors_subscription.name %></th>
-                  <th><%= order.club_motors_subscription.plate %></th>
+                  <th><%= order.payable.name %></th>
+                  <th><%= order.payable.plate %></th>
                   <td><%= number_to_currency order.total %></td>
                   <td><%= l order.created_at.to_date, format: :short %></td>
                   <td><%= l(order.expire_at, format: :short) if order.expire_at.present? %></td>

@@ -32,8 +32,9 @@ module Subscriptions
 
     def create_cart
       @cart = Order.new.tap do |cart|
-        cart.user = form.user
-        cart.type = Order.types[:clubmotors_adhesion]
+        cart.user    = form.user
+        cart.type    = Order.types[:clubmotors_adhesion]
+        cart.payable = subscription
       end
     end
 

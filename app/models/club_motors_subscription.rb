@@ -62,6 +62,8 @@ class ClubMotorsSubscription < ApplicationRecord
   }
   enum type: { clubmotors: 'clubmotors', ancore: 'ancore', tracker: 'tracker' }
 
+  has_many :orders, as: :payable
+
   belongs_to :user
   belongs_to :car_model
 

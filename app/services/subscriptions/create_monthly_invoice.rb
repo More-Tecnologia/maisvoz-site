@@ -22,15 +22,15 @@ module Subscriptions
 
     def create_order
       @order = Order.new.tap do |order|
-        order.status                   = Order.statuses[:pending_payment]
-        order.type                     = Order.types[:monthly_fee]
-        order.user                     = user
-        order.club_motors_subscription = subscription
-        order.total_cents              = price_cents
-        order.subtotal_cents           = price_cents
-        order.expire_at                = expire_at
-        order.tax_cents                = 0
-        order.shipping_cents           = 0
+        order.status         = Order.statuses[:pending_payment]
+        order.type           = Order.types[:monthly_fee]
+        order.user           = user
+        order.payable        = subscription
+        order.total_cents    = price_cents
+        order.subtotal_cents = price_cents
+        order.expire_at      = expire_at
+        order.tax_cents      = 0
+        order.shipping_cents = 0
 
         order.save!
       end

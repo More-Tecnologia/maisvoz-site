@@ -48,7 +48,7 @@ class Order < ApplicationRecord
   has_many :payment_transactions
 
   belongs_to :user
-  belongs_to :payable, polymorphic: true
+  belongs_to :payable, polymorphic: true, optional: true
 
   monetize :subtotal_cents
   monetize :tax_cents

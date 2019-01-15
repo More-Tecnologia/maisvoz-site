@@ -1,0 +1,15 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title">Editar <%= investment.name %></h4>
+    <p class="text-muted page-title-alt">Edite a conta de participação</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <%= render "form", investment: investment, path: backoffice_admin_investment_path(investment) %>
+    </div>
+  </div>
+</div>

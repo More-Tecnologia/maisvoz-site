@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190109120300) do
+ActiveRecord::Schema.define(version: 20190111112013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,40 @@ ActiveRecord::Schema.define(version: 20190109120300) do
     t.index ["kind"], name: "index_financial_entries_on_kind"
     t.index ["order_id"], name: "index_financial_entries_on_order_id"
     t.index ["user_id"], name: "index_financial_entries_on_user_id"
+  end
+
+  create_table "investment_shares", force: :cascade do |t|
+    t.bigint "investment_id"
+    t.bigint "user_id"
+    t.integer "quantity", null: false
+    t.string "name"
+    t.string "status"
+    t.bigint "gross_amount_cents"
+    t.bigint "net_amount_cents"
+    t.integer "bonus_cycle", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["investment_id"], name: "index_investment_shares_on_investment_id"
+    t.index ["user_id"], name: "index_investment_shares_on_user_id"
+  end
+
+  create_table "investments", force: :cascade do |t|
+    t.string "name"
+    t.bigint "total_cents", null: false
+    t.bigint "price_cents", null: false
+    t.integer "shares_available", default: 0
+    t.integer "shares_total", default: 0
+    t.integer "investment_cycles", default: 0
+    t.decimal "investment_yield", precision: 5, scale: 2
+    t.text "details"
+    t.string "status"
+    t.string "address"
+    t.string "phone"
+    t.string "whatsapp"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_investments_on_status"
   end
 
   create_table "options", force: :cascade do |t|
@@ -542,6 +576,8 @@ ActiveRecord::Schema.define(version: 20190109120300) do
   add_foreign_key "debits", "users", column: "operated_by_id"
   add_foreign_key "financial_entries", "orders"
   add_foreign_key "financial_entries", "users"
+  add_foreign_key "investment_shares", "investments"
+  add_foreign_key "investment_shares", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"

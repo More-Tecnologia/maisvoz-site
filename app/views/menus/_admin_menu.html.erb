@@ -12,6 +12,7 @@
     <li><%= link_to t('defaults.orders'), backoffice_admin_orders_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
     <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
+    <li><%= link_to t('defaults.investments'), backoffice_investments_path %></li>
   </ul>
 </li>
 <!-- Financial menu -->
@@ -65,6 +66,14 @@
     <li><%= link_to t('defaults.product_setups'), backoffice_admin_product_setups_path, class: 'admin-link' %></li>
     <li><%= link_to 'Assinaturas', backoffice_admin_club_motors_subscriptions_path, class: 'admin-link' %></li>
     <!-- <li><%= link_to t('defaults.careers'), backoffice_admin_careers_path %></li> -->
+  </ul>
+</li>
+
+<!-- Investments menu -->
+<li class="has_sub">
+  <a href="javascript:void(0);" class="waves-effect"><i class="ti-world"></i><span class="menu-arrow"></span><span> <%= t('defaults.investments') %> </span></a>
+  <ul class="list-unstyled">
+    <li><%= link_to t('defaults.investments'), backoffice_admin_investments_path, class: 'admin-link' %></li>
   </ul>
 </li>
 

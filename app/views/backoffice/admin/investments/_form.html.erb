@@ -1,0 +1,16 @@
+<%= simple_form_for investment, url: path do |f| %>
+  <%= f.input :name %>
+  <%= f.input :total %>
+  <%= f.input :price %>
+  <%= f.input :shares_available %>
+  <%= f.input :shares_total %>
+  <%= f.input :investment_cycles %>
+  <%= f.input :investment_yield %>
+  <%= f.input :details %>
+  <%= f.input :address %>
+  <%= f.input :phone %>
+  <%= f.input :whatsapp %>
+  <%= f.input :status, collection: Investment.statuses %>
+  <%= f.input :type, collection: Investment.types %>
+  <%= f.submit 'Criar Conta de Participação', class: 'btn btn-primary' %>
+<% end %>

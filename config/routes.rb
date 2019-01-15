@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :investments, only: [:index, :new, :create, :edit, :update]
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :orders, only: [:index, :show] do
         post :approve
@@ -72,6 +73,15 @@ Rails.application.routes.draw do
       post :generate_boleto
     end
     resources :upgrades, only: [:new, :create]
+
+    # Investments
+
+    resources :investments, only: [:index] do
+      member do
+        post :buy
+      end
+    end
+    resources :my_investments, only: :index
 
     # Subscriptions
     resources :club_motors, only: %i[new create]

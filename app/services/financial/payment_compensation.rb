@@ -33,6 +33,7 @@ module Financial
         update_subscription
         activate_tracker
         activate_user
+        activate_investment
         assign_product_to_user
         create_binary_node
         qualify_sponsor
@@ -129,6 +130,12 @@ module Financial
       return if user.active? || !adhesion_product?
 
       user.update!(active: true, active_until: 30.days.from_now)
+    end
+
+    def activate_investment
+      return unless order.participation_acc?
+
+      Investments::Compensate.new(investment_share: order.payable).call
     end
 
     def assign_product_to_user

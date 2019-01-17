@@ -4,7 +4,7 @@ ActiveAdmin.register Order do
   scope :completed
   scope :pending_payment
   scope :processing
-  scope :cancelled
+  scope :expired
   scope :cart
 
   show do

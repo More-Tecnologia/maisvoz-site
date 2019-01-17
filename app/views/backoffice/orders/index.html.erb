@@ -19,6 +19,7 @@
                 <th><%= Order.human_attribute_name(:total) %></th>
                 <th><%= Order.human_attribute_name(:type) %></th>
                 <th><%= Order.human_attribute_name(:status) %></th>
+                <th><%= Order.human_attribute_name(:expire_at) %></th>
                 <th><%= Order.human_attribute_name(:paid_at) %></th>
                 <th></th>
               </tr>
@@ -30,6 +31,7 @@
                   <td><%= number_to_currency order.total %></td>
                   <td><%= order.type && t(order.type) %></td>
                   <td><%= t "defaults.#{order.status}" %></td>
+                  <td><%= l(order.expire_at, format: :short) if order.expire_at.present? %></td>
                   <td><%= l(order.paid_at, format: :short) if order.paid_at.present? %></td>
                   <td>
                     <%= link_to 'Detalhes', backoffice_order_path(order) %>

@@ -4,7 +4,7 @@
     <div class="col-lg-3 col-sm-6">
         <div class="widget-panel widget-style-2 bg-white">
             <i class="md md-attach-money text-primary"></i>
-            <h2 class="m-0 text-dark counter font-600"><%= Order.where.not(status: Order.statuses[:cart]).or(Order.where.not(status: Order.statuses[:cancelled])).today.count %></h2>
+            <h2 class="m-0 text-dark counter font-600"><%= Order.where.not(status: Order.statuses[:cart]).or(Order.where.not(status: Order.statuses[:expired])).today.count %></h2>
             <div class="text-muted m-t-5"><%= t('views.dashboard.admin.today_orders') %></div>
         </div>
     </div>

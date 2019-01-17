@@ -16,19 +16,25 @@
               <tr>
                 <th>#</th>
                 <th><%= InvestmentShare.human_attribute_name(:name) %></th>
+                <th><%= InvestmentShare.human_attribute_name(:type) %></th>
                 <th><%= InvestmentShare.human_attribute_name(:status) %></th>
+                <th><%= InvestmentShare.human_attribute_name(:quantity) %></th>
                 <th><%= InvestmentShare.human_attribute_name(:amount) %></th>
+                <th><%= InvestmentShare.human_attribute_name(:profit) %></th>
                 <th><%= InvestmentShare.human_attribute_name(:created_at) %></th>
               </tr>
             </thead>
             <tbody>
-              <% @investments.each do |investment| %>
+              <% @investments.each do |share| %>
                 <tr>
-                  <td><%= investment.id %></td>
-                  <td><%= investment.name %></td>
-                  <td><%= t investment.status %></td>
-                  <td><%= investment.gross_amount %></td>
-                  <td><%= l investment.created_at, format: :short %></td>
+                  <td><%= share.id %></td>
+                  <td><%= share.name %></td>
+                  <td><%= t share.investment.type %></td>
+                  <td><%= t share.status %></td>
+                  <td><%= share.quantity %></td>
+                  <td><%= number_to_currency share.gross_amount %></td>
+                  <td><%= number_to_currency share.profit_amount %></td>
+                  <td><%= l share.created_at, format: :short %></td>
                 </tr>
               <% end %>
               <% if @investments.empty? %>

@@ -64,6 +64,7 @@ pt-BR:
     phone: Telefone
     product: Produto
     quantity: Quantidade
+    profit: Lucro
     remember_me: Lembrar
     sponsor_username: Usuário do Patrocinador
     unit_cost: Custo Unitário
@@ -734,7 +735,7 @@ pt-BR:
   pending_payment: Pagamento Pendente
   processing: Processando
   completed: Pago
-  cancelled: Cancelado
+  expired: Expirado
   club_motors: Clube Motors
   clubmotors: ClubMotors
   trackers: Rastreadores

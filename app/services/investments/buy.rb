@@ -8,9 +8,10 @@ module Investments
     end
 
     def call
-      ActiveRecord::Base.transaction do
+      investment.with_lock do
         create_investment_share
         create_order
+        update_investment
       end
     end
 
@@ -36,6 +37,7 @@ module Investments
       @order = Order.new.tap do |cart|
         cart.user           = user
         cart.type           = Order.types[:participation_acc]
+        cart.expire_at      = Time.zone.today + 1.day
         cart.payable        = @investment_share
         cart.subtotal_cents = total_cents
         cart.total_cents    = total_cents
@@ -44,6 +46,11 @@ module Investments
       end
 
       Shopping::CheckoutCart.new(cart: @order).call
+    end
+
+    def update_investment
+      investment.shares_available -= quantity
+      investment.save!
     end
 
     def total_cents

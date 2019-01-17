@@ -37,7 +37,7 @@ class Order < ApplicationRecord
 
   serialize :dr_response, JSON
 
-  enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, cancelled: 4 }
+  enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, expired: 4 }
   enum type: {
     clubmotors_adhesion: 'clubmotors_adhesion',
     tracker_adhesion: 'tracker_adhesion',

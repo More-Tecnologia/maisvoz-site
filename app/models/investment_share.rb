@@ -2,17 +2,18 @@
 #
 # Table name: investment_shares
 #
-#  id                 :bigint(8)        not null, primary key
-#  investment_id      :bigint(8)
-#  user_id            :bigint(8)
-#  quantity           :integer          not null
-#  name               :string
-#  status             :string
-#  gross_amount_cents :bigint(8)
-#  net_amount_cents   :bigint(8)
-#  bonus_cycle        :integer          default(0), not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                  :bigint(8)        not null, primary key
+#  investment_id       :bigint(8)
+#  user_id             :bigint(8)
+#  quantity            :integer          not null
+#  name                :string
+#  status              :string
+#  gross_amount_cents  :bigint(8)
+#  net_amount_cents    :bigint(8)
+#  bonus_cycle         :integer          default(0), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  profit_amount_cents :bigint(8)        default(0), not null
 #
 # Indexes
 #
@@ -22,7 +23,7 @@
 
 class InvestmentShare < ApplicationRecord
 
-  monetize :gross_amount_cents, :net_amount_cents
+  monetize :gross_amount_cents, :net_amount_cents, :profit_amount_cents
 
   has_many :orders, as: :payable
 
@@ -32,7 +33,8 @@ class InvestmentShare < ApplicationRecord
   enum status: {
     pending: 'pending',
     active: 'active',
-    finished: 'finished'
+    finished: 'finished',
+    expired_payment: 'expired_payment'
   }
 
 end

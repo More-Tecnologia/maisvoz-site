@@ -34,9 +34,13 @@ class Investment < ApplicationRecord
   }
 
   enum status: {
-    pending: 'pending',
-    active: 'active'
+    inactive: 'inactive',
+    cancelled: 'cancelled',
+    active: 'active',
+    sold_out: 'sold_out'
   }
+
+  scope :visible, -> { where.not(status: :inactive) }
 
   monetize :price_cents, :total_cents
 

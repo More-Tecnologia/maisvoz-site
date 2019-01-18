@@ -31,20 +31,21 @@
     <div class="col-md-12">
       <p>Selecione abaixo o total de contas de patrocínio que você quer adquirir</p>
     </div>
+
     <%= form_tag(buy_backoffice_investment_path(investment), method: :post, class: '') do %>
-    <div class="col-xs-4">
-      <input name="quantity" type="number" class="form-control" min="0" max="<%= investment.shares_available %>">
-    </div>
+      <div class="col-xs-4">
+        <input name="quantity" type="number" class="form-control" min="0" max="<%= investment.shares_available %>">
+      </div>
 
-    <div class="col-xs-6">
-      <span class="investment-card__total">
-        <%= number_to_currency investment.price %></span>
-    </div>
+      <div class="col-xs-6">
+        <span class="investment-card__total">
+          <%= number_to_currency investment.price %></span>
+      </div>
 
-    <div class="col-xs-12">
-      <%= submit_tag 'Contratar', class: 'btn btn-primary btn-block m-t-10 visible-inline-block', data: { confirm: "Tem certeza que deseja comprar a quantidade escolhida?" } %>
-    </div>
-    <% end %>
+      <div class="col-xs-12">
+        <%= submit_tag 'Contratar', class: 'btn btn-primary btn-block m-t-10 visible-inline-block', data: { confirm: "Tem certeza que deseja comprar a quantidade escolhida?" } %>
+      </div>
+    <% end if investment.active? %>
   </div>
 
   <div class="col-md-8">

@@ -2,7 +2,7 @@ module Backoffice
   class InvestmentsController < BackofficeController
 
     def index
-      @investments = Investment.all.order(id: :desc)
+      @investments = Investment.visible.order(id: :desc)
     end
 
     def buy

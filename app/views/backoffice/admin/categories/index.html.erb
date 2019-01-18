@@ -42,7 +42,7 @@
                   <td><%= category.order %></td>
                   <td>
                     <%= link_to edit_backoffice_admin_category_path(category), class: 'action-edit' do %>
-                      <i class="fa fa-pencil"></i>
+                      <i class="fas fa-edit"></i>
                     <% end %>
                     <%= link_to(
                       backoffice_admin_category_path(category),
@@ -50,7 +50,7 @@
                       method: :delete,
                       data: { confirm: t('defaults.confirm_removal') }
                       ) do %>
-                      <i class="fa fa-trash-o"></i>
+                      <i class="fas fa-trash"></i>
                     <% end %>
                   </td>
                 </tr>

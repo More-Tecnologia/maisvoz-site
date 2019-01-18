@@ -2,7 +2,7 @@ module Backoffice
   class InvestmentsController < BackofficeController
 
     def index
-      @investments = Investment.all
+      @investments = Investment.all.order(id: :desc)
     end
 
     def buy
@@ -11,7 +11,7 @@ module Backoffice
         flash[:success] = 'Contas de investimento adquiridas com sucesso'
         redirect_to backoffice_orders_path
       else
-        flash[:error] = 'Não foi possível adquirir as contas'
+        flash[:error] = 'Contas indisponíveis no momento'
         redirect_to backoffice_investments_path
       end
     end

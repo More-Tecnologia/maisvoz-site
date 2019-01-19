@@ -135,7 +135,7 @@ module Financial
     def activate_investment
       return unless order.participation_acc?
 
-      Investments::Compensate.new(investment_share: order.payable).call
+      Investments::Compensate.new(order: order).call
     end
 
     def assign_product_to_user

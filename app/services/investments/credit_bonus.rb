@@ -30,8 +30,8 @@ module Investments
         user: sponsor,
         order: order,
         bonus_amount: direct_bonus_amount,
-        kind: FinancialEntry.kinds[:direct_indication_bonus],
-        description: "Bônus de cotação direta do usuário #{user.username}"
+        kind: FinancialEntry.kinds[:direct_captation_bonus],
+        description: "Bônus de captação direta do usuário #{user.username}"
       )
     end
 
@@ -40,8 +40,8 @@ module Investments
         user: sponsor_lvl_one,
         order: order,
         bonus_amount: indirect_bonus_amount,
-        kind: FinancialEntry.kinds[:indirect_bonus],
-        description: "Bônus de cotação indireta do usuário #{user.username}"
+        kind: FinancialEntry.kinds[:indirect_captation_bonus],
+        description: "Bônus de captação indireta do usuário #{user.username}"
       )
     end
 
@@ -50,8 +50,8 @@ module Investments
         user: sponsor_lvl_two,
         order: order,
         bonus_amount: indirect_bonus_amount,
-        kind: FinancialEntry.kinds[:indirect_bonus],
-        description: "Bônus de cotação indireta do usuário #{user.username}"
+        kind: FinancialEntry.kinds[:indirect_captation_bonus],
+        description: "Bônus de captação indireta do usuário #{user.username}"
       )
     end
 

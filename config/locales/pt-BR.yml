@@ -693,6 +693,9 @@ pt-BR:
   social_leader_bonus: Bônus Social Líder
   reverse_bonus: Estorno de Bônus
   installer_bonus: Bônus de Instalador
+  direct_captation_bonus: Bônus de Captação Direta
+  indirect_captation_bonus: Bônus de Captação Indireta
+  participation_bonus: Bônus de Participação
   bonus_chargeback:
   credit_by_admin: Crédito do Admin
   debit_by_admin: Débito do Admin

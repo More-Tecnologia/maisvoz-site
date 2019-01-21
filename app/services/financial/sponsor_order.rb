@@ -16,6 +16,7 @@ module Financial
         assign_product_to_user
         create_binary_node
         qualify_sponsor
+        update_order
 
         order.completed!
       end
@@ -34,6 +35,13 @@ module Financial
         item.total = 0
         item.save!
       end
+    end
+
+    def update_order
+      order.update!(
+        payment_type: Order.payment_types[:admin],
+        paid_by: 'sistema'
+      )
     end
 
   end

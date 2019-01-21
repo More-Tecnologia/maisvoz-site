@@ -455,6 +455,7 @@ pt-BR:
     upgrades: Upgrades
     investments: Contas de Participação
     my_investments: Minhas Contas de Participação
+    buy_investment: Comprar Conta de Participação
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -674,6 +675,7 @@ pt-BR:
   approved: Aprovado
   refused: Rejeitado
   in_analysis: Em Análise
+  finished: Finalizado
   account_false: Conta não verificada
   account_true: Conta verificada
   pf: Pessoa Física

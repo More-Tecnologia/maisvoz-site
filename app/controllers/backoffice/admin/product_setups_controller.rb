@@ -16,9 +16,9 @@ module Backoffice
           product_setup.status_message    = params[:status_message]
           product_setup.status            = params[:status]
           product_setup.save!
-          
+
           credit_installer_bonus
-          
+
           flash[:success] = "Instalação #{product_setup.id} atualizada com sucesso"
         end
         redirect_to backoffice_admin_product_setups_path

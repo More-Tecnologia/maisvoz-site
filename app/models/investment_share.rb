@@ -14,6 +14,7 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  profit_amount_cents :bigint(8)        default(0), not null
+#  next_bonus_payment  :date
 #
 # Indexes
 #
@@ -36,5 +37,11 @@ class InvestmentShare < ApplicationRecord
     finished: 'finished',
     expired_payment: 'expired_payment'
   }
+
+  delegate :name, to: :investment
+
+  def bonus_amount
+    @bonus_amount ||= (investment.investment_yield / 100.0) * gross_amount
+  end
 
 end

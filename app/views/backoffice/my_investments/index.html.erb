@@ -21,6 +21,7 @@
                 <th><%= InvestmentShare.human_attribute_name(:quantity) %></th>
                 <th><%= InvestmentShare.human_attribute_name(:amount) %></th>
                 <th><%= InvestmentShare.human_attribute_name(:profit) %></th>
+                <th><%= InvestmentShare.human_attribute_name(:next_bonus_payment) %></th>
                 <th><%= InvestmentShare.human_attribute_name(:created_at) %></th>
               </tr>
             </thead>
@@ -34,6 +35,7 @@
                   <td><%= share.quantity %></td>
                   <td><%= number_to_currency share.gross_amount %></td>
                   <td><%= number_to_currency share.profit_amount %></td>
+                  <td><%= share.next_bonus_payment && l(share.next_bonus_payment, format: :short) %></td>
                   <td><%= l share.created_at, format: :short %></td>
                 </tr>
               <% end %>

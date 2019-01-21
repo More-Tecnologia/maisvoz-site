@@ -16,7 +16,9 @@ module Investments
     attr_reader :order, :investment_share
 
     def update_investment_share
+      investment_share.next_bonus_payment = 90.days.from_now
       investment_share.active!
+      investment_share.save!
     end
 
     def credit_bonus

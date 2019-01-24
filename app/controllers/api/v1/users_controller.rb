@@ -27,6 +27,15 @@ module Api
         end
       end
 
+      def remember_password
+        if User.exists?(email: params[:email]) &&
+           User.find_by(email: params[:email]).send_reset_password_instructions
+          render(json: { status: 'SUCCESS' }, status: :ok)
+        else
+          render(json: { status: 'ERROR' }, status: :bad_request)
+        end
+      end
+
       private
 
       def signin_form

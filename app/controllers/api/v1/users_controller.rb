@@ -4,9 +4,17 @@ module Api
 
       def sign_in
         if signin_form.valid? && signin_form.verified?
-          render(json: { status: 'SUCCESS', data: signin_form.user_serialized }, status: :ok)
+          render(json: { status: 'SUCCESS', data: signin_form.attributes }, status: :ok)
         else
           render(json: { status: 'ERROR', data: signin_form.errors }, status: :bad_request)
+        end
+      end
+
+      def sign_up
+        if signup_form.valid? && user = Api::CreateUser.new(signup_form).call
+          render(json: { status: 'SUCCESS', data: UserSerializer.new(user).serialize }, status: :ok)
+        else
+          render(json: { status: 'ERROR', data: signup_form.errors }, status: :bad_request)
         end
       end
 
@@ -23,6 +31,10 @@ module Api
 
       def signin_form
         @signin_form ||= Api::SigninForm.new(params)
+      end
+
+      def signup_form
+        @signup_form ||= Api::SignupForm.new(params)
       end
 
     end

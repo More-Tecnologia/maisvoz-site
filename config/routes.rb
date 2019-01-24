@@ -115,6 +115,7 @@ Rails.application.routes.draw do
       resources :users, only: :non do
         collection do
           post :sign_in
+          post :sign_up
           post :find_by_cpf
         end
       end

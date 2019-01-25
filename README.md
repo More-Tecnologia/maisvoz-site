@@ -9,3 +9,10 @@ Passos iniciais:
 * Rodar rake import_users:run
 
 `heroku pg:copy futuremotors-production::DATABASE DATABASE -a futuremotors-staging`
+
+## Tasks que devem ser agendadas
+
+```
+rake subscriptions:check_status (todo dia)
+rake users_still_active:verify (todo dia)
+```

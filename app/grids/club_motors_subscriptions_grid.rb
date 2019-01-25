@@ -12,7 +12,13 @@ class ClubMotorsSubscriptionsGrid < BaseGrid
   column(:plate)
   column(:status) do |s|
     format(s.status) do |value|
-      content_tag(:span, t(value), class: ['badge', s.active? ? 'badge-success' : 'badge-danger'])
+      css_class = 'badge-danger'
+      if s.active?
+        css_class = 'badge-success'
+      elsif s.past_due?
+        css_class = 'badge-warning'
+      end
+      content_tag(:span, t(value), class: ['badge', css_class])
     end
   end
   column(:username) do |s|

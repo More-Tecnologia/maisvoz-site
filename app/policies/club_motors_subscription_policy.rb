@@ -14,6 +14,7 @@ class ClubMotorsSubscriptionPolicy
   def can_remove?
     club_motors_subscription.inactive? &&
       club_motors_subscription.chassis.blank? &&
+      !club_motors_subscription.tracker? &&
       owner?
   end
 

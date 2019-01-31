@@ -12,7 +12,7 @@ module Multilevel
       else
         user.active = false
         user.active_until = 30.days.from_now.to_date
-        halve_pva_counters
+        # halve_pva_counters
       end
       verify_sponsor_qualification
 

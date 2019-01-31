@@ -7,8 +7,9 @@ module Trackers
       premium: 0.4
     }.freeze
 
-    def initialize(user:)
+    def initialize(user:, tracker:)
       @user = user
+      @tracker = tracker
     end
 
     def call
@@ -18,11 +19,7 @@ module Trackers
 
     private
 
-    attr_reader :user, :package
-
-    def tracker
-      @tracker ||= Product.where(tracker: true).first
-    end
+    attr_reader :user, :package, :tracker
 
     def discount
       return 0 if package.blank?

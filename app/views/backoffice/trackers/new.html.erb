@@ -1,9 +1,15 @@
 <div class="row">
-  <div class="col-lg-4 col-lg-offset-4">
+  <div class="col-lg-6 col-lg-offset-3">
     <div class="card-box">
-      <h4 class="page-title m-b-30">Preencha os dados do seu Veículo</h4>
 
       <%= simple_form_for form, url: backoffice_trackers_path, method: :post do |f| %>
+        <h4 class="page-title m-b-30">Escolha o Rastreador</h4>
+
+        <div class="row">
+          <%= f.input :tracker_id, collection: Product.active.trackers, label: 'Rastreador', wrapper_html: { class: 'col-sm-12' } %>
+        </div>
+
+        <h4 class="page-title m-b-30">Preencha os dados do seu Veículo</h4>
 
         <div class="row">
           <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-12' } %>
@@ -21,7 +27,13 @@
             <% end %>
 
             <p>Valor do rastreador</p>
-            <h2><%= number_to_currency form.tracker_price %></h2>
+
+            <% if form.tracker.present? %>
+              <h2><%= number_to_currency form.tracker_price %></h2>
+            <% else %>
+              <h2>Escolha um rastreador</h2>
+            <% end %>
+
 
             <div class="card m-t-20 m-b-20">
               <div class="card-body">

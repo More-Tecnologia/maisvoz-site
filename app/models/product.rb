@@ -66,6 +66,7 @@ class Product < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :club_motors, -> { where(club_motors: true) }
+  scope :trackers, -> { where(tracker: true) }
 
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?

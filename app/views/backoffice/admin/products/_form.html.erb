@@ -62,7 +62,7 @@
         <div class="col-md-6">
           <div class="p-20">
             <%= f.input :low_stock_alert %>
-            <%= f.input :category_id, collection: Category.active %>
+            <%= f.input :category_id, collection: Category.all %>
             <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>
             <div class="career-section <%= form.kind != 'adhesion' && 'hide' %>">
               <%= f.input :career_id, collection: Career.all %>

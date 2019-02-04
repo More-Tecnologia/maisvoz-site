@@ -58,6 +58,7 @@ class ClubMotorsSubscription < ApplicationRecord
     past_due: 'past_due',
     expired: 'expired',
     canceled: 'canceled',
+    pending: 'pending',
     active: 'active'
   }
   enum type: { clubmotors: 'clubmotors', ancore: 'ancore', tracker: 'tracker' }
@@ -85,6 +86,8 @@ class ClubMotorsSubscription < ApplicationRecord
       ).call
     elsif tracker?
       4000
+    else
+      price_cents
     end
   end
 

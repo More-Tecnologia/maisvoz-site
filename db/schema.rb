@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190121112009) do
+ActiveRecord::Schema.define(version: 20190202134707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,6 +278,18 @@ ActiveRecord::Schema.define(version: 20190121112009) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["status"], name: "index_investments_on_status"
+  end
+
+  create_table "moovi_integrations", force: :cascade do |t|
+    t.jsonb "payload"
+    t.bigint "club_motors_subscription_id"
+    t.string "placa"
+    t.string "status"
+    t.string "fipe_code"
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_motors_subscription_id"], name: "index_moovi_integrations_on_club_motors_subscription_id"
   end
 
   create_table "options", force: :cascade do |t|
@@ -580,6 +592,7 @@ ActiveRecord::Schema.define(version: 20190121112009) do
   add_foreign_key "financial_entries", "users"
   add_foreign_key "investment_shares", "investments"
   add_foreign_key "investment_shares", "users"
+  add_foreign_key "moovi_integrations", "club_motors_subscriptions"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"

@@ -747,6 +747,7 @@ pt-BR:
   club_motors: Clube Motors
   clubmotors: ClubMotors
   trackers: Rastreadores
+  ancore: FuturePRO
   up_to_10: Até 1.0
   from_10_to_15: De 1.0 até 1.5
   from_15_to_30: De 1.5 até 3.0
@@ -761,7 +762,7 @@ pt-BR:
   tracker_adhesion: Compra de Rastreador
   monthly_fee: Mensalidade
   participation_acc: Conta de Participação
-  tracker: Rastreador
+  tracker: FutureSAT
   datagrid:
     form:
       search: Filtrar

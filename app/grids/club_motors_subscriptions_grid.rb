@@ -10,6 +10,9 @@ class ClubMotorsSubscriptionsGrid < BaseGrid
   column(:id)
   column(:name)
   column(:plate)
+  column(:type) do |s|
+    "#{I18n.t(s.type)} (#{s.user&.product&.name})"
+  end
   column(:status) do |s|
     format(s.status) do |value|
       css_class = 'badge-danger'

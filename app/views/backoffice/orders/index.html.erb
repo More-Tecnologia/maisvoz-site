@@ -30,7 +30,9 @@
                 <tr>
                   <th><%= order.hashid %></th>
                   <td><%= number_to_currency order.total %></td>
-                  <td><%= order.type && t(order.type) %></td>
+                  <td>
+                    <%= order.type && t(order.type) %>
+                  </td>
                   <td><%= t "defaults.#{order.status}" %></td>
                   <td><%= l(order.expire_at, format: :short) if order.expire_at.present? %></td>
                   <td><%= l(order.paid_at, format: :short) if order.paid_at.present? %></td>

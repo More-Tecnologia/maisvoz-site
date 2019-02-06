@@ -26,7 +26,7 @@ module Subscriptions
       subscription.active!
       subscription.activated_at         = now if subscription.activated_at.blank?
       subscription.current_period_start = now
-      subscription.current_period_end   = current_period_end - 1.day
+      subscription.current_period_end   = current_period_end
 
       subscription.save!
     end

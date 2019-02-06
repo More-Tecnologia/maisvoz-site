@@ -10,7 +10,7 @@ module Subscriptions
     private
 
     def subscriptions
-      ClubMotorsSubscription.active_subscriptions.where('next_billing_date <= ?', Date.today)
+      ClubMotorsSubscription.active_subscriptions.where('next_billing_date <= ?', 10.days.from_now.to_date)
     end
 
   end

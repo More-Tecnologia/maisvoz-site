@@ -13,7 +13,7 @@
     <div class="card-box">
 
       <%= link_to 'Minhas Mensalidades', backoffice_club_motors_monthly_fees_path, class: 'btn btn-sm btn-primary' %>
-      <%= link_to('Adicionar Veículo', new_backoffice_club_motors_vehicle_path, class: 'btn btn-sm btn-primary') if current_user.active? || current_user.product.present? %>
+      <%= link_to('Adicionar Veículo ao ClubMotors', new_backoffice_club_motors_vehicle_path, class: 'btn btn-sm btn-primary') if current_user.active? || current_user.product.present? %>
 
       <div class="table-responsive">
         <table class="table table-hover">

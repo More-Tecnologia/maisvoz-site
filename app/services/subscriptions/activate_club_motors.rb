@@ -8,6 +8,7 @@ module Subscriptions
     def call
       ActiveRecord::Base.transaction do
         update_subscription
+        update_subscription_dates
         create_invoice
       end
     end
@@ -18,12 +19,22 @@ module Subscriptions
 
     def update_subscription
       subscription.status               = status
-      subscription.current_period_start = now
-      subscription.current_period_end   = current_period_end - 1.day
-      subscription.price_cents          = price_cents
-      subscription.next_billing_date    = current_period_end
-      subscription.billing_day_of_month = billing_day_of_month
-      subscription.activated_at         = now if subscription.active?
+      subscription.type                 = ClubMotorsSubscription.types[:clubmotors]
+      subscription.price_cents          = subscription.calculate_price_cents
+      subscription.billing_day_of_month = billing_date.day
+
+      subscription.save!
+    end
+
+    def update_subscription_dates
+      if subscription.active?
+        subscription.activated_at         = now
+        subscription.current_period_start = now
+        subscription.current_period_end   = billing_date + 1.month
+        subscription.next_billing_date = billing_date + 1.month
+      else
+        subscription.next_billing_date = billing_date
+      end
 
       subscription.save!
     end
@@ -33,31 +44,31 @@ module Subscriptions
     end
 
     def status
-      if subscription.user.club_motors_subscriptions.where(status: :active).any?
+      if any_clubmotors_subscription?
         ClubMotorsSubscription.statuses[:inactive]
       else
         ClubMotorsSubscription.statuses[:active]
       end
     end
 
-    def current_period_end
-      @current_period_end ||= Date.new((now + 1.month).year, (now + 1.month).month, billing_day_of_month)
-    end
-
-    def price_cents
-      @price_cents ||= subscription.calculate_price_cents
-    end
-
-    def billing_day_of_month
-      [now.day, 28].min
+    def any_clubmotors_subscription?
+      @any_clubmotors_subscription ||= subscription.user.club_motors_subscriptions.where.not(
+        status: :inactive
+      ).any?
     end
 
     def now
       @now ||= Time.zone.now
     end
 
-    def product
-      subscription.user.product
+    def billing_date
+      if subscription.active?
+        @billing_date ||= CalculateBillingDate.new(
+          subscription.user.active_until
+        ).call
+      else
+        @billing_date ||= CalculateBillingDate.new.call
+      end
     end
 
   end

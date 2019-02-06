@@ -30,6 +30,7 @@
             <th><%= Order.human_attribute_name(:payment_type) %></th>
             <th><%= Order.human_attribute_name(:paid_by) %></th>
             <th><%= Order.human_attribute_name(:created_at) %></th>
+            <th><%= Order.human_attribute_name(:expire_at) %></th>
             <th><%= Order.human_attribute_name(:paid_at) %></th>
             <th><%= Order.human_attribute_name(:dr_recorded) %></th>
             <th></th>
@@ -47,6 +48,7 @@
               <td><%= order.payment_type && t(order.payment_type) %></td>
               <td><%= order.paid_by %></td>
               <td><%= l order.created_at, format: :short %></td>
+              <td><%= order.expire_at && l(order.expire_at, format: :short) %></td>
               <td><%= order.paid_at && l(order.paid_at, format: :short) %></td>
               <th><%= order.dr_recorded %></th>
               <td>

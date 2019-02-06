@@ -47,7 +47,7 @@ module Subscriptions
     def generated_order?
       subscription.orders.monthly_fees.where(
         created_at: this_month..this_month.end_of_month
-      ).any?
+      ).where(payable: subscription).any?
     end
 
     def price_cents
@@ -67,11 +67,7 @@ module Subscriptions
     end
 
     def expire_at
-      if ClubMotorsSubscription.where(user: user, status: :active).where.not(id: subscription).count == 0
-        subscription.current_period_end
-      else
-        7.days.from_now
-      end
+      subscription.current_period_end || subscription.next_billing_date
     end
 
   end

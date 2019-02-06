@@ -13,7 +13,7 @@ class SupportController < BackofficeController
 
   def ensure_time_limit
     hour = Time.zone.now.hour
-    return if current_user.admin? || hour > 8 && hour < 19
+    return if current_user.admin? || hour >= 8 && hour <= 19
 
     flash[:error] = 'Restrição de horário, login liberado entre as 8h e 19h'
     redirect_to '/'

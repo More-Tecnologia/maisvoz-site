@@ -33,7 +33,7 @@ module Subscriptions
 
     def update_user
       user.active       = true
-      user.active_until = current_period_end if user.active_until < current_period_end
+      user.active_until = activation_period if user.active_until < activation_period
 
       user.save!
     end
@@ -48,6 +48,10 @@ module Subscriptions
 
     def now
       @now ||= Time.zone.now
+    end
+
+    def activation_period
+      @activation_period ||= now + 30.days
     end
 
     def subscription

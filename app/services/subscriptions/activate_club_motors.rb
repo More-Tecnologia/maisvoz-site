@@ -44,17 +44,15 @@ module Subscriptions
     end
 
     def status
-      if any_clubmotors_subscription?
-        ClubMotorsSubscription.statuses[:inactive]
-      else
-        ClubMotorsSubscription.statuses[:active]
-      end
+      @status ||= if subscription.user.active? && !active_subscriptions?
+                    ClubMotorsSubscription.statuses[:active]
+                  else
+                    ClubMotorsSubscription.statuses[:inactive]
+                  end
     end
 
-    def any_clubmotors_subscription?
-      @any_clubmotors_subscription ||= subscription.user.club_motors_subscriptions.where.not(
-        status: :inactive
-      ).any?
+    def active_subscriptions?
+      subscription.user.club_motors_subscriptions.where.not(status: :inactive).any?
     end
 
     def now

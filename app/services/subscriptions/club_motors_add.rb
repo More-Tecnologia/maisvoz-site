@@ -18,6 +18,7 @@ module Subscriptions
 
     def create_subscription
       @subscription = ClubMotorsSubscription.create!(form.create_attributes)
+      subscription.update!(status: :inactive)
     end
 
     def activate_subscription

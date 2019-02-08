@@ -34,7 +34,7 @@ module Api
         s.model_year = params.dig('vistoria').dig('preco_fipe').dig('ano_modelo')
         s.fuel       = params.dig('vistoria').dig('preco_fipe').dig('combustivel').try(:downcase)
         s.renavam    = params.dig('vistoria').dig('renavam')
-        s.price      = params.dig('vistoria').dig('veiculo_plano').dig('valor_basico')
+        s.price      = params.dig('vistoria').dig('veiculo_plano').dig('valor_basico').to_d
         s.current_period_start = Time.zone.today
         s.activated_at = Time.zone.today
 

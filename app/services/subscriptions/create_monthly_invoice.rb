@@ -67,7 +67,15 @@ module Subscriptions
     end
 
     def expire_at
-      subscription.current_period_end || subscription.next_billing_date
+      if subscription.current_period_end.present? && today < subscription.current_period_end
+        subscription.current_period_end
+      else
+        subscription.next_billing_date
+      end
+    end
+
+    def today
+      Time.zone.today
     end
 
   end

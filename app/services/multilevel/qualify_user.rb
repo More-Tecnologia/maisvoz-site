@@ -6,7 +6,8 @@ module Multilevel
     end
 
     def call
-      return if binary_node.blank? || user.binary_qualified?
+      return if binary_node.blank?
+
       user.update_column(:binary_qualified, qualified?)
       update_user_career
     end

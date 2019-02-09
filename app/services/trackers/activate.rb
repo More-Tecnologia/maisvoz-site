@@ -27,10 +27,6 @@ module Trackers
       subscription.save!
     end
 
-    def create_invoice
-      Subscriptions::CreateMonthlyInvoice.new(subscription).call
-    end
-
     def current_period_end
       @current_period_end ||= Date.new((now + 1.month).year, (now + 1.month).month, billing_day_of_month)
     end

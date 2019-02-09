@@ -26,6 +26,7 @@
             <th><%= User.human_attribute_name(:username) %></th>
             <th><%= User.human_attribute_name(:email) %></th>
             <th><%= Order.human_attribute_name(:total) %></th>
+            <th><%= Order.human_attribute_name(:type) %></th>
             <th><%= Order.human_attribute_name(:status) %></th>
             <th><%= Order.human_attribute_name(:payment_type) %></th>
             <th><%= Order.human_attribute_name(:paid_by) %></th>
@@ -44,6 +45,7 @@
               <td><%= link_to_user order.user %></td>
               <td><%= order.user.email %></td>
               <td><%= number_to_currency order.total %></td>
+              <td><%= t(order.type) %> <%= order.payable.present? && t(order.payable.type) %></td>
               <td><%= t("defaults.#{order.status}") %></td>
               <td><%= order.payment_type && t(order.payment_type) %></td>
               <td><%= order.paid_by %></td>

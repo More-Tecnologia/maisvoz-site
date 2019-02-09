@@ -28,7 +28,7 @@ module Subscriptions
         order.payable        = subscription
         order.total_cents    = price_cents
         order.subtotal_cents = price_cents
-        order.expire_at      = expire_at
+        order.expire_at      = 10.days.from_now
         order.tax_cents      = 0
         order.shipping_cents = 0
 
@@ -64,18 +64,6 @@ module Subscriptions
         (subscription.next_billing_date + 1.month).month,
         subscription.billing_day_of_month
       )
-    end
-
-    def expire_at
-      if subscription.current_period_end.present? && today < subscription.current_period_end
-        subscription.current_period_end
-      else
-        subscription.next_billing_date
-      end
-    end
-
-    def today
-      Time.zone.today
     end
 
   end

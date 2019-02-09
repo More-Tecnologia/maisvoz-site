@@ -46,7 +46,7 @@ module Subscriptions
         cart.user    = form.user
         cart.type    = Order.types['monthly_fee']
         cart.payable = subscription
-        cart.expire_at = billing_date
+        cart.expire_at = 10.days.from_now
       end
     end
 

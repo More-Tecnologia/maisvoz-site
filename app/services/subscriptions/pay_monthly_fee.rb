@@ -7,6 +7,8 @@ module Subscriptions
     end
 
     def call
+      return if order.payable.blank?
+
       decrease_balance
       update_subscription
       update_user
@@ -24,7 +26,7 @@ module Subscriptions
       return unless subscription.balance_cents.zero?
 
       subscription.active!
-      subscription.activated_at         = now if subscription.activated_at.blank?
+      subscription.activated_at         ||= now
       subscription.current_period_start = now
       subscription.current_period_end   = current_period_end
 
@@ -32,6 +34,8 @@ module Subscriptions
     end
 
     def update_user
+      return if user.active_until.blank?
+
       user.active       = true
       user.active_until = activation_period if user.active_until < activation_period
 

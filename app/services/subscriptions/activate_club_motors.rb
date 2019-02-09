@@ -30,8 +30,8 @@ module Subscriptions
       if subscription.active?
         subscription.activated_at         = now
         subscription.current_period_start = now
-        subscription.current_period_end   = billing_date + 1.month
-        subscription.next_billing_date = billing_date + 1.month
+        subscription.current_period_end   = billing_date
+        subscription.next_billing_date    = billing_date
       else
         subscription.next_billing_date = billing_date
       end
@@ -40,6 +40,8 @@ module Subscriptions
     end
 
     def create_invoice
+      return if subscription.active?
+
       Subscriptions::CreateMonthlyInvoice.new(subscription).call
     end
 

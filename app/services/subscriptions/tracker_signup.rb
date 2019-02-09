@@ -8,6 +8,7 @@ module Subscriptions
     def call
       ActiveRecord::Base.transaction do
         setup_subscription
+        update_subscription
         create_cart
         add_to_cart
         update_cart
@@ -31,11 +32,21 @@ module Subscriptions
       end
     end
 
+    def update_subscription
+      subscription.billing_day_of_month   = billing_date.day
+      subscription.next_billing_date      = billing_date + 1.month
+      subscription.balance_cents         += form.tracker_price_cents
+      subscription.current_billing_cycle += 1
+
+      subscription.save!
+    end
+
     def create_cart
       @cart = Order.new.tap do |cart|
         cart.user    = form.user
-        cart.type    = Order.types['tracker_adhesion']
+        cart.type    = Order.types['monthly_fee']
         cart.payable = subscription
+        cart.expire_at = billing_date
       end
     end
 
@@ -50,6 +61,10 @@ module Subscriptions
 
     def checkout_cart
       Shopping::CheckoutCart.new(cart: cart).call
+    end
+
+    def billing_date
+      @billing_date ||= CalculateBillingDate.new.call
     end
 
   end

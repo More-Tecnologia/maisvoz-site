@@ -18,6 +18,7 @@
                 <th>#</th>
                 <th>Veículo</th>
                 <th>Placa</th>
+                <th>Tipo</th>
                 <th><%= Order.human_attribute_name(:total) %></th>
                 <th><%= Order.human_attribute_name(:created_at) %></th>
                 <th><%= Order.human_attribute_name(:expire_at) %></th>
@@ -29,9 +30,10 @@
             <tbody>
               <% @monthly_fees.each do |order| %>
                 <tr>
-                  <th><%= order.hashid %></th>
-                  <th><%= order.payable && order.payable.name %></th>
-                  <th><%= order.payable && order.payable.plate %></th>
+                  <td><%= order.hashid %></td>
+                  <td><%= order.payable && order.payable.name %></td>
+                  <td><%= order.payable && order.payable.plate %></td>
+                  <td><%= order.payable && t(order.payable.type) %></td>
                   <td><%= number_to_currency order.total %></td>
                   <td><%= l order.created_at.to_date, format: :short %></td>
                   <td><%= l(order.expire_at, format: :short) if order.expire_at.present? %></td>

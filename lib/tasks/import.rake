@@ -10,14 +10,16 @@ namespace :import do
 
   def import_fees
     fees = [
-      {id: 1, name: 'Compacto', standard_fee_cents: 99_00, master_fee_cents: 125_00, premium_fee_cents: 155_00 },
-      {id: 2, name: 'Executivo', standard_fee_cents: 125_00, master_fee_cents: 155_00, premium_fee_cents: 175_00 },
-      {id: 3, name: 'Prime', standard_fee_cents: 155_00, master_fee_cents: 175_00, premium_fee_cents: 199_00 },
-      {id: 4, name: 'Utilitário', standard_fee_cents: 175_00, master_fee_cents: 199_00, premium_fee_cents: 235_00 }
+      {id: 1, name: 'Compacto', standard_fee_cents: 69_00, master_fee_cents: 95_00, premium_fee_cents: 125_00 },
+      {id: 2, name: 'Executivo', standard_fee_cents: 95_00, master_fee_cents: 125_00, premium_fee_cents: 145_00 },
+      {id: 3, name: 'Prime', standard_fee_cents: 125_00, master_fee_cents: 145_00, premium_fee_cents: 169_00 },
+      {id: 4, name: 'Utilitário', standard_fee_cents: 145_00, master_fee_cents: 169_00, premium_fee_cents: 205_00 },
+      {id: 5, name: 'Especial', standard_fee_cents: 250_00, master_fee_cents: 375_00, premium_fee_cents: 550_00 }
     ]
 
     fees.each do |fee|
       next if ClubMotorsFee.exists? id: fee[:id]
+
       club_motors_fee = ClubMotorsFee.new(fee)
       club_motors_fee.id = fee[:id]
       club_motors_fee.save!

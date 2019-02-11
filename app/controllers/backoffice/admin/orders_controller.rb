@@ -1,6 +1,6 @@
 module Backoffice
   module Admin
-    class OrdersController < SupportController
+    class OrdersController < FinancialController
 
       def index
         respond_to do |format|

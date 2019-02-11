@@ -2,7 +2,7 @@
   <h4 class="page-title">Downloads</h4>
 </div>
 
-<div class="masonry-container">
+<div class="masonry-container col-md-12">
 
   <% links.each do |link| %>
     <div class="filter apn" style="">
@@ -19,6 +19,20 @@
   <% end %>
 
 </div>
+
+<div class="col-md-12">
+  <h4>Imagens para Mídias Sociais</h4>
+</div>
+
+<% images.each_with_index do |image, i| %>
+
+  <div class="col-md-2" style="margin-bottom: 8px">
+    <a href="<%= image %>" target="_blank">
+      <img class="card-img-top img-fluid img-responsive" src="<%= image %>" alt="Card image cap">
+    </a>
+  </div>
+
+ <% end %>
 
 <style>
 .masonry-container {

@@ -42,13 +42,19 @@
           <%= number_to_currency investment.price %></span>
       </div>
 
-      <div class="col-xs-12">
-        <%= submit_tag 'Contratar', class: 'btn btn-primary btn-block m-t-10 visible-inline-block', data: { confirm: "Tem certeza que deseja comprar a quantidade escolhida?" } %>
+      <div class="col-xs-12 m-t-10">
+        <input type="checkbox">
+        <label for="">Li e aceito os termos do <a href="<%= investment.contract_url %>" target="_blank">contrato</a></label>
+        <%= submit_tag 'Contratar', class: 'btn btn-primary btn-block m-t-10 visible-inline-block', disabled: true, data: { confirm: "Tem certeza que deseja comprar a quantidade escolhida?" } %>
+      </div>
+
+      <div class="col-xs-12 m-t-10 text-justify">
+        <%= render partial: 'callout', locals: { investment: investment } %>
       </div>
     <% end if investment.active? %>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-12">
     <hr>
     <strong><i class="fas fa-phone"></i> Telefone:</strong>
     <%= investment.phone %>
@@ -60,3 +66,16 @@
   </div>
 </div>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      console.log('load')
+    $("input[type='checkbox']").change(function () {
+      if (this.checked) {
+        $(this).parent().children('.btn').prop('disabled', false)
+      } else {
+        $(this).parent().children('.btn').prop('disabled', true)
+      }
+    })
+  })
+</script>

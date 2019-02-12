@@ -48,4 +48,12 @@ class Investment < ApplicationRecord
 
   validates :name, :address, :status, :type, presence: true
 
+  def contract_url
+    if fuel_station?
+      'https://s3.amazonaws.com/promotional-material/pdf/contrato+de+contas+de+participac%CC%A7a%CC%83o+posto+combusti%CC%81vel.pdf'
+    else
+      'https://s3.amazonaws.com/promotional-material/pdf/contrato+de+contas+de+participac%CC%A7a%CC%83o+centro+automotivo.pdf'
+    end
+  end
+
 end

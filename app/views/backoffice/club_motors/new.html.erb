@@ -1,18 +1,11 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="card-box">
-      <h4 class="page-title m-b-30">Preencha os dados do seu Veículo</h4>
 
       <%= simple_form_for form, url: backoffice_club_motors_path, method: :post do |f| %>
 
-        <div class="row">
-          <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' } %>
-          <%= f.input :car_model_id, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-6' } %>
-          <%= f.input :plate, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-plate' } %>
-        </div>
-
-        <h4 class="page-title p-t-10" style="clear: both;">Selecione seu pacote de Benefícios</h4>
-        <p>Confira o valor de sua Mensalidade</p>
+        <h1 class="page-title" style="clear: both;">Adesão Clube de Empreendedores</h1>
+        <h3>Escolha abaixo sua categoria e faça a adesão</h3>
 
         <div class="row">
           <div class="col-md-9">
@@ -34,15 +27,17 @@
               </div>
             </div>
 
+            <h3>Baixe os materiais de apoio Future Motors</h3>
+
+            <a href="https://s3.amazonaws.com/promotional-material/pdf/APN_FutureMotors.pdf" target="_blank" class="btn btn-primary">
+              Apresentação de Negócio
+            </a>
+
+            <a href="<%= backoffice_downloads_path %>" class="btn btn-primary">Mais Materiais</a>
+
           </div>
 
           <div class="col-md-3">
-            <% if form.monthly_fee.present? %>
-              <p>Valor previsto da mensalidade para o veículo indicado será de:</p>
-              <p>Sua mensalidade será de:</p>
-              <h5><%= number_to_currency form.monthly_fee %></h5>
-            <% end %>
-
             <% if form.club_motors.present? %>
               <p>Valor da Adesão</p>
               <h2><%= number_to_currency form.club_motors.price %></h2>
@@ -50,6 +45,7 @@
 
             <div class="card m-t-20 m-b-20">
               <div class="card-body">
+                <p>Aceite o contrato de adesão ao Clube de Empreendedores Future Motors</p>
                 <a href="https://futuremotors.com.br/wp-content/uploads/2018/12/contratodeadesao.pdf" target="_blank"><i class="fa fa-file-pdf"></i> Contrato de Adesão</a>
                 <%= f.input :terms_of_service, as: :boolean, label: 'Aceito os termos de adesão' %>
               </div>

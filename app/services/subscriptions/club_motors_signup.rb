@@ -7,7 +7,6 @@ module Subscriptions
 
     def call
       ActiveRecord::Base.transaction do
-        setup_subscription
         create_cart
         add_to_cart
         checkout_cart
@@ -17,18 +16,6 @@ module Subscriptions
     private
 
     attr_reader :form, :cart, :subscription
-
-    def setup_subscription
-      @subscription = ClubMotorsSubscription.new.tap do |club_motors|
-        club_motors.status    = ClubMotorsSubscription.statuses[:inactive]
-        club_motors.type      = ClubMotorsSubscription.types[:clubmotors]
-        club_motors.user      = form.user
-        club_motors.car_model = form.car_model
-        club_motors.plate     = form.plate
-
-        club_motors.save!
-      end
-    end
 
     def create_cart
       @cart = Order.new.tap do |cart|

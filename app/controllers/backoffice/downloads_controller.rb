@@ -1,5 +1,5 @@
 module Backoffice
-  class DownloadsController < EntrepreneurController
+  class DownloadsController < BackofficeController
 
     def index
       render :index, locals: { links: download_links, images: images }

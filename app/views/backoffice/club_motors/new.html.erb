@@ -15,7 +15,7 @@
                 <% form.club_motors_list.each do |subscription| %>
                   <div class="card-container">
                     <div class="card m-b-20">
-                      <%= cl_image_tag(subscription.main_photo_id, { size: '150x150' }) %>
+                      <%= cl_image_tag(subscription.main_photo_id, { class: 'img-responsive' }) %>
                       <div class="card-body">
                         <h3><%= subscription.name %></h3>
                         <span><%= number_to_currency subscription.price %></span>

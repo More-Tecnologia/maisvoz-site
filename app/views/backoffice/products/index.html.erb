@@ -34,7 +34,7 @@
         <% end %>
 
         <div>
-          <h3 class="product-card__name" title="<%= product.name %>"><%= truncate(product.name, length: 24) %></h3>
+          <h3 class="product-card__name" title="<%= product.name %>"><%= truncate(product.name, length: 20) %></h3>
           <h4 class="product-card__price"><%= number_to_currency product.price %></h4>
         </div>
 

@@ -1,5 +1,4 @@
 .product-card {
-
 }
 
 .product-card__name {
@@ -7,8 +6,8 @@
   color: #fff;
   border-radius: 50px;
   display: inline-block;
-  padding: 8px 23px;
-  font-weight: 600;
+  padding: 2px 20px;
+  font-weight: 300;
   font-size: 14px;
   border: 1px solid #052753;
 }
@@ -22,6 +21,7 @@
   text-align: center;
   color: white;
   font-size: 12px;
+  font-weight: 300;
   padding: 12px;
 
   &:first-child {

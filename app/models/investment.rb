@@ -42,11 +42,17 @@ class Investment < ApplicationRecord
 
   scope :visible, -> { where.not(status: :inactive) }
 
-  monetize :price_cents, :total_cents
-
   validates :shares_available, numericality: { greater_than_or_equal_to: 0 }
 
   validates :name, :address, :status, :type, presence: true
+
+  def price
+    price_cents / 100.0
+  end
+
+  def total
+    total_cents / 100.0
+  end
 
   def contract_url
     if fuel_station?

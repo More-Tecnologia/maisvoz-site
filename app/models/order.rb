@@ -56,10 +56,7 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true
 
-  monetize :subtotal_cents
-  monetize :tax_cents
-  monetize :shipping_cents
-  monetize :total_cents
+  monetize :subtotal_cents, :tax_cents, :shipping_cents, :total_cents
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
   scope :monthly_fees, -> { where(type: :monthly_fee) }

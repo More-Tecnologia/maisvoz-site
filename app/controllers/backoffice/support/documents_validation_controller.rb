@@ -9,11 +9,16 @@ module Backoffice
       def update
         if params[:status] == 'verified'
           user.update!(document_verification_status: 'verified', document_verification_updated_at: Time.now)
-        elsif params[:status] == User.document_verification_statuses['refused_verification']
+        elsif params[:delete].present? && params[:status] == User.document_verification_statuses['refused_verification']
           ActiveRecord::Base.transaction do
             user.update!(document_refused_reason: params[:reason], document_verification_updated_at: Time.now)
             user.refused_verification!
             user.destroy_documents!
+          end
+        elsif params[:status] == User.document_verification_statuses['refused_verification']
+          ActiveRecord::Base.transaction do
+            user.update!(document_refused_reason: params[:reason], document_verification_updated_at: Time.now)
+            user.refused_verification!
           end
         end
         redirect_back(fallback_location: backoffice_support_documents_validation_index_path)

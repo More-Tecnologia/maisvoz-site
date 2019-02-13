@@ -151,11 +151,16 @@
           <%= form_tag(backoffice_support_documents_validation_path(id: user.id, status: User.document_verification_statuses['refused_verification']), method: :put) do %>
             <label for="">Razão:</label>
             <%= text_field_tag :reason, nil, class: 'form-control' %>
-            <%= submit_tag 'Recusar', class: 'btn btn-danger pull-left' %>
+            <br>
+            <%= submit_tag 'Rejeitar apagando fotos ', class: 'btn btn-danger pull-left', name: 'delete' %>
+            <%= submit_tag 'Rejeitar sem apagar fotos ', class: 'btn btn-danger pull-left m-l-15', name: 'no-delete' %>
           <% end %>
           <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
 
+        <% elsif user.refused_verification? %>
+          <p><%= user.document_refused_reason %> - <%= user.document_verification_updated_at %></p>
         <% end %>
+
 
         <hr>
 

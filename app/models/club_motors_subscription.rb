@@ -33,6 +33,8 @@
 #  current_billing_cycle :integer          default(0), not null
 #  next_billing_date     :date
 #  price_cents           :bigint(8)        default(0), not null
+#  dr_response           :jsonb
+#  dr_recorded           :boolean          default(FALSE)
 #
 # Indexes
 #

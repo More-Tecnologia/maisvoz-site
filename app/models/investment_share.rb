@@ -40,6 +40,10 @@ class InvestmentShare < ApplicationRecord
 
   delegate :name, to: :investment
 
+  def type
+    name
+  end
+
   def bonus_amount
     @bonus_amount ||= (investment.investment_yield / 100.0) * gross_amount
   end

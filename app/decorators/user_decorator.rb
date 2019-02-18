@@ -28,6 +28,18 @@ class UserDecorator < ApplicationDecorator
     document_company_name
   end
 
+  def tr_name_or_company_name
+    return '' if name_or_company_name.blank?
+
+    I18n.transliterate(name_or_company_name)
+  end
+
+  def tr_document_fantasy_name
+    return '' if user.document_fantasy_name.blank?
+
+    I18n.transliterate(user.document_fantasy_name)
+  end
+
   def main_document
     if pj?
       document_cnpj

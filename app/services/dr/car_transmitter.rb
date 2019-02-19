@@ -35,7 +35,7 @@ module Dr
       {
         token: '/XZ9qjPSDYF938+7rN5SAw==',
         id: subscription.id,
-        user_cnpj_cpf: subscription.user.decorate.main_document,
+        cnpj_cpf: subscription.user.decorate.main_document,
         car_model: subscription.car_model.name,
         chassis: subscription.chassis,
         plate: subscription.plate,

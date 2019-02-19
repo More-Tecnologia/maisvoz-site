@@ -1,8 +1,10 @@
 module Backoffice
   module Admin
-    class OrdersController < FinancialController
+    class OrdersController < BackofficeController
 
       def index
+        authorize :admin_order, :index?
+
         respond_to do |format|
           format.html { render_index }
           format.csv { render_csv }
@@ -10,6 +12,8 @@ module Backoffice
       end
 
       def show
+        authorize :admin_order, :show?
+
         @order = Order.find(params[:id])
       end
 

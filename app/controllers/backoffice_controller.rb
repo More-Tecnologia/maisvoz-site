@@ -1,5 +1,7 @@
 class BackofficeController < ApplicationController
 
+  include Pundit
+
   layout :define_layout
 
   before_action :authenticate_user!
@@ -16,6 +18,15 @@ class BackofficeController < ApplicationController
 
   private def define_layout
     current_user.consumidor? ? 'consumer' : 'admin'
+  end
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = 'Você não tem autorização para realizar esta ação.'
+    redirect_to(request.referrer || root_path)
   end
 
 end

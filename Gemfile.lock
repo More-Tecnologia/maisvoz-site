@@ -348,6 +348,8 @@ GEM
       pry (>= 0.9.10, < 0.11.0)
     public_suffix (3.0.2)
     puma (3.11.4)
+    pundit (2.0.1)
+      activesupport (>= 3.0.0)
     rack (2.0.5)
     rack-attack (5.2.0)
       rack
@@ -596,6 +598,7 @@ DEPENDENCIES
   pry
   pry-nav
   puma (~> 3.7)
+  pundit
   rack-attack
   rails (~> 5.1.4)
   rails-assets-bootstrap-datepicker!

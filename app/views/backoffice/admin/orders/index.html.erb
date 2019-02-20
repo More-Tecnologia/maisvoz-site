@@ -5,78 +5,17 @@
   </div>
 </div>
 
-<%= render 'filters', q: q %>
-
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box table-responsive">
 
-      <div class="dt-buttons btn-group m-b-15">
-        <%= link_to backoffice_admin_orders_path(params.merge(format: 'csv')), class: 'btn btn-default buttons-csv buttons-html5 btn-sm' do %>
-          <i class="fa fa-file-text-o"></i> <span>CSV</span>
-        <% end %>
-      </div>
+      <%= datagrid_form_for @grid, :method => :get, :url => backoffice_admin_orders_path %>
 
-      <table class="table table-bordered m-t-10">
+      <%= link_to "Get CSV", url_for(format: 'csv', orders_grid: params[:orders_grid]) %>
 
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>#</th>
-            <th><%= User.human_attribute_name(:username) %></th>
-            <th><%= User.human_attribute_name(:email) %></th>
-            <th><%= Order.human_attribute_name(:total) %></th>
-            <th><%= Order.human_attribute_name(:type) %></th>
-            <th><%= Order.human_attribute_name(:status) %></th>
-            <th><%= Order.human_attribute_name(:payment_type) %></th>
-            <th><%= Order.human_attribute_name(:paid_by) %></th>
-            <th><%= Order.human_attribute_name(:created_at) %></th>
-            <th><%= Order.human_attribute_name(:expire_at) %></th>
-            <th><%= Order.human_attribute_name(:paid_at) %></th>
-            <th><%= Order.human_attribute_name(:dr_recorded) %></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% orders.each do |order| %>
-            <tr>
-              <th><%= order.id %></th>
-              <th><%= order.hashid %></th>
-              <td><%= link_to_user order.user %></td>
-              <td><%= order.user.email %></td>
-              <td><%= number_to_currency order.total %></td>
-              <td><%= t(order.type) %> <%= order.payable.present? && t(order.payable.type) %></td>
-              <td><%= t("defaults.#{order.status}") %></td>
-              <td><%= order.payment_type && t(order.payment_type) %></td>
-              <td><%= order.paid_by %></td>
-              <td><%= l order.created_at, format: :short %></td>
-              <td><%= order.expire_at && l(order.expire_at, format: :short) %></td>
-              <td><%= order.paid_at && l(order.paid_at, format: :short) %></td>
-              <th><%= order.dr_recorded %></th>
-              <td>
-                <%= link_to backoffice_admin_order_path(order) do %>
-                  <i class="fa fa-eye"></i>
-                <% end %>
-                <%= link_to(
-                  backoffice_admin_order_approve_path(order),
-                  method: :post,
-                  data: { confirm: t('.approve_withdraw') },
-                  class: 'm-r-10'
-                  ) do %>
-                  <i class="fa fa-check"></i>
-                <% end if order.pending_payment? %>
-              </td>
-            </tr>
-          <% end %>
-          <% if orders.empty? %>
-            <tr>
-              <td colspan="7" class="text-center"><%= t('views.backoffice.admin.orders.index.no_data') %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <%= paginate orders %>
+      <%= paginate(@grid.assets) %>
+      <%= datagrid_table @grid %>
+      <%= paginate(@grid.assets) %>
 
     </div>
   </div>

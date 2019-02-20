@@ -7,6 +7,8 @@
                 <div class="clearfix">
                     <div class="pull-right">
                         <h4><%= t('invoice') %> # <br>
+                            <strong><%= @order.id %></strong>
+                            <br>
                             <strong><%= @order.hashid %></strong>
                         </h4>
                     </div>
@@ -19,6 +21,9 @@
                             <address>
                               <strong><%= @order.user.name %></strong><br>
                               <strong><%= @order.user.username %></strong><br>
+                              <strong><%= @order.user.document_cpf %></strong><br>
+                              <strong><%= @order.user.document_rg %> <%= @order.user.document_rg_expeditor %></strong><br>
+                              <strong><%= @order.user.zipcode %></strong><br>
                               <%= @order.user.address %><br>
                               <%= @order.user.address_2 %>, <%= @order.user.city %>, <%= @order.user.state %> <%= @order.user.country %><br>
                               <abbr title="Phone">P:</abbr> <%= @order.user.phone %>

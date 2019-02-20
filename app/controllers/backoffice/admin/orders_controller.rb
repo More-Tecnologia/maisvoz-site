@@ -5,6 +5,8 @@ module Backoffice
       def index
         authorize :admin_order, :index?
 
+        @grid = OrdersGrid.new(grid_params)
+
         respond_to do |format|
           format.html { render_index }
           format.csv { render_csv }
@@ -37,32 +39,22 @@ module Backoffice
       private
 
       def render_index
-        render(:index, locals: { orders: orders, q: q })
+        @grid.scope {|scope| scope.page(params[:page]) }
       end
 
       def render_csv
-        filename = "orders-#{Time.zone.now}.csv"
-        send_data(ExportToCsv.call(collection: q.result, model: Order).result, filename: filename)
+        send_data @grid.to_csv,
+          type: "text/csv",
+          disposition: 'inline',
+          filename: "orders-#{Time.now.to_s}.csv"
       end
 
       def order
         @order ||= Order.find(params[:order_id])
       end
 
-      def orders
-        @orders ||= q.result.page(params[:page])
-      end
-
-      def q
-        @q ||= Order.where.not(status: :cart).ransack(q_params)
-        @q.sorts = 'created_at desc' if @q.sorts.blank?
-        @q
-      end
-
-      def q_params
-        qparams = params[:q]
-        qparams[:id_in] = params[:q][:id_in].split(' ') if params[:q].present? && params[:q].fetch(:id_in, nil).present?
-        qparams
+      def grid_params
+        params.fetch(:orders_grid, {}).permit!
       end
 
     end

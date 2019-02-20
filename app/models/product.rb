@@ -65,6 +65,7 @@ class Product < ApplicationRecord
   monetize :price_cents
 
   scope :active, -> { where(active: true) }
+  scope :regular, -> { where(club_motors: false).where(tracker: false) }
   scope :club_motors, -> { where(club_motors: true) }
   scope :trackers, -> { where(tracker: true) }
 

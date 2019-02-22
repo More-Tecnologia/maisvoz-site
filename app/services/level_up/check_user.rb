@@ -21,18 +21,18 @@ module LevelUp
     end
 
     def can_advance_career?
-      user.executive? && generations_pva_sum >= 3_500 ||
-        user.bronze? && generations_pva_sum >= 10_500 ||
-        user.silver? && generations_pva_sum >= 35_000 ||
-        user.gold? && sum_pva_limit(25_000) >= 150_000 ||
-        user.ruby? && sum_pva_limit(50_000) >= 350_000 ||
+      user.executive? && generations_pva_sum >= 3_000 ||
+        user.bronze? && generations_pva_sum >= 5_000 ||
+        user.silver? && generations_pva_sum >= 25_000 ||
+        user.gold? && sum_pva_limit(25_000) >= 125_000 ||
+        user.ruby? && sum_pva_limit(50_000) >= 250_000 ||
         user.emerald? && sum_pva_limit(150_000) >= 1_050_000 ||
         user.diamond? && sum_pva_limit(350_000) >= 2_300_000 ||
         user.white_diamond? && sum_pva_limits(800_000, 6, 500_000) >= 6_800_000 ||
         user.blue_diamond? && sum_pva_limits(1_300_000, 8, 600_000) >= 12_800_000 ||
-        user.black_diamond? && sum_pva_limits(1_500_000, 8, 800_000) >= 35_000_000 ||
-        user.chairman? && sum_pva_limits(2_000_000, 9, 1_000_000) >= 70_000_000 ||
-        user.chairman_two_star? && sum_pva_limits(5_000_000, 10, 1_000_000) >= 100_000_000
+        user.black_diamond? && sum_pva_limits(2_000_000, 8, 800_000) >= 35_000_000 ||
+        user.chairman? && sum_pva_limits(4_000_000, 10, 1_500_000) >= 70_000_000 ||
+        user.chairman_two_star? && sum_pva_limits(6_000_000, 10, 2_000_000) >= 100_000_000
     end
 
     def advance_user_career

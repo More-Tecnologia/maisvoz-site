@@ -20,7 +20,7 @@ class OrdersGrid < BaseGrid
   end
   column(:total)
   column(:type) do |record|
-    I18n.t record.type
+    I18n.t(record.type) if record.type.present?
   end
   column(:payment_type)
   column(:paid_by)

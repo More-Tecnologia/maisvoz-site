@@ -66,6 +66,25 @@ class Order < ApplicationRecord
     Arel.sql("DATE(#{table_name}.paid_at)")
   end
 
+  def monthly_order_items
+    return [] if payable.blank? || order_items.present?
+
+    product = OpenStruct.new(
+      id: payable.id,
+      hashid: payable.hashid,
+      name: "#{I18n.t(payable.type)} (#{I18n.t('date.month_names')[created_at.month]}/#{created_at.year})"
+    )
+
+    [
+      OpenStruct.new(
+        product: product,
+        quantity: 1,
+        unit_price: total,
+        total: total
+      )
+    ]
+  end
+
   def total_score
     @total_score ||= order_items.sum { |item| item.quantity * item.product.binary_score }
   end

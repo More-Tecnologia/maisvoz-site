@@ -73,7 +73,7 @@ class DROrderSerializer
   end
 
   def order_items
-    order.order_items.map do |item|
+    (order.order_items + order.monthly_order_items).map do |item|
       {
         item: {
           codigoSap: item.product.id.to_s

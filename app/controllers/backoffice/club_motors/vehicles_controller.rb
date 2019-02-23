@@ -10,7 +10,11 @@ module Backoffice
       end
 
       def show
-        @vehicle = current_user.club_motors_subscriptions.find_by_hashid(params[:id])
+        if current_user.admin?
+          @vehicle = ClubMotorsSubscription.find_by_hashid(params[:id])
+        else
+          @vehicle = current_user.club_motors_subscriptions.find_by_hashid(params[:id])
+        end
       end
 
       def edit

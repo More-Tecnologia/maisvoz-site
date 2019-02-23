@@ -9,7 +9,7 @@
     <div class="col-sm-12">
         <div class="card-box m-b-20 card-body">
             <h5 class="card-title">Tipo de Mensalidade</h5>
-            <p class="card-text"><%= @vehicle.car_model.club_motors_fee.name %> - (<%= @vehicle.car_model.car_brand.name %>) <%= @vehicle.car_model.name %></p>
+            <p class="card-text"><%= "#{@vehicle.car_model.club_motors_fee.name} -" if @vehicle.clubmotors? %> (<%= @vehicle.car_model.car_brand.name %>) <%= @vehicle.car_model.name %></p>
             <a href="#" class="btn btn-success"><%= number_to_currency @vehicle.calculate_price_cents / 1e2 %>/mês</a>
         </div>
     </div>

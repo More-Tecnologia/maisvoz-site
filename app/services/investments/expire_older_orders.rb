@@ -4,7 +4,7 @@ module Investments
     prepend SimpleCommand
 
     def call
-      Order.participation_acc.where('expire_at <= ?', 3.days.ago.to_date).find_each do |order|
+      Order.pending_payment.participation_acc.where('expire_at <= ?', 3.days.ago.to_date).find_each do |order|
         update_order(order)
       end
     end

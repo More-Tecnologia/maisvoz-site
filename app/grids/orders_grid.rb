@@ -6,6 +6,7 @@ class OrdersGrid < BaseGrid
 
   filter(:id, :integer)
   filter(:status, :enum, select: Order.statuses.map {|k,v| [I18n.t(k), v]})
+  filter(:type, :enum, select: Order.types.map {|k,v| [I18n.t(k), v]})
   filter(:username) do |value, scope|
     scope.joins(:user).where('users.username ILIKE ?', "%#{value}%")
   end
@@ -14,6 +15,12 @@ class OrdersGrid < BaseGrid
   column(:hashid)
   column(:username, html: true) do |record|
     link_to_user(record.user)
+  end
+  column(:name, html: false) do |record|
+    record.user.decorate.name_or_company_name
+  end
+  column(:main_document, html: false) do |record|
+    record.user.decorate.main_document
   end
   column(:email) do |record|
     record.user.email

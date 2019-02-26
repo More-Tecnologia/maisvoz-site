@@ -11,7 +11,7 @@
 
       <%= datagrid_form_for @grid, :method => :get, :url => backoffice_admin_orders_path %>
 
-      <%= link_to "Download CSV", url_for(format: 'csv', orders_grid: params[:orders_grid]) %>
+      <%= link_to "Download CSV", url_for(format: 'csv', orders_grid: params[:orders_grid]), class: 'btn btn-primary btn-sm m-t-10' %>
 
       <%= paginate(@grid.assets) %>
       <%= datagrid_table @grid %>

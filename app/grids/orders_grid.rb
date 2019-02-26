@@ -1,7 +1,7 @@
 class OrdersGrid < BaseGrid
 
   scope do
-    Order.where.not(status: :cart).includes(:user).order(id: :desc)
+    Order.where.not(status: :cart).includes(:user).includes(:payable).order(id: :desc)
   end
 
   filter(:id, :integer)
@@ -27,7 +27,7 @@ class OrdersGrid < BaseGrid
   end
   column(:total)
   column(:type) do |record|
-    I18n.t(record.type) if record.type.present?
+    record.decorated_type
   end
   column(:payment_type)
   column(:paid_by)

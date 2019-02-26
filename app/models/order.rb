@@ -131,4 +131,14 @@ class Order < ApplicationRecord
     Digest::MD5.hexdigest("#{id * 1337}:#{hashid}")
   end
 
+  def decorated_type
+    if payable.present? && participation_acc?
+      "#{payable.type} - #{I18n.t(type)}"
+    elsif payable.present?
+      "#{I18n.t(payable.type)} - #{I18n.t(type)}"
+    elsif type.present?
+      I18n.t(type)
+    end
+  end
+
 end

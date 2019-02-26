@@ -21,6 +21,7 @@
                             <address>
                               <strong><%= @order.user.name %></strong><br>
                               <strong><%= @order.user.username %></strong><br>
+                              <strong><%= @order.user.product&.name %></strong><br>
                               <strong><%= @order.user.document_cpf %></strong><br>
                               <strong><%= @order.user.document_rg %> <%= @order.user.document_rg_expeditor %></strong><br>
                               <strong><%= @order.user.zipcode %></strong><br>

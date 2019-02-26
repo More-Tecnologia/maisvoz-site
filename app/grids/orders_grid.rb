@@ -25,7 +25,9 @@ class OrdersGrid < BaseGrid
   column(:email) do |record|
     record.user.email
   end
-  column(:total)
+  column(:total) do |record|
+    ActiveSupport::NumberHelper.number_to_currency record.total_cents / 100
+  end
   column(:type) do |record|
     record.decorated_type
   end

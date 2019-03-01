@@ -22,7 +22,7 @@ module Subscriptions
     end
 
     def activate_subscription
-      Subscriptions::ActivateClubMotors.new(subscription: subscription).call
+      Subscriptions::ActivateClubMotors.new(subscription: subscription, voucher: form.voucher).call
     end
 
   end

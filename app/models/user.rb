@@ -135,6 +135,7 @@ class User < ApplicationRecord
   has_many :debits
   has_many :investment_shares
   has_many :bonus, class_name: 'Bonus'
+  has_many :vouchers
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 

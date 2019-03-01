@@ -1,8 +1,9 @@
 module Subscriptions
   class ActivateClubMotors
 
-    def initialize(subscription:)
+    def initialize(subscription:, voucher:)
       @subscription = subscription
+      @voucher = voucher
     end
 
     def call
@@ -15,7 +16,7 @@ module Subscriptions
 
     private
 
-    attr_reader :subscription
+    attr_reader :subscription, :voucher
 
     def update_subscription
       subscription.status               = status
@@ -46,15 +47,12 @@ module Subscriptions
     end
 
     def status
-      @status ||= if subscription.user.active? && !active_subscriptions?
+      @status ||= if voucher.present? && !voucher.used?
+                    voucher.update!(used: true, club_motors_subscription: subscription)
                     ClubMotorsSubscription.statuses[:active]
                   else
                     ClubMotorsSubscription.statuses[:inactive]
                   end
-    end
-
-    def active_subscriptions?
-      subscription.user.club_motors_subscriptions.where.not(status: :inactive).any?
     end
 
     def now

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190211181312) do
+ActiveRecord::Schema.define(version: 20190227124439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -564,6 +564,18 @@ ActiveRecord::Schema.define(version: 20190211181312) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "vouchers", force: :cascade do |t|
+    t.string "code", null: false
+    t.boolean "used", default: false, null: false
+    t.bigint "user_id"
+    t.bigint "club_motors_subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_motors_subscription_id"], name: "index_vouchers_on_club_motors_subscription_id"
+    t.index ["code"], name: "index_vouchers_on_code", unique: true
+    t.index ["user_id"], name: "index_vouchers_on_user_id"
+  end
+
   create_table "withdrawals", force: :cascade do |t|
     t.string "status", null: false
     t.bigint "user_id"
@@ -613,5 +625,7 @@ ActiveRecord::Schema.define(version: 20190211181312) do
   add_foreign_key "transfers", "users", column: "to_user_id"
   add_foreign_key "unilevel_nodes", "users"
   add_foreign_key "users", "products"
+  add_foreign_key "vouchers", "club_motors_subscriptions"
+  add_foreign_key "vouchers", "users"
   add_foreign_key "withdrawals", "users"
 end

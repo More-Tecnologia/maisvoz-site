@@ -39,6 +39,7 @@ module Financial
         qualify_sponsor
         propagate_binary_score
         propagate_pv_history
+        create_vouchers
         credit_bonus
         create_system_fee
         order.completed!
@@ -81,6 +82,12 @@ module Financial
       Bonification::PropagatePvgHistory.new(order).call
       Bonification::PropagatePvaPoints.new(order: order).call
       Bonification::PropagatePvmPoints.new(order: order).call
+    end
+
+    def create_vouchers
+      return if !adhesion_product?
+
+      Vouchers::Create.new(order).call
     end
 
     def credit_bonus

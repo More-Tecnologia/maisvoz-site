@@ -13,6 +13,7 @@ module Financial
         create_tax_entry
         debit_tax_from_blocked_balance
         create_withdraw
+        create_withdrawal_fee
         zero_account
       end
     end
@@ -45,6 +46,10 @@ module Financial
         withdrawal.net_amount   = user.balance - fee
         withdrawal.save!
       end
+    end
+
+    def create_withdrawal_fee
+      Fee::CreateWithdrawFee.new(withdrawal, fee).call
     end
 
     def zero_account

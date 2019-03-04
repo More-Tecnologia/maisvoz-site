@@ -8,6 +8,7 @@ module Fee
 
     def call
       create_entry
+      create_system_financial_log
       update_balance
     end
 
@@ -24,6 +25,14 @@ module Fee
         entry.kind        = FinancialEntry.kinds[:withdrawal_fee]
         entry.save!
       end
+    end
+
+    def create_system_financial_log
+      system_log             = SystemFinancialLog.new
+      system_log.description = "Taxa sobre saque ID: #{withdraw.id} de R$#{withdraw.gross_amount}"
+      system_log.amount      = fee
+      system_log.kind        = SystemFinancialLog.kinds[:fee]
+      system_log.save!
     end
 
     def update_balance

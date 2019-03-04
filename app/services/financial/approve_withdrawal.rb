@@ -14,7 +14,6 @@ module Financial
 
       create_withdrawal_financial_entry
       create_withdraw_fee
-      create_system_financial_log
 
       financial_entry.save!
     end
@@ -33,14 +32,6 @@ module Financial
 
     def create_withdraw_fee
       Fee::CreateWithdrawFee.new(withdrawal, fee).call
-    end
-
-    def create_system_financial_log
-      system_log             = SystemFinancialLog.new
-      system_log.description = "Taxa sobre saque ID: #{withdrawal.id} de R$#{withdrawal.gross_amount}"
-      system_log.amount      = fee
-      system_log.kind        = SystemFinancialLog.kinds[:fee]
-      system_log.save!
     end
 
     def fee

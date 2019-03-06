@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190227124439) do
+ActiveRecord::Schema.define(version: 20190306213502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -568,11 +568,13 @@ ActiveRecord::Schema.define(version: 20190227124439) do
     t.string "code", null: false
     t.boolean "used", default: false, null: false
     t.bigint "user_id"
-    t.bigint "club_motors_subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["club_motors_subscription_id"], name: "index_vouchers_on_club_motors_subscription_id"
+    t.bigint "order_id"
+    t.string "invoice_type"
+    t.datetime "used_at"
     t.index ["code"], name: "index_vouchers_on_code", unique: true
+    t.index ["order_id"], name: "index_vouchers_on_order_id"
     t.index ["user_id"], name: "index_vouchers_on_user_id"
   end
 
@@ -625,7 +627,7 @@ ActiveRecord::Schema.define(version: 20190227124439) do
   add_foreign_key "transfers", "users", column: "to_user_id"
   add_foreign_key "unilevel_nodes", "users"
   add_foreign_key "users", "products"
-  add_foreign_key "vouchers", "club_motors_subscriptions"
+  add_foreign_key "vouchers", "orders"
   add_foreign_key "vouchers", "users"
   add_foreign_key "withdrawals", "users"
 end

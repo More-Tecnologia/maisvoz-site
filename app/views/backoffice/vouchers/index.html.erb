@@ -6,7 +6,7 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-4 col-sm-offset-4">
+  <div class="col-sm-8 col-sm-offset-2">
     <div class="card-box">
       <div class="row">
         <div class="col-lg-12">
@@ -17,6 +17,9 @@
               <tr>
                 <th>Código</th>
                 <th>Usado?</th>
+                <th>ID fatura</th>
+                <th>Tipo de Fatura</th>
+                <th>Data e hora do uso</th>
               </tr>
             </thead>
             <tbody>
@@ -24,11 +27,14 @@
                 <tr>
                   <th><%= financial_entry.code %></th>
                   <th><%= financial_entry.used? ? 'Sim' : 'Não' %></th>
+                  <th><%= financial_entry.order_id %></th>
+                  <th><%= financial_entry.invoice_type %></th>
+                  <th><%= financial_entry.used_at %></th>
                 </tr>
               <% end %>
               <% if vouchers.empty? %>
                 <tr>
-                  <td colspan="2" class="text-center">Você não adquiriu vouchers ainda</td>
+                  <td colspan="5" class="text-center">Você não adquiriu vouchers ainda</td>
                 </tr>
               <% end %>
             </tbody>

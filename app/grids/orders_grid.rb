@@ -1,7 +1,7 @@
 class OrdersGrid < BaseGrid
 
   scope do
-    Order.where.not(status: :cart).includes(:user).includes(:payable).order(id: :desc)
+    Order.where.not(status: :cart).includes(:payable).order(id: :desc)
   end
 
   filter(:id, :integer)

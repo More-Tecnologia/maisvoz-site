@@ -28,7 +28,7 @@ class Voucher < ApplicationRecord
 
   def create_code
     loop do
-      self.code = SecureRandom.hex[0, 6]
+      self.code = SecureRandom.hex[0, 12]
       break unless Voucher.exists?(code: self.code)
     end
   end

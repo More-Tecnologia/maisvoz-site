@@ -41,19 +41,6 @@
         <%= f.input :origin, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.origins.map {|k,v| [t(k), k]} %>
         </div>
 
-        <hr>
-
-        <div class="row">
-          <%= f.input :voucher_code, wrapper_html: { class: 'col-sm-3' }, label: false, placeholder: 'Voucher' %>
-          <div class="col-sm-3">
-            <%= f.submit 'Aplicar', class: 'btn btn-primary' %>
-
-            <% if form.voucher.present? && !form.voucher.used? %>
-              <p class="text-success">Voucher aplicado com sucesso!</p>
-            <% end %>
-          </div>
-        </div>
-
         <div class="row">
           <div class="col-md-12">
             <div class="card-box">
@@ -72,10 +59,6 @@
 <script>
   window.onload = function(){
     $('#club_motors_subscription_form_car_brand_id, #club_motors_subscription_form_car_model_id').change(function () {
-      $(this).parents('form').submit();
-    });
-
-    $('#voucher_btn').click(function () {
       $(this).parents('form').submit();
     });
 

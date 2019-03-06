@@ -20,7 +20,6 @@ class ClubMotorsSubscriptionForm < Form
   attribute :color_type
   attribute :origin
   attribute :terms_of_service
-  attribute :voucher_code
 
   validates :car_brand_id, presence: true, if: :new_vehicle?
   validates :car_model_id, presence: true, if: :new_vehicle?
@@ -41,7 +40,6 @@ class ClubMotorsSubscriptionForm < Form
   validates :terms_of_service, acceptance: true
 
   validate :verify_plate_unique, if: :new_vehicle?
-  validate :valid_voucher
 
   def plate=(attr)
     super attr.upcase
@@ -87,11 +85,11 @@ class ClubMotorsSubscriptionForm < Form
   end
 
   def edit_attributes
-    attributes.except(:id, :user, :car_brand_id, :car_model_id, :terms_of_service, :plate, :voucher_code)
+    attributes.except(:id, :user, :car_brand_id, :car_model_id, :terms_of_service, :plate)
   end
 
   def create_attributes
-    attributes.except(:id, :car_brand_id, :terms_of_service, :voucher_code)
+    attributes.except(:id, :car_brand_id, :terms_of_service)
   end
 
   def new_vehicle?
@@ -102,20 +100,6 @@ class ClubMotorsSubscriptionForm < Form
     return unless ClubMotorsSubscription.clubmotors.exists?(plate: plate)
 
     errors.add(:plate, 'Esta placa já consta em nosso banco de dados')
-  end
-
-  def voucher
-    @voucher ||= Voucher.find_by(code: voucher_code)
-  end
-
-  def valid_voucher
-    return if voucher_code.blank?
-
-    if !Voucher.exists?(code: voucher_code)
-      errors.add(:voucher_code, 'Cupom inválido')
-    elsif voucher
-      errors.add(:voucher_code, 'Cupom já utilizado') if voucher.used?
-    end
   end
 
 end

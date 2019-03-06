@@ -38,7 +38,7 @@ module Financial
     def create_withdrawal
       Withdrawal.new.tap do |withdrawal|
         withdrawal.user                  = payer
-        withdrawal.status                = Withdrawal.statuses[:approved]
+        withdrawal.status                = Withdrawal.statuses[:approved_balance]
         withdrawal.gross_amount_cents    = order.total_cents
         withdrawal.net_amount_cents      = order.total_cents
         withdrawal.save!

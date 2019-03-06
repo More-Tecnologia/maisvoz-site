@@ -21,7 +21,7 @@ class Withdrawal < ApplicationRecord
 
   include Hashid::Rails
 
-  enum status: { pending: 'pending', approved: 'approved', refused: 'refused' }
+  enum status: { pending: 'pending', approved: 'approved', approved_balance: 'approved_balance', refused: 'refused' }
 
   belongs_to :user
 

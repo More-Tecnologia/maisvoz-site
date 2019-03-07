@@ -14,6 +14,7 @@ module Financial
 
       create_withdrawal_financial_entry
       create_withdraw_fee
+      send_notification
 
       financial_entry.save!
     end
@@ -32,6 +33,10 @@ module Financial
 
     def create_withdraw_fee
       Fee::CreateWithdrawFee.new(withdrawal, fee).call
+    end
+
+    def send_notification
+      WithdrawalsMailer.with(withdrawal: withdrawal).approved.deliver_later
     end
 
     def fee

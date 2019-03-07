@@ -38,7 +38,9 @@ module Financial
 
     def restore_credit_if_refused
       return unless withdrawal.refused?
+
       withdrawal.user.increment!(:available_balance_cents, withdrawal.gross_amount_cents)
+      WithdrawalsMailer.with(withdrawal: withdrawal).rejected.deliver_later
     end
 
   end

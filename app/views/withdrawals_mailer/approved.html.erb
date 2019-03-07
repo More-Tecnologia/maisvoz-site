@@ -1,0 +1,9 @@
+<p>Olá, <%= @user.email %></p>
+
+<br>
+
+<p>Seu pedido de saque no valor de <%= number_to_currency @withdrawal.gross_amount %> foi efetuado com sucesso.</p>
+
+<br>
+
+<p><%= link_to 'Meus Saques', backoffice_withdrawals_url %></p>

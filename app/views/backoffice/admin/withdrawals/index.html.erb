@@ -18,12 +18,15 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th><%= User.human_attribute_name(:username) %></th>
+                <th><%= User.human_attribute_name(:name) %></th>
                 <th><%= User.human_attribute_name(:registration_type) %></th>
                 <th><%= Withdrawal.human_attribute_name(:fiscal_document_link) %></th>
-                <th><%= sort_link(q, :available_balance_cents, Account.human_attribute_name(:balance)) %></th>
-                <th><%= sort_link(q, :net_amount_cents, Withdrawal.human_attribute_name(:net_amount)) %></th>
+                <th>Documento</th>
+                <th>Banco</th>
+                <th>Conta</th>
+                <th>Agência</th>
                 <th><%= sort_link(q, :gross_amount_cents, Withdrawal.human_attribute_name(:gross_amount)) %></th>
+                <th><%= sort_link(q, :net_amount_cents, Withdrawal.human_attribute_name(:net_amount)) %></th>
                 <th><%= sort_link(q, :status, Withdrawal.human_attribute_name(:status)) %></th>
                 <th><%= sort_link(q, :created_at, Withdrawal.human_attribute_name(:created_at), default_order: :desc) %></th>
                 <th></th>
@@ -33,19 +36,22 @@
               <% withdrawals.each do |withdraw| %>
                 <tr>
                   <th><%= withdraw.id %></th>
-                  <th><%= link_to_user(withdraw.user) %></th>
+                  <th><%= link_to withdraw.user.name, backoffice_support_user_path(withdraw.user) %></th>
                   <th><%= t withdraw.user.registration_type %></th>
                   <th>
-                    <%= withdraw.fiscal_document_link && link_to(withdraw.fiscal_document_link, withdraw.fiscal_document_link, target: '_blank') %>
+                    <%= link_to('Link', withdraw.fiscal_document_link, target: '_blank') if withdraw.fiscal_document_link.present? %>
                     <% if withdraw.fiscal_document_photo? %>
                       <%= link_to withdraw.fiscal_document_photo.fullpath, target: '_blank' do %>
-                        <%= cl_image_tag withdraw.fiscal_document_photo.path, { size: '150x150', class: 'm-b-20' } %>
+                        <i class="fa fa-link"></i>
                       <% end %>
                     <% end %>
                   </th>
-                  <th><%= number_to_currency withdraw.user.available_balance %></th>
-                  <td><%= number_to_currency withdraw.net_amount %></td>
+                  <td><%= withdraw.user.decorate.main_document %></td>
+                  <td><%= "#{withdraw.user.bank_name} - #{withdraw.user.bank_code}" %></td>
+                  <td><%= withdraw.user.bank_account %></td>
+                  <td><%= withdraw.user.bank_agency %></td>
                   <td><%= number_to_currency withdraw.gross_amount %></td>
+                  <td><%= number_to_currency withdraw.net_amount %></td>
                   <td><%= withdraw.pretty_status %></td>
                   <td><%= l withdraw.created_at, format: :short %></td>
                   <td>

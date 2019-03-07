@@ -1,5 +1,9 @@
 <p>Olá, <%= @user.email %></p>
 
+<br>
+
 <p>Seu pedido no valor de <%= number_to_currency @order.total %> foi realizado. Complete o pagamento e aguarde o processamento.</p>
+
+<br>
 
 <p><%= link_to 'Meus Pedidos', backoffice_orders_url %></p>

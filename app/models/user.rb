@@ -181,4 +181,8 @@ class User < ApplicationRecord
     UnilevelNode.create!(user: self, username: username, career_kind: career_kind, parent: sponsor_node)
   end
 
+  def bank_name
+    BankCodes.find_by_code(bank_code)
+  end
+
 end

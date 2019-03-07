@@ -2,6 +2,10 @@
 
 <%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
   <div data-withdraw-simulator="true" data-fee="<%= AppConfig.get(:withdrawal_fee) %>">
+    <div class="row">
+      <div class="alert alert-warning">Favor gerar nota fiscal do valor bruto, caso contrário o pedido de saque será rejeitado.</div>
+    </div>
+
     <%= f.input :amount do %>
       <div class="input-group">
         <span class="input-group-addon">R$</span>

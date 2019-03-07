@@ -11,4 +11,12 @@ module BankCodes
     BANK_CODES
   end
 
+  def self.find_by_code(code)
+    bank = BANK_CODES.select do |name, bank_code|
+      code == bank_code
+    end
+
+    bank[0]&.first
+  end
+
 end

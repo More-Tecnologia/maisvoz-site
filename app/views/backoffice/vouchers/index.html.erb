@@ -10,6 +10,7 @@
     <div class="card-box">
       <div class="row">
         <div class="col-lg-12">
+          <a href="<%= new_backoffice_pay_with_voucher_path %>" class="btn btn-sm btn-primary m-b-10">Pagar com Voucher</a>
 
           <table class="table table-striped table-bordered table-hover m-0">
 
@@ -23,13 +24,13 @@
               </tr>
             </thead>
             <tbody>
-              <% vouchers.each do |financial_entry| %>
+              <% vouchers.each do |voucher| %>
                 <tr>
-                  <th><%= financial_entry.code %></th>
-                  <th><%= financial_entry.used? ? 'Sim' : 'Não' %></th>
-                  <th><%= financial_entry.order_id %></th>
-                  <th><%= financial_entry.invoice_type %></th>
-                  <th><%= financial_entry.used_at %></th>
+                  <th><%= voucher.code %></th>
+                  <th><%= voucher.used? ? 'Sim' : 'Não' %></th>
+                  <th><%= voucher.order.hashid if voucher.order %></th>
+                  <th><%= t(voucher.invoice_type) if voucher.invoice_type %></th>
+                  <th><%= l(voucher.used_at, format: :short) if voucher.used_at %></th>
                 </tr>
               <% end %>
               <% if vouchers.empty? %>

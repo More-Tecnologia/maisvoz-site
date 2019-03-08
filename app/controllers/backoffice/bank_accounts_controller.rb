@@ -32,6 +32,7 @@ module Backoffice
       params[:bank_account_form]                  ||= {}
       params[:bank_account_form][:user]           ||= current_user.decorate
       params[:bank_account_form][:bank_code]      ||= current_user.bank_code
+      params[:bank_account_form][:bank_account_type] ||= current_user.bank_account_type
       params[:bank_account_form][:account_number] ||= bank_account.split('-')[0]
       params[:bank_account_form][:account_digit]  ||= bank_account.split('-')[1]
       params[:bank_account_form][:agency_number]  ||= bank_agency.split('-')[0]
@@ -41,11 +42,13 @@ module Backoffice
 
     def bank_account
       return '' if current_user.bank_account.blank?
+
       current_user.bank_account
     end
 
     def bank_agency
       return '' if current_user.bank_agency.blank?
+
       current_user.bank_agency
     end
 

@@ -47,7 +47,7 @@
                     <% end %>
                   </th>
                   <td><%= withdraw.user.decorate.main_document %></td>
-                  <td><%= "#{withdraw.user.bank_name} - #{withdraw.user.bank_code}" %></td>
+                  <td><%= "#{withdraw.user.bank_name} - #{withdraw.user.bank_code} - #{withdraw.user.bank_account_type}" %></td>
                   <td><%= withdraw.user.bank_account %></td>
                   <td><%= withdraw.user.bank_agency %></td>
                   <td><%= number_to_currency withdraw.gross_amount %></td>

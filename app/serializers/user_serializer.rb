@@ -67,6 +67,7 @@
 #  document_verification_updated_at :datetime
 #  document_rg_expeditor            :string
 #  product_id                       :bigint(8)
+#  bank_account_type                :string
 #
 # Indexes
 #

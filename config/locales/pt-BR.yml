@@ -106,6 +106,7 @@ pt-BR:
     fiscal_document_link: Link para Nota Fiscal
     fiscal_document_photo: Nota Fiscal
     bank_code: Banco
+    bank_account_type: Tipo de Conta
     account_number: Conta
     account_digit: Dígito da Conta
     agency_number: Agência

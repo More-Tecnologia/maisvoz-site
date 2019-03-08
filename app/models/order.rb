@@ -86,7 +86,11 @@ class Order < ApplicationRecord
   end
 
   def total_score
-    @total_score ||= order_items.sum { |item| item.quantity * item.product.binary_score }
+    if monthly_fee?
+      pvm_score
+    else
+      @total_score ||= order_items.sum { |item| item.quantity * item.product.binary_score }
+    end
   end
 
   def max_product_score

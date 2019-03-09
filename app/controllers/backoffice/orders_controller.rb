@@ -13,7 +13,9 @@ module Backoffice
 
     def generate_boleto
       order = current_user.orders.find_by_hashid(params[:order_id])
-      BradescoBoletoGeneratorWorker.perform_async(order.id)
+
+      Payment::BradescoBoleto.new(order).call
+
       flash[:success] = 'Boleto adicionado a fila de processamento'
       redirect_to backoffice_orders_path
     end

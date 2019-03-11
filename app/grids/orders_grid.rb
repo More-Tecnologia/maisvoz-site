@@ -10,6 +10,7 @@ class OrdersGrid < BaseGrid
   filter(:username) do |value, scope|
     scope.joins(:user).where('users.username ILIKE ?', "%#{value}%")
   end
+  filter(:created_at, :date, :range => true)
 
   column(:id)
   column(:hashid)

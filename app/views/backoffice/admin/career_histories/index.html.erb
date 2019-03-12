@@ -40,7 +40,7 @@
               <% career_histories.each do |hist| %>
                 <tr>
                   <th><%= hist.id %></th>
-                  <th><%= hist.user.username %></th>
+                  <th><%= hist.user.name %></th>
                   <th><%= hist.old_career %></th>
                   <th><%= hist.new_career %></th>
                   <td><%= l hist.created_at, format: :short %></td>

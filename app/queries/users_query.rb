@@ -32,7 +32,7 @@ class UsersQuery
   end
 
   def filter_by_email(scoped, email)
-    email.present? ? scoped.where(email: email) : scoped
+    email.present? ? scoped.where("email LIKE ?", "%#{email}%") : scoped
   end
 
   def filter_by_cpf(scoped, document_cpf)

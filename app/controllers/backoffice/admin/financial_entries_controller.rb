@@ -1,8 +1,10 @@
 module Backoffice
   module Admin
-    class FinancialEntriesController < AdminController
+    class FinancialEntriesController < BackofficeController
 
       def index
+        authorize :admin_financial_entries, :index?
+
         render(:index, locals: { financial_entries: financial_entries, q: q })
       end
 

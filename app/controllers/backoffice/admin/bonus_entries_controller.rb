@@ -1,8 +1,10 @@
 module Backoffice
   module Admin
-    class BonusEntriesController < AdminController
+    class BonusEntriesController < BackofficeController
 
       def index
+        authorize :admin_bonus_entries, :index?
+
         render(
           :index,
           locals: {

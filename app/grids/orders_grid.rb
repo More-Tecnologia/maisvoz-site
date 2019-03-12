@@ -17,13 +17,13 @@ class OrdersGrid < BaseGrid
   column(:username, html: true) do |record|
     link_to_user(record.user)
   end
-  column(:name, html: false) do |record|
+  column(:name) do |record|
     record.user.decorate.name_or_company_name
   end
   column(:main_document, html: false) do |record|
     record.user.decorate.main_document
   end
-  column(:email) do |record|
+  column(:email, html: false) do |record|
     record.user.email
   end
   column(:total) do |record|

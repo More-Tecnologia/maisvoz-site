@@ -3,8 +3,8 @@ module Vouchers
 
     VOUCHERS = {
       standard: 5,
-      master: 7,
-      premium: 10
+      master: 10,
+      premium: 15
     }.freeze
 
     def initialize(order)

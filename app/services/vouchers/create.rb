@@ -7,8 +7,9 @@ module Vouchers
       premium: 15
     }.freeze
 
-    def initialize(order)
-      @order = order
+    def initialize(user:, product:)
+      @user    = user
+      @product = product
     end
 
     def call
@@ -21,7 +22,7 @@ module Vouchers
 
     private
 
-    attr_reader :order, :package
+    attr_reader :user, :product, :package
 
     def vouchers_count
       VOUCHERS[package]
@@ -29,12 +30,12 @@ module Vouchers
 
     def create_voucher
       Voucher.create!(
-        user: order.user
+        user: user
       )
     end
 
     def define_package
-      @package = DefineUserPackage.new(product: order.adhesion_product).call
+      @package = DefineUserPackage.new(product: product).call
     end
 
   end

@@ -87,7 +87,7 @@ module Financial
     def create_vouchers
       return if !adhesion_product?
 
-      Vouchers::Create.new(order).call
+      Vouchers::Create.new(user: user, product: adhesion_product).call
     end
 
     def credit_bonus

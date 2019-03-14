@@ -43,7 +43,7 @@ gem 'pundit'
 gem 'rack-attack'
 gem 'rails-assets-bootstrap-datepicker', source: 'https://rails-assets.org'
 gem 'rails-assets-raphael', source: 'https://rails-assets.org'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2.2.1'
 gem 'ransack'
 gem 'redis-rails'
 gem 'redis-session-store'
@@ -54,13 +54,16 @@ gem 'shog'
 gem 'shrine', '~> 2.11'
 gem 'sidekiq'
 gem 'simple_command'
-gem 'simple_form', '~> 3.5.0'
+gem 'simple_form', '~> 4.1.0'
 gem 'slack-ruby-client'
 gem 'strong_password', '~> 0.0.6'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'via_cep'
 gem 'virtus', '~> 1.0.5'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

@@ -4,7 +4,8 @@ module BankCodes
     ['BANCO DO BRASIL S.A.', '001'],
     ['BANCO ITAÚ S.A.', '341'],
     ['CAIXA ECONOMICA FEDERAL', '104'],
-    ['BANCO BRADESCO S.A.', '237']
+    ['BANCO BRADESCO S.A.', '237'],
+    ['BANCO SANTANDER S.A.', '033']
   ].freeze
 
   def bank_codes

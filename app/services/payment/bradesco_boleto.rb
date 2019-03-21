@@ -34,7 +34,7 @@ module Payment
     end
 
     def create_payload
-      params[:merchant_id] = '100007991'
+      params[:merchant_id] = ENV.fetch('BRADESCO_MERCHANT_ID')
       params[:meio_pagamento] = '300'
       params[:pedido] = {
         numero: order.id,

@@ -8,10 +8,10 @@ module Payment
         'Authorization' => "Basic #{ENV.fetch('BRADESCO_CRED')}"
       }
 
-      URL = 'https://meiosdepagamentobradesco.com.br/SPSConsulta/Authentication/100007991'
+      URL = 'https://meiosdepagamentobradesco.com.br/SPSConsulta/Authentication/'.freeze
 
       def call
-        res = RestClient.get(URL, DEFAULT_HEADERS)
+        res = RestClient.get(URL + ENV.fetch('BRADESCO_MERCHANT_ID'), DEFAULT_HEADERS)
         if res.code == 200
           body = JSON.parse(res.body)
           body['token']['token']

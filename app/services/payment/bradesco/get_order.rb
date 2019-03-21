@@ -8,7 +8,7 @@ module Payment
         'Authorization' => "Basic #{ENV.fetch('BRADESCO_CRED')}"
       }.freeze
 
-      URL = 'https://meiosdepagamentobradesco.com.br/SPSConsulta/GetOrderById/100007991'.freeze
+      URL = 'https://meiosdepagamentobradesco.com.br/SPSConsulta/GetOrderById/'.freeze
 
       def initialize(order, auth_key)
         @order = order
@@ -25,7 +25,7 @@ module Payment
       attr_reader :order, :auth_key
 
       def url
-        URL + "?token=#{auth_key}&orderId=#{order.id}"
+        URL + ENV.fetch('BRADESCO_MERCHANT_ID') + "?token=#{auth_key}&orderId=#{order.id}"
       end
 
     end

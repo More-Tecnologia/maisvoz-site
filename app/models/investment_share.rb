@@ -24,6 +24,8 @@
 
 class InvestmentShare < ApplicationRecord
 
+  include Hashid::Rails
+
   monetize :gross_amount_cents, :net_amount_cents, :profit_amount_cents
 
   has_many :orders, as: :payable

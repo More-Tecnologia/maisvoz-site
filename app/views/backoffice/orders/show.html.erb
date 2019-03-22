@@ -62,10 +62,11 @@
                                     <td><%= number_to_currency oi.total %></td>
                                   </tr>
                                   <% end %>
+
                                   <% @order.monthly_order_items.each do |oi| %>
                                   <tr>
                                     <td><%= oi.product.id %></td>
-                                    <td><%= link_to oi.product.name, backoffice_club_motors_vehicle_path(oi.product.hashid) %></td>
+                                    <td><%= oi.product.name %></td>
                                     <td><%= oi.quantity %></td>
                                     <td><%= number_to_currency oi.unit_price %></td>
                                     <td><%= number_to_currency oi.total %></td>

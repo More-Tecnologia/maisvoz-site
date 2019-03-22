@@ -69,10 +69,16 @@ class Order < ApplicationRecord
   def monthly_order_items
     return [] if payable.blank? || order_items.present?
 
+    if payable.class.name == 'InvestmentShare'
+      name = payable.type
+    else
+      name = I18n.t(payable.type)
+    end
+
     product = OpenStruct.new(
       id: payable.id,
       hashid: payable.hashid,
-      name: "#{I18n.t(payable.type)} (#{I18n.t('date.month_names')[created_at.month]}/#{created_at.year})"
+      name: "#{name} (#{I18n.t('date.month_names')[created_at.month]}/#{created_at.year})"
     )
 
     [

@@ -1,0 +1,23 @@
+pt-BR:
+  datagrid:
+    no_results:
+      "――"
+    table:
+      order:
+        asc: "↑"
+        desc: "↓"
+      no_columns: "Nenhuma coluna selecionada"
+    form:
+      search: "Pesquisar"
+      reset: "Resetar"
+    filters:
+      xboolean:
+        "yes": "Sim"
+        "no": "Não"
+
+      dynamic:
+        operations:
+          ">=": "≥"
+          "<=": "≤"
+          "=": "="
+          "=~": "≈"

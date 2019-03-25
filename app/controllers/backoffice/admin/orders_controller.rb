@@ -36,6 +36,13 @@ module Backoffice
         redirect_to backoffice_admin_orders_path
       end
 
+      def mark_as_billed
+        if order.update_column :billed, true
+          flash[:success] = 'Pedido marcado como faturado'
+        end
+        redirect_to backoffice_admin_orders_path
+      end
+
       private
 
       def render_index

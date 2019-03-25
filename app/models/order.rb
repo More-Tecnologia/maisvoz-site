@@ -21,6 +21,7 @@
 #  paid_by        :string
 #  payable_type   :string
 #  payable_id     :bigint(8)
+#  billed         :boolean          default(FALSE)
 #
 # Indexes
 #

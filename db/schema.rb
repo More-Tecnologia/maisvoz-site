@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190308123514) do
+ActiveRecord::Schema.define(version: 2019_03_25_192010) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
+  enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "available_balance_cents", default: 0, null: false
@@ -332,6 +332,7 @@ ActiveRecord::Schema.define(version: 20190308123514) do
     t.string "paid_by"
     t.string "payable_type"
     t.bigint "payable_id"
+    t.boolean "billed", default: false
     t.index ["payable_type", "payable_id"], name: "index_orders_on_payable_type_and_payable_id"
     t.index ["type"], name: "index_orders_on_type"
     t.index ["user_id"], name: "index_orders_on_user_id"

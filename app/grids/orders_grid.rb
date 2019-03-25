@@ -10,6 +10,7 @@ class OrdersGrid < BaseGrid
   filter(:username) do |value, scope|
     scope.joins(:user).where('users.username ILIKE ?', "%#{value}%")
   end
+  filter(:billed, :xboolean)
   filter(:created_at, :date, :range => true)
 
   column(:id)
@@ -43,6 +44,18 @@ class OrdersGrid < BaseGrid
       else
         content_tag(:i, nil, class: 'fa fa-times-circle text-danger')
       end
+    end
+  end
+  column(:faturado, html: true) do |order|
+    if !order.billed?
+      link_to(backoffice_admin_order_mark_as_billed_path(order),
+        method: :post,
+        class: 'm-r-10'
+      ) do
+        '<i class="fa fa-check"></i>'.html_safe
+      end
+    else
+      '<i class="fa fa-check-circle text-success"></i>'.html_safe
     end
   end
   column(:status) do |record|

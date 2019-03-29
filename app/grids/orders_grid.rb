@@ -37,6 +37,7 @@ class OrdersGrid < BaseGrid
   column(:paid_by)
   date_column(:created_at)
   date_column(:paid_at, order: 'paid_at is not null desc, paid_at', order_desc: 'paid_at is not null desc, paid_at desc')
+  date_column(:expire_at, html: false)
   column(:dr_recorded) do |record|
     format(record.dr_recorded) do |value|
       if record.dr_recorded?

@@ -1,15 +1,19 @@
 module Backoffice
   module Admin
-    class CareerHistoriesController < AdminController
+    class CareerHistoriesController < BackofficeController
 
       def index
-        render(:index, locals: { career_histories: career_histories })
+        authorize :admin_career_histories, :index?
+
+        @grid = CareerHistoriesGrid.new(grid_params)
+
+        @grid.scope {|scope| scope.page(params[:page]) }
       end
 
       private
 
-      def career_histories
-        CareerHistoriesQuery.new.call(params)
+      def grid_params
+        params.fetch(:career_histories_grid, {}).permit!
       end
 
     end

@@ -2,14 +2,14 @@ module Payment
   module Bradesco
     class CompensateOrder
 
-      def initialize(order)
+      def initialize(order, auth_key)
         @order = order
+        @auth_key = auth_key
       end
 
       def call
         return if current_transaction.blank? || !order.pending_payment? || current_transaction.paid?
 
-        get_bradesco_auth_key
         get_order_from_bradesco
         update_bradesco_transaction
         compensate_order
@@ -18,10 +18,6 @@ module Payment
       private
 
       attr_reader :order, :provider_response, :auth_key
-
-      def get_bradesco_auth_key
-        @auth_key = GetAuthKey.call
-      end
 
       def get_order_from_bradesco
         @provider_response = GetOrder.call(order, auth_key)

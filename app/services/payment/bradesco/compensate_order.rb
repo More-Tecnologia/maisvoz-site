@@ -11,6 +11,9 @@ module Payment
         return if current_transaction.blank? || !order.pending_payment? || current_transaction.paid?
 
         get_order_from_bradesco
+
+        return if provider_response['status']['codigo'] != 0
+
         update_bradesco_transaction
         compensate_order
       end

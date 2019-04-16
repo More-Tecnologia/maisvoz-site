@@ -1,18 +1,24 @@
 module Backoffice
   module Installer
-    class OrderOfServicesController < InstallerController
+    class OrderOfServicesController < BackofficeController
 
       def index
+        authorize :order_of_service, :index?
+
         @order_of_services = current_user.created_order_of_services.order(
           created_at: :desc
-        ).page(params[:page])
-      end
+          ).page(params[:page])
+        end
 
-      def new
+        def new
+        authorize :order_of_service, :new?
+
         render_new
       end
 
       def create
+        authorize :order_of_service, :create?
+
         if params[:search_user].present?
           render_new
         elsif form.valid? && params[:commit].present?

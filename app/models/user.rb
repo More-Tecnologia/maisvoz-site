@@ -91,7 +91,7 @@ class User < ApplicationRecord
 
   monetize :available_balance_cents, :blocked_balance_cents
 
-  enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', instalador: 'instalador', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce' }
+  enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', instalador: 'instalador', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce', automotive_center: 'automotive_center' }
   enum marital_status: { single: 'single', married: 'married', widowed: 'widowed', divorced: 'divorced' }
   enum gender: { male: 'male', female: 'female' }
   enum registration_type: { pf: 'pf', pj: 'pj' }

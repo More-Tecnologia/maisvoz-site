@@ -42,7 +42,7 @@ module Backoffice
       end
 
       def product_setups
-        current_user.product_setups.order(created_at: :desc).page(params[:page])
+        policy_scope(OrderOfService).order(created_at: :desc).page(params[:page])
       end
 
     end

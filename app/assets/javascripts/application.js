@@ -36,6 +36,7 @@
 //= require theme/jquery.core
 //= require theme/wow.min
 //= require theme/jquery.app
+//= require ui/number-mask
 //= require ui/cpf-mask
 //= require ui/phone-mask
 //= require ui/car-plate-mask

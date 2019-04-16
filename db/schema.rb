@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_25_192010) do
+ActiveRecord::Schema.define(version: 2019_04_16_180251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -313,6 +313,23 @@ ActiveRecord::Schema.define(version: 2019_03_25_192010) do
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
+  create_table "order_of_services", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "created_by_id"
+    t.string "os_number"
+    t.bigint "gross_sales_cents", default: 0, null: false
+    t.bigint "net_sales_cents", default: 0, null: false
+    t.bigint "gross_service_cents", default: 0, null: false
+    t.bigint "net_service_cents", default: 0, null: false
+    t.bigint "profit_cents", default: 0, null: false
+    t.integer "total_score", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_order_of_services_on_created_by_id"
+    t.index ["os_number"], name: "index_order_of_services_on_os_number", unique: true
+    t.index ["user_id"], name: "index_order_of_services_on_user_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "subtotal_cents", default: 0
@@ -431,7 +448,7 @@ ActiveRecord::Schema.define(version: 2019_03_25_192010) do
   end
 
   create_table "pv_activity_histories", force: :cascade do |t|
-    t.bigint "order_id", null: false
+    t.bigint "order_id"
     t.integer "amount", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -439,7 +456,9 @@ ActiveRecord::Schema.define(version: 2019_03_25_192010) do
     t.bigint "balance", default: 0, null: false
     t.string "kind"
     t.bigint "height"
+    t.bigint "order_of_service_id"
     t.index ["order_id"], name: "index_pv_activity_histories_on_order_id"
+    t.index ["order_of_service_id"], name: "index_pv_activity_histories_on_order_of_service_id"
     t.index ["user_id"], name: "index_pv_activity_histories_on_user_id"
   end
 
@@ -613,6 +632,8 @@ ActiveRecord::Schema.define(version: 2019_03_25_192010) do
   add_foreign_key "moovi_integrations", "club_motors_subscriptions"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "order_of_services", "users"
+  add_foreign_key "order_of_services", "users", column: "created_by_id"
   add_foreign_key "orders", "users"
   add_foreign_key "payment_transactions", "orders"
   add_foreign_key "payment_transactions", "users"
@@ -620,6 +641,7 @@ ActiveRecord::Schema.define(version: 2019_03_25_192010) do
   add_foreign_key "product_setups", "users", column: "installer_id"
   add_foreign_key "products", "careers"
   add_foreign_key "products", "categories"
+  add_foreign_key "pv_activity_histories", "order_of_services"
   add_foreign_key "pv_activity_histories", "orders"
   add_foreign_key "pv_activity_histories", "users"
   add_foreign_key "pv_histories", "orders"

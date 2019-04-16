@@ -36,7 +36,7 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th><%= PvActivityHistory.human_attribute_name(:order) %></th>
+                <th><%= PvActivityHistory.human_attribute_name(:type) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:from) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:dist) %></th>
                 <th><%= PvActivityHistory.human_attribute_name(:kind) %></th>
@@ -47,8 +47,8 @@
             </thead>
             <tfoot>
               <tr>
-                <td colspan="7">Total</td>
-                <td><strong><%= number_with_delimiter pv_activity_histories_sum %></strong></td>
+                <td colspan="6">Total</td>
+                <td colspan="2"><strong><%= number_with_delimiter pv_activity_histories_sum %></strong></td>
               </tr>
             </tfoot>
             <tbody>
@@ -56,9 +56,13 @@
                 <tr>
                   <th><%= pv_activity_history.hashid %></th>
                   <td>
-                    <%= t('.invoice_no', id: pv_activity_history.order.hashid) %>
+                    <% if pv_activity_history.order_id.present? %>
+                      Compra
+                    <% else %>
+                      OS
+                    <% end %>
                   </td>
-                  <td><%= pv_activity_history.order.user.username %> <%= pv_activity_history.order.user.career_kind && "(#{t(pv_activity_history.order.user.career_kind)})" %></td>
+                  <td><%= pv_activity_history.from.username %> <%= pv_activity_history.from.career_kind && "(#{t(pv_activity_history.from.career_kind)})" %></td>
                   <td><%= pv_activity_history.height %></td>
                   <td><%= pv_activity_history.kind.upcase %></td>
                   <td><%= number_with_delimiter pv_activity_history.amount %></td>

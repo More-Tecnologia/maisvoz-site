@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     namespace :installer do
       resources :dashboard, only: [:index]
       resources :product_setups, only: [:index, :show, :new, :create]
+      resources :order_of_services, only: [:index, :new, :create]
     end
 
     # Backoffice

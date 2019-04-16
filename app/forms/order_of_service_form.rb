@@ -15,6 +15,7 @@ class OrderOfServiceForm < Form
 
   validate :os_number_unique
   validate :score_greater_than_zero
+  validate :user_exists
 
   def user
     if document_cpf.present?
@@ -59,12 +60,17 @@ class OrderOfServiceForm < Form
 
   def score_greater_than_zero
     return if total_score >= 0
-    errors.add(:gross_sales, 'quantidade de PVV inválida, deve ser maior que 0')
+    errors.add(:os_number, 'quantidade de PVV inválida, deve ser maior que 0')
   end
 
   def str_to_float(value)
     return 0 if value.blank?
     value.gsub('.', '').gsub(',','.').to_d
+  end
+
+  def user_exists
+    return if user.present?
+    errors.add(:document_cpf, 'usuário inexistente')
   end
 
 end

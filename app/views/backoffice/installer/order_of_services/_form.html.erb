@@ -7,10 +7,15 @@
   <%= f.input :car_plate, wrapper_html: { class: 'col-md-5' }, input_html: { class: 'car-plate-mask' } %>
 </div>
 
-<% if form.user.present? %>
-  <p class="alert alert-info">
-    <%= form.user.name %>
-  </p>
+  <% if form.user.present? %>
+    <p class="alert alert-info">
+      <%= form.user.name %>
+    </p>
+  <% end %>
+
+  <%= f.submit 'Procurar Cliente', class: 'btn btn-default', name: 'search_user' %>
+  <div class="m-b-30"></div>
+
   <h4 class="m-t-0 header-title">
     <b>Informações da OS</b>
   </h4>
@@ -28,8 +33,7 @@
     <li><h5>Lucro:</h5> R$ <%= form.profit %> </li>
     <li><h5>Total de PVVs:</h5> <%= form.total_score %> </li>
   </ul>
-<% end %>
 
-<%= f.submit 'Calcular', class: 'btn btn-primary', name: 'calculate' %>
-<%= f.submit 'Salvar', class: 'btn btn-primary', data: { confirm: 'Tem certeza que deseja salvar? Esta operação é irreversível.' } %>
+<%= f.submit 'Calcular', class: 'btn btn-default', name: 'calculate' %>
+<%= f.submit 'Salvar', class: 'btn btn-primary pull-right', data: { confirm: 'Tem certeza que deseja salvar? Esta operação é irreversível.' } if form.valid? %>
 <% end %>

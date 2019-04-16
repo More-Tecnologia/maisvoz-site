@@ -13,7 +13,9 @@ module Backoffice
       end
 
       def create
-        if form.valid? && params[:commit].present?
+        if params[:search_user].present?
+          render_new
+        elsif form.valid? && params[:commit].present?
           Bonification::PropagateOrderOfServicePoints.new(form).call
           flash[:success] = 'OS registrada com sucesso'
           redirect_to backoffice_installer_order_of_services_path

@@ -3,7 +3,8 @@ module FinancialTypes
   BONUS_KINDS = %i[
     direct_indication_bonus executive_sale_bonus binary_bonus
     reverse_binary_bonus indirect_bonus activity_bonus social_leader_bonus
-    reverse_bonus bonus_chargeback
+    reverse_bonus bonus_chargeback direct_captation_bonus indirect_captation_bonus
+    participation_bonus
   ].freeze
 
   def self.included(base)

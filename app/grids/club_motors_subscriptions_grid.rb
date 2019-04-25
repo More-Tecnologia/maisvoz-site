@@ -6,6 +6,9 @@ class ClubMotorsSubscriptionsGrid < BaseGrid
 
   filter(:id, :integer)
   filter(:plate, :string)
+  filter(:username) do |value, scope|
+    scope.joins(:user).where('users.username ILIKE ?', "%#{value}%")
+  end
 
   column(:id)
   column(:name)

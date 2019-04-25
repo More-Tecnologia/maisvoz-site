@@ -32,7 +32,7 @@ module Bonification
     def credit_bonus
       FinancialEntry.new.tap do |bonus|
         bonus.user        = sponsor
-        bonus.description = "Bônus de venda executiva da compra do usuário #{user.username}. Bônus de #{h.number_to_currency bonus_amount}"
+        bonus.description = "Bônus de venda direta da compra do usuário #{user.username}. Bônus de #{h.number_to_currency bonus_amount}"
         bonus.kind        = FinancialEntry.kinds[:executive_sale_bonus]
         bonus.amount      = bonus_amount
         bonus.balance     = sponsor.balance + bonus_amount
@@ -43,7 +43,7 @@ module Bonification
 
     def create_system_financial_log
       SystemFinancialLog.new.tap do |log|
-        log.description = "Bônus de venda executiva da compra do usuário #{user.username}. Bônus de #{h.number_to_currency bonus_amount}, fatura ID: #{order.hashid}"
+        log.description = "Bônus de venda direta da compra do usuário #{user.username}. Bônus de #{h.number_to_currency bonus_amount}, fatura ID: #{order.hashid}"
         log.kind        = SystemFinancialLog.kinds[:executive_sale_bonus]
         log.amount      = -bonus_amount
         log.order       = order
@@ -54,7 +54,7 @@ module Bonification
     def reverse_bonus
       FinancialEntry.new.tap do |bonus|
         bonus.user        = sponsor
-        bonus.description = "[Estorno] Bônus de venda executiva da compra do usuário #{user.username}. Bônus de #{h.number_to_currency bonus_amount}"
+        bonus.description = "[Estorno] Bônus de venda direta da compra do usuário #{user.username}. Bônus de #{h.number_to_currency bonus_amount}"
         bonus.kind        = FinancialEntry.kinds[:reverse_bonus]
         bonus.amount      = -bonus_amount
         bonus.balance     = sponsor.balance

@@ -70,7 +70,7 @@ module Payment
         tx.order                  = order
         tx.boleto_url             = res['boleto']['url_acesso']
         tx.boleto_barcode         = res['boleto']['linha_digitavel']
-        tx.boleto_expiration_date = Time.zone.today + 7.days
+        tx.boleto_expiration_date = expiration_date
         tx.amount_cents           = order.total_cents
         tx.status                 = BradescoTransactionType::BOLETO_GENERATED
 
@@ -79,7 +79,8 @@ module Payment
     end
 
     def expiration_date
-      order.expire_at < 3.days.ago ? order.expire_at : Time.zone.today + 7.days
+      @expiration_date ||= order.expire_at < 3.days.ago ? order.expire_at : Time.zone.today + 7.days
+      @expiration_date.strftime('%F')
     end
 
     def url

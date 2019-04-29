@@ -57,7 +57,7 @@ module Payment
         nosso_numero: 1000 + order.id,
         carteira: 26,
         valor_titulo: order.total_cents,
-        data_emissao: Time.zone.today,
+        data_emissao: Time.zone.today.strftime('%F'),
         data_vencimento: expiration_date
       }
       params[:token_request_confirmacao_pagamento] = order.token

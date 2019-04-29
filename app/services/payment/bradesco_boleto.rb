@@ -57,8 +57,8 @@ module Payment
         nosso_numero: 1000 + order.id,
         carteira: 26,
         valor_titulo: order.total_cents,
-        data_emissao: Time.zone.today.strftime('%F'),
-        data_vencimento: expiration_date
+        data_emissao: today.strftime('%F'),
+        data_vencimento: expiration_date.strftime('%F')
       }
       params[:token_request_confirmacao_pagamento] = order.token
     end
@@ -70,7 +70,7 @@ module Payment
         tx.order                  = order
         tx.boleto_url             = res['boleto']['url_acesso']
         tx.boleto_barcode         = res['boleto']['linha_digitavel']
-        tx.boleto_expiration_date = expiration_date
+        tx.boleto_expiration_date = expiration_date.strftime('%F')
         tx.amount_cents           = order.total_cents
         tx.status                 = BradescoTransactionType::BOLETO_GENERATED
 
@@ -79,8 +79,11 @@ module Payment
     end
 
     def expiration_date
-      @expiration_date ||= order.expire_at < 3.days.ago ? order.expire_at : Time.zone.today + 7.days
-      @expiration_date.strftime('%F')
+      order.expire_at - 3.days > today ? order.expire_at : today + 7.days
+    end
+
+    def today
+      @today ||= Time.zone.today
     end
 
     def url

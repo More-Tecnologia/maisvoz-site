@@ -17,6 +17,6 @@
 #  index_moovi_integrations_on_club_motors_subscription_id  (club_motors_subscription_id)
 #
 
-class MooviIntegration < ApplicationRecord
+class InspectionIntegration < ApplicationRecord
   belongs_to :club_motors_subscription
 end

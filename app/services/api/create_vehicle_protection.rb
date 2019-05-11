@@ -4,7 +4,7 @@ module Api
     prepend SimpleCommand
 
     def initialize(params)
-      @params = params
+      @inspection = params[:inspection]
     end
 
     def call
@@ -19,37 +19,37 @@ module Api
 
     private
 
-    attr_reader :params, :subscription, :user
+    attr_reader :params, :inspection, :subscription, :user
 
     def create_subscription
       @subscription = ClubMotorsSubscription.new.tap do |s|
-        s.user      = user
-        s.car_model = find_car_model
-        s.status    = ClubMotorsSubscription.statuses['pending']
-        s.type      = ClubMotorsSubscription.types['ancore']
-        s.plate      = params.dig('vistoria').dig('placa')
-        s.chassis    = params.dig('vistoria').dig('chassis')
-        s.cnpj_cpf   = params.dig('vistoria').dig('associado').dig('pessoa').dig('cpf_cnpj')
-        s.owner_name = params.dig('vistoria').dig('associado').dig('fantasia')
-        s.model_year = params.dig('vistoria').dig('preco_fipe').dig('ano_modelo')
-        s.fuel       = params.dig('vistoria').dig('preco_fipe').dig('combustivel').try(:downcase)
-        s.renavam    = params.dig('vistoria').dig('renavam')
-        s.price      = params.dig('vistoria').dig('veiculo_plano').dig('valor_basico').to_d
+        s.user                 = user
+        s.status               = ClubMotorsSubscription.statuses['pending']
+        s.type                 = ClubMotorsSubscription.types['ancore']
+        s.car_model            = CarModel.find_by(name: inspection.dig('model'))
+        s.plate                = inspection.dig('plate')
+        s.chassis              = inspection.dig('chassis')
+        s.cnpj_cpf             = inspection.dig('associated').dig('cpf_cnpj')
+        s.owner_name           = inspection.dig('associated').dig('fantasy') || inspection.dig('associated').dig('name')
+        s.model_year           = inspection.dig('year_fuel')
+        s.fuel                 = inspection.dig('year_fuel')
+        s.renavam              = inspection.dig('renavam')
+        s.price                = inspection.dig('monthly_value')
         s.current_period_start = Time.zone.today
-        s.activated_at = Time.zone.today
+        s.activated_at         = Time.zone.today
 
         s.save!
       end
     end
 
     def create_vehicle_protection
-      MooviIntegration.new.tap do |p|
+      InspectionIntegration.new.tap do |p|
         p.club_motors_subscription = subscription
-        p.payload   = params
-        p.placa     = params.dig('vistoria').dig('placa')
-        p.status    = params.dig('vistoria').dig('status')
-        p.fipe_code = params.dig('vistoria').dig('preco_fipe').dig('codigo')
-        p.price     = params.dig('vistoria').dig('veiculo_plano').dig('valor_basico')
+        p.payload                  = inspection
+        p.placa                    = inspection.dig('plate')
+        p.status                   = inspection.dig('status')
+        p.fipe_code                = inspection.dig('model')
+        p.price                    = inspection.dig('monthly_value')
 
         p.save!
       end
@@ -65,7 +65,7 @@ module Api
     end
 
     def find_by_cpf
-      cpf = params.dig('vistoria').dig('associado').dig('pessoa').dig('cpf_cnpj')
+      cpf = inspection.dig('associated').dig('cpf_cnpj')
       cpf = CPF.new(cpf)
 
       return false if cpf.blank?
@@ -74,16 +74,11 @@ module Api
     end
 
     def find_by_username
-      username = params.dig('vistoriador').dig('login')
+      username = inspection.dig('inspector_login')
 
       return false if username.blank?
 
       @user = User.find_by(username: username)
-    end
-
-    def find_car_model
-      fipe_code = params.dig('vistoria').dig('preco_fipe').dig('codigo')
-      CarModel.find_by(fipe_code: fipe_code)
     end
 
   end

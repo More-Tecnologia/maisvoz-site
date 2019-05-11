@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_180251) do
+ActiveRecord::Schema.define(version: 2019_05_11_113524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -246,6 +246,18 @@ ActiveRecord::Schema.define(version: 2019_04_16_180251) do
     t.index ["user_id"], name: "index_financial_entries_on_user_id"
   end
 
+  create_table "inspection_integrations", force: :cascade do |t|
+    t.jsonb "payload"
+    t.bigint "club_motors_subscription_id"
+    t.string "placa"
+    t.string "status"
+    t.string "fipe_code"
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_motors_subscription_id"], name: "index_inspection_integrations_on_club_motors_subscription_id"
+  end
+
   create_table "investment_shares", force: :cascade do |t|
     t.bigint "investment_id"
     t.bigint "user_id"
@@ -280,18 +292,6 @@ ActiveRecord::Schema.define(version: 2019_04_16_180251) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["status"], name: "index_investments_on_status"
-  end
-
-  create_table "moovi_integrations", force: :cascade do |t|
-    t.jsonb "payload"
-    t.bigint "club_motors_subscription_id"
-    t.string "placa"
-    t.string "status"
-    t.string "fipe_code"
-    t.decimal "price", precision: 8, scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["club_motors_subscription_id"], name: "index_moovi_integrations_on_club_motors_subscription_id"
   end
 
   create_table "options", force: :cascade do |t|
@@ -627,9 +627,9 @@ ActiveRecord::Schema.define(version: 2019_04_16_180251) do
   add_foreign_key "debits", "users", column: "operated_by_id"
   add_foreign_key "financial_entries", "orders"
   add_foreign_key "financial_entries", "users"
+  add_foreign_key "inspection_integrations", "club_motors_subscriptions"
   add_foreign_key "investment_shares", "investments"
   add_foreign_key "investment_shares", "users"
-  add_foreign_key "moovi_integrations", "club_motors_subscriptions"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "order_of_services", "users"

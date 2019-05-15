@@ -12,6 +12,7 @@ module Api
         ActiveRecord::Base.transaction do
           create_subscription
           create_vehicle_protection
+          create_order
         end
         return subscription
       end
@@ -53,6 +54,15 @@ module Api
 
         p.save!
       end
+    end
+
+    def create_order
+      form = ClubMotorsNewSubscriptionForm.new(
+        user: user,
+        club_motors_id: subscription.id,
+        terms_of_service: true
+      )
+      Subscriptions::ClubMotorsSignup.new(form: form).call
     end
 
     def find_user

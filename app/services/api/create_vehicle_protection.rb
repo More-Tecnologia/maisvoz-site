@@ -33,7 +33,7 @@ module Api
         s.cnpj_cpf             = inspection.dig('associated').dig('cpf_cnpj')
         s.owner_name           = inspection.dig('associated').dig('fantasy') || inspection.dig('associated').dig('name')
         s.model_year           = inspection.dig('year_fuel')
-        s.fuel                 = inspection.dig('year_fuel')
+        s.fuel                 = inspection.dig('year_fuel').split('/')[1].downcase.strip
         s.renavam              = inspection.dig('renavam')
         s.price                = inspection.dig('monthly_value')
         s.current_period_start = Time.zone.today

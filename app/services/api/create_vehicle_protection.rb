@@ -35,7 +35,7 @@ module Api
         s.model_year           = inspection.dig('year_fuel')
         s.fuel                 = inspection.dig('year_fuel').split('/')[1].downcase.strip
         s.renavam              = inspection.dig('renavam')
-        s.price                = inspection.dig('monthly_value')
+        s.price                = inspection.dig('monthly_value').to_d
         s.current_period_start = Time.zone.today
         s.activated_at         = Time.zone.today
 

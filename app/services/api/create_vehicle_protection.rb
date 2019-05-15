@@ -57,12 +57,19 @@ module Api
     end
 
     def create_order
-      form = ClubMotorsNewSubscriptionForm.new(
-        user: user,
-        club_motors_id: subscription.id,
-        terms_of_service: true
-      )
-      Subscriptions::ClubMotorsSignup.new(form: form).call
+      Order.new.tap do |order|
+        order.status         = Order.statuses[:pending_payment]
+        order.type           = Order.types[:futurepro_adhesion]
+        order.user           = user
+        order.payable        = subscription
+        order.total_cents    = inspection.dig('monthly_value').to_d * 100
+        order.subtotal_cents = inspection.dig('monthly_value').to_d * 100
+        order.expire_at      = 10.days.from_now
+        order.tax_cents      = 0
+        order.shipping_cents = 0
+
+        order.save!
+      end
     end
 
     def find_user

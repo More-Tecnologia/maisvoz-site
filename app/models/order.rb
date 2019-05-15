@@ -42,6 +42,7 @@ class Order < ApplicationRecord
   enum type: {
     clubmotors_adhesion: 'clubmotors_adhesion',
     tracker_adhesion: 'tracker_adhesion',
+    futurepro_adhesion: 'futurepro_adhesion',
     upgrade: 'upgrade',
     monthly_fee: 'monthly_fee',
     participation_acc: 'participation_acc'

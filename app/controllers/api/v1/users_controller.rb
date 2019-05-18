@@ -14,7 +14,7 @@ module Api
         if signup_form.valid? && user = Api::CreateUser.new(signup_form).call
           render(json: { status: 'SUCCESS', data: UserSerializer.new(user).serialize }, status: :ok)
         else
-          render(json: { status: 'ERROR', data: signup_form.errors }, status: :bad_request)
+          render(json: { status: 'ERROR', data: signup_form.errors.to_h.map {|k,v| "#{k}: #{v}"}.join(', ') }, status: :bad_request)
         end
       end
 

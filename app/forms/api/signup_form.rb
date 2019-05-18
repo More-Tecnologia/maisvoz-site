@@ -27,34 +27,34 @@ module Api
 
     def valid_sponsor
       if sponsor.blank?
-        errors.add(:sponsor_username, 'patrocinador não existe')
+        errors.add(:sponsor_username, 'Não existe')
       elsif !sponsor.active?
-        errors.add(:sponsor_username, 'patrocinador inativo')
+        errors.add(:sponsor_username, 'Inativo')
       end
     end
 
     def username_available
       return unless User.exists?(username: username)
 
-      errors.add(:username, 'nome de usuário indisponível')
+      errors.add(:username, 'Indisponível')
     end
 
     def email_unique
       return unless User.exists?(email: email)
 
-      errors.add(:email, 'email já cadastrado')
+      errors.add(:email, 'Já cadastrado')
     end
 
     def document_cpf_is_unique
       return unless User.exists?(document_cpf: cpf)
 
-      errors.add(:cpf, 'CPF já cadastrado')
+      errors.add(:cpf, 'Já cadastrado')
     end
 
     def cpf_is_valid
       return if CPF.valid?(cpf)
 
-      errors.add(:cpf, 'CPF inválido')
+      errors.add(:cpf, 'Inválido')
     end
 
     def strong_password
@@ -63,7 +63,7 @@ module Api
       checker = StrongPassword::StrengthChecker.new(password)
       return if checker.is_strong?(min_entropy: 4)
 
-      errors.add(:password, 'senha fraca')
+      errors.add(:password, 'Senha fraca')
     end
 
   end

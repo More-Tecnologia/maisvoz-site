@@ -58,6 +58,8 @@ module Api
     end
 
     def strong_password
+      return if password.blank?
+
       checker = StrongPassword::StrengthChecker.new(password)
       return if checker.is_strong?(min_entropy: 4)
 

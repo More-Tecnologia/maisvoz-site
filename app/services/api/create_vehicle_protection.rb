@@ -73,7 +73,7 @@ module Api
     end
 
     def find_user
-      if find_by_cpf.blank? && find_by_username.blank?
+      if find_by_cpf.blank? && find_by_cnpj.blank? && find_by_username.blank?
         errors.add(:user, 'not found')
         false
       else
@@ -83,11 +83,26 @@ module Api
 
     def find_by_cpf
       cpf = inspection.dig('associated').dig('cpf_cnpj')
+
+      return false if cpf.size > 14
+
       cpf = CPF.new(cpf)
 
       return false if cpf.blank?
 
       @user = User.where('document_cpf = ? OR document_cpf = ?', cpf.formatted, cpf.stripped).first
+    end
+
+    def find_by_cnpj
+      cnpj = inspection.dig('associated').dig('cpf_cnpj')
+
+      return false if cnpj.size > 14
+
+      cnpj = CNPJ.new(cnpj)
+
+      return false if cnpj.blank?
+
+      @user = User.where('document_cnpj = ? OR document_cnpj = ?', cnpj.formatted, cnpj.stripped).first
     end
 
     def find_by_username

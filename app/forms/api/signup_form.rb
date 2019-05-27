@@ -5,18 +5,18 @@ module Api
     attribute :username
     attribute :name
     attribute :email
-    attribute :cpf
+    attribute :cpf_cnpj
     attribute :password
 
-    validates :sponsor_username, :username, :name, :email, :cpf, :password, presence: true
+    validates :sponsor_username, :username, :name, :email, :cpf_cnpj, :password, presence: true
     validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
     validates :email, email: true
 
     validate :valid_sponsor
     validate :username_available
     validate :email_unique
-    validate :document_cpf_is_unique
-    validate :cpf_is_valid
+    validate :document_is_unique
+    validate :document_is_valid
     validate :strong_password
 
     def sponsor
@@ -45,16 +45,18 @@ module Api
       errors.add(:email, 'Já cadastrado')
     end
 
-    def document_cpf_is_unique
-      return unless User.exists?(document_cpf: cpf)
+    def document_is_unique
+      return unless User.exists?(document_cpf: cpf_cnpj)
+      return unless User.exists?(document_cnpj: cpf_cnpj)
 
-      errors.add(:cpf, 'Já cadastrado')
+      errors.add(:cpf_cnpj, 'Já cadastrado')
     end
 
-    def cpf_is_valid
-      return if CPF.valid?(cpf)
+    def document_is_valid
+      return if CPF.valid?(cpf_cnpj)
+      return if CNPJ.valid?(cpf_cnpj)
 
-      errors.add(:cpf, 'Inválido')
+      errors.add(:cpf_cnpj, 'Inválido')
     end
 
     def strong_password

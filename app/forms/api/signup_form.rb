@@ -25,12 +25,20 @@ module Api
 
     def cpf
       return unless CPF.valid?(cpf_cnpj)
-      cpf_cnpj
+      @cpf ||= cpf_cnpj
     end
 
     def cnpj
       return unless CNPJ.valid?(cpf_cnpj)
-      cpf_cnpj
+      @cnpj ||= cpf_cnpj
+    end
+
+    def registration_type
+      if cnpj.present?
+        'pj'
+      else
+        'pf'
+      end
     end
 
     private

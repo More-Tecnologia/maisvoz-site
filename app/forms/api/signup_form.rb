@@ -23,6 +23,16 @@ module Api
       @sponsor ||= User.find_by(username: sponsor_username)
     end
 
+    def cpf
+      return unless CPF.valid?(cpf_cnpj)
+      cpf_cnpj
+    end
+
+    def cnpj
+      return unless CNPJ.valid?(cpf_cnpj)
+      cpf_cnpj
+    end
+
     private
 
     def valid_sponsor

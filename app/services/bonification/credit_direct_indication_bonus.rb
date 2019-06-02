@@ -2,7 +2,8 @@ module Bonification
   class CreditDirectIndicationBonus
 
     # 30% dos PVs
-    PERCENTAGE = 0.3
+    # PERCENTAGE = 0.3
+    PERCENTAGE = 0.6
 
     def initialize(order)
       @order = order

@@ -36,7 +36,6 @@ module Backoffice
         'https://s3.amazonaws.com/promotional-material/images/social-media/9.jpeg',
         'https://s3.amazonaws.com/promotional-material/images/social-media/10.jpeg',
         'https://s3.amazonaws.com/promotional-material/images/social-media/11.jpeg',
-        'https://s3.amazonaws.com/promotional-material/images/social-media/Susp.png',
         'https://s3.amazonaws.com/promotional-material/images/social-media/correia.png',
         'https://s3.amazonaws.com/promotional-material/images/social-media/freios.png',
         'https://s3.amazonaws.com/promotional-material/images/social-media/oleo.png',

@@ -2,9 +2,9 @@ module Trackers
   class CalculateAdhesionPrice
 
     DISCOUNTS = {
-      standard: 0.2,
-      master: 0.3,
-      premium: 0.4
+      standard: 0.1,
+      master: 0.1,
+      premium: 0.1
     }.freeze
 
     def initialize(user:, tracker:)

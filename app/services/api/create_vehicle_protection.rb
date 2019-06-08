@@ -13,6 +13,7 @@ module Api
           create_subscription
           create_vehicle_protection
           create_order
+          send_notification
         end
         return subscription
       end
@@ -70,6 +71,10 @@ module Api
 
         order.save!
       end
+    end
+
+    def send_notification
+      InspectionMailer.with(inspection: subscription).approved.deliver_later
     end
 
     def find_user

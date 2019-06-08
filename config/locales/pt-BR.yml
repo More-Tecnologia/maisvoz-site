@@ -77,6 +77,8 @@ pt-BR:
     order_status: Status da Fatura
     binary_position: Posição no Binário
     binary_qualified: Binário
+    active_until: Ativo até
+    registration_type: Tipo de Conta
     pva_total: Total de PVA
     from: De
     to: Para

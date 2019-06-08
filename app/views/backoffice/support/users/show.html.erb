@@ -24,7 +24,7 @@
 
               <hr>
 
-              <%= link_to('Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-lg') if current_user.username == 'sistema' %>
+              <%= link_to('Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-sm') if current_user.username == 'sistema' %>
 
               <div class="text-left m-t-30">
                 <table class="table table-striped" style="word-break: break-word;">
@@ -46,7 +46,7 @@
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:active_until) %>:</strong></td>
-                    <td><%= user.active_until %></td>
+                    <td><%= l user.active_until %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:user) %>:</strong></td>
@@ -66,7 +66,7 @@
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:registration_type) %>:</strong></td>
-                    <td><%= user.registration_type %></td>
+                    <td class="text-uppercase"><%= user.registration_type %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:document_cpf) %>:</strong></td>
@@ -98,7 +98,7 @@
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:email) %>:</strong></td>
-                    <td><%= user.email %></td>
+                    <td><%= link_to user.email, "mailto:#{user.email}" %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:address) %>:</strong></td>
@@ -144,32 +144,33 @@
 
   <div class="col-md-8">
     <div class="row">
-      <div class="card-box">
-        <h3>Documentos</h3>
+      <div class="col-md-12">
+        <div class="widget-panel widget-style-2 bg-white">
+          <h3>Documentos</h3>
 
-        <% if user.pending_verification? %>
-          <%= form_tag(backoffice_support_documents_validation_path(id: user.id, status: User.document_verification_statuses['refused_verification']), method: :put) do %>
-            <label for="">Razão:</label>
-            <%= text_field_tag :reason, nil, class: 'form-control' %>
-            <br>
-            <%= submit_tag 'Rejeitar apagando fotos ', class: 'btn btn-danger pull-left', name: 'delete' %>
-            <%= submit_tag 'Rejeitar sem apagar fotos ', class: 'btn btn-danger pull-left m-l-15', name: 'no-delete' %>
+          <% if user.pending_verification? %>
+            <%= form_tag(backoffice_support_documents_validation_path(id: user.id, status: User.document_verification_statuses['refused_verification']), method: :put) do %>
+              <label for="">Razão:</label>
+              <%= text_field_tag :reason, nil, class: 'form-control' %>
+              <br>
+              <%= submit_tag 'Rejeitar apagando fotos ', class: 'btn btn-danger pull-left', name: 'delete' %>
+              <%= submit_tag 'Rejeitar sem apagar fotos ', class: 'btn btn-danger pull-left m-l-15', name: 'no-delete' %>
+            <% end %>
+            <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
+          <% elsif user.refused_verification? %>
+            <p><%= user.document_refused_reason %> - <%= user.document_verification_updated_at %></p>
+            <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
           <% end %>
-          <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
-        <% elsif user.refused_verification? %>
-          <p><%= user.document_refused_reason %> - <%= user.document_verification_updated_at %></p>
-          <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
-        <% end %>
 
+          <hr>
 
-        <hr>
+          <%= link_to(cl_image_tag(user.document_rg_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_rg_photo.path), target: '_blank') if user.document_rg_photo %>
+          <%= link_to(cl_image_tag(user.document_cpf_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_cpf_photo.path), target: '_blank') if user.document_cpf_photo %>
+          <%= link_to(cl_image_tag(user.document_pis_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_pis_photo.path), target: '_blank') if user.document_pis_photo %>
+          <%= link_to(cl_image_tag(user.document_address_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_address_photo.path), target: '_blank') if user.document_address_photo %>
+          <%= link_to(cl_image_tag(user.document_scontract_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_scontract_photo.path), target: '_blank') if user.document_scontract_photo %>
 
-        <%= link_to(cl_image_tag(user.document_rg_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_rg_photo.path), target: '_blank') if user.document_rg_photo %>
-        <%= link_to(cl_image_tag(user.document_cpf_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_cpf_photo.path), target: '_blank') if user.document_cpf_photo %>
-        <%= link_to(cl_image_tag(user.document_pis_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_pis_photo.path), target: '_blank') if user.document_pis_photo %>
-        <%= link_to(cl_image_tag(user.document_address_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_address_photo.path), target: '_blank') if user.document_address_photo %>
-        <%= link_to(cl_image_tag(user.document_scontract_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_scontract_photo.path), target: '_blank') if user.document_scontract_photo %>
-
+        </div>
       </div>
     </div>
   </div>

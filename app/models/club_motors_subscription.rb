@@ -87,7 +87,7 @@ class ClubMotorsSubscription < ApplicationRecord
         fee: car_model.club_motors_fee
       ).call
     elsif tracker?
-      4000
+      Subscriptions::CalculateTrackerFee.new(user: user, format: :cents).call
     else
       price_cents
     end

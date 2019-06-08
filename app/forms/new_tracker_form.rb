@@ -1,7 +1,5 @@
 class NewTrackerForm < Form
 
-  MONTHLY_FEE = 40.0
-
   attribute :user
   attribute :tracker_id
   attribute :car_brand_id
@@ -35,7 +33,7 @@ class NewTrackerForm < Form
   end
 
   def monthly_fee
-    MONTHLY_FEE
+    Subscriptions::CalculateTrackerFee.new(user: user).call
   end
 
   def tracker_price

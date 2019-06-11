@@ -32,7 +32,7 @@ class PayWithVoucherForm < Form
   end
 
   def valid_order
-    return if order_id.blank?
+    return if order_id.blank? || order.futurepro_adhesion?
 
     if order.blank?
       errors.add(:order_id, 'Pedido inválido')

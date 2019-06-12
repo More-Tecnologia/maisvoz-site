@@ -46,7 +46,7 @@ module Subscriptions
       @current_period_end ||= Date.new(
         (now + 1.month).year,
         (now + 1.month).month,
-        subscription.billing_day_of_month
+        subscription.billing_day_of_month || now.day
       )
     end
 

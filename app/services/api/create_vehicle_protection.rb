@@ -33,10 +33,11 @@ module Api
         s.chassis              = inspection.dig('chassis')
         s.cnpj_cpf             = inspection.dig('associated').dig('cpf_cnpj')
         s.owner_name           = inspection.dig('associated').dig('fantasy') || inspection.dig('associated').dig('name')
-        s.model_year           = inspection.dig('year_fuel')
+        s.model_year           = inspection.dig('year_fuel').split('/')[0].strip
         s.fuel                 = inspection.dig('year_fuel').split('/')[1].downcase.strip
         s.renavam              = inspection.dig('renavam')
         s.price                = inspection.dig('monthly_value').to_d
+        s.balance_cents        = inspection.dig('monthly_value').to_d * 100
         s.current_period_start = Time.zone.today
         s.activated_at         = Time.zone.today
 

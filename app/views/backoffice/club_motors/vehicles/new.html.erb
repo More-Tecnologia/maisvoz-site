@@ -1,51 +1,87 @@
-<!-- Page-Title -->
-<div class="row">
-  <div class="col-sm-12">
-    <h4 class="page-title m-b-30">Novo Veículo</h4>
-  </div>
-</div>
-
-<% if form.monthly_fee.present? %>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="card-box m-b-20 card-body">
-            <h5 class="card-title">Tipo de Mensalidade</h5>
-            <p class="card-text"><%= form.club_motors_fee.name %> - (<%= form.car_brand.name %>) <%= form.car_model.name %></p>
-            <a href="#" class="btn btn-success"><%= number_to_currency form.monthly_fee %>/mês</a>
-        </div>
-    </div>
-</div>
-<% end %>
-
 <div class="row">
   <div class="col-lg-12">
     <div class="card-box">
+      <h1>Club Future Motors + Você</h1>
+      <br>
+
       <%= simple_form_for form, url: backoffice_club_motors_vehicles_path, method: :post do |f| %>
-        <div class="row">
-        <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-brand' } %>
-        <%= f.input :car_model_id, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-6' } %>
-        <%= f.input :chassis, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :plate, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-plate' } %>
-        <%= f.input :cnpj_cpf, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-cnpj-cpf' } %>
-        <%= f.input :owner_name, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-owner-name' } %>
-        <%= f.input :manufacture_year, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-manufacture-year' } %>
-        <%= f.input :model_year, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-model-year' } %>
-        <%= f.input :fuel, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.fuels.map {|k,v| [t(k), k]} %>
-        <%= f.input :mileage, wrapper_html: { class: 'col-sm-3' } %>
-        <%= f.input :renavam, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-renavam' } %>
-        <%= f.input :gearbox, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.gearboxes.map {|k,v| [t(k), k]} %>
-        <%= f.input :taxi, wrapper_html: { class: 'col-sm-3' }, collection: ['Sim', 'Não'] %>
-        <%= f.input :mercosul_code, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.mercosul_codes.map {|k,v| [t(k), k]} %>
-        <%= f.input :color, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-color' } %>
-        <%= f.input :color_type, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.color_types.map {|k,v| [t(k), k]} %>
-        <%= f.input :origin, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.origins.map {|k,v| [t(k), k]} %>
+      <div class="col-lg-9">
+        <div class="card-deck-wrapper">
+          <div class="card-deck">
+            <% form.adhesion_fee_list.each do |fee| %>
+              <div class="card-container">
+                <div class="card m-b-20">
+                  <div class="card-body">
+                    <%= image_tag "plan_packages/#{fee[:name]}.png", class: 'img-responsive' %>
+                    <h3><%= t fee[:name] %></h3>
+                    <span><%= number_to_currency fee[:price] %></span>
+                  </div>
+                </div>
+                <%= radio_button('club_motors_subscription_form', 'plan_package', fee[:name], checked: fee[:name] == form.plan_package) %>
+              </div>
+            <% end %>
+          </div>
         </div>
+
+        <div class="row">
+          <%= f.input :car_brand_id, collection: CarBrand.order(:name).map {|brand| [brand.name, brand.brand_code]}, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-brand' } %>
+          <%= f.input :car_model_id, collection: form.car_models_list.map {|model| [model.name, model.id]}, wrapper_html: { class: 'col-sm-6' } %>
+          <%= f.input :chassis, wrapper_html: { class: 'col-sm-3' } %>
+          <%= f.input :plate, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-plate' } %>
+          <%= f.input :cnpj_cpf, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-cnpj-cpf' } %>
+          <%= f.input :owner_name, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-owner-name' } %>
+          <%= f.input :manufacture_year, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-manufacture-year' } %>
+          <%= f.input :model_year, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-model-year' } %>
+          <%= f.input :fuel, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.fuels.map {|k,v| [t(k), k]} %>
+          <%= f.input :mileage, wrapper_html: { class: 'col-sm-3' } %>
+          <%= f.input :renavam, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-renavam' } %>
+          <%= f.input :gearbox, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.gearboxes.map {|k,v| [t(k), k]} %>
+          <%= f.input :taxi, wrapper_html: { class: 'col-sm-3' }, collection: ['Sim', 'Não'] %>
+          <%= f.input :mercosul_code, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.mercosul_codes.map {|k,v| [t(k), k]} %>
+          <%= f.input :color, wrapper_html: { class: 'col-sm-3' }, input_html: { class: 'input-color' } %>
+          <%= f.input :color_type, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.color_types.map {|k,v| [t(k), k]} %>
+          <%= f.input :origin, wrapper_html: { class: 'col-sm-3' }, collection: ClubMotorsSubscription.origins.map {|k,v| [t(k), k]} %>
+        </div>
+
+        <div class="row">
+          <h2>Incluir assistência 24h?</h2>
+          <p>Será adicionado a sua mensalidade o valor do plano de assistência 24h selecionado</p>
+          <%= f.input :assistance_24h, as: :boolean, label: 'Assistência 24h', unchecked_value: false %>
+
+          <div class="col-md-4 m-b-20">
+            <h4>Ouro 1200 KM</h4>
+            R$ 25,00
+          </div>
+          <div class="col-md-4 m-b-20">
+            <h4>Prata 800 KM</h4>
+            R$ 20,00
+          </div>
+          <div class="col-md-4 m-b-20">
+            <h4>Bronze 400 KM</h4>
+            R$ 15,00
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        Taxa de entrada será de:
+        <h3><%= number_to_currency form.monthly_fee %></h3>
+        Sua mensalidade será de:
+        <h2><%= number_to_currency form.monthly_fee %></h2>
+      </div>
+
+      <div class="card m-t-20 m-b-20">
+        <div class="card-body">
+          <p>Aceite o contrato de adesão ao Clube de Empreendedores Future Motors</p>
+          <a href="https://drive.google.com/open?id=16piWVbYz8363k7y8AEP_0hm5nH1xW7QK" target="_blank"><i class="fa fa-file-pdf"></i> Contrato de Adesão</a>
+          <%= f.input :terms_of_service, as: :boolean, label: 'Aceito os termos de adesão' %>
+        </div>
+      </div>
 
         <div class="row">
           <div class="col-md-12">
             <div class="card-box">
               <%= render partial: 'terms' %>
-              <%= f.input :terms_of_service, as: :boolean, label: 'Termos de Serviço' %>
             </div>
           </div>
         </div>

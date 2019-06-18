@@ -36,7 +36,7 @@
               <tr>
                 <td><%= vehicle.hashid %></td>
                 <td><%= @package_name %></td>
-                <td><%= t vehicle.type %></td>
+                <td><%= t vehicle.type %> <%= " - (#{t vehicle.plan_package})" if vehicle.clubmotors? %></td>
                 <td><%= vehicle.car_model.name %></td>
                 <td><%= vehicle.plate %></td>
                 <td><%= t vehicle.status %></td>

@@ -35,6 +35,8 @@
 #  price_cents           :bigint(8)        default(0), not null
 #  dr_response           :jsonb
 #  dr_recorded           :boolean          default(FALSE)
+#  plan_package          :string
+#  assistance_24h        :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -64,6 +66,7 @@ class ClubMotorsSubscription < ApplicationRecord
     active: 'active'
   }
   enum type: { clubmotors: 'clubmotors', ancore: 'ancore', tracker: 'tracker' }
+  enum plan_package: { gold: 'gold', silver: 'silver', bronze: 'bronze' }
 
   has_many :orders, as: :payable
 
@@ -83,8 +86,9 @@ class ClubMotorsSubscription < ApplicationRecord
       return 0 if product.blank?
 
       Subscriptions::CalculateClubMotorsFee.new(
-        product: product,
-        fee: car_model.club_motors_fee
+        assistance_24h: assistance_24h,
+        fee: car_model.club_motors_fee,
+        plan_package: plan_package
       ).call
     elsif tracker?
       Subscriptions::CalculateTrackerFee.new(user: user, format: :cents).call

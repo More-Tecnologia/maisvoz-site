@@ -20,6 +20,8 @@ class ClubMotorsSubscriptionForm < Form
   attribute :color_type
   attribute :origin
   attribute :terms_of_service
+  attribute :plan_package
+  attribute :assistance_24h
 
   validates :car_brand_id, presence: true, if: :new_vehicle?
   validates :car_model_id, presence: true, if: :new_vehicle?
@@ -36,6 +38,7 @@ class ClubMotorsSubscriptionForm < Form
   validates :color, presence: true
   validates :color_type, presence: true
   validates :origin, presence: true
+  validates :plan_package, presence: true
   validates :plate, length: { is: 7 }
   validates :terms_of_service, acceptance: true
 
@@ -51,10 +54,31 @@ class ClubMotorsSubscriptionForm < Form
     ).where.not(club_motors_fee: nil).order(:name).select(:id, :name)
   end
 
-  def monthly_fee
-    return if car_brand.blank? || car_model.blank?
+  def adhesion_fee_list
+    return [] if club_motors_fee.blank?
+    [
+      { name: 'gold', price: club_motors_fee.premium_fee_cents / 1e2 },
+      { name: 'silver', price: club_motors_fee.master_fee_cents / 1e2 },
+      { name: 'bronze', price: club_motors_fee.standard_fee_cents / 1e2 }
+    ]
+  end
 
-    Subscriptions::CalculateClubMotorsFee.new(product: user.product, fee: club_motors_fee).call / 1e2
+  def assistance_24h_price
+    return 0 if assistance_24h.blank?
+
+    prices = {
+      gold: 25,
+      silver: 20,
+      bronze: 15
+    }
+
+    prices[plan_package.to_sym]
+  end
+
+  def monthly_fee
+    return if car_brand.blank? || car_model.blank? || plan_package.blank?
+
+    adhesion_fee_list.select {|i| i[:name] == plan_package}[0][:price] + assistance_24h_price
   end
 
   def club_motors_fee

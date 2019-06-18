@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_11_113524) do
+ActiveRecord::Schema.define(version: 2019_06_11_115801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -206,6 +206,8 @@ ActiveRecord::Schema.define(version: 2019_05_11_113524) do
     t.bigint "price_cents", default: 0, null: false
     t.jsonb "dr_response"
     t.boolean "dr_recorded", default: false
+    t.string "plan_package"
+    t.boolean "assistance_24h", default: false
     t.index ["car_model_id"], name: "index_club_motors_subscriptions_on_car_model_id"
     t.index ["user_id"], name: "index_club_motors_subscriptions_on_user_id"
   end

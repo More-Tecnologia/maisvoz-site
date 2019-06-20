@@ -6,6 +6,7 @@
 
       <%= simple_form_for form, url: backoffice_club_motors_vehicles_path, method: :post do |f| %>
       <div class="col-lg-9">
+
         <div class="card-deck-wrapper">
           <div class="card-deck">
             <% form.adhesion_fee_list.each do |fee| %>
@@ -78,13 +79,6 @@
         </div>
       </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card-box">
-              <%= render partial: 'terms' %>
-            </div>
-          </div>
-        </div>
 
         <%= f.submit "Ativar cadastro do veículo ao ClubMotors", class: 'btn btn-primary btn-block' %>
       <% end %>
@@ -94,7 +88,7 @@
 
 <script>
   window.onload = function(){
-    $('#club_motors_subscription_form_car_brand_id, #club_motors_subscription_form_car_model_id').change(function () {
+    $('#club_motors_subscription_form_car_brand_id, #club_motors_subscription_form_car_model_id, #club_motors_subscription_form_assistance_24h, #club_motors_subscription_form_plan_package_gold, #club_motors_subscription_form_plan_package_silver, #club_motors_subscription_form_plan_package_bronze').change(function () {
       $(this).parents('form').submit();
     });
 

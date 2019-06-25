@@ -81,10 +81,8 @@ class ClubMotorsSubscription < ApplicationRecord
     "#{car_model.car_brand.name} - #{car_model.name}"
   end
 
-  def calculate_price_cents(product = user.product)
+  def calculate_price_cents
     if clubmotors?
-      return 0 if product.blank?
-
       Subscriptions::CalculateClubMotorsFee.new(
         assistance_24h: assistance_24h,
         fee: car_model.club_motors_fee,

@@ -22,7 +22,7 @@ module Backoffice
     end
 
     def last_qualifications
-      @last_qualifications ||= CareerHistory.order(created_at: :desc).includes(:user).first(10)
+      @last_qualifications ||= CareerHistory.where('user_id > 3').order(created_at: :desc).includes(:user).first(10)
     end
 
     def last_withdrawals

@@ -214,7 +214,7 @@ pt-BR:
         invoice_no: 'PV gerado do usuário %{username}'
     pv_activity_histories:
       index:
-        title: Histórico de PVV e PVM
+        title: Histórico de PVV, PVM e PVG
         invoice_no: 'PV gerado da fatura ID: %{id}'
         no_data: Nenhum registro de pv de atividade encontrado
     accumulated_pva:

@@ -46,7 +46,7 @@
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:active_until) %>:</strong></td>
-                    <td><%= l user.active_until %></td>
+                    <td><%= l user.active_until unless user.active_until.blank? %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:user) %>:</strong></td>

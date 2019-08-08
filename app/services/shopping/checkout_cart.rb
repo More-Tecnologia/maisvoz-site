@@ -19,6 +19,7 @@ module Shopping
     attr_reader :cart
 
     def update_cart
+      cart.expire_at = 7.days.from_now
       cart.pending_payment!
     end
 

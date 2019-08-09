@@ -13,6 +13,10 @@ module Backoffice
 
     def generate_boleto
       order = current_user.orders.find_by_hashid(params[:order_id])
+      if order.expire_at.blank?
+        order.expire_at = 7.days.from_now
+        order.save!
+      end
 
       Payment::BradescoBoleto.new(order).call
 

@@ -13,7 +13,6 @@ module Api
           create_subscription
           create_vehicle_protection
           create_order
-          send_notification
         end
         return subscription
       end

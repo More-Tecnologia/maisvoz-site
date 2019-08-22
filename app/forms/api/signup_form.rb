@@ -64,8 +64,11 @@ module Api
     end
 
     def document_is_unique
-      return unless User.exists?(document_cpf: cpf_cnpj)
-      return unless User.exists?(document_cnpj: cpf_cnpj)
+      if registration_type == 'pf'
+        return unless User.exists?(document_cpf: cpf_cnpj)
+      else
+        return unless User.exists?(document_cnpj: cpf_cnpj)
+      end
 
       errors.add(:cpf_cnpj, 'Já cadastrado')
     end
@@ -80,8 +83,8 @@ module Api
     def strong_password
       return if password.blank?
 
-      checker = StrongPassword::StrengthChecker.new(password)
-      return if checker.is_strong?(min_entropy: 4)
+      checker = StrongPassword::StrengthChecker.new(min_entropy: 4)
+      return if checker.is_strong?(password)
 
       errors.add(:password, 'Senha fraca')
     end

@@ -14,13 +14,17 @@ module Api
           create_vehicle_protection
           create_order
         end
-        return subscription
+        return {
+          order: order.hashid,
+          type: order.type,
+          name: user.name
+        }
       end
     end
 
     private
 
-    attr_reader :params, :inspection, :subscription, :user
+    attr_reader :params, :inspection, :subscription, :user, :order
 
     def create_subscription
       @subscription = ClubMotorsSubscription.new.tap do |s|
@@ -58,7 +62,7 @@ module Api
     end
 
     def create_order
-      Order.new.tap do |order|
+      @order = Order.new.tap do |order|
         order.status         = Order.statuses[:pending_payment]
         order.type           = Order.types[:futurepro_adhesion]
         order.user           = user

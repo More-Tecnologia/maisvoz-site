@@ -121,6 +121,7 @@ Rails.application.routes.draw do
           post :sign_in
           post :sign_up
           post :find_by_cpf
+          post :find_by_cnpj
           post :remember_password
         end
       end

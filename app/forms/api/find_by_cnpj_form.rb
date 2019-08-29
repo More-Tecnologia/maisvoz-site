@@ -1,14 +1,14 @@
 module Api
-  class FindByCpfForm < Form
+  class FindByCnpjForm < Form
 
-    attribute :cpf
+    attribute :cnpj
     attribute :user
 
-    validates :cpf, presence: true
+    validates :cnpj, presence: true
     validate :user_exists
 
-    def cpf=(value)
-      super CPF.new(value).formatted
+    def cnpj=(value)
+      super CNPJ.new(value).formatted
     end
 
     def user_serialized
@@ -18,7 +18,7 @@ module Api
     private
 
     def user_exists
-      self.user = User.find_by(document_cpf: cpf, registration_type: 'pf')
+      self.user = User.find_by(document_cnpj: cnpj, registration_type: 'pj')
       return if user.present?
 
       errors.add(:user, 'Inexistente')

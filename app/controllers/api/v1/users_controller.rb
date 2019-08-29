@@ -29,6 +29,15 @@ module Api
         end
       end
 
+      def find_by_cnpj
+        form = Api::FindByCnpjForm.new(params)
+        if form.valid?
+          render(json: { status: 'SUCCESS', data: form.user_serialized }, status: :ok)
+        else
+          render(json: { status: 'ERROR', data: form.errors }, status: :bad_request)
+        end
+      end
+
       def remember_password
         if User.exists?(email: params[:email]) &&
            User.find_by(email: params[:email]).send_reset_password_instructions

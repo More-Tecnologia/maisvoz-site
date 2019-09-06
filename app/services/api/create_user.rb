@@ -10,7 +10,7 @@ module Api
         user.registration_type     = form.registration_type
         user.sponsor               = form.sponsor
         user.username              = form.username
-        user.name                  = form.name if user.pf?
+        user.name                  = form.name
         user.email                 = form.email
         user.document_cpf          = form.cpf
         user.document_cnpj         = form.cnpj

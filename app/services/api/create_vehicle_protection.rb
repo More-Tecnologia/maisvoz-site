@@ -34,7 +34,7 @@ module Api
         s.car_model            = CarModel.find_by(name: inspection.dig('model'))
         s.plate                = inspection.dig('plate')
         s.chassis              = inspection.dig('chassis')
-        s.cnpj_cpf             = inspection.dig('associated').dig('cpf_cnpj')
+        s.cnpj_cpf             = inspection.dig('associated').dig('cnpj') || inspection.dig('associated').dig('cpf')
         s.owner_name           = inspection.dig('associated').dig('fantasy') || inspection.dig('associated').dig('name')
         s.model_year           = inspection.dig('year_fuel').split('/')[0].strip
         s.fuel                 = inspection.dig('year_fuel').split('/')[1].downcase.strip
@@ -54,7 +54,7 @@ module Api
         p.payload                  = inspection
         p.placa                    = inspection.dig('plate')
         p.status                   = inspection.dig('status')
-        p.fipe_code                = inspection.dig('model')
+        p.fipe_code                = inspection.dig('fipe_code')
         p.price                    = inspection.dig('monthly_value')
 
         p.save!
@@ -91,32 +91,29 @@ module Api
     end
 
     def find_by_cpf
-      cpf = inspection.dig('associated').dig('cpf_cnpj')
+      type = inspection.dig('associated').dig('type')
+      return false if type == 'pj'
 
-      return false if cpf.size > 14
-
+      cpf = inspection.dig('associated').dig('cpf')
       cpf = CPF.new(cpf)
-
       return false if cpf.blank?
 
-      @user = User.where('document_cpf = ? OR document_cpf = ?', cpf.formatted, cpf.stripped).first
+      @user = User.where('(document_cpf = ? OR document_cpf = ?) AND registration_type = ?', cpf.formatted, cpf.stripped, type).first
     end
 
     def find_by_cnpj
-      cnpj = inspection.dig('associated').dig('cpf_cnpj')
+      type = inspection.dig('associated').dig('type')
+      return false if type == 'pf'
 
-      return false if cnpj.size > 14
-
+      cnpj = inspection.dig('associated').dig('cnpj')
       cnpj = CNPJ.new(cnpj)
-
       return false if cnpj.blank?
 
-      @user = User.where('document_cnpj = ? OR document_cnpj = ?', cnpj.formatted, cnpj.stripped).first
+      @user = User.where('(document_cnpj = ? OR document_cnpj = ?) AND registration_type = ?', cnpj.formatted, cnpj.stripped, type).first
     end
 
     def find_by_username
       username = inspection.dig('inspector_login')
-
       return false if username.blank?
 
       @user = User.find_by(username: username)

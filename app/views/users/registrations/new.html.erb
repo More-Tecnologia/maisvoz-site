@@ -37,7 +37,8 @@
 
       <%= simple_form_for(form, as: resource_name, url: registration_path(resource_name), validate: true) do |f| %>
         <%= f.error_notification %>
-
+        <%= hidden_field_tag :blank_error_message, I18n.t('errors.messages.blank') %>
+        <%= hidden_field_tag :invalid_error_message, I18n.t('errors.messages.invalid') %>
         <div class="tab-content">
 
           <!-- TAB 1 -->
@@ -67,8 +68,8 @@
           <div class="tab-pane" id="tab2">
             <div class="form-inputs">
               <div class="col-md-12">
-                <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
                 <div id="pf-inputs">
+                  <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
                   <%= f.input :document_rg %>
                   <%= f.input :document_rg_expeditor %>
                   <%= f.input :document_pis, input_html: { class: 'input-pis' } %>
@@ -116,76 +117,4 @@
       <% end %>
     </div>
   </div>
-
 </div>
-
-<script>
-  $(document).ready(function() {
-    $('#rootwizard').bootstrapWizard({
-        onTabShow: function(tab, navigation, index) {
-        var $total = navigation.find('li').length;
-        var $current = index+1;
-        var $percent = ($current/$total) * 100;
-        $('#rootwizard .progress-bar').css({width:$percent+'%'});
-      },
-      onNext: function(tab, navigation, index) {
-        var steps1 = ['#user_sponsor_username', '#user_username', '#user_name', '#user_phone', '#user_email', '#user_gender', '#user_password']
-        var steps2 = ['#user_document_cpf']
-        var steps3 = ['#user_zipcode', '#user_district', '#user_city', '#user_state']
-
-        $form      = $('#new_user');
-
-        $form.enableClientSideValidations()
-
-        if (index == 1 && !isValid(steps1)) {
-          return false
-        } else if (index == 2 && !isValid(steps2)) {
-          return false
-        } else if (index == 3 && !isValid(steps3)) {
-          return false
-        }
-  		}
-    });
-
-    var isValid = function (ids) {
-      var validations = []
-
-      var $form      = $('#new_user');
-      var validators = $form[0].ClientSideValidations.settings.validators;
-
-      $.each(ids, function (i, id) {
-        $input = $(id);
-        validations.push($input.isValid(validators))
-      })
-
-      return validations.every(function (v) { return v == true })
-    }
-
-    $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})
-    $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
-    $('.input-cnpj').mask('00.000.000/0000-00', {clearIfNotMatch: true})
-    $('.input-pis').mask('000.0000.000-0', {clearIfNotMatch: true})
-    $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
-
-    $('#pj-inputs').hide()
-
-    $("select[name='user[role]']").change(function (e) {
-      if ($(this).val() == 'pf') {
-        $('#pf-inputs').show()
-        $('#pj-inputs').hide()
-      } else {
-        $('#pj-inputs').show()
-        $('#pf-inputs').hide()
-      }
-      if ($(this).val() == 'installer') {
-        $('#user_sponsor_username').val('-')
-        $('#user_sponsor_username').prop('disabled', true)
-      } else {
-        $('#user_sponsor_username').prop('disabled', false)
-      }
-    })
-
-    $("select[name='user[role]']").change()
-
-  });
-</script>

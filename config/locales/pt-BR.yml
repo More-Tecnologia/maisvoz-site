@@ -37,6 +37,7 @@ pt-BR:
         restrict_dependent_destroy:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
+        invalid: Inválido
   activemodel:
     errors:
       models:
@@ -48,6 +49,14 @@ pt-BR:
           attributes:
             plate:
               wrong_length: Tamanho errado
+        new_registration_form:
+          attributes:
+            username:
+              format: permitido somente letras minúsculas e números
+            document_cpf:
+              cpf: 'inválido'
+      messages:
+        taken: já está sendo utilizado
   app_name: Future Motors
   attributes:
     accept_terms: Aceitar termos

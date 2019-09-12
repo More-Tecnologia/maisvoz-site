@@ -42,7 +42,9 @@
 //= require ui/car-plate-mask
 //= require init-slimscroll
 //= require cities-select
-
+//= require rails.validations.cnpj
+//= require rails.validations.cpf
+//= require users/registrations/new
 
 $(document).ready(function() {
   $("#sidebar-menu a").each(function() {

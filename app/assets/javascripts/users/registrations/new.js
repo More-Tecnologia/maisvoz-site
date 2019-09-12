@@ -44,20 +44,25 @@ $(document).ready(function() {
   $('.input-pis').mask('000.0000.000-0', {clearIfNotMatch: true})
   $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
 
+  const username_label_text = selectLabelByForAttribute('user_name').text()
+  const admin_username_label_text = $("input[type='hidden']#admin_company_username").val()
+  const physical_person_required_labels = ['user_document_cpf']
+  const legal_person_required_labels = ['user_document_cnpj', 'user_document_company_name',
+                                      'user_document_ie', 'user_document_fantasy_name']
+
   $("select[name='user[role]']").change(function (e) {
-    var physical_person_required_labels = ['user_document_cpf']
-    var legal_person_required_labels = ['user_document_cnpj', 'user_document_company_name',
-                                        'user_document_ie', 'user_document_fantasy_name']
     if (isPhysicalPerson()) {
       showElements(['#pf-inputs', '.user_gender'])
       hideElements(['#pj-inputs'])
       addRequiredAbbrTo(physical_person_required_labels)
       removeRequiredAbbrFrom(legal_person_required_labels)
+      setLabelHtml('user_name', username_label_text)
     } else {
       showElements(['#pj-inputs'])
       hideElements(['#pf-inputs', '.user_gender'])
       addRequiredAbbrTo(legal_person_required_labels)
       removeRequiredAbbrFrom(physical_person_required_labels)
+      setLabelHtml('user_name', admin_username_label_text)
     }
 
     if ($(this).val() == 'installer') {
@@ -169,6 +174,11 @@ $(document).ready(function() {
       label_element = selectLabelByForAttribute(label_name)
       label_element.children('abbr').remove()
     })
+  }
+
+  function setLabelHtml(label_name, text){
+    label = selectLabelByForAttribute(label_name)
+    label.html(text)
   }
 
   $('input#user_document_cpf').focusout(function() { validateInputDocumentCPF() })

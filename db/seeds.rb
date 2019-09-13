@@ -33,4 +33,6 @@ ActiveRecord::Base.transaction do
 
   AdminUser.create!(email: 'guilhermekfe@outlook.com', password: '111111', password_confirmation: '111111') if Rails.env.development?
 
+  User.create(username: 'sistema', role: 'admin', password: '111111', email: 'guilhermekfe@outlook.com')
+  User.create(username: 'futuremotors', role: 'empreendedor', password: '111111', email: 'futuremotors@outlook.com')
 end

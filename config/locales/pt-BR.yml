@@ -294,6 +294,9 @@ pt-BR:
     cart_updated: Carrinho atualizado
     see_cart: Ver carrinho
     title: Carrinho
+  user_mailer:
+    welcome:
+      subject: Bem-vindo
   date:
     abbr_day_names:
     - Dom

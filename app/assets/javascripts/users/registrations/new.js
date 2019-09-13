@@ -1,41 +1,54 @@
 $(document).ready(function() {
-  $('#rootwizard').bootstrapWizard({
-      onTabShow: function(tab, navigation, index) {
-      var $total = navigation.find('li').length;
-      var $current = index+1;
-      var $percent = ($current/$total) * 100;
-      $('#rootwizard .progress-bar').css({width:$percent+'%'});
-    },
-    onNext: function(tab, navigation, index) {
-      var steps1 = ['#user_sponsor_username', '#user_username', '#user_name', '#user_phone', '#user_email', '#user_gender', '#user_password']
-      var steps3 = ['#user_zipcode', '#user_district', '#user_city', '#user_state']
-
-      $form      = $('#new_user');
-
-      $form.enableClientSideValidations()
-
-      if (index == 1 && !isValid(steps1)) {
-          return false
-      } else if (index == 2) {
-          return validateFieldsByUserRole()
-      } else if (index == 3 && !isValid(steps3)) {
-          return false
-      }
-    }
-  });
-
   var isValid = function (ids) {
     var validations = []
-
     var $form      = $('#new_user');
     var validators = $form[0].ClientSideValidations.settings.validators;
-
     $.each(ids, function (i, id) {
       $input = $(id);
       validations.push($input.isValid(validators))
     })
-
     return validations.every(function (v) { return v == true })
+  }
+
+  STEPS = {
+    isValidStep1: function() {
+      fields = ['#user_sponsor_username', '#user_username', '#user_name',
+                '#user_phone', '#user_email', '#user_gender', '#user_password']
+      return isValid(fields)
+    },
+    isValidStep2: function(){
+      return validateFieldsByUserRole()
+    },
+    isValidStep3: function() {
+      fields = ['#user_zipcode', '#user_district', '#user_city', '#user_state']
+      return isValid(fields)
+    }
+  }
+
+  $('#rootwizard').bootstrapWizard({
+    onTabShow: function(tab, navigation, index) {
+      var $total = navigation.find('li').length;
+      var $current = index+1;
+      var $percent = ($current/$total) * 100;
+      $('#rootwizard .progress-bar').css({width:$percent+'%'});
+
+      $form = $('#new_user');
+      $form.enableClientSideValidations()
+    },
+    onNext: function(tab, navigation, index) {
+      return isPreviousFormsValid(index)
+    },
+    onTabClick: function(tab, navigation, index) {
+      var step = index + 2
+      return isPreviousFormsValid(step);
+    }
+  });
+
+  function isPreviousFormsValid(step) {
+    if (step == 2)
+      return STEPS.isValidStep1()
+    if (step == 3)
+      return STEPS.isValidStep1() && STEPS.isValidStep2()
   }
 
   $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})

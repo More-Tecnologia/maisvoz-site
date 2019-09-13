@@ -77,13 +77,6 @@ $(document).ready(function() {
       removeRequiredAbbrFrom(physical_person_required_labels)
       setLabelHtml('user_name', admin_username_label_text)
     }
-
-    if ($(this).val() == 'installer') {
-      $('#user_sponsor_username').val('-')
-      $('#user_sponsor_username').prop('disabled', true)
-    } else {
-      $('#user_sponsor_username').prop('disabled', false)
-    }
   })
 
   $("select[name='user[role]']").change();

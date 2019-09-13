@@ -17,14 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # super
     build_resource(form.attributes.except(:sponsor_username, :role))
-
-    unless form.installer?
-      resource.sponsor = form.sponsor
-      resource.registration_type = form.role
-    end
-
     if form.valid? && resource.save
-      resource.instalador! && resource.pj! if form.installer?
       SlackMessageWorker.perform_async('#usuarios', "Novo usuário registrado: *#{form.username}*")
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up

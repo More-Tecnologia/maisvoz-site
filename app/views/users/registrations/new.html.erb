@@ -46,7 +46,7 @@
           <div class="tab-pane" id="tab1">
             <div class="form-inputs">
               <div class="col-md-6">
-                <%= f.input :role, collection: [['Pessoa física', 'pf'], ['Pessoa Jurídica', 'pj'], ['Instalador', 'installer']], include_blank: false %>
+                <%= f.input :role, collection: [['Pessoa física', 'pf'], ['Pessoa Jurídica', 'pj']], include_blank: false %>
                 <% if form.sponsor_username && params[:sponsor].present? %>
                   <%= f.input :sponsor_username, autofocus: true, readonly: true %>
                 <% else %>

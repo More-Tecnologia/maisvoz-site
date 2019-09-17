@@ -76,7 +76,6 @@ class ClubMotorsSubscription < ApplicationRecord
   validates :plate, presence: true
 
   scope :active_subscriptions, -> { where(status: %i[pending past_due active]) }
-  scope :ancore, -> { where(type: 'ancore') }
 
   def name
     "#{car_model.car_brand.name} - #{car_model.name}"

@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'club_motors_subscriptions_controller/update'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -125,7 +126,7 @@ Rails.application.routes.draw do
           post :remember_password
         end
       end
-      resources :vehicle_protections, only: :create
+      resources :vehicle_protections, only: [:create, :update], param: :plate
     end
   end
 

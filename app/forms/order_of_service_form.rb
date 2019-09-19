@@ -18,11 +18,7 @@ class OrderOfServiceForm < Form
   validate :user_exists
 
   def user
-    if document_cpf.present?
-      User.find_by(document_cpf: document_cpf)
-    elsif car_plate.present?
-      ClubMotorsSubscription.find_by(plate: car_plate)&.user
-    end
+    User.find_by(document_cpf: document_cpf)
   end
 
   def profit

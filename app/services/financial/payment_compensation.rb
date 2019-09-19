@@ -122,8 +122,6 @@ module Financial
     end
 
     def update_subscription
-      return if order.payable_type != 'ClubMotorsSubscription'
-
       Subscriptions::Compensate.new(order: order).call
     end
 

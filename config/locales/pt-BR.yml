@@ -450,7 +450,6 @@ pt-BR:
     pay_third_order: Pagar Fatura de Terceiro
     my_vouchers: Central de Vouchers
     pay: Pagar
-    product_setups: Instalações
     new_product_setup: Nova Instalação
     vehicles: Veículos
     my_vehicles: Meus Veículos
@@ -697,7 +696,6 @@ pt-BR:
   activity_bonus: Bônus de Atividade
   social_leader_bonus: Bônus Social Líder
   reverse_bonus: Estorno de Bônus
-  installer_bonus: Bônus de Instalador
   direct_captation_bonus: Bônus de Captação Direta
   indirect_captation_bonus: Bônus de Captação Indireta
   participation_bonus: Bônus de Participação

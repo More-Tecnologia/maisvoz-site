@@ -128,8 +128,6 @@ class User < ApplicationRecord
   has_many :payment_transactions
   has_many :club_motors_subscriptions
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
-  has_many :product_setups, class_name: 'ProductSetup', foreign_key: 'installer_id'
-  has_many :created_order_of_services, class_name: 'OrderOfService', foreign_key: 'created_by'
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
 

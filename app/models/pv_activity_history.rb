@@ -11,12 +11,10 @@
 #  balance             :bigint(8)        default(0), not null
 #  kind                :string
 #  height              :bigint(8)
-#  order_of_service_id :bigint(8)
 #
 # Indexes
 #
 #  index_pv_activity_histories_on_order_id             (order_id)
-#  index_pv_activity_histories_on_order_of_service_id  (order_of_service_id)
 #  index_pv_activity_histories_on_user_id              (user_id)
 #
 
@@ -27,15 +25,10 @@ class PvActivityHistory < ApplicationRecord
   enum kind: { pvv: 'pvv', pvg: 'pvg', pvm: 'pvm' }
 
   belongs_to :order, optional: true
-  belongs_to :order_of_service, optional: true
   belongs_to :user
 
   def from
-    if order_id.present?
-      order.user
-    else
-      order_of_service.user
-    end
+    order.user
   end
 
 end

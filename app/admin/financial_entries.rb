@@ -21,7 +21,6 @@ ActiveAdmin.register FinancialEntry do
   scope :flex_bonus
   scope :activity_bonus
   scope :social_leader_bonus
-  scope :installer_bonus
   scope :reverse_bonus
   scope :bonus_chargeback
   scope :credit_by_admin

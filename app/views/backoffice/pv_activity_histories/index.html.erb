@@ -52,6 +52,7 @@
               </tr>
             </tfoot>
             <tbody>
+              <%= amount_sum = pv_activity_histories.sum(:amount) + pv_activity_histories.first.amount %>
               <% pv_activity_histories.each do |pv_activity_history| %>
                 <tr>
                   <th><%= pv_activity_history.hashid %></th>
@@ -66,7 +67,7 @@
                   <td><%= pv_activity_history.height %></td>
                   <td><%= pv_activity_history.kind.upcase %></td>
                   <td><%= number_with_delimiter pv_activity_history.amount %></td>
-                  <td><%= number_with_delimiter pv_activity_history.balance %></td>
+                  <td><%= number_with_delimiter(amount_sum -= pv_activity_history.amount) %></td>
                   <td><%= l(pv_activity_history.created_at, format: :short) %></td>
                 </tr>
               <% end %>

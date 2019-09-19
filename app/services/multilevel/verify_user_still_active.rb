@@ -24,7 +24,7 @@ module Multilevel
     attr_reader :user
 
     def active?
-      user.club_motors_subscriptions.active.any?
+      false
     end
 
     def verify_sponsor_qualification

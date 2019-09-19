@@ -41,14 +41,6 @@ pt-BR:
   activemodel:
     errors:
       models:
-        club_motors_new_subscription_form:
-          attributes:
-            plate:
-              wrong_length: Tamanho errado
-        club_motors_subscription_form:
-          attributes:
-            plate:
-              wrong_length: Tamanho errado
         new_registration_form:
           attributes:
             username:
@@ -135,13 +127,6 @@ pt-BR:
     sponsor: Patrocinador
     active: Ativo
     invoice_id: ID da Fatura
-    car_plate: Placa
-    car_brand: Marca do Carro
-    car_brand_id: Marca do Carro
-    car_model: Modelo do Carro
-    car_model_id: Modelo do Carro
-    car_year: Ano do Carro
-    car_mileage: Quilometragem
     product_id: Produto
     product_serial: Serial do Produto
     status_message: Mensagem de Status
@@ -761,9 +746,6 @@ pt-BR:
   completed: Pago
   expired: Expirado
   past_due: Vencido
-  club_motors: Clube de Empreendedores
-  clubmotors: ClubMotors
-  trackers: Rastreadores
   upgrade: Upgrade
   ancore: FuturePRO
   up_to_10: Até 1.0

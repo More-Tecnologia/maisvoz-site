@@ -4,7 +4,6 @@ class CreateVouchers < ActiveRecord::Migration[5.1]
       t.string :code, null: false
       t.boolean :used, default: false, null: false
       t.references :user, foreign_key: true
-      t.references :club_motors_subscription, foreign_key: true
 
       t.timestamps
     end

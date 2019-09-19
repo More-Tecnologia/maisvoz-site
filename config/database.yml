@@ -15,12 +15,12 @@
 # gem 'pg'
 #
 default: &default
-  host: localhost
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
+  # For details on connection poolinsudo -u postgres createuser chris -sg, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV['DATABASE_URL'] %>
 
 development:
   <<: *default
@@ -82,5 +82,3 @@ test:
 production:
   <<: *default
   database: moremmn_production
-  username: moremmn
-  password: <%= ENV['MOREMMN_DATABASE_PASSWORD'] %>

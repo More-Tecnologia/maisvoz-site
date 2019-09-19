@@ -125,7 +125,7 @@ Rails.application.routes.draw do
           post :remember_password
         end
       end
-      resources :vehicle_protections, only: :create
+      resources :vehicle_protections, only: [:create, :update], param: :plate
     end
   end
 

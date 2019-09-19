@@ -40,8 +40,6 @@ Rails.application.routes.draw do
       resources :pv_histories, only: [:index]
       resources :accumulated_pva, only: [:index]
       resources :career_histories, only: [:index]
-      resources :social_leader_debugger, only: [:index]
-
       resources :product_setups, only: [:index, :show, :update]
     end
 

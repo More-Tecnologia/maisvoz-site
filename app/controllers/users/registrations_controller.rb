@@ -28,6 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         expire_data_after_sign_in!
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
+      send_welcome_email(resource)
     else
       clean_up_passwords resource
       set_minimum_password_length
@@ -134,6 +135,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private def define_layout
     current_user.consumidor? ? 'consumer' : 'admin'
+  end
+
+  private
+
+  def send_welcome_email(user)
+    UserMailer.welcome(user).deliver_later
   end
 
   # The path used after sign up for inactive accounts.

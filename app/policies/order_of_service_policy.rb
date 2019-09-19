@@ -17,11 +17,7 @@ class OrderOfServicePolicy < ApplicationPolicy
   end
 
   def resolve
-    if user.admin?
-      scope.all
-    else
-      user.product_setups
-    end
+    scope.all
   end
 
 end

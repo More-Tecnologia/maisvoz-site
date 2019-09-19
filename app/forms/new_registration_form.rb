@@ -32,7 +32,7 @@ class NewRegistrationForm < Form
             :password_confirmation, :gender,
             :zipcode, :address, :district, :city, :state, presence: true
   validates :email, email: true
-  validates :sponsor_username, presence: true, unless: -> { installer? }
+  validates :sponsor_username, presence: true
 
   validates :document_cpf, presence: true, if: -> { pf? }
   validates :document_cnpj, :document_ie, :document_company_name, :document_fantasy_name, presence: true, if: -> { pj? }
@@ -40,7 +40,7 @@ class NewRegistrationForm < Form
   validates :username, format: { with: /\A[a-z0-9\_]+\z/,
                                  message: I18n.t('activemodel.errors.models.new_registration_form.attributes.username.format') }
 
-  validate :sponsor_exists, unless: -> { installer? }
+  validate :sponsor_exists
   validate :username_is_unique
   validate :email_is_unique
   validate :document_cpf_is_unique
@@ -64,10 +64,6 @@ class NewRegistrationForm < Form
 
   def pj?
     role == 'pj'
-  end
-
-  def installer?
-    role == 'installer'
   end
 
   private

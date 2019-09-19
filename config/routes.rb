@@ -39,18 +39,11 @@ Rails.application.routes.draw do
       resources :pv_histories, only: [:index]
       resources :accumulated_pva, only: [:index]
       resources :career_histories, only: [:index]
-      resources :product_setups, only: [:index, :show, :update]
     end
 
     namespace :support do
       resources :users, only: [:index, :show, :edit, :update]
       resources :documents_validation, only: [:index, :update]
-    end
-
-    namespace :installer do
-      resources :dashboard, only: [:index]
-      resources :product_setups, only: [:index, :show, :new, :create]
-      resources :order_of_services, only: [:index, :new, :create]
     end
 
     # Backoffice

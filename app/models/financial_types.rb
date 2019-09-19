@@ -16,7 +16,6 @@ module FinancialTypes
       indirect_bonus:           'indirect_bonus',
       activity_bonus:           'activity_bonus',
       social_leader_bonus:      'social_leader_bonus',
-      installer_bonus:          'installer_bonus',
       reverse_bonus:            'reverse_bonus',
       bonus_chargeback:         'bonus_chargeback',
       credit_by_admin:          'credit_by_admin',

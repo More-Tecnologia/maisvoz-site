@@ -71,12 +71,7 @@ class Order < ApplicationRecord
   def monthly_order_items
     return [] if payable.blank? || order_items.present?
 
-    if payable.class.name == 'InvestmentShare'
-      name = payable.type
-    else
-      name = I18n.t(payable.type)
-    end
-
+    name = I18n.t(payable.type)
     product = OpenStruct.new(
       id: payable.id,
       hashid: payable.hashid,

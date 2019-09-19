@@ -42,6 +42,7 @@
               </tr>
             </thead>
             <tbody>
+              <%= amount_sum = pv_activity_histories.sum(:amount) + pv_activity_histories.first.amount %>
               <% pv_activity_histories.each do |pv_activity_history| %>
                 <tr>
                   <th><%= pv_activity_history.id %></th>
@@ -56,7 +57,7 @@
                   <td><%= link_to_user pv_activity_history.user %></td>
                   <td><%= pv_activity_history.kind %></td>
                   <td><%= number_with_delimiter pv_activity_history.amount %></td>
-                  <td><%= number_with_delimiter pv_activity_history.balance %></td>
+                  <td><%= number_with_delimiter(amount_sum -= pv_activity_history.amount) %></td>
                   <td><%= l(pv_activity_history.created_at, format: :short) %></td>
                 </tr>
               <% end %>

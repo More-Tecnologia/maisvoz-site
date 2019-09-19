@@ -43,8 +43,6 @@ Rails.application.routes.draw do
       resources :social_leader_debugger, only: [:index]
 
       resources :product_setups, only: [:index, :show, :update]
-
-      resources :club_motors_subscriptions, only: %i[index show]
     end
 
     namespace :support do
@@ -85,16 +83,6 @@ Rails.application.routes.draw do
     end
     resources :my_investments, only: :index
 
-    # Subscriptions
-    resources :club_motors, only: %i[new create]
-
-    namespace :club_motors do
-      resources :vehicles, only: %i[index show edit update new create destroy]
-      resources :monthly_fees, only: %i[index]
-    end
-
-    resources :trackers
-
     # Financial
     # resources :transfers, only: [:show, :update, :create]
     resources :withdrawals, only: [:index, :new, :create]
@@ -125,7 +113,6 @@ Rails.application.routes.draw do
           post :remember_password
         end
       end
-      resources :vehicle_protections, only: [:create, :update], param: :plate
     end
   end
 

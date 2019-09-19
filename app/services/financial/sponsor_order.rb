@@ -12,7 +12,6 @@ module Financial
         update_subscription
         activate_tracker
         activate_user
-        activate_investment
         assign_product_to_user
         create_binary_node
         qualify_sponsor

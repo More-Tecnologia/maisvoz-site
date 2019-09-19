@@ -222,10 +222,6 @@ pt-BR:
       new:
         title: Pagar fatura para terceiro
         instructions: Esta ferramenta funciona apenas para pagamento de faturas de adesão de terceiros
-    my_investments:
-      index:
-        title: Minhas Contas de Participação
-        no_data: Você ainda não adquiriu contas de participação
     admin:
       accumulated_pva:
         index:
@@ -454,9 +450,6 @@ pt-BR:
     vehicles: Veículos
     my_vehicles: Meus Veículos
     upgrades: Upgrades
-    investments: Contas de Participação
-    my_investments: Minhas Contas de Participação
-    buy_investment: Comprar Conta de Participação
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

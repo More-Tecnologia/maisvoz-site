@@ -1,7 +1,7 @@
 <%= cloudinary_js_config %>
 
 <%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
-  <div data-withdraw-simulator="true" data-fee="<%= AppConfig.get(:withdrawal_fee) %>">
+  <div data-withdraw-simulator="true" data-fee="<%= ENV['WITHDRAWAL_FEE'] %>">
     <div class="row">
       <div class="alert alert-warning">Favor gerar nota fiscal do valor bruto, caso contrário o pedido de saque será rejeitado.</div>
       <div class="alert alert-warning">A nota deverá ser emitida para o seguinte CNPJ 26.446.378/0001-07</div>
@@ -19,7 +19,7 @@
     <%= f.input :fiscal_document_photo, as: :file, value: form.fiscal_document_photo %>
 
     <ul class="list-unstyled w-list m-b-30">
-      <% fee = form.amount ? form.amount.to_d - AppConfig.get(:withdrawal_fee).to_d : 0 %>
+      <% fee = form.amount ? form.amount.to_d - ENV['WITHDRAWAL_FEE'].to_d : 0 %>
       <li><b><%= t('.fees') %>:</b> R$ <span data-fee-text><%= fee %></span> </li>
       <li><b><%= t('.total') %>:</b> R$ <span data-total-text><%= form.amount ? form.amount.to_d - fee : 0 %></span> </li>
     </ul>

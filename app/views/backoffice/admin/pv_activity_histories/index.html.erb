@@ -42,7 +42,7 @@
               </tr>
             </thead>
             <tbody>
-              <%= amount_sum = pv_activity_histories.sum(:amount) + pv_activity_histories.first.amount %>
+              <%= amount_sum = pv_activity_histories.sum(:amount) + pv_activity_histories.first.try(:amount).to_i %>
               <% pv_activity_histories.each do |pv_activity_history| %>
                 <tr>
                   <th><%= pv_activity_history.id %></th>

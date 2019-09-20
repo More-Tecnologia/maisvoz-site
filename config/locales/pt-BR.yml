@@ -51,6 +51,7 @@ pt-BR:
         taken: já está sendo utilizado
   app_name: Future Motors
   attributes:
+    active_session: Sessão ativa
     accept_terms: Aceitar termos
     amount: Valor
     created_at: Data de criação
@@ -622,13 +623,16 @@ pt-BR:
           subtitle: Editar Categoria
           title: Editar Categoria
         index:
-          new_category: New category
-          no_data: No data
+          new_category: Nova Categoria
+          no_data: Nenhuma categoria cadastrada
           subtitle: Subtitle
-          title: Title
+          title: Lista de Categorias
         new:
           subtitle: Subtitle
           title: Title
+      credits_debits:
+        index:
+          title: Créditos e Débitos
       orders:
         index:
           no_data: Nenhuma compra realizada

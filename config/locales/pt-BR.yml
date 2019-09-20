@@ -209,7 +209,7 @@ pt-BR:
         invoice_no: 'PV gerado do usuário %{username}'
     pv_activity_histories:
       index:
-        title: Histórico de PVV, PVM e PVG
+        title: Histórico de PVV e PVG
         invoice_no: 'PV gerado da fatura ID: %{id}'
         no_data: Nenhum registro de pv de atividade encontrado
     accumulated_pva:
@@ -438,7 +438,7 @@ pt-BR:
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
     admin_accumulated_pva: PVs Avanço de Título
-    pv_activity_histories: Geral PVV/PVM/PVG
+    pv_activity_histories: Geral PVV/PVG
     pv_admin_histories: PVs Binário
     pv_generations_history: PV por geração
     career_histories: Histórico de Carreiras

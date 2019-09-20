@@ -80,7 +80,6 @@ module Financial
       Bonification::PropagatePvvHistory.new(order).call
       Bonification::PropagatePvgHistory.new(order).call
       Bonification::PropagatePvaPoints.new(order: order).call
-      Bonification::PropagatePvmPoints.new(order: order).call
     end
 
     def create_vouchers

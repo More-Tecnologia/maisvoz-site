@@ -77,7 +77,6 @@ module Financial
     end
 
     def propagate_pv_history
-      Bonification::PropagatePvvHistory.new(order).call
       Bonification::PropagatePvgHistory.new(order).call
       Bonification::PropagatePvaPoints.new(order: order).call
       Bonification::PropagatePvmPoints.new(order: order).call

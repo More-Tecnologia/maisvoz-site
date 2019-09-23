@@ -1,5 +1,5 @@
 <%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
-  <div data-withdraw-simulator="true" data-fee="<%= AppConfig.get(:withdrawal_fee) %>">
+  <div data-withdraw-simulator="true" data-fee="<%= ENV['WITHDRAWAL_FEE'] %>">
     <%= f.input :invoice_id %>
     <%= f.input :document_cpf %>
     <%= f.input :password %>

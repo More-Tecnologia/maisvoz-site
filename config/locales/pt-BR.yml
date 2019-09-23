@@ -51,6 +51,8 @@ pt-BR:
         taken: já está sendo utilizado
   app_name: Future Motors
   attributes:
+    active_session: Sessão ativa
+    order: Ordem
     accept_terms: Aceitar termos
     amount: Valor
     created_at: Data de criação
@@ -65,6 +67,8 @@ pt-BR:
     phone: Telefone
     product: Produto
     quantity: Quantidade
+    price: Preço
+    score: Ponto(s)
     profit: Lucro
     next_bonus_payment: Próximo pagamento
     remember_me: Lembrar
@@ -73,7 +77,10 @@ pt-BR:
     subtotal: Subtotal
     shipping: Frete
     tax: Impostos
+    user: Usuário
     username: Nome de Usuário
+    activity: Atividade
+    qualification: Qualificação
     order_date: Data da Fatura
     order_status: Status da Fatura
     binary_position: Posição no Binário
@@ -88,6 +95,7 @@ pt-BR:
     to_user: Para
     kind: Tipo
     birthdate: Data de Nascimento
+    main_document: Documento
     document_cpf: CPF
     document_cnpj: CNPJ
     document_ie: IE
@@ -222,6 +230,9 @@ pt-BR:
         title: Pagar fatura para terceiro
         instructions: Esta ferramenta funciona apenas para pagamento de faturas de adesão de terceiros
     admin:
+      credits_debits:
+        step_1: Passo 1
+        step_2: Passo 2
       accumulated_pva:
         index:
           title: PVs Avanço de Título
@@ -256,6 +267,8 @@ pt-BR:
           status: Status
           created_from: Criado a partir de
           created_until: Criado até
+        form:
+          fees: Taxas
       pv_activity_histories:
         index:
           title: Histórico de PVA/PVG
@@ -266,6 +279,8 @@ pt-BR:
       users:
         index:
           title: Gerenciar Usuários
+          actions: Ações
+          sign_in: Logar
         show:
           direct_users: Indicados Diretos
     bank_accounts:
@@ -621,13 +636,16 @@ pt-BR:
           subtitle: Editar Categoria
           title: Editar Categoria
         index:
-          new_category: New category
-          no_data: No data
+          new_category: Nova Categoria
+          no_data: Nenhuma categoria cadastrada
           subtitle: Subtitle
-          title: Title
+          title: Lista de Categorias
         new:
           subtitle: Subtitle
           title: Title
+      credits_debits:
+        index:
+          title: Créditos e Débitos
       orders:
         index:
           no_data: Nenhuma compra realizada
@@ -763,3 +781,4 @@ pt-BR:
       order:
         asc: ASC
         desc: DESC
+    

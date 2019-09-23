@@ -40,7 +40,7 @@
                   <td><%= product.quantity %></td>
                   <td><%= number_to_currency product.price %></td>
                   <td><%= product.binary_score %></td>
-                  <td><%= product.active %></td>
+                  <td><%= product.active ? "Sim" : "Não" %></td>
                   <td>
                     <%= link_to edit_backoffice_admin_product_path(product), class: 'action-edit' do %>
                       <i class="fa fa-edit"></i>

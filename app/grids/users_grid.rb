@@ -6,38 +6,38 @@ class UsersGrid < BaseGrid
 
   decorate {|user| user.decorate }
 
-  filter(:username) do |value, scope|
+  filter(:username, header: I18n.t('attributes.username')) do |value, scope|
     scope.where('users.username ILIKE ?', "%#{value}%")
   end
-  filter(:name) do |value, scope|
+  filter(:name, header: I18n.t('attributes.name')) do |value, scope|
     scope.where('users.name ILIKE ?', "%#{value}%")
   end
-  filter(:document_cpf)
+  filter(:document_cpf, header: I18n.t('attributes.document_cpf'))
   filter(:email)
-  filter(:role, :enum, select: User.roles)
-  filter(:created_at, :date, :range => true)
+  filter(:role, :enum, select: User.roles, header: I18n.t('attributes.role'))
+  filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
 
   column_names_filter(:header => "Colunas Extras", checkboxes: true)
 
   column(:id, mandatory: true)
   column(:username, html: false, mandatory: true)
-  column(:username) do |user|
+  column(:username, header: I18n.t('attributes.username')) do |user|
     format(user) do |obj|
       link_to_user obj
     end
   end
-  column(:pretty_name, mandatory: true)
-  column(:main_document, mandatory: true)
-  column(:activity, html: true, mandatory: true)
-  column(:qualification, html: true, mandatory: true)
-  column(:pretty_career, mandatory: true)
-  column(:created_at, html: false, mandatory: true)
-  column(:created_at) do |user|
+  column(:pretty_name, mandatory: true, header: I18n.t('attributes.user'))
+  column(:main_document, mandatory: true, header: I18n.t('attributes.main_document'))
+  column(:activity, html: true, mandatory: true, header: I18n.t('attributes.activity'))
+  column(:qualification, html: true, mandatory: true, header: I18n.t('attributes.qualification'))
+  column(:pretty_career, mandatory: true, header: I18n.t('attributes.career_kind'))
+  column(:created_at, html: false, mandatory: true, header: I18n.t('attributes.created_at'))
+  column(:created_at, header: I18n.t('attributes.created_at')) do |user|
     format(user.created_at) do |created_at|
       l(created_at, format: :short)
     end
   end
-  column :actions, mandatory: true do |user|
+  column :actions, mandatory: true, header: I18n.t('backoffice.support.users.index.actions') do |user|
     format(user) do
       [
         link_to(backoffice_support_user_path(user), title: 'Ver perfil', target: '_blank') { content_tag(:i, nil, class: 'fa fa-user m-r-5') },
@@ -49,7 +49,7 @@ class UsersGrid < BaseGrid
       ].join.html_safe
     end
   end
-  column(:sign_in, mandatory: true) do |user|
+  column(:sign_in, mandatory: true, header: I18n.t('backoffice.support.users.index.sign_in')) do |user|
     format(user) do |user|
       if current_user.username == 'sistema'
         link_to(masquerade_path(user), title: 'Logar como Usuário', target: '_blank') { content_tag(:i, nil, class: 'fa fa-user') }

@@ -124,12 +124,6 @@ class Order < ApplicationRecord
     end
   end
 
-  def pvv_score
-    @pvv_score ||= order_items.joins(:product).where(
-      'products.kind != ?', Product.kinds[:adhesion]
-    ).sum(:binary_score)
-  end
-
   def pvm_score
     @pvm_score ||= (total_cents / 300).to_i
   end

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
-  let(:tree) { TreeFactory.new.create_unilevel }
 
   it 'valid factory' do
     puts user.username

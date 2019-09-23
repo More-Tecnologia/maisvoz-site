@@ -89,11 +89,7 @@ class Order < ApplicationRecord
   end
 
   def total_score
-    if monthly_fee?
-      pvm_score
-    else
-      @total_score ||= order_items.sum { |item| item.quantity * item.product.binary_score }
-    end
+    @total_score ||= order_items.sum { |item| item.quantity * item.product.binary_score }
   end
 
   def max_product_score
@@ -122,10 +118,6 @@ class Order < ApplicationRecord
         'products.kind = ?', Product.kinds[:adhesion]
       ).sum(:binary_score)
     end
-  end
-
-  def pvm_score
-    @pvm_score ||= (total_cents / 300).to_i
   end
 
   def token

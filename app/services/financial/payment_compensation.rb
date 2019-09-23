@@ -79,7 +79,6 @@ module Financial
     def propagate_pv_history
       Bonification::PropagatePvgHistory.new(order).call
       Bonification::PropagatePvaPoints.new(order: order).call
-      Bonification::PropagatePvmPoints.new(order: order).call
     end
 
     def create_vouchers

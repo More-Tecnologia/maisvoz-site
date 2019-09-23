@@ -22,7 +22,7 @@ class PvActivityHistory < ApplicationRecord
 
   include Hashid::Rails
 
-  enum kind: { pvg: 'pvg', pvm: 'pvm' }
+  enum kind: { pvg: 'pvg' }
 
   belongs_to :order, optional: true
   belongs_to :user

@@ -44,7 +44,7 @@ module Fee
     end
 
     def master_username
-      AppConfig.get('MASTER_FINANCIAL_ACCOUNT')
+      ENV['MASTER_FINANCIAL_ACCOUNT']
     end
 
     def h

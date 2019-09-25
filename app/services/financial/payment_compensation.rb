@@ -115,12 +115,6 @@ module Financial
       Subscriptions::Compensate.new(order: order).call
     end
 
-    def activate_tracker
-      return unless order.tracker_adhesion?
-
-      Trackers::Activate.new(subscription: order.payable).call
-    end
-
     def activate_user
       return if user.active? || !adhesion_product?
 

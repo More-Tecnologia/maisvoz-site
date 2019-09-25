@@ -1,8 +1,6 @@
 module Fee
   class CreateSystemFee
 
-    PARTICIPATION_ACCOUNT_FEE = 0.02
-
     def initialize(order)
       @order = order
     end
@@ -41,11 +39,7 @@ module Fee
     end
 
     def fee
-      if order.participation_acc?
-        PARTICIPATION_ACCOUNT_FEE
-      else
-        @fee ||= ENV['SYSTEM_FEE'].to_d
-      end
+      @fee ||= ENV['SYSTEM_FEE'].to_d
     end
 
     def master_username

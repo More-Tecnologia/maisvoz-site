@@ -289,11 +289,6 @@ pt-BR:
         subtitle: Esta conta será utilizada nos saques da plataforma
         save: Salvar conta bancária
         ownership_info: Só aceitamos contas bancárias em sua titularidade
-    club_motors:
-      monthly_fees:
-        index:
-          title: Mensalidades
-          no_data: Nenhuma mensalidade presente até o momento
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
@@ -425,7 +420,6 @@ pt-BR:
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques
     my_orders: Meus pedidos
-    monthly_fees: Mensalidades
     network: Rede
     new_transfer: Solicitar Transferência
     new_withdraw: Solicitar Saque
@@ -703,7 +697,6 @@ pt-BR:
   reverse_binary_bonus: Estorno de Bônus Binário
   flex_bonus: Bônus Flex
   activity_bonus: Bônus de Atividade
-  social_leader_bonus: Bônus Social Líder
   reverse_bonus: Estorno de Bônus
   direct_captation_bonus: Bônus de Captação Direta
   indirect_captation_bonus: Bônus de Captação Indireta
@@ -766,11 +759,6 @@ pt-BR:
   imported_direct: Importação Direta
   imported_internal: Importação Interna
   national_import: Importado Nacional
-  tracker_adhesion: Compra de Rastreador
-  monthly_fee: Mensalidade
-  participation_acc: Conta de Participação
-  clubmotors_adhesion: Adesão ClubMotors
-  futurepro_adhesion: Adesão FuturePRO
   tracker: FutureSAT
   datagrid:
     form:

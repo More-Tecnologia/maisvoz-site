@@ -39,14 +39,6 @@ class Order < ApplicationRecord
   serialize :dr_response, JSON
 
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, expired: 4 }
-  enum type: {
-    clubmotors_adhesion: 'clubmotors_adhesion',
-    tracker_adhesion: 'tracker_adhesion',
-    futurepro_adhesion: 'futurepro_adhesion',
-    upgrade: 'upgrade',
-    monthly_fee: 'monthly_fee',
-    participation_acc: 'participation_acc'
-  }
   enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin' }
 
   has_many :order_items, dependent: :destroy
@@ -61,8 +53,6 @@ class Order < ApplicationRecord
   monetize :subtotal_cents, :tax_cents, :shipping_cents, :total_cents
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
-  scope :monthly_fees, -> { where(type: :monthly_fee) }
-  scope :regular_orders, -> { where.not(type: :monthly_fee) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")
@@ -111,13 +101,9 @@ class Order < ApplicationRecord
   end
 
   def pvg_score
-    if upgrade?
-      @pvg_score ||= pv_total
-    else
-      @pvg_score ||= order_items.joins(:product).where(
-        'products.kind = ?', Product.kinds[:adhesion]
-      ).sum(:binary_score)
-    end
+    @pvg_score ||= order_items.joins(:product).where(
+      'products.kind = ?', Product.kinds[:adhesion]
+    ).sum(:binary_score)
   end
 
   def token
@@ -125,11 +111,9 @@ class Order < ApplicationRecord
   end
 
   def decorated_type
-    if payable.present? && participation_acc?
-      "#{payable.type} - #{I18n.t(type)}"
-    elsif payable.present?
+    if payable.present?
       "#{I18n.t(payable.type)} - #{I18n.t(type)}"
-    elsif type.present?
+    else type.present?
       I18n.t(type)
     end
   end

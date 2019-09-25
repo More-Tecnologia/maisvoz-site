@@ -47,7 +47,7 @@ class Order < ApplicationRecord
     monthly_fee: 'monthly_fee',
     participation_acc: 'participation_acc'
   }
-  enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin', voucher: 'voucher' }
+  enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories

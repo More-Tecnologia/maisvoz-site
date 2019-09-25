@@ -458,7 +458,6 @@ pt-BR:
     career_histories: Histórico de Carreiras
     documents_validation: Aprovação de documentos
     pay_third_order: Pagar Fatura de Terceiro
-    my_vouchers: Central de Vouchers
     pay: Pagar
     new_product_setup: Nova Instalação
     vehicles: Veículos
@@ -781,4 +780,3 @@ pt-BR:
       order:
         asc: ASC
         desc: DESC
-    

@@ -68,8 +68,6 @@ Rails.application.routes.draw do
     # resources :transfers, only: [:show, :update, :create]
     resources :withdrawals, only: [:index, :new, :create]
     resources :financial_entries, only: [:index]
-    resources :vouchers, only: [:index]
-    resources :pay_with_voucher, only: [:new, :create]
     resources :bonus_entries, only: [:index]
     resources :pv_histories, only: [:index]
     resources :pv_activity_histories, only: [:index]

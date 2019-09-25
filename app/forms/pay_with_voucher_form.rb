@@ -32,14 +32,12 @@ class PayWithVoucherForm < Form
   end
 
   def valid_order
-    return if order_id.blank? || order.futurepro_adhesion?
+    return if order_id.blank?
 
     if order.blank?
       errors.add(:order_id, 'Pedido inválido')
     elsif order.completed?
       errors.add(:order_id, 'Pedido já está pago')
-    elsif !order.monthly_fee?
-      errors.add(:order_id, 'Pedido não é do tipo assinatura')
     elsif !(order.payable.clubmotors? || order.payable.ancore?)
       errors.add(:order_id, 'Pedido não é do tipo +Você ou Ancore')
     elsif order.payable.orders.count > 1

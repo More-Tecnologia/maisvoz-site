@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-sm-12">
     <h4 class="page-title"><%= t('views.backoffice.categories.index.title') %></h4>
-    <p class="text-muted page-title-alt"><%= t('views.backoffice.categories.index.subtitle') %></p>
+    <p class="text-muted page-title-alt"></p>
   </div>
 </div>
 
@@ -37,8 +37,8 @@
                   <th><%= category.id %></th>
                   <td><%= category.name %></td>
                   <td><%= category.description %></td>
-                  <td><%= category.active_session %></td>
-                  <td><%= category.active %></td>
+                  <td><%= category.active_session ? "Sim" : "Não" %></td>
+                  <td><%= category.active ? "Sim" : "Não" %></td>
                   <td><%= category.order %></td>
                   <td>
                     <%= link_to edit_backoffice_admin_category_path(category), class: 'action-edit' do %>

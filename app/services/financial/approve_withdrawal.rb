@@ -40,7 +40,7 @@ module Financial
     end
 
     def fee
-      @fee ||= AppConfig.get(:withdrawal_fee).to_f
+      @fee ||= ENV['WITHDRAWAL_FEE'].to_f
     end
 
     def financial_entry

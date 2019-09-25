@@ -44,12 +44,12 @@ module Fee
       if order.participation_acc?
         PARTICIPATION_ACCOUNT_FEE
       else
-        @fee ||= AppConfig.get('SYSTEM_FEE').to_d
+        @fee ||= ENV['SYSTEM_FEE'].to_d
       end
     end
 
     def master_username
-      AppConfig.get('MASTER_FINANCIAL_ACCOUNT')
+      ENV['MASTER_FINANCIAL_ACCOUNT']
     end
 
     def h

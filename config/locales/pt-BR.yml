@@ -704,7 +704,6 @@ pt-BR:
   reverse_binary_bonus: Estorno de Bônus Binário
   flex_bonus: Bônus Flex
   activity_bonus: Bônus de Atividade
-  social_leader_bonus: Bônus Social Líder
   reverse_bonus: Estorno de Bônus
   direct_captation_bonus: Bônus de Captação Direta
   indirect_captation_bonus: Bônus de Captação Indireta
@@ -781,4 +780,3 @@ pt-BR:
       order:
         asc: ASC
         desc: DESC
-    

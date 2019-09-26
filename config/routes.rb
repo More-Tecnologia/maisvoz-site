@@ -62,7 +62,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show] do
       post :generate_boleto
     end
-    resources :upgrades, only: [:new, :create]
 
     # Financial
     # resources :transfers, only: [:show, :update, :create]

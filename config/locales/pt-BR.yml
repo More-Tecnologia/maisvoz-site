@@ -225,10 +225,6 @@ pt-BR:
     pv_generations_history:
       index:
         title: Histórico de PV por geração
-    pay_third_order:
-      new:
-        title: Pagar fatura para terceiro
-        instructions: Esta ferramenta funciona apenas para pagamento de faturas de adesão de terceiros
     admin:
       credits_debits:
         step_1: Passo 1
@@ -451,7 +447,6 @@ pt-BR:
     pv_generations_history: PV por geração
     career_histories: Histórico de Carreiras
     documents_validation: Aprovação de documentos
-    pay_third_order: Pagar Fatura de Terceiro
     pay: Pagar
     new_product_setup: Nova Instalação
     vehicles: Veículos

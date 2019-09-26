@@ -72,7 +72,6 @@ Rails.application.routes.draw do
     resources :pv_histories, only: [:index]
     resources :pv_activity_histories, only: [:index]
     resources :accumulated_pva, only: [:index]
-    resources :pay_third_order, only: [:new, :create]
 
     # Network
     resources :binary_strategies, only: [:index, :create]

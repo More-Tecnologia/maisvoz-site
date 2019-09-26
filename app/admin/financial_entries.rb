@@ -31,7 +31,6 @@ ActiveAdmin.register FinancialEntry do
   scope :tax
   scope :transfer
   scope :withdrawal
-  scope :third_order_payment
 
   index do
     id_column

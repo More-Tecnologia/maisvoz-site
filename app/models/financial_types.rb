@@ -26,7 +26,6 @@ module FinancialTypes
       tax:                      'tax',
       transfer:                 'transfer',
       withdrawal:               'withdrawal',
-      third_order_payment:      'third_order_payment',
       direct_captation_bonus:   'direct_captation_bonus',
       indirect_captation_bonus: 'indirect_captation_bonus',
       participation_bonus:      'participation_bonus'

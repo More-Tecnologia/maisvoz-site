@@ -128,6 +128,8 @@ class User < ApplicationRecord
   has_many :payment_transactions
   has_many :club_motors_subscriptions
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
+  has_many :scores
+  has_many :spreaded_scores, class_name: 'Score'
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
 

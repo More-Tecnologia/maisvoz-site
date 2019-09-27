@@ -46,6 +46,7 @@ class Order < ApplicationRecord
   has_many :bonus, class_name: 'Bonus'
   has_many :pv_activity_histories
   has_many :payment_transactions
+  has_many :scores
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true

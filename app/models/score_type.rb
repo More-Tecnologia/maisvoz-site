@@ -3,4 +3,6 @@ class ScoreType < ApplicationRecord
 
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false }
+
+  enum tree_type: [:unilevel, :binary]
 end

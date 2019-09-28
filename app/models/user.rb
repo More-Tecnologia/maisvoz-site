@@ -130,6 +130,7 @@ class User < ApplicationRecord
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
+  belongs_to :career
 
   has_many :credits
   has_many :debits

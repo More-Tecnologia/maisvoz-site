@@ -20,5 +20,6 @@ class Career < ApplicationRecord
 
   has_many :products
   has_many :binary_nodes
+  has_many :users
 
 end

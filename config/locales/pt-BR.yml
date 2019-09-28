@@ -8,6 +8,9 @@ pt-BR:
       call_to_action: Call to action
       welcome: Welcome
   activerecord:
+    models:
+      score_type: Tipo de Pontuação
+      user: Usuário
     attributes:
       pv_activity_history:
         from: De
@@ -34,6 +37,7 @@ pt-BR:
         record_invalid: 'A validação falhou: %{errors}'
         wrong_length: Tamanho errado
         taken: Já está sendo utilizado
+        rule_type_missmatch: "Um objeto do tipo %{ruleable_type} não pode receber o tipo de regra %{rule_type_title}."
         restrict_dependent_destroy:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
           has_one: Não é possível excluir o registro pois existe um %{record} dependente

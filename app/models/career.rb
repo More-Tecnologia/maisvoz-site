@@ -21,5 +21,7 @@ class Career < ApplicationRecord
   has_many :products
   has_many :binary_nodes
   has_many :users
+  has_many :career_trails
+  has_many :trails, through: :career_trails
 
 end

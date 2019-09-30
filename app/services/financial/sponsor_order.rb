@@ -39,7 +39,7 @@ module Financial
     def update_order
       order.update!(
         payment_type: Order.payment_types[:admin],
-        paid_by: 'sistema'
+        paid_by: current_user.username
       )
     end
 

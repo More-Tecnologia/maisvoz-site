@@ -132,6 +132,7 @@ class User < ApplicationRecord
   has_many :spreaded_scores, class_name: 'Score'
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
+  belongs_to :career
 
   has_many :credits
   has_many :debits

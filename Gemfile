@@ -7,7 +7,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'activeadmin', github: 'activeadmin'
 gem 'ancestry'
 gem 'annotate'
 gem 'attachinary', git: 'git://github.com/ThomasConnolly/attachinary.git'

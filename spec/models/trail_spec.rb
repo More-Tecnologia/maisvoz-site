@@ -7,6 +7,9 @@ RSpec.describe Trail, type: :model do
   it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
   it { is_expected.to have_many(:career_trails) }
   it { is_expected.to have_many(:careers).through(:career_trails) }
+  it { is_expected.to have_many(:trail_products) }
+  it { is_expected.to have_many(:products).through(:trail_products) }
+  it { is_expected.to have_many(:product_scores) }
 
   it 'has valid factory' do
     expect(trail.valid?).to be_truthy

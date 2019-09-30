@@ -80,6 +80,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.7'
   gem 'faker', '~> 2.2', '>= 2.2.1'
   gem 'byebug', '~> 11.0', '>= 11.0.1'
+  gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
 end
 
 group :development do

@@ -51,7 +51,7 @@ class UsersGrid < BaseGrid
   end
   column(:sign_in, mandatory: true, header: I18n.t('backoffice.support.users.index.sign_in')) do |user|
     format(user) do |user|
-      if current_user.username == 'sistema'
+      if current_user.admin?
         link_to(masquerade_path(user), title: 'Logar como Usuário', target: '_blank') { content_tag(:i, nil, class: 'fa fa-user') }
       end
     end

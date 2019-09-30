@@ -59,6 +59,7 @@ class Product < ApplicationRecord
 
   has_many :trail_products
   has_many :trails, through: :trail_products
+  has_many :product_scores
 
   belongs_to :category, optional: true
   belongs_to :career, optional: true

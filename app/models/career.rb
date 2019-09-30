@@ -23,5 +23,5 @@ class Career < ApplicationRecord
   has_many :users
   has_many :career_trails
   has_many :trails, through: :career_trails
-
+  has_many :product_scores
 end

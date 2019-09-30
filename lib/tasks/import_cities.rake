@@ -5569,15 +5569,15 @@ namespace :import_cities do
       ['TO', "Xambioá",1722107]
     ]
 
+    count = 0
     cities.each do |c|
-      puts "Importando #{c[1]}..."
       City.find_or_create_by(name: c[1]) do |city|
         city.state = c[0]
         city.ibge = c[2]
       end
+      count += 1
     end
 
-    puts 'Imported!'
-
+    puts "Imported " << count.to_s
   end
 end

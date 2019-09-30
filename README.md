@@ -1,18 +1,15 @@
 # README
 
-Passos iniciais:
+## Passos iniciais:
 
-* Rodar migrações
-* Adicionar admin
-* AdminUser.create!(email: 'guilhermekfe@outlook.com', password: '111111', password_confirmation: '111111')
-* Rodar rake import_products:run
-* Rodar rake import_users:run
+```
+rake import_cities:run
+```
 
 `heroku pg:copy futuremotors-production::DATABASE DATABASE -a futuremotors-staging`
 
 ## Tasks que devem ser agendadas
 
 ```
-rake subscriptions:check_status (todo dia)
 rake users_still_active:verify (todo dia)
 ```

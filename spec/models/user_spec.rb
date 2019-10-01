@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
-  it { is_expected.to belong_to(:career) }
+  it { is_expected.to have_many(:career_trail_users) }
+  it { is_expected.to have_many(:career_trails).through(:career_trail_users) }
 
   it 'valid factory' do
-    puts user.username
     expect(user.valid?).to be_truthy
   end
 

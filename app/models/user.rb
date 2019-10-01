@@ -130,9 +130,10 @@ class User < ApplicationRecord
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   has_many :scores
   has_many :spreaded_scores, class_name: 'Score'
+  has_many :career_trail_users
+  has_many :career_trails, through: :career_trail_users
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
-  belongs_to :career
 
   has_many :credits
   has_many :debits
@@ -186,5 +187,4 @@ class User < ApplicationRecord
   def bank_name
     BankCodes.find_by_code(bank_code)
   end
-
 end

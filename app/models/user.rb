@@ -187,4 +187,16 @@ class User < ApplicationRecord
   def bank_name
     BankCodes.find_by_code(bank_code)
   end
+
+  def current_career_trail
+    @current_career_trail ||= career_trails.last
+  end
+
+  def current_trail
+    @current_trail ||= current_career_trail.try(:trail)
+  end
+
+  def current_career
+    @current_career ||= current_career_trail.try(:career)
+  end
 end

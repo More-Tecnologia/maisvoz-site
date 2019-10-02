@@ -94,7 +94,7 @@ class Order < ApplicationRecord
   end
 
   def adhesion_product
-    @adhesion_product ||= order_items.joins(:product).where('products.kind = ?', Product.kinds[:adhesion]).first.try(:product)
+    @adhesion_product ||= order_items.includes(:product).where('product.trail_id != null').first
   end
 
   def club_motors_product
@@ -119,4 +119,7 @@ class Order < ApplicationRecord
     end
   end
 
+  def products
+    @products ||= order_items.includes(product: [:trail])
+  end
 end

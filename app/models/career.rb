@@ -24,4 +24,12 @@ class Career < ApplicationRecord
   has_many :career_trails
   has_many :trails, through: :career_trails
   has_many :product_scores
+
+  def qualify?(user)
+    user.scores.sum(&:cent_amount).to_i >= qualifying_score
+  end
+
+  def higher?(career)
+    id > career.id
+  end
 end

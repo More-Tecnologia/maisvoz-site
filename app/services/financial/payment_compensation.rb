@@ -28,47 +28,35 @@ module Financial
     def compensate_order
       order.with_lock do
         update_order_status
-        update_user_flags
-        update_user_role
-        update_subscription
-        activate_tracker
+        upgrade_user_career if first_adhesion?
+        upgrade_user_trail if upgraded_trail?
+        update_user_purchase_flags
         activate_user
-        assign_product_to_user
-        create_binary_node
-        qualify_sponsor
-        propagate_binary_score
+        insert_into_binary_tree if user.out_binary_tree? && adhesion_product?
+        qualify_sponsor if user.sponsor_is_binary_qualified?
+        #propagate_binary_score
         propagate_pv_history
         credit_bonus
         create_system_fee
         order.completed!
       end
-      binary_bonus_nodes_verifier
-      ShoppingMailer.with(order: order).order_paid.deliver_later
-      DROrderTransmitterWorker.perform_async(order.id)
-      true
+      # binary_bonus_nodes_verifier if user.inside_binary_tree?
+      notify_user_by_email_about_paid_order
     end
 
     def update_order_status
-      if regular_product?
-        order.processing!
-      else
-        order.completed!
-      end
-
-      order.paid_at = Time.zone.now
-      order.save!
+      attributes = {}
+      attributes.merge!(status: :completed, paid_at: Time.zone.new)
+      attributes.merge!(status: :processing) if regular_product?
+      order.update_attributes!(attributes)
     end
 
-    def create_binary_node
-      return unless user.binary_node.blank? && adhesion_product?
-
+    def insert_into_binary_tree
       Multilevel::CreateBinaryNode.new(user).call
     end
 
     def qualify_sponsor
-      return if user.sponsor.blank? || user.sponsor.binary_qualified?
-
-      Multilevel::QualifyUser.new(user.sponsor).call
+      Multilevel::QualifyUser.new(user.sponsor).call if user.sponsor.try(:binary_qualified?)
     end
 
     def propagate_binary_score
@@ -90,60 +78,57 @@ module Financial
       Fee::CreateSystemFee.new(order).call
     end
 
-    def update_user_flags
-      user.update!(bought_adhesion: true) if adhesion_product?
-      user.update!(bought_product: true) if regular_product?
+    def update_user_purchase_flags
+      attributes = {}
+      attributes.merge!(bought_adhesion: true) if adhesion_product
+      attributes.merge!(bought_product: true) if regular_product?
+      user.update_attributes!(attributes)
     end
 
-    def update_user_role
-      return unless user.consumidor? && adhesion_product?
-
-      user.empreendedor!
-      user.affiliate!
-      user.unilevel_node.affiliate!
-
-      CareerHistory.new.tap do |log|
-        log.user       = user
-        log.new_career = User::AFFILIATE
-        log.save!
-      end
+    def upgrade_user_career
+      UpgrderCareerService.call(user: user)
     end
 
-    def update_subscription
-      Subscriptions::Compensate.new(order: order).call
+    def upgrade_user_trail
+      trail = adhesion_product.try(:trail)
+      UpgraderTrailService.call(user: user, trail: trail) if trail
     end
 
     def activate_user
       return if user.active? || !adhesion_product?
-
-      user.update!(active: true, active_until: 30.days.from_now)
+      user.activate!
     end
 
-    def assign_product_to_user
-      return if order.club_motors_product.blank?
-
-      user.update!(product: order.club_motors_product)
-    end
-
-    def binary_bonus_nodes_verifier
-      return if order.user.binary_node.blank?
-
-      NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
-    end
-
-    def adhesion_product?
-      adhesion_product.present?
-    end
+    # def binary_bonus_nodes_verifier
+    #   NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
+    # end
 
     def adhesion_product
-      order.adhesion_product
+      @adhesion_product ||= order.products.detect(&:adhesion?)
     end
 
     def regular_product?
-      @regular_product ||= order.order_items.joins(:product).where(
-        'products.kind = ?', Product.kinds[:product]
-      ).any?
+      @regular_product ||= order.products.detect(&:regular?)
     end
 
+    def new_trail?
+      user.current_trail != adhesion_product.try(:trail)
+    end
+
+    def upgraded_trail?
+      user.bought_adhesion && new_trail?
+    end
+
+    def first_adhesion?
+      !user.bought_adhesion && adhesion_product?
+    end
+
+    def inside_binary_tree?
+      user.binary_node
+    end
+
+    def notify_user_by_email_about_paid_order
+      ShoppingMailer.with(order: order).order_paid.deliver_later
+    end
   end
 end

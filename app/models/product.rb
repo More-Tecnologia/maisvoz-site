@@ -77,4 +77,11 @@ class Product < ApplicationRecord
     main_photo.public_id
   end
 
+  def adhesion?
+    trail
+  end
+
+  def regular?
+    !adhesion?
+  end
 end

@@ -142,6 +142,7 @@ class User < ApplicationRecord
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
+  after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
 
   def balance
@@ -189,14 +190,35 @@ class User < ApplicationRecord
   end
 
   def current_career_trail
-    @current_career_trail ||= career_trails.last
+    career_trails.last
   end
 
   def current_trail
-    @current_trail ||= current_career_trail.try(:trail)
+    current_career_trail.try(:trail)
   end
 
   def current_career
-    @current_career ||= current_career_trail.try(:career)
+    current_career_trail.try(:career)
+  end
+
+  def activate!
+    update!(active: true, active_until: 1.month.from_now)
+  end
+
+  def out_binary_tree?
+    user.binary_node.nil?
+  end
+
+  def inside_binary_tree?
+    user.binary_node.nil?
+  end
+
+  def sponsor_is_binary_qualified?
+    sponsor.try(:binary_qualified?)
+  end
+
+  def ensure_initial_career_trail
+    first_career_trail = CareerTrail.first
+    CareerTrailUser.create!(user: self, career_trail: first_career_trail)
   end
 end

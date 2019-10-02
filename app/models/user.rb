@@ -105,6 +105,8 @@ class User < ApplicationRecord
 
   enum binary_position: { left: 'left', right: 'right' }
 
+  serialize :ascendant_sponsors_ids, Array
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -142,6 +144,7 @@ class User < ApplicationRecord
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
+  before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
 
@@ -217,8 +220,21 @@ class User < ApplicationRecord
     sponsor.try(:binary_qualified?)
   end
 
+  def ascendant_sponsors
+    User.where(id: ascendant_sponsors_ids)
+  end
+
+  private
+
   def ensure_initial_career_trail
-    first_career_trail = CareerTrail.first
-    CareerTrailUser.create!(user: self, career_trail: first_career_trail)
+    # first_career_trail = CareerTrail.first
+    # CareerTrailUser.create!(user: self, career_trail: first_career_trail)
+  end
+
+  def ensure_ascendant_sponsors_ids
+    sponsor_ids = sponsor.try(:ascendant_sponsors_ids) || []
+    sponsor_id = [sponsor.try(:id)]
+    ids = sponsor_ids + sponsor_id
+    self[:ascendant_sponsors_ids] = ids.compact
   end
 end

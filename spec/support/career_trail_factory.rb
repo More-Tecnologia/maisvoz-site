@@ -3,7 +3,7 @@ class CareerTrailFactory
 
   def self.create(count = 5)
     new.create_career_trails(count)
-  enduser.current_trail
+  end
 
   def create_career_trails(count = 5)
     careers = create_careers(count)

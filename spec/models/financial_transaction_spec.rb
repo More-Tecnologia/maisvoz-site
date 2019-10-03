@@ -7,8 +7,8 @@ RSpec.describe FinancialTransaction, type: :model do
   it { is_expected.to validate_numericality_of(:cent_amount).only_integer }
   it { is_expected.to belong_to(:financial_reason) }
   it { is_expected.to belong_to(:user) }
-  it { is_expected.to belong_to(:operator).class_name('User') }
   it { is_expected.to define_enum_for(:moneyflow).with_values([:credit, :debit]) }
+  it { is_expected.to belong_to(:spreader).class_name('User') }
 
   it 'has valid factory' do
     expect(financial_transaction.valid?).to be_truthy

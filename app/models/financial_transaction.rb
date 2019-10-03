@@ -1,6 +1,6 @@
 class FinancialTransaction < ApplicationRecord
   belongs_to :user
-  belongs_to :operator, class_name: 'User'
+  belongs_to :spreader, class_name: 'User'
   belongs_to :financial_reason
 
   enum moneyflow: [:credit, :debit]

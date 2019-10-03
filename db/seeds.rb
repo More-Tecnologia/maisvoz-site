@@ -8,7 +8,10 @@
 
 ActiveRecord::Base.transaction do
 
+  score_types = [{name: 'Pontuação de Adesões'}, {name: 'Pontuação de Ativação'}, {name: 'Pontuação de Compras'}]
+  score_types.each { |score_type| ScoreType.create!(score_type) }
+
   User.create(username: 'morenwm', role: 'admin', password: '111111', email: 'morenwm@morenwm.com')
   User.create(username: 'maisvoz', role: 'empreendedor', password: '111111', email: 'maisvoz@morenwm.com')
-  
+
 end

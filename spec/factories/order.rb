@@ -13,5 +13,9 @@ FactoryBot.define do
     payment_type { Order.payment_types[:boleto] }
     paid_by { '' }
     billed { true }
+
+    trait :with_order_itens do
+      order_items { Product.kinds.keys.map { |kind| create(:order_item, kind) } }
+    end
   end
 end

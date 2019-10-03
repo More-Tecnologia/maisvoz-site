@@ -94,17 +94,15 @@ class Order < ApplicationRecord
   end
 
   def adhesion_product
-    @adhesion_product ||= order_items.includes(:product).where('product.trail_id != null').first
+    @adhesion_product ||= products.select(&:adhesion?).first
+  end
+
+  def activation_product
+    @activation_product ||= products.select(&:activation?).first
   end
 
   def club_motors_product
     @club_motors_product ||= order_items.joins(:product).where('products.club_motors = true').first.try(:product)
-  end
-
-  def pvg_score
-    @pvg_score ||= order_items.joins(:product).where(
-      'products.kind = ?', Product.kinds[:adhesion]
-    ).sum(:binary_score)
   end
 
   def token
@@ -120,6 +118,16 @@ class Order < ApplicationRecord
   end
 
   def products
-    @products ||= order_items.includes(product: [:trail])
+    @products ||= order_items.includes(product: [:trail]).map(&:product)
+  end
+
+  def detached_products_score
+    items = order_items.includes(:product).select { |item| item.product.detached? }
+    items.sum { |item| item.quantity * item.product.binary_score }
+  end
+
+  def activation_products_score
+    items = order_items.includes(:product).select { |item| item.product.activation? }
+    items.sum { |item| item.quantity * item.product.binary_score }
   end
 end

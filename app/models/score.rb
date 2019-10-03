@@ -12,4 +12,8 @@ class Score < ApplicationRecord
   validates :height, numericality: { only_integer: true }
 
   enum source_leg: SOURCE_LEGS
+
+  scope :adhesion, -> { where(score_type_id: 1) }
+  scope :activation, -> { where(score_type_id: 2) }
+  scope :detached, -> { where(score_type_id: 3) }
 end

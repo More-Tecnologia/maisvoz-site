@@ -1,9 +1,5 @@
 module Bonification
   class CreditIndirectBonus
-
-    BONUS = 0.04
-    MAX_LEVEL = 6
-
     def initialize(order)
       @order = order
       @buyer = order.user
@@ -12,7 +8,7 @@ module Bonification
     def call
       return if buyer.sponsor.blank? || order.adhesion_product.blank?
       ActiveRecord::Base.transaction do
-        distribute_bonus
+        propagate_bonus
       end
     end
 
@@ -20,10 +16,10 @@ module Bonification
 
     attr_reader :order, :buyer
 
-    def distribute_bonus
+    def propagate_bonus
       level = 2
       receiver = buyer.sponsor.sponsor
-      while receiver.present? && level <= MAX_LEVEL
+      while receiver.present?
         credit_bonus(receiver, level) if receiver.active?
         reverse_bonus(receiver, level) if !receiver.active?
         level += 1
@@ -76,7 +72,7 @@ module Bonification
     end
 
     def bonus_amount
-      @bonus_amount ||= order.pvg_score * BONUS
+      @bonus_amount ||= order.pvg_score
     end
 
     def h

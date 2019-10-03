@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :product_score do
-    receiving_maximum_generation { Faker::Number.positive.to_i }
+    generation { rand(0..10) }
     cent_amount { Faker::Number.positive.to_i }
+    career_trail { association(:career_trail) }
   end
 end

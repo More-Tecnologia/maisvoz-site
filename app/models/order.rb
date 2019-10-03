@@ -47,6 +47,7 @@ class Order < ApplicationRecord
   has_many :pv_activity_histories
   has_many :payment_transactions
   has_many :scores
+  has_many :financial_transactions
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true

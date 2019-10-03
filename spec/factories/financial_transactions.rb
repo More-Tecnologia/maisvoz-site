@@ -4,5 +4,6 @@ FactoryBot.define do
     financial_reason { association(:financial_reason) }
     spreader { association(:user) }
     cent_amount { Faker::Number.positive.to_i }
+    order { association(:order) }
   end
 end

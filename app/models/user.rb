@@ -221,14 +221,14 @@ class User < ApplicationRecord
   end
 
   def ascendant_sponsors
-    User.where(id: ascendant_sponsors_ids)
+    User.where(id: ascendant_sponsors_ids).reverse
   end
 
   private
 
   def ensure_initial_career_trail
-    # first_career_trail = CareerTrail.first
-    # CareerTrailUser.create!(user: self, career_trail: first_career_trail)
+    first_career_trail = CareerTrail.first
+    CareerTrailUser.create!(user: self, career_trail: first_career_trail)
   end
 
   def ensure_ascendant_sponsors_ids

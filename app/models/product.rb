@@ -51,7 +51,7 @@ class Product < ApplicationRecord
 
   include Hashid::Rails
 
-  enum kind: [:product, :monthly_payment, :adhesion, :promotion, :renovation, :upgrade]
+  enum kind: [:detached, :adhesion, :activation]
   enum paid_by: [:paid_by_user, :paid_by_company]
 
   has_attachment :main_photo
@@ -75,10 +75,6 @@ class Product < ApplicationRecord
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?
     main_photo.public_id
-  end
-
-  def adhesion?
-    trail
   end
 
   def regular?

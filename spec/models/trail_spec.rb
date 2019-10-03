@@ -8,7 +8,6 @@ RSpec.describe Trail, type: :model do
   it { is_expected.to have_many(:career_trails) }
   it { is_expected.to have_many(:careers).through(:career_trails) }
   it { is_expected.to have_one(:product) }
-  it { is_expected.to have_many(:product_scores) }
 
   it 'has valid factory' do
     expect(trail.valid?).to be_truthy

@@ -3,7 +3,6 @@ class Trail < ApplicationRecord
   has_many :careers, through: :career_trails
   has_many :trail_products
   has_many :products, through: :trail_products
-  has_many :product_scores
   has_one :product
 
   validates :name, presence: true,

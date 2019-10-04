@@ -12,8 +12,15 @@ RSpec.describe FinancialTransaction, type: :model do
   it { is_expected.to define_enum_for(:moneyflow).with_values([:credit, :debit]) }
   it { is_expected.to belong_to(:spreader).class_name('User') }
   it { is_expected.to belong_to(:order).optional }
+  it { is_expected.to belong_to(:financial_transaction).optional }
+  it { is_expected.to have_one(:chargeback).class_name('FinancialTransaction') }
 
   it 'has valid factory' do
     expect(financial_transaction.valid?).to be_truthy
+  end
+
+  it 'create chargeback' do
+    chargeback = financial_transaction.chargeback!
+    expect(chargeback.persisted?).to be_truthy
   end
 end

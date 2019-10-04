@@ -1,10 +1,8 @@
 module Bonification
   class IndirectBonusPropagatorService
     def call
-      return if user.sponsor.blank? || order.adhesion_product.blank?
-      ActiveRecord::Base.transaction do
-        propagate_bonus_to_ascendant_sponsors
-      end
+      return if user.sponsor.blank?
+      propagate_bonus_to_ascendant_sponsors
     end
 
     private
@@ -14,11 +12,10 @@ module Bonification
     def initialize(args)
       @order = args[:order]
       @user = order.user
-      @product_scores = ProductScore.all
     end
 
     def propagate_bonus_to_ascendant_sponsors
-      ascendant_sponsors = user.ascendant_sponsors
+      ascedetect { |r| r.generation == generation && r. }ndant_sponsors = user.ascendant_sponsors
       ascendant_sponsors.each_with_index do |ascendant_sponsor, index|
         propagate_product_bonus(ascendant_sponsor, index + 1)
       end
@@ -26,21 +23,58 @@ module Bonification
 
     def propagate_product_bonus(ascendant_sponsor, generation)
       order.products.each do |product|
-        financial_transaction = create_financial_transaction(ascendant_sponsor, product, generation)
+        ActiveRecord::Base.transaction do
+          create_product_bonuses(ascendant_sponsor, generation, product)
+        end
+      end
+    end
+
+    def create_product_bonuses(ascendant_sponsor, generation, product)
+      product_reason_scores =
+        ProductReasonScore.includes(:product, :financial_reason, :product_score)
+                          .where(product: product)
+      financial_reasons = financial_reasons.map(&:financial_reason).uniq
+      financial_reasons.each do |financial_reason|
+        product_score = detect_product_score(product_reason_scores,
+                                             ascendant_sponsor,
+                                             product,
+                                             generation)
+        financial_transaction = create_financial_transaction(ascendant_sponsor,
+                                                             generation,
+                                                             product,
+                                                             financial_reason,
+                                                             product_score)
         financial_transaction.chargeback! unless ascendant_sponsor.active?
       end
     end
 
-    def create_financial_transaction(ascendant_sponsor, product, generation)
-      FinancialTransaction.create!(user: ascendant_sponsor,
-                                   spreader: user,
-                                   financial_reason: FinancialReason.indirect_bonus,
-                                   cent_amount: find_cent_amount_by(career_trail, generation)
+    def detect_product_score(product_reason_scores, ascendant_sponsor, product, generation)
+      product_scores = product_reason_scores.map(&:product_score)
+      career_trail = detect_career_trail(product_scores, ascendant_sponsor.current_career_trail)
+      detect_product_score_by(career_trail.id,
+                              product.id,
+                              generation,
+                              product_scores)
     end
 
-    def find_cent_amount_by(args)
-      product_score = ProductScore.where(career_trail: career_trail, generation: generation)
-      product_score.cent_amount
+    def detect_career_trail(product_scores, career_trail)
+      product_scores.detect { |p| p.career_trail_id == career_trail.id }
+    end
+
+    def detect_product_score_by(career_trail_id, product_id, generation, product_scores)
+      product_scores.detect { |s|
+        s.career_trail_id == career_trail_id &&
+        s.product_id ==  product.id &&
+        s.generation == generation }
+    end
+
+    def create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
+      FinancialTransaction.create!(user: ascendant_sponsor,
+                                   spreader: user,
+                                   financial_reason: financial_reason,
+                                   generation: generation,
+                                   cent_amount: product_score.cent_amount,
+                                   order: order)
     end
   end
 end

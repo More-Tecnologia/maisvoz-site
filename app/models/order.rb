@@ -131,4 +131,8 @@ class Order < ApplicationRecord
     items = order_items.includes(:product).select { |item| item.product.activation? }
     items.sum { |item| item.quantity * item.product.binary_score }
   end
+
+  def item_price_cents_sum
+    order_items.sum { |item| item.quantity * item.product.price_cents }
+  end
 end

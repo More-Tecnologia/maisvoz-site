@@ -10,32 +10,28 @@ class FinancialTransaction < ApplicationRecord
 
   enum moneyflow: [:credit, :debit]
 
+  scope :chargeback, -> { where.not(financial_transaction: nil) }
+  scope :not_chargeback, -> { where(financial_transaction: nil) }
+
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }
 
-  before_validation :turn_cent_amount_positive, if: :credit?
-  before_validation :turn_cent_amount_negative, if: :debit?
-
   def chargeback!
-    create_chargeback(user: user,
-                      spreader: spreader,
+    create_chargeback(user: User.find_morenwm_customer_user,
+                      spreader: user,
                       financial_reason: financial_reason,
                       order: order,
                       cent_amount: cent_amount,
                       moneyflow: invert_money_flow)
   end
 
+  def chargeback?
+    financial_transaction
+  end
+
   private
 
   def invert_money_flow
     FinancialTransaction.moneyflows.keys.detect { |e| e != moneyflow }
-  end
-
-  def turn_cent_amount_positive
-    self[:cent_amount] = cent_amount.abs if cent_amount&.integer?
-  end
-
-  def turn_cent_amount_negative
-    self[:cent_amount] = -(cent_amount.abs) if cent_amount&.integer?
   end
 end

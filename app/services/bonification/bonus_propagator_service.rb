@@ -1,24 +1,19 @@
 module Bonification
-  class IndirectBonusPropagatorService
+  class BonusPropagatorService < ApplicationService
     def call
-      return if user.sponsor.blank?
-      propagate_bonus_to_ascendant_sponsors
+      ascendant_sponsors = user.ascendant_sponsors
+      ascendant_sponsors.each_with_index do |ascendant_sponsor, index|
+        propagate_product_bonus(ascendant_sponsor, index + 1)
+      end
     end
 
     private
 
-    attr_reader :order. :user
+    attr_reader :order, :user
 
     def initialize(args)
       @order = args[:order]
       @user = order.user
-    end
-
-    def propagate_bonus_to_ascendant_sponsors
-      ascedetect { |r| r.generation == generation && r. }ndant_sponsors = user.ascendant_sponsors
-      ascendant_sponsors.each_with_index do |ascendant_sponsor, index|
-        propagate_product_bonus(ascendant_sponsor, index + 1)
-      end
     end
 
     def propagate_product_bonus(ascendant_sponsor, generation)
@@ -33,12 +28,13 @@ module Bonification
       product_reason_scores =
         ProductReasonScore.includes(:product, :financial_reason, :product_score)
                           .where(product: product)
-      financial_reasons = financial_reasons.map(&:financial_reason).uniq
+      financial_reasons = product_reason_scores.map(&:financial_reason).uniq
       financial_reasons.each do |financial_reason|
         product_score = detect_product_score(product_reason_scores,
                                              ascendant_sponsor,
                                              product,
                                              generation)
+        return unless product_score
         financial_transaction = create_financial_transaction(ascendant_sponsor,
                                                              generation,
                                                              product,
@@ -64,17 +60,23 @@ module Bonification
     def detect_product_score_by(career_trail_id, product_id, generation, product_scores)
       product_scores.detect { |s|
         s.career_trail_id == career_trail_id &&
-        s.product_id ==  product.id &&
+        s.product_id ==  product_id &&
         s.generation == generation }
     end
 
     def create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
+      order_item_quantity = detect_order_item_quantity(product)
+      score = order_item_quantity.to_i * product_score.cent_amount
       FinancialTransaction.create!(user: ascendant_sponsor,
                                    spreader: user,
                                    financial_reason: financial_reason,
                                    generation: generation,
-                                   cent_amount: product_score.cent_amount,
-                                   order: order)
+                                   cent_amount: score,
+                                   order: order) if score > 0
+    end
+
+    def detect_order_item_quantity(product)
+      order.order_items.detect { |e| e.product_id == product.id }.try(:quantity)
     end
   end
 end

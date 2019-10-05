@@ -1,14 +1,17 @@
 class TreeFactory
   include FactoryBot::Syntax::Methods
 
-  def create_unilevel(height = 6)
-    parents = [create(:user)]
+  HEIGHT = 6
+
+  def create_unilevel(height = HEIGHT)
+    parents = [create(:user, username: ENV['MORENWM_CUSTOMER_USERNAME'])]
+    create_morenwm_user(parents.first)
     height.times do
       parents = create_children_by_height(parents)
     end
   end
 
-  def create_binary(height = 6)
+  def create_binary(height = HEIGHT)
     parents = [create(:binary_node)]
     height.times do
       parents = create_binary_children_by_height(parents)
@@ -35,5 +38,9 @@ class TreeFactory
                            sponsored_by: parent.user,
                            parent: parent)
     end
+  end
+
+  def create_morenwm_user(sponsor)
+    create(:user, sponsor: sponsor)
   end
 end

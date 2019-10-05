@@ -46,12 +46,12 @@ module Bonification
 
     def create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
-      score = order_item_quantity * product_score.cent_amount
+      score = order_item_quantity * product_score.calculate_product_score(product.price_cents)
       FinancialTransaction.create!(user: ascendant_sponsor,
                                    spreader: user,
                                    financial_reason: financial_reason,
                                    generation: generation,
-                                   cent_amount: score,
+                                   cent_amount: score.round(0),
                                    order: order) if score > 0
     end
 

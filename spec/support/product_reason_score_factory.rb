@@ -2,8 +2,10 @@ class ProductReasonScoreFactory
   include FactoryBot::Syntax::Methods
 
   GENERATIONS = (1..6).to_a
-  CENT_AMOUNT = 1
+  CENT_AMOUNT = Faker::Number.positive.to_i
   FINANCIAL_REASONS_COUNT = 3
+  FIX_VALUE = Faker::Boolean.boolean
+  PRODUCT_VALUE = Faker::Number.positive.to_i
 
   def self.create
     new.build
@@ -20,7 +22,7 @@ class ProductReasonScoreFactory
   end
 
   def create_products
-    Product.kinds.keys.map { |kind| create(:product, kind) }
+    Product.kinds.keys.map { |kind| create(:product, kind, price_cents: PRODUCT_VALUE) }
   end
 
   def create_financial_reasons
@@ -66,7 +68,8 @@ class ProductReasonScoreFactory
       ProductScore.create!(product_reason_score: product_reason_score,
                            career_trail: career_trail,
                            generation: generation,
-                           cent_amount: CENT_AMOUNT)
+                           cent_amount: CENT_AMOUNT,
+                           fix_value: FIX_VALUE)
     end
   end
 end

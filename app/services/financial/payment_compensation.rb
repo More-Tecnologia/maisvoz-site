@@ -74,7 +74,7 @@ module Financial
     end
 
     def create_system_fee
-      Financial::CreatorSystemFee.call(order: order)
+      Financial::CreatorSystemFeeService.call(order: order)
     end
 
     def update_user_purchase_flags

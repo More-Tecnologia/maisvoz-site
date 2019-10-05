@@ -20,6 +20,7 @@
 class OrderItem < ApplicationRecord
 
   delegate :name, :adhesion?, to: :product
+  delegate :system_taxable?, to: :product
 
   belongs_to :order
   belongs_to :product

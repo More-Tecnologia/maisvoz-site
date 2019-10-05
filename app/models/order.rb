@@ -135,4 +135,8 @@ class Order < ApplicationRecord
   def item_price_cents_sum
     order_items.sum { |item| item.quantity * item.product.price_cents }
   end
+
+  def taxable_product_cent_amount
+    order_items.sum { |i| i.system_taxable? ? i.product.price_cents : 0 }
+  end
 end

@@ -228,6 +228,10 @@ class User < ApplicationRecord
     find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
   end
 
+  def self.find_morenwm_user
+    find_by(username: ENV['MORENWM_USERNAME'])
+  end
+
   private
 
   def ensure_initial_career_trail

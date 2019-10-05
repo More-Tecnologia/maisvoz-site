@@ -13,6 +13,6 @@ FactoryBot.define do
     birthdate { Faker::Date.birthday(min_age: 18, max_age: 100) }
     binary_strategy { User.binary_strategies.values.sample }
     binary_position { User.binary_positions.values.sample }
-    active { false }
+    active { true }
   end
 end

@@ -9,15 +9,20 @@ module Bonification
 
     private
 
-    attr_reader :order, :user
+    attr_reader :order, :user, :products, :product_reason_scores,
+                :product_scores, :order_items
 
     def initialize(args)
       @order = args[:order]
       @user = order.user
+      @products = order.products
+      @product_reason_scores = find_product_reason_scores_by(products)
+      @product_scores = index_product_scores_by_career_trail_id
+      @order_items = order.order_items.index_by(&:product_id)
     end
 
     def propagate_product_bonus(ascendant_sponsor, generation)
-      order.products.each do |product|
+      products.each do |product|
         ActiveRecord::Base.transaction do
           create_product_bonuses(ascendant_sponsor, generation, product)
         end
@@ -25,15 +30,10 @@ module Bonification
     end
 
     def create_product_bonuses(ascendant_sponsor, generation, product)
-      product_reason_scores =
-        ProductReasonScore.includes(:product, :financial_reason, :product_score)
-                          .where(product: product)
-      financial_reasons = product_reason_scores.map(&:financial_reason).uniq
+      financial_reasons = find_financial_reasons_by(product)
       financial_reasons.each do |financial_reason|
-        product_score = detect_product_score(product_reason_scores,
-                                             ascendant_sponsor,
-                                             product,
-                                             generation)
+        product_score = product_scores.fetch(financial_reason.id)
+                                      .fetch(ascendant_sponsor.current_career_trail.id)
         return unless product_score
         financial_transaction = create_financial_transaction(ascendant_sponsor,
                                                              generation,
@@ -44,29 +44,9 @@ module Bonification
       end
     end
 
-    def detect_product_score(product_reason_scores, ascendant_sponsor, product, generation)
-      product_scores = product_reason_scores.map(&:product_score)
-      career_trail = detect_career_trail(product_scores, ascendant_sponsor.current_career_trail)
-      detect_product_score_by(career_trail.id,
-                              product.id,
-                              generation,
-                              product_scores)
-    end
-
-    def detect_career_trail(product_scores, career_trail)
-      product_scores.detect { |p| p.career_trail_id == career_trail.id }
-    end
-
-    def detect_product_score_by(career_trail_id, product_id, generation, product_scores)
-      product_scores.detect { |s|
-        s.career_trail_id == career_trail_id &&
-        s.product_id ==  product_id &&
-        s.generation == generation }
-    end
-
     def create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
-      order_item_quantity = detect_order_item_quantity(product)
-      score = order_item_quantity.to_i * product_score.cent_amount
+      order_item_quantity = order_items.fetch(product.id).quantity.to_i
+      score = order_item_quantity * product_score.cent_amount
       FinancialTransaction.create!(user: ascendant_sponsor,
                                    spreader: user,
                                    financial_reason: financial_reason,
@@ -75,8 +55,22 @@ module Bonification
                                    order: order) if score > 0
     end
 
-    def detect_order_item_quantity(product)
-      order.order_items.detect { |e| e.product_id == product.id }.try(:quantity)
+    def find_product_reason_scores_by(products)
+      ProductReasonScore.includes(:product, :product_scores)
+                        .where(product: products)
+    end
+
+    def index_product_scores_by_career_trail_id
+      reason_scores = product_reason_scores.index_by(&:financial_reason_id)
+      reason_scores.transform_values do |reason_score|
+        reason_score.product_scores.index_by(&:career_trail_id)
+      end
+    end
+
+    def find_financial_reasons_by(product)
+      product_reason_scores.map { |e| e.financial_reason if e.product_id == product.id }
+                           .compact
+                           .uniq
     end
   end
 end

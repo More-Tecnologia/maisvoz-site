@@ -2,7 +2,8 @@ class ProductReasonScoreFactory
   include FactoryBot::Syntax::Methods
 
   GENERATIONS = (1..6).to_a
-  PRODUCT_SCORE = Faker::Number.positive.to_i
+  CENT_AMOUNT = 1
+  FINANCIAL_REASONS_COUNT = 3
 
   def self.create
     new.build
@@ -14,8 +15,8 @@ class ProductReasonScoreFactory
     trails = create_trails
     careers = create_careers
     career_trails = create_career_trails(careers, trails)
-    product_scores = create_product_scores_for(products, career_trails)
-    create_product_reason_scores(financial_reasons, product_scores, products)
+    product_reason_scores = create_product_reason_scores(products, financial_reasons)
+    create_product_scores_for(product_reason_scores, career_trails)
   end
 
   def create_products
@@ -23,7 +24,7 @@ class ProductReasonScoreFactory
   end
 
   def create_financial_reasons
-    (1..3).to_a.map { create(:financial_reason) }
+    (1..FINANCIAL_REASONS_COUNT).to_a.map { create(:financial_reason) }
   end
 
   def create_trails
@@ -43,32 +44,29 @@ class ProductReasonScoreFactory
     }.flatten
   end
 
-  def create_product_scores_for(products, career_trails)
-    products.map do |product|
-      create_product_score_for(product, career_trails)
-    end
+  def create_product_reason_scores(products, financial_reasons)
+    products.map { |product|
+      financial_reasons.map  do |financial_reason|
+        ProductReasonScore.create!(product: product,
+                                   financial_reason: financial_reason)
+      end
+    }.flatten
   end
 
-  def create_product_score_for(product, career_trails)
-    career_trails.map do |career_trail|
-      GENERATIONS.map  do  |generation|
-        ProductScore.create!(career_trail: career_trail,
-                             product: product,
-                             cent_amount: PRODUCT_SCORE,
-                             generation: generation)
+  def create_product_scores_for(product_reason_scores, career_trails)
+    product_reason_scores.map { |product_reason_score|
+      career_trails.map do |career_trail|
+        create_product_score_by_generation(product_reason_score, career_trail)
       end
-    end
+    }.flatten
   end
 
-  def create_product_reason_scores(financial_reasons, product_scores, products)
-    financial_reasons.map do |financial_reason|
-      product_scores.map.with_index do |product_score_by_generation, index|
-        product_score_by_generation.flatten.map do |p|
-          ProductReasonScore.create!(product_score: p,
-                                     financial_reason: financial_reason,
-                                     product: products[index])
-        end
-      end
+  def create_product_score_by_generation(product_reason_score, career_trail)
+    GENERATIONS.map do |generation|
+      ProductScore.create!(product_reason_score: product_reason_score,
+                           career_trail: career_trail,
+                           generation: generation,
+                           cent_amount: CENT_AMOUNT)
     end
   end
 end

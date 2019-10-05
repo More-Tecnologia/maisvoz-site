@@ -23,15 +23,25 @@ RSpec.describe Bonification::BonusPropagatorService, type: :service do
   let!(:fix_value) { ProductReasonScoreFactory::FIX_VALUE }
   let!(:product_value) { ProductReasonScoreFactory::PRODUCT_VALUE }
 
-  before do
+  before(:all) do
     ProductReasonScoreFactory.create
     TreeFactory.new.create_unilevel
-    Bonification::BonusPropagatorService.call(order: order)
   end
+
+  before { Bonification::BonusPropagatorService.call(order: order) }
 
   it 'propagate bonus' do
     expected_bonus_amount = sum_score_by_order * tree_height
     gotten_bonus_amount = FinancialTransaction.not_chargeback.sum(:cent_amount)
     expect(gotten_bonus_amount).to be_within(30).of(expected_bonus_amount)
+  end
+
+  it 'create chargeback' do
+    chargeback_financial_reason = create(:financial_reason)
+    ascendant_sponsors_inactive_count = user.ascendant_sponsors.count { |e| !e.active? }
+    expected_chargeback_count =
+      ascendant_sponsors_inactive_count * order.products.size * financial_reasons_count
+    chargeback_count = FinancialTransaction.chargeback.count
+    expect(chargeback_count).to eq(expected_chargeback_count)
   end
 end

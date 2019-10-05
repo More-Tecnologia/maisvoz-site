@@ -19,7 +19,7 @@ class FinancialTransaction < ApplicationRecord
   def chargeback!
     create_chargeback(user: User.find_morenwm_customer_user,
                       spreader: user,
-                      financial_reason: financial_reason,
+                      financial_reason: FinancialReason.chargeback,
                       order: order,
                       cent_amount: cent_amount,
                       moneyflow: invert_money_flow)

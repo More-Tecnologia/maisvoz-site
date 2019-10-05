@@ -3,4 +3,8 @@ class FinancialReason < ApplicationRecord
 
   validates :title, presence: true,
                     uniqueness: { case_sensitive: false }
+
+  def self.chargeback
+    find_by(id: 1)
+  end
 end

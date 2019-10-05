@@ -4,7 +4,7 @@ class TreeFactory
   HEIGHT = 6
 
   def create_unilevel(height = HEIGHT)
-    parents = [create(:user, username: ENV['MORENWM_CUSTOMER_USERNAME'])]
+    parents = [create(:user, username: ENV['MORENWM_CUSTOMER_USERNAME'], active: true)]
     height.times do
       parents = create_children_by_height(parents)
     end
@@ -24,7 +24,8 @@ class TreeFactory
   end
 
   def create_children(parent, count = 2)
-    (1..count).to_a.map { create(:user, sponsor: parent) }
+    active = Faker::Boolean.boolean
+    (1..count).to_a.map { create(:user, sponsor: parent, active: active) }
   end
 
   def create_binary_children_by_height(parents)

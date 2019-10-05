@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe FinancialTransaction, type: :model do
   let(:financial_transaction) { create(:financial_transaction) }
 
-  before { CareerTrailFactory.create }
-
   it { is_expected.to validate_presence_of(:cent_amount) }
   it { is_expected.to validate_numericality_of(:cent_amount).only_integer }
   it { is_expected.to belong_to(:financial_reason) }
@@ -19,7 +17,10 @@ RSpec.describe FinancialTransaction, type: :model do
     expect(financial_transaction.valid?).to be_truthy
   end
 
+  before { CareerTrailFactory.create }
+
   it 'create chargeback' do
+    TreeFactory.new.create_unilevel
     chargeback = financial_transaction.chargeback!
     expect(chargeback.persisted?).to be_truthy
   end

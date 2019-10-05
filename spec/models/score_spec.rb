@@ -10,6 +10,8 @@ RSpec.describe Score, type: :model do
   it { is_expected.to belong_to(:spreader_user) }
   it { is_expected.to define_enum_for(:source_leg).with_values(Score::SOURCE_LEGS) }
 
+  before { CareerTrailFactory.create }
+
   it 'has a valid factory' do
     expect(create(:score).valid?).to be_truthy
   end

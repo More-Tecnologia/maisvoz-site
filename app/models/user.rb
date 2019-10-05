@@ -225,7 +225,7 @@ class User < ApplicationRecord
   end
 
   def self.find_morenwm_customer_user
-    where(username: ENV['MORENWM_CUSTOMER_USERNAME']).first
+    find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
   end
 
   private

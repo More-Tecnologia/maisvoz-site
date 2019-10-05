@@ -5,7 +5,6 @@ class TreeFactory
 
   def create_unilevel(height = HEIGHT)
     parents = [create(:user, username: ENV['MORENWM_CUSTOMER_USERNAME'])]
-    create_morenwm_user(parents.first)
     height.times do
       parents = create_children_by_height(parents)
     end
@@ -38,9 +37,5 @@ class TreeFactory
                            sponsored_by: parent.user,
                            parent: parent)
     end
-  end
-
-  def create_morenwm_user(sponsor)
-    create(:user, sponsor: sponsor)
   end
 end

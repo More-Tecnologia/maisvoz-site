@@ -7,7 +7,7 @@ def find_ascendant_sponsors_ids(user)
     sponsors << sponsor
     sponsor = sponsor.sponsor
   end
-  sponsors.map(&:id).reverse
+  sponsors.map(&:id)
 end
 
 RSpec.describe User, type: :model do

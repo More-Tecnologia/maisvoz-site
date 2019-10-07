@@ -47,6 +47,7 @@ class Order < ApplicationRecord
   has_many :pv_activity_histories
   has_many :payment_transactions
   has_many :scores
+  has_many :financial_transactions
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true
@@ -129,5 +130,9 @@ class Order < ApplicationRecord
   def activation_products_score
     items = order_items.includes(:product).select { |item| item.product.activation? }
     items.sum { |item| item.quantity * item.product.binary_score }
+  end
+
+  def item_price_cents_sum
+    order_items.sum { |item| item.quantity * item.product.price_cents }
   end
 end

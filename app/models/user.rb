@@ -224,6 +224,10 @@ class User < ApplicationRecord
     User.where(id: ascendant_sponsors_ids).reverse
   end
 
+  def self.find_morenwm_customer_user
+    find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
+  end
+
   private
 
   def ensure_initial_career_trail

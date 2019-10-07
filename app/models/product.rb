@@ -57,8 +57,6 @@ class Product < ApplicationRecord
   has_attachment :main_photo
   has_attachments :photos
 
-  has_many :product_scores
-
   belongs_to :category, optional: true
   belongs_to :career, optional: true
   belongs_to :upgrade_from_career, class_name: 'Career', optional: true

@@ -11,7 +11,7 @@ ActiveRecord::Base.transaction do
   score_types = [{name: 'Pontuação de Adesões'}, {name: 'Pontuação de Ativação'}, {name: 'Pontuação de Compras'}]
   score_types.each { |score_type| ScoreType.create!(score_type) }
 
-  financial_reasons = [{title: 'Estorno de Bonus'}]
+  financial_reasons = [{title: 'Estorno de Bonus'}, {name: 'Taxa do Sistema'}]
   financial_reasons.each { |e| FinancialReason.create(e) }
 
   User.create(username: 'morenwm', role: 'admin', password: '111111', email: 'morenwm@morenwm.com')

@@ -162,6 +162,9 @@ pt-BR:
     color_type: Tipo da Cor
     origin: Importação
     admin_company_username: '* Nome do Administrador'
+    trail: Trilha
+    career: Carreira
+    email: Email
   backoffice:
     orders:
       show:

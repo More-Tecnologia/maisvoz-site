@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources :downloads, only: [:index]
     resources :binary_scores, only: [:index]
     resources :unilevel_scores, only: [:index]
+    resources :financial_transactions, only: [:index]
 
     resource :bank_account, only: [:edit, :update]
 

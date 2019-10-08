@@ -222,6 +222,12 @@ class User < ApplicationRecord
     User.where(id: ascendant_sponsors_ids).reverse
   end
 
+  def available_cent_amount
+    credit_amount = FinancialTransaction.by_user(self).credit.sum(:cent_amount)
+    debit_amount = FinancialTransaction.by_user(self).debit.sum(:cent_amount)
+    credit_amount.to_i - debit_amount.to_i
+  end
+
   def self.find_morenwm_customer_user
     find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
   end

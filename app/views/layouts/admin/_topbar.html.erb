@@ -37,7 +37,7 @@
           </li>
           <% if current_user.pj? %>
             <li>
-              <%= link_to backoffice_financial_entries_path do %>
+              <%= link_to backoffice_financial_transactions_path do %>
               <span class="text-success">
                 <%= number_to_currency current_user.balance %>
               </span>
@@ -45,14 +45,14 @@
             </li>
           <% else %>
             <li>
-              <%= link_to backoffice_financial_entries_path do %>
+              <%= link_to backoffice_financial_transactions_path do %>
               <span class="text-success">
-                <%= number_to_currency current_user.available_balance %>
+                <%= number_to_currency(current_user.available_cent_amount) %>
               </span>
               <% end %>
             </li>
             <li>
-              <%= link_to backoffice_financial_entries_path do %>
+              <%= link_to backoffice_financial_transactions_path do %>
               <span class="text-warning">
                 <%= number_to_currency current_user.blocked_balance %>
               </span>

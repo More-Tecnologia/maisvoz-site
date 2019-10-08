@@ -260,7 +260,7 @@ pt-BR:
         title: Histórico de PV por geração
     financial_transactions:
       index:
-        title: Transações
+        title: Transações Financeiras
     admin:
       credits_debits:
         step_1: Passo 1
@@ -498,7 +498,7 @@ pt-BR:
     unilevel: Unilevel
     binary: Binária
     unilevel_binary: Unilevel/Binário
-    financial_transactions: Transações
+    financial_transactions: Histórico Financeiro
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

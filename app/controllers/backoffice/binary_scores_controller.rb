@@ -3,7 +3,7 @@ module Backoffice
     def index
       @q = Score.ransack(params[:q])
       @scores = @q.result(distinct: true)
-                  .binary
+                  .binary_by_user(current_user)
                   .page(params[:page])
       @tree_type = 'binary'
       render template: 'backoffice/scores/index'

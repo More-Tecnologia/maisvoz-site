@@ -35,19 +35,18 @@
               </tr>
             </tfoot>
             <tbody>
-              <%= amount_sum = sum_cent_amount(@scores) + @scores.first.try(:cent_amount).to_i %>
               <% @scores.each do |score| %>
                 <tr>
                   <th><%= score.hashid %></th>
-                  <td><%= score.spreader_user.username %> <%= score.from.career_kind && "(#{t(score.from.career_kind)})" %></td>
+                  <td><%= score.user.username %></td>
+                  <td><%= score.spreader_user.username %></td>
                   <td><%= score.height %></td>
                   <td><%= score.score_type.name %></td>
                   <% unless @tree_type == 'unilevel' %>
                     <td><%= translate_source_leg(score.source_leg) %></td>
                   <% end %>
                   <td><%= number_with_delimiter score.cent_amount %></td>
-                  <td><%= number_with_delimiter(amount_sum -= score.cent_amount) %></td>
-                  <td><%= score.order.hashid %> %></td>
+                  <td><%= score.order.hashid %></td>
                   <td><%= l(score.created_at, format: :short) %></td>
                 </tr>
               <% end %>

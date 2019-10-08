@@ -1,4 +1,5 @@
 class Score < ApplicationRecord
+  include Hashid::Rails
 
   SOURCE_LEGS = [:not_applicable, :left, :right]
 
@@ -16,4 +17,9 @@ class Score < ApplicationRecord
   scope :adhesion, -> { where(score_type_id: 1) }
   scope :activation, -> { where(score_type_id: 2) }
   scope :detached, -> { where(score_type_id: 3) }
+  scope :includes_associations, -> { includes(:order, :user, :spreader_user, :score_type) }
+  scope :binary_by_user, ->(user) { includes_associations.where(user: user,
+                                                                score_type: ScoreType.binary) }
+  scope :unilevel_by_user, ->(user) { includes_associations.where(user: user,
+                                                                  score_type: ScoreType.unilevel) }
 end

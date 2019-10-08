@@ -19,11 +19,11 @@ module Backoffice
 
     def q
       if current_user.consumidor?
-        @q ||= Product.regular.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
+        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
       elsif current_user.instalador?
-        @q ||= Product.regular.active.order(:price_cents).includes(:main_photo_files).where.not(kind: :adhesion).where('binary_score = 0').ransack(params[:q])
+        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).where.not(kind: :adhesion).where('binary_score = 0').ransack(params[:q])
       else
-        @q ||= Product.regular.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
+        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
       end
     end
 

@@ -27,7 +27,24 @@ class UpdateProduct
     attrs = attrs.except(:photos) if form.photos.blank?
     attrs = attrs.except(:price)
     attrs[:price_cents] = form.price.to_f * 1e2
+    form_scores(attrs)
     attrs
   end
 
+  def form_scores(attrs)
+    product.product_scores.destroy_all
+    unless attrs[:product_scores].blank?
+      attrs[:product_scores].each do |generation, row|
+        row.each do |career,value|
+          career_trail = CareerTrail.find_by(career_id: career.to_i, trail_id: product.trail_id)
+          ProductScore.create!({
+            product_id: product.id,
+            career_trail_id: career_trail.id,
+            generation: generation.to_i,
+            cent_amount: value.to_f * 1e2
+          })
+        end
+      end
+    end
+  end
 end

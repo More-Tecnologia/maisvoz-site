@@ -40,13 +40,7 @@
             <label for="">Galeria de fotos</label>
             <%= f.input :photos, as: :file,  input_html: { multiple: true } %>
 
-            <% if product && product.club_motors? %>
-              <%= f.input :name, disabled: true %>
-              <p>Para alterações, entrar em contato com o admin</p>
-            <% else %>
-              <%= f.input :name %>
-            <% end %>
-
+            <%= f.input :name %>
             <%= f.input :price do %>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
@@ -64,18 +58,9 @@
             <%= f.input :low_stock_alert %>
             <%= f.input :category_id, collection: Category.all %>
             <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>
-            <div class="career-section <%= form.kind != 'adhesion' && 'hide' %>">
-              <%= f.input :career_id, collection: Career.all %>
-            </div>
-            <div class="upgrade-section <%= form.kind != 'upgrade' && 'hide' %>">
-              <%= f.input :upgrade_from_career_id, collection: Career.all %>
-              <%= f.input :upgrade_to_career_id, collection: Career.all %>
-            </div>
             <%= f.input :paid_by, collection: Product.paid_bies.map { |k,v| [t(k), k] } %>
             <%= f.input :active, as: :boolean %>
             <%= f.input :virtual, as: :boolean %>
-            <%= f.input :club_motors, as: :boolean %>
-            <%= f.input :tracker, as: :boolean %>
           </div>
         </div>
       </div>
@@ -108,26 +93,61 @@
     </div>
     <div class="tab-pane" id="bonus">
       <div class="row">
-        <div class="col-md-6">
-          <div class="p-20">
+        <div class="col-md-4">
+          <div class="input-group">
             <%= f.input :binary_score %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
             <%= f.input :advance_score %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
             <%= f.input :binary_bonus %>
-            <%= f.input :bonus_1 %>
-            <%= f.input :bonus_2 %>
-            <%= f.input :bonus_3 %>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="p-20">
-            <%= f.input :bonus_4 %>
-            <%= f.input :bonus_5 %>
-            <%= f.input :bonus_6 %>
-            <%= f.input :bonus_7 %>
-            <%= f.input :bonus_8 %>
-            <%= f.input :bonus_9 %>
-          </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <%= f.input :trail_id, collection: Trail.all, readonly: !form.trail_id.blank? %>
         </div>
+        <% unless form.trail_id.blank? %>
+        <div class="col-md-12">
+          <table class="table table-bordered m-0">
+            <thead>
+              <tr>
+                <th width="1">Geração</th>
+              <% Career.qualifying.each do |c| %>
+                <th><%= c.name %></th>
+              <% end %>
+              </tr>
+            </thead>
+            <tbody>
+            <% generation = 1; %>
+            <% form.scores.each do |s| %>
+              <tr>
+                <td class="text-center media-middle"><%= s.generation %></td>
+              <% form.careers.each do |ct| %>
+                <td><%= ct.career_id %></td>
+              <% generation += 1; %>
+              <% end %>
+              </tr>
+            <% end %>
+              <tr>
+                <td class="text-center media-middle"><%= generation %></td>
+              <% Career.qualifying.each do |c| %>
+                <td>
+                  <%= f.input :product_scores, label: false, input_html: { name: "product_form[product_scores][#{generation}][#{c.id}]", id: "product_form_product_scores_#{generation}_#{c.id}" } %>
+                </td>
+              <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>

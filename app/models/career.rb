@@ -33,4 +33,8 @@ class Career < ApplicationRecord
   def higher?(career)
     qualifying_score > career.qualifying_score
   end
+
+  def next_career
+    Career.where('qualifying_score > ?', qualifying_score).first
+  end
 end

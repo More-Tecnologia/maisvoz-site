@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_04_202103) do
+ActiveRecord::Schema.define(version: 2019_10_08_203732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,13 +174,17 @@ ActiveRecord::Schema.define(version: 2019_10_04_202103) do
   create_table "financial_transactions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "financial_reason_id"
-    t.integer "operator_id"
+    t.integer "spreader_id"
     t.integer "moneyflow", default: 0
     t.integer "cent_amount", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.integer "financial_transaction_id"
+    t.integer "generation"
     t.index ["financial_reason_id"], name: "index_financial_transactions_on_financial_reason_id"
-    t.index ["operator_id"], name: "index_financial_transactions_on_operator_id"
+    t.index ["order_id"], name: "index_financial_transactions_on_order_id"
+    t.index ["spreader_id"], name: "index_financial_transactions_on_spreader_id"
     t.index ["user_id"], name: "index_financial_transactions_on_user_id"
   end
 
@@ -222,23 +226,22 @@ ActiveRecord::Schema.define(version: 2019_10_04_202103) do
   create_table "product_reason_scores", force: :cascade do |t|
     t.bigint "product_id"
     t.bigint "financial_reason_id"
-    t.bigint "product_score_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["financial_reason_id"], name: "index_product_reason_scores_on_financial_reason_id"
     t.index ["product_id"], name: "index_product_reason_scores_on_product_id"
-    t.index ["product_score_id"], name: "index_product_reason_scores_on_product_score_id"
   end
 
   create_table "product_scores", force: :cascade do |t|
-    t.bigint "product_id"
     t.integer "generation"
-    t.integer "cent_amount"
+    t.integer "amount_cents"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "career_trail_id"
+    t.boolean "fix_value", default: false
+    t.bigint "product_reason_score_id"
     t.index ["career_trail_id"], name: "index_product_scores_on_career_trail_id"
-    t.index ["product_id"], name: "index_product_scores_on_product_id"
+    t.index ["product_reason_score_id"], name: "index_product_scores_on_product_reason_score_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -490,15 +493,15 @@ ActiveRecord::Schema.define(version: 2019_10_04_202103) do
   add_foreign_key "financial_entries", "orders"
   add_foreign_key "financial_entries", "users"
   add_foreign_key "financial_transactions", "financial_reasons"
+  add_foreign_key "financial_transactions", "orders"
   add_foreign_key "financial_transactions", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "product_reason_scores", "financial_reasons"
-  add_foreign_key "product_reason_scores", "product_scores"
   add_foreign_key "product_reason_scores", "products"
   add_foreign_key "product_scores", "career_trails"
-  add_foreign_key "product_scores", "products"
+  add_foreign_key "product_scores", "product_reason_scores"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "trails"
   add_foreign_key "pv_activity_histories", "orders"

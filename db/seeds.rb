@@ -7,11 +7,43 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
+  careers = [{name: 'Carrera 1',
+              qualifying_score: 1000,
+              bonus: 100,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'bronze.png'},
+             {name: 'Carrera 2',
+              qualifying_score: 5000,
+              bonus: 200,
+              binary_limit: 10,
+              kind: :adhesion,
+              image_path: 'silver.png'}
+            ]
+  persisted_careers = careers.map { |career| Career.create(career) }
+
+  trails  = [{name: 'Trilha 1'}, {name: 'Trilha 2'}]
+  persisted_trails = trails.map { |trail| Trail.create(trail) }
+
+  persisted_careers.each do |career|
+    persisted_trails.each do |trail|
+      CareerTrail.create(career: career, trail: trail)
+    end
+  end
 
   score_types = [{name: 'Pontuação de Adesões'}, {name: 'Pontuação de Ativação'}, {name: 'Pontuação de Compras'}]
   score_types.each { |score_type| ScoreType.create!(score_type) }
 
-  User.create(username: 'morenwm', role: 'admin', password: '111111', email: 'morenwm@morenwm.com')
-  User.create(username: 'maisvoz', role: 'empreendedor', password: '111111', email: 'maisvoz@morenwm.com')
+  financial_reasons = [{title: 'Estorno de Bonus'}, {title: 'Taxa do Sistema'}]
+  financial_reasons.each { |e| FinancialReason.create(e) }
 
+  more_customer = User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
+                              role: 'admin',
+                              password: '111111',
+                              email: 'customer-morenwm@morenwm.com')
+  User.create!(username: ENV['MORENWM_USERNAME'],
+              role: 'admin',
+              password: '111111',
+              email: 'morenwm@morenwm.com',
+              sponsor: more_customer)
 end

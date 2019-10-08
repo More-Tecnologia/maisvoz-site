@@ -36,7 +36,7 @@ module Financial
         qualify_sponsor if user.sponsor_is_binary_qualified?
         #propagate_binary_score
         propagate_products_scores
-        credit_bonus
+        propagate_bonuses
         create_system_fee
         order.completed!
       end
@@ -69,14 +69,12 @@ module Financial
       Bonification::ActivationProductScorePropagator.call(order: order)
     end
 
-    def credit_bonus
-      #Bonification::CreditExecutiveSaleBonus.new(order).call
-      Bonification::CreditIndirectBonus.new(order).call
-      Bonification::CreditDirectIndicationBonus.new(order).call
+    def propagate_bonuses
+      Bonification::BonusPropagatorService.call(order: order)
     end
 
     def create_system_fee
-      Fee::CreateSystemFee.new(order).call
+      Financial::CreatorSystemFeeService.call(order: order)
     end
 
     def update_user_purchase_flags

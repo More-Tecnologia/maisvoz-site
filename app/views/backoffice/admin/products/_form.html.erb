@@ -111,10 +111,19 @@
       </div>
       <hr>
       <div class="row">
-        <div class="col-md-12">
-          <%= f.input :trail_id, collection: Trail.all, readonly: !form.trail_id.blank? %>
+        <div class="col-md-6">
+          <div class="p-20">
+            <%= f.input :trail_id, collection: Trail.all, selected: (product.trail_id unless product.blank?) %>
+          </div>
         </div>
-        <% unless form.trail_id.blank? %>
+        <div class="col-md-6">
+          <div class="p-20">
+            <%= f.input :financial_reason_id, collection: FinancialReason.all, selected: (product.product_reason_scores.first.financial_reason_id unless product.product_reason_scores.first.blank?) %>
+          </div>
+        </div>
+      </div>
+      <% unless form.trail_id.blank? %>
+      <div class="row">
         <div class="col-md-12">
           <table class="table table-bordered m-0">
             <thead>
@@ -126,19 +135,22 @@
               </tr>
             </thead>
             <tbody>
-            <% generation = 1; %>
+            <% generation = 1; aux = 0; %>
             <% form.scores.each do |s| %>
-              <tr>
-                <td class="text-center media-middle"><%= s.generation %></td>
-              <% form.careers.each do |ct| %>
-                <td><%= ct.career_id %></td>
-              <% generation += 1; %>
+              <% if s.generation != aux %>
+                <tr>
+                  <td class="text-center media-middle"><%= s.generation %></td>
+                  <% aux = s.generation; %>
+                  <% generation += 1; %>
               <% end %>
-              </tr>
+                <td>
+                  <%= f.input :product_scores, label: false, input_html: { name: "product_form[product_scores][#{s.generation}][#{s.career_trail_id}]", id: "product_form_product_scores_#{s.generation}_#{s.career_trail_id}", value: s.amount.to_f } %>
+                </td>
             <% end %>
+              </tr>
               <tr>
                 <td class="text-center media-middle"><%= generation %></td>
-              <% Career.qualifying.each do |c| %>
+              <% form.careers.each do |c| %>
                 <td>
                   <%= f.input :product_scores, label: false, input_html: { name: "product_form[product_scores][#{generation}][#{c.id}]", id: "product_form_product_scores_#{generation}_#{c.id}" } %>
                 </td>
@@ -147,8 +159,8 @@
             </tbody>
           </table>
         </div>
-        <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 

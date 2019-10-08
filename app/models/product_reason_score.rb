@@ -1,5 +1,5 @@
 class ProductReasonScore < ApplicationRecord
   belongs_to :product
   belongs_to :financial_reason
-  belongs_to :product_score
+  has_many :product_scores, dependent: :destroy
 end

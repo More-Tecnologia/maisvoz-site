@@ -5,7 +5,7 @@ FactoryBot.define do
     active { true }
     binary_bonus { Faker::Number.decimal }
     kind { Product.kinds.keys.sample }
-    price_cents { Faker::Number.positive }
+    price_cents { Faker::Number.positive.to_i }
 
     trait :adhesion do
       kind { :adhesion }

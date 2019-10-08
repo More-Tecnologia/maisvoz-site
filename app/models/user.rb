@@ -85,13 +85,11 @@
 
 class User < ApplicationRecord
 
-  include Careerable
-
   attr_accessor :login
 
   monetize :available_balance_cents, :blocked_balance_cents
 
-  enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', instalador: 'instalador', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce', automotive_center: 'automotive_center' }
+  enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce' }
   enum marital_status: { single: 'single', married: 'married', widowed: 'widowed', divorced: 'divorced' }
   enum gender: { male: 'male', female: 'female' }
   enum registration_type: { pf: 'pf', pj: 'pj' }
@@ -224,6 +222,14 @@ class User < ApplicationRecord
     User.where(id: ascendant_sponsors_ids).reverse
   end
 
+  def self.find_morenwm_customer_user
+    find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
+  end
+
+  def self.find_morenwm_user
+    find_by(username: ENV['MORENWM_USERNAME'])
+  end
+
   private
 
   def ensure_initial_career_trail
@@ -236,5 +242,9 @@ class User < ApplicationRecord
     sponsor_id = [sponsor.try(:id)]
     ids = sponsor_ids + sponsor_id
     self[:ascendant_sponsors_ids] = ids.compact
+  end
+
+  def next_career_kind
+    current_career.next_career
   end
 end

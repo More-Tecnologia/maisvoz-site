@@ -24,6 +24,15 @@ pt-BR:
         paid_by: Pago por
         payment_type: Tipo de Pgto.
         dr_recorded: DR rec.
+      score:
+        user: Para
+        spreader_user: De
+        order: Pedido
+        score_type: Tipo de Pontuação
+        height: Geração
+        cent_amount: Quantidade
+        created_at: Adicionado em
+        source_leg: Perna
     errors:
       models:
         user:
@@ -93,6 +102,7 @@ pt-BR:
     registration_type: Tipo de Conta
     pva_total: Total de PVA
     from: De
+    until: Até
     to: Para
     type: Tipo
     from_user: De
@@ -162,6 +172,12 @@ pt-BR:
     color_type: Tipo da Cor
     origin: Importação
     admin_company_username: '* Nome do Administrador'
+    trail: Trilha
+    career: Carreira
+    email: Email
+    not_applicable: ''
+    left: Esquerda
+    right: direita
   backoffice:
     orders:
       show:
@@ -289,6 +305,12 @@ pt-BR:
         subtitle: Esta conta será utilizada nos saques da plataforma
         save: Salvar conta bancária
         ownership_info: Só aceitamos contas bancárias em sua titularidade
+    scores:
+      index:
+        title:
+          unilevel: Pontuações da Rede Unilevel
+          binary: Pontuações da Rede Binária
+          all: Pontuações
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
@@ -456,6 +478,10 @@ pt-BR:
     vehicles: Veículos
     my_vehicles: Meus Veículos
     upgrades: Upgrades
+    scores: Pontuações
+    unilevel: Unilevel
+    binary: Binária
+    unilevel_binary: Unilevel/Binário
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

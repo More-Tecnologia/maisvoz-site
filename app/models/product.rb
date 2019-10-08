@@ -57,10 +57,9 @@ class Product < ApplicationRecord
   has_attachment :main_photo
   has_attachments :photos
 
-  has_many :product_scores
-
   belongs_to :category, optional: true
   belongs_to :trail, optional: true
+  has_many :product_reason_scores
 
   monetize :price_cents
 
@@ -73,5 +72,13 @@ class Product < ApplicationRecord
 
   def regular?
     !adhesion?
+  end
+
+  def system_taxable?
+    kind.to_s.in?(Product.taxable_kinds)
+  end
+
+  def self.taxable_kinds
+    kinds.keys
   end
 end

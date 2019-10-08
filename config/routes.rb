@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :scores, only: [:index]
       resources :orders, only: [:index, :show] do
         post :approve
         post :mark_as_billed
@@ -48,7 +49,8 @@ Rails.application.routes.draw do
     resources :dashboard, only: :index
     resource :documents, only: [:edit, :update]
     resources :downloads, only: [:index]
-    resources :scores, only: [:index]
+    resources :binary_scores, only: [:index]
+    resources :unilevel_scores, only: [:index]
 
     resource :bank_account, only: [:edit, :update]
 

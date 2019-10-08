@@ -1,7 +1,7 @@
 <!-- Page-Title -->
 <div class="row">
   <div class="col-sm-12 m-b-23">
-    <h4 class="page-title"><%= t('.unilevel_title') %></h4>
+    <h4 class="page-title"><%= find_scores_page_title_by(@tree_type) %></h4>
   </div>
 </div>
 
@@ -20,6 +20,9 @@
                 <th><%= Score.human_attribute_name(:spreader_user) %></th>
                 <th><%= Score.human_attribute_name(:height) %></th>
                 <th><%= Score.human_attribute_name(:score_type) %></th>
+                <% unless @tree_type == 'unilevel' %>
+                  <th><%= Score.human_attribute_name(:source_leg) %></th>
+                <% end %>
                 <th><%= Score.human_attribute_name(:cent_amount) %></th>
                 <th><%= Score.human_attribute_name(:order) %></th>
                 <th><%= Score.human_attribute_name(:created_at) %></th>
@@ -39,6 +42,9 @@
                   <td><%= score.spreader_user.username %> <%= score.from.career_kind && "(#{t(score.from.career_kind)})" %></td>
                   <td><%= score.height %></td>
                   <td><%= score.score_type.name %></td>
+                  <% unless @tree_type == 'unilevel' %>
+                    <td><%= translate_source_leg(score.source_leg) %></td>
+                  <% end %>
                   <td><%= number_with_delimiter score.cent_amount %></td>
                   <td><%= number_with_delimiter(amount_sum -= score.cent_amount) %></td>
                   <td><%= score.order.hashid %> %></td>
@@ -47,7 +53,7 @@
               <% end %>
               <% if @scores.empty? %>
                 <tr>
-                  <td colspan="8" class="text-center"><%= t('.no_data') %></td>
+                  <td colspan="9" class="text-center"><%= t('.no_data') %></td>
                 </tr>
               <% end %>
             </tbody>

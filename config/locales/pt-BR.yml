@@ -32,6 +32,7 @@ pt-BR:
         height: Geração
         cent_amount: Quantidade
         created_at: Adicionado em
+        source_leg: Perna
     errors:
       models:
         user:
@@ -174,6 +175,9 @@ pt-BR:
     trail: Trilha
     career: Carreira
     email: Email
+    not_applicable: ''
+    left: Esquerda
+    right: direita
   backoffice:
     orders:
       show:
@@ -303,7 +307,10 @@ pt-BR:
         ownership_info: Só aceitamos contas bancárias em sua titularidade
     scores:
       index:
-        unilevel_title: Pontuações da Rede Unilevel
+        title:
+          unilevel: Pontuações da Rede Unilevel
+          binary: Pontuações da Rede Binária
+          all: Pontuações
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
@@ -473,6 +480,8 @@ pt-BR:
     upgrades: Upgrades
     scores: Pontuações
     unilevel: Unilevel
+    binary: Binária
+    unilevel_binary: Unilevel/Binário
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

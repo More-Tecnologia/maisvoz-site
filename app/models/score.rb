@@ -17,7 +17,7 @@ class Score < ApplicationRecord
   scope :adhesion, -> { where(score_type_id: 1) }
   scope :activation, -> { where(score_type_id: 2) }
   scope :detached, -> { where(score_type_id: 3) }
-  scope :by_tree_types, ->(tree_types) { includes(:order, :user, :spreader_user, :score_type)
-                                         .joins(:score_type)
-                                         .where('score_types.tree_type = ?', tree_types) }
+  scope :includes_associations, -> { includes(:order, :user, :spreader_user, :score_type) }
+  scope :binary, -> { includes_associations.joins(:score_type)
+                                           .merge(ScoreType.binary) }
 end

@@ -5,25 +5,35 @@
   			<h3 class="panel-title"><%= t(:filters) %></h3>
   		</div>
       <div class="panel-body">
-        <%= search_form_for @q, url: backoffice_scores_path do |f| %>
+        <%= search_form_for @q, url: find_scores_search_url(@tree_type) do |f| %>
           <div class="form-group">
             <div class="row">
               <div class="col-md-4">
                 <%= t('activerecord.attributes.score.score_type') %>
-                <%= f.select :score_type_id_in, find_score_types_by(params[:tree_types]),
+                <%= f.select :score_type_id_in, find_scores_by(@tree_type),
                                                 { include_blank: t('all') },
                                                 { class: 'form-control input-sm', multiple: true } %>
               </div>
-              <div class="col-md-4">
-                <%= f.label t('attributes.from') %>
-                <%= f.search_field :created_at_gteq, class: 'form-control input-sm',
-                                                     data: { provide: 'datepicker' } %>
-              </div>
-              <div class="col-md-4">
+              <div class="col-md-2">
                 <%= f.label t('attributes.until') %>
                 <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
                                                      data: { provide: 'datepicker' } %>
               </div>
+              <div class="col-md-2">
+                <%= f.label t('attributes.from') %>
+                <%= f.search_field :created_at_gteq, class: 'form-control input-sm',
+                                                     data: { provide: 'datepicker' } %>
+              </div>
+              <% if @tree_type.nil? %>
+                <div class="col-md-1">
+                  <%= f.label t('defaults.unilevel') %>
+                  <%= f.check_box :score_type_tree_type_in, class: 'form-control input-sm' %>
+                </div>
+                <div class="col-md-1">
+                  <%= f.label t('defaults.binary') %>
+                  <%= f.check_box :score_type_tree_type_in, class: 'form-control input-sm' %>
+                </div>
+              <% end %>
             </div>
           </div>
           <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>

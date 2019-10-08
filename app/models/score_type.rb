@@ -7,6 +7,4 @@ class ScoreType < ApplicationRecord
                    uniqueness: { case_sensitive: false }
 
   enum tree_type: [:unilevel, :binary]
-
-  scope :by_tree_types, -> (tree_types) { where(tree_type: tree_types) }
 end

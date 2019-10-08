@@ -44,7 +44,9 @@
 <li class="has_sub">
   <a href="javascript:void(0);" class="waves-effect"><i class="ti-world"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
   <ul class="list-unstyled">
-    <li> <%= link_to t('defaults.unilevel'), backoffice_scores_path(tree_types: ['unilevel']) %> </li>
+    <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
+    <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path %> </li>
+    <li> <%= link_to t('defaults.unilevel_binary'), backoffice_admin_scores_path, class: 'admin-link' %> </li>
     <!-- <li><%= link_to t('defaults.accumulated_pva'), backoffice_accumulated_pva_index_path %></li>
     <li><%= link_to t('defaults.admin_accumulated_pva'), backoffice_admin_accumulated_pva_index_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.pv_generations_history'), backoffice_pv_generations_history_index_path %></li>

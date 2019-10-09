@@ -33,6 +33,19 @@ pt-BR:
         cent_amount: Quantidade
         created_at: Adicionado em
         source_leg: Perna
+      financial_transaction:
+        user: Para
+        spreader: De
+        financial_reason: Motivo
+        order: Pedido
+        financial_transaction: Transação Financeira
+        chargeback: Estorno
+        moneyflow: Fluxo
+        cent_amount: Valor
+        created_at: Adicionado em
+        credit: Crédito
+        debit: Débito
+        generation: Geração
     errors:
       models:
         user:
@@ -178,6 +191,7 @@ pt-BR:
     not_applicable: ''
     left: Esquerda
     right: direita
+    financial_reason_types: Tipos de Motivos
   backoffice:
     orders:
       show:
@@ -245,6 +259,9 @@ pt-BR:
     pv_generations_history:
       index:
         title: Histórico de PV por geração
+    financial_transactions:
+      index:
+        title: Transações Financeiras
     admin:
       credits_debits:
         step_1: Passo 1
@@ -482,6 +499,7 @@ pt-BR:
     unilevel: Unilevel
     binary: Binária
     unilevel_binary: Unilevel/Binário
+    financial_transactions: Histórico Financeiro
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

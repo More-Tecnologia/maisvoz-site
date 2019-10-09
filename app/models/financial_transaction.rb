@@ -1,4 +1,6 @@
 class FinancialTransaction < ApplicationRecord
+  include Hashid::Rails
+
   belongs_to :user
   belongs_to :spreader, class_name: 'User'
   belongs_to :financial_reason
@@ -12,6 +14,11 @@ class FinancialTransaction < ApplicationRecord
 
   scope :chargeback, -> { where.not(financial_transaction: nil) }
   scope :not_chargeback, -> { where(financial_transaction: nil) }
+  scope :includes_associations, -> { includes(:user, :spreader, :financial_reason,
+                                             :order, :financial_transaction, :chargeback) }
+  scope :by_user, ->(user) { includes_associations.where(user: user) }
+  scope :financial_reason_bonus,
+    -> { includes_associations.where(financial_reason: FinancialReason.bonus) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }

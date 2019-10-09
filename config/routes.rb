@@ -30,13 +30,14 @@ Rails.application.routes.draw do
 
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]
-      resources :financial_entries, only: [:index]
+      resources :financial_transactions, only: [:index]
       resources :withdrawals, only: [:index, :update]
       resources :bonus_entries, only: [:index]
       resources :pv_activity_histories, only: [:index]
       resources :pv_histories, only: [:index]
       resources :accumulated_pva, only: [:index]
       resources :career_histories, only: [:index]
+      resources :bonus_financial_transactions, only: [:index]
     end
 
     namespace :support do
@@ -51,6 +52,7 @@ Rails.application.routes.draw do
     resources :downloads, only: [:index]
     resources :binary_scores, only: [:index]
     resources :unilevel_scores, only: [:index]
+    resources :financial_transactions, only: [:index]
 
     resource :bank_account, only: [:edit, :update]
 
@@ -66,7 +68,7 @@ Rails.application.routes.draw do
     # Financial
     # resources :transfers, only: [:show, :update, :create]
     resources :withdrawals, only: [:index, :new, :create]
-    resources :financial_entries, only: [:index]
+    resources :financial_transactions, only: [:index]
     resources :bonus_entries, only: [:index]
     resources :pv_histories, only: [:index]
     resources :pv_activity_histories, only: [:index]

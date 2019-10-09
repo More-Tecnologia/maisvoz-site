@@ -256,9 +256,9 @@ pt-BR:
     accumulated_pva:
       index:
         title: PVA Acumulado
-    pv_generations_history:
+    generation_scores:
       index:
-        title: Histórico de PV por geração
+        title: Pontuação por Geração
     financial_transactions:
       index:
         title: Transações Financeiras
@@ -487,7 +487,7 @@ pt-BR:
     admin_accumulated_pva: PVs Avanço de Título
     pv_activity_histories: Geral PVG
     pv_admin_histories: PVs Binário
-    pv_generations_history: PV por geração
+    generation_scores: Gerações
     career_histories: Histórico de Carreiras
     documents_validation: Aprovação de documentos
     pay: Pagar

@@ -12,6 +12,7 @@ RSpec.describe FinancialTransaction, type: :model do
   it { is_expected.to belong_to(:order).optional }
   it { is_expected.to belong_to(:financial_transaction).optional }
   it { is_expected.to have_one(:chargeback).class_name('FinancialTransaction') }
+  it { is_expected.to belong_to(:withdrawal).optional }
 
   it 'has valid factory' do
     expect(financial_transaction.valid?).to be_truthy

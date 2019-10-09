@@ -14,4 +14,12 @@ class FinancialReason < ApplicationRecord
   def self.morenwm_fee
     find_by(id: 2)
   end
+
+  def self.withdrawal
+    find_by(code: 300)
+  end
+
+  def self.withdrawal_fee
+    find_by(code: 400)
+  end
 end

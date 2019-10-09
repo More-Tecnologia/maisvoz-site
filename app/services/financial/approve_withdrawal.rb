@@ -11,27 +11,26 @@ module Financial
 
     def call
       user.lock!
-
-      create_withdrawal_financial_entry
-      create_withdraw_fee
-      send_notification
-
-      financial_entry.save!
+      ActiveRecord::Base.transaction do
+        create_withdrawal_financial_transaction
+        create_withdrawal_fee_financial_transaction
+        send_notification
+      end
     end
 
     private
 
     attr_reader :creator, :withdrawal, :user
 
-    def create_withdrawal_financial_entry
-      financial_entry.user        = user
-      financial_entry.description = "Correspondente ao saque ID: #{withdrawal.id}"
-      financial_entry.amount      = -withdrawal.gross_amount
-      financial_entry.balance     = user.balance
-      financial_entry.kind        = FinancialEntry.kinds[:withdrawal]
+    def create_withdrawal_financial_transaction
+      withdrawal.financial_transactions.create!(user: user,
+                                                spreader: User.find_morenwm_customer_user,
+                                                financial_reason: FinancialReason.withdrawal,
+                                                cent_amount: withdrawal.gross_amount,
+                                                money_flow: :debit)
     end
 
-    def create_withdraw_fee
+    def create_withdrawal_fee_financial_transaction
       Fee::CreateWithdrawFee.new(withdrawal, fee).call
     end
 
@@ -42,10 +41,5 @@ module Financial
     def fee
       @fee ||= ENV['WITHDRAWAL_FEE'].to_f
     end
-
-    def financial_entry
-      @financial_entry ||= FinancialEntry.new
-    end
-
   end
 end

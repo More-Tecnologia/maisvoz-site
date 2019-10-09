@@ -24,7 +24,8 @@ class ProductForm < Form
   attribute :category_id
   attribute :trail_id
   attribute :product_scores
-  attribute :financial_reason_id
+  attribute :product_scores_fix
+  attribute :financial_reason
 
   validates :name, :quantity, :price, :kind, :binary_score, :category_id, presence: true
 
@@ -36,9 +37,9 @@ class ProductForm < Form
 
   validate :sku_is_unique
   
-  def scores
+  def scores(product_reason_score_id)
     ProductScore.joins(career_trail: :career, product_reason_score: :product)
-      .where('products.id': id, 'career_trails.trail_id': trail_id)
+      .where('products.id': id, 'career_trails.trail_id': trail_id, product_reason_score_id: product_reason_score_id)
       .order('generation ASC, careers.qualifying_score ASC')
       .distinct.select('product_scores.*, careers.qualifying_score')
   end

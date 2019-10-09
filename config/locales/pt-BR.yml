@@ -191,6 +191,7 @@ pt-BR:
     not_applicable: ''
     left: Esquerda
     right: direita
+    financial_reason_types: Tipos de Motivos
   backoffice:
     orders:
       show:

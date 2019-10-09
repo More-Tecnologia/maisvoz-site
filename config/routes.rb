@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       resources :pv_histories, only: [:index]
       resources :accumulated_pva, only: [:index]
       resources :career_histories, only: [:index]
+      resources :bonus_financial_transactions, only: [:index]
     end
 
     namespace :support do

@@ -39,7 +39,7 @@
             <li>
               <%= link_to backoffice_financial_transactions_path do %>
               <span class="text-success">
-                <%= number_to_currency current_user.balance %>
+                <%= number_to_currency current_user.available_cent_amount %>
               </span>
               <% end %>
             </li>

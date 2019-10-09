@@ -34,13 +34,13 @@ ActiveRecord::Base.transaction do
   score_types = [{name: 'Pontuação de Adesões'}, {name: 'Pontuação de Ativação'}, {name: 'Pontuação de Compras'}]
   score_types.each { |score_type| ScoreType.create!(score_type) }
 
-  administrative_type = FinancialReasonType.create(name: 'Administrativo Financeiro', code: '1')
+  administrative_type = FinancialReasonType.create(name: 'Administrativo Financeiro', code: '100')
   administrative_reasons = [{title: 'Taxa do Sistema'}]
   administrative_reasons.each do |r|
     FinancialReason.create(r.merge({financial_reason_type: administrative_type}))
   end
 
-  bonus_type = FinancialReasonType.create(name: 'Bonus', code: '')
+  bonus_type = FinancialReasonType.create(name: 'Bonus', code: '200')
   bonus_reasons = [{title: 'Estorno de Bonus'}]
   bonus_reasons.each do |r|
     FinancialReason.create(r.merge({financial_reason_type: bonus_type}))

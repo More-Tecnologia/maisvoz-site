@@ -7,7 +7,7 @@
       <div class="form-group">
         <div class="row">
           <% if current_user.admin? && controller_path.include?('admin') %>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <%= f.label t('attributes.username') %>
               <%= f.search_field :user_username_cont, class: 'form-control input-sm' %>
             </div>
@@ -22,9 +22,9 @@
             <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
                                                  data: { provide: 'datepicker' } %>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-2">
             <%= t('activerecord.attributes.financial_transaction.financial_reason') %>
-            <%= f.select :financial_reason_id_in, FinancialReason.pluck(:title, :id),
+            <%= f.select :financial_reason_id_in, find_financial_reasons_by_path,
                                                   { include_blank: t('all') },
                                                   { class: 'form-control input-sm', multiple: true } %>
           </div>

@@ -5,4 +5,8 @@ class FinancialReasonType < ApplicationRecord
                    uniqueness: { case_sensitive: false }
   validates :code, presence: true,
                    numericality: { only_integer: true }
+
+  def self.bonus
+    find_by(code: '200')
+  end
 end

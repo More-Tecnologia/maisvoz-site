@@ -5,6 +5,7 @@ class FinancialReason < ApplicationRecord
 
   validates :title, presence: true,
                     uniqueness: { case_sensitive: false }
+  scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
 
   def self.chargeback
     find_by(id: 1)

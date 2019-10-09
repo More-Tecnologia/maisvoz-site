@@ -22,4 +22,7 @@ class Score < ApplicationRecord
                                                                 score_type: ScoreType.binary) }
   scope :unilevel_by_user, ->(user) { includes_associations.where(user: user,
                                                                   score_type: ScoreType.unilevel) }
+  scope :sum_by_generation, -> { where('height > 1')
+                                .group(:height)
+                                .sum(:cent_amount) }
 end

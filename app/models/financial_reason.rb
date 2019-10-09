@@ -5,14 +5,25 @@ class FinancialReason < ApplicationRecord
 
   validates :title, presence: true,
                     uniqueness: { case_sensitive: false }
+  validates :code, presence: true,
+                   uniqueness: { case_sensitive: false }
+
   scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
 
   def self.chargeback
-    find_by(id: 1)
+    find_by(code: '100')
   end
 
   def self.morenwm_fee
-    find_by(id: 2)
+    find_by(code: '200')
+  end
+
+  def self.withdrawal
+    find_by(code: '300')
+  end
+
+  def self.withdrawal_fee
+    find_by(code: '400')
   end
 
   def self.withdrawal

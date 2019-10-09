@@ -25,12 +25,4 @@ class FinancialReason < ApplicationRecord
   def self.withdrawal_fee
     find_by(code: '400')
   end
-
-  def self.withdrawal
-    find_by(code: 300)
-  end
-
-  def self.withdrawal_fee
-    find_by(code: 400)
-  end
 end

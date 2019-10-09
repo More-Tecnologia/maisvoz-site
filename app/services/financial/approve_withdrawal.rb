@@ -10,7 +10,6 @@ module Financial
     end
 
     def call
-      user.lock!
       ActiveRecord::Base.transaction do
         create_withdrawal_financial_transaction
         create_withdrawal_fee_financial_transaction

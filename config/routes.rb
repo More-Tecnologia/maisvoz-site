@@ -78,7 +78,7 @@ Rails.application.routes.draw do
     resources :binary_strategies, only: [:index, :create]
     resources :binary_tree, only: [:index, :show]
     resources :unilevel, only: [:index]
-    resources :pv_generations_history, only: [:index]
+    resources :generation_scores, only: [:index]
   end
 
   namespace :api do

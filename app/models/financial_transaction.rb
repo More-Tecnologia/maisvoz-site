@@ -12,6 +12,8 @@ class FinancialTransaction < ApplicationRecord
 
   enum moneyflow: [:credit, :debit]
 
+  monetize :cent_amount, as: :amount_cents
+
   scope :chargeback, -> { where.not(financial_transaction: nil) }
   scope :not_chargeback, -> { where(financial_transaction: nil) }
   scope :includes_associations, -> { includes(:user, :spreader, :financial_reason,

@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
     TreeFactory.new.create_unilevel(3)
   end
 
+  it { is_expected.to have_many(:financial_transactions) }
   it { is_expected.to have_many(:career_trail_users) }
   it { is_expected.to have_many(:career_trails).through(:career_trail_users) }
   it { is_expected.to serialize(:ascendant_sponsors_ids).as(Array) }

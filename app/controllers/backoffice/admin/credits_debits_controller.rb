@@ -29,14 +29,12 @@ module Backoffice
 
       def create
         command = Financial::CreateCreditDebit.call(current_user, params)
-
         if command.success?
           flash[:success] = I18n.t('defaults.success')
-          redirect_to backoffice_admin_financial_entries_path
+          redirect_to backoffice_admin_financial_transactions_path
         else
-          Rollbar.error command.errors
-          flash[:error] = command.errors
-          redirect_back fallback_location: backoffice_admin_financial_entries_path
+          flash[:error] = command.errors.values.flatten.join(', ')
+          redirect_back fallback_location: backoffice_admin_financial_transactions_path
         end
       end
 
@@ -53,7 +51,6 @@ module Backoffice
       def create_form
         @create_form ||= CreditDebitWizard::CreateForm.new(params[:credit_debit_form])
       end
-
     end
   end
 end

@@ -4,13 +4,13 @@
   <div class="checkbox">
     <%= f.collection_radio_buttons(
       :credit,
-      [[true, t('.credit')], [false, t('.debit')]],
+      [[true, t('credit')], [false, t('debit')]],
       :first,
       :last
     ) %>
   </div>
   <%= f.input :amount %>
-  <%= f.input :message %>
+  <%= f.input :financial_reason_id, collection: FinancialReason.all.pluck(:title, :id) %>
   <%= f.input :master_password %>
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
 <% end %>

@@ -1,7 +1,7 @@
 module Backoffice
   module FinancialTransactionsHelper
     def format_cent_amount_value(financial_transaction)
-      amount = financial_transaction.cent_amount
+      amount = financial_transaction.amount_cents
       return number_to_currency(-amount) if financial_transaction.debit?
       number_to_currency(amount)
     end

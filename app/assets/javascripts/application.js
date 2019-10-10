@@ -45,6 +45,7 @@
 //= require rails.validations.cnpj
 //= require rails.validations.cpf
 //= require users/registrations/new
+//= require credits-debits
 
 $(document).ready(function() {
   $("#sidebar-menu a").each(function() {

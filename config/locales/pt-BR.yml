@@ -55,7 +55,7 @@ pt-BR:
             password_confirmation:
               confirmation: Senhas diferentes
       messages:
-        blank: Não pode ficar em branco
+        blank: não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
         wrong_length: Tamanho errado
         taken: Já está sendo utilizado
@@ -73,8 +73,17 @@ pt-BR:
               format: permitido somente letras minúsculas e números
             document_cpf:
               cpf: 'inválido'
+        credit_debit_wizard/create_form:
+          attributes:
+            amount:
+              not_a_number: não é um número
       messages:
         taken: já está sendo utilizado
+        not_authenticate: não autenticada
+    attributes:
+      credit_debit_wizard/create_form:
+        master_password: Senha Master
+        amount: Valor
   app_name: Future Motors
   attributes:
     active_session: Sessão ativa
@@ -192,6 +201,10 @@ pt-BR:
     left: Esquerda
     right: direita
     financial_reason_types: Tipos de Motivos
+    message: Mensagem
+    master_password: Senha Master
+    financial_reason_id: Motivo
+    financial_reason: Motivo
   backoffice:
     orders:
       show:
@@ -500,6 +513,7 @@ pt-BR:
     binary: Binária
     unilevel_binary: Unilevel/Binário
     financial_transactions: Histórico Financeiro
+    wrong_master_password: Senha master errada
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -509,7 +523,7 @@ pt-BR:
       not_found: Não encontrado
       required: Obrigatório
       wrong_master_pw: Senha master incorreta
-      blank: Não pode ficar em branco
+      blank: não pode ficar em branco
       greater_than: Deve ser maior que %{count}
       greater_than_or_equal_to: Deve ser maior ou igual a %{count}
       accepted: Você deve aceitar os termos antes de prosseguir
@@ -649,6 +663,9 @@ pt-BR:
           new:
             subtitle: Criar novo produto
             title: Novo produto
+        credits_debits:
+          index:
+            transfer_to: Transferir para
       careers:
         edit:
           subtitle: Editar Carreira
@@ -803,6 +820,8 @@ pt-BR:
   imported_internal: Importação Interna
   national_import: Importado Nacional
   tracker: FutureSAT
+  credit: Credito
+  debit: Débito
   datagrid:
     form:
       search: Filtrar

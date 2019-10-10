@@ -149,7 +149,7 @@ module Bonification
     end
 
     def monthly_limit_reached?
-      @monthly_limit_reached ||= FinancialEntryPolicy.new(user)
+      @monthly_limit_reached ||= FinancialTransactionPolicy.new(user)
                                                      .monthly_limit_reached?
     end
 

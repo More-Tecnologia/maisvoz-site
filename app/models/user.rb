@@ -120,7 +120,6 @@ class User < ApplicationRecord
   has_one :binary_node
   has_one :unilevel_node
   has_many :orders
-  has_many :financial_entries, class_name: 'FinancialEntry'
   has_many :withdrawals
   has_many :pv_histories
   has_many :pv_activity_histories

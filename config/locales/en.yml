@@ -28,17 +28,6 @@ en:
           debit: Debit
         step_1: Step 1
         step_2: Step 2
-      financial_entries:
-        filters:
-          created_from: Created from
-          created_until: Created until
-          from_user: From user
-          to_user: To user
-          type: Type
-        index:
-          no_data: No data
-          subtitle: Subtitle
-          title: Title
       orders:
         filters:
           id_in: Id in

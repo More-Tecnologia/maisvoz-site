@@ -10,11 +10,6 @@ en:
   app_name: App name
   backoffice:
     admin:
-      bonus_entries:
-        index:
-          no_data: No data
-          subtitle: Subtitle
-          title: Title
       credits_debits:
         credit_debit:
           subtitle: Subtitle
@@ -95,11 +90,6 @@ en:
         subtitle: Subtitle
         title: Title
         username: Username
-    bonus_entries:
-      index:
-        no_data: No data
-        subtitle: Subtitle
-        title: Title
     financial_entries:
       index:
         no_data: No data
@@ -160,7 +150,6 @@ en:
     approved_success: Approved success
     binary_strategy: Binary strategy
     binary_tree: Binary tree
-    bonus_entries: Bonus entries
     careers: Careers
     categories: Categories
     confirm_removal: Confirm removal

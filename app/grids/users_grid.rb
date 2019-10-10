@@ -41,7 +41,7 @@ class UsersGrid < BaseGrid
     format(user) do
       [
         link_to(backoffice_support_user_path(user), title: 'Ver perfil', target: '_blank') { content_tag(:i, nil, class: 'fa fa-user m-r-5') },
-        link_to(backoffice_admin_bonus_entries_path(username: user.username), title: 'Histórico de Bônus', target: '_blank') { content_tag(:i, nil, class: 'fa fa-star m-r-5') },
+        link_to(backoffice_admin_bonus_financial_transactions_path(username: user.username), title: 'Histórico de Bônus', target: '_blank') { content_tag(:i, nil, class: 'fa fa-star m-r-5') },
         link_to(backoffice_admin_financial_transactions_path('q[user_username_cont]' => user.username), title: 'Histórico Financeiro', target: '_blank') { content_tag(:i, nil, class: 'fa fa-dollar m-r-5') },
         link_to(backoffice_admin_pv_activity_histories_path(username: user.username), title: 'Histórico PV Atividade', target: '_blank') { content_tag(:i, nil, class: 'fa fa-plus-square m-r-5') },
         link_to(backoffice_admin_pv_histories_path(username: user.username), title: 'Histórico PVs', target: '_blank') { content_tag(:i, nil, class: 'fa fa-clock-o m-r-5') },

@@ -250,10 +250,6 @@ pt-BR:
       index:
         title: Histórico Financeiro
         no_data: Nenhum registro financeiro até o momento
-    bonus_entries:
-      index:
-        title: Meus Bônus
-        no_data: Nenhum registro de bônus até o momento
     pv_histories:
       index:
         title: PV Binário
@@ -293,9 +289,6 @@ pt-BR:
           type: Tipo de evento financeiro
           created_from: Criado a partir de
           created_until: Criado até
-      bonus_entries:
-        index:
-          title: Histórico de Bônus
       orders:
         index:
           title: Relatório de Pedidos

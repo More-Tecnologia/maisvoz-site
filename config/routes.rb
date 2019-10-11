@@ -65,7 +65,6 @@ Rails.application.routes.draw do
     end
 
     # Financial
-    # resources :transfers, only: [:show, :update, :create]
     resources :withdrawals, only: [:index, :new, :create]
     resources :financial_transactions, only: [:index]
     resources :pv_histories, only: [:index]

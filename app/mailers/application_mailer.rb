@@ -1,6 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
 
-  default from: 'no-reply@futuremotors.com.br'
+  default from: 'no-reply@moretecnology.com.br'
   layout 'mailer'
 
   include Sendgrid

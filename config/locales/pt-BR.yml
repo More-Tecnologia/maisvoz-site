@@ -84,7 +84,7 @@ pt-BR:
       credit_debit_wizard/create_form:
         master_password: Senha Master
         amount: Valor
-  app_name: Future Motors
+  app_name: More Tecnology
   attributes:
     active_session: Sessão ativa
     order: Ordem
@@ -701,7 +701,7 @@ pt-BR:
       products:
         index:
           details: Detalhes
-          title: Loja Future Motors
+          title: Loja More Tecnology
         show:
           buy: Comprar
           description: Descrição

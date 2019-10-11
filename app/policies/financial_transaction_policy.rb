@@ -1,4 +1,4 @@
-class FinancialEntryPolicy
+class FinancialTransactionPolicy
 
   LIMIT = 660_000
 
@@ -20,10 +20,10 @@ class FinancialEntryPolicy
 
   def amount_received_this_month
     @amount_received_this_month ||= user
-                                    .financial_entries
-                                    .where('amount_cents > 0')
+                                    .financial_transactions
+                                    .where('cent_amount > 0')
                                     .where('created_at >= ?', beginning_of_month)
-                                    .sum(:amount_cents) / 100.0
+                                    .sum(:cent_amount) / 100.0
   end
 
   def beginning_of_month

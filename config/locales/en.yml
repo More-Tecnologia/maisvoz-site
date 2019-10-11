@@ -10,11 +10,6 @@ en:
   app_name: App name
   backoffice:
     admin:
-      bonus_entries:
-        index:
-          no_data: No data
-          subtitle: Subtitle
-          title: Title
       credits_debits:
         credit_debit:
           subtitle: Subtitle
@@ -28,17 +23,6 @@ en:
           debit: Debit
         step_1: Step 1
         step_2: Step 2
-      financial_entries:
-        filters:
-          created_from: Created from
-          created_until: Created until
-          from_user: From user
-          to_user: To user
-          type: Type
-        index:
-          no_data: No data
-          subtitle: Subtitle
-          title: Title
       orders:
         filters:
           id_in: Id in
@@ -106,11 +90,6 @@ en:
         subtitle: Subtitle
         title: Title
         username: Username
-    bonus_entries:
-      index:
-        no_data: No data
-        subtitle: Subtitle
-        title: Title
     financial_entries:
       index:
         no_data: No data
@@ -171,7 +150,6 @@ en:
     approved_success: Approved success
     binary_strategy: Binary strategy
     binary_tree: Binary tree
-    bonus_entries: Bonus entries
     careers: Careers
     categories: Categories
     confirm_removal: Confirm removal

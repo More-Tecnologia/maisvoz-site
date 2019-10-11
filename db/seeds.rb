@@ -13,13 +13,15 @@ ActiveRecord::Base.transaction do
               bonus: 100,
               binary_limit: 0,
               kind: :adhesion,
-              image_path: 'bronze.png'},
+              image_path: 'bronze.png',
+              requalification_score: 500 },
              {name: 'Carrera 2',
               qualifying_score: 5000,
               bonus: 200,
               binary_limit: 10,
               kind: :adhesion,
-              image_path: 'silver.png'}
+              image_path: 'silver.png',
+              requalification_score: 1000}
             ]
   persisted_careers = careers.map { |career| Career.first_or_create!(career) }
 

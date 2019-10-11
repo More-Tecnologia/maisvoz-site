@@ -24,6 +24,10 @@ class Career < ApplicationRecord
   has_many :career_trails
   has_many :trails, through: :career_trails
 
+  validates :requalification_score, presence: true,
+                                    numericality: { only_integer: true },
+                                    uniqueness: true
+
   def qualify?(user)
     user.scores.sum(&:cent_amount).to_i >= qualifying_score
   end

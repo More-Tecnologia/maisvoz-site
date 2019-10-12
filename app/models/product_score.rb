@@ -4,8 +4,9 @@ class ProductScore < ApplicationRecord
 
   validates :generation, presence: true,
                          numericality: { only_integer: true }
-  validates :cent_amount, presence: true,
-                          numericality: { only_integer: true }
+  validates :amount_cents, presence: true
+
+  monetize :amount_cents
 
   def calculate_product_score(product_price)
     fix_value ? cent_amount : calculate_percent_from(product_price)

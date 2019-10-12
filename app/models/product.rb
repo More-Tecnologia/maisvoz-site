@@ -58,17 +58,12 @@ class Product < ApplicationRecord
   has_attachments :photos
 
   belongs_to :category, optional: true
-  belongs_to :career, optional: true
-  belongs_to :upgrade_from_career, class_name: 'Career', optional: true
-  belongs_to :upgrade_to_career, class_name: 'Career', optional: true
   belongs_to :trail, optional: true
+  has_many :product_reason_scores
 
   monetize :price_cents
 
   scope :active, -> { where(active: true) }
-  scope :regular, -> { where(club_motors: false).where(tracker: false) }
-  scope :club_motors, -> { where(club_motors: true) }
-  scope :trackers, -> { where(tracker: true) }
 
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?

@@ -21,7 +21,7 @@ module Backoffice
       if current_user.consumidor?
         @q ||= Product.regular.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
       else
-        @q ||= Product.regular.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
+        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
       end
     end
 

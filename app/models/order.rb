@@ -102,10 +102,6 @@ class Order < ApplicationRecord
     @activation_product ||= products.select(&:activation?).first
   end
 
-  def club_motors_product
-    @club_motors_product ||= order_items.joins(:product).where('products.club_motors = true').first.try(:product)
-  end
-
   def token
     Digest::MD5.hexdigest("#{id * 1337}:#{hashid}")
   end

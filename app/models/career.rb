@@ -16,6 +16,8 @@
 
 class Career < ApplicationRecord
 
+  scope :qualifying, -> { reorder(qualifying_score: :asc) }
+
   enum kind: [:qualification, :adhesion]
 
   has_many :products
@@ -33,7 +35,7 @@ class Career < ApplicationRecord
   end
 
   def higher?(career)
-    id > career.id
+    qualifying_score > career.qualifying_score
   end
 
   def next_career

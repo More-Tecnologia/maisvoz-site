@@ -4,7 +4,8 @@ class ProductScore < ApplicationRecord
 
   validates :generation, presence: true,
                          numericality: { only_integer: true }
-  validates :amount_cents, presence: true
+  validates :amount_cents, presence: true,
+                           numericality: true
 
   monetize :amount_cents
 

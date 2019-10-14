@@ -8,14 +8,14 @@
 
 ActiveRecord::Base.transaction do
   #CAREERS
-  careers = [{name: 'Carrera 1',
+  careers = [{name: 'Carreira 1',
               qualifying_score: 1000,
               bonus: 100,
               binary_limit: 0,
               kind: :adhesion,
               image_path: 'bronze.png',
               requalification_score: 500 },
-             {name: 'Carrera 2',
+             {name: 'Carreira 2',
               qualifying_score: 5000,
               bonus: 200,
               binary_limit: 10,
@@ -44,7 +44,7 @@ ActiveRecord::Base.transaction do
 
 
   # FINANCIAL REASONS
-  administrative_type = FinancialReasonType.create(name: 'Administrativo Financeiro', code: '100')
+  administrative_type = FinancialReasonType.find_or_create_by!(name: 'Administrativo Financeiro', code: '100')
   administrative_reasons = [{ title: 'Taxa do Sistema', code: '200' },
                             { title: 'Saque', code: '300' },
                             { title: 'Taxa de Saque', code: '400' }]

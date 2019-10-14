@@ -98,8 +98,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring'
   gem 'web-console', '>= 3.3.0'
-  # gem 'i18n-debug'
-  gem 'byebug'
 end
 
 source 'https://rails-assets.org' do

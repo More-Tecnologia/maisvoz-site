@@ -23,16 +23,16 @@ ActiveRecord::Base.transaction do
               image_path: 'silver.png',
               requalification_score: 1000}
             ]
-  persisted_careers = careers.map { |career| Career.first_or_create!(career) }
+  persisted_careers = careers.map { |career| Career.find_or_create_by!(career) }
 
   # TRAILS
   trails  = [{name: 'Trilha 1'},
              {name: 'Trilha 2'}]
-  persisted_trails = trails.map { |trail| Trail.first_or_create!(trail) }
+  persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
 
   persisted_careers.each do |career|
     persisted_trails.each do |trail|
-      CareerTrail.first_or_create!(career: career, trail: trail)
+      CareerTrail.find_or_create_by!(career: career, trail: trail)
     end
   end
 
@@ -40,7 +40,7 @@ ActiveRecord::Base.transaction do
   score_types = [{ name: 'Pontuação de Adesões' },
                  { name: 'Pontuação de Ativação' },
                  { name: 'Pontuação de Compras' }]
-  score_types.each { |score_type| ScoreType.first_or_create!(score_type) }
+  score_types.each { |score_type| ScoreType.find_or_create_by!(score_type) }
 
 
   # FINANCIAL REASONS
@@ -49,23 +49,24 @@ ActiveRecord::Base.transaction do
                             { title: 'Saque', code: '300' },
                             { title: 'Taxa de Saque', code: '400' }]
   administrative_reasons.each do |r|
-    FinancialReason.first_or_create(r.merge({financial_reason_type: administrative_type}))
+    FinancialReason.find_or_create_by!(r.merge({financial_reason_type: administrative_type}))
   end
-  bonus_type = FinancialReasonType.create(name: 'Bonus', code: '200')
+  bonus_type = FinancialReasonType.find_or_create_by!(name: 'Bonus', code: '200')
   bonus_reasons = [{title: 'Estorno de Bonus', code: '100'}]
   bonus_reasons.each do |r|
-    FinancialReason.first_or_create(r.merge({financial_reason_type: bonus_type}))
+    FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
   end
 
 
   # USERS
-  more_customer = User.first_or_create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
-                                        role: 'admin',
-                                        password: '111111',
-                                        email: 'customer-morenwm@morenwm.com')
-  User.first_or_create!(username: ENV['MORENWM_USERNAME'],
-                        role: 'admin',
-                        password: '111111',
-                        email: 'morenwm@morenwm.com',
-                        sponsor: more_customer)
+  more_user = User.create!(username: ENV['MORENWM_USERNAME'],
+                           role: 'admin',
+                           password: '111111',
+                           email: 'morenwm@morenwm.com')
+  User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
+               role: 'admin',
+               password: '111111',
+               email: 'customer-morenwm@morenwm.com',
+               sponsor: more_user)
+
 end

@@ -12,7 +12,7 @@ class UpgraderCareerService < ApplicationService
 
   def initialize(args)
     @user = args[:user]
-    @careers = Career.all
+    @careers = Career.order(:qualifying_score)
   end
 
   def upgraded_career?(new_career)

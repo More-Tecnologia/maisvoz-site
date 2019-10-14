@@ -19,17 +19,15 @@
     <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
     <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>
     <li><%= link_to t('defaults.bonus_entries'), backoffice_admin_bonus_financial_transactions_path %></li>
-    <!-- <li><#%= link_to t('defaults.new_transfer'), backoffice_transfer_path(:find_user) %></li> -->
   </ul>
 </li>
 <!-- PV History -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-book"></i><span class="menu-arrow"></span><span> <%= t('defaults.pv_history') %> </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="ti-book"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
   <ul class="list-unstyled">
-    <li><%= link_to t('defaults.pv_binary_history'), backoffice_pv_histories_path %></li>
-    <li><%= link_to t('defaults.pv_activity_history'), backoffice_pv_activity_histories_path %></li>
-    <li><%= link_to t('defaults.accumulated_pva'), backoffice_accumulated_pva_index_path %></li>
-    <li><%= link_to t('defaults.pv_generations_history'), backoffice_pv_generations_history_index_path %></li>
+    <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
+    <li><%= link_to t('defaults.generation_scores'), backoffice_generation_scores_path %></li>
+    <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path %> </li>
   </ul>
 </li>
 <!-- Network -->

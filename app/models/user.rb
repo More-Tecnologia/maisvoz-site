@@ -236,6 +236,10 @@ class User < ApplicationRecord
     find_by(username: ENV['MORENWM_USERNAME'])
   end
 
+  def next_career_kind
+    current_career.next_career
+  end
+
   private
 
   def ensure_initial_career_trail
@@ -248,9 +252,5 @@ class User < ApplicationRecord
     sponsor_id = [sponsor.try(:id)]
     ids = sponsor_ids + sponsor_id
     self[:ascendant_sponsors_ids] = ids.compact
-  end
-
-  def next_career_kind
-    current_career.next_career
   end
 end

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 def find_next_career
   careers = Career.all.to_a
-  next_career = careers.shift
-  careers.detect { |career| career.higher?(next_career) }
+  current_career = user.current_career
+  careers.detect { |career| career.higher?(current_career) }
 end
 
 RSpec.describe UpgraderCareerService, type: :service do
@@ -13,9 +13,9 @@ RSpec.describe UpgraderCareerService, type: :service do
   before { CareerTrailFactory.create }
 
   it 'upgrade career' do
+    expected_career = find_next_career
     new_career_trail_user
     gotten_career = user.current_career
-    expected_career = find_next_career
     expect(gotten_career.id).to eq(expected_career.id)
   end
 

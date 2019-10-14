@@ -59,13 +59,14 @@ ActiveRecord::Base.transaction do
 
 
   # USERS
-  more_customer = User.first_or_create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
-                                        role: 'admin',
-                                        password: '111111',
-                                        email: 'customer-morenwm@morenwm.com')
-  User.first_or_create!(username: ENV['MORENWM_USERNAME'],
-                        role: 'admin',
-                        password: '111111',
-                        email: 'morenwm@morenwm.com',
-                        sponsor: more_customer)
+  more_user = User.create!(username: ENV['MORENWM_USERNAME'],
+                           role: 'admin',
+                           password: '111111',
+                           email: 'morenwm@morenwm.com')
+  User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
+               role: 'admin',
+               password: '111111',
+               email: 'customer-morenwm@morenwm.com',
+               sponsor: more_user)
+
 end

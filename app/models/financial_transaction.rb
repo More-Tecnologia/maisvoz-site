@@ -27,12 +27,12 @@ class FinancialTransaction < ApplicationRecord
                           numericality: { only_integer: true }
 
   def chargeback!
-    create_chargeback(user: User.find_morenwm_customer_user,
-                      spreader: user,
-                      financial_reason: FinancialReason.chargeback,
-                      order: order,
-                      cent_amount: cent_amount,
-                      moneyflow: invert_money_flow)
+    create_chargeback!(user: User.find_morenwm_customer_user,
+                       spreader: user,
+                       financial_reason: FinancialReason.chargeback,
+                       order: order,
+                       cent_amount: cent_amount,
+                       moneyflow: invert_money_flow)
   end
 
   def chargeback?

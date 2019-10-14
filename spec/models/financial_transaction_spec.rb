@@ -18,7 +18,10 @@ RSpec.describe FinancialTransaction, type: :model do
     expect(financial_transaction.valid?).to be_truthy
   end
 
-  before { CareerTrailFactory.create }
+  before do
+    CareerTrailFactory.create
+    create(:financial_reason, code: '100')
+  end
 
   it 'create chargeback' do
     TreeFactory.new.create_unilevel

@@ -31,8 +31,17 @@
                       <%= f.input :phone, input_html: { class: 'input-phone'} %>
                       <%= f.input :skype %>
                       <%= f.input :email %>
-                      <%= f.input :document_cnpj, input_html: { class: 'input-cnpj' } %>
-                      <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
+                      <% if f.object.pf? %>
+                        <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
+                        <%= f.input :document_rg %>
+                        <%= f.input :document_rg_expeditor %>
+                      <% end %>
+                      <% if f.object.pj? %>
+                        <%= f.input :document_cnpj, input_html: { class: 'input-cnpj' } %>
+                        <%= f.input :document_ie %>
+                        <%= f.input :document_company_name %>
+                        <%= f.input :document_fantasy_name %>
+                      <% end %>
 
                       <h4><%= t('.address') %></h4>
                       <hr>

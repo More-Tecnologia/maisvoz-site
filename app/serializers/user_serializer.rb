@@ -91,19 +91,26 @@ class UserSerializer
 
   def serialize
     {
+      login: user.username,
       email: user.email,
-      name: user.name_or_company_name,
-      cpf_cnpj: user.main_document,
+      name: user.name,
+      cpf: user.document_cpf,
+      rg: user.document_rg,
+      rg_expeditor: user.document_rg_expeditor,
+      cnpj: user.document_cnpj,
+      company: user.document_company_name,
       gender: user.gender,
       birthdate: user.birthdate,
       type: user.registration_type,
+      phone: user.phone,
       zipcode: user.zipcode,
       address_number: user.address_number,
       address: user.address,
+      address_complement: user.address_2,
       district: user.district,
       state: user.state,
       city: user.city,
-      active: user.active,
+      active: user.active
     }.as_json
   end
 

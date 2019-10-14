@@ -8,6 +8,9 @@ pt-BR:
       call_to_action: Call to action
       welcome: Welcome
   activerecord:
+    models:
+      score_type: Tipo de Pontuação
+      user: Usuário
     attributes:
       pv_activity_history:
         from: De
@@ -21,6 +24,28 @@ pt-BR:
         paid_by: Pago por
         payment_type: Tipo de Pgto.
         dr_recorded: DR rec.
+      score:
+        user: Para
+        spreader_user: De
+        order: Pedido
+        score_type: Tipo de Pontuação
+        height: Geração
+        cent_amount: Quantidade
+        created_at: Adicionado em
+        source_leg: Perna
+      financial_transaction:
+        user: Para
+        spreader: De
+        financial_reason: Motivo
+        order: Pedido
+        financial_transaction: Transação Financeira
+        chargeback: Estorno
+        moneyflow: Fluxo
+        cent_amount: Valor
+        created_at: Adicionado em
+        credit: Crédito
+        debit: Débito
+        generation: Geração
     errors:
       models:
         user:
@@ -30,26 +55,39 @@ pt-BR:
             password_confirmation:
               confirmation: Senhas diferentes
       messages:
-        blank: Não pode ficar em branco
+        blank: não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
         wrong_length: Tamanho errado
         taken: Já está sendo utilizado
+        rule_type_missmatch: "Um objeto do tipo %{ruleable_type} não pode receber o tipo de regra %{rule_type_title}."
         restrict_dependent_destroy:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
+        invalid: Inválido
   activemodel:
     errors:
       models:
-        club_motors_new_subscription_form:
+        new_registration_form:
           attributes:
-            plate:
-              wrong_length: Tamanho errado
-        club_motors_subscription_form:
+            username:
+              format: permitido somente letras minúsculas e números
+            document_cpf:
+              cpf: 'inválido'
+        credit_debit_wizard/create_form:
           attributes:
-            plate:
-              wrong_length: Tamanho errado
-  app_name: Future Motors
+            amount:
+              not_a_number: não é um número
+      messages:
+        taken: já está sendo utilizado
+        not_authenticate: não autenticada
+    attributes:
+      credit_debit_wizard/create_form:
+        master_password: Senha Master
+        amount: Valor
+  app_name: More Tecnology
   attributes:
+    active_session: Sessão ativa
+    order: Ordem
     accept_terms: Aceitar termos
     amount: Valor
     created_at: Data de criação
@@ -64,6 +102,8 @@ pt-BR:
     phone: Telefone
     product: Produto
     quantity: Quantidade
+    price: Preço
+    score: Ponto(s)
     profit: Lucro
     next_bonus_payment: Próximo pagamento
     remember_me: Lembrar
@@ -72,7 +112,10 @@ pt-BR:
     subtotal: Subtotal
     shipping: Frete
     tax: Impostos
+    user: Usuário
     username: Nome de Usuário
+    activity: Atividade
+    qualification: Qualificação
     order_date: Data da Fatura
     order_status: Status da Fatura
     binary_position: Posição no Binário
@@ -81,12 +124,14 @@ pt-BR:
     registration_type: Tipo de Conta
     pva_total: Total de PVA
     from: De
+    until: Até
     to: Para
     type: Tipo
     from_user: De
     to_user: Para
     kind: Tipo
     birthdate: Data de Nascimento
+    main_document: Documento
     document_cpf: CPF
     document_cnpj: CNPJ
     document_ie: IE
@@ -126,13 +171,6 @@ pt-BR:
     sponsor: Patrocinador
     active: Ativo
     invoice_id: ID da Fatura
-    car_plate: Placa
-    car_brand: Marca do Carro
-    car_brand_id: Marca do Carro
-    car_model: Modelo do Carro
-    car_model_id: Modelo do Carro
-    car_year: Ano do Carro
-    car_mileage: Quilometragem
     product_id: Produto
     product_serial: Serial do Produto
     status_message: Mensagem de Status
@@ -140,7 +178,6 @@ pt-BR:
     status_updated_at: Status Atualizado Em
     updated_at: Data da última atualização
     bonus_1: Bônus Instalador
-    bonus_2: Bônus PVV (x100)
     binary_bonus: Bônus Binário
     binary_score: Ponto Volume
     document_verification_status: Status de Verificação do Documento
@@ -156,6 +193,18 @@ pt-BR:
     color: Cor
     color_type: Tipo da Cor
     origin: Importação
+    admin_company_username: '* Nome do Administrador'
+    trail: Trilha
+    career: Carreira
+    email: Email
+    not_applicable: ''
+    left: Esquerda
+    right: direita
+    financial_reason_types: Tipos de Motivos
+    message: Mensagem
+    master_password: Senha Master
+    financial_reason_id: Motivo
+    financial_reason: Motivo
   backoffice:
     orders:
       show:
@@ -201,10 +250,6 @@ pt-BR:
       index:
         title: Histórico Financeiro
         no_data: Nenhum registro financeiro até o momento
-    bonus_entries:
-      index:
-        title: Meus Bônus
-        no_data: Nenhum registro de bônus até o momento
     pv_histories:
       index:
         title: PV Binário
@@ -214,24 +259,22 @@ pt-BR:
         invoice_no: 'PV gerado do usuário %{username}'
     pv_activity_histories:
       index:
-        title: Histórico de PVV, PVM e PVG
+        title: Histórico de PVG
         invoice_no: 'PV gerado da fatura ID: %{id}'
         no_data: Nenhum registro de pv de atividade encontrado
     accumulated_pva:
       index:
         title: PVA Acumulado
-    pv_generations_history:
+    generation_scores:
       index:
-        title: Histórico de PV por geração
-    pay_third_order:
-      new:
-        title: Pagar fatura para terceiro
-        instructions: Esta ferramenta funciona apenas para pagamento de faturas de adesão de terceiros
-    my_investments:
+        title: Pontuação por Geração
+    financial_transactions:
       index:
-        title: Minhas Contas de Participação
-        no_data: Você ainda não adquiriu contas de participação
+        title: Transações Financeiras
     admin:
+      credits_debits:
+        step_1: Passo 1
+        step_2: Passo 2
       accumulated_pva:
         index:
           title: PVs Avanço de Título
@@ -246,9 +289,6 @@ pt-BR:
           type: Tipo de evento financeiro
           created_from: Criado a partir de
           created_until: Criado até
-      bonus_entries:
-        index:
-          title: Histórico de Bônus
       orders:
         index:
           title: Relatório de Pedidos
@@ -266,6 +306,8 @@ pt-BR:
           status: Status
           created_from: Criado a partir de
           created_until: Criado até
+        form:
+          fees: Taxas
       pv_activity_histories:
         index:
           title: Histórico de PVA/PVG
@@ -276,6 +318,8 @@ pt-BR:
       users:
         index:
           title: Gerenciar Usuários
+          actions: Ações
+          sign_in: Logar
         show:
           direct_users: Indicados Diretos
     bank_accounts:
@@ -284,16 +328,20 @@ pt-BR:
         subtitle: Esta conta será utilizada nos saques da plataforma
         save: Salvar conta bancária
         ownership_info: Só aceitamos contas bancárias em sua titularidade
-    club_motors:
-      monthly_fees:
-        index:
-          title: Mensalidades
-          no_data: Nenhuma mensalidade presente até o momento
+    scores:
+      index:
+        title:
+          unilevel: Pontuações da Rede Unilevel
+          binary: Pontuações da Rede Binária
+          all: Pontuações
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
     see_cart: Ver carrinho
     title: Carrinho
+  user_mailer:
+    welcome:
+      subject: Bem-vindo
   date:
     abbr_day_names:
     - Dom
@@ -417,7 +465,6 @@ pt-BR:
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques
     my_orders: Meus pedidos
-    monthly_fees: Mensalidades
     network: Rede
     new_transfer: Solicitar Transferência
     new_withdraw: Solicitar Saque
@@ -444,22 +491,22 @@ pt-BR:
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
     admin_accumulated_pva: PVs Avanço de Título
-    pv_activity_histories: Geral PVV/PVM/PVG
+    pv_activity_histories: Geral PVG
     pv_admin_histories: PVs Binário
-    pv_generations_history: PV por geração
+    generation_scores: Gerações
     career_histories: Histórico de Carreiras
     documents_validation: Aprovação de documentos
-    pay_third_order: Pagar Fatura de Terceiro
-    my_vouchers: Central de Vouchers
     pay: Pagar
-    product_setups: Instalações
     new_product_setup: Nova Instalação
     vehicles: Veículos
     my_vehicles: Meus Veículos
     upgrades: Upgrades
-    investments: Contas de Participação
-    my_investments: Minhas Contas de Participação
-    buy_investment: Comprar Conta de Participação
+    scores: Pontuações
+    unilevel: Unilevel
+    binary: Binária
+    unilevel_binary: Unilevel/Binário
+    financial_transactions: Histórico Financeiro
+    wrong_master_password: Senha master errada
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -469,7 +516,7 @@ pt-BR:
       not_found: Não encontrado
       required: Obrigatório
       wrong_master_pw: Senha master incorreta
-      blank: Não pode ficar em branco
+      blank: não pode ficar em branco
       greater_than: Deve ser maior que %{count}
       greater_than_or_equal_to: Deve ser maior ou igual a %{count}
       accepted: Você deve aceitar os termos antes de prosseguir
@@ -609,6 +656,9 @@ pt-BR:
           new:
             subtitle: Criar novo produto
             title: Novo produto
+        credits_debits:
+          index:
+            transfer_to: Transferir para
       careers:
         edit:
           subtitle: Editar Carreira
@@ -632,13 +682,16 @@ pt-BR:
           subtitle: Editar Categoria
           title: Editar Categoria
         index:
-          new_category: New category
-          no_data: No data
+          new_category: Nova Categoria
+          no_data: Nenhuma categoria cadastrada
           subtitle: Subtitle
-          title: Title
+          title: Lista de Categorias
         new:
           subtitle: Subtitle
           title: Title
+      credits_debits:
+        index:
+          title: Créditos e Débitos
       orders:
         index:
           no_data: Nenhuma compra realizada
@@ -648,7 +701,7 @@ pt-BR:
       products:
         index:
           details: Detalhes
-          title: Loja Future Motors
+          title: Loja More Tecnology
         show:
           buy: Comprar
           description: Descrição
@@ -697,9 +750,7 @@ pt-BR:
   reverse_binary_bonus: Estorno de Bônus Binário
   flex_bonus: Bônus Flex
   activity_bonus: Bônus de Atividade
-  social_leader_bonus: Bônus Social Líder
   reverse_bonus: Estorno de Bônus
-  installer_bonus: Bônus de Instalador
   direct_captation_bonus: Bônus de Captação Direta
   indirect_captation_bonus: Bônus de Captação Indireta
   participation_bonus: Bônus de Participação
@@ -748,9 +799,6 @@ pt-BR:
   completed: Pago
   expired: Expirado
   past_due: Vencido
-  club_motors: Clube de Empreendedores
-  clubmotors: ClubMotors
-  trackers: Rastreadores
   upgrade: Upgrade
   ancore: FuturePRO
   up_to_10: Até 1.0
@@ -764,11 +812,9 @@ pt-BR:
   imported_direct: Importação Direta
   imported_internal: Importação Interna
   national_import: Importado Nacional
-  tracker_adhesion: Compra de Rastreador
-  monthly_fee: Mensalidade
-  participation_acc: Conta de Participação
-  clubmotors_adhesion: Adesão ClubMotors
   tracker: FutureSAT
+  credit: Credito
+  debit: Débito
   datagrid:
     form:
       search: Filtrar

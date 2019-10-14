@@ -24,7 +24,7 @@
 
               <hr>
 
-              <%= link_to('Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-sm') if current_user.username == 'sistema' %>
+              <%= link_to('Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-sm') if current_user.admin? %>
 
               <div class="text-left m-t-30">
                 <table class="table table-striped" style="word-break: break-word;">

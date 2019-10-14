@@ -24,22 +24,35 @@ module CreditDebitWizard
   class CreateForm < FindUserForm
 
     attribute :amount, String
-    attribute :message, String
+    attribute :financial_reason_id, String
     attribute :credit, Boolean, default: true
     attribute :master_password, String
 
-    validates :amount, :master_password, presence: true
+    validates :amount, :master_password, :financial_reason, presence: true
     validates :amount, numericality: { greater_than: 0 }
 
-    validate :correct_master_password
+    validate :master_password_digest
+
+    before_validation :cleasing_amount
+
+    def financial_reason
+      @financial_reason ||= FinancialReason.find_by(id: financial_reason_id)
+    end
 
     private
 
-    def correct_master_password
-      command = AuthenticateMaster.call(master_password)
-      return if command.success?
-      errors.add(:master_password, I18n.t('errors.messages.wrong_master_pw'))
+    def master_password_digest
+      return if authenticate_master_password?
+      errors.add(:master_password, :not_authenticate)
     end
 
+    def authenticate_master_password?
+      digest = Digest::SHA256.hexdigest(master_password)
+      digest == ENV['MASTER_PASSWORD_DIGEST']
+    end
+
+    def cleasing_amount
+      @amount = amount.to_s.gsub('.','').gsub(',','.').to_f
+    end
   end
 end

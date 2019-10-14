@@ -4,7 +4,7 @@ module Api
 
       def sign_in
         if signin_form.valid? && signin_form.verified?
-          render(json: { status: 'SUCCESS', data: signin_form.attributes }, status: :ok)
+          render(json: { status: 'SUCCESS', data: signin_form.user_serialized }, status: :ok)
         else
           render(json: { status: 'ERROR', data: signin_form.errors }, status: :bad_request)
         end
@@ -22,6 +22,15 @@ module Api
 
       def find_by_cpf
         form = Api::FindByCpfForm.new(params)
+        if form.valid?
+          render(json: { status: 'SUCCESS', data: form.user_serialized }, status: :ok)
+        else
+          render(json: { status: 'ERROR', data: form.errors }, status: :bad_request)
+        end
+      end
+
+      def find_by_cnpj
+        form = Api::FindByCnpjForm.new(params)
         if form.valid?
           render(json: { status: 'SUCCESS', data: form.user_serialized }, status: :ok)
         else

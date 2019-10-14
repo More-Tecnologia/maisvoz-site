@@ -12,11 +12,9 @@ module Financial
         update_subscription
         activate_tracker
         activate_user
-        activate_investment
         assign_product_to_user
         create_binary_node
         qualify_sponsor
-        create_vouchers
         update_order
 
         order.completed!
@@ -41,7 +39,7 @@ module Financial
     def update_order
       order.update!(
         payment_type: Order.payment_types[:admin],
-        paid_by: 'sistema'
+        paid_by: current_user.username
       )
     end
 

@@ -17,14 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # super
     build_resource(form.attributes.except(:sponsor_username, :role))
-
-    unless form.installer?
-      resource.sponsor = form.sponsor
-      resource.registration_type = form.role
-    end
-
     if form.valid? && resource.save
-      resource.instalador! && resource.pj! if form.installer?
       SlackMessageWorker.perform_async('#usuarios', "Novo usuário registrado: *#{form.username}*")
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
@@ -35,6 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         expire_data_after_sign_in!
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
+      send_welcome_email(resource)
     else
       clean_up_passwords resource
       set_minimum_password_length
@@ -141,6 +135,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private def define_layout
     current_user.consumidor? ? 'consumer' : 'admin'
+  end
+
+  private
+
+  def send_welcome_email(user)
+    UserMailer.welcome(user).deliver_later
   end
 
   # The path used after sign up for inactive accounts.

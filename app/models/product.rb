@@ -51,27 +51,34 @@ class Product < ApplicationRecord
 
   include Hashid::Rails
 
-  enum kind: [:product, :monthly_payment, :adhesion, :promotion, :renovation, :upgrade]
+  enum kind: [:detached, :adhesion, :activation]
   enum paid_by: [:paid_by_user, :paid_by_company]
 
   has_attachment :main_photo
   has_attachments :photos
 
   belongs_to :category, optional: true
-  belongs_to :career, optional: true
-  belongs_to :upgrade_from_career, class_name: 'Career', optional: true
-  belongs_to :upgrade_to_career, class_name: 'Career', optional: true
+  belongs_to :trail, optional: true
+  has_many :product_reason_scores
 
   monetize :price_cents
 
   scope :active, -> { where(active: true) }
-  scope :regular, -> { where(club_motors: false).where(tracker: false) }
-  scope :club_motors, -> { where(club_motors: true) }
-  scope :trackers, -> { where(tracker: true) }
 
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?
     main_photo.public_id
   end
 
+  def regular?
+    !adhesion?
+  end
+
+  def system_taxable?
+    kind.to_s.in?(Product.taxable_kinds)
+  end
+
+  def self.taxable_kinds
+    kinds.keys
+  end
 end

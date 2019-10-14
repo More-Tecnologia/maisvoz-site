@@ -29,21 +29,25 @@ class NewRegistrationForm < Form
   attribute :password_confirmation
 
   validates :role, :username, :name, :phone, :email, :password,
-            :password_confirmation, :gender, :document_cpf,
+            :password_confirmation, :gender,
             :zipcode, :address, :district, :city, :state, presence: true
   validates :email, email: true
-  validates :sponsor_username, presence: true, unless: -> { installer? }
+  validates :sponsor_username, presence: true
 
-  validates :document_rg, :document_rg_expeditor, presence: true, if: -> { pf? }
+  validates :document_cpf, presence: true, if: -> { pf? }
   validates :document_cnpj, :document_ie, :document_company_name, :document_fantasy_name, presence: true, if: -> { pj? }
 
-  validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
+  validates :username, format: { with: /\A[a-z0-9\_]+\z/,
+                                 message: I18n.t('activemodel.errors.models.new_registration_form.attributes.username.format') }
 
-  validate :sponsor_exists, unless: -> { installer? }
+  validate :sponsor_exists
   validate :username_is_unique
   validate :email_is_unique
   validate :document_cpf_is_unique
-  # validate :city_exists
+  validate :document_cnpj_is_unique
+  validate :cpf_and_cnpj_format
+  # validate :city_class
+
 
   before_validation :normalize_username
 
@@ -60,10 +64,6 @@ class NewRegistrationForm < Form
 
   def pj?
     role == 'pj'
-  end
-
-  def installer?
-    role == 'installer'
   end
 
   private
@@ -86,12 +86,13 @@ class NewRegistrationForm < Form
 
   def email_is_unique
     return unless User.where(email: email).any?
-    errors.add(:email, 'já existe')
+    errors.add(:email, I18n.t('activemodel.errors.messages.taken'))
   end
 
   def document_cpf_is_unique
-    return unless User.where(document_cpf: document_cpf).any?
-    errors.add(:document_cpf, 'já existe')
+    user_exists = User.exists?(document_cpf: document_cpf)
+    errors.add(:document_cpf,
+               I18n.t('activemodel.errors.messages.taken')) if user_exists
   end
 
   def city_exists
@@ -99,4 +100,14 @@ class NewRegistrationForm < Form
     errors.add(:city, 'não existe')
   end
 
+  def cpf_and_cnpj_format
+    errors.add(:document_cpf) if !CPF.valid?(document_cpf) && pf?
+    errors.add(:document_cnpj) if !CNPJ.valid?(document_cnpj) && pj?
+  end
+
+  def document_cnpj_is_unique
+    user_exists = User.exists?(document_cnpj: document_cnpj)
+    errors.add(:document_cnpj,
+               I18n.t('activemodel.errors.messages.taken')) if user_exists
+  end
 end

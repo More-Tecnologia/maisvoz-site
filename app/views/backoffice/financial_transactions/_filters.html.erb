@@ -1,0 +1,36 @@
+<div class="panel panel-border panel-custom">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t(:filters) %></h3>
+  </div>
+  <div class="panel-body">
+    <%= search_form_for @q, url: find_financial_transactions_search_url do |f| %>
+      <div class="form-group">
+        <div class="row">
+          <% if current_user.admin? && controller_path.include?('admin') %>
+            <div class="col-md-2">
+              <%= f.label t('attributes.username') %>
+              <%= f.search_field :user_username_cont, class: 'form-control input-sm' %>
+            </div>
+          <% end %>
+          <div class="col-md-2">
+            <%= f.label t('attributes.from') %>
+            <%= f.search_field :created_at_gteq, class: 'form-control input-sm',
+                                                 data: { provide: 'datepicker' } %>
+          </div>
+          <div class="col-md-2">
+            <%= f.label t('attributes.until') %>
+            <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
+                                                 data: { provide: 'datepicker' } %>
+          </div>
+          <div class="col-md-2">
+            <%= t('activerecord.attributes.financial_transaction.financial_reason') %>
+            <%= f.select :financial_reason_id_in, find_financial_reasons_by_path,
+                                                  { include_blank: t('all') },
+                                                  { class: 'form-control input-sm', multiple: true } %>
+          </div>
+        </div>
+      </div>
+      <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>

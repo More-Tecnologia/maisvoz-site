@@ -85,13 +85,11 @@
 
 class User < ApplicationRecord
 
-  include Careerable
-
   attr_accessor :login
 
   monetize :available_balance_cents, :blocked_balance_cents
 
-  enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', instalador: 'instalador', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce', automotive_center: 'automotive_center' }
+  enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce' }
   enum marital_status: { single: 'single', married: 'married', widowed: 'widowed', divorced: 'divorced' }
   enum gender: { male: 'male', female: 'female' }
   enum registration_type: { pf: 'pf', pj: 'pj' }
@@ -104,6 +102,8 @@ class User < ApplicationRecord
   }
 
   enum binary_position: { left: 'left', right: 'right' }
+
+  serialize :ascendant_sponsors_ids, Array
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -120,7 +120,6 @@ class User < ApplicationRecord
   has_one :binary_node
   has_one :unilevel_node
   has_many :orders
-  has_many :financial_entries, class_name: 'FinancialEntry'
   has_many :withdrawals
   has_many :pv_histories
   has_many :pv_activity_histories
@@ -128,8 +127,11 @@ class User < ApplicationRecord
   has_many :payment_transactions
   has_many :club_motors_subscriptions
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
-  has_many :product_setups, class_name: 'ProductSetup', foreign_key: 'installer_id'
-  has_many :created_order_of_services, class_name: 'OrderOfService', foreign_key: 'created_by'
+  has_many :scores
+  has_many :spreaded_scores, class_name: 'Score'
+  has_many :career_trail_users
+  has_many :career_trails, through: :career_trail_users
+  has_many :financial_transactions
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
 
@@ -137,10 +139,11 @@ class User < ApplicationRecord
   has_many :debits
   has_many :investment_shares
   has_many :bonus, class_name: 'Bonus'
-  has_many :vouchers
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
+  before_save :ensure_ascendant_sponsors_ids
+  after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
 
   def balance
@@ -187,4 +190,68 @@ class User < ApplicationRecord
     BankCodes.find_by_code(bank_code)
   end
 
+  def current_career_trail
+    career_trails.last
+  end
+
+  def current_trail
+    current_career_trail.try(:trail)
+  end
+
+  def current_career
+    current_career_trail.try(:career)
+  end
+
+  def activate!
+    update!(active: true, active_until: 1.month.from_now)
+  end
+
+  def out_binary_tree?
+    user.binary_node.nil?
+  end
+
+  def inside_binary_tree?
+    user.binary_node.nil?
+  end
+
+  def sponsor_is_binary_qualified?
+    sponsor.try(:binary_qualified?)
+  end
+
+  def ascendant_sponsors
+    User.where(id: ascendant_sponsors_ids)
+        .where.not(username: ENV['MORENWM_USERNAME']).reverse
+  end
+
+  def available_cent_amount
+    credit_amount = FinancialTransaction.credit.where(user: self).sum(:cent_amount)
+    debit_amount = FinancialTransaction.debit.where(user: self).sum(:cent_amount)
+    credit_amount.to_i - debit_amount.to_i
+  end
+
+  def self.find_morenwm_customer_user
+    find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
+  end
+
+  def self.find_morenwm_user
+    find_by(username: ENV['MORENWM_USERNAME'])
+  end
+
+  def next_career_kind
+    current_career.next_career
+  end
+
+  private
+
+  def ensure_initial_career_trail
+    first_career_trail = CareerTrail.first
+    CareerTrailUser.create!(user: self, career_trail: first_career_trail)
+  end
+
+  def ensure_ascendant_sponsors_ids
+    sponsor_ids = sponsor.try(:ascendant_sponsors_ids) || []
+    sponsor_id = [sponsor.try(:id)]
+    ids = sponsor_ids + sponsor_id
+    self[:ascendant_sponsors_ids] = ids.compact
+  end
 end

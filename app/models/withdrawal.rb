@@ -18,12 +18,13 @@
 #
 
 class Withdrawal < ApplicationRecord
-
   include Hashid::Rails
 
-  enum status: { pending: 'pending', approved: 'approved', approved_balance: 'approved_balance', refused: 'refused' }
-
   belongs_to :user
+
+  has_many :financial_transactions
+
+  enum status: { pending: 'pending', approved: 'approved', approved_balance: 'approved_balance', refused: 'refused' }
 
   monetize :gross_amount_cents, :net_amount_cents
 
@@ -32,5 +33,4 @@ class Withdrawal < ApplicationRecord
   ransacker :date_created_at do
     Arel.sql("DATE(#{table_name}.created_at)")
   end
-
 end

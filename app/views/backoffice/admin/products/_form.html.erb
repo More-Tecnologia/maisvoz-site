@@ -40,13 +40,7 @@
             <label for="">Galeria de fotos</label>
             <%= f.input :photos, as: :file,  input_html: { multiple: true } %>
 
-            <% if product && product.club_motors? %>
-              <%= f.input :name, disabled: true %>
-              <p>Para alterações, entrar em contato com o admin</p>
-            <% else %>
-              <%= f.input :name %>
-            <% end %>
-
+            <%= f.input :name %>
             <%= f.input :price do %>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
@@ -64,18 +58,10 @@
             <%= f.input :low_stock_alert %>
             <%= f.input :category_id, collection: Category.all %>
             <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>
-            <div class="career-section <%= form.kind != 'adhesion' && 'hide' %>">
-              <%= f.input :career_id, collection: Career.all %>
-            </div>
-            <div class="upgrade-section <%= form.kind != 'upgrade' && 'hide' %>">
-              <%= f.input :upgrade_from_career_id, collection: Career.all %>
-              <%= f.input :upgrade_to_career_id, collection: Career.all %>
-            </div>
             <%= f.input :paid_by, collection: Product.paid_bies.map { |k,v| [t(k), k] } %>
+            <%= f.input :trail_id, collection: Trail.all, selected: (product.trail_id unless product.blank?) %>
             <%= f.input :active, as: :boolean %>
             <%= f.input :virtual, as: :boolean %>
-            <%= f.input :club_motors, as: :boolean %>
-            <%= f.input :tracker, as: :boolean %>
           </div>
         </div>
       </div>
@@ -108,30 +94,172 @@
     </div>
     <div class="tab-pane" id="bonus">
       <div class="row">
-        <div class="col-md-6">
-          <div class="p-20">
-            <%= f.input :binary_score %>
-            <%= f.input :advance_score %>
-            <%= f.input :binary_bonus %>
-            <%= f.input :bonus_1 %>
-            <%= f.input :bonus_2 %>
-            <%= f.input :bonus_3 %>
-          </div>
+        <div class="col-md-4">
+          <%= f.input :binary_score, wrapper_html: { class: 'm-0' } %>
         </div>
-        <div class="col-md-6">
-          <div class="p-20">
-            <%= f.input :bonus_4 %>
-            <%= f.input :bonus_5 %>
-            <%= f.input :bonus_6 %>
-            <%= f.input :bonus_7 %>
-            <%= f.input :bonus_8 %>
-            <%= f.input :bonus_9 %>
-          </div>
+        <div class="col-md-4">
+          <%= f.input :advance_score, wrapper_html: { class: 'm-0' } %>
+        </div>
+        <div class="col-md-4">
+          <%= f.input :binary_bonus, wrapper_html: { class: 'm-0' } %>
         </div>
       </div>
+      <% unless product.nil? %>
+      <% rr = 0 %>
+      <% product.product_reason_scores.each_with_index do |reason, r| %>
+        <hr>
+        <div class="row m-b-20">
+          <div class="col-md-6">
+            <%= f.input :financial_reason, 
+              collection: FinancialReason.all, 
+              selected: reason.financial_reason_id,
+              include_blank: true,
+              input_html: { name: "product_form[financial_reason][#{r}]", id: "product_form_financial_reason_#{r}" },
+              wrapper_html: { class: 'm-0' }
+            %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width="1">Geração</th>
+                <% Career.qualifying.each do |c| %>
+                  <th><%= c.name %></th>
+                <% end %>
+                </tr>
+              </thead>
+              <tbody>
+              <% unless form.scores(reason.id).blank? %>
+                <% generation = 1; aux = 0; %>
+                <tr>
+                <% form.scores(reason.id).each do |s| %>
+                  <% if s.generation != aux %>
+                    </tr>
+                    <tr class="generation-row" data-reason="<%= r %>">
+                      <td class="text-center media-middle"><%= s.generation %></td>
+                      <% aux = s.generation; %>
+                      <% generation += 1; %>
+                  <% end %>
+                    <td>
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <%= f.input_field :product_scores_fix, as: :boolean, 
+                              name: "product_form[product_scores_fix][#{r}][#{s.generation}][#{s.career_trail_id}]", 
+                              id: "product_form_product_scores_fix_#{r}_#{s.generation}_#{s.career_trail_id}",
+                              checked: s.fix_value
+                          %>
+                        </span>
+                        <%= f.input_field :product_scores, label: false, 
+                          class: 'form-control',
+                          name: "product_form[product_scores][#{r}][#{s.generation}][#{s.career_trail_id}]", 
+                          id: "product_form_product_scores_#{r}_#{s.generation}_#{s.career_trail_id}", 
+                          value: s.amount.to_f
+                        %>
+                      </div>
+                    </td>
+                <% end %>
+                </tr>
+                <% else %>
+                <tr class="generation-row" data-reason="<%= r %>">
+                  <td class="text-center media-middle">1</td>
+                <% form.careers.each do |c| %>
+                  <td>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <%= f.input_field :product_scores_fix, as: :boolean, 
+                            name: "product_form[product_scores_fix][#{r}][1][#{c.id}]", 
+                            id: "product_form_product_scores_fix_#{r}_1_#{c.id}"
+                        %>
+                      </span>
+                      <%= f.input_field :product_scores, label: false, 
+                        class: 'form-control',
+                        name: "product_form[product_scores][#{r}][1][#{c.id}]", 
+                        id: "product_form_product_scores_#{r}_1_#{c.id}"
+                      %>
+                    </div>
+                  </td>
+                <% end %>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <a href="javascript:;" onclick="add_generation(this)" class="btn btn-sm btn-primary">Adicionar Geração</a>
+          </div>
+        </div>
+        <% rr += 1 %>
+      <% end %>
+      <hr>
+      <div class="row m-b-20">
+        <div class="col-md-6">
+          <%= f.input :financial_reason, 
+            collection: FinancialReason.all, 
+            input_html: { name: "product_form[financial_reason][#{rr}]", id: "product_form_financial_reason_#{rr}" },
+            wrapper_html: { class: 'm-0' }
+          %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th width="1">Geração</th>
+              <% Career.qualifying.each do |c| %>
+                <th><%= c.name %></th>
+              <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="generation-row" data-reason="<%= rr %>">
+                <td class="text-center media-middle">1</td>
+              <% form.careers.each do |c| %>
+                <td>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <%= f.input_field :product_scores_fix, as: :boolean,
+                          name: "product_form[product_scores_fix][#{rr}][1][#{c.id}]", 
+                          id: "product_form_product_scores_fix_#{rr}_1_#{c.id}"
+                      %>
+                    </span>
+                    <%= f.input_field :product_scores, label: false, 
+                      class: 'form-control',
+                      name: "product_form[product_scores][#{rr}][1][#{c.id}]", 
+                      id: "product_form_product_scores_#{rr}_1_#{c.id}"
+                    %>
+                  </div>
+                </td>
+              <% end %>
+              </tr>
+            </tbody>
+          </table>
+          <a href="javascript:;" onclick="add_generation(this)" class="btn btn-sm btn-primary">Adicionar Geração</a>
+        </div>
+      </div>
+      <% end %>
     </div>
   </div>
 
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
 
 <% end %>
+
+<script>
+function add_generation(btn) {
+  var table = $(btn).closest('.row').find('table > tbody');
+  var current = table.find('tr.generation-row').length;
+  var clone = table.find('tr.generation-row').last().clone();
+  var next = current + 1;
+  clone.find('td').first().html(next);
+  clone.find('input').each(function(i,e) {
+    var name = $(e).attr('name').replace(']['+clone.data('reason')+']['+current+'][', ']['+clone.data('reason')+']['+next+'][');
+    $(e).attr('name', name);
+    if($(e).attr('id') !== undefined) {
+      var id = $(e).attr('id').replace('_'+clone.data('reason')+'_'+current+'_', '_'+clone.data('reason')+'_'+next+'_');
+      $(e).attr('id', id);
+    }
+  });
+  clone.appendTo(table);
+}
+</script>

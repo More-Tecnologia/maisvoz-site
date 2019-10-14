@@ -53,7 +53,7 @@ module Payment
         uf: user.state
       }
       params[:boleto] = {
-        beneficiario: 'Future Motors Ltda',
+        beneficiario: 'More Tecnology Ltda',
         nosso_numero: 1000 + order.id,
         carteira: 26,
         valor_titulo: order.total_cents,

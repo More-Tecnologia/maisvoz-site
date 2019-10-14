@@ -44,7 +44,9 @@
       <div class="dashboard-card__label">
         <span>Pacote</span>
       </div>
-      <div class="dashboard-card__value label-warning"><%= current_user.product.try(:name) %></div>
+      <div class="dashboard-card__value label-warning">
+        <%= current_user.try(:current_trail).try(:name) %>
+      </div>
     </div>
   </div>
 
@@ -53,7 +55,9 @@
       <div class="dashboard-card__label">
         <span>Título</span>
       </div>
-      <div class="dashboard-card__value label-warning"><%= current_user.career_kind || '---' %></div>
+      <div class="dashboard-card__value label-warning">
+        <%= current_user.try(:current_career).try(:name) %>
+      </div>
     </div>
   </div>
 
@@ -62,7 +66,9 @@
       <div class="dashboard-card__label">
         <span>Próximo Título</span>
       </div>
-      <div class="dashboard-card__value label-info"><%= current_user.next_career_kind %></div>
+      <div class="dashboard-card__value label-info">
+        <%= current_user.next_career_kind.try(:name) %>
+      </div>
     </div>
   </div>
 </div>
@@ -107,7 +113,9 @@
         <% last_qualifications.each do |qualification| %>
         <div class="inbox-item">
           <p class="inbox-item-author"><%= qualification.user.username %></p>
-          <p class="inbox-item-text"><%= qualification.old_career ? t(qualification.old_career) : 'Cliente' %> <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %></p>
+          <p class="inbox-item-text"><%= qualification.old_career ? t(qualification.old_career) : 'Cliente' %>
+            <i class="fa fa-arrow-right"></i> <%= t qualification.new_career %>
+          </p>
         </div>
         <% end %>
       </div>
@@ -120,7 +128,14 @@
       </div>
       <div class="dashboard-card-box__containe">
         <div class="inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
-          <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffuturemotorsoficial&tabs=timeline&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+          <iframe src=""
+                  width="340"
+                  height="500"
+                  style="border:none;overflow:hidden"
+                  scrolling="no"
+                  frameborder="0"
+                  allowTransparency="true">
+          </iframe>
         </div>
       </div>
     </div>
@@ -151,12 +166,12 @@
                 <div>
                   <%= image_tag 'download-list/video.jpg' %>
                 </div>
-                <div>Future Motors +Você</div>
+                <div>More Tecnology</div>
               </a>
             </li>
 
             <li style="padding-right: 24px;">
-              <a href="https://futuremotors.com.br/wp-content/uploads/2018/12/contratodeadesao.pdf" target="blank">
+              <a href="https://moretecnology.com.br/wp-content/uploads/2018/12/contratodeadesao.pdf" target="blank">
                 <div>
                   <%= image_tag 'download-list/paper.jpg' %>
                 </div>

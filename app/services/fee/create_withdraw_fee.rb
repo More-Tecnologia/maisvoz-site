@@ -7,24 +7,23 @@ module Fee
     end
 
     def call
-      create_entry
-      create_system_financial_log
-      update_balance
+      ActiveRecord::Base.transaction do
+        create_withdrawal_fee_financial_transaction
+        create_system_financial_log
+        update_balance
+      end
     end
 
     private
 
     attr_reader :withdraw, :fee
 
-    def create_entry
-      FinancialEntry.new.tap do |entry|
-        entry.user        = master_user
-        entry.description = "Taxa de #{h.number_to_currency fee} sobre o saque ID: #{withdraw.id}"
-        entry.amount      = fee
-        entry.balance     = master_user.balance + fee
-        entry.kind        = FinancialEntry.kinds[:withdrawal_fee]
-        entry.save!
-      end
+    def create_withdrawal_fee_financial_transaction
+      withdraw.financial_transactions.create!(user: user,
+                                              spreader: User.find_morenwm_customer_user,
+                                              financial_reason: FinancialReason.withdrawal_fee,
+                                              cent_amount: fee,
+                                              money_flow: :debit)
     end
 
     def create_system_financial_log
@@ -44,7 +43,7 @@ module Fee
     end
 
     def master_username
-      AppConfig.get('MASTER_FINANCIAL_ACCOUNT')
+      ENV['MASTER_FINANCIAL_ACCOUNT']
     end
 
     def h

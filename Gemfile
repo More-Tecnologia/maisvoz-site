@@ -7,7 +7,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'activeadmin', github: 'activeadmin'
 gem 'ancestry'
 gem 'annotate'
 gem 'attachinary', git: 'git://github.com/ThomasConnolly/attachinary.git'
@@ -33,9 +32,7 @@ gem 'lograge'
 gem 'meta-tags'
 gem 'mini_magick'
 gem 'money-rails', '1.12'
-gem 'newrelic_rpm'
 gem 'oj'
-gem 'pagarme'
 gem 'paperclip'
 gem 'pg', '~> 0.21'
 gem 'puma', '~> 3.7'
@@ -49,10 +46,8 @@ gem 'ransack'
 gem 'redis-rails'
 gem 'redis-session-store'
 gem 'rest-client'
-gem 'rollbar'
 gem 'sass-rails', '~> 5.0'
 gem 'shog'
-gem 'shrine', '~> 2.11'
 gem 'sidekiq'
 gem 'simple_command'
 gem 'simple_form', '~> 4.1.0'
@@ -80,6 +75,11 @@ group :development, :test do
   gem 'factory_bot'
   gem 'rspec-rails', '~> 3.6'
   gem 'selenium-webdriver'
+  gem 'factory_bot_rails', '~> 5.0', '>= 5.0.2'
+  gem 'database_cleaner', '~> 1.7'
+  gem 'faker', '~> 2.2', '>= 2.2.1'
+  gem 'byebug', '~> 11.0', '>= 11.0.1'
+  gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
 end
 
 group :development do

@@ -9,7 +9,13 @@ class EditRegistrationForm < Form
   attribute :skype
   attribute :email
   attribute :document_cpf
+  attribute :document_rg
+  attribute :document_rg_expeditor
+  attribute :document_pis
   attribute :document_cnpj
+  attribute :document_ie
+  attribute :document_fantasy_name
+  attribute :document_company_name
   attribute :zipcode
   attribute :address_ibge
   attribute :address
@@ -21,6 +27,7 @@ class EditRegistrationForm < Form
   attribute :password
   attribute :password_confirmation
   attribute :current_password
+  attribute :registration_type
 
   validates :name, :phone, :document_cpf, :address, :zipcode, :district, :city, :country, :state, :email, presence: true
   validates :email, email: true
@@ -32,6 +39,14 @@ class EditRegistrationForm < Form
 
   def sponsor
     User.find_by(username: sponsor_username)
+  end
+
+  def pf?
+    registration_type == 'pf'
+  end
+
+  def pj?
+    registration_type == 'pj'
   end
 
   private

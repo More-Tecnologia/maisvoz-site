@@ -39,21 +39,15 @@ class Order < ApplicationRecord
   serialize :dr_response, JSON
 
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, expired: 4 }
-  enum type: {
-    clubmotors_adhesion: 'clubmotors_adhesion',
-    tracker_adhesion: 'tracker_adhesion',
-    futurepro_adhesion: 'futurepro_adhesion',
-    upgrade: 'upgrade',
-    monthly_fee: 'monthly_fee',
-    participation_acc: 'participation_acc'
-  }
-  enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin', voucher: 'voucher' }
+  enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories
   has_many :bonus, class_name: 'Bonus'
   has_many :pv_activity_histories
   has_many :payment_transactions
+  has_many :scores
+  has_many :financial_transactions
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true
@@ -61,8 +55,6 @@ class Order < ApplicationRecord
   monetize :subtotal_cents, :tax_cents, :shipping_cents, :total_cents
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
-  scope :monthly_fees, -> { where(type: :monthly_fee) }
-  scope :regular_orders, -> { where.not(type: :monthly_fee) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")
@@ -71,12 +63,7 @@ class Order < ApplicationRecord
   def monthly_order_items
     return [] if payable.blank? || order_items.present?
 
-    if payable.class.name == 'InvestmentShare'
-      name = payable.type
-    else
-      name = I18n.t(payable.type)
-    end
-
+    name = I18n.t(payable.type)
     product = OpenStruct.new(
       id: payable.id,
       hashid: payable.hashid,
@@ -94,11 +81,7 @@ class Order < ApplicationRecord
   end
 
   def total_score
-    if monthly_fee?
-      pvm_score
-    else
-      @total_score ||= order_items.sum { |item| item.quantity * item.product.binary_score }
-    end
+    @total_score ||= order_items.sum { |item| item.quantity * item.product.binary_score }
   end
 
   def max_product_score
@@ -112,31 +95,11 @@ class Order < ApplicationRecord
   end
 
   def adhesion_product
-    @adhesion_product ||= order_items.joins(:product).where('products.kind = ?', Product.kinds[:adhesion]).first.try(:product)
+    @adhesion_product ||= products.select(&:adhesion?).first
   end
 
-  def club_motors_product
-    @club_motors_product ||= order_items.joins(:product).where('products.club_motors = true').first.try(:product)
-  end
-
-  def pvg_score
-    if upgrade?
-      @pvg_score ||= pv_total
-    else
-      @pvg_score ||= order_items.joins(:product).where(
-        'products.kind = ?', Product.kinds[:adhesion]
-      ).sum(:binary_score)
-    end
-  end
-
-  def pvv_score
-    @pvv_score ||= order_items.joins(:product).where(
-      'products.kind != ?', Product.kinds[:adhesion]
-    ).sum(:binary_score)
-  end
-
-  def pvm_score
-    @pvm_score ||= (total_cents / 300).to_i
+  def activation_product
+    @activation_product ||= products.select(&:activation?).first
   end
 
   def token
@@ -144,13 +107,32 @@ class Order < ApplicationRecord
   end
 
   def decorated_type
-    if payable.present? && participation_acc?
-      "#{payable.type} - #{I18n.t(type)}"
-    elsif payable.present?
+    if payable.present?
       "#{I18n.t(payable.type)} - #{I18n.t(type)}"
-    elsif type.present?
+    else type.present?
       I18n.t(type)
     end
   end
 
+  def products
+    @products ||= order_items.includes(product: [:trail]).map(&:product)
+  end
+
+  def detached_products_score
+    items = order_items.includes(:product).select { |item| item.product.detached? }
+    items.sum { |item| item.quantity * item.product.binary_score }
+  end
+
+  def activation_products_score
+    items = order_items.includes(:product).select { |item| item.product.activation? }
+    items.sum { |item| item.quantity * item.product.binary_score }
+  end
+
+  def item_price_cents_sum
+    order_items.sum { |item| item.quantity * item.product.price_cents }
+  end
+
+  def taxable_product_cent_amount
+    order_items.sum { |i| i.system_taxable? ? i.product.price_cents : 0 }
+  end
 end

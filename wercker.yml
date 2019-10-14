@@ -1,0 +1,17 @@
+box: ubuntu
+build:
+  steps:
+    - install-packages:
+      packages: openssh-client git
+    - add-to-known_hosts:
+      hostname: $SERVER_HOSTNAME
+    - add-ssh-key:
+      keyname: DOKKU
+    - script:
+      name: add remote repository
+      code: |
+        git remote add dokku dokku@$SERVER_HOSTNAME:$APP_NAME
+    - script:
+      name: push to server
+      code: |
+        git push dokku master

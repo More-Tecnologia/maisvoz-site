@@ -63,6 +63,7 @@ class Product < ApplicationRecord
 
   monetize :price_cents
 
+  scope :regular, -> { where.not(kind: :adhesion) }
   scope :active, -> { where(active: true) }
 
   def main_photo_id

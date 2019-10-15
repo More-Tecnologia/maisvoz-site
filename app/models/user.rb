@@ -220,7 +220,8 @@ class User < ApplicationRecord
 
   def ascendant_sponsors
     User.where(id: ascendant_sponsors_ids)
-        .where.not(username: ENV['MORENWM_USERNAME']).reverse
+        .empreendedor
+        .reverse
   end
 
   def available_cent_amount

@@ -84,7 +84,7 @@ pt-BR:
       credit_debit_wizard/create_form:
         master_password: Senha Master
         amount: Valor
-  app_name: More Tecnology
+  app_name: More Network Marketing
   attributes:
     active_session: Sessão ativa
     order: Ordem
@@ -701,7 +701,7 @@ pt-BR:
       products:
         index:
           details: Detalhes
-          title: Loja More Tecnology
+          title: Loja More NWM
         show:
           buy: Comprar
           description: Descrição

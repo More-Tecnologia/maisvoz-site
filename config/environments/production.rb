@@ -1,8 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  redis_url = ENV["REDISTOGO_URL"]
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -30,7 +28,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -67,11 +65,11 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   config.session_store :redis_session_store, {
-    key: '_futuremotors_session',
+    key: '_morenwm_session',
     redis: {
       expire_after: 2.days,
-      key_prefix: 'futuremotors:session:',
-      url: redis_url,
+      key_prefix: 'morenwm:session:',
+      url: ENV.fetch('REDIS_URL'),
     }
   }
 
@@ -110,11 +108,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    port:           '587',
-    address:        'smtp.sendgrid.net',
-    user_name:      ENV['SENDGRID_USERNAME'],
-    password:       ENV['SENDGRID_PASSWORD'],
-    domain:         'heroku.com',
+    port:           ENV['SMTP_PORT'],
+    address:        ENV['SMTP_HOST'],
+    user_name:      ENV['SMTP_USER'],
+    password:       ENV['SMTP_PASS'],
+    domain:         ENV['BASE_HOST'],
     authentication: :plain,
     enable_starttls_auto: true
   }

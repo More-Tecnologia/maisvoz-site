@@ -6,8 +6,6 @@
 rake import_cities:run
 ```
 
-`heroku pg:copy futuremotors-production::DATABASE DATABASE -a futuremotors-staging`
-
 ## Tasks que devem ser agendadas
 
 ```

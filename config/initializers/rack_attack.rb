@@ -1,5 +1,4 @@
-redis = ENV['REDISTOGO_URL'] || 'localhost'
-Rack::Attack.cache.store = ActiveSupport::Cache::RedisStore.new(redis)
+Rack::Attack.cache.store = ActiveSupport::Cache::RedisStore.new(ENV.fetch('REDIS_URL', 'localhost'))
 
 # Rack::Attack.throttle('limit login attempts', limit: 6, period: 60.minutes) do |req|
 #   req.params['user']['login'] if req.path == '/users/sign_in' && req.post?

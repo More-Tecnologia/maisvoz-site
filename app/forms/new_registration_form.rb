@@ -43,8 +43,8 @@ class NewRegistrationForm < Form
   validate :sponsor_exists
   validate :username_is_unique
   validate :email_is_unique
-  validate :document_cpf_is_unique
-  validate :document_cnpj_is_unique
+  validate :document_cpf_is_unique, if: :pf?
+  validate :document_cnpj_is_unique, if: :pj?
   validate :cpf_and_cnpj_format
   # validate :city_class
 
@@ -54,7 +54,7 @@ class NewRegistrationForm < Form
   def sponsor
     @sponsor ||= User.where(
       'LOWER(username) = ? AND role = ?',
-      sponsor_username.downcase, :empreendedor
+      sponsor_username, :empreendedor
     ).first
   end
 

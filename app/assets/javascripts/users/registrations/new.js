@@ -13,7 +13,8 @@ $(document).ready(function() {
   STEPS = {
     isValidStep1: function() {
       fields = ['#user_sponsor_username', '#user_username', '#user_name',
-                '#user_phone', '#user_email', '#user_gender', '#user_password']
+                '#user_phone', '#user_email', '#user_gender', '#user_password',
+                '#user_birthdate']
       return isValid(fields)
     },
     isValidStep2: function(){
@@ -36,7 +37,8 @@ $(document).ready(function() {
       $form.enableClientSideValidations()
     },
     onNext: function(tab, navigation, index) {
-      return isPreviousFormsValid(index)
+      var step = index + 1
+      return isPreviousFormsValid(step)
     },
     onTabClick: function(tab, navigation, index) {
       var step = index + 2
@@ -45,6 +47,7 @@ $(document).ready(function() {
   });
 
   function isPreviousFormsValid(step) {
+    console.log(step)
     if (step == 2)
       return STEPS.isValidStep1()
     if (step == 3)

@@ -2,6 +2,7 @@ class NewRegistrationForm < Form
 
   attribute :role
   attribute :sponsor_username
+  attribute :sponsor
   attribute :username
   attribute :name
   attribute :birthdate
@@ -30,7 +31,7 @@ class NewRegistrationForm < Form
 
   validates :role, :username, :name, :phone, :email, :password,
             :password_confirmation, :gender,
-            :zipcode, :address, :district, :city, :state, presence: true
+            :zipcode, :address, :district, :city, :state, :sponsor, presence: true
   validates :email, email: true
   validates :sponsor_username, presence: true
 

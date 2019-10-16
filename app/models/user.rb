@@ -132,7 +132,7 @@ class User < ApplicationRecord
   has_many :career_trail_users
   has_many :career_trails, through: :career_trail_users
   has_many :financial_transactions
-  belongs_to :sponsor, class_name: 'User', optional: true
+  belongs_to :sponsor, class_name: 'User'
   belongs_to :product, optional: true
 
   has_many :credits

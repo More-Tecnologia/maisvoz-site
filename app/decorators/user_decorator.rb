@@ -59,8 +59,8 @@ class UserDecorator < ApplicationDecorator
   end
 
   def career_name
-    return '-' if career_kind.blank?
-    @career_name ||= career_kind.upcase
+    @career_name ||= try(:current_career).try(:name).try(:upcase)
+    @career_name || '-'
   end
 
   def pretty_address
@@ -73,8 +73,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def long_birthdate
-    return '-' unless birthdate.present?
-    @long_birthdate ||= h.l(birthdate, format: :long)
+    @long_birthdate ||= h.l(birthdate, format: :long) if birthdate
   end
 
   def sponsored_count
@@ -124,4 +123,7 @@ class UserDecorator < ApplicationDecorator
     document_cnpj.scan(/\d+/).join
   end
 
+  def sponsor_username
+    try(:sponsor).try(:username)
+  end
 end

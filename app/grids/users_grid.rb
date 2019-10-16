@@ -20,17 +20,15 @@ class UsersGrid < BaseGrid
   column_names_filter(:header => "Colunas Extras", checkboxes: true)
 
   column(:id, mandatory: true)
-  column(:username, html: false, mandatory: true)
-  column(:username, header: I18n.t('attributes.username')) do |user|
-    format(user) do |obj|
-      link_to_user obj
-    end
+  column(:username, html: false)
+  column(:username, mandatory: true, header: I18n.t('attributes.sponsor_username')) do |user|
+    user.try(:sponsor).try(:username)
   end
   column(:pretty_name, mandatory: true, header: I18n.t('attributes.user'))
   column(:main_document, mandatory: true, header: I18n.t('attributes.main_document'))
   column(:activity, html: true, mandatory: true, header: I18n.t('attributes.activity'))
   column(:qualification, html: true, mandatory: true, header: I18n.t('attributes.qualification'))
-  column(:pretty_career, mandatory: true, header: I18n.t('attributes.career_kind'))
+  column(:career_name, mandatory: true, header: I18n.t('attributes.career_kind'))
   column(:created_at, html: false, mandatory: true, header: I18n.t('attributes.created_at'))
   column(:created_at, header: I18n.t('attributes.created_at')) do |user|
     format(user.created_at) do |created_at|

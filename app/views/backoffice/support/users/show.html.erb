@@ -2,7 +2,7 @@
   <div class="col-md-4 col-lg-4">
       <div class="profile-detail card-box">
           <div>
-              <h4 class="m-b-20"><%= user.name %></h4>
+              <h4 class="m-b-20"><%= user.username %></h4>
 
               <%= user.avatar_image_tag %>
 
@@ -30,7 +30,7 @@
                 <table class="table table-striped" style="word-break: break-word;">
                   <tr>
                     <td><strong><%= User.human_attribute_name(:sponsor) %>:</strong></td>
-                    <td><%= user.sponsor && link_to_user(user.sponsor) %></td>
+                    <td><%= user.sponsor_username %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:active) %>:</strong></td>

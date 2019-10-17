@@ -205,6 +205,8 @@ pt-BR:
     master_password: Senha Master
     financial_reason_id: Motivo
     financial_reason: Motivo
+    pf: Pessoa Física
+    pj: Pessoa Jurídica
   backoffice:
     orders:
       show:

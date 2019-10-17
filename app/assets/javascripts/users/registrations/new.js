@@ -14,11 +14,11 @@ $(document).ready(function() {
     isValidStep1: function() {
       fields = ['#user_sponsor_username', '#user_username', '#user_name',
                 '#user_phone', '#user_email', '#user_gender', '#user_password',
-                '#user_birthdate']
+                '#user_birthdate', '#user_registration_type']
       return isValid(fields)
     },
     isValidStep2: function(){
-      return validateFieldsByUserRole()
+      return validateFieldsByUserRegistrationType()
     },
     isValidStep3: function() {
       fields = ['#user_zipcode', '#user_district', '#user_city', '#user_state']
@@ -47,7 +47,6 @@ $(document).ready(function() {
   });
 
   function isPreviousFormsValid(step) {
-    console.log(step)
     if (step == 2)
       return STEPS.isValidStep1()
     if (step == 3)
@@ -62,30 +61,27 @@ $(document).ready(function() {
 
   const username_label_text = selectLabelByForAttribute('user_name').text()
   const admin_username_label_text = $("input[type='hidden']#admin_company_username").val()
-  const physical_person_required_labels = ['user_document_cpf']
   const legal_person_required_labels = ['user_document_cnpj', 'user_document_company_name',
                                       'user_document_ie', 'user_document_fantasy_name']
 
-  $("select[name='user[role]']").change(function (e) {
+  $("select[name='user[registration_type]']").change(function (e) {
     if (isPhysicalPerson()) {
-      showElements(['#pf-inputs', '.user_gender'])
+      showElements(['#pf-inputs'])
       hideElements(['#pj-inputs'])
-      addRequiredAbbrTo(physical_person_required_labels)
       removeRequiredAbbrFrom(legal_person_required_labels)
       setLabelHtml('user_name', username_label_text)
     } else {
       showElements(['#pj-inputs'])
-      hideElements(['#pf-inputs', '.user_gender'])
+      hideElements(['#pf-inputs'])
       addRequiredAbbrTo(legal_person_required_labels)
-      removeRequiredAbbrFrom(physical_person_required_labels)
       setLabelHtml('user_name', admin_username_label_text)
     }
   })
 
-  $("select[name='user[role]']").change();
+  $("select[name='user[registration_type]']").change();
 
   function isPhysicalPerson(){
-    return $("select[name='user[role]']").val() == 'pf'
+    return $("select[name='user[registration_type]']").val() == 'pf'
   }
 
   function hideElements(elements) {
@@ -100,12 +96,12 @@ $(document).ready(function() {
     })
   }
 
-  function validateFieldsByUserRole() {
-    user_role = $('select#user_role').val()
-    if (user_role == 'pf')
+  function validateFieldsByUserRegistrationType() {
+    registration_type = $('select#user_registration_type').val()
+    if (registration_type == 'pf')
       return validateInputDocumentCPF()
     else
-      return validateLegalPersonFields()
+      return validateInputDocumentCPF() && validateLegalPersonFields()
   }
 
   function validateInputDocumentCPF(){

@@ -101,7 +101,7 @@ $(document).ready(function() {
     if (registration_type == 'pf')
       return validateInputDocumentCPF()
     else
-      return validateInputDocumentCPF() && validateLegalPersonFields()
+      return validateLegalPersonFields()
   }
 
   function validateInputDocumentCPF(){
@@ -117,9 +117,10 @@ $(document).ready(function() {
   }
 
   function validateLegalPersonFields() {
+    valid_cpf = validateInputDocumentCPF()
     valid_cnpj = validateInputDocumentCNPJ()
     required_fields_present = validateLegalPersonRequiredInputs()
-    return valid_cnpj && required_fields_present
+    return valid_cpf && valid_cnpj && required_fields_present
   }
 
   function validateInputDocumentCNPJ() {

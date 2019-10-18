@@ -205,13 +205,10 @@ pt-BR:
     master_password: Senha Master
     financial_reason_id: Motivo
     financial_reason: Motivo
-<<<<<<< Updated upstream
-=======
     pf: Pessoa Física
     pj: Pessoa Jurídica
     blocked: Bloqueado
     canceled: Cancelado
->>>>>>> Stashed changes
   backoffice:
     orders:
       show:

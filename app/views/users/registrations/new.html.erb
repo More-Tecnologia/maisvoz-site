@@ -46,7 +46,8 @@
           <div class="tab-pane" id="tab1">
             <div class="form-inputs">
               <div class="col-md-6">
-                <%= f.input :role, collection: [['Pessoa física', 'pf'], ['Pessoa Jurídica', 'pj']], include_blank: false %>
+                <%= f.input :registration_type, collection: User.registration_types.map { |k, v| [t("attributes.#{k}"), v] },
+                                                include_blank: false %>
                 <% if form.sponsor_username && params[:sponsor].present? %>
                   <%= f.input :sponsor_username, autofocus: true, readonly: true %>
                 <% else %>
@@ -56,11 +57,12 @@
                 <%= f.input :name %>
                 <%= f.input :birthdate, as: :date,
                                        html5: true,
-                                       start_year: Date.today.year - 90, 
+                                       start_year: Date.today.year - 90,
                                        end_year: Date.today.year - 18 %>
               </div>
               <div class="col-md-6">
-                <%= f.input :gender, collection: User.genders.map {|k, v| [t(v), v]} %>
+                <%= f.input :gender, collection: User.genders.map {|k, v| [t(v), v]},
+                                     include_blank: false %>
                 <%= f.input :phone, input_html: { class: 'input-phone' } %>
                 <%= f.input :email %>
                 <%= f.input :password, hint: ("#{@minimum_password_length} caracteres no mínimo" if @minimum_password_length) %>
@@ -72,8 +74,8 @@
           <div class="tab-pane" id="tab2">
             <div class="form-inputs">
               <div class="col-md-12">
+                <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
                 <div id="pf-inputs">
-                  <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
                   <%= f.input :document_rg %>
                   <%= f.input :document_rg_expeditor %>
                   <%= f.input :document_pis, input_html: { class: 'input-pis' } %>

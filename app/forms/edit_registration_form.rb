@@ -35,7 +35,7 @@ class EditRegistrationForm < Form
   validate :document_cpf_is_unique
   validate :valid_password
   validate :valid_cpf
-  validate :valid_cnpj
+  validate :valid_cnpj, if: :pj?
 
   def sponsor
     User.find_by(username: sponsor_username)
@@ -64,20 +64,20 @@ class EditRegistrationForm < Form
   def valid_cpf
     return if CPF.valid? document_cpf
 
-    errors.add(:document_cpf, 'CPF Inválido')
+    errors.add(:document_cpf, :invalid)
   end
 
   def valid_cnpj
     return if document_cnpj.blank?
     return if CNPJ.valid? document_cnpj
 
-    errors.add(:document_cnpj, 'CNPJ Inválido')
+    errors.add(:document_cnpj, :invalid)
   end
 
   def document_cpf_is_unique
     return unless User.where(document_cpf: document_cpf).where('id != ?', id).exists?
 
-    errors.add(:document_cpf, 'Já está registrado em outra conta')
+    errors.add(:document_cpf, :taken)
   end
 
 end

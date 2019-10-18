@@ -27,17 +27,18 @@ module CreditDebitWizard
     attribute :financial_reason_id, String
     attribute :credit, Boolean, default: true
     attribute :master_password, String
+    attribute :note, String
 
-    validates :amount, :master_password, :financial_reason, presence: true
+    validates :amount, :master_password,
+               presence: true
+    validates :note, presence: true,
+                     length: { maximum: 100 }
+
     validates :amount, numericality: { greater_than: 0 }
 
     validate :master_password_digest
 
     before_validation :cleasing_amount
-
-    def financial_reason
-      @financial_reason ||= FinancialReason.find_by(id: financial_reason_id)
-    end
 
     private
 

@@ -80,6 +80,7 @@ pt-BR:
       messages:
         taken: já está sendo utilizado
         not_authenticate: não autenticada
+        too_long: "de no máximo %{count} caracteres" 
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master
@@ -205,6 +206,7 @@ pt-BR:
     master_password: Senha Master
     financial_reason_id: Motivo
     financial_reason: Motivo
+    note: Mensagem
   backoffice:
     orders:
       show:

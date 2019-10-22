@@ -6,7 +6,7 @@
     aria-controls='child-of-<%= unilevel_node.id %>'>
   <td>
     <%= render_identation(unilevel_node, @current_node) %>
-    <%= render_unilevel_tree_navigation_icon(unilevel_node) if unilevel_node_has_children?(unilevel_node, @unilevel_node_children) %>
+    <%= render_unilevel_tree_navigation_icon(unilevel_node) if unilevel_node_has_children?(unilevel_node) %>
   </td>
   <td> <%= find_unilevel_node_generation(unilevel_node, @current_node) %> </td>
   <td> <%= render_unilevel_node_username(unilevel_node) %></td>

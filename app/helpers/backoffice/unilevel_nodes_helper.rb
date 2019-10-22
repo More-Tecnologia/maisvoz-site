@@ -38,9 +38,14 @@ module Backoffice
                               id: "icon-#{unilevel_node.id}"
     end
 
-    def unilevel_node_has_children?(unilevel_node, children)
+    def unilevel_node_has_children?(unilevel_node)
       ancestry = unilevel_node.ancestry + "/#{unilevel_node.id}"
-      children.has_key?(ancestry)
+      unilevel_node_children.has_key?(ancestry)
+    end
+
+    def unilevel_node_children
+      @unilevel_node_children ||= UnilevelNode.where(ancestry: children_ancestries)
+                                              .index_by(&:ancestry)
     end
 
     private
@@ -48,5 +53,10 @@ module Backoffice
     def is_first_generation?(unilevel_node, current_unilevel_node)
       find_unilevel_node_generation(unilevel_node, current_unilevel_node) == 1
     end
+
+    def children_ancestries
+      @unilevel_nodes.map { |node| node.ancestry + "/#{node.id}" }
+    end
+
   end
 end

@@ -42,6 +42,8 @@ Rails.application.routes.draw do
     namespace :support do
       resources :users, only: [:index, :show, :edit, :update]
       resources :documents_validation, only: [:index, :update]
+      resources :blocked_users, only: [:update]
+      resources :canceled_users, only: [:update]
     end
 
     # Backoffice

@@ -200,12 +200,14 @@ pt-BR:
     email: Email
     not_applicable: ''
     left: Esquerda
-    right: direita
+    right: Direita
     financial_reason_types: Tipos de Motivos
     message: Mensagem
     master_password: Senha Master
     financial_reason_id: Motivo
     financial_reason: Motivo
+    generation: Geração
+    status: Situação
     pf: Pessoa Física
     pj: Pessoa Jurídica
     note: Mensagem
@@ -822,6 +824,8 @@ pt-BR:
   tracker: FutureSAT
   credit: Credito
   debit: Débito
+  "true": Sim
+  "false": Não
   datagrid:
     form:
       search: Filtrar

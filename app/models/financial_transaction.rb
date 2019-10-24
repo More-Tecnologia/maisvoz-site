@@ -3,7 +3,7 @@ class FinancialTransaction < ApplicationRecord
 
   belongs_to :user
   belongs_to :spreader, class_name: 'User'
-  belongs_to :financial_reason
+  belongs_to :financial_reason, optional: true
   belongs_to :order, optional: true
   belongs_to :financial_transaction, optional: true
   belongs_to :withdrawal, optional: true
@@ -26,6 +26,9 @@ class FinancialTransaction < ApplicationRecord
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }
 
+  validates :financial_reason, presence: true,
+                               unless: :is_note_present?
+
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_user,
                        spreader: user,
@@ -43,5 +46,9 @@ class FinancialTransaction < ApplicationRecord
 
   def invert_money_flow
     FinancialTransaction.moneyflows.keys.detect { |e| e != moneyflow }
+  end
+
+  def is_note_present?
+    note.present?
   end
 end

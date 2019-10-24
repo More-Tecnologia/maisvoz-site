@@ -40,7 +40,7 @@
                   <% if current_user.admin? %>
                     <td><%= transaction.user.username %></td>
                   <% end %>
-                  <td><%= transaction.financial_reason.title %></td>
+                  <td><%= transaction.try(:financial_reason).try(:title) || transaction.note %></td>
                   <td><%= transaction.generation %></td>
                   <td><%= l transaction.created_at, format: :short %></td>
                   <td><%= transaction.try(:order).try(:hashid) %></td>

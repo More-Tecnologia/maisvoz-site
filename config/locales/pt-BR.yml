@@ -80,6 +80,7 @@ pt-BR:
       messages:
         taken: já está sendo utilizado
         not_authenticate: não autenticada
+        too_long: "de no máximo %{count} caracteres" 
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master
@@ -207,6 +208,11 @@ pt-BR:
     financial_reason: Motivo
     generation: Geração
     status: Situação
+    pf: Pessoa Física
+    pj: Pessoa Jurídica
+    note: Mensagem
+    blocked: Bloqueado
+    canceled: Cancelado
   backoffice:
     orders:
       show:
@@ -223,6 +229,7 @@ pt-BR:
       new:
         available_balance: Saldo Disponível
         title: Novo Saque
+        unverified_account: Para solicitar saques sua conta precisa ser verificada.
       form:
         fees: Taxas
         total: Total

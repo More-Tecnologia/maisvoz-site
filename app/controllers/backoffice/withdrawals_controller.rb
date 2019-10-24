@@ -37,8 +37,8 @@ module Backoffice
 
     def should_be_verified
       unless current_user.verified?
-        flash[:error] = 'Sua conta precisa ser verificada antes de poder gerenciar saques'
-        redirect_to root_path
+        flash[:error] = t('.unverified_account')
+        redirect_to edit_backoffice_documents_path
       end
     end
 

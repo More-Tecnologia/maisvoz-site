@@ -5,7 +5,6 @@ RSpec.describe FinancialTransaction, type: :model do
 
   it { is_expected.to validate_presence_of(:cent_amount) }
   it { is_expected.to validate_numericality_of(:cent_amount).only_integer }
-  it { is_expected.to belong_to(:financial_reason) }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to define_enum_for(:moneyflow).with_values([:credit, :debit]) }
   it { is_expected.to belong_to(:spreader).class_name('User') }
@@ -28,4 +27,12 @@ RSpec.describe FinancialTransaction, type: :model do
     chargeback = financial_transaction.chargeback!
     expect(chargeback.persisted?).to be_truthy
   end
+
+  context 'when note is present' do
+    it 'financial reason is optional' do
+      financial_transaction = create(:financial_transaction, :with_note, financial_reason: nil)
+      expect(financial_transaction.valid?).to be_truthy
+    end
+  end
+
 end

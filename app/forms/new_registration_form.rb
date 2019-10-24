@@ -1,6 +1,5 @@
 class NewRegistrationForm < Form
 
-  attribute :role
   attribute :sponsor_username
   attribute :sponsor
   attribute :username
@@ -28,14 +27,16 @@ class NewRegistrationForm < Form
   attribute :email
   attribute :password
   attribute :password_confirmation
+  attribute :registration_type
 
-  validates :role, :username, :name, :phone, :email, :password,
+  validates :username, :name, :phone, :email, :password,
             :password_confirmation, :gender, :zipcode, :address,
-            :district, :city, :state, :sponsor, :birthdate, presence: true
+            :district, :city, :state, :sponsor, :birthdate, :registration_type,
+            presence: true
   validates :email, email: true
   validates :sponsor_username, presence: true
 
-  validates :document_cpf, presence: true, if: -> { pf? }
+  validates :document_cpf, presence: true
   validates :document_cnpj, :document_ie, :document_company_name, :document_fantasy_name, presence: true, if: -> { pj? }
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/,
@@ -44,27 +45,25 @@ class NewRegistrationForm < Form
   validate :sponsor_exists
   validate :username_is_unique
   validate :email_is_unique
-  validate :document_cpf_is_unique, if: :pf?
+  validate :document_cpf_is_unique
   validate :document_cnpj_is_unique, if: :pj?
   validate :cpf_and_cnpj_format
-  # validate :city_class
-
 
   before_validation :normalize_username
 
   def sponsor
     @sponsor ||= User.where(
       'LOWER(username) = ? AND role = ?',
-      sponsor_username, :empreendedor
+      sponsor_username.try(:downcase), :empreendedor
     ).first
   end
 
   def pf?
-    role == 'pf'
+    registration_type == 'pf'
   end
 
   def pj?
-    role == 'pj'
+    registration_type == 'pj'
   end
 
   private
@@ -77,12 +76,12 @@ class NewRegistrationForm < Form
 
   def sponsor_exists
     return if sponsor.present?
-    errors.add(:sponsor_username, 'patrocinador não encontrado, ou não está ativo')
+    errors.add(:sponsor_username, :invalid)
   end
 
   def username_is_unique
     return unless User.where('LOWER(username) = ?', username).any?
-    errors.add(:username, 'já existe')
+    errors.add(:username, :taken)
   end
 
   def email_is_unique
@@ -98,11 +97,11 @@ class NewRegistrationForm < Form
 
   def city_exists
     return if City.exists?(name: city)
-    errors.add(:city, 'não existe')
+    errors.add(:city, :invalid)
   end
 
   def cpf_and_cnpj_format
-    errors.add(:document_cpf) if !CPF.valid?(document_cpf) && pf?
+    errors.add(:document_cpf) if !CPF.valid?(document_cpf)
     errors.add(:document_cnpj) if !CNPJ.valid?(document_cnpj) && pj?
   end
 

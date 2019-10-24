@@ -227,6 +227,7 @@ pt-BR:
       new:
         available_balance: Saldo Disponível
         title: Novo Saque
+        unverified_account: Para solicitar saques sua conta precisa ser verificada.
       form:
         fees: Taxas
         total: Total

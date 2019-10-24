@@ -1,0 +1,2 @@
+user_link = $("a#user-<%= @user.id %>-blocked")
+user_link.html("<%= j render_blocked_user_attribute(@user) %>")

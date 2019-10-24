@@ -21,7 +21,7 @@ class UnilevelNode < ApplicationRecord
 
   belongs_to :user
 
-  has_ancestry
+  has_ancestry cache_depth: true
 
   enum career_kind: {
     consumer: 'consumer',

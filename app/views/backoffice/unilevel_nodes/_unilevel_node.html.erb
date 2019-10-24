@@ -1,0 +1,16 @@
+<tr class='<%= render_unilevel_node_html_class(unilevel_node, @current_node) %>'
+    data-toggle='collapse'
+    data-target='.child-of-<%= unilevel_node.id %>'
+    data-parent='<%= unilevel_node.parent_id %>'
+    aria-expanded="false"
+    aria-controls='child-of-<%= unilevel_node.id %>'>
+  <td>
+    <%= render_identation(unilevel_node, @current_node) %>
+    <%= render_unilevel_tree_navigation_icon(unilevel_node) if unilevel_node_has_children?(unilevel_node) %>
+  </td>
+  <td> <%= find_unilevel_node_generation(unilevel_node, @current_node) %> </td>
+  <td> <%= render_unilevel_node_username(unilevel_node) %></td>
+  <td> <%= render_unilevel_node_active(unilevel_node) %> </td>
+  <td> <%= render_unilvel_node_career(unilevel_node) %> </td>
+  <td> <%= render_binary_position(unilevel_node) %> </td>
+</tr>

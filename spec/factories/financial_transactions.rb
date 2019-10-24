@@ -7,5 +7,9 @@ FactoryBot.define do
     order { association(:order) }
     generation { ([''] + (1..10).to_a).sample }
     moneyflow { FinancialTransaction.moneyflows.keys.sample }
+
+    trait :with_note do
+      note { Faker::Lorem.paragraph }
+    end
   end
 end

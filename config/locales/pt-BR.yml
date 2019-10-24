@@ -209,6 +209,8 @@ pt-BR:
     pf: Pessoa Física
     pj: Pessoa Jurídica
     note: Mensagem
+    blocked: Bloqueado
+    canceled: Cancelado
   backoffice:
     orders:
       show:

@@ -1,5 +1,5 @@
 <!-- Top Bar Start -->
-<div class="topbar hidden-xs">
+<div class="topbar ">
 
   <!-- LOGO -->
   <div class="topbar-left">
@@ -9,8 +9,9 @@
         <%= image_tag('logo.png') %>
       </a> -->
       <!-- Image Logo here -->
+      <button href="javascript:void(0)" id="sidebarCollapse" class="btn visible-xs"><i class="fa fa-list"></i></button>
+                
       <a href="/" class="logo">
-        <i class="icon-c-logo"> <%= image_tag('logo_sm.png', height: 42) %> </i>
         <span><%= image_tag('logo.png', height: 40) %></span>
       </a>
     </div>
@@ -20,104 +21,211 @@
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="">
-        <ul class="nav navbar-nav">
-          <% if current_user.empreendedor? %>
-          <li>
-            <%= link_to shop_index_url(sponsor: current_user.username) do %>
-              <i class="fa fa-link"></i> <%= shop_index_url(sponsor: current_user.username, locale: '').remove('locale=&') %>
-            <% end %>
-          </li>
-          <% end %>
-        </ul>
-        <ul class="nav navbar-nav navbar-right pull-right">
-          <li>
-            <% if user_masquerade? %>
-              <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
-            <% end %>
-          </li>
-          <% if current_user.pj? %>
-            <li>
-              <%= link_to backoffice_financial_transactions_path do %>
-              <span class="text-success">
-                <%= number_to_currency current_user.available_cent_amount %>
-              </span>
-              <% end %>
-            </li>
-          <% else %>
-            <li>
-              <%= link_to backoffice_financial_transactions_path do %>
-              <span class="text-success">
-                <%= number_to_currency(current_user.available_cent_amount) %>
-              </span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to backoffice_financial_transactions_path do %>
-              <span class="text-warning">
-                <%= number_to_currency current_user.blocked_balance %>
-              </span>
-              <% end %>
-            </li>
-          <% end %>
-          <li class="hidden-xs">
-            <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
-              <i class="icon-size-fullscreen"></i>
-            </a>
-          </li>
-          <li class="hidden-xs">
-            <%= link_to backoffice_cart_path, class: 'waves-effect waves-light' do %>
-              <i class="icon-basket"></i>
-              <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
-            <% end %>
-          </li>
-          <li>
-            <a href="?locale=en" class="flag">
-              <%= image_tag('countries/us.svg') %>
-            </a>
-          </li>
-          <li>
-            <a href="?locale=es" class="flag">
-              <%= image_tag('countries/es.svg') %>
-            </a>
-          </li>
-          <li>
-            <a href="?locale=pt-BR" class="flag">
-              <%= image_tag('countries/br.svg') %>
-            </a>
-          </li>
-          <li class="dropdown top-menu-item-xs">
-            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-              <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <%= link_to edit_user_registration_path do %>
-                  <i class="fa fa-user m-r-10 text-custom"></i>
-                  <%= t('views.backoffice.topbar.edit_account') %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to edit_backoffice_bank_account_path do %>
-                  <i class="fa fa-university m-r-10 text-custom"></i>
-                  <%= t('views.backoffice.topbar.edit_bank_account') %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to edit_backoffice_documents_path do %>
-                  <i class="fa fa-cog m-r-10 text-custom"></i>
-                  <%= t('views.backoffice.topbar.documents') %>
-                <% end %>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="ti-power-off m-r-10 text-danger"></i>
-                <%= t('views.backoffice.topbar.logout') %>
-                <% end %>
-              </li>
 
-            </ul>
+      <ul class="nav navbar-nav text-right visible-xs">
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="btn dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+            <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
+          </a>
+          <ul class="dropdown-menu">
+          <li>
+          <% if user_masquerade? %>
+            <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
+          <% end %>
+        </li>
+        <% if current_user.pj? %>
+          <li>
+            <%=
+            
+k_to backoffice_financial_transactions_path do %>
+            <sp
+            
+lass="text-success">
+              <
+            
+umber_to_currency current_user.available_cent_amount %>
+            </span>
+            <% end %>
           </li>
+        <% else %>
+          <li>
+            <%= link_to backoffice_financial_transactions_path do %>
+            <span class="text-success">
+              <%= number_to_currency(current_user.available_cent_amount) %>
+            </span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to backoffice_financial_transactions_path do %>
+            <span class="text-warning">
+              <%= number_to_currency current_user.blocked_balance %>
+            </span>
+            <% end %>
+          </li>
+        <% end %>
+        <li class="hidden-xs">
+          <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
+            <i class="icon-size-fullscreen"></i>
+          </a>
+        </li>
+        <li class="hidden-xs">
+          <%= link_to backoffice_cart_path, class: 'waves-effect waves-light' do %>
+            <i class="icon-basket"></i>
+            <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
+          <% end %>
+        </li>
+        <li>
+          <a href="?locale=en" class="flag">
+            <%= image_tag('countries/us.svg') %>
+          </a>
+        </li>
+        <li>
+          <a href="?locale=es" class="flag">
+            <%= image_tag('countries/es.svg') %>
+          </a>
+        </li>
+        <li>
+          <a href="?locale=pt-BR" class="flag">
+            <%= image_tag('countries/br.svg') %>
+          </a>
+        </li>
+
+        <li>
+            <%= link_to edit_user_registration_path do %>
+              <i class="fa fa-user m-r-10 text-custom"></i>
+              <%= t('views.backoffice.topbar.edit_account') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_backoffice_bank_account_path do %>
+              <i class="fa fa-university m-r-10 text-custom"></i>
+              <%= t('views.backoffice.topbar.edit_bank_account') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_backoffice_documents_path do %>
+              <i class="fa fa-cog m-r-10 text-custom"></i>
+              <%= t('views.backoffice.topbar.documents') %>
+            <% end %>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="ti-power-off m-r-10 text-danger"></i>
+            <%= t('views.backoffice.topbar.logout') %>
+            <% end %>
+          </li>
+
+        
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav hidden-xs">
+        <% if current_user.empreendedor? %>
+        <li>
+          <%= link_to shop_index_url(sponsor: current_user.username) do %>
+            <i class="fa fa-link"></i> <%= shop_index_url(sponsor: current_user.username, locale: '').remove('locale=&') %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+
+        <ul class="nav navbar-nav navbar-right pull-right hidden-xs">
+        <li>
+        <% if user_masquerade? %>
+          <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
+        <% end %>
+      </li>
+      <% if current_user.pj? %>
+        <li>
+          <%=
+          
+k_to backoffice_financial_transactions_path do %>
+          <sp
+          
+lass="text-success">
+            <
+          
+umber_to_currency current_user.available_cent_amount %>
+          </span>
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to backoffice_financial_transactions_path do %>
+          <span class="text-success">
+            <%= number_to_currency(current_user.available_cent_amount) %>
+          </span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to backoffice_financial_transactions_path do %>
+          <span class="text-warning">
+            <%= number_to_currency current_user.blocked_balance %>
+          </span>
+          <% end %>
+        </li>
+      <% end %>
+      <li class="hidden-xs">
+        <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
+          <i class="icon-size-fullscreen"></i>
+        </a>
+      </li>
+      <li class="hidden-xs">
+        <%= link_to backoffice_cart_path, class: 'waves-effect waves-light' do %>
+          <i class="icon-basket"></i>
+          <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
+        <% end %>
+      </li>
+      <li>
+        <a href="?locale=en" class="flag">
+          <%= image_tag('countries/us.svg') %>
+        </a>
+      </li>
+      <li>
+        <a href="?locale=es" class="flag">
+          <%= image_tag('countries/es.svg') %>
+        </a>
+      </li>
+      <li>
+        <a href="?locale=pt-BR" class="flag">
+          <%= image_tag('countries/br.svg') %>
+        </a>
+      </li>
+      <li class="dropdown top-menu-item-xs">
+        <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+          <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to edit_user_registration_path do %>
+              <i class="fa fa-user m-r-10 text-custom"></i>
+              <%= t('views.backoffice.topbar.edit_account') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_backoffice_bank_account_path do %>
+              <i class="fa fa-university m-r-10 text-custom"></i>
+              <%= t('views.backoffice.topbar.edit_bank_account') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_backoffice_documents_path do %>
+              <i class="fa fa-cog m-r-10 text-custom"></i>
+              <%= t('views.backoffice.topbar.documents') %>
+            <% end %>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="ti-power-off m-r-10 text-danger"></i>
+            <%= t('views.backoffice.topbar.logout') %>
+            <% end %>
+          </li>
+
+        </ul>
+      </li>
         </ul>
       </div>
       <!--/.nav-collapse -->

@@ -30,40 +30,42 @@
             </li>
           </ul>
 
-          <table class="table table-striped table-bordered table-hover m-0 m-t-30">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover m-0 m-t-30">
 
-            <thead>
-              <tr>
-                <th>#</th>
-                <th><%= PvHistory.human_attribute_name(:description) %></th>
-                <th><%= PvHistory.human_attribute_name(:amount) %></th>
-                <th><%= PvHistory.human_attribute_name(:balance) %></th>
-                <th><%= PvHistory.human_attribute_name(:created_at) %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% pv_histories.each do |pv_history| %>
+              <thead>
                 <tr>
-                  <th><%= pv_history.hashid %></th>
-                  <td>
-                    <% if pv_history.order.present? %>
-                      <%= t('.invoice_no', username: pv_history.origin_username) %>
-                    <% else %>
-                      <%= t('.binary_bonus_debit') %>
-                    <% end %>
-                  </td>
-                  <td><%= number_with_delimiter pv_history.amount %></td>
-                  <td><%= number_with_delimiter pv_history.balance %></td>
-                  <td><%= l(pv_history.created_at, format: :short) %></td>
+                  <th>#</th>
+                  <th><%= PvHistory.human_attribute_name(:description) %></th>
+                  <th><%= PvHistory.human_attribute_name(:amount) %></th>
+                  <th><%= PvHistory.human_attribute_name(:balance) %></th>
+                  <th><%= PvHistory.human_attribute_name(:created_at) %></th>
                 </tr>
-              <% end %>
-              <% if pv_histories.empty? %>
-                <tr>
-                  <td colspan="6" class="text-center"><%= t('.no_data') %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% pv_histories.each do |pv_history| %>
+                  <tr>
+                    <th><%= pv_history.hashid %></th>
+                    <td>
+                      <% if pv_history.order.present? %>
+                        <%= t('.invoice_no', username: pv_history.origin_username) %>
+                      <% else %>
+                        <%= t('.binary_bonus_debit') %>
+                      <% end %>
+                    </td>
+                    <td><%= number_with_delimiter pv_history.amount %></td>
+                    <td><%= number_with_delimiter pv_history.balance %></td>
+                    <td><%= l(pv_history.created_at, format: :short) %></td>
+                  </tr>
+                <% end %>
+                <% if pv_histories.empty? %>
+                  <tr>
+                    <td colspan="6" class="text-center"><%= t('.no_data') %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
 
           <%= paginate pv_histories %>
 

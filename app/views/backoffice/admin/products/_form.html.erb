@@ -26,8 +26,6 @@
     <div class="tab-pane active" id="info">
       <div class="row">
         <div class="col-md-6">
-          <div class="p-20">
-
             <% if product && product.main_photo %>
               <%= cl_image_tag(product.main_photo.public_id, class: 'thumb-lg') %>
             <% end %>
@@ -51,10 +49,10 @@
             <%= f.input :short_description %>
             <%= f.input :sku %>
             <%= f.input :quantity %>
-          </div>
+          
         </div>
         <div class="col-md-6">
-          <div class="p-20">
+          
             <%= f.input :low_stock_alert %>
             <%= f.input :category_id, collection: Category.all %>
             <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>
@@ -62,7 +60,7 @@
             <%= f.input :trail_id, collection: Trail.all, selected: (product.trail_id unless product.blank?) %>
             <%= f.input :active, as: :boolean %>
             <%= f.input :virtual, as: :boolean %>
-          </div>
+          
         </div>
       </div>
     </div>

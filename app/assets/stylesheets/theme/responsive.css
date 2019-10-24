@@ -99,8 +99,15 @@ File: Responsive
   .dropdown-menu-lg {
     width: 240px !important;
   }
+  #sidebar {
+    display: none;
+  }
+  .fixed-left .footer-cmp {
+    margin-left: 0
+  }
 }
 @media (max-width: 480px) {
+  
   .side-menu {
     z-index: 10 !important;
   }
@@ -137,14 +144,16 @@ File: Responsive
 }
 @media (max-width: 419px) {
   .topbar-left {
-    width: 70px !important;
+    width: 50% !important;
   }
+
+  .fixed-left .footer-cmp {
+    margin-left: 0px !important;
+  }
+
   .logo .icon-c-logo {
     display: inline-block !important;
     line-height: 58px !important;
-  }
-  .logo span {
-    display: none !important;
   }
   .content-page {
     margin-left: 70px;

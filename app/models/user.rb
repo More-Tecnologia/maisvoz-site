@@ -129,7 +129,7 @@ class User < ApplicationRecord
   has_many :sponsored, class_name: 'User', foreign_key: 'sponsor_id'
   has_many :scores
   has_many :spreaded_scores, class_name: 'Score'
-  has_many :career_trail_users
+  has_many :career_trail_users, dependent: :destroy
   has_many :career_trails, through: :career_trail_users
   has_many :financial_transactions
   belongs_to :sponsor, class_name: 'User', optional: true

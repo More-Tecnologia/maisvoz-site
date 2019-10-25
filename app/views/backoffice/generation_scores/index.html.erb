@@ -16,22 +16,24 @@
     <div class="card-box">
       <div class="row">
         <div class="col-lg-12">
-          <table class="table table-bordered m-0">
-            <thead>
-              <tr>
-                <th><%= Score.human_attribute_name(:height) %></th>
-                <th><%= Score.human_attribute_name(:cent_amount) %> </th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @generation_scores.each do |generation, score_sum| %>
+          <div class="table-responsive">
+            <table class="table table-bordered m-0">
+              <thead>
                 <tr>
-                  <td><%= generation - 1 %>˚</td>
-                  <td><%= number_with_delimiter score_sum %></td>
+                  <th><%= Score.human_attribute_name(:height) %></th>
+                  <th><%= Score.human_attribute_name(:cent_amount) %> </th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @generation_scores.each do |generation, score_sum| %>
+                  <tr>
+                    <td><%= generation - 1 %>˚</td>
+                    <td><%= number_with_delimiter score_sum %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

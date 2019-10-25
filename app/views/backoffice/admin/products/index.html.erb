@@ -17,52 +17,54 @@
             <% end %>
           </div>
 
-          <table class="table table-bordered m-0">
+          <div class="table-responsive">
+            <table class="table table-bordered m-0">
 
-            <thead>
-              <tr>
-                <th>#</th>
-                <th></th>
-                <th><%= Product.human_attribute_name(:name) %></th>
-                <th><%= Product.human_attribute_name(:quantity) %></th>
-                <th><%= Product.human_attribute_name(:price) %></th>
-                <th><%= Product.human_attribute_name(:score) %></th>
-                <th><%= Product.human_attribute_name(:active) %></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @products.each do |product| %>
+              <thead>
                 <tr>
-                  <th><%= product.id %></th>
-                  <td><%= cl_image_tag(product.main_photo_id, { class: 'thumb-sm' }) %></td>
-                  <td><%= product.name %></td>
-                  <td><%= product.quantity %></td>
-                  <td><%= number_to_currency product.price %></td>
-                  <td><%= product.binary_score %></td>
-                  <td><%= product.active ? "Sim" : "Não" %></td>
-                  <td>
-                    <%= link_to edit_backoffice_admin_product_path(product), class: 'action-edit' do %>
-                      <i class="fa fa-edit"></i>
-                    <% end %>
-                    <%= link_to(
-                      backoffice_admin_product_path(product),
-                      class: 'action-remove',
-                      method: :delete,
-                      data: { confirm: t('defaults.confirm_removal') }
-                      ) do %>
-                      <i class="fa fa-trash-alt"></i>
-                    <% end %>
-                  </td>
+                  <th>#</th>
+                  <th></th>
+                  <th><%= Product.human_attribute_name(:name) %></th>
+                  <th><%= Product.human_attribute_name(:quantity) %></th>
+                  <th><%= Product.human_attribute_name(:price) %></th>
+                  <th><%= Product.human_attribute_name(:score) %></th>
+                  <th><%= Product.human_attribute_name(:active) %></th>
+                  <th></th>
                 </tr>
-              <% end %>
-              <% if @products.empty? %>
-                <tr>
-                  <td colspan="7" class="text-center"><%= t('views.backoffice.admin.products.index.no_data') %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @products.each do |product| %>
+                  <tr>
+                    <th><%= product.id %></th>
+                    <td><%= cl_image_tag(product.main_photo_id, { class: 'thumb-sm' }) %></td>
+                    <td><%= product.name %></td>
+                    <td><%= product.quantity %></td>
+                    <td><%= number_to_currency product.price %></td>
+                    <td><%= product.binary_score %></td>
+                    <td><%= product.active ? "Sim" : "Não" %></td>
+                    <td>
+                      <%= link_to edit_backoffice_admin_product_path(product), class: 'action-edit' do %>
+                        <i class="fa fa-edit"></i>
+                      <% end %>
+                      <%= link_to(
+                        backoffice_admin_product_path(product),
+                        class: 'action-remove',
+                        method: :delete,
+                        data: { confirm: t('defaults.confirm_removal') }
+                        ) do %>
+                        <i class="fa fa-trash-alt"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+                <% if @products.empty? %>
+                  <tr>
+                    <td colspan="7" class="text-center"><%= t('views.backoffice.admin.products.index.no_data') %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
 
         </div>
       </div>

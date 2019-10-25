@@ -1,10 +1,16 @@
-<%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(form, url: url, method: method, html: { class: 'form' }) do |f| %>
+  <div class="col-md-6">
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :order %>
-  <div class="checkbox">
-    <%= f.input :active_session, as: :boolean %>
   </div>
-  <%= f.input :active, as: :boolean %>
+  <div class="col-md-6">
+    <%= f.input :order %>
+    <div class="checkbox">
+      <%= f.input :active_session, as: :boolean %>
+    </div>
+    <%= f.input :active, as: :boolean %>
+  </div>
+  <div class="col-md-12">
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
+  </div>
 <% end %>

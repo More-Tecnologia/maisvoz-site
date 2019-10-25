@@ -18,50 +18,55 @@
             <% end %>
           </div>
 
-          <table class="table table-bordered m-0">
+          <div class="table-responsive">
 
-            <thead>
-              <tr>
-                <th>#</th>
-                <th><%= Category.human_attribute_name(:name) %></th>
-                <th><%= Category.human_attribute_name(:description) %></th>
-                <th><%= Category.human_attribute_name(:active_session) %></th>
-                <th><%= Category.human_attribute_name(:active) %></th>
-                <th><%= Category.human_attribute_name(:order) %></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @categories.each do |category| %>
+            <table class="table table-bordered m-0">
+
+              <thead>
                 <tr>
-                  <th><%= category.id %></th>
-                  <td><%= category.name %></td>
-                  <td><%= category.description %></td>
-                  <td><%= category.active_session ? "Sim" : "Não" %></td>
-                  <td><%= category.active ? "Sim" : "Não" %></td>
-                  <td><%= category.order %></td>
-                  <td>
-                    <%= link_to edit_backoffice_admin_category_path(category), class: 'action-edit' do %>
-                      <i class="fas fa-edit"></i>
-                    <% end %>
-                    <%= link_to(
-                      backoffice_admin_category_path(category),
-                      class: 'action-remove',
-                      method: :delete,
-                      data: { confirm: t('defaults.confirm_removal') }
-                      ) do %>
-                      <i class="fas fa-trash"></i>
-                    <% end %>
-                  </td>
+                  <th>#</th>
+                  <th><%= Category.human_attribute_name(:name) %></th>
+                  <th><%= Category.human_attribute_name(:description) %></th>
+                  <th><%= Category.human_attribute_name(:active_session) %></th>
+                  <th><%= Category.human_attribute_name(:active) %></th>
+                  <th><%= Category.human_attribute_name(:order) %></th>
+                  <th></th>
                 </tr>
-              <% end %>
-              <% if @categories.empty? %>
-                <tr>
-                  <td colspan="5" class="text-center"><%= t('views.backoffice.categories.index.no_data') %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @categories.each do |category| %>
+                  <tr>
+                    <th><%= category.id %></th>
+                    <td><%= category.name %></td>
+                    <td><%= category.description %></td>
+                    <td><%= category.active_session ? "Sim" : "Não" %></td>
+                    <td><%= category.active ? "Sim" : "Não" %></td>
+                    <td><%= category.order %></td>
+                    <td>
+                      <%= link_to edit_backoffice_admin_category_path(category), class: 'action-edit' do %>
+                        <i class="fas fa-edit"></i>
+                      <% end %>
+                      <%= link_to(
+                        backoffice_admin_category_path(category),
+                        class: 'action-remove',
+                        method: :delete,
+                        data: { confirm: t('defaults.confirm_removal') }
+                        ) do %>
+                        <i class="fas fa-trash"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+                <% if @categories.empty? %>
+                  <tr>
+                    <td colspan="5" class="text-center"><%= t('views.backoffice.categories.index.no_data') %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+          </div>
+          
 
         </div>
       </div>

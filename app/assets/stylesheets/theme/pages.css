@@ -2047,4 +2047,10 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
 ul {
     list-style: none;
 }
+.mb-5 {
+  margin-bottom: 5px;
+}
+.border-1 {
+  border: solid 1px #DDD
+}
 

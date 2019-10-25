@@ -7,33 +7,23 @@
 
 <div class="row">
 
-   <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
-     <div class="product-detail" style="display: flex;">
-       <div class="sp-loading">
-          <%= image_tag 'sp-loading.gif' %>
-          <br>CARREGANDO
+   <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 product-detail">
+     <div class="">
+       <div class="col-md-12 img-large mb-5">
+        <%= cl_image_tag(@product.main_photo_id, { size: '100%', class: "border-1" }) %>
        </div>
+       <div class="col-md-12">
 
-         <div class="sp-wrap">
+          <% @product.photos.each do |cl| %>
+            <div class="col-xs-4 img-small mb-5 border-1">
+                <%= cl_image_tag(cl.public_id, { size: '150x150' }) %>
+            </div>
+          <% end %>
 
-           <div class="carousel">
-              <div class="carousel-inner" role="listbox">
-                <div class="item">
-                  <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-                    <%= cl_image_tag(@product.main_photo_id, { size: '150x150' }) %>
-                  </a>
-                </div>
-                <% @product.photos.each do |cl| %>
-                  <div class="item">
-                    <a href="<%= cloudinary_url(cl.path) %>">
-                      <%= cl_image_tag(cl.public_id, { size: '150x150' }) %>
-                    </a>
-                  </div>
-                <% end %>
-              </div>
-           </div>
-
-         </div>
+        </div>
+        
+       
+ 
       </div>
    </div>
 
@@ -117,4 +107,12 @@
     window.onload = function() {
       $('.sp-wrap').smoothproducts();
     };
+
+    $(function(){
+      let imgSmall = $('.img-small img');
+      let imgLarge = $('.img-large img');
+      imgSmall.click(function(){
+        imgLarge.attr('src', $(this).attr('src')).fadeIn();
+      });
+    });
 </script>

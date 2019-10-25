@@ -52,7 +52,7 @@
                   </td>
                   <td>
                     <% if pv_activity_history.order.present? %>
-                      <%= link_to_user pv_activity_history.order.user %> <%= pv_activity_history.order.user.career_kind && "(#{t pv_activity_history.order.user.career_kind})" %>
+                      <%= link_to_user pv_activity_history.order.user %> <%= pv_activity_history.order.user.current_career && "(#{pv_activity_history.order.user.current_career.try(:name)})" %>
                     <% end %>
                   </td>
                   <td><%= link_to_user pv_activity_history.user %></td>

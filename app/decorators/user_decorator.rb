@@ -59,7 +59,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def career_name
-    @career_name ||= try(:current_career).try(:name).try(:upcase)
+    @career_name ||= try(:current_career).try(:name)
     @career_name || '-'
   end
 
@@ -85,8 +85,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def pretty_career
-    return '-' unless career_kind
-    h.t(career_kind)
+    career_name
   end
 
   def pretty_binary_position

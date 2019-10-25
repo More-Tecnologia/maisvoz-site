@@ -9,7 +9,8 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
-      <table class="table table-bordered table-sm">
+    <div class="table-responsive">
+       <table class="table table-bordered table-sm">
         <tr>
           <td><strong><%= t('.left_pv') %></strong></td>
           <td><%= number_with_delimiter node.left_pv %></td>
@@ -28,7 +29,8 @@
           <td><strong><%= t('.sponsor') %></strong></td>
           <td><%= node.user.sponsor && node.user.sponsor.username %></td>
         </tr>
-      </table>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -62,6 +64,7 @@
               </div>
               <div class="row">
                   <div class="col-xs-12">
+                  <div class="table-responsive">
                     <table class="table binary-tree m-t-30">
                       <% cols = 4 %>
                       <% nodes = [@node] %>
@@ -149,6 +152,7 @@
 
                       <% end %>
                     </table>
+                    </div>
                   </div>
               </div>
           </div>
@@ -159,8 +163,9 @@
 
 <!-- Careers -->
 <div class="row">
-  <div class="col-lg-12">
-    <table class="text-center" style="margin: 0 auto;">
+    <div class="col-xs-12">
+    <div class="table-responsive">
+      <table class="text-center table binary-tree m-t-30" style="margin: 0 auto;">
       <% Career.all.each_with_index do |career, i| %>
         <% if i % 5 == 0 %>
           <tr>
@@ -176,6 +181,7 @@
           <% end %>
       <% end %>
     </table>
+    </div>
   </div>
 </div>
 

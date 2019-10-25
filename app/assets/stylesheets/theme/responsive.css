@@ -14,6 +14,9 @@ File: Responsive
   .email-msg {
     display: none;
   }
+  .wrapper-page {
+    width: 80%;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   body {
@@ -105,6 +108,14 @@ File: Responsive
   .fixed-left .footer-cmp {
     margin-left: 0
   }
+  .wrapper-page {
+    width: 80%;
+  }
+}
+@media (max-width: 600px) {
+  #wrapper-page-login {
+    width: 90%;
+  }
 }
 @media (max-width: 480px) {
   
@@ -119,6 +130,9 @@ File: Responsive
   }
   .ms-container {
     width: 100%;
+  }
+  #wrapper-page-login {
+    width: 90%;
   }
 }
 @media (max-width: 420px) {

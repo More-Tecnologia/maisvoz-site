@@ -207,7 +207,7 @@ class User < ApplicationRecord
   end
 
   def out_binary_tree?
-    user.binary_node.nil?
+    binary_node.nil?
   end
 
   def inside_binary_tree?

@@ -9,10 +9,10 @@ module Financial
     end
 
     def call
-      return errors.add(:order, 'no carrinho ainda') if order.cart?
-      return errors.add(:order, 'já foi aprovado') if !order.pending_payment?
+      return errors.add(:order, :still_in_cart) if order.cart?
+      return errors.add(:order, :alread_approved) if !order.pending_payment?
       return order if compensate_order
-      errors.add(:order, 'error')
+      errors.add(:order, :invalid)
     end
 
     private

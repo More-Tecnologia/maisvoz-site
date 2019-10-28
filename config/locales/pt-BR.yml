@@ -80,6 +80,8 @@ pt-BR:
       messages:
         taken: já está sendo utilizado
         not_authenticate: não autenticada
+        still_in_cart: Pedido ainda no carrinho de compra
+        already_approved: Pedido já aprovado
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master

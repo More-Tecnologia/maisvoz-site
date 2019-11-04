@@ -4,7 +4,7 @@ module Bonification
 
       def call
         return if user_binary_node.blank? || total_score <= 0
-        propagate_binary_sccore
+        propagate_binary_score
       end
 
       private
@@ -16,7 +16,7 @@ module Bonification
         @binary_score = ScoreType.binary_score
       end
 
-      def propagate_binary_sccore
+      def propagate_binary_score
         ascendant_path = user_binary_node.path.includes_associations.reverse
         child_and_parent = ascendant_path.each_cons(2).to_a
         child_and_parent.each_with_index do |(child, parent), index|

@@ -242,6 +242,14 @@ class User < ApplicationRecord
     current_career.next_career
   end
 
+  def binary_unqualified?
+    !binary_qualified?
+  end
+
+  def inactive?
+    !active
+  end
+
   private
 
   def ensure_initial_career_trail

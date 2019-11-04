@@ -55,9 +55,9 @@ module Bonification
     end
 
     def calculate_weekly_bonus_excess
-      return 0 unless user.current_trail.weekly_maximum_binary_score
+      return 0 unless user.current_career.weekly_maximum_binary_score
       weekly_maximum_binary_bonus =
-        user.current_trail.weekly_maximum_binary_score.to_f * binary_percent
+        user.current_career.weekly_maximum_binary_score.to_f * binary_percent
       current_week_bonus - weekly_maximum_binary_bonus
     end
 
@@ -71,9 +71,9 @@ module Bonification
     end
 
     def calculate_monthly_bonus_excess
-      return 0 unless user.current_trail.monthly_maximum_binary_score
+      return 0 unless user.current_career.monthly_maximum_binary_score
       monthly_maximum_binary_bonus =
-        user.current_trail.monthly_maximum_binary_score.to_f * binary_percent
+        user.current_career.monthly_maximum_binary_score.to_f * binary_percent
       current_month_bonus - monthly_maximum_binary_bonus
     end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_203732) do
+ActiveRecord::Schema.define(version: 2019_10_31_231514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
 
   create_table "binary_nodes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "sponsored_by_id"
-    t.bigint "parent_id"
     t.bigint "left_child_id"
     t.bigint "right_child_id"
     t.bigint "left_pv", default: 0
@@ -52,10 +50,10 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.bigint "right_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_binary_nodes_on_ancestry"
     t.index ["left_child_id"], name: "index_binary_nodes_on_left_child_id"
-    t.index ["parent_id"], name: "index_binary_nodes_on_parent_id"
     t.index ["right_child_id"], name: "index_binary_nodes_on_right_child_id"
-    t.index ["sponsored_by_id"], name: "index_binary_nodes_on_sponsored_by_id"
     t.index ["user_id"], name: "index_binary_nodes_on_user_id", unique: true
   end
 
@@ -108,6 +106,9 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.integer "kind", default: 0, null: false
     t.decimal "binary_percentage", precision: 5, scale: 2, default: "0.0", null: false
     t.string "image_path"
+    t.integer "requalification_score"
+    t.integer "weekly_maximum_binary_score"
+    t.integer "monthly_maximum_binary_score"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -150,18 +151,12 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.index ["user_id"], name: "index_debits_on_user_id"
   end
 
-  create_table "financial_entries", force: :cascade do |t|
-    t.string "description"
-    t.bigint "amount_cents", default: 0, null: false
-    t.bigint "balance_cents", default: 0, null: false
-    t.string "kind", default: "0"
-    t.bigint "user_id"
-    t.bigint "order_id"
+  create_table "financial_reason_types", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["kind"], name: "index_financial_entries_on_kind"
-    t.index ["order_id"], name: "index_financial_entries_on_order_id"
-    t.index ["user_id"], name: "index_financial_entries_on_user_id"
+    t.index ["code"], name: "index_financial_reason_types_on_code"
   end
 
   create_table "financial_reasons", force: :cascade do |t|
@@ -169,6 +164,9 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "financial_reason_type_id"
+    t.string "code"
+    t.index ["financial_reason_type_id"], name: "index_financial_reasons_on_financial_reason_type_id"
   end
 
   create_table "financial_transactions", force: :cascade do |t|
@@ -182,10 +180,13 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.bigint "order_id"
     t.integer "financial_transaction_id"
     t.integer "generation"
+    t.bigint "withdrawal_id"
+    t.text "note", default: ""
     t.index ["financial_reason_id"], name: "index_financial_transactions_on_financial_reason_id"
     t.index ["order_id"], name: "index_financial_transactions_on_order_id"
     t.index ["spreader_id"], name: "index_financial_transactions_on_spreader_id"
     t.index ["user_id"], name: "index_financial_transactions_on_user_id"
+    t.index ["withdrawal_id"], name: "index_financial_transactions_on_withdrawal_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -341,7 +342,9 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.integer "source_leg", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "score_id"
     t.index ["order_id"], name: "index_scores_on_order_id"
+    t.index ["score_id"], name: "index_scores_on_score_id"
     t.index ["score_type_id"], name: "index_scores_on_score_type_id"
     t.index ["user_id"], name: "index_scores_on_user_id"
   end
@@ -363,16 +366,6 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transfers", force: :cascade do |t|
-    t.bigint "from_user_id", null: false
-    t.bigint "to_user_id", null: false
-    t.bigint "amount_cents", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["from_user_id"], name: "index_transfers_on_from_user_id"
-    t.index ["to_user_id"], name: "index_transfers_on_to_user_id"
-  end
-
   create_table "unilevel_nodes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "username"
@@ -381,6 +374,7 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.string "ancestry", limit: 300
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "ancestry_depth", default: 0
     t.index ["ancestry"], name: "index_unilevel_nodes_on_ancestry"
     t.index ["user_id"], name: "index_unilevel_nodes_on_user_id", unique: true
   end
@@ -446,12 +440,14 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
     t.string "bank_code"
     t.string "address_ibge"
     t.string "document_refused_reason"
-    t.string "document_verification_status"
+    t.string "document_verification_status", default: "pending_verification"
     t.datetime "document_verification_updated_at"
     t.string "document_rg_expeditor"
     t.bigint "product_id"
     t.string "bank_account_type"
     t.text "ascendant_sponsors_ids"
+    t.boolean "blocked", default: false
+    t.boolean "canceled", default: false
     t.index ["career_kind"], name: "index_users_on_career_kind"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["document_cpf"], name: "index_users_on_document_cpf", unique: true
@@ -478,7 +474,6 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "binary_nodes", "users"
-  add_foreign_key "binary_nodes", "users", column: "sponsored_by_id"
   add_foreign_key "bonus", "orders"
   add_foreign_key "bonus", "users"
   add_foreign_key "career_histories", "users"
@@ -490,11 +485,11 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
   add_foreign_key "credits", "users", column: "operated_by_id"
   add_foreign_key "debits", "users"
   add_foreign_key "debits", "users", column: "operated_by_id"
-  add_foreign_key "financial_entries", "orders"
-  add_foreign_key "financial_entries", "users"
+  add_foreign_key "financial_reasons", "financial_reason_types"
   add_foreign_key "financial_transactions", "financial_reasons"
   add_foreign_key "financial_transactions", "orders"
   add_foreign_key "financial_transactions", "users"
+  add_foreign_key "financial_transactions", "withdrawals"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
@@ -512,10 +507,9 @@ ActiveRecord::Schema.define(version: 2019_10_08_203732) do
   add_foreign_key "rules", "rule_types"
   add_foreign_key "scores", "orders"
   add_foreign_key "scores", "score_types"
+  add_foreign_key "scores", "scores"
   add_foreign_key "scores", "users"
   add_foreign_key "system_financial_logs", "orders"
-  add_foreign_key "transfers", "users", column: "from_user_id"
-  add_foreign_key "transfers", "users", column: "to_user_id"
   add_foreign_key "unilevel_nodes", "users"
   add_foreign_key "users", "products"
   add_foreign_key "withdrawals", "users"

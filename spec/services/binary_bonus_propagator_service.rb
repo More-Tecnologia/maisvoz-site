@@ -24,7 +24,7 @@ RSpec.describe Bonification::CreatorBinaryBonusService, type: :service do
   let(:random_score) { Faker::Number.positive.to_i }
   let(:maximun_score) { minimum_score_paid + random_score }
   let(:range_score) { (minimum_score_paid..maximun_score) }
-  let(:monthly_maximum_binary_score) { user.current_trail.monthly_maximum_binary_score }
+  let(:monthly_maximum_binary_score) { user.current_career.monthly_maximum_binary_score }
 
   before(:all) do
     CareerTrailFactory.create
@@ -93,7 +93,7 @@ RSpec.describe Bonification::CreatorBinaryBonusService, type: :service do
   end
 
   context 'when to exceed weekly bonus' do
-    let(:weekly_maximum_binary_score) { user.current_trail.weekly_maximum_binary_score }
+    let(:weekly_maximum_binary_score) { user.current_career.weekly_maximum_binary_score }
     let(:minimum_score) {
       (weekly_maximum_binary_score + ENV['BINARY_SCORE_MINIMUM_PAID'].to_i) / binary_bonus_percent }
     let(:range_amount) { (minimum_score..(minimum_score + 110)) }

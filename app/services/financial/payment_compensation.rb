@@ -34,7 +34,7 @@ module Financial
         activate_user
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product?
         qualify_sponsor if user.sponsor_is_binary_qualified?
-        #propagate_binary_score
+        propagate_binary_score
         propagate_products_scores
         propagate_bonuses
         create_system_fee
@@ -60,7 +60,7 @@ module Financial
     end
 
     def propagate_binary_score
-      Bonification::PropagateBinaryScore.new(order).call
+      Bonification::Propagator::BinaryScoreService.call(order: order)
     end
 
     def propagate_products_scores

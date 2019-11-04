@@ -32,11 +32,16 @@ class TreeFactory
     parents.map { |parent| create_binary_children(parent) }.flatten
   end
 
-  def create_binary_children(parent, count = 2)
-    (1..count).to_a.map do
-      create(:binary_node, user: create(:user),
-                           sponsored_by: parent.user,
-                           parent: parent)
-    end
+  def create_binary_children(parent)
+    (1..count).to_a.map do	    parent.left_child = create_binary_child(parent)
+      create(:binary_node, user: create(:user),	    parent.right_child = create_binary_child(parent)
+                           sponsored_by: parent.user,	    parent.save
+                           parent: parent)	    [parent.left_child, parent.right_child]
+    end	  end
+
+  def create_binary_child(parent)
+    create(:binary_node, user: create(:user),
+                         parent: parent)
   end
+
 end

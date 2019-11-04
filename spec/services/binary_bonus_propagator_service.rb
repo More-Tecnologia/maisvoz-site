@@ -47,7 +47,7 @@ RSpec.describe Bonification::CreatorBinaryBonusService, type: :service do
 
   context 'when user valid to receive bonus' do
     before do
-      user.binary_unqualify!
+      user.binary_qualify!
       create_binary_score_to_legs(binary_node, range_score)
       Bonification::CreatorBinaryBonusService.call(binary_node)
     end

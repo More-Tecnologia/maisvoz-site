@@ -4,7 +4,8 @@ class NodeBinaryBonusVerifierWorker
 
   def perform(binary_node_id)
     binary_node = BinaryNode.find(binary_node_id)
-    Bonification::CreditBinaryBonus.new(binary_node).call
+
+    Bonification::CreatorBinaryBonusService.call(binary_node)
   end
 
 end

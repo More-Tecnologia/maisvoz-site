@@ -6,7 +6,8 @@ FactoryBot.define do
     marital_status { User.marital_statuses.values.sample }
     gender { User.genders.values.sample }
     phone { Faker::PhoneNumber.phone_number.gsub(/\D+/,'') }
-    username { Faker::Name.unique.last_name.concat(Faker::Number.positive.to_s).downcase.gsub(/\W/,'') }
+    username { I18n.transliterate(Faker::Name.last_name.downcase.gsub(/\W/,'')
+                                  .concat(Faker::Number.positive.to_i.to_s)) }
     role { User.roles.values.sample }
     registration_type { User.registration_types.values.sample }
     document_verification_status { User.document_verification_statuses.values.sample }

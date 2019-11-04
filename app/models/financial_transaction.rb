@@ -2,7 +2,7 @@ class FinancialTransaction < ApplicationRecord
   include Hashid::Rails
 
   belongs_to :user
-  belongs_to :spreader, class_name: 'User'
+  belongs_to :spreader, class_name: 'User', optional: true
   belongs_to :financial_reason, optional: true
   belongs_to :order, optional: true
   belongs_to :financial_transaction, optional: true
@@ -40,6 +40,25 @@ class FinancialTransaction < ApplicationRecord
 
   def chargeback?
     financial_transaction
+  end
+
+  def chargeback_binary_score!(financial_reason, amount)
+    create_chargeback!(user: user,
+                       financial_reason: financial_reason,
+                       cent_amount: amount.to_i,
+                       moneyflow: invert_money_flow)
+  end
+
+  def chargeback_by_inactivity!
+    chargeback_binary_score!(FinancialReason.chargeback_by_inactivity, cent_amount)
+  end
+
+  def chargeback_excess_monthly!(amount)
+    chargeback_binary_score!(FinancialReason.chargeback_excess_monthly, amount)
+  end
+
+  def chargeback_excess_weekly!(amount)
+    chargeback_binary_score!(FinancialReason.chargeback_excess_weekly, amount)
   end
 
   private

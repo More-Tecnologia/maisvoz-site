@@ -56,7 +56,11 @@ ActiveRecord::Base.transaction do
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: administrative_type}))
   end
   bonus_type = FinancialReasonType.find_or_create_by!(name: 'Bonus', code: '200')
-  bonus_reasons = [{title: 'Estorno de Bonus', code: '100'}]
+  bonus_reasons = [{ title: 'Estorno de Bonus', code: '100' },
+                   { title: 'Bonus Binário', code: '500'},
+                   { title: 'Estorno de Bonus Binário por Inatividade', code: '600' },
+                   { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700' },
+                   { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '900' }]
   bonus_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
   end

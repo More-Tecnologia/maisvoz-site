@@ -35,6 +35,8 @@ module Financial
         # binary_bonus_nodes_verifier if user.inside_binary_tree?
         notify_user_by_email_about_paid_order
       end
+      binary_bonus_nodes_verifier if user.inside_binary_tree?
+      notify_user_by_email_about_paid_order
     end
 
     def update_order_status
@@ -90,9 +92,9 @@ module Financial
       user.activate!
     end
 
-    # def binary_bonus_nodes_verifier
-    #   NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
-    # end
+    def binary_bonus_nodes_verifier
+      NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
+    end
 
     def adhesion_product
       @adhesion_product ||= order.products.detect(&:adhesion?)

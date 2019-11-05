@@ -82,4 +82,9 @@ class Product < ApplicationRecord
   def self.taxable_kinds
     kinds.keys
   end
+
+  def binary_bonus_percent
+    binary_bonus.to_f / 100.0
+  end
+
 end

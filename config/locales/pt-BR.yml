@@ -81,6 +81,8 @@ pt-BR:
         taken: já está sendo utilizado
         not_authenticate: não autenticada
         too_long: "de no máximo %{count} caracteres"
+        still_in_cart: Pedido ainda no carrinho de compra
+        already_approved: Pedido já aprovado
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master

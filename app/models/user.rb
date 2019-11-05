@@ -207,7 +207,7 @@ class User < ApplicationRecord
   end
 
   def out_binary_tree?
-    user.binary_node.nil?
+    binary_node.nil?
   end
 
   def inside_binary_tree?
@@ -240,6 +240,33 @@ class User < ApplicationRecord
 
   def next_career_kind
     current_career.next_career
+  end
+
+  def binary_unqualified?
+    !binary_qualified?
+  end
+
+  def inactive?
+    !active
+  end
+
+  def inactivate!
+    update_attribute(:active, false)
+  end
+
+  def binary_qualify!
+    update_attribute(:binary_qualified, true)
+  end
+
+  def binary_unqualify!
+    update_attribute(:binary_qualified, false)
+  end
+
+  def update_balance_cents!(amount)
+    new_amount = (amount / 2.0) * 100.0
+    attributes = { available_balance_cents: new_amount,
+                   blocked_balance_cents: new_amount }
+    update_attributes!(attributes)
   end
 
   private

@@ -25,4 +25,21 @@ class FinancialReason < ApplicationRecord
   def self.withdrawal_fee
     find_by(code: '400')
   end
+
+  def self.binary_bonus
+    find_by(code: '500')
+  end
+
+  def self.chargeback_by_inactivity
+    find_by(code: '600')
+  end
+
+  def self.chargeback_excess_monthly
+    find_by(code: '700')
+  end
+
+  def self.chargeback_excess_weekly
+    find_by(code: '800')
+  end
+
 end

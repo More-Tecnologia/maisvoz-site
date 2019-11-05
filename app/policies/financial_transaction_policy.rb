@@ -1,29 +1,27 @@
 class FinancialTransactionPolicy
 
-  LIMIT = 660_000
-
   def initialize(user)
     @user = user
   end
 
-  def monthly_limit_reached?(amount = 0)
-    amount_received_this_month + amount >= LIMIT
-  end
-
-  def amount_left
-    LIMIT - amount_received_this_month
+  def current_month_bonus
+    @current_month_bonus ||= current_month_bonus_sum
   end
 
   private
 
   attr_reader :user
 
-  def amount_received_this_month
-    @amount_received_this_month ||= user
-                                    .financial_transactions
-                                    .where('cent_amount > 0')
-                                    .where('created_at >= ?', beginning_of_month)
-                                    .sum(:cent_amount) / 100.0
+  def current_month_bonus_sum
+    not_chargeback_sum = user.financial_transactions
+                             .not_chargeback
+                             .where('created_at >= ?', beginning_of_month)
+                             .sum(:cent_amount)
+    chargeback_sum = user.financial_transactions
+                         .chargeback
+                         .where('created_at >= ?', beginning_of_month)
+                         .sum(:cent_amount)
+    not_chargeback_sum - chargeback_sum
   end
 
   def beginning_of_month

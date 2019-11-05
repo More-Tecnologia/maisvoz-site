@@ -5,11 +5,15 @@ class WeeklyBinaryBonusReceivedQuery
   end
 
   def call
-    user
-      .financial_entries
-      .where('kind = ? OR kind = ?', :binary_bonus, :reverse_binary_bonus)
-      .where('created_at >= ?', beginning_of_week)
-      .sum(:amount_cents).to_i / 1e2
+    chargebacks_sum = user.financial_transactions
+                          .chargeback
+                          .where('created_at >= ?', beginning_of_week)
+                          .sum(:cent_amount)
+    not_chargebacks_sum = user.financial_transactions
+                              .not_chargeback
+                              .where('created_at >= ?', beginning_of_week)
+                              .sum(:cent_amount)
+    not_chargebacks_sum - chargebacks_sum
   end
 
   private

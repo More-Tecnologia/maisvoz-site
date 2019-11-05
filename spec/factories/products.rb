@@ -3,7 +3,7 @@ FactoryBot.define do
     quantity { rand(1..5) }
     binary_score { Faker::Number.positive }
     active { true }
-    binary_bonus { Faker::Number.decimal }
+    binary_bonus { rand(1..100) }
     kind { Product.kinds.keys.sample }
     price_cents { Faker::Number.positive.to_i }
 

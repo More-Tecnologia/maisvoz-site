@@ -87,7 +87,7 @@ pt-BR:
       credit_debit_wizard/create_form:
         master_password: Senha Master
         amount: Valor
-  app_name: More Network Marketing
+  app_name: Mais Voz
   attributes:
     active_session: Sessão ativa
     order: Ordem

@@ -145,6 +145,7 @@ class User < ApplicationRecord
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
+  after_create :insert_into_binary_tree
 
   def balance
     (available_balance + blocked_balance).to_f
@@ -216,6 +217,14 @@ class User < ApplicationRecord
 
   def sponsor_is_binary_qualified?
     sponsor.try(:binary_qualified?)
+  end
+
+  def insert_into_binary_tree
+   if self.sponsor.present?
+     Multilevel::CreateBinaryNode.new(self).call
+   else
+     BinaryNode.create(user: self)
+   end
   end
 
   def ascendant_sponsors

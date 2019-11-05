@@ -4,15 +4,9 @@
   <!-- LOGO -->
   <div class="topbar-left">
     <div class="text-center">
-      <!-- <a href="index.html" class="logo">
-        <i class="icon-magnet icon-c-logo"></i>
-        <%= image_tag('logo.png') %>
-      </a> -->
-      <!-- Image Logo here -->
       <button href="javascript:void(0)" id="sidebarCollapse" class="btn visible-xs"><i class="fa fa-list"></i></button>
-                
       <a href="/" class="logo">
-        <span><%= image_tag('logo.png', height: 40) %></span>
+        <span><%= image_tag('logo.png', height: 35) %></span>
       </a>
     </div>
   </div>
@@ -36,13 +30,13 @@
         <% if current_user.pj? %>
           <li>
             <%=
-            
+
 k_to backoffice_financial_transactions_path do %>
             <sp
-            
+
 lass="text-success">
               <
-            
+
 umber_to_currency current_user.available_cent_amount %>
             </span>
             <% end %>
@@ -116,7 +110,7 @@ umber_to_currency current_user.available_cent_amount %>
             <% end %>
           </li>
 
-        
+
           </ul>
         </li>
       </ul>
@@ -140,13 +134,13 @@ umber_to_currency current_user.available_cent_amount %>
       <% if current_user.pj? %>
         <li>
           <%=
-          
+
 k_to backoffice_financial_transactions_path do %>
           <sp
-          
+
 lass="text-success">
             <
-          
+
 umber_to_currency current_user.available_cent_amount %>
           </span>
           <% end %>

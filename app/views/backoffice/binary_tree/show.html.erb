@@ -70,8 +70,7 @@
                       <% nodes = [@node] %>
                       <tr class="text-center">
                         <td colspan="<%= 2 ** cols %>">
-                          <%= image_tag(
-                            "careers/#{node.user.current_career.try(:image_path)}",
+                          <%= image_tag(node.user.current_career.try(:image_path),
                             class: 'tree-node',
                               data: {
                                 username: node.user.username,
@@ -107,10 +106,10 @@
                                       career: current_node.left_child.user.current_career.try(:name),
                                     }
                                   ) do %>
-                                  <%= image_tag("careers/#{current_node.left_child.user.current_career.try(:image_path) || 'desativado.png'}") %>
+                                  <%= image_tag(current_node.left_child.user.current_career.try(:image_path) || 'careers/inactive.png') %>
                                 <% end %>
                               <% else %>
-                                <%= image_tag('packages/desativado.png') %>
+                                <%= image_tag('packages/inactive.png') %>
                               <% end %>
                             </td>
                             <td colspan="<%= 2 ** (cols - x) %>">
@@ -126,10 +125,10 @@
                                       career: current_node.right_child.user.current_career.try(:name)
                                     }
                                   ) do %>
-                                  <%= image_tag("careers/#{current_node.right_child.user.current_career.try(:image_path) || 'desativado.png'}") %>
+                                  <%= image_tag(current_node.right_child.user.current_career.try(:image_path) || 'careers/inactive.png') %>
                                 <% end %>
                               <% else %>
-                                <%= image_tag('packages/desativado.png') %>
+                                <%= image_tag('packages/inactive.png') %>
                               <% end %>
                             </td>
 
@@ -172,7 +171,7 @@
         <% end %>
           <td>
             <div class="career-legend m-l-10 m-r-10">
-              <%= image_tag("careers/#{career.image_path}", class: 'img-circle thumb-md') %>
+              <%= image_tag(career.image_path, class: 'img-circle thumb-md') %>
               <h5><%= t(career.name) %></h5>
             </div>
           </td>

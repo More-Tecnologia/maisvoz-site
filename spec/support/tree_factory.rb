@@ -35,7 +35,7 @@ class TreeFactory
   def create_binary_children(parent)
     parent.left_child = create_binary_child(parent)
     parent.right_child = create_binary_child(parent)
-    parent.save
+    parent.save!
     [parent.left_child, parent.right_child]
   end
 
@@ -43,4 +43,5 @@ class TreeFactory
     create(:binary_node, user: create(:user),
                          parent: parent)
   end
+
 end

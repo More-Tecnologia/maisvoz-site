@@ -5,7 +5,7 @@ class LastActiveSponsoredUserQuery
   end
 
   def call
-    node = BinaryNode.where(sponsored_by: sponsor).order(created_at: :desc).first
+    node = sponsor.binary_node.children.last
     node.user if node
   end
 

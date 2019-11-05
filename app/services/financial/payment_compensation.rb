@@ -9,16 +9,10 @@ module Financial
     end
 
     def call
-      if order.cart?
-        errors.add(:order, 'no carrinho ainda')
-      elsif !order.pending_payment?
-        errors.add(:order, 'já foi aprovado')
-      elsif compensate_order
-        return order
-      else
-        errors.add(:order, 'error')
-      end
-      nil
+      return errors.add(:order, :still_in_cart) if order.cart?
+      return errors.add(:order, :alread_approved) if !order.pending_payment?
+      return order if compensate_order
+      errors.add(:order, :invalid)
     end
 
     private
@@ -26,22 +20,21 @@ module Financial
     attr_reader :order, :user
 
     def compensate_order
-      order.with_lock do
-        update_order_status
+      ActiveRecord::Base.transaction do
+        order.paid!
         upgrade_user_career if first_adhesion?
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user
-        insert_into_binary_tree if user.out_binary_tree? && adhesion_product?
+        activate_user if adhesion_product
+        insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if user.sponsor_is_binary_qualified?
         propagate_binary_score
         propagate_products_scores
         propagate_bonuses
         create_system_fee
-        order.completed!
+        # binary_bonus_nodes_verifier if user.inside_binary_tree?
+        notify_user_by_email_about_paid_order
       end
-      # binary_bonus_nodes_verifier if user.inside_binary_tree?
-      notify_user_by_email_about_paid_order
     end
 
     def update_order_status
@@ -94,7 +87,6 @@ module Financial
     end
 
     def activate_user
-      return if user.active? || !adhesion_product?
       user.activate!
     end
 
@@ -119,7 +111,7 @@ module Financial
     end
 
     def first_adhesion?
-      !user.bought_adhesion && adhesion_product?
+      !user.bought_adhesion && adhesion_product
     end
 
     def inside_binary_tree?

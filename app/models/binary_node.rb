@@ -29,5 +29,4 @@ class BinaryNode < ApplicationRecord
     total_score = shortter_leg_score + new_score
     total_score - ENV['UNQUALIFIED_LIMIT_SCORE'].to_f
   end
-
 end

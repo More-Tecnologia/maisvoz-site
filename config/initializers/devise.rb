@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'More Network Marketing <no-reply@morenwm.com>'
+  config.mailer_sender = 'Mais Voz <no-reply@maisvoz.com.br>'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

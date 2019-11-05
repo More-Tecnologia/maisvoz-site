@@ -82,6 +82,7 @@ pt-BR:
         not_authenticate: não autenticada
         still_in_cart: Pedido ainda no carrinho de compra
         already_approved: Pedido já aprovado
+        too_long: "de no máximo %{count} caracteres" 
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master
@@ -201,12 +202,19 @@ pt-BR:
     email: Email
     not_applicable: ''
     left: Esquerda
-    right: direita
+    right: Direita
     financial_reason_types: Tipos de Motivos
     message: Mensagem
     master_password: Senha Master
     financial_reason_id: Motivo
     financial_reason: Motivo
+    generation: Geração
+    status: Situação
+    pf: Pessoa Física
+    pj: Pessoa Jurídica
+    note: Mensagem
+    blocked: Bloqueado
+    canceled: Cancelado
   backoffice:
     orders:
       show:
@@ -223,6 +231,7 @@ pt-BR:
       new:
         available_balance: Saldo Disponível
         title: Novo Saque
+        unverified_account: Para solicitar saques sua conta precisa ser verificada.
       form:
         fees: Taxas
         total: Total
@@ -817,6 +826,8 @@ pt-BR:
   tracker: FutureSAT
   credit: Credito
   debit: Débito
+  "true": Sim
+  "false": Não
   datagrid:
     form:
       search: Filtrar

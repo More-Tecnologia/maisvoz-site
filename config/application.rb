@@ -22,6 +22,8 @@ module Moremmn
 
     config.action_controller.permit_all_parameters = true
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.middleware.use Rack::Attack
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
 

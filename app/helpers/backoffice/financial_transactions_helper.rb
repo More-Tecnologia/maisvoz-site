@@ -1,5 +1,6 @@
 module Backoffice
   module FinancialTransactionsHelper
+
     def format_cent_amount_value(financial_transaction)
       amount = financial_transaction.amount_cents
       return number_to_currency(-amount) if financial_transaction.debit?
@@ -29,5 +30,6 @@ module Backoffice
     def controller_is_bonus_financial_transactions?
       controller_name == 'bonus_financial_transactions'
     end
+
   end
 end

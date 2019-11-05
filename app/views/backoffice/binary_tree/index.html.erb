@@ -10,6 +10,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
+    <div class="table-responsive">
       <table class="table table-bordered">
         <tr>
           <td><strong><%= t('.left_pv') %></strong></td>
@@ -21,13 +22,14 @@
         </tr>
         <tr>
           <td><strong><%= t('.username') %></strong></td>
-          <td><%= current_user.username %> (<%= t current_user.career_kind %>)</td>
+          <td><%= current_user.username %> (<%= current_user.current_career.try(:name) %>)</td>
         </tr>
         <tr>
           <td><strong><%= t('.sponsor') %></strong></td>
           <td><%= current_user.sponsor && current_user.sponsor.username %></td>
         </tr>
       </table>
+      </div>
     </div>
   </div>
 </div>

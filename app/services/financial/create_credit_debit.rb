@@ -24,7 +24,7 @@ module Financial
 
     def create_financial_transaction
       user.financial_transactions.create!(spreader: spreader,
-                                          financial_reason: form.financial_reason,
+                                          note: form.note,
                                           amount_cents: form.amount,
                                           moneyflow: find_moneyflow)
     end
@@ -41,7 +41,7 @@ module Financial
     def create_system_financial_log
       amount = form.credit? ? -form.amount : form.amount
       SystemFinancialLog.new.tap do |entry|
-        entry.description  = form.financial_reason.title
+        entry.description  = form.note
         entry.amount_cents = amount
         entry.kind = form.credit? ? SystemFinancialLog.kinds[:credit_by_admin] : SystemFinancialLog.kinds[:debit_by_admin]
         entry.save!

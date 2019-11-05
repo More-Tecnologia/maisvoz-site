@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  authenticate :admin_user do
+  authenticate :user, lambda {|u| u.role == "admin"} do
     mount Sidekiq::Web => '/sidekiq'
   end
 
@@ -42,6 +42,8 @@ Rails.application.routes.draw do
     namespace :support do
       resources :users, only: [:index, :show, :edit, :update]
       resources :documents_validation, only: [:index, :update]
+      resources :blocked_users, only: [:update]
+      resources :canceled_users, only: [:update]
     end
 
     # Backoffice

@@ -35,6 +35,16 @@ class UsersGrid < BaseGrid
       l(created_at, format: :short)
     end
   end
+  column(:block, mandatory: true, header: I18n.t('attributes.blocked'), class: 'text-center') do |user|
+    format(user) do |user|
+      render_blocked_user_attribute_link(user)
+    end
+  end
+  column(:canceled, mandatory: true, header: I18n.t('attributes.canceled'), class: 'text-center') do |user|
+    format(user) do |user|
+      render_canceled_user_attribute_link(user)
+    end
+  end
   column :actions, mandatory: true, header: I18n.t('backoffice.support.users.index.actions') do |user|
     format(user) do
       [

@@ -577,7 +577,7 @@ textarea.form-control {
   color: #565656;
   padding: 7px 12px;
   height: 38px;
-  max-width: 100%;
+  max-width: 95%;
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: all 300ms linear;

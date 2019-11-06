@@ -7,42 +7,49 @@
 
 <div class="row">
 
-   <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 product-detail">
-     <div class="">
-       <div class="col-md-12">
+   <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
+     <div class="product-detail" style="display: flex;">
+       <div class="sp-loading">
+          <%= image_tag 'sp-loading.gif' %>
+          <br>CARREGANDO
+       </div>
 
-          <% if(@product.photos.empty?) %>
-            <div class="col-md-12 img-large mb-5 img-large">
-            <%= cl_image_tag(@product.main_photo_id, { size: '100%'}) %>
-            </div>
-          <% end %>
+         <div class="sp-wrap">
 
-          <% @product.photos.each do |cl| %>
-            <div class="col-xs-4 img-small mb-5 border-1">
-              <a href="<%= cloudinary_url(cl.public_id) %>" data-toggle="lightbox" data-gallery="example-gallery">
-                  <%= cl_image_tag(cl.public_id, {class: "img-responsive" }) %>
-              </a>
-            </div>
-          <% end %>
+           <div class="carousel">
+              <div class="carousel-inner" role="listbox">
+                <div class="item">
+                  <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+                    <%= cl_image_tag(product.main_photo_id, { size: '150x150' }) %>
+                  </a>
+                </div>
+                <% product.photos.each do |cl| %>
+                  <div class="item">
+                    <a href="<%= cloudinary_url(cl.path) %>">
+                      <%= cl_image_tag(cl.public_id, { size: '150x150' }) %>
+                    </a>
+                  </div>
+                <% end %>
+              </div>
+           </div>
 
-        </div>
-        
+         </div>
       </div>
    </div>
 
    <div class="col-md-7 col-sm-7 col-xs-12 col-lg-7">
       <div class="product-detail">
-         <h3><b><%= @product.name %></b></h3>
+         <h3><b><%= product.name %></b></h3>
 
-         <h2><b><%= number_to_currency @product.price %></b></h2>
-         <h4>PONTUAÇÃO: <%= @product.binary_score %></h4>
+         <h2><b><%= number_to_currency product.price %></b></h2>
+         <h4>PONTUAÇÃO: <%= product.binary_score %></h4>
 
          <div class="m-t-30">
-            <%= simple_form_for @product, url: backoffice_order_items_path, method: :post do |f| %>
-              <%= f.input :id, as: :hidden %>
-              <button type="submit" class="btn btn-primary waves-effect waves-light">
-                <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
-              </button>
+           <%= simple_form_for @product, url: backoffice_order_items_path, method: :post do |f| %>
+             <%= f.input :id, as: :hidden %>
+             <button type="submit" class="btn btn-primary waves-effect waves-light">
+               <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
+             </button>
             <% end %>
          </div>
 
@@ -56,27 +63,35 @@
                   <tbody>
                     <tr>
                       <td width="400">Quantidade</td>
-                      <td><%= @product.quantity %></td>
+                      <td><%= product.quantity %></td>
                     </tr>
                     <tr>
                       <td><%= Product.human_attribute_name('weight') %></td>
-                      <td><%= @product.weight %> kg</td>
+                      <td><%= product.weight %> grams</td>
                     </tr>
                     <tr>
                       <td><%= Product.human_attribute_name('height') %></td>
-                      <td><%= @product.height %> cm</td>
+                      <td><%= product.height %> cm</td>
                     </tr>
                     <tr>
                       <td><%= Product.human_attribute_name('width') %></td>
-                      <td><%= @product.width %> cm</td>
+                      <td><%= product.width %> cm</td>
                     </tr>
                     <tr>
                       <td><%= Product.human_attribute_name('length') %></td>
-                      <td><%= @product.length %> cm</td>
+                      <td><%= product.length %> cm</td>
+                    </tr>
+                    <tr>
+                      <td><%= Product.human_attribute_name('binary_score') %></td>
+                      <td><%= product.binary_score %></td>
+                    </tr>
+                    <tr>
+                      <td><%= Product.human_attribute_name('advance_score') %></td>
+                      <td><%= product.advance_score %></td>
                     </tr>
                     <tr>
                       <td width="400">Sku</td>
-                      <td><%= @product.sku %></td>
+                      <td><%= product.sku %></td>
                     </tr>
                   </tbody>
                 </table>
@@ -84,55 +99,19 @@
             </div>
             <div class="col-md-6">
               <h4><b><%= t('views.backoffice.products.show.description') %></b></h4>
-              <p class="text-muted"><%= simple_format(@product.description) %></p>
-              <% description(@product.short_description || @product.description) %>
+              <p class="text-muted"><%= simple_format(product.description) %></p>
+              <% description(product.short_description || product.description) %>
             </div>
-          </div>example-gallery
-       </div>
-   </div>
-   class: "border-1" 
-   <div class="col-sm-8">
-       <div class="product-right-info">
-
+          </div>
        </div>
    </div>
 
 </div>
 <!-- end row -->
 
-<div class="row m-t-30">
-</div>
-<style>
-.ekko-lightbox {
-  background: rgba(0,0,0,0.5);
-}
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" /> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function ($) {
-        // delegate calls to data-toggle="lightbox"
-        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-                event.preventDefault();
-                $(this).ekkoLightbox();
-            });
-/*
-        let imgSmall = $('.img-small img');
-        let imgLarge = $('.img-large img');
-        imgSmall.click(function(){
-          imgLarge.attr('src', $(this).attr('src')).fadeIn();
-        });
-        */
-    });
-</script>
-
 <script type="text/javascript">
     // wait for images to load
     window.onload = function() {
-      $('.sp-wrap').smoothproducts();      
+      $('.sp-wrap').smoothproducts();
     };
-
 </script>

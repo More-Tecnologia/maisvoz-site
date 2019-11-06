@@ -18,7 +18,7 @@
 
                       <h4><%= t('attributes.sponsor_username') %>: <%= current_user.sponsor.try(:username) %></h4>
                       <hr>
-                      
+
                       <div class="col-lg-6">
                         <h4><%= t('.basic_info') %></h4>
                         <hr>
@@ -28,6 +28,7 @@
                         <label>Imagem de perfil</label>
                         <%= f.input :avatar, as: :file, label: false, input_html: { accept: 'image/*'} %>
 
+                        <%= f.input :registration_type, as: :hidden %>
                         <%= f.input :name, autofocus: true %>
                         <%= f.input :birthdate, start_year: Time.now.year - 90, end_year: Time.now.year - 18, as: :date, html5: true %>
                         <%= f.input :marital_status, collection: User.marital_statuses.map {|k,v| [t(v), v]} %>
@@ -77,7 +78,7 @@
                       </div>
                     </div>
 
-                    
+
                   <% end %>
                 </div>
               </div>

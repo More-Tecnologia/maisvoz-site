@@ -18,8 +18,6 @@ module BackOffice
     config.i18n.available_locales = [:en, 'pt-BR', :es]
     config.i18n.enforce_available_locales = false
 
-    config.time_zone = 'Brasilia'
-
     config.action_controller.permit_all_parameters = true
 
     config.active_job.queue_adapter = :sidekiq

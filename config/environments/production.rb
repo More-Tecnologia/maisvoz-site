@@ -67,7 +67,7 @@ Rails.application.configure do
   config.session_store :redis_session_store, {
     key: '_morenwm_session',
     redis: {
-      expire_after: 2.days,
+      expire_after: 10.minutes,
       key_prefix: 'morenwm:session:',
       url: ENV.fetch('REDIS_URL'),
     }

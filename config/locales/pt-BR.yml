@@ -228,6 +228,7 @@ pt-BR:
       index:
         no_data: Nenhum saque realizado
         title: Meus Saques
+        unverified_account: Para solicitar saques sua conta precisa ser verificada.
       new:
         available_balance: Saldo Disponível
         title: Novo Saque
@@ -515,9 +516,10 @@ pt-BR:
     scores: Pontuações
     unilevel: Unilevel
     binary: Binária
-    unilevel_binary: Unilevel/Binário
+    unilevel_binary: Relatório
     financial_transactions: Histórico Financeiro
     wrong_master_password: Senha master errada
+    support: Suporte
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

@@ -16,7 +16,6 @@ module Shopping
           errors.add(:product, 'cant add product to cart')
         elsif add_to_order
           update_order_total
-          apply_discount
           update_order_pv_total
           return order
         else

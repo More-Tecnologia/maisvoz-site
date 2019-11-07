@@ -1,8 +1,6 @@
 module Backoffice
   class CheckoutsController < BackofficeController
 
-    before_action :checkout_blocked
-
     def update
       if Shopping::CheckoutCart.new(cart: current_order).call
         session.delete(:order_id)

@@ -42,46 +42,47 @@
     <div class="card-box">
       <h4 class="m-t-0 header-title"><b><%= t('.indicated_strategy') %></b></h4>
       <p class="text-muted m-b-30 font-13"><%= t('.indicated_strategy_sub') %></p>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered toggle-circle m-b-0">
+            <thead>
+                <tr>
+                    <th>Login</th>
+                    <th>Nome</th>
+                    <th>Data de Entrada</th>
+                    <th>Posição</th>
+                </tr>
+            </thead>
+            <tbody>
 
-      <table class="table table-striped table-bordered toggle-circle m-b-0">
-          <thead>
-              <tr>
-                  <th>Login</th>
-                  <th>Nome</th>
-                  <th>Data de Entrada</th>
-                  <th>Posição</th>
-              </tr>
-          </thead>
-          <tbody>
+              <% form.sponsored_users_not_in_binary.each do |u| %>
+                <tr>
+                  <td><%= u.username %></td>
+                  <td><%= u.name %></td>
+                  <td><%= u.created_at %></td>
+                  <td>
+                    <%= collection_radio_buttons(
+                      'binary_strategy_form[binary_positions]',
+                      u.id,
+                      User.binary_positions,
+                      :first,
+                      :last,
+                      { checked: u.binary_position,
+                        item_wrapper_tag: nil,
+                      },
+                    ) do |b| %>
+                      <div class="radio radio-info form-check-inline m-r-15 radio-inline">
+                        <%= b.radio_button %>
+                        <%= b.label { t(b.text) } %>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
 
-            <% form.sponsored_users_not_in_binary.each do |u| %>
-              <tr>
-                <td><%= u.username %></td>
-                <td><%= u.name %></td>
-                <td><%= u.created_at %></td>
-                <td>
-                  <%= collection_radio_buttons(
-                    'binary_strategy_form[binary_positions]',
-                    u.id,
-                    User.binary_positions,
-                    :first,
-                    :last,
-                    { checked: u.binary_position,
-                      item_wrapper_tag: nil,
-                     },
-                  ) do |b| %>
-                    <div class="radio radio-info form-check-inline m-r-15 radio-inline">
-                      <%= b.radio_button %>
-                      <%= b.label { t(b.text) } %>
-                    </div>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
+            </tbody>
 
-          </tbody>
-
-      </table>
+        </table>
+      </div>
 
       <br>
       <%= f.submit t('.save'), class: 'btn btn-default' %>

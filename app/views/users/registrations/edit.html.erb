@@ -15,59 +15,70 @@
                     <%= f.error_notification %>
 
                     <div class="form-inputs">
-                      <h4><%= t('.basic_info') %></h4>
-                      <hr>
-
-                      <% if current_user.avatar? %>
-                        <%= cl_image_tag current_user.avatar.path, { size: '150x150', class: 'thumb-lg' } %>
-                      <% end %>
-                      <%= f.input :avatar, as: :file, label: false, input_html: { accept: 'image/*'} %>
 
                       <h4><%= t('attributes.sponsor_username') %>: <%= current_user.sponsor.try(:username) %></h4>
-
-                      <%= f.input :name, autofocus: true %>
-                      <%= f.input :birthdate, start_year: Time.now.year - 90, end_year: Time.now.year - 18, as: :date, html5: true %>
-                      <%= f.input :marital_status, collection: User.marital_statuses.map {|k,v| [t(v), v]} %>
-                      <%= f.input :phone, input_html: { class: 'input-phone'} %>
-                      <%= f.input :skype %>
-                      <%= f.input :email %>
-                      <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
-                      <%= f.input :document_rg %>
-                      <%= f.input :document_rg_expeditor %>
-                      <% if f.object.pj? %>
-                        <%= f.input :document_cnpj, input_html: { class: 'input-cnpj' } %>
-                        <%= f.input :document_ie %>
-                        <%= f.input :document_company_name %>
-                        <%= f.input :document_fantasy_name %>
-                      <% end %>
-
-                      <h4><%= t('.address') %></h4>
                       <hr>
 
-                      <%= f.input :zipcode, input_html: { class: 'input-zipcode' } %>
-                      <%= f.input :address_ibge, as: :hidden %>
-                      <%= f.input :district %>
-                      <%= f.input :address %>
-                      <%= f.input :address_2 %>
+                      <div class="col-lg-6">
+                        <h4><%= t('.basic_info') %></h4>
+                        <hr>
+                        <% if current_user.avatar? %>
+                          <%= cl_image_tag current_user.avatar.path, { size: '150x150', class: 'thumb-lg' } %>
+                        <% end %>
+                        <label>Imagem de perfil</label>
+                        <%= f.input :avatar, as: :file, label: false, input_html: { accept: 'image/*'} %>
 
-                      <%= hidden_field :user, :city_temp, value: form.city, class: 'city_temp' %>
-                      <%= f.input :city, collection: [], input_html: { class: 'city' } %>
+                        <%= f.input :registration_type, as: :hidden %>
+                        <%= f.input :name, autofocus: true %>
+                        <%= f.input :birthdate, start_year: Time.now.year - 90, end_year: Time.now.year - 18, as: :date, html5: true %>
+                        <%= f.input :marital_status, collection: User.marital_statuses.map {|k,v| [t(v), v]} %>
 
-                      <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
-                      <%= f.input :country, default: ['BR'] %>
+                        <%= f.input :phone, input_html: { class: 'input-phone'} %>
+                        <%= f.input :skype %>
+                        <%= f.input :email %>
+                        <%= f.input :document_cpf, input_html: { class: 'input-cpf' } %>
+                        <%= f.input :document_rg %>
+                        <%= f.input :document_rg_expeditor %>
+                        <% if f.object.pj? %>
+                          <%= f.input :document_cnpj, input_html: { class: 'input-cnpj' } %>
+                          <%= f.input :document_ie %>
+                          <%= f.input :document_company_name %>
+                          <%= f.input :document_fantasy_name %>
+                        <% end %>
 
-                      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-                      <% end %>
+                      </div>
 
-                      <%= f.input :password, autocomplete: "off", hint: t('.leave_blank'), required: false %>
-                      <%= f.input :password_confirmation, required: false %>
-                      <%#= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+                      <div class="col-lg-6">
+                        <h4><%= t('.address') %></h4>
+                        <hr>
+
+                        <%= f.input :zipcode, input_html: { class: 'input-zipcode' } %>
+                        <%= f.input :address_ibge, as: :hidden %>
+                        <%= f.input :district %>
+                        <%= f.input :address %>
+                        <%= f.input :address_2 %>
+
+                        <%= hidden_field :user, :city_temp, value: form.city, class: 'city_temp' %>
+                        <%= f.input :city, collection: [], input_html: { class: 'city' } %>
+
+                        <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
+                        <%= f.input :country, default: ['BR'] %>
+
+                        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                        <% end %>
+
+                        <%= f.input :password, autocomplete: "off", hint: t('.leave_blank'), required: false %>
+                        <%= f.input :password_confirmation, required: false %>
+                        <%#= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+                      </div>
+
+                      <div class="col-md-12 form-actions">
+                        <%= f.button :submit, t('.update') %>
+                      </div>
                     </div>
 
-                    <div class="form-actions">
-                      <%= f.button :submit, t('.update') %>
-                    </div>
+
                   <% end %>
                 </div>
               </div>

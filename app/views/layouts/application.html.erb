@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= display_meta_tags site: 'More Network Marketing' %>
+    <%= display_meta_tags site: 'Mais Voz' %>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <%= render 'layouts/shared/favicons' %>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggle();
+            });
+            $('form input[type=submit]').addClass('btn btn-primary');
+            $('form input[type=file]').addClass('form-control');
+        });
+    </script>
   </head>
 
   <body class="<%= yield :body_class %>">

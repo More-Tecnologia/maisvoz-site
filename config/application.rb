@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Moremmn
+module BackOffice
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
@@ -18,9 +18,9 @@ module Moremmn
     config.i18n.available_locales = [:en, 'pt-BR', :es]
     config.i18n.enforce_available_locales = false
 
-    config.time_zone = 'Brasilia'
-
     config.action_controller.permit_all_parameters = true
+
+    config.active_job.queue_adapter = :sidekiq
 
     config.middleware.use Rack::Attack
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater

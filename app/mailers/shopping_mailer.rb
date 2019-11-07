@@ -12,7 +12,7 @@ class ShoppingMailer < ApplicationMailer
     @order = params[:order]
     @user = @order.user
 
-    mail to: @user.email, subject: 'More Network Marketing - Pedido Realizado'
+    mail to: @user.email, subject: 'Mais Voz - Pedido Realizado'
   end
 
   def order_paid
@@ -21,7 +21,7 @@ class ShoppingMailer < ApplicationMailer
     @order = params[:order]
     @user = @order.user
 
-    mail to: @user.email, subject: 'More Network Marketing - Pagamento Recebido'
+    mail to: @user.email, subject: 'Mais Voz - Pagamento Recebido'
   end
 
 end

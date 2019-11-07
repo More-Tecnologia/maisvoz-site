@@ -14,4 +14,4 @@ build:
     - script:
       name: push to server
       code: |
-        git push dokku master
+        git push dokku $BRANCH:master

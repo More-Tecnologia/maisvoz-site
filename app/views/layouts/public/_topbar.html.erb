@@ -4,15 +4,9 @@
   <!-- LOGO -->
   <div class="topbar-left">
     <div class="text-center">
-      <!-- <a href="index.html" class="logo">
-        <i class="icon-magnet icon-c-logo"></i>
-        <%= image_tag('logo.png') %>
-      </a> -->
-      <!-- Image Logo here -->
-      <%= link_to root_path(sponsor: params[:sponsor]), class: 'logo' do %>
-        <i class="icon-c-logo"> <%= image_tag('logo_sm.png', height: 42) %> </i>
-        <span><%= image_tag('logo.png', height: 40) %></span>
-      <% end %>
+      <a href="/" class="logo">
+        <span><%= image_tag('logo.png', height: 35) %></span>
+      </a>
     </div>
   </div>
 
@@ -20,14 +14,52 @@
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="">
-        <div class="nav navbar-nav">
+
+      <ul class="nav navbar-nav text-right visible-xs">
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="btn dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+            <i class="fa fa-list"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to shop_index_path(sponsor: params[:sponsor]) do %>
+              <i class="fa fa-home"></i> <%= t('shop') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to t('login'), new_user_session_path(sponsor: params[:sponsor]) %>
+            </li>
+            <li>
+              <%= link_to t('signup'), new_user_registration_path(sponsor: params[:sponsor]) %>
+            </li>
+            <li>
+              <a href="?locale=en" class="flag">
+                <%= image_tag('countries/us.svg') %>
+              </a>
+            </li>
+            <li>
+              <a href="?locale=es" class="flag">
+                <%= image_tag('countries/es.svg') %>
+              </a>
+            </li>
+            <li>
+              <a href="?locale=pt-BR" class="flag">
+                <%= image_tag('countries/br.svg') %>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+
+        <div class="nav navbar-nav hidden-xs">
           <% if sponsor_from_username(params).present? %>
             <li>
               <a href="">Olá, você está sendo indicado por <strong><%= params[:sponsor] %></strong></a>
             </li>
           <% end %>
         </div>
-        <ul class="nav navbar-nav navbar-right pull-right">
+        <ul class="nav navbar-nav navbar-right pull-right hidden-xs">
           <li>
             <%= link_to shop_index_path(sponsor: params[:sponsor]) do %>
             <i class="fa fa-home"></i> <%= t('shop') %>

@@ -22,11 +22,17 @@
     <div class="card-box">
       <div class="row">
         <div class="col-lg-12">
-          <div class="p-20">
+          <div class="row">
             <%= simple_form_for(form, as: :credit_debit_form, url: backoffice_admin_credits_debit_path(:find_user), method: :put) do |f| %>
-              <%= f.input :username %>
-              <%= f.input :document_cpf %>
-              <%= f.button(:button, t("defaults.search"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Searching...".html_safe }) %>
+              <div class="col-md-6">
+                <%= f.input :username %>
+              </div>
+              <div class="col-md-6">
+                <%= f.input :document_cpf %>
+              </div>
+              <div class="col-md-12">
+                <%= f.button(:button, t("defaults.search"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Searching...".html_safe }) %>
+              </div>
             <% end %>
           </div>
         </div>

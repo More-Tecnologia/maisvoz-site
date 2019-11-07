@@ -577,7 +577,7 @@ textarea.form-control {
   color: #565656;
   padding: 7px 12px;
   height: 38px;
-  max-width: 100%;
+  max-width: 95%;
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: all 300ms linear;
@@ -1142,8 +1142,7 @@ pre {
   display: none;
 }
 .navbar-default {
-  /* background-color: #36404a; */
-  background-color: #192C4C;
+  background-color: #373435;
   border-radius: 0px;
   border: none;
   margin-bottom: 0px;
@@ -1163,7 +1162,7 @@ pre {
   right: 7px;
 }
 .nav > li > a {
-  color: #ffffff !important;
+  color: #fff !important;
   line-height: 60px;
   padding: 0px 15px;
   position: relative;

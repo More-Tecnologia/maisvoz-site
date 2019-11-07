@@ -115,7 +115,6 @@ module Multilevel
     def binary_node
       @binary_node ||= BinaryNode.new.tap do |node|
         node.user         = user
-        node.sponsored_by = sponsor
         node.parent       = parent_node
       end
     end

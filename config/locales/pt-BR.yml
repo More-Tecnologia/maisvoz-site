@@ -80,12 +80,14 @@ pt-BR:
       messages:
         taken: já está sendo utilizado
         not_authenticate: não autenticada
-        too_long: "de no máximo %{count} caracteres" 
+        too_long: "de no máximo %{count} caracteres"
+        still_in_cart: Pedido ainda no carrinho de compra
+        already_approved: Pedido já aprovado
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master
         amount: Valor
-  app_name: More Network Marketing
+  app_name: Mais Voz
   attributes:
     active_session: Sessão ativa
     order: Ordem
@@ -226,6 +228,7 @@ pt-BR:
       index:
         no_data: Nenhum saque realizado
         title: Meus Saques
+        unverified_account: Para solicitar saques sua conta precisa ser verificada.
       new:
         available_balance: Saldo Disponível
         title: Novo Saque
@@ -513,9 +516,10 @@ pt-BR:
     scores: Pontuações
     unilevel: Unilevel
     binary: Binária
-    unilevel_binary: Unilevel/Binário
+    unilevel_binary: Relatório
     financial_transactions: Histórico Financeiro
     wrong_master_password: Senha master errada
+    support: Suporte
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -710,7 +714,7 @@ pt-BR:
       products:
         index:
           details: Detalhes
-          title: Loja More NWM
+          title: Loja Mais Voz
         show:
           buy: Comprar
           description: Descrição

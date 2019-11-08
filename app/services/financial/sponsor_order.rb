@@ -15,6 +15,7 @@ module Financial
         assign_product_to_user
         create_binary_node
         qualify_sponsor
+        create_vouchers
         update_order
 
         order.completed!

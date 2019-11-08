@@ -29,23 +29,11 @@ class OrdersGrid < BaseGrid
   column(:total) do |record|
     ActiveSupport::NumberHelper.number_to_currency record.total
   end
-  column(:type) do |record|
-    record.decorated_type
-  end
   column(:payment_type)
   column(:paid_by)
   date_column(:created_at)
   date_column(:paid_at, order: 'paid_at is not null desc, paid_at', order_desc: 'paid_at is not null desc, paid_at desc')
   date_column(:expire_at, html: false)
-  column(:dr_recorded) do |record|
-    format(record.dr_recorded) do |value|
-      if record.dr_recorded?
-        content_tag(:i, nil, class: 'fa fa-check-circle text-success')
-      else
-        content_tag(:i, nil, class: 'fa fa-times-circle text-danger')
-      end
-    end
-  end
   column(:faturado, html: true) do |order|
     if !order.billed?
       link_to(backoffice_admin_order_mark_as_billed_path(order),

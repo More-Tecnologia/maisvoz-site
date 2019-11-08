@@ -39,15 +39,15 @@ class Order < ApplicationRecord
   serialize :dr_response, JSON
 
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, expired: 4 }
-  enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin' }
+  enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin', voucher: 'voucher' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories
   has_many :bonus, class_name: 'Bonus'
   has_many :pv_activity_histories
-  has_many :payment_transactions
   has_many :scores
   has_many :financial_transactions
+  has_one :payment_transaction
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true
@@ -89,9 +89,7 @@ class Order < ApplicationRecord
   end
 
   def current_transaction
-    return if completed? || payment_transactions.blank?
-
-    payment_transactions.any?(&:paid?) || payment_transactions.order(:created_at).last
+    payment_transaction
   end
 
   def adhesion_product
@@ -134,5 +132,9 @@ class Order < ApplicationRecord
 
   def taxable_product_cent_amount
     order_items.sum { |i| i.system_taxable? ? i.product.price_cents : 0 }
+  end
+
+  def paid!
+    update_attributes(status: :completed, paid_at: Time.current)
   end
 end

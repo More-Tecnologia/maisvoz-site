@@ -51,7 +51,7 @@ class Product < ApplicationRecord
 
   include Hashid::Rails
 
-  enum kind: [:detached, :adhesion, :activation]
+  enum kind: [:detached, :adhesion, :activation, :voucher, :subscription]
   enum paid_by: [:paid_by_user, :paid_by_company]
 
   has_attachment :main_photo

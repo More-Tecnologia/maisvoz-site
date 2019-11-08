@@ -10,7 +10,7 @@ module Financial
 
     def call
       return errors.add(:order, :still_in_cart) if order.cart?
-      return errors.add(:order, :alread_approved) if !order.pending_payment?
+      return errors.add(:order, :already_approved) if !order.pending_payment?
       return order if compensate_order
       errors.add(:order, :invalid)
     end
@@ -26,14 +26,16 @@ module Financial
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
         activate_user if adhesion_product
+        update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if user.sponsor_is_binary_qualified?
         propagate_binary_score
         propagate_products_scores
         propagate_bonuses
+        create_vouchers
         create_system_fee
         # binary_bonus_nodes_verifier if user.inside_binary_tree?
-        notify_user_by_email_about_paid_order
+        # notify_user_by_email_about_paid_order
       end
       binary_bonus_nodes_verifier if user.inside_binary_tree?
       notify_user_by_email_about_paid_order
@@ -68,6 +70,11 @@ module Financial
       Bonification::BonusPropagatorService.call(order: order)
     end
 
+    def create_vouchers
+      return unless voucher_product
+      Vouchers::Create.new(user: user, product: voucher_product).call
+    end
+
     def create_system_fee
       Financial::CreatorSystemFeeService.call(order: order)
     end
@@ -92,6 +99,10 @@ module Financial
       user.activate!
     end
 
+    def update_user_role
+      user.update_attributes!(role: 'empreendedor')
+    end
+
     def binary_bonus_nodes_verifier
       NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
     end
@@ -102,6 +113,14 @@ module Financial
 
     def regular_product?
       @regular_product ||= order.products.detect(&:regular?)
+    end
+
+    def voucher_product
+      @voucher_product ||= order.products.detect(&:voucher?)
+    end
+
+    def subscription_product
+      @subscription_product ||= order.products.detect(&:subscription?)
     end
 
     def new_trail?

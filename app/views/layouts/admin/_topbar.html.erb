@@ -27,17 +27,11 @@
             <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
           <% end %>
         </li>
-        <% if current_user.pj? %>
+       <% if current_user.pj? %>
           <li>
-            <%=
-
-k_to backoffice_financial_transactions_path do %>
-            <sp
-
-lass="text-success">
-              <
-
-umber_to_currency current_user.available_cent_amount %>
+            <%= link_to backoffice_financial_transactions_path do %>
+            <span class="text-success">
+              <%= number_to_currency(current_user.available_balance_cents) %>
             </span>
             <% end %>
           </li>
@@ -83,7 +77,6 @@ umber_to_currency current_user.available_cent_amount %>
             <%= image_tag('countries/br.svg') %>
           </a>
         </li>
-
         <li>
             <%= link_to edit_user_registration_path do %>
               <i class="fa fa-user m-r-10 text-custom"></i>
@@ -109,8 +102,6 @@ umber_to_currency current_user.available_cent_amount %>
             <%= t('views.backoffice.topbar.logout') %>
             <% end %>
           </li>
-
-
           </ul>
         </li>
       </ul>
@@ -133,15 +124,9 @@ umber_to_currency current_user.available_cent_amount %>
       </li>
       <% if current_user.pj? %>
         <li>
-          <%=
-
-k_to backoffice_financial_transactions_path do %>
-          <sp
-
-lass="text-success">
-            <
-
-umber_to_currency current_user.available_cent_amount %>
+          <%= link_to backoffice_financial_transactions_path do %>
+          <span class="text-success">
+            <%= number_to_currency(current_user.available_balance_cents) %>
           </span>
           <% end %>
         </li>

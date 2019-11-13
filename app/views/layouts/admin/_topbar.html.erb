@@ -30,7 +30,7 @@
        <% if current_user.pj? %>
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
-            <span lass="text-success">
+            <span class="text-success">
               <%= number_to_currency(current_user.available_balance_cents) %>
             </span>
             <% end %>

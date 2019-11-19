@@ -237,7 +237,7 @@ class User < ApplicationRecord
   def available_cent_amount
     credit_amount = FinancialTransaction.credit.where(user: self).sum(:cent_amount)
     debit_amount = FinancialTransaction.debit.where(user: self).sum(:cent_amount)
-    credit_amount.to_i - debit_amount.to_i
+    (credit_amount.to_i - debit_amount.to_i) / 1e2.to_f
   end
 
   def self.find_morenwm_customer_user

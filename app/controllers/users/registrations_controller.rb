@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # super
-    build_resource(form.attributes.except(:sponsor_username, :role))
+    build_resource(form.attributes.except(:sponsor_username, :role, :contract))
     if form.valid? && resource.save
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up

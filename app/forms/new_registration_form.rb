@@ -28,6 +28,7 @@ class NewRegistrationForm < Form
   attribute :password
   attribute :password_confirmation
   attribute :registration_type
+  attribute :contract
 
   validates :username, :name, :phone, :email, :password,
             :password_confirmation, :gender, :zipcode, :address,
@@ -48,6 +49,7 @@ class NewRegistrationForm < Form
   validate :document_cpf_is_unique
   validate :document_cnpj_is_unique, if: :pj?
   validate :cpf_and_cnpj_format
+  validates :contract, presence: true, acceptance: true
 
   before_validation :normalize_username
 

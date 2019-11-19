@@ -521,6 +521,8 @@ pt-BR:
     financial_transactions: Histórico Financeiro
     wrong_master_password: Senha master errada
     support: Suporte
+    contract_link_html: contrato de consultor de vendas
+    accept_contract_html: "Aceito o %{link}"
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

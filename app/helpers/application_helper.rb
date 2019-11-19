@@ -33,4 +33,7 @@ module ApplicationHelper
     @sponsor_from_username ||= User.empreendedor.find_by(username: params[:sponsor]).try :username
   end
 
+  def link_to_contract
+    link_to t('defaults.contract_link_html'), ENV.fetch('CONTRACT_URL'), target: "_blank"
+  end
 end

@@ -100,6 +100,7 @@
                 <%= f.input :city, collection: [], input_html: { class: 'city' } %>
                 <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'] %>
                 <%= f.input :country, selected: 'BR', priority_countries: ['BR', 'US'] %>
+                <%= f.input :contract, as: :boolean, label: t('defaults.accept_contract_html', link: link_to_contract) %>
                 <%= f.button :submit, t('.sign_up'), class: 'btn btn-primary btn-block text-uppercase' %>
               </div>
             </div>

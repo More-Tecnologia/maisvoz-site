@@ -34,8 +34,7 @@ module Backoffice
     end
 
     def render_unilevel_tree_navigation_icon(unilevel_node)
-      content_tag :span, '' , class: 'glyphicon glyphicon-chevron-down',
-                              id: "icon-#{unilevel_node.id}"
+      content_tag :span, '' , class: 'fa fa-chevron-down', id: "icon-#{unilevel_node.id}"
     end
 
     def unilevel_node_has_children?(unilevel_node)

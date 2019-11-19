@@ -1,14 +1,12 @@
 $(document).ready(function(){
   $("tr[data-toggle='collapse']").on('shown.bs.collapse', function () {
-    glyphicon = selectParentNodeIcon(this)
-    glyphicon.removeClass('glyphicon-chevron-down')
-             .addClass('glyphicon-chevron-up')
+    icon = selectParentNodeIcon(this)
+    icon.removeClass('fa-chevron-down').addClass('fa-chevron-up')
   })
 
   $("tr[data-toggle='collapse']").on('hidden.bs.collapse', function () {
-    glyphicon = selectParentNodeIcon(this)
-    glyphicon.removeClass('glyphicon-chevron-up')
-             .addClass('glyphicon-chevron-down')
+    icon = selectParentNodeIcon(this)
+    icon.removeClass('fa-chevron-up').addClass('fa-chevron-down')
   })
 
   function selectParentNodeIcon(collapsable) {

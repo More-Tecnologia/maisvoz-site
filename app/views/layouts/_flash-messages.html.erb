@@ -1,9 +1,3 @@
-<!-- <% flash.each do |key, value| %>
-  <% if value.is_a?(String) %>
-    <div data-notification="true" data-key="<%= flash_class(key) %>" data-title="<%= t("defaults.#{key}") %>" data-text="<%= value %>"></div>
-  <% end %>
-<% end %> -->
-
 <% if flash[:success] %>
   <div class="alert alert-success"><%= flash[:success] %></div>
 <% end %>
@@ -18,4 +12,17 @@
 
 <% if flash[:alert] %>
   <div class="alert alert-warning"><%= flash[:alert] %></div>
+<% end %>
+
+<% if flash[:popup] %>
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-popup">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content p-0 b-0">
+      <img src="https://res.cloudinary.com/maisvoz/image/upload/v1574368206/maisvoz-popup_c6uwz9.jpg" alt="Caro Cliente" />
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () { $('#modal-popup').modal('show'); });
+</script>
 <% end %>

@@ -48,19 +48,19 @@ class UsersGrid < BaseGrid
   column :actions, mandatory: true, header: I18n.t('backoffice.support.users.index.actions') do |user|
     format(user) do
       [
-        link_to(backoffice_support_user_path(user), title: 'Ver perfil', target: '_blank') { content_tag(:i, nil, class: 'fa fa-user m-r-5') },
-        link_to(backoffice_admin_bonus_financial_transactions_path(username: user.username), title: 'Histórico de Bônus', target: '_blank') { content_tag(:i, nil, class: 'fa fa-star m-r-5') },
-        link_to(backoffice_admin_financial_transactions_path('q[user_username_cont]' => user.username), title: 'Histórico Financeiro', target: '_blank') { content_tag(:i, nil, class: 'fa fa-dollar m-r-5') },
-        link_to(backoffice_admin_pv_activity_histories_path(username: user.username), title: 'Histórico PV Atividade', target: '_blank') { content_tag(:i, nil, class: 'fa fa-plus-square m-r-5') },
-        link_to(backoffice_admin_pv_histories_path(username: user.username), title: 'Histórico PVs', target: '_blank') { content_tag(:i, nil, class: 'fa fa-clock-o m-r-5') },
-        link_to(edit_backoffice_support_user_path(user), title: 'Editar Usuário', target: '_blank') { content_tag(:i, nil, class: 'fa fa-edit m-r-5') }
+        link_to(backoffice_support_user_path(user), title: 'Ver perfil') { content_tag(:i, nil, class: 'fa fa-user m-r-5') },
+        link_to(backoffice_admin_bonus_financial_transactions_path(username: user.username), title: 'Histórico de Bônus') { content_tag(:i, nil, class: 'fa fa-star m-r-5') },
+        link_to(backoffice_admin_financial_transactions_path('q[user_username_cont]' => user.username), title: 'Histórico Financeiro') { content_tag(:i, nil, class: 'fa fa-dollar m-r-5') },
+        link_to(backoffice_admin_pv_activity_histories_path(username: user.username), title: 'Histórico PV Atividade') { content_tag(:i, nil, class: 'fa fa-plus-square m-r-5') },
+        link_to(backoffice_admin_pv_histories_path(username: user.username), title: 'Histórico PVs') { content_tag(:i, nil, class: 'fa fa-clock-o m-r-5') },
+        link_to(edit_backoffice_support_user_path(user), title: 'Editar Usuário') { content_tag(:i, nil, class: 'fa fa-edit m-r-5') }
       ].join.html_safe
     end
   end
   column(:sign_in, mandatory: true, header: I18n.t('backoffice.support.users.index.sign_in')) do |user|
     format(user) do |user|
       if current_user.admin?
-        link_to(masquerade_path(user), title: 'Logar como Usuário', target: '_blank') { content_tag(:i, nil, class: 'fa fa-user') }
+        link_to(masquerade_path(user), title: 'Logar como Usuário') { content_tag(:i, nil, class: 'fa fa-user') }
       end
     end
   end

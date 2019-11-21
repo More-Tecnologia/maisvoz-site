@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def after_sign_in_path_for(resource)
+    flash[:popup] = Time.now
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 

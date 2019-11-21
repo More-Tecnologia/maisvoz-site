@@ -98,9 +98,9 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Do not dump schema after migrations.
@@ -108,11 +108,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    port:           ENV['SMTP_PORT'],
-    address:        ENV['SMTP_HOST'],
-    user_name:      ENV['SMTP_USER'],
-    password:       ENV['SMTP_PASS'],
-    domain:         ENV['BASE_HOST'],
+    port: ENV['SMTP_PORT'],
+    address: ENV['SMTP_HOST'],
+    user_name: ENV['SMTP_USER'],
+    password: ENV['SMTP_PASS'],
+    domain: ENV['BASE_HOST'],
     authentication: :plain,
     enable_starttls_auto: true
   }

@@ -24,12 +24,12 @@ module Payment
 
     def create_boleto
       res = RestClient.post(url, params.to_json, DEFAULT_HEADERS)
+      json = JSON.parse(res.body)
       if res.code == 201
-        json = JSON.parse(res.body)
         create_bradesco_transaction(json)
         ShoppingMailer.with(order: order).order_made.deliver_later
       else
-        raise res.body
+        {:error => json['status']['mensagem']}
       end
     end
 
@@ -53,7 +53,7 @@ module Payment
         uf: user.state
       }
       params[:boleto] = {
-        beneficiario: 'Mais Voz Ltda',
+        beneficiario: 'MAISVOZ TELECOMUNICAÇÕES EIRELI',
         nosso_numero: 1000 + order.id,
         carteira: 26,
         valor_titulo: order.total_cents,

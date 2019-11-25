@@ -1,8 +1,6 @@
 module Backoffice
   class OrdersController < BackofficeController
 
-    before_action :can_generate_boleto?, only: :generate_boleto
-
     def index
       @orders = current_user.orders.where.not(
         status: :cart
@@ -20,9 +18,12 @@ module Backoffice
         order.save!
       end
 
-      Payment::BradescoBoleto.new(order).call
-
-      flash[:success] = 'Boleto adicionado a fila de processamento'
+      payment = Payment::BradescoBoleto.new(order).call
+      if payment[:error]
+        flash[:error] = payment[:error]
+      else
+        flash[:success] = 'Boleto adicionado a fila de processamento'
+      end
       redirect_to backoffice_orders_path
     end
 
@@ -32,9 +33,5 @@ module Backoffice
       @order ||= current_user.orders.find_by_hashid(params[:id])
     end
 
-    def can_generate_boleto?
-      flash[:error] = 'Emissão do boleto bancário não disponível.'
-      redirect_to backoffice_orders_path
-    end
   end
 end

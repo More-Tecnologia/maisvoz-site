@@ -6,8 +6,7 @@ module Bonification
       ActiveRecord::Base.transaction do
         transaction = credit_binary_bonus
         return transaction.chargeback_by_inactivity! if user.inactive?
-        return transaction.chargeback_excess_monthly!(monthly_bonus_excess) if monthly_bonus_excess > 0
-        transaction.chargeback_excess_weekly!(weekly_bonus_excess) if weekly_bonus_excess > 0
+        transaction.chargeback_by_career_trail_excess!(career_trail_excess_bonus) if career_trail_excess_bonus > 0
       end
     end
 
@@ -81,8 +80,8 @@ module Bonification
       @monthly_bonus_excess ||= calculate_monthly_bonus_excess
     end
 
-    def h
-      ActionController::Base.helpers
+    def career_trail_excess_bonus
+      @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus(binary_bonus)
     end
 
   end

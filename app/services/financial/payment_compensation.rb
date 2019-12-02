@@ -28,7 +28,7 @@ module Financial
         activate_user if adhesion_product
         update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
-        qualify_sponsor if user.sponsor_is_binary_qualified?
+        qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active
         propagate_binary_score
         propagate_products_scores
         propagate_bonuses
@@ -53,7 +53,7 @@ module Financial
     end
 
     def qualify_sponsor
-      Multilevel::QualifyUser.new(user.sponsor).call if user.sponsor.try(:binary_qualified?)
+      Multilevel::SponsorQualifierService.call(user: user)
     end
 
     def propagate_binary_score

@@ -42,4 +42,8 @@ class FinancialReason < ApplicationRecord
     find_by(code: '800')
   end
 
+  def self.career_trail_excess_bonus
+    find_by(code: '900')
+  end
+
 end

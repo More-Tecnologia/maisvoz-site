@@ -206,6 +206,7 @@ class User < ApplicationRecord
 
   def activate!
     update!(active: true, active_until: 1.month.from_now)
+    update_sponsor_binary_qualified
   end
 
   def out_binary_tree?
@@ -262,6 +263,7 @@ class User < ApplicationRecord
 
   def inactivate!
     update_attribute(:active, false)
+    update_sponsor_binary_qualified
   end
 
   def binary_qualify!
@@ -281,6 +283,36 @@ class User < ApplicationRecord
 
   def unilevel_ancestors
     unilevel_node.ancestors.includes(:user).map(&:user)
+  end
+
+  def sum_career_trail_bonus
+    paid_at = find_current_trail_order_paid_at
+    FinancialTransaction.financial_reason_bonus
+                        .where(user: self, created_at: paid_at)
+                        .sum(:cent_amount) if paid_at
+  end
+
+  def calculate_excess_career_trail_bonus(new_bonus)
+    return 0.0 unless current_career_trail.maximum_bonus
+    maximum_bonus = current_career_trail.maximum_bonus / 100.0
+    balance = sum_career_trail_bonus.to_f + new_bonus.to_f
+    balance.to_f - maximum_bonus.to_f
+  end
+
+  def find_current_trail_order_paid_at
+    order_item = OrderItem.includes(:order)
+                          .where(product_id: current_trail.product.id)
+                          .first
+    order_item.try(:order).try(:paid_at)
+  end
+
+  def reached_career_trail_maximum_bonus?
+    user.calculate_excess_career_trail_bonus > 0
+  end
+
+  def update_sponsor_binary_qualified
+    sponsor_node = sponsor.try(:binary_node)
+    sponsor.update_attribute(binary_qualified: sponsor_node.qualified?) if sponsor_node
   end
 
   private

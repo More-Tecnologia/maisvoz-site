@@ -175,7 +175,7 @@ class User < ApplicationRecord
   end
 
   def unilevel_pva_count
-    sponsored.sum(:pva_total)
+    scores.accumulate.sum(:cent_amount)
   end
 
   def self.find_for_database_authentication warden_conditions

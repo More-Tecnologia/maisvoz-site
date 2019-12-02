@@ -17,15 +17,15 @@ module Bonification
     end
 
     def propagate_adhesion_score(user)
-      sponsors = user.ascendant_sponsors
+      sponsors = order.user.unilevel_ancestors.reverse
       sponsors.each_with_index do |sponsor, height|
-        create_adhesion_score(user, height)
+        create_adhesion_score(sponsor, height)
       end
     end
 
-    def create_adhesion_score(user, height)
-      Score.create!(user: user,
-                    spread_user: order.user,
+    def create_adhesion_score(sponsor, height)
+      Score.create!(user: sponsor,
+                    spreader_user: order.user,
                     score_type: score_type,
                     cent_amount: adhesion_product.binary_score,
                     height: height)

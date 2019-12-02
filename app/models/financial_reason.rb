@@ -9,6 +9,7 @@ class FinancialReason < ApplicationRecord
                    uniqueness: { case_sensitive: false }
 
   scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
+  scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
 
   def self.chargeback
     find_by(code: '100')

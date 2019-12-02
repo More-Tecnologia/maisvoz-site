@@ -23,8 +23,8 @@ module Backoffice
     end
 
     def find_financial_reasons_by_path
-      return FinancialReason.bonus.pluck(:title, :id) if controller_is_bonus_financial_transactions?
-      FinancialReason.pluck(:title, :id)
+      return FinancialReason.bonus.unilevel.order(:title).pluck(:title, :id) if controller_is_bonus_financial_transactions?
+      FinancialReason.unilevel.order(:title).pluck(:title, :id)
     end
 
     def controller_is_bonus_financial_transactions?

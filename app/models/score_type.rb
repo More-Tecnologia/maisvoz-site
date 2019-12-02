@@ -37,4 +37,8 @@ class ScoreType < ApplicationRecord
     find_by(id: '700')
   end
 
+  def self.unilevel_inactivity_chargeback
+    find_by(code: '800')
+  end
+
 end

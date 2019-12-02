@@ -24,11 +24,13 @@ module Bonification
     end
 
     def create_adhesion_score(sponsor, height)
-      Score.create!(user: sponsor,
-                    spreader_user: order.user,
-                    score_type: score_type,
-                    cent_amount: adhesion_product.binary_score,
-                    height: height)
+      score = Score.create!(user: sponsor,
+                            order: order,
+                            spreader_user: order.user,
+                            score_type: score_type,
+                            cent_amount: order.activation_products_score,
+                            height: height)
+      score.chargeback_by_inactivity! if sponsor.inactive?
     end
   end
 end

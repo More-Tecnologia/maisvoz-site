@@ -40,6 +40,7 @@ ActiveRecord::Base.transaction do
   score_types = [{ name: 'Pontuação de Adesões', code: '100' },
                  { name: 'Pontuação de Ativação', code: '200' },
                  { name: 'Pontuação de Compras', code: '300' },
+                 { name: 'Estorno de Pontuação por Inatividade', code: '800' },
                  { name: 'Pontuação Binária', tree_type: :binary, code: '400' },
                  { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500' },
                  { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600' },

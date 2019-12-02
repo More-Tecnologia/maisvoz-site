@@ -298,10 +298,10 @@ class User < ApplicationRecord
     (credits - debits).to_f / 1e8.to_f
   end
 
-  def calculate_excess_career_trail_bonus(new_bonus)
+  def calculate_excess_career_trail_bonus
     return 0.0 unless current_career_trail.maximum_bonus
     maximum_bonus = current_career_trail.maximum_bonus / 100.0
-    balance = sum_career_trail_bonus.to_f + new_bonus.to_f
+    balance = sum_career_trail_bonus.to_f
     balance.to_f - maximum_bonus.to_f
   end
 
@@ -313,7 +313,7 @@ class User < ApplicationRecord
   end
 
   def reached_career_trail_maximum_bonus?
-    user.calculate_excess_career_trail_bonus > 0
+    calculate_excess_career_trail_bonus > 0
   end
 
   def update_sponsor_binary_qualified

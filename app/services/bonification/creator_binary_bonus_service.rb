@@ -81,7 +81,7 @@ module Bonification
     end
 
     def career_trail_excess_bonus
-      @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus(binary_bonus)
+      @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus
     end
 
   end

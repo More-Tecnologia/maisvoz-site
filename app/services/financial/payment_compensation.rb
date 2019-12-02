@@ -34,8 +34,8 @@ module Financial
         propagate_bonuses
         create_vouchers
         create_system_fee
-        # binary_bonus_nodes_verifier if user.inside_binary_tree?
-        # notify_user_by_email_about_paid_order
+        binary_bonus_nodes_verifier if user.inside_binary_tree?
+        notify_user_by_email_about_paid_order
       end
       binary_bonus_nodes_verifier if user.inside_binary_tree?
       notify_user_by_email_about_paid_order

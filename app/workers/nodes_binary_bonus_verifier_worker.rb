@@ -4,10 +4,9 @@ class NodesBinaryBonusVerifierWorker
 
   def perform(node_id)
     node = BinaryNode.find(node_id)
-
-    while node.parent.present?
-      node = node.parent
-      verify_node(node)
+    ancestors = node.reached_minimum_score_paid_ancestors
+    ancestors.each do |ancestor|
+      NodeBinaryBonusVerifierWorker.perform_async(ancestor.id)
     end
   end
 

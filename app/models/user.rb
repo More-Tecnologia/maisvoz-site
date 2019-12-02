@@ -213,7 +213,7 @@ class User < ApplicationRecord
   end
 
   def inside_binary_tree?
-    binary_node.nil?
+    binary_node
   end
 
   def sponsor_is_binary_qualified?
@@ -277,6 +277,10 @@ class User < ApplicationRecord
     attributes = { available_balance_cents: new_amount,
                    blocked_balance_cents: new_amount }
     update_attributes!(attributes)
+  end
+
+  def unilevel_ancestors
+    unilevel_node.ancestors.includes(:user).map(&:user)
   end
 
   private

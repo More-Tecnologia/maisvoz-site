@@ -86,7 +86,7 @@ module Financial
 
     def update_user_purchase_flags
       attributes = {}
-      attributes.merge!(bought_adhesion: true) if adhesion_product
+      attributes.merge!(bought_adhesion: true, balance_unlocked_at: Time.zone.now) if adhesion_product
       attributes.merge!(bought_product: true) if regular_product?
       user.update_attributes!(attributes)
     end

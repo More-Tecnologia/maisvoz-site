@@ -287,9 +287,15 @@ class User < ApplicationRecord
 
   def sum_career_trail_bonus
     paid_at = find_current_trail_order_paid_at
-    FinancialTransaction.financial_reason_bonus
-                        .where(user: self, created_at: paid_at)
-                        .sum(:cent_amount) if paid_at
+    debits = financial_transactions.debit
+                                   .financial_reason_bonus
+                                   .where(created_at: paid_at)
+                                   .sum(:cent_amount)
+    credits = financial_transactions.credit
+                                    .financial_reason_bonus
+                                    .where(created_at: paid_at)
+                                    .sum(:cent_amount)
+    (credits - debits).to_f / 1e8.to_f
   end
 
   def calculate_excess_career_trail_bonus(new_bonus)
@@ -302,7 +308,7 @@ class User < ApplicationRecord
   def find_current_trail_order_paid_at
     order_item = OrderItem.includes(:order)
                           .where(product_id: current_trail.product.id)
-                          .first
+                          .last
     order_item.try(:order).try(:paid_at)
   end
 

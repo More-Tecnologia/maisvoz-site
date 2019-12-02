@@ -6,7 +6,9 @@ class ScoreType < ApplicationRecord
 
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false }
-
+  validates :code, presence: true,
+                   uniqueness: true
+                   
   enum tree_type: [:unilevel, :binary]
 
   def self.adhesion

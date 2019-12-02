@@ -104,14 +104,6 @@ class Order < ApplicationRecord
     Digest::MD5.hexdigest("#{id * 1337}:#{hashid}")
   end
 
-  def decorated_type
-    if payable.present?
-      "#{I18n.t(payable.type)} - #{I18n.t(type)}"
-    else type.present?
-      I18n.t(type)
-    end
-  end
-
   def products
     @products ||= order_items.includes(product: [:trail]).map(&:product)
   end

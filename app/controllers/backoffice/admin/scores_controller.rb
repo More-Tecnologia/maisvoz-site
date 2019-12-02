@@ -4,7 +4,10 @@ module Backoffice
       def index
         @tree_type = 'unilevel'
         @q = Score.ransack(params[:q])
-        @scores = @q.result(distinct: true).includes_associations.page(params[:page])
+        @scores = @q.result(distinct: true)
+                    .includes_associations
+                    .order(created_at: :desc)
+                    .page(params[:page])
         render template: 'backoffice/scores/index'
       end
     end

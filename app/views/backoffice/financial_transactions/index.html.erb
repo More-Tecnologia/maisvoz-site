@@ -21,7 +21,7 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th><%= FinancialTransaction.human_attribute_name(:cent_amount) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:created_at) %></th>
                 <th><%= FinancialTransaction.human_attribute_name(:spreader) %></th>
                 <% if current_user.admin? %>
                   <th><%= FinancialTransaction.human_attribute_name(:user) %></th>
@@ -36,8 +36,9 @@
               <% @financial_transactions.each do |transaction| %>
                 <tr>
                   <td><%= transaction.hashid %></td>
+                  <td><%= l transaction.created_at, format: :short %></td>
                   <td class='<%= 'text-danger' if transaction.debit? %>'><%= format_cent_amount_value(transaction) %></td>
-                  <td><%= transaction.spreader.username %></td>
+                  <td><%= transaction.spreader.try(:username) %></td>
                   <% if current_user.admin? %>
                     <td><%= transaction.user.username %></td>
                   <% end %>

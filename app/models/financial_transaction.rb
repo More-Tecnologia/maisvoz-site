@@ -29,12 +29,22 @@ class FinancialTransaction < ApplicationRecord
   validates :financial_reason, presence: true,
                                unless: :is_note_present?
 
+  after_create :update_balance_user
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
 
   def chargeback!
-    create_chargeback!(user: User.find_morenwm_customer_user,
-                       spreader: user,
+    create_chargeback!(user: user,
+                       spreader: User.find_morenwm_customer_admin,
                        financial_reason: FinancialReason.chargeback,
+                       order: order,
+                       cent_amount: cent_amount,
+                       moneyflow: invert_money_flow)
+  end
+
+  def chargeback_to_admin
+    create_chargeback!(user: User.find_morenwm_customer_admin,
+                       spreader: user,
+                       financial_reason: financial_reason,
                        order: order,
                        cent_amount: cent_amount,
                        moneyflow: invert_money_flow)
@@ -63,6 +73,14 @@ class FinancialTransaction < ApplicationRecord
     chargeback_binary_score!(FinancialReason.chargeback_excess_weekly, amount)
   end
 
+  def cent_amount
+    self[:cent_amount] / 1e8.to_f if self[:cent_amount]
+  end
+
+  def cent_amount=(amount)
+    self[:cent_amount] = (amount * 1e8).to_i
+  end
+
   def chargeback_by_career_trail_excess!(amount)
     chargeback_binary_score!(FinancialReason.career_trail_excess_bonus, amount)
   end
@@ -81,8 +99,19 @@ class FinancialTransaction < ApplicationRecord
     note.present?
   end
 
-  def inactivate_user!
-    user.inactivate! if !chargeback? && user.reached_career_trail_maximum_bonus?
+  def update_balance_user
+    amount = debit? ? -cent_amount : cent_amount
+    return user.update_available_balance!(amount) if user.admin?
+
+    if financial_reason_type_bonus?
+      user.update_blocked_balance!(amount)
+    else
+      user.update_available_balance!(amount)
+    end
   end
-  
+
+  def inactivate_user!
+    user.inactivate! if !chargeback? && user.empreendedor? && user.reached_career_trail_maximum_bonus?
+  end
+
 end

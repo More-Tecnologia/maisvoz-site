@@ -13,7 +13,7 @@ module Bonification
     def initialize(args)
       @order = args[:order]
       @activation_product = order.activation_product
-      @score_type = ScoreType.find_by(id: 2)
+      @score_type = ScoreType.activation
     end
 
     def propagate_activation_score(user)

@@ -13,7 +13,7 @@ module Bonification
     def initialize(args)
       @order = args[:order]
       @adhesion_product = order.adhesion_product
-      @score_type = ScoreType.find_by(id: 1)
+      @score_type = ScoreType.adhesion
     end
 
     def propagate_adhesion_score(user)

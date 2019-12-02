@@ -1,11 +1,7 @@
 class BradescoCheckOrderController < ActionController::Base
 
   def index
-    if valid_request?
-      head :ok
-    else
-      head :bad_request
-    end
+    head :ok
   end
 
   protected

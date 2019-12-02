@@ -32,9 +32,8 @@ module Bonification
     def create_product_bonuses(ascendant_sponsor, generation, product)
       financial_reasons = find_financial_reasons_by(product)
       financial_reasons.each do |financial_reason|
-        product_score = product_scores.fetch(financial_reason.id)
-                                      .fetch(ascendant_sponsor.current_career_trail.id)
-        return unless product_score && product_score.generation == generation
+        product_score = find_product_score(ascendant_sponsor, financial_reason, product, generation)
+        return unless product_score && product_score.amount_cents > 0
         financial_transaction = create_financial_transaction(ascendant_sponsor,
                                                              generation,
                                                              product,
@@ -83,6 +82,15 @@ module Bonification
 
     def career_trail_excess_bonus
       @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus
+    end
+
+    def find_product_score(ascendant_sponsor, financial_reason, product, generation)
+      ProductScore.includes(:career_trail)
+                  .joins(product_reason_score: [:product, :financial_reason])
+                  .where(career_trail: ascendant_sponsor.current_career_trail)
+                  .where('product_reason_scores.financial_reason_id = ?', financial_reason.id)
+                  .where('product_reason_scores.product_id = ?', product.id)
+                  .where(generation: generation)
     end
 
   end

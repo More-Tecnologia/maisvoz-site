@@ -17,7 +17,7 @@ module Bonification
       @order = args[:order]
       @user = order.user
       @detached_score = order.detached_products_score
-      @score_type = ScoreType.find_by(id: 3)
+      @score_type = ScoreType.detached
     end
 
     def create_detached_score(sponsor, height)

@@ -30,11 +30,11 @@ class BinaryNode < ApplicationRecord
   end
 
   def left_leg_score
-    user.scores.binary_score.left.sum(:cent_amount)
+    user.scores.binary.left.sum(:cent_amount)
   end
 
   def right_leg_score
-    user.scores.binary_score.right.sum(:cent_amount)
+    user.scores.binary.right.sum(:cent_amount)
   end
 
   def left_child?(child)

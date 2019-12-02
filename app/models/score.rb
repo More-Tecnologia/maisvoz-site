@@ -31,6 +31,7 @@ class Score < ApplicationRecord
   scope :sum_by_generation, -> { where('height > 1')
                                 .group(:height)
                                 .sum(:cent_amount) }
+  scope :binary, -> { where(score_type: ScoreType.binary) }
 
   def chargeback!(score_type, amount = cent_amount)
     create_chargeback!(source_leg: source_leg,

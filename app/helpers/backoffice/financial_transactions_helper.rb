@@ -2,9 +2,9 @@ module Backoffice
   module FinancialTransactionsHelper
 
     def format_cent_amount_value(financial_transaction)
-      amount = financial_transaction.amount_cents
-      return number_to_currency(-amount) if financial_transaction.debit?
-      number_to_currency(amount)
+      amount = financial_transaction.cent_amount
+      return number_to_currency(-amount, precision: 8) if financial_transaction.debit?
+      number_to_currency(amount, precision: 8)
     end
 
     def find_financial_transactions_search_url

@@ -143,6 +143,8 @@ class User < ApplicationRecord
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
+  scope :active, -> { where(active: true) }
+
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
@@ -154,6 +156,22 @@ class User < ApplicationRecord
 
   def balance_cents
     available_balance_cents + blocked_balance_cents
+  end
+
+  def available_balance_cents
+    self[:available_balance_cents] / 1e8.to_f if self[:available_balance_cents]
+  end
+
+  def available_balance_cents=(amount)
+    self[:available_balance_cents] = (amount * 1e8).to_i
+  end
+
+  def blocked_balance_cents
+    self[:blocked_balance_cents] / 1e8.to_f if self[:blocked_balance_cents]
+  end
+
+  def blocked_balance_cents=(amount)
+    self[:blocked_balance_cents] = (amount * 1e8).to_i
   end
 
   def unilevel_pva_count
@@ -245,8 +263,20 @@ class User < ApplicationRecord
     find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
   end
 
+  def self.find_morenwm_customer_admin
+    find_by(username: ENV['MORENWM_CUSTOMER_ADMIN'])
+  end
+
   def self.find_morenwm_user
     find_by(username: ENV['MORENWM_USERNAME'])
+  end
+
+  def update_blocked_balance!(amount)
+    update_attribute(:blocked_balance_cents, blocked_balance_cents + amount)
+  end
+
+  def update_available_balance!(amount)
+    update_attribute(:available_balance_cents, available_balance_cents + amount)
   end
 
   def next_career_kind

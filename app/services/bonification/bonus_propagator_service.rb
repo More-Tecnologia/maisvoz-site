@@ -34,7 +34,7 @@ module Bonification
       financial_reasons.each do |financial_reason|
         product_score = product_scores.fetch(financial_reason.id)
                                       .fetch(ascendant_sponsor.current_career_trail.id)
-        return unless product_score
+        return unless product_score && product_score.generation == generation
         financial_transaction = create_financial_transaction(ascendant_sponsor,
                                                              generation,
                                                              product,
@@ -47,13 +47,20 @@ module Bonification
 
     def create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
-      score = order_item_quantity * product_score.calculate_product_score(product.price_cents)
-      FinancialTransaction.create!(user: ascendant_sponsor,
-                                   spreader: user,
-                                   financial_reason: financial_reason,
-                                   generation: generation,
-                                   cent_amount: score.round(0),
-                                   order: order) if score > 0
+      bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
+      return unless bonus > 0
+      financial_transaction = FinancialTransaction.create!(user: ascendant_sponsor,
+                                                           spreader: user,
+                                                           financial_reason: financial_reason,
+                                                           generation: generation,
+                                                           cent_amount: score.round(0),
+                                                           order: order) if score > 0
+      financial_transaction.chargeback_to_admin
+      if ascendant_sponsor.active?
+        financial_transaction.chargeback_by_career_trail_excess!(career_trail_excess_bonus) if career_trail_excess_bonus > 0
+      else
+        financial_transaction.chargeback!.chargeback_to_admin
+      end
     end
 
     def find_product_reason_scores_by(products)
@@ -75,8 +82,8 @@ module Bonification
     end
 
     def career_trail_excess_bonus
-      @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus(binary_bonus)
+      @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus
     end
-    
+
   end
 end

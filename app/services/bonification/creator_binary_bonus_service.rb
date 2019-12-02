@@ -27,7 +27,6 @@ module Bonification
 
     def credit_binary_bonus
       financial_transaction = create_bonus
-      user.update_balance_cents!(financial_transaction.cent_amount)
       Score.debit_shortter_leg_score_from(user)
       financial_transaction
     end

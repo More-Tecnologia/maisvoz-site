@@ -11,6 +11,10 @@ class FinancialReason < ApplicationRecord
   scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
   scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
 
+  def is_bonus?
+    financial_reason_type.code == '200'
+  end
+
   def self.chargeback
     find_by(code: '100')
   end
@@ -45,6 +49,10 @@ class FinancialReason < ApplicationRecord
 
   def self.career_trail_excess_bonus
     find_by(code: '900')
+  end
+
+  def self.order_payment
+    find_by(code: '1100')
   end
 
 end

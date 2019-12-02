@@ -21,7 +21,7 @@ module Financial
 
     def compensate_order
       ActiveRecord::Base.transaction do
-        order.paid!
+        create_order_payment
         upgrade_user_career if first_adhesion?
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
@@ -54,6 +54,11 @@ module Financial
 
     def qualify_sponsor
       Multilevel::SponsorQualifierService.call(user: user)
+    end
+
+    def create_order_payment
+      order.paid!
+      Financial::OrderPaymentService.call(order: order)
     end
 
     def propagate_binary_score

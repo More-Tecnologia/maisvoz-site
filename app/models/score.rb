@@ -42,6 +42,10 @@ class Score < ApplicationRecord
                        score_type: score_type)
   end
 
+  def chargeback_by_inactivity!
+    chargeback!(ScoreType.unilevel_inactivity_chargeback)
+  end
+
   def self.debit_shortter_leg_score_from(user)
     attrs = { user: user,
               cent_amount: user.binary_node.shortter_leg_score,

@@ -40,7 +40,8 @@ module Bonification
                                                              product,
                                                              financial_reason,
                                                              product_score)
-        financial_transaction.chargeback! unless ascendant_sponsor.active?
+        return financial_transaction.chargeback! if ascendant_sponsor.inactive?
+        financial_transaction.chargeback_by_career_trail_excess!(career_trail_excess_bonus) if career_trail_excess_bonus > 0
       end
     end
 
@@ -72,5 +73,10 @@ module Bonification
                            .compact
                            .uniq
     end
+
+    def career_trail_excess_bonus
+      @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus(binary_bonus)
+    end
+    
   end
 end

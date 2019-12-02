@@ -58,4 +58,20 @@ class BinaryNode < ApplicationRecord
     ancestors.select(&:reached_minimum_score_paid?)
   end
 
+  def left_leg_qualified?
+    user.sponsored.left.exists?(active: true)
+  end
+
+  def right_leg_qualified?
+    user.sponsored.right.exists?(active: true)
+  end
+
+  def qualified?
+    right_leg_qualified? && left_leg_qualified?
+  end
+
+  def qualifier?(trail)
+    user.active && user.current_trail.greater_or_equal_to?(trail)
+  end
+
 end

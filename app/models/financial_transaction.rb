@@ -29,6 +29,8 @@ class FinancialTransaction < ApplicationRecord
   validates :financial_reason, presence: true,
                                unless: :is_note_present?
 
+  after_create :inactivate_user!, if: :financial_reason_type_bonus?
+
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_user,
                        spreader: user,
@@ -61,6 +63,14 @@ class FinancialTransaction < ApplicationRecord
     chargeback_binary_score!(FinancialReason.chargeback_excess_weekly, amount)
   end
 
+  def chargeback_by_career_trail_excess!(amount)
+    chargeback_binary_score!(FinancialReason.career_trail_excess_bonus, amount)
+  end
+
+  def financial_reason_type_bonus?
+    financial_reason.try(:financial_reason_type) == FinancialReasonType.bonus
+  end
+
   private
 
   def invert_money_flow
@@ -70,4 +80,9 @@ class FinancialTransaction < ApplicationRecord
   def is_note_present?
     note.present?
   end
+
+  def inactivate_user!
+    user.inactivate! if !chargeback? && user.reached_career_trail_maximum_bonus?
+  end
+  
 end

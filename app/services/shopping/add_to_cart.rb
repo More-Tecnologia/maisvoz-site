@@ -11,15 +11,17 @@ module Shopping
     def call
       ActiveRecord::Base.transaction do
         if !product.active?
-          errors.add(:product, 'product is not active')
+          errors.add(:product, I18n.t('product_is_not_active'))
         elsif find_order_item.present? && product.adhesion?
-          errors.add(:product, 'cant add product to cart')
+          errors.add(:product, I18n.t('cant_add_produt_to_cart'))
+        elsif product.adhesion? && already_another_adhesion_product?
+          errors.add(:product, I18n.t('there_are_adhesion_product'))
         elsif add_to_order
           update_order_total
           update_order_pv_total
           return order
         else
-          errors.add(:product, 'cant add product to cart')
+          errors.add(:product, I18n.t('cant_add_produt_to_cart'))
         end
       end
     end
@@ -74,6 +76,10 @@ module Shopping
 
     def product
       @product ||= Product.find(product_id)
+    end
+
+    def already_another_adhesion_product?
+      order.try(:order_items).any? { |i| i.try(:product).try(:adhesion?) }
     end
 
   end

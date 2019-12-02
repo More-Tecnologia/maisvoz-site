@@ -66,6 +66,8 @@ class Product < ApplicationRecord
   scope :regular, -> { where.not(kind: :activation) }
   scope :active, -> { where(active: true) }
 
+  validates :trail, presence: true, if: :adhesion?
+
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?
     main_photo.public_id

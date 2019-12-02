@@ -2,6 +2,7 @@ module Backoffice
   class OrderItemsController < BackofficeController
 
     before_action :ensure_valid_user
+    before_action :ensure_valid_product
 
     def create
       command = Shopping::AddToCart.call(current_order, product_params[:id])
@@ -54,6 +55,17 @@ module Backoffice
 
       flash[:error] = 'Você precisa preencher seus dados corretamente antes de poder gerar o boleto.'
       redirect_to edit_user_registration_path
+    end
+
+    def ensure_valid_product
+      return unless current_user.active? && product.adhesion? && product_less_or_equal_current_trail_product?
+      flash[:error] = I18n.t('defaults.cant_buy_product')
+      redirect_back fallback_location: root_path
+    end
+
+    def product_less_or_equal_current_trail_product?
+      trail_product = current_user.try(:current_trail).try(:product)
+      trail_product && product.price_cents <= trail_product.price_cents
     end
 
   end

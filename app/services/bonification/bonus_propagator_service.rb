@@ -1,9 +1,9 @@
 module Bonification
   class BonusPropagatorService < ApplicationService
     def call
-      ascendant_sponsors = user.ascendant_sponsors
-      ascendant_sponsors.each_with_index do |ascendant_sponsor, index|
-        propagate_product_bonus(ascendant_sponsor, index + 1)
+      sponsors = user.unilevel_ancestors.reverse
+      sponsors.each_with_index do |sponsor, index|
+        propagate_product_bonus(sponsor, index + 1) if sponsor.empreendedor?
       end
     end
 

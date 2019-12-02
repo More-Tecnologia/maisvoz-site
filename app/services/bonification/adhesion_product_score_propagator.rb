@@ -18,8 +18,8 @@ module Bonification
 
     def propagate_adhesion_score(user)
       sponsors = order.user.unilevel_ancestors.reverse
-      sponsors.each_with_index do |sponsor, height|
-        create_adhesion_score(sponsor, height)
+      sponsors.each_with_index do |sponsor, index|
+        create_adhesion_score(sponsor, index + 1) if sponsor.empreendedor?
       end
     end
 

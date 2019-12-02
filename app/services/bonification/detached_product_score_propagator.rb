@@ -4,8 +4,8 @@ module Bonification
     def call
       return if detached_score <= 0
       sponsors = user.unilevel_ancestors.reverse
-      sponsors.each_with_index do |sponsor, height|
-        create_detached_score(sponsor, height)
+      sponsors.each_with_index do |sponsor, index|
+        create_detached_score(sponsor, index + 1) if sponsor.empreendedor?
       end
     end
 
@@ -22,6 +22,7 @@ module Bonification
 
     def create_detached_score(sponsor, height)
       Score.create!(user: sponsor,
+                    order: order,
                     spreader_user: user,
                     score_type: score_type,
                     cent_amount: detached_score,

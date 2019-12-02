@@ -92,7 +92,7 @@ module Financial
 
     def upgrade_user_trail
       trail = adhesion_product.try(:trail)
-      UpgraderTrailService.call(user: user, trail: trail) if trail
+      UpgraderTrailService.call(user: user, new_trail: trail) if trail
     end
 
     def activate_user

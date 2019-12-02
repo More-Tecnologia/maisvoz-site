@@ -523,6 +523,7 @@ pt-BR:
     support: Suporte
     contract_link_html: contrato de consultor de vendas
     accept_contract_html: "Aceito o %{link}"
+    cant_buy_product: Você não pode comprar um pacote de adesão de menor ou igual pontuação.
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -833,6 +834,9 @@ pt-BR:
   debit: Débito
   "true": Sim
   "false": Não
+  there_are_adhesion_product: Carrinho já tem um produto do tipo adesão
+  cant_add_produt_to_cart: Não foi possível add produto ao carrinho
+  product_is_not_active: Produto Inativo
   datagrid:
     form:
       search: Filtrar

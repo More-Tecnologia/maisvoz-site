@@ -20,7 +20,7 @@ module Bonification
         ascendant_path = user_binary_node.path.includes_associations.reverse
         child_and_parent = ascendant_path.each_cons(2).to_a
         child_and_parent.each_with_index do |(child, parent), index|
-          create_score(child, parent, index + 1)
+          create_score(child, parent, index + 1) if parent.user.empreendedor?
         end
       end
 

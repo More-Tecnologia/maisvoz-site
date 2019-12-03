@@ -85,7 +85,7 @@ Rails.application.routes.draw do
     resources :binary_strategies, only: [:index, :create]
     resources :binary_tree, only: [:index, :show]
     resources :unilevel, only: [:index]
-    resources :generation_scores, only: [:index]
+    resources :lineage_scores, only: [:index]
   end
 
   namespace :api do

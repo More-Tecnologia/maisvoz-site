@@ -279,7 +279,7 @@ pt-BR:
     accumulated_pva:
       index:
         title: PVA Acumulado
-    generation_scores:
+    lineage_scores:
       index:
         title: Pontuação por Geração
     financial_transactions:
@@ -529,6 +529,7 @@ pt-BR:
     approve_order_without_bonification: Aprovar Pedido sem Bonificação
     source_leg_left: Perna Esquerda
     source_leg_right: Perna Direita
+    lineage: Linhagem
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

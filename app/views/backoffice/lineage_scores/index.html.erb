@@ -20,15 +20,19 @@
             <table class="table table-bordered m-0">
               <thead>
                 <tr>
-                  <th><%= Score.human_attribute_name(:height) %></th>
+                  <th><strong><%= t('defaults.lineage') %></strong> </th>
                   <th><%= Score.human_attribute_name(:cent_amount) %> </th>
+                  <th><%= Score.human_attribute_name(:balance) %> </th>
                 </tr>
               </thead>
               <tbody>
-                <% @generation_scores.each do |generation, score_sum| %>
+                <% score_sum = @lineage_scores.sum(&:second) %>
+                <% @lineage_scores.each do |user, score_sum_by_user| %>
                   <tr>
-                    <td><%= generation - 1 %>˚</td>
+                    <td><%= user.username %></td>
+                    <td><%= number_with_delimiter score_sum_by_user %></td>
                     <td><%= number_with_delimiter score_sum %></td>
+                    <% score_sum -= score_sum_by_user %>
                   </tr>
                 <% end %>
               </tbody>

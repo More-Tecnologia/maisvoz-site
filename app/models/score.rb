@@ -28,12 +28,15 @@ class Score < ApplicationRecord
                                                                 score_type: ScoreType.binary) }
   scope :unilevel_by_user, ->(user) { includes_associations.where(user: user,
                                                                   score_type: ScoreType.unilevel) }
-  scope :sum_by_generation, -> { where('height > 1')
-                                .group(:height)
-                                .sum(:cent_amount) }
   scope :binary, -> { where(score_type: ScoreType.binary) }
   scope :unilevel, -> { where(score_type: ScoreType.unilevel) }
   scope :accumulate, -> { where(score_type: ScoreType.unilevel) }
+  scope :sum_unilevel_received_by, ->(user_ids) { unilevel.where(user_id: user_ids)
+                                                          .group(:user)
+                                                          .sum(:cent_amount) }
+  scope :sum_unilevel_spreaded_by, ->(user_ids) { unilevel.where(spreader_user_id: user_ids)
+                                                          .group(:spreader_user)
+                                                          .sum(:cent_amount) }
 
   def chargeback!(score_type, amount = cent_amount)
     create_chargeback!(source_leg: source_leg,

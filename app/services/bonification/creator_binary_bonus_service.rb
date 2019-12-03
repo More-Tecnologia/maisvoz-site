@@ -2,7 +2,7 @@ module Bonification
   class CreatorBinaryBonusService < ApplicationService
 
     def call
-      return unless valid_binary_score.to_f > 0
+      return unless binary_bonus_score.to_f > 0
       ActiveRecord::Base.transaction do
         transaction = credit_binary_bonus
         return transaction.chargeback_by_inactivity! if user.inactive?
@@ -14,18 +14,18 @@ module Bonification
 
     private
 
-    attr_reader :binary_node, :user, :score_cycle, :valid_binary_score
+    attr_reader :binary_node, :user, :score_cycle, :binary_bonus_score
 
     def initialize(binary_node)
       @binary_node = binary_node
       @user        = binary_node.user
-      @score_cycle = ensure_cycle_score
-      @valid_binary_score = shortter_leg_score.div(score_cycle) * score_cycle
+      @score_cycle = ENV['BINARY_SCORE_MINIMUM_PAID'].to_i
+      @binary_bonus_score = shortter_leg_score.div(score_cycle) * score_cycle
     end
 
     def credit_binary_bonus
       financial_transaction = create_bonus
-      Score.debit_binary_score_from_legs(user, valid_binary_score)
+      Score.debit_binary_score_from_legs(user, binary_bonus_score)
       financial_transaction
     end
 
@@ -36,7 +36,7 @@ module Bonification
     end
 
     def valid_binary_bonus
-      @valid_binary_bonus ||= user.current_trail.calculate_binary_bonus(valid_binary_score)
+      @valid_binary_bonus ||= user.current_trail.calculate_binary_bonus(binary_bonus_score)
     end
 
     def binary_percent

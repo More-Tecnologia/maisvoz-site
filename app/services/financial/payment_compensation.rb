@@ -3,9 +3,10 @@ module Financial
 
     prepend SimpleCommand
 
-    def initialize(order)
+    def initialize(order, enabled_bonification = true)
       @order = order
       @user  = order.user
+      @enabled_bonification = enabled_bonification
     end
 
     def call
@@ -17,7 +18,7 @@ module Financial
 
     private
 
-    attr_reader :order, :user
+    attr_reader :order, :user, :enabled_bonification
 
     def compensate_order
       ActiveRecord::Base.transaction do
@@ -29,13 +30,13 @@ module Financial
         update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active
-        propagate_binary_score
-        propagate_products_scores
+        propagate_binary_score if enabled_bonification
+        propagate_products_scores if enabled_bonification
         upgrade_user_career
-        propagate_bonuses
+        propagate_bonuses if enabled_bonification
         create_vouchers
         create_system_fee
-        binary_bonus_nodes_verifier if user.inside_binary_tree?
+        binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification
         notify_user_by_email_about_paid_order
       end
       binary_bonus_nodes_verifier if user.inside_binary_tree?
@@ -59,7 +60,7 @@ module Financial
 
     def create_order_payment
       order.paid!
-      Financial::OrderPaymentService.call(order: order)
+      Financial::OrderPaymentService.call(order: order) if enabled_bonification
     end
 
     def propagate_binary_score

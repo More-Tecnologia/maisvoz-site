@@ -525,6 +525,7 @@ pt-BR:
     contract_link_html: contrato de consultor de vendas
     accept_contract_html: "Aceito o %{link}"
     cant_buy_product: Você não pode comprar um pacote de adesão de menor ou igual pontuação.
+    approve_order_without_bonification: Aprovar Pedido sem Bonificação
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -546,6 +547,8 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+    confirm:
+      approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:

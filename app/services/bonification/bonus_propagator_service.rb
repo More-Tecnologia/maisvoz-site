@@ -75,7 +75,6 @@ module Bonification
       sponsor.calculate_excess_career_trail_bonus
     end
 
-<<<<<<< Updated upstream
     def find_product_score(ascendant_sponsor, financial_reason, product, generation)
       ProductScore.includes(:career_trail)
                   .joins(product_reason_score: [:product, :financial_reason])
@@ -85,7 +84,5 @@ module Bonification
                   .where(generation: generation)
     end
 
-=======
->>>>>>> Stashed changes
   end
 end

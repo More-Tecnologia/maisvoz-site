@@ -16,9 +16,9 @@ module Financial
 
     def transfer_blocked_balance
       user.with_lock do
-        user.balance_cents         = user.blocked_balance_cents
-        user.blocked_balance_cents = 0
-        user.balance_unlocked_at   = Time.zone.now
+        user.available_balance_cents = user.blocked_balance_cents
+        user.blocked_balance_cents   = 0
+        user.balance_unlocked_at     = Time.zone.now
         user.save!
       end
     end

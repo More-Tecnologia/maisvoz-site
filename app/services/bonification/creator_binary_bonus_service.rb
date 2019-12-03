@@ -51,5 +51,9 @@ module Bonification
       @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus
     end
 
+    def ensure_cycle_score
+      ENV['BINARY_SCORE_MINIMUM_PAID'].to_i
+    end
+
   end
 end

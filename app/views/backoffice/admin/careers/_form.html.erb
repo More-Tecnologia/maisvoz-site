@@ -6,6 +6,9 @@
   <%= f.input :binary_limit %>
   <%= f.input :binary_percentage %>
   <%= f.input :kind, collection: Career.kinds.map { |k,v| [t(k), k] } %>
+  <%= f.input :career_id, collection: careers_for_select,
+                          selected: find_binary_qualifying_career(f.object.career_id),
+                          include_blank: true %>
 
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
 <% end %>

@@ -8,6 +8,7 @@ module Bonification
         return transaction.chargeback_by_inactivity! if user.inactive?
         return transaction.chargeback_by_unqualification! if user.binary_unqualified?
         transaction.chargeback_by_career_trail_excess!(career_trail_excess_bonus) if career_trail_excess_bonus > 0
+        Financial::UnlockBlockedBalance.call(user: ascendant_sponsor)
       end
     end
 

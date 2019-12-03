@@ -11,7 +11,7 @@ class CareerTrail < ApplicationRecord
   end
 
   def calculate_maximum_bonus
-    product_value = trail.product.price_cents / 100.0
+    product_value = trail.product.product_value
     product_value * maximum_bonus / 100.0
   end
 

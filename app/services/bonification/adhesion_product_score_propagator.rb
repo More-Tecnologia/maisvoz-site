@@ -19,7 +19,9 @@ module Bonification
     def propagate_adhesion_score(user)
       sponsors = order.user.unilevel_ancestors.reverse
       sponsors.each_with_index do |sponsor, index|
-        create_adhesion_score(sponsor, index + 1) if sponsor.empreendedor?
+        return unless sponsor.empreendedor?
+        create_adhesion_score(sponsor, index + 1)
+        upgrade_career(sponsor)
       end
     end
 
@@ -31,5 +33,10 @@ module Bonification
                             cent_amount: order.activation_products_score,
                             height: height)
     end
+
+    def upgrade_career(sponsor)
+      UpgraderCareerService.call(user: sponsor)
+    end
+
   end
 end

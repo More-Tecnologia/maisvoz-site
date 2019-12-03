@@ -63,6 +63,9 @@ ActiveRecord::Base.transaction do
                    { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700' },
                    { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '900' },
                    { title: 'Estorno de Bonus por Limite de Careeira', code: '900' },
+                   { title: 'Bonus Indicacao', code: '1000'},
+                   { title: 'Bonus Rendimento', code: '1100'},
+                   { title: 'Pagamento de Pedido', code: '1200'},
                    { title: 'Estorno de Bonus Binário por Desqualificação', code: '1300' }]
   bonus_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))

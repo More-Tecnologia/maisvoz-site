@@ -9,7 +9,7 @@
           <% if current_user.admin? && controller_path.include?('admin') %>
             <div class="col-md-3">
               <%= f.label t('attributes.username') %>
-              <%= f.search_field :user_username_cont, class: 'form-control input-sm' %>
+              <%= f.search_field :user_username_eq, class: 'form-control input-sm' %>
             </div>
           <% end %>
           <div class="col-md-3">

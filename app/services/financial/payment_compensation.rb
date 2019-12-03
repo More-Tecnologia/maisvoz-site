@@ -31,8 +31,8 @@ module Financial
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active
         propagate_binary_score
         propagate_products_scores
-        propagate_bonuses
         upgrade_user_career
+        propagate_bonuses
         create_vouchers
         create_system_fee
         binary_bonus_nodes_verifier if user.inside_binary_tree?
@@ -93,7 +93,7 @@ module Financial
     end
 
     def upgrade_user_career
-      UpgraderCareerService.call(user: user)
+      UpgraderCareerService.call(user: user.sponsor)
     end
 
     def upgrade_user_trail

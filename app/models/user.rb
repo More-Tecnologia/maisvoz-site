@@ -287,6 +287,10 @@ class User < ApplicationRecord
     !binary_qualified?
   end
 
+  def binary_qualified?
+    binary_qualified
+  end
+
   def inactive?
     !active
   end
@@ -316,7 +320,7 @@ class User < ApplicationRecord
   end
 
   def sum_career_trail_bonus
-    paid_at = find_current_trail_order_paid_at
+    paid_at = find_current_trail_order_payment_date
     debits = financial_transactions.debit
                                    .financial_reason_bonus
                                    .where('financial_transactions.created_at >= ?', paid_at)
@@ -335,8 +339,9 @@ class User < ApplicationRecord
     balance.to_f - maximum_bonus.to_f
   end
 
-  def find_current_trail_order_paid_at
+  def find_current_trail_order_payment_date
     order_item = OrderItem.includes(:order)
+                          .where('orders.user': self)
                           .where(product_id: current_trail.product.id)
                           .last
     order_item.try(:order).try(:paid_at)

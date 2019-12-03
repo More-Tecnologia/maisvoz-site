@@ -34,13 +34,8 @@ module Bonification
       financial_reasons.each do |financial_reason|
         product_score = find_product_score(ascendant_sponsor, financial_reason, product, generation)
         return unless product_score && product_score.amount_cents > 0
-        financial_transaction = create_financial_transaction(ascendant_sponsor,
-                                                             generation,
-                                                             product,
-                                                             financial_reason,
-                                                             product_score)
-        return financial_transaction.chargeback! if ascendant_sponsor.inactive?
-        financial_transaction.chargeback_by_career_trail_excess!(career_trail_excess_bonus) if career_trail_excess_bonus > 0
+        create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
+        Financial::UnlockBlockedBalance.call(user: ascendant_sponsor)
       end
     end
 
@@ -56,7 +51,6 @@ module Bonification
       return financial_transaction.chargeback_by_inactivity! if ascendant_sponsor.inactive?
       excess = career_trail_excess_bonus(ascendant_sponsor)
       financial_transaction.chargeback_by_career_trail_excess!(excess) if excess > 0
-      Financial::UnlockBlockedBalance.call(user: ascendant_sponsor)
     end
 
     def find_product_reason_scores_by(products)
@@ -81,6 +75,7 @@ module Bonification
       sponsor.calculate_excess_career_trail_bonus
     end
 
+<<<<<<< Updated upstream
     def find_product_score(ascendant_sponsor, financial_reason, product, generation)
       ProductScore.includes(:career_trail)
                   .joins(product_reason_score: [:product, :financial_reason])
@@ -90,5 +85,7 @@ module Bonification
                   .where(generation: generation)
     end
 
+=======
+>>>>>>> Stashed changes
   end
 end

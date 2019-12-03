@@ -10,5 +10,9 @@ class Trail < ApplicationRecord
   def greater_or_equal_to?(trail)
     product.price_cents >= trail.product.price_cents
   end
-  
+
+  def calculate_binary_bonus(score)
+    score.to_f * product.binary_bonus_percent / 100.0
+  end
+
 end

@@ -65,6 +65,10 @@ class FinancialTransaction < ApplicationRecord
     chargeback_binary_score!(FinancialReason.chargeback_by_inactivity, cent_amount)
   end
 
+  def chargeback_by_unqualification!
+    chargeback_binary_score!(FinancialReason.chargeback_by_unqualification, cent_amount)
+  end
+
   def chargeback_excess_monthly!(amount)
     chargeback_binary_score!(FinancialReason.chargeback_excess_monthly, amount)
   end

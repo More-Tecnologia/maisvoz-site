@@ -55,4 +55,8 @@ class FinancialReason < ApplicationRecord
     find_by(code: '1100')
   end
 
+  def self.chargeback_by_unqualification
+    find_by(code: '1300')
+  end
+
 end

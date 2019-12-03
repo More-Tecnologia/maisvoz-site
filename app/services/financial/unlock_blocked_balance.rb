@@ -16,9 +16,9 @@ module Financial
 
     def transfer_blocked_balance
       user.with_lock do
-        user.balance_cents         = user.blocked_balance_cents
-        user.blocked_balance_cents = 0
-        user.balance_unlocked_at   = Time.zone.now
+        user.available_balance_cents = user.blocked_balance_cents
+        user.blocked_balance_cents   = 0
+        user.balance_unlocked_at     = Time.zone.now
         user.save!
       end
     end
@@ -30,7 +30,7 @@ module Financial
     end
 
     def threshold_reached?
-      user.blocked_balance_cents / user.current_trail.product.price_cents * 1e2 >=
+      user.blocked_balance_cents / user.current_trail.product.price * 1e2 >=
         user.current_career_trail.unlock_blocked_balance_threshold
     end
 

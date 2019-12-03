@@ -89,4 +89,8 @@ class Product < ApplicationRecord
     binary_bonus.to_f / 100.0
   end
 
+  def product_value
+    price_cents.to_f / 100.0
+  end
+
 end

@@ -35,8 +35,10 @@ module Financial
     end
 
     def minimum_period_reached?
-      user.current_career_trail.unlock_blocked_balance_min_period.days.ago >=
-        user.balance_unlocked_at
+      product_value = user.current_trail.product.product_value
+      rate = user.blocked_balance_cents.to_f / product_value if product_value > 0
+      threshold_rate = user.current_career_trail.unlock_blocked_balance_threshold.to_f / 100.0
+      rate.to_f > threshold_rate.to_f
     end
 
   end

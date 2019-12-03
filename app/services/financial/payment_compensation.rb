@@ -23,7 +23,6 @@ module Financial
       ActiveRecord::Base.transaction do
         create_order_payment
         update_user_purchase_flags
-        upgrade_user_career if first_adhesion?
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
         activate_user if adhesion_product
@@ -33,6 +32,7 @@ module Financial
         propagate_binary_score
         propagate_products_scores
         propagate_bonuses
+        upgrade_user_career
         create_vouchers
         create_system_fee
         binary_bonus_nodes_verifier if user.inside_binary_tree?
@@ -135,10 +135,6 @@ module Financial
 
     def upgraded_trail?
       user.bought_adhesion && new_trail?
-    end
-
-    def first_adhesion?
-      !user.bought_adhesion && adhesion_product
     end
 
     def inside_binary_tree?

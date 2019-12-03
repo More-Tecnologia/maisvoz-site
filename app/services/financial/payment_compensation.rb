@@ -22,6 +22,7 @@ module Financial
     def compensate_order
       ActiveRecord::Base.transaction do
         create_order_payment
+        update_user_purchase_flags
         upgrade_user_career if first_adhesion?
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags

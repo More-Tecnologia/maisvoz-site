@@ -22,7 +22,8 @@ module Bonification
     def valid_to_receive_bonus?
       user.binary_qualified? &&
       user.current_career &&
-      binary_node.reached_minimum_score_paid?
+      binary_node.reached_minimum_score_paid? &&
+      binary_bonus.to_f > 0
     end
 
     def credit_binary_bonus

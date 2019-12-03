@@ -27,7 +27,6 @@ module Bonification
                             score_type: score_type,
                             cent_amount: order.activation_products_score,
                             height: height)
-      score.chargeback_by_inactivity! if sponsor.inactive?
     end
   end
 end

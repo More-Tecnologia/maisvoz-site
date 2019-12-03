@@ -47,9 +47,9 @@ class Score < ApplicationRecord
     chargeback!(ScoreType.unilevel_inactivity_chargeback)
   end
 
-  def self.debit_shortter_leg_score_from(user)
+  def self.debit_binary_score_from_legs(user, score)
     attrs = { user: user,
-              cent_amount: user.binary_node.shortter_leg_score,
+              cent_amount: -(score.to_i.abs),
               score_type: ScoreType.binary_bonus_debit }
     left_leg_attrs = attrs.merge(source_leg: :left)
     right_leg_attrs = attrs.merge(source_leg: :right)

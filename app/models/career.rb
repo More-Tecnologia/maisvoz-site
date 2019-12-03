@@ -30,7 +30,7 @@ class Career < ApplicationRecord
                                     uniqueness: true
 
   def qualify?(user)
-    user.scores.sum(&:cent_amount).to_i >= qualifying_score
+    user.scores.accumulate.sum(&:cent_amount).to_i >= qualifying_score
   end
 
   def higher?(career)

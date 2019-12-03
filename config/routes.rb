@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         post :approve
         post :mark_as_billed
       end
+      resources :order_approver_without_bonifications, only: [:update]
 
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]

@@ -215,6 +215,7 @@ pt-BR:
     note: Mensagem
     blocked: Bloqueado
     canceled: Cancelado
+    binary_qualify: Binário Qualificado
   backoffice:
     orders:
       show:

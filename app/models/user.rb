@@ -320,11 +320,11 @@ class User < ApplicationRecord
     paid_at = find_current_trail_order_paid_at
     debits = financial_transactions.debit
                                    .financial_reason_bonus
-                                   .where(created_at: paid_at)
+                                   .where('financial_transactions.created_at >= ?', paid_at)
                                    .sum(:cent_amount)
     credits = financial_transactions.credit
                                     .financial_reason_bonus
-                                    .where(created_at: paid_at)
+                                    .where('financial_transactions.created_at >= ?', paid_at)
                                     .sum(:cent_amount)
     (credits - debits).to_f / 1e8.to_f
   end

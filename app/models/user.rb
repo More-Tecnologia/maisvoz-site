@@ -273,7 +273,6 @@ class User < ApplicationRecord
 
   def update_blocked_balance!(amount)
     update_attribute(:blocked_balance_cents, blocked_balance_cents + amount)
-    Financial::UnlockBlockedBalance.call(user: self)
   end
 
   def update_available_balance!(amount)

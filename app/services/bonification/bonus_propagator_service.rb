@@ -53,11 +53,10 @@ module Bonification
                                                            generation: generation,
                                                            cent_amount: bonus,
                                                            order: order)
-      if ascendant_sponsor.active?
-        financial_transaction.chargeback_by_career_trail_excess!(career_trail_excess_bonus) if career_trail_excess_bonus > 0
-      else
-        financial_transaction.chargeback!
-      end
+      return financial_transaction.chargeback_by_inactivity! if ascendant_sponsor.inactive?
+      excess = career_trail_excess_bonus(ascendant_sponsor)
+      financial_transaction.chargeback_by_career_trail_excess!(excess) if excess > 0
+      Financial::UnlockBlockedBalance.call(user: ascendant_sponsor)
     end
 
     def find_product_reason_scores_by(products)

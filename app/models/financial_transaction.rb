@@ -79,6 +79,7 @@ class FinancialTransaction < ApplicationRecord
 
   def chargeback_by_career_trail_excess!(amount)
     chargeback_binary_score!(FinancialReason.career_trail_excess_bonus, amount)
+    user.inactivate!
   end
 
   def financial_reason_type_bonus?

@@ -331,7 +331,7 @@ class User < ApplicationRecord
 
   def calculate_excess_career_trail_bonus
     return 0.0 unless current_career_trail.maximum_bonus
-    maximum_bonus = current_career_trail.maximum_bonus / 100.0
+    maximum_bonus = current_career_trail.calculate_maximum_bonus
     balance = sum_career_trail_bonus.to_f
     balance.to_f - maximum_bonus.to_f
   end

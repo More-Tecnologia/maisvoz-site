@@ -3,12 +3,20 @@ module Backoffice
     class BinaryScoresController < AdminController
 
       def index
-        @q = Score.ransack(params[:q])
-        @scores = @q.result(distinct: true)
+        @q = Score.ransack(query_params)
+        @scores = @q.result
                     .includes_associations
-                    .binary
                     .order(created_at: :desc)
                     .page(params[:page])
+      end
+
+      private
+
+      def query_params
+        query = params[:q] ? params[:q].to_hash.symbolize_keys : {}
+        query.merge!(source_leg_eq: Score.source_legs[:left]) unless filled?(query[:source_leg_eq])
+        query.merge(score_type_id_in: ScoreType.binary.pluck(:id)) unless filled?(query[:score_type_id_in])
+        query
       end
 
     end

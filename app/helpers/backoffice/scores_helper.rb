@@ -8,6 +8,14 @@ module Backoffice
     def sum_cent_amount(scores)
       @cent_amount_sum ||= scores.map(&:cent_amount).sum
     end
-    
+
+    def sum_score_cent_amount(q, scores)
+      first_score_id = scores.first.id
+      q.result
+       .where('scores.id <= ?', first_score_id)
+       .order(created_at: :desc)
+       .sum(:cent_amount)
+    end
+
   end
 end

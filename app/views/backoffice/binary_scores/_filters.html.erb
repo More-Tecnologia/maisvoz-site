@@ -8,11 +8,13 @@
         <%= search_form_for @q, url: backoffice_binary_scores_path do |f| %>
           <div class="form-group">
             <div class="row">
-              <div class="col-md-4">
-                <%= t('activerecord.attributes.score.score_type') %>
-                <%= f.select :score_type_id_in, ScoreType.binary.pluck(:name, :id),
-                                                { include_blank: t('all') },
-                                                { class: 'form-control input-sm', multiple: true } %>
+              <div class="col-md-1">
+                <%= f.radio_button :source_leg_eq, Score.source_legs[:left], checked: true %>
+                <strong> <%= t('defaults.source_leg_left') %> </strong>
+              </div>
+              <div class="col-md-1">
+                <%= f.radio_button :source_leg_eq, Score.source_legs[:right] %>
+                <strong> <%= t('defaults.source_leg_right') %> </strong>
               </div>
               <div class="col-md-2">
                 <%= f.label t('attributes.from') %>
@@ -23,6 +25,12 @@
                 <%= f.label t('attributes.until') %>
                 <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
                                                      data: { provide: 'datepicker' } %>
+              </div>
+              <div class="col-md-4">
+                <strong> <%= t('activerecord.attributes.score.score_type') %> </strong>
+                <%= f.select :score_type_id_in, ScoreType.binary.pluck(:name, :id),
+                                                { include_blank: t('all') },
+                                                { class: 'form-control input-sm', multiple: true } %>
               </div>
             </div>
           </div>

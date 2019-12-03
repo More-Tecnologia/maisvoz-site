@@ -13,13 +13,13 @@
        <table class="table table-bordered table-sm">
         <tr>
           <td><strong><%= t('.left_pv') %></strong></td>
-          <td><%= number_with_delimiter node.left_pv %></td>
+          <td><%= number_with_delimiter node.left_leg_score %></td>
           <td><strong><%= t('left_count') %></strong></td>
           <td><%= number_with_delimiter node.left_count %></td>
         </tr>
         <tr>
           <td><strong><%= t('.right_pv') %></strong></td>
-          <td><%= number_with_delimiter node.right_pv %></td>
+          <td><%= number_with_delimiter node.right_leg_score %></td>
           <td><strong><%= t('right_count') %></strong></td>
           <td><%= number_with_delimiter node.right_count %></td>
         </tr>
@@ -75,8 +75,8 @@
                               data: {
                                 username: node.user.username,
                                 sponsor: node.user.sponsor.try(:username) || '',
-                                left_pv: node.left_pv,
-                                right_pv: node.right_pv,
+                                left_pv: node.left_leg_score,
+                                right_pv: node.right_leg_score,
                                 career: node.user.current_career.try(:name) || '',
                               }
                             ) if node.user.current_career.present? %>
@@ -101,8 +101,8 @@
                                     data: {
                                       username: current_node.left_child.user.username,
                                       sponsor: current_node.left_child.user.sponsor.username,
-                                      left_pv: current_node.left_child.left_pv,
-                                      right_pv: current_node.left_child.right_pv,
+                                      left_pv: current_node.left_child.left_leg_score,
+                                      right_pv: current_node.left_child.right_leg_score,
                                       career: current_node.left_child.user.current_career.try(:name),
                                     }
                                   ) do %>
@@ -120,8 +120,8 @@
                                     data: {
                                       username: current_node.right_child.user.username,
                                       sponsor: current_node.right_child.user.sponsor.username,
-                                      left_pv: current_node.right_child.left_pv,
-                                      right_pv: current_node.right_child.right_pv,
+                                      left_pv: current_node.right_child.left_leg_score,
+                                      right_pv: current_node.right_child.right_leg_score,
                                       career: current_node.right_child.user.current_career.try(:name)
                                     }
                                   ) do %>

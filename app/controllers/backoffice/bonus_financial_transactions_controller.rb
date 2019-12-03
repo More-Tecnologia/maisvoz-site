@@ -1,5 +1,5 @@
 module Backoffice
-  class FinancialTransactionsController < EntrepreneurController
+  class BonusFinancialTransactionsController < EntrepreneurController
 
     before_action :ensure_admin_or_entrepreneur
 
@@ -8,13 +8,15 @@ module Backoffice
       @financial_transactions = @q.result(distinct: true).includes_associations
                                                          .order(created_at: :desc)
                                                          .page(params[:page])
+      render 'backoffice/financial_transactions/index'
     end
 
     private
 
     def query_params
       query = params[:q] ? params[:q] : {}
-      query.merge(user_id_eq: current_user.id)
+      query.merge(user_id_eq: current_user.id,
+                  financial_reason_id_in: FinancialReason.bonus.pluck(:id))
     end
 
   end

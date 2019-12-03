@@ -97,14 +97,10 @@ class FinancialTransaction < ApplicationRecord
   end
 
   def update_balance_user
-    amount = debit? ? -cent_amount : cent_amount
+    amount = debit? ? -self[:cent_amount] : self[:cent_amount]
     return user.update_available_balance!(amount) if user.admin?
-
-    if financial_reason_type_bonus?
-      user.update_blocked_balance!(amount)
-    else
-      user.update_available_balance!(amount)
-    end
+    return user.update_blocked_balance!(amount) if financial_reason_type_bonus?
+    user.update_available_balance!(amount)
   end
 
   def inactivate_user!

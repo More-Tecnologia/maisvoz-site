@@ -272,11 +272,13 @@ class User < ApplicationRecord
   end
 
   def update_blocked_balance!(amount)
-    update_attribute(:blocked_balance_cents, blocked_balance_cents + amount)
+    return increment(:blocked_balance_cents, amount.abs).save! if amount > 0
+    decrement(:available_balance_cents, amount.abs).save!
   end
 
   def update_available_balance!(amount)
-    update_attribute(:available_balance_cents, available_balance_cents + amount)
+    return increment(:available_balance_cents, amount.abs).save! if amount > 0
+    decrement(:available_balance_cents, amount.abs).save!
   end
 
   def next_career_kind

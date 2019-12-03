@@ -14,12 +14,11 @@ module Financial
     end
 
     def transfer_blocked_balance
-      user.with_lock do
-        user.available_balance_cents = user.available_balance_cents + user.blocked_balance_cents
-        user.blocked_balance_cents   = 0
-        user.balance_unlocked_at     = Time.zone.now
-        user.save!
-      end
+      amount = (user.blocked_balance_cents * 1e8).to_i.abs
+      user.increment(:available_balance_cents, amount)
+      user.decrement(:blocked_balance_cents, amount)
+      user.balance_unlocked_at = Time.zone.now
+      user.save!
     end
 
     def can_unlock_blocked_balance?

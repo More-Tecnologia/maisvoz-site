@@ -21,34 +21,40 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th><%= FinancialTransaction.human_attribute_name(:created_at) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:financial_reason) %></th>
                 <th><%= FinancialTransaction.human_attribute_name(:spreader) %></th>
                 <% if current_user.admin? %>
                   <th><%= FinancialTransaction.human_attribute_name(:user) %></th>
+                <% else %>
+                  <th><%= FinancialTransaction.human_attribute_name(:generation) %></th>
                 <% end %>
-                <th><%= FinancialTransaction.human_attribute_name(:financial_reason) %></th>
-                <th><%= FinancialTransaction.human_attribute_name(:generation) %></th>
-                <th><%= FinancialTransaction.human_attribute_name(:created_at) %></th>
                 <th><%= FinancialTransaction.human_attribute_name(:order) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:cent_amount) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:balance) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:created_at) %></th>
               </tr>
             </thead>
             <tbody>
-              <% @financial_transactions.each do |transaction| %>
-                <tr>
-                  <td><%= transaction.hashid %></td>
-                  <td><%= l transaction.created_at, format: :short %></td>
-                  <td class='<%= 'text-danger' if transaction.debit? %>'><%= format_cent_amount_value(transaction) %></td>
-                  <td><%= transaction.spreader.try(:username) %></td>
-                  <% if current_user.admin? %>
-                    <td><%= transaction.user.username %></td>
-                  <% end %>
-                  <td><%= transaction.try(:financial_reason).try(:title) || transaction.note %></td>
-                  <td><%= transaction.generation %></td>
-                  <td><%= l transaction.created_at, format: :short %></td>
-                  <td><%= transaction.try(:order).try(:hashid) %></td>
-                </tr>
-              <% end %>
-              <% if @financial_transactions.empty? %>
+              <% if @financial_transactions.any? %>
+                <% cent_amount_sum = sum_previous_financial_transactions(@q, @financial_transactions) / 1e8.to_f %>
+                <% @financial_transactions.each do |transaction| %>
+                  <tr>
+                    <td><%= transaction.hashid %></td>
+                    <td><%= transaction.try(:financial_reason).try(:title) || transaction.note %></td>
+                    <td><%= transaction.spreader.try(:username) %></td>
+                    <% if current_user.admin? %>
+                      <td><%= transaction.user.username %></td>
+                    <% else %>
+                      <td><%= transaction.generation %></td>
+                    <% end %>
+                    <td><%= link_to transaction.try(:order).try(:hashid), backoffice_admin_order_path(transaction.try(:order)) if transaction.order %></td>
+                    <td class='<%= 'text-danger' if transaction.debit? %>'><%= format_cent_amount_value(transaction) %></td>
+                    <td class='<%= 'text-danger' if cent_amount_sum < 0 %>'><%= number_to_currency(cent_amount_sum, precision: 8) %></td>
+                    <% cent_amount_sum -= transaction.debit? ? -transaction.cent_amount : transaction.cent_amount %>
+                    <td><%= l transaction.created_at, format: :short %></td>
+                  </tr>
+                <% end %>
+              <% else %>
                 <tr>
                   <td colspan="50" class="text-center"><%= t('.no_data') %></td>
                 </tr>

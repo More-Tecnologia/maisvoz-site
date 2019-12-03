@@ -73,6 +73,7 @@ Rails.application.routes.draw do
     resources :pv_histories, only: [:index]
     resources :pv_activity_histories, only: [:index]
     resources :accumulated_pva, only: [:index]
+    resources :bonus_financial_transactions, only: [:index]
     resources :vouchers, only: [:index]
     resources :pay_with_voucher, only: [:show] do
       post :new

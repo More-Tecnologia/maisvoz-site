@@ -32,6 +32,7 @@ class Score < ApplicationRecord
                                 .group(:height)
                                 .sum(:cent_amount) }
   scope :binary, -> { where(score_type: ScoreType.binary) }
+  scope :unilevel, -> { where(score_type: ScoreType.unilevel) }
   scope :accumulate, -> { where(score_type: ScoreType.unilevel) }
 
   def chargeback!(score_type, amount = cent_amount)

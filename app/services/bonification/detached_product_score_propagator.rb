@@ -5,7 +5,9 @@ module Bonification
       return if detached_score <= 0
       sponsors = user.unilevel_ancestors.reverse
       sponsors.each_with_index do |sponsor, index|
-        create_detached_score(sponsor, index + 1) if sponsor.empreendedor?
+        return unless sponsor.empreendedor?
+        create_detached_score(sponsor, index + 1)
+        upgrade_career
       end
     end
 
@@ -28,5 +30,10 @@ module Bonification
                             cent_amount: order.activation_products_score,
                             height: height)
     end
+
+    def upgrade_career(sponsor)
+      UpgraderCareerService.call(user: sponsor)
+    end
+
   end
 end

@@ -123,10 +123,10 @@ class Order < ApplicationRecord
   end
 
   def taxable_product_cent_amount
-    order_items.sum { |i| i.system_taxable? ? i.product.price_cents : 0 }
+    order_items.sum { |i| i.system_taxable? ? i.product.product_value : 0 }
   end
 
   def paid!
-    update_attributes(status: :completed, paid_at: Time.current)
+    update_attributes(status: :completed, paid_at: Time.now)
   end
 end

@@ -1,5 +1,6 @@
 module Backoffice
   class UnilevelScoresController < EntrepreneurController
+
     def index
       @q = Score.ransack(params[:q])
       @scores = @q.result(distinct: true)
@@ -8,5 +9,6 @@ module Backoffice
       @tree_type = 'unilevel'
       render template: 'backoffice/scores/index'
     end
+    
   end
 end

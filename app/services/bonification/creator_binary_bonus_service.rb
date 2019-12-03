@@ -2,7 +2,7 @@ module Bonification
   class CreatorBinaryBonusService < ApplicationService
 
     def call
-      return unless binary_bonus_score.to_f > 0
+      return unless binary_bonus_score > 0 && valid_binary_bonus > 0
       ActiveRecord::Base.transaction do
         transaction = credit_binary_bonus
         return transaction.chargeback_by_inactivity! if user.inactive?

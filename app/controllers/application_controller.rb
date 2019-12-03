@@ -23,4 +23,9 @@ class ApplicationController < ActionController::Base
     payload[:user_id] = current_user.id if current_user.present?
   end
 
+  def filled?(attribute)
+    return attribute.present? if attribute.is_a?(String)
+    attribute.join.present? if attribute.is_a?(Array)
+  end
+
 end

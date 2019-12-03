@@ -216,6 +216,7 @@ pt-BR:
     blocked: Bloqueado
     canceled: Cancelado
     binary_qualify: Binário Qualificado
+    height: Geração
   backoffice:
     orders:
       show:
@@ -526,6 +527,8 @@ pt-BR:
     accept_contract_html: "Aceito o %{link}"
     cant_buy_product: Você não pode comprar um pacote de adesão de menor ou igual pontuação.
     approve_order_without_bonification: Aprovar Pedido sem Bonificação
+    source_leg_left: Perna Esquerda
+    source_leg_right: Perna Direita
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

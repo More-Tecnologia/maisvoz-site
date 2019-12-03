@@ -47,18 +47,16 @@ module Bonification
     def create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
       bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
-      return unless bonus > 0
       financial_transaction = FinancialTransaction.create!(user: ascendant_sponsor,
                                                            spreader: user,
                                                            financial_reason: financial_reason,
                                                            generation: generation,
-                                                           cent_amount: score.round(0),
-                                                           order: order) if score > 0
-      financial_transaction.chargeback_to_admin
+                                                           cent_amount: bonus,
+                                                           order: order)
       if ascendant_sponsor.active?
         financial_transaction.chargeback_by_career_trail_excess!(career_trail_excess_bonus) if career_trail_excess_bonus > 0
       else
-        financial_transaction.chargeback!.chargeback_to_admin
+        financial_transaction.chargeback!
       end
     end
 

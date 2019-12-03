@@ -278,7 +278,7 @@ pt-BR:
     accumulated_pva:
       index:
         title: PVA Acumulado
-    generation_scores:
+    lineage_scores:
       index:
         title: Pontuação por Geração
     financial_transactions:
@@ -526,6 +526,7 @@ pt-BR:
     accept_contract_html: "Aceito o %{link}"
     cant_buy_product: Você não pode comprar um pacote de adesão de menor ou igual pontuação.
     approve_order_without_bonification: Aprovar Pedido sem Bonificação
+    lineage: Linhagem
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

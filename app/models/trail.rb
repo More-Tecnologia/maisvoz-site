@@ -12,7 +12,7 @@ class Trail < ApplicationRecord
   end
 
   def calculate_binary_bonus(score)
-    score.to_f * product.binary_bonus_percent / 100.0
+    score.to_f * product.binary_bonus_percent
   end
 
 end

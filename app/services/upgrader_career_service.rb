@@ -16,7 +16,7 @@ class UpgraderCareerService < ApplicationService
   end
 
   def upgraded_career?(new_career)
-    new_career && new_career.higher?(user.current_career)
+    new_career && new_career != user.current_career
   end
 
   def create_career_trail_user(new_career)
@@ -32,4 +32,5 @@ class UpgraderCareerService < ApplicationService
     descendent_careers = careers.reverse
     descendent_careers.detect { |career| career.qualify?(user) }
   end
+  
 end

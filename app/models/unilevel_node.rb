@@ -23,22 +23,39 @@ class UnilevelNode < ApplicationRecord
 
   has_ancestry cache_depth: true
 
-  enum career_kind: {
-    consumer: 'consumer',
-    affiliate: 'affiliate',
-    executive: 'executive',
-    bronze: 'bronze',
-    silver: 'silver',
-    gold: 'gold',
-    ruby: 'ruby',
-    emerald: 'emerald',
-    diamond: 'diamond',
-    white_diamond: 'white_diamond',
-    blue_diamond: 'blue_diamond',
-    black_diamond: 'black_diamond',
-    chairman: 'chairman',
-    chairman_two_star: 'chairman_two_star',
-    chairman_three_star: 'chairman_three_star'
-  }
+  scope :binary_position_left, -> { joins(:user).merge(User.left) }
+  scope :binary_position_right, -> { joins(:user).merge(User.right) }
+
+  def left_descendants_count
+    @left_descendants_count ||= descendants.binary_position_left.count
+  end
+
+  def right_descendants_count
+    @right_descendants_count ||= descendants.binary_position_right.count
+  end
+
+  def right_leg_greater?
+    right_descendants_count.to_i > left_descendants_count.to_i
+  end
+
+  def left_leg_greater?
+    left_descendants_count.to_i > right_descendants_count.to_i
+  end
+
+  def legs_equal_length?
+    right_descendants_count.to_i == left_descendants_count.to_i
+  end
+
+  def find_greater_leg_children
+    return descendants if legs_equal_length?
+    return descendants.binary_position_right if right_leg_greater?
+    return descendants.binary_position_left if left_leg_greater?
+    []
+  end
+
+  def exists_child_in_greater_binary_leg_by?(career)
+    CareerTrailUser.order(created_at: :desc).exists?(user: find_greater_leg_children,
+                                                     career_trail: career.career_trails)
+  end
 
 end

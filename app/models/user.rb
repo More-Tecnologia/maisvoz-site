@@ -174,7 +174,7 @@ class User < ApplicationRecord
     self[:blocked_balance_cents] = (amount * 1e8).to_i
   end
 
-  def unilevel_pva_count
+  def unilevel_score_count
     scores.accumulate.sum(:cent_amount)
   end
 
@@ -211,7 +211,7 @@ class User < ApplicationRecord
   end
 
   def current_career_trail
-    career_trails.last
+    career_trail_users.try(:last).try(:career_trail)
   end
 
   def current_trail

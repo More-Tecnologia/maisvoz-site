@@ -8,7 +8,7 @@ module Payment
         'Authorization' => "Basic #{ENV.fetch('BRADESCO_CRED')}"
       }.freeze
 
-      URL = 'https://meiosdepagamentobradesco.com.br/SPSConsulta/GetOrderById/'.freeze
+      URL = ('https://' + (ENV.fetch('BRADESCO_SANDBOX') ? 'homolog.' : '') + 'meiosdepagamentobradesco.com.br/SPSConsulta/GetOrderById/').freeze
 
       def initialize(order, auth_key)
         @order = order

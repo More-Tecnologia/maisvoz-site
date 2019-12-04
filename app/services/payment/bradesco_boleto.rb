@@ -7,6 +7,8 @@ module Payment
       'Authorization' => "Basic #{ENV.fetch('BRADESCO_API_KEY')}"
     }
 
+    URL = ('https://' + (ENV.fetch('BRADESCO_SANDBOX') ? 'homolog.' : '') + 'meiosdepagamentobradesco.com.br/apiboleto/transacao').freeze
+
     def initialize(order)
       @order  = order
       @user   = order.user.decorate
@@ -23,7 +25,7 @@ module Payment
     attr_reader :order, :user, :params
 
     def create_boleto
-      res = RestClient.post(url, params.to_json, DEFAULT_HEADERS)
+      res = RestClient.post(URL, params.to_json, DEFAULT_HEADERS)
       json = JSON.parse(res.body)
       if res.code == 201
         create_bradesco_transaction(json)
@@ -84,10 +86,6 @@ module Payment
 
     def today
       @today ||= Time.zone.today
-    end
-
-    def url
-      ENV.fetch('BRADESCO_API_URL')
     end
 
   end

@@ -20,7 +20,7 @@ module Backoffice
       end
 
       payment = Payment::BradescoBoleto.new(order).call
-      if payment[:error]
+      if payment[:error].present?
         flash[:error] = payment[:error]
       else
         flash[:success] = 'Boleto adicionado a fila de processamento'

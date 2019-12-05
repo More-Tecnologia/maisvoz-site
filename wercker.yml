@@ -1,4 +1,6 @@
-box: ubuntu
+box: 
+  id: ubuntu
+  ports: $PORT
 build:
   steps:
     - install-packages:

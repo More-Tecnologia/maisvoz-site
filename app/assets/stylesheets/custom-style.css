@@ -1,0 +1,19 @@
+.navbar-custom {
+  background-color: #FFF;
+}
+
+.navbar-custom .topnav-menu .nav-link {
+  color: black;
+}
+
+.pro-user-name {
+  color: black;
+}
+
+#topnav {
+  background-color: #2c292a;
+}
+
+#topnav > a {
+  color: #FFF;
+}

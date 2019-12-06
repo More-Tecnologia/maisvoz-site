@@ -1,14 +1,16 @@
-<!-- Shop menu -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-shopping-cart"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
-    <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
-  </ul>
-</li>
-<!-- Downloads menu -->
-<li>
-  <%= link_to backoffice_downloads_path do %>
-    <i class="md md-cloud-download"></i>  Download Material
-  <% end %>
-</li>
+<ul class="navigation-menu">
+  <!-- Shop menu -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="ti-shopping-cart"></i><%= t('defaults.ecommerce') %> <div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
+      <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
+    </ul>
+  </li>
+  <!-- Downloads menu -->
+  <li>
+    <%= link_to backoffice_downloads_path do %>
+      <i class="md md-cloud-download"></i>  Download Material
+    <% end %>
+  </li>
+</ul>

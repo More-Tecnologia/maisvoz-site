@@ -1,46 +1,48 @@
-<!-- Shop menu -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-shopping-cart"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.orders'), backoffice_admin_orders_path, class: 'admin-link' %></li>
-    <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
-    <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
-  </ul>
-</li>
+<ul class="navigation-menu">
+  <!-- Shop menu -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="ti-shopping-cart"></i><%= t('defaults.ecommerce') %> <div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.orders'), backoffice_admin_orders_path, class: 'admin-link' %></li>
+      <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
+      <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
+    </ul>
+  </li>
 
-<!-- Financial menu -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-money"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
-    <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
-    <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>
-  </ul>
-</li>
+  <!-- Financial menu -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="ti-money"></i><%= t('defaults.financial') %><div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
+      <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
+      <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>
+    </ul>
+  </li>
 
-<!-- Network -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-sharethis"></i><span class="menu-arrow"></span><span> <%= t('defaults.network') %> </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path %></li>
-    <li><%= link_to t('defaults.binary_tree'), backoffice_binary_tree_index_path %></li>
-    <li><%= link_to t('defaults.unilevel'), backoffice_unilevel_index_path %></li>
-    <li><%= link_to t('defaults.career_histories'), backoffice_admin_career_histories_path, class: 'admin-link' %></li>
-  </ul>
-</li>
+  <!-- Network -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="ti-sharethis"></i><%= t('defaults.network') %> <div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path %></li>
+      <li><%= link_to t('defaults.binary_tree'), backoffice_binary_tree_index_path %></li>
+      <li><%= link_to t('defaults.unilevel'), backoffice_unilevel_index_path %></li>
+      <li><%= link_to t('defaults.career_histories'), backoffice_admin_career_histories_path, class: 'admin-link' %></li>
+    </ul>
+  </li>
 
-<!-- Admin menu -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-world"></i><span class="menu-arrow"></span><span> <%= t('defaults.support') %> </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.documents_validation'), backoffice_support_documents_validation_index_path %></li>
-    <li><%= link_to t('defaults.users'), backoffice_support_users_path %></li>
-  </ul>
-</li>
+  <!-- Admin menu -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="fas fa-users-cog"></i><%= t('defaults.admin') %> <div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.documents_validation'), backoffice_support_documents_validation_index_path %></li>
+      <li><%= link_to t('defaults.users'), backoffice_support_users_path %></li>
+    </ul>
+  </li>
 
-<!-- Downloads menu -->
-<li>
-  <%= link_to backoffice_downloads_path do %>
-    <i class="md md-cloud-download"></i>  Download Material
-  <% end %>
-</li>
+  <!-- Downloads menu -->
+  <li>
+    <%= link_to backoffice_downloads_path do %>
+      <i class="md md-cloud-download"></i>  <%= t('defaults.download_material') %>
+    <% end %>
+  </li>
+</ul>

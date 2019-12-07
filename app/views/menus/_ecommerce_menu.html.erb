@@ -1,9 +1,11 @@
-<!-- Shop menu -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-shopping-cart"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.categories'), backoffice_admin_categories_path %></li>
-    <li><%= link_to t('defaults.products'), backoffice_admin_products_path %></li>
-    <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
-  </ul>
-</li>
+<ul class="navigation-menu">
+  <!-- Shop menu -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="ti-shopping-cart"></i><%= t('defaults.ecommerce') %> <div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.categories'), backoffice_admin_categories_path %></li>
+      <li><%= link_to t('defaults.products'), backoffice_admin_products_path %></li>
+      <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
+    </ul>
+  </li>
+</ul>

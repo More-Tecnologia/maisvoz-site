@@ -1,45 +1,47 @@
-<li>
-  <%= link_to backoffice_dashboard_index_path, class: 'waves-effect' do %>
-    <i class="ti-home"></i> <span>Dashboard</span>
-  <% end %>
-</li>
-<!-- Shop menu -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-shopping-cart"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
-    <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
-  </ul>
-</li>
-<!-- Financial menu -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-money"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
-    <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
-    <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>
-    <li><%= link_to t('defaults.bonus_entries'), backoffice_bonus_financial_transactions_path %></li>
-    <li><%= link_to t('defaults.my_vouchers'), backoffice_vouchers_path %></li>
-  </ul>
-</li>
-<!-- PV History -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-book"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
-  <ul class="list-unstyled">
-    <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
-    <li><%= link_to t('defaults.lineage_scores'), backoffice_lineage_scores_path %></li>
-  </ul>
-</li>
-<!-- Network -->
-<li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-sharethis"></i><span class="menu-arrow"></span><span> <%= t('defaults.network') %> </span></a>
-  <ul class="list-unstyled">
-    <li><%= link_to t('defaults.unilevel'), backoffice_unilevel_index_path %></li>
-  </ul>
-</li>
-<!-- Downloads menu -->
-<li>
-  <%= link_to backoffice_downloads_path do %>
-    <i class="md md-cloud-download"></i>  Download Material
-  <% end %>
-</li>
+<ul class="navigation-menu">
+  <li>
+    <%= link_to backoffice_dashboard_index_path do %>
+      <i class="ti-home"></i> <span><%= t('defaults.dashboard') %></span>
+    <% end %>
+  </li>
+  <!-- Shop menu -->
+<li class="has-submenu">
+    <a href="javascript:void(0);"><i class="ti-shopping-cart"></i><%= t('defaults.ecommerce') %> <div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
+      <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
+    </ul>
+  </li>
+  <!-- Financial menu -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="ti-money"></i><%= t('defaults.financial') %><div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
+      <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
+      <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>
+      <li><%= link_to t('defaults.bonus_entries'), backoffice_bonus_financial_transactions_path %></li>
+      <li><%= link_to t('defaults.my_vouchers'), backoffice_vouchers_path %></li>
+    </ul>
+  </li>
+  <!-- PV History -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="fas fa-star-half-alt"></i><%= t('defaults.scores') %> <div class="arrow-down"></div> </a>
+    <ul class="submenu">
+      <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
+      <li><%= link_to t('defaults.lineage_scores'), backoffice_lineage_scores_path %></li>
+    </ul>
+  </li>
+  <!-- Network -->
+  <li class="has-submenu">
+    <a href="javascript:void(0);"><i class="ti-sharethis"></i><%= t('defaults.network') %> <div class="arrow-down"></div></a>
+    <ul class="submenu">
+      <li><%= link_to t('defaults.unilevel'), backoffice_unilevel_index_path %></li>
+    </ul>
+  </li>
+  <!-- Downloads menu -->
+  <li>
+    <%= link_to backoffice_downloads_path do %>
+      <i class="md md-cloud-download"></i>  <%= t('defaults.download_material') %>
+    <% end %>
+  </li>
+</ul>

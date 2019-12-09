@@ -70,6 +70,9 @@ class Product < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   validates :trail, presence: true, if: :adhesion?
+  validates :grace_period, presence: true, if: :adhesion?
+  validates :grace_period, numericality: { only_integer: true,
+                                           greater_than_or_equal_to: 0 }
 
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?

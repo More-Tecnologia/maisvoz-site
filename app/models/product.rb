@@ -64,6 +64,8 @@ class Product < ApplicationRecord
 
   monetize :price_cents
 
+  serialize :maturity_days, Array
+
   scope :regular, -> { where.not(kind: :activation) }
   scope :active, -> { where(active: true) }
 

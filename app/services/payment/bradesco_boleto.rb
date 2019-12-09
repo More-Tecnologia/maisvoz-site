@@ -7,7 +7,7 @@ module Payment
       'Authorization' => "Basic #{ENV.fetch('BRADESCO_API_KEY')}"
     }
 
-    URL = ('https://' + (ENV.fetch('BRADESCO_SANDBOX') ? 'homolog.' : '') + 'meiosdepagamentobradesco.com.br/apiboleto/transacao').freeze
+    URL = ('https://' + (ENV.fetch('BRADESCO_SANDBOX') == 'true' ? 'homolog.' : '') + 'meiosdepagamentobradesco.com.br/apiboleto/transacao').freeze
 
     def initialize(order)
       @order  = order

@@ -2,6 +2,8 @@ class CareerTrail < ApplicationRecord
 
   belongs_to :career
   belongs_to :trail
+  belongs_to :product, optional: true
+
   has_many :career_trail_users
   has_many :users, through: :career_trail_users
   has_one :product_score

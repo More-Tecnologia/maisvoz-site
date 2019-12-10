@@ -530,13 +530,6 @@ pt-BR:
     source_leg_left: Perna Esquerda
     source_leg_right: Perna Direita
     lineage: Linhagem
-    ecommerce: eCommerce
-    dashboard: Dashboard
-    download_material: Download Material
-    back_to_account: Voltar para conta
-    welcome: Bem-vindo!
-    indication_warning: "Olá, você está sendo indicado por %{sponsor}"
-    bonus: Bonus
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

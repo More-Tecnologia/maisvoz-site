@@ -1,43 +1,41 @@
 <!DOCTYPE html>
-<html lang='pt-BR'>
+<html>
   <head>
     <%= display_meta_tags site: 'Mais Voz' %>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <%= render 'layouts/shared/favicons' %>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggle();
+            });
+
+        });
+    </script>
   </head>
 
-  <body class="fixed-left">
-    <header id="topnav">
-      <div class="navbar-custom">
-        <div class="container-fluid">
-          <%= render 'layouts/public/topbar' %>
+  <body>
+    <div id="wrapper">
+      <%= render 'layouts/public/topbar' %>
+      <div class="content-page no-margin">
+        <div class="content">
+          <div class="container">
+            <%= render 'layouts/flash-messages' %>
+            <%= yield %>
+          </div>
         </div>
+        <%= render 'layouts/shared/footer' %>
       </div>
-    </header>
-    <div class="wrapper">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <%= render 'layouts/flash-messages' %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <%= render 'layouts/notification' %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <%= yield %>
-            </div>
-          </div>
-        </div> <!-- end container -->
     </div>
-    <%= render "layouts/shared/footer" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/gtag' %>
   </body>
 </html>

@@ -1,0 +1,8 @@
+#sidebar-menu ul ul a.admin-link {
+  &::before {
+    content: '⊗';
+    position: absolute;
+    left: 50px;
+    color: #72c2ff;
+  }
+}

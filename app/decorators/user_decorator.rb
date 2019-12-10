@@ -19,8 +19,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def pretty_name
-    return name if pf?
-    "#{document_company_name} - #{name}"
+    username
   end
 
   def name_or_company_name
@@ -125,4 +124,13 @@ class UserDecorator < ApplicationDecorator
   def sponsor_username
     try(:sponsor).try(:username)
   end
+
+  def pretty_username
+    username
+  end
+
+  def trail_name
+    current_trail.try(:name)
+  end
+
 end

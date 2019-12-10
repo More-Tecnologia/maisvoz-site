@@ -15,13 +15,15 @@ class UsersGrid < BaseGrid
   filter(:document_cpf, header: I18n.t('attributes.document_cpf'))
   filter(:email)
   filter(:role, :enum, select: User.roles, header: I18n.t('attributes.role'))
+  filter(:active, :xboolean, header: I18n.t('attributes.active'))
   filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
+  filter(:binary_qualified, :xboolean, header: I18n.t('attributes.binary_qualify'))
 
   column_names_filter(:header => "Colunas Extras", checkboxes: true)
 
   column(:id, mandatory: true)
-  column(:username, html: false)
-  column(:username, mandatory: true, header: I18n.t('attributes.sponsor_username')) do |user|
+  column(:pretty_name, mandatory: true, header: I18n.t('attributes.username'))
+  column(:sponsor_username, mandatory: true, header: I18n.t('attributes.sponsor')) do |user|
     user.try(:sponsor).try(:username)
   end
   column(:pretty_name, mandatory: true, header: I18n.t('attributes.user'))
@@ -29,6 +31,7 @@ class UsersGrid < BaseGrid
   column(:activity, html: true, mandatory: true, header: I18n.t('attributes.activity'))
   column(:qualification, html: true, mandatory: true, header: I18n.t('attributes.qualification'))
   column(:career_name, mandatory: true, header: I18n.t('attributes.career_kind'))
+  column(:trail_name, mandatory: true, header: I18n.t('attributes.trail'))
   column(:created_at, html: false, mandatory: true, header: I18n.t('attributes.created_at'))
   column(:created_at, header: I18n.t('attributes.created_at')) do |user|
     format(user.created_at) do |created_at|

@@ -29,9 +29,13 @@ class FinancialTransaction < ApplicationRecord
   validates :financial_reason, presence: true,
                                unless: :is_note_present?
 
+  after_create :create_financial_log, if: :is_bonus_and_spreader_not_admin?
+  after_create :update_balance_user
+  after_create :inactivate_user!, if: :financial_reason_type_bonus?
+
   def chargeback!
-    create_chargeback!(user: User.find_morenwm_customer_user,
-                       spreader: user,
+    create_chargeback!(user: user,
+                       spreader: User.find_morenwm_customer_admin,
                        financial_reason: FinancialReason.chargeback,
                        order: order,
                        cent_amount: cent_amount,
@@ -53,12 +57,33 @@ class FinancialTransaction < ApplicationRecord
     chargeback_binary_score!(FinancialReason.chargeback_by_inactivity, cent_amount)
   end
 
+  def chargeback_by_unqualification!
+    chargeback_binary_score!(FinancialReason.chargeback_by_unqualification, cent_amount)
+  end
+
   def chargeback_excess_monthly!(amount)
     chargeback_binary_score!(FinancialReason.chargeback_excess_monthly, amount)
   end
 
   def chargeback_excess_weekly!(amount)
     chargeback_binary_score!(FinancialReason.chargeback_excess_weekly, amount)
+  end
+
+  def cent_amount
+    self[:cent_amount] / 1e8.to_f if self[:cent_amount]
+  end
+
+  def cent_amount=(amount)
+    self[:cent_amount] = (amount * 1e8).to_i
+  end
+
+  def chargeback_by_career_trail_excess!(amount)
+    chargeback_binary_score!(FinancialReason.career_trail_excess_bonus, amount)
+    user.inactivate!
+  end
+
+  def financial_reason_type_bonus?
+    financial_reason.try(:financial_reason_type) == FinancialReasonType.bonus
   end
 
   private
@@ -70,4 +95,33 @@ class FinancialTransaction < ApplicationRecord
   def is_note_present?
     note.present?
   end
+
+  def update_balance_user
+    amount = debit? ? -self[:cent_amount] : self[:cent_amount]
+    return user.update_available_balance!(amount) if user.admin?
+    return user.update_blocked_balance!(amount) if financial_reason_type_bonus?
+    user.update_available_balance!(amount)
+  end
+
+  def inactivate_user!
+    user.inactivate! if !chargeback? && user.empreendedor? && user.reached_career_trail_maximum_bonus?
+  end
+
+  def is_bonus_and_spreader_not_admin?
+    financial_reason.is_bonus? && user != User.find_morenwm_customer_admin
+  end
+
+  def chargeback_to_admin
+    create_chargeback!(user: User.find_morenwm_customer_admin,
+                       spreader: user,
+                       financial_reason: financial_reason,
+                       order: order,
+                       cent_amount: cent_amount,
+                       moneyflow: invert_money_flow)
+  end
+
+  def create_financial_log
+    chargeback_to_admin
+  end
+
 end

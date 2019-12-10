@@ -215,6 +215,8 @@ pt-BR:
     note: Mensagem
     blocked: Bloqueado
     canceled: Cancelado
+    binary_qualify: Binário Qualificado
+    height: Geração
   backoffice:
     orders:
       show:
@@ -277,7 +279,7 @@ pt-BR:
     accumulated_pva:
       index:
         title: PVA Acumulado
-    generation_scores:
+    lineage_scores:
       index:
         title: Pontuação por Geração
     financial_transactions:
@@ -523,6 +525,11 @@ pt-BR:
     support: Suporte
     contract_link_html: contrato de consultor de vendas
     accept_contract_html: "Aceito o %{link}"
+    cant_buy_product: Você não pode comprar um pacote de adesão de menor ou igual pontuação.
+    approve_order_without_bonification: Aprovar Pedido sem Bonificação
+    source_leg_left: Perna Esquerda
+    source_leg_right: Perna Direita
+    lineage: Linhagem
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -544,6 +551,8 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+    confirm:
+      approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:
@@ -833,6 +842,9 @@ pt-BR:
   debit: Débito
   "true": Sim
   "false": Não
+  there_are_adhesion_product: Carrinho já tem um produto do tipo adesão
+  cant_add_produt_to_cart: Não foi possível add produto ao carrinho
+  product_is_not_active: Produto Inativo
   datagrid:
     form:
       search: Filtrar

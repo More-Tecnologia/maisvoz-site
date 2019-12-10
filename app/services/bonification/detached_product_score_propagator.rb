@@ -3,9 +3,11 @@ module Bonification
 
     def call
       return if detached_score <= 0
-      sponsors = user.ascendant_sponsors
-      sponsors.each_with_index do |sponsor, height|
-        create_detached_score(sponsor, height)
+      sponsors = user.unilevel_ancestors.reverse
+      sponsors.each_with_index do |sponsor, index|
+        return unless sponsor.empreendedor?
+        create_detached_score(sponsor, index + 1)
+        upgrade_career
       end
     end
 
@@ -17,15 +19,21 @@ module Bonification
       @order = args[:order]
       @user = order.user
       @detached_score = order.detached_products_score
-      @score_type = ScoreType.find_by(id: 3)
+      @score_type = ScoreType.detached
     end
 
     def create_detached_score(sponsor, height)
-      Score.create!(user: sponsor,
-                    spread_user: user,
-                    score_type: score_type,
-                    cent_amount: detached_score,
-                    height: height)
+      score = Score.create!(user: sponsor,
+                            order: order,
+                            spreader_user: order.user,
+                            score_type: score_type,
+                            cent_amount: order.activation_products_score,
+                            height: height)
     end
+
+    def upgrade_career(sponsor)
+      UpgraderCareerService.call(user: sponsor)
+    end
+
   end
 end

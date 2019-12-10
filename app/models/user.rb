@@ -143,6 +143,8 @@ class User < ApplicationRecord
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
+  scope :active, -> { where(active: true) }
+
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
@@ -156,8 +158,24 @@ class User < ApplicationRecord
     available_balance_cents + blocked_balance_cents
   end
 
-  def unilevel_pva_count
-    sponsored.sum(:pva_total)
+  def available_balance_cents
+    self[:available_balance_cents] / 1e8.to_f if self[:available_balance_cents]
+  end
+
+  def available_balance_cents=(amount)
+    self[:available_balance_cents] = (amount * 1e8).to_i
+  end
+
+  def blocked_balance_cents
+    self[:blocked_balance_cents] / 1e8.to_f if self[:blocked_balance_cents]
+  end
+
+  def blocked_balance_cents=(amount)
+    self[:blocked_balance_cents] = (amount * 1e8).to_i
+  end
+
+  def unilevel_score_count
+    scores.accumulate.sum(:cent_amount)
   end
 
   def self.find_for_database_authentication warden_conditions
@@ -193,7 +211,7 @@ class User < ApplicationRecord
   end
 
   def current_career_trail
-    career_trails.last
+    career_trail_users.try(:last).try(:career_trail)
   end
 
   def current_trail
@@ -206,6 +224,7 @@ class User < ApplicationRecord
 
   def activate!
     update!(active: true, active_until: 1.month.from_now)
+    update_sponsor_binary_qualified
   end
 
   def out_binary_tree?
@@ -213,7 +232,7 @@ class User < ApplicationRecord
   end
 
   def inside_binary_tree?
-    binary_node.nil?
+    binary_node
   end
 
   def sponsor_is_binary_qualified?
@@ -244,8 +263,22 @@ class User < ApplicationRecord
     find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
   end
 
+  def self.find_morenwm_customer_admin
+    find_by(username: ENV['MORENWM_CUSTOMER_ADMIN'])
+  end
+
   def self.find_morenwm_user
     find_by(username: ENV['MORENWM_USERNAME'])
+  end
+
+  def update_blocked_balance!(amount)
+    return increment(:blocked_balance_cents, amount.abs).save! if amount > 0
+    decrement(:available_balance_cents, amount.abs).save!
+  end
+
+  def update_available_balance!(amount)
+    return increment(:available_balance_cents, amount.abs).save! if amount > 0
+    decrement(:available_balance_cents, amount.abs).save!
   end
 
   def next_career_kind
@@ -256,12 +289,17 @@ class User < ApplicationRecord
     !binary_qualified?
   end
 
+  def binary_qualified?
+    binary_qualified
+  end
+
   def inactive?
     !active
   end
 
   def inactivate!
     update_attribute(:active, false)
+    update_sponsor_binary_qualified
   end
 
   def binary_qualify!
@@ -277,6 +315,47 @@ class User < ApplicationRecord
     attributes = { available_balance_cents: new_amount,
                    blocked_balance_cents: new_amount }
     update_attributes!(attributes)
+  end
+
+  def unilevel_ancestors
+    unilevel_node.ancestors.includes(:user).map(&:user)
+  end
+
+  def sum_career_trail_bonus
+    paid_at = find_current_trail_order_payment_date
+    debits = financial_transactions.debit
+                                   .financial_reason_bonus
+                                   .where('financial_transactions.created_at >= ?', paid_at)
+                                   .sum(:cent_amount)
+    credits = financial_transactions.credit
+                                    .financial_reason_bonus
+                                    .where('financial_transactions.created_at >= ?', paid_at)
+                                    .sum(:cent_amount)
+    (credits - debits).to_f / 1e8.to_f
+  end
+
+  def calculate_excess_career_trail_bonus
+    return 0.0 unless current_career_trail.maximum_bonus
+    maximum_bonus = current_career_trail.calculate_maximum_bonus
+    balance = sum_career_trail_bonus.to_f
+    balance.to_f - maximum_bonus.to_f
+  end
+
+  def find_current_trail_order_payment_date
+    order_item = OrderItem.includes(:order)
+                          .where('orders.user': self)
+                          .where(product_id: current_trail.product.id)
+                          .last
+    order_item.try(:order).try(:paid_at)
+  end
+
+  def reached_career_trail_maximum_bonus?
+    calculate_excess_career_trail_bonus > 0
+  end
+
+  def update_sponsor_binary_qualified
+    sponsor_node = sponsor.try(:binary_node)
+    sponsor.update_attribute(binary_qualified: sponsor_node.qualified?) if sponsor_node
   end
 
   private

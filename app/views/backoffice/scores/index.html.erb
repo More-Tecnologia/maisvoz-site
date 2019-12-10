@@ -38,17 +38,17 @@
               <tbody>
                 <% @scores.each do |score| %>
                   <tr>
-                    <th><%= score.hashid %></th>
-                    <td><%= score.user.username %></td>
-                    <td><%= score.spreader_user.username %></td>
-                    <td><%= score.height %></td>
-                    <td><%= score.score_type.name %></td>
+                    <th><%= score.try(:hashid) %></th>
+                    <td><%= score.try(:user).try(:username) %></td>
+                    <td><%= score.try(:spreader_user).try(:username) %></td>
+                    <td><%= score.try(:height) %></td>
+                    <td><%= score.try(:score_type).try(:name) %></td>
                     <% unless @tree_type == 'unilevel' %>
-                      <td><%= translate_source_leg(score.source_leg) %></td>
+                      <td><%= translate_source_leg(score.try(:source_leg)) %></td>
                     <% end %>
-                    <td><%= number_with_delimiter score.cent_amount %></td>
-                    <td><%= score.order.hashid %></td>
-                    <td><%= l(score.created_at, format: :short) %></td>
+                    <td><%= number_with_delimiter score.try(:cent_amount) %></td>
+                    <td><%= score.try(:order).try(:hashid) %></td>
+                    <td><%= l(score.try(:created_at), format: :short) %></td>
                   </tr>
                 <% end %>
                 <% if @scores.empty? %>

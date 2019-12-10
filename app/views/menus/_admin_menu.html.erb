@@ -25,6 +25,7 @@
     <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
     <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
     <li><%= link_to t('defaults.financial_transactions'), backoffice_financial_transactions_path %></li>
+    <li><%= link_to t('defaults.bonus_entries'), backoffice_bonus_financial_transactions_path %></li>
   </ul>
 </li>
 <!-- Network -->
@@ -43,9 +44,10 @@
   <a href="javascript:void(0);" class="waves-effect"><i class="ti-world"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
   <ul class="list-unstyled">
     <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
-    <li><%= link_to t('defaults.generation_scores'), backoffice_generation_scores_path %></li>
+    <li><%= link_to t('defaults.lineage_scores'), backoffice_lineage_scores_path %></li>
     <!-- <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path %> </li> -->
-    <li> <%= link_to t('defaults.unilevel_binary'), backoffice_admin_scores_path %> </li>
+    <li> <%= link_to t('defaults.unilevel'), backoffice_admin_unilevel_scores_path, class: 'admin-link' %> </li>
+    <li> <%= link_to t('defaults.binary'), backoffice_admin_binary_scores_path, class: 'admin-link' %> </li>
     <!-- <li><%= link_to t('defaults.accumulated_pva'), backoffice_accumulated_pva_index_path %></li> -->
     <!-- <li><%= link_to t('defaults.admin_accumulated_pva'), backoffice_admin_accumulated_pva_index_path, class: 'admin-link' %></li> -->
     <!-- <li><%= link_to t('defaults.pv_activity_histories'), backoffice_admin_pv_activity_histories_path, class: 'admin-link' %></li> -->
@@ -61,7 +63,7 @@
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.users'), backoffice_support_users_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.documents_validation'), backoffice_support_documents_validation_index_path, class: 'admin-link' %></li>
-    <!-- <li><%= link_to t('defaults.careers'), backoffice_admin_careers_path %></li> -->
+    <li><%= link_to t('defaults.careers'), backoffice_admin_careers_path, class: 'admin-link' %></li>
   </ul>
 </li>
 

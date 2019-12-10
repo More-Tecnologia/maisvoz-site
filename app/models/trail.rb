@@ -5,4 +5,14 @@ class Trail < ApplicationRecord
 
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false }
+  validates :product, presence: true
+
+  def greater_or_equal_to?(trail)
+    product.price_cents >= trail.product.price_cents
+  end
+
+  def calculate_binary_bonus(score)
+    score.to_f * product.binary_bonus_percent
+  end
+
 end

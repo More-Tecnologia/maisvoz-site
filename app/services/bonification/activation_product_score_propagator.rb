@@ -13,22 +13,30 @@ module Bonification
     def initialize(args)
       @order = args[:order]
       @activation_product = order.activation_product
-      @score_type = ScoreType.find_by(id: 2)
+      @score_type = ScoreType.activation
     end
 
     def propagate_activation_score(user)
-      sponsors = user.ascendant_sponsors
-      sponsors.each_with_index do |sponsor, height|
-        create_activation_score(user, height)
+      sponsors = order.user.unilevel_ancestors.reverse
+      sponsors.each_with_index do |sponsor, index|
+        return unless sponsor.empreendedor?
+        create_activation_score(sponsor, index + 1)
+        upgrade_career(sponsor)
       end
     end
 
-    def create_activation_score(user, height)
-      Score.create!(user: user,
-                    spread_user: order.user,
-                    score_type: score_type,
-                    cent_amount: order.activation_products_score,
-                    height: height)
+    def create_activation_score(sponsor, height)
+      score = Score.create!(user: sponsor,
+                            order: order,
+                            spreader_user: order.user,
+                            score_type: score_type,
+                            cent_amount: order.activation_products_score,
+                            height: height)
     end
+
+    def upgrade_career(sponsor)
+      UpgraderCareerService.call(user: sponsor)
+    end
+
   end
 end

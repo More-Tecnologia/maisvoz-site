@@ -1,9 +1,9 @@
 module Bonification
   class BonusPropagatorService < ApplicationService
     def call
-      ascendant_sponsors = user.ascendant_sponsors
-      ascendant_sponsors.each_with_index do |ascendant_sponsor, index|
-        propagate_product_bonus(ascendant_sponsor, index + 1)
+      sponsors = user.unilevel_ancestors.reverse
+      sponsors.each_with_index do |sponsor, index|
+        propagate_product_bonus(sponsor, index + 1) if sponsor.empreendedor?
       end
     end
 
@@ -32,27 +32,25 @@ module Bonification
     def create_product_bonuses(ascendant_sponsor, generation, product)
       financial_reasons = find_financial_reasons_by(product)
       financial_reasons.each do |financial_reason|
-        product_score = product_scores.fetch(financial_reason.id)
-                                      .fetch(ascendant_sponsor.current_career_trail.id)
-        return unless product_score
-        financial_transaction = create_financial_transaction(ascendant_sponsor,
-                                                             generation,
-                                                             product,
-                                                             financial_reason,
-                                                             product_score)
-        financial_transaction.chargeback! unless ascendant_sponsor.active?
+        product_score = find_product_score(ascendant_sponsor, financial_reason, product, generation)
+        return unless product_score && product_score.amount_cents > 0
+        create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
+        Financial::UnlockBlockedBalance.call(user: ascendant_sponsor)
       end
     end
 
     def create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
-      score = order_item_quantity * product_score.calculate_product_score(product.price_cents)
-      FinancialTransaction.create!(user: ascendant_sponsor,
-                                   spreader: user,
-                                   financial_reason: financial_reason,
-                                   generation: generation,
-                                   cent_amount: score.round(0),
-                                   order: order) if score > 0
+      bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
+      financial_transaction = FinancialTransaction.create!(user: ascendant_sponsor,
+                                                           spreader: user,
+                                                           financial_reason: financial_reason,
+                                                           generation: generation,
+                                                           cent_amount: bonus,
+                                                           order: order)
+      return financial_transaction.chargeback_by_inactivity! if ascendant_sponsor.inactive?
+      excess = career_trail_excess_bonus(ascendant_sponsor)
+      financial_transaction.chargeback_by_career_trail_excess!(excess) if excess > 0
     end
 
     def find_product_reason_scores_by(products)
@@ -72,5 +70,19 @@ module Bonification
                            .compact
                            .uniq
     end
+
+    def career_trail_excess_bonus(sponsor)
+      sponsor.calculate_excess_career_trail_bonus
+    end
+
+    def find_product_score(ascendant_sponsor, financial_reason, product, generation)
+      ProductScore.includes(:career_trail)
+                  .joins(product_reason_score: [:product, :financial_reason])
+                  .where(career_trail: ascendant_sponsor.current_career_trail)
+                  .where('product_reason_scores.financial_reason_id = ?', financial_reason.id)
+                  .where('product_reason_scores.product_id = ?', product.id)
+                  .where(generation: generation)
+    end
+
   end
 end

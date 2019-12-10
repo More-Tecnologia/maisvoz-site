@@ -50,14 +50,16 @@
             <%= f.input :short_description %>
             <%= f.input :sku %>
             <%= f.input :quantity %>
-          
+
         </div>
         <div class="col-md-6">
             <%= f.input :low_stock_alert %>
             <%= f.input :category_id, collection: Category.all %>
             <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>
             <%= f.input :paid_by, collection: Product.paid_bies.map { |k,v| [t(k), k] } %>
-            <%= f.input :trail_id, collection: Trail.all, selected: (product.trail_id unless product.blank?) %>
+            <%= f.input :trail_id, collection: Trail.all, selected: (product.trail_id unless product.blank?),
+                                                          include_blank: true %>
+            <%= f.hidden_field :trail_id, value: Trail.first.id if Trail.count == 1 %>
             <%= f.input :active, as: :boolean %>
             <%= f.input :virtual, as: :boolean %>
         </div>
@@ -107,8 +109,8 @@
         <hr>
         <div class="row m-b-20">
           <div class="col-md-6">
-            <%= f.input :financial_reason, 
-              collection: FinancialReason.all, 
+            <%= f.input :financial_reason,
+              collection: FinancialReason.all,
               selected: reason.financial_reason_id,
               include_blank: true,
               input_html: { name: "product_form[financial_reason][#{r}]", id: "product_form_financial_reason_#{r}" },
@@ -142,16 +144,16 @@
                     <td>
                       <div class="input-group">
                         <span class="input-group-addon">
-                          <%= f.input_field :product_scores_fix, as: :boolean, 
-                              name: "product_form[product_scores_fix][#{r}][#{s.generation}][#{s.career_trail_id}]", 
+                          <%= f.input_field :product_scores_fix, as: :boolean,
+                              name: "product_form[product_scores_fix][#{r}][#{s.generation}][#{s.career_trail_id}]",
                               id: "product_form_product_scores_fix_#{r}_#{s.generation}_#{s.career_trail_id}",
                               checked: s.fix_value
                           %>
                         </span>
-                        <%= f.input_field :product_scores, label: false, 
+                        <%= f.input_field :product_scores, label: false,
                           class: 'form-control',
-                          name: "product_form[product_scores][#{r}][#{s.generation}][#{s.career_trail_id}]", 
-                          id: "product_form_product_scores_#{r}_#{s.generation}_#{s.career_trail_id}", 
+                          name: "product_form[product_scores][#{r}][#{s.generation}][#{s.career_trail_id}]",
+                          id: "product_form_product_scores_#{r}_#{s.generation}_#{s.career_trail_id}",
                           value: s.amount.to_f
                         %>
                       </div>
@@ -165,14 +167,14 @@
                   <td>
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <%= f.input_field :product_scores_fix, as: :boolean, 
-                            name: "product_form[product_scores_fix][#{r}][1][#{c.id}]", 
+                        <%= f.input_field :product_scores_fix, as: :boolean,
+                            name: "product_form[product_scores_fix][#{r}][1][#{c.id}]",
                             id: "product_form_product_scores_fix_#{r}_1_#{c.id}"
                         %>
                       </span>
-                      <%= f.input_field :product_scores, label: false, 
+                      <%= f.input_field :product_scores, label: false,
                         class: 'form-control',
-                        name: "product_form[product_scores][#{r}][1][#{c.id}]", 
+                        name: "product_form[product_scores][#{r}][1][#{c.id}]",
                         id: "product_form_product_scores_#{r}_1_#{c.id}"
                       %>
                     </div>
@@ -190,8 +192,8 @@
       <hr>
       <div class="row m-b-20">
         <div class="col-md-6">
-          <%= f.input :financial_reason, 
-            collection: FinancialReason.all, 
+          <%= f.input :financial_reason,
+            collection: FinancialReason.all,
             input_html: { name: "product_form[financial_reason][#{rr}]", id: "product_form_financial_reason_#{rr}" },
             wrapper_html: { class: 'm-0' }
           %>
@@ -216,13 +218,13 @@
                   <div class="input-group">
                     <span class="input-group-addon">
                       <%= f.input_field :product_scores_fix, as: :boolean,
-                          name: "product_form[product_scores_fix][#{rr}][1][#{c.id}]", 
+                          name: "product_form[product_scores_fix][#{rr}][1][#{c.id}]",
                           id: "product_form_product_scores_fix_#{rr}_1_#{c.id}"
                       %>
                     </span>
-                    <%= f.input_field :product_scores, label: false, 
+                    <%= f.input_field :product_scores, label: false,
                       class: 'form-control',
-                      name: "product_form[product_scores][#{rr}][1][#{c.id}]", 
+                      name: "product_form[product_scores][#{rr}][1][#{c.id}]",
                       id: "product_form_product_scores_#{rr}_1_#{c.id}"
                     %>
                   </div>

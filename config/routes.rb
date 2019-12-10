@@ -22,11 +22,13 @@ Rails.application.routes.draw do
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
-      resources :scores, only: [:index]
+      resources :unilevel_scores, only: [:index]
+      resources :binary_scores, only: [:index]
       resources :orders, only: [:index, :show] do
         post :approve
         post :mark_as_billed
       end
+      resources :order_approver_without_bonifications, only: [:update]
 
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]
@@ -72,6 +74,7 @@ Rails.application.routes.draw do
     resources :pv_histories, only: [:index]
     resources :pv_activity_histories, only: [:index]
     resources :accumulated_pva, only: [:index]
+    resources :bonus_financial_transactions, only: [:index]
     resources :vouchers, only: [:index]
     resources :pay_with_voucher, only: [:show] do
       post :new
@@ -82,7 +85,7 @@ Rails.application.routes.draw do
     resources :binary_strategies, only: [:index, :create]
     resources :binary_tree, only: [:index, :show]
     resources :unilevel, only: [:index]
-    resources :generation_scores, only: [:index]
+    resources :lineage_scores, only: [:index]
   end
 
   namespace :api do

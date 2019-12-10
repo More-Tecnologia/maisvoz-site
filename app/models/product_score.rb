@@ -10,10 +10,10 @@ class ProductScore < ApplicationRecord
   monetize :amount_cents
 
   def calculate_product_score(product_price)
-    fix_value ? cent_amount : calculate_percent_from(product_price)
+    fix_value ? (amount_cents / 100.0) : calculate_percent_from(product_price)
   end
 
   def calculate_percent_from(product_price)
-    product_price.to_f * cent_amount / 100.0
+  (product_price / 100.0) * (amount_cents / 100.0) / 100.0
   end
 end

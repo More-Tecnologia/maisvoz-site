@@ -82,7 +82,7 @@ module Payment
     end
 
     def expiration_date
-      order.expire_at - 3.days > today ? order.expire_at : today + 7.days
+      order.expire_at
     end
 
     def today

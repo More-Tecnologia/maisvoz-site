@@ -5,7 +5,6 @@ module Backoffice
       @orders = current_user.orders.includes(:payment_transaction)
                                    .where.not(status: :cart)
                                    .order(created_at: :desc)
-
     end
 
     def show
@@ -15,7 +14,7 @@ module Backoffice
     def generate_boleto
       order = current_user.orders.find_by_hashid(params[:order_id])
       if order.expire_at.blank?
-        order.expire_at = 7.days.from_now
+        order.expire_at = 3.days.from_now
         order.save!
       end
 

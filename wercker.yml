@@ -5,6 +5,7 @@ build:
       packages: openssh-client git
     - add-to-known_hosts:
       hostname: $SERVER_HOSTNAME
+      port: $PORT
     - add-ssh-key:
       keyname: DOKKU
     - script:

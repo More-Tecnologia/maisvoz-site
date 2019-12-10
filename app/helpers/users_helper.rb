@@ -20,22 +20,5 @@ module UsersHelper
     end
   end
 
-  def render_available_balance_link(user)
-    available_balance = number_to_currency(user.available_balance_cents)
-    link_to available_balance, backoffice_financial_transactions_path,
-                               class: 'nav-link dropdown-toggle waves-effect text-success',
-                               role: :button,
-                               'aria-haspopup': false,
-                               'aria-expanded': false
-  end
-
-  def render_blocked_balance_link(user)
-    blocked_balance = number_to_currency(user.blocked_balance_cents)
-    link_to blocked_balance, backoffice_financial_transactions_path,
-                             class: 'nav-link dropdown-toggle waves-effect text-warning',
-                             role: :button,
-                             'aria-haspopup': false,
-                             'aria-expanded': false
-  end
 
 end

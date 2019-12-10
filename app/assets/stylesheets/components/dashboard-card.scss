@@ -1,0 +1,28 @@
+.dashboard-card {
+ border: 1px solid rgba(54, 64, 74, 0.05);
+ border-radius: 5px;
+ background-color: white;
+ background-clip: padding-box;
+ overflow: hidden;
+ margin-bottom: 20px;
+}
+
+.dashboard-card__label {
+  padding: 24px 12px;
+  text-align: center;
+
+  span {
+    font-weight: bold;
+    margin: 0;
+    line-height: 0;
+    color: #505458;
+  }
+}
+
+.dashboard-card__value {
+  padding: 10px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}

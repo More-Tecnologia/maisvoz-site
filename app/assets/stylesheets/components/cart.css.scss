@@ -1,0 +1,25 @@
+.order-items-list {
+  .list-group-item {
+    border: none;
+
+    a {
+      display: block;
+    }
+
+    &:hover {
+      background: #ebeff2;
+    }
+  }
+
+  .avatar {
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+    width: 30px;
+
+    img {
+      border-radius: 50%;
+      width: 100%;
+    }
+  }
+}

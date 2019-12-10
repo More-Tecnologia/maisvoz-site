@@ -1,61 +1,95 @@
-<ul class="list-unstyled topnav-menu float-right mb-0">
-  <li class="dropdown notification-list">
-      <a class="navbar-toggle nav-link">
-          <div class="lines">
-              <span></span>
-              <span></span>
-              <span></span>
-          </div>
+<!-- Top Bar Start -->
+<div class="topbar">
+
+  <!-- LOGO -->
+  <div class="topbar-left">
+    <div class="text-center">
+      <a href="/" class="logo">
+        <span><%= image_tag('logo.png', height: 35) %></span>
       </a>
-  </li>
+    </div>
+  </div>
 
-  <li class="notification-list">
-    <% link_to t('defaults.indication_warning', sponsor: params[:sponsor]), '#' if sponsor_from_username(params).present? %>
-  </li>
+  <!-- Button mobile view to collapse sidebar menu -->
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="">
 
-  <li class="notification-list">
-    <%= link_to shop_index_path(sponsor: params[:sponsor]), class: 'nav-link' do %>
-      <i class="fa fa-home"></i> <%= t('shop') %>
-    <% end %>
-  </li>
+      <ul class="nav navbar-nav text-right visible-xs">
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="btn dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+            <i class="fa fa-list"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to shop_index_path(sponsor: params[:sponsor]) do %>
+              <i class="fa fa-home"></i> <%= t('shop') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to t('login'), new_user_session_path(sponsor: params[:sponsor]) %>
+            </li>
+            <li>
+              <%= link_to t('signup'), new_user_registration_path(sponsor: params[:sponsor]) %>
+            </li>
+            <li>
+              <a href="?locale=en" class="flag">
+                <%= image_tag('countries/us.svg') %>
+              </a>
+            </li>
+            <li>
+              <a href="?locale=es" class="flag">
+                <%= image_tag('countries/es.svg') %>
+              </a>
+            </li>
+            <li>
+              <a href="?locale=pt-BR" class="flag">
+                <%= image_tag('countries/br.svg') %>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
 
-  <li class="notification-list">
-    <%= link_to t('login'), new_user_session_path(sponsor: params[:sponsor]),
-                            class: 'nav-link' %>
-  </li>
 
-  <li class="notification-list">
-    <%= link_to t('signup'), new_user_registration_path(sponsor: params[:sponsor]),
-                             class: 'nav-link' %>
-  </li>
-
-  <li class="notification-list">
-    <a href="?locale=en" class="nav-link waves-effect waves-effect flag">
-      <%= image_tag('countries/us.svg', height: 18) %>
-    </a>
-  </li>
-
-  <li class="notification-list">
-    <a href="?locale=es" class="nav-link waves-effect waves-effect flag">
-      <%= image_tag('countries/es.svg', height: 18) %>
-    </a>
-  </li>
-
-  <li class="notification-list">
-    <a href="?locale=pt-BR" class="nav-link waves-effect waves-effect flag">
-      <%= image_tag('countries/br.svg', height: 18) %>
-    </a>
-  </li>
-
-</ul>
-
-<div class="logo-box">
-  <a href="/" class="logo text-center">
-    <span class="logo-lg">
-      <%= image_tag('logo.png', height: 35) %>
-    </span>
-    <span class="logo-sm">
-      <%= image_tag('logo.png', height: 24) %>
-    </span>
-  </a>
+        <div class="nav navbar-nav hidden-xs">
+          <% if sponsor_from_username(params).present? %>
+            <li>
+              <a href="">Olá, você está sendo indicado por <strong><%= params[:sponsor] %></strong></a>
+            </li>
+          <% end %>
+        </div>
+        <ul class="nav navbar-nav navbar-right pull-right hidden-xs">
+          <li>
+            <%= link_to shop_index_path(sponsor: params[:sponsor]) do %>
+            <i class="fa fa-home"></i> <%= t('shop') %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to t('login'), new_user_session_path(sponsor: params[:sponsor]) %>
+          </li>
+          <li>
+            <%= link_to t('signup'), new_user_registration_path(sponsor: params[:sponsor]) %>
+          </li>
+          <li>
+            <a href="?locale=en" class="flag">
+              <%= image_tag('countries/us.svg') %>
+            </a>
+          </li>
+          <li>
+            <a href="?locale=es" class="flag">
+              <%= image_tag('countries/es.svg') %>
+            </a>
+          </li>
+          <li>
+            <a href="?locale=pt-BR" class="flag">
+              <%= image_tag('countries/br.svg') %>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
 </div>
+<!-- Top Bar End -->

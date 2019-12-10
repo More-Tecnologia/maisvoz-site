@@ -1,6 +1,7 @@
 box: 
   id: ubuntu
-  ports: $PORT
+  ports: 
+    - "$PORT"
 build:
   steps:
     - install-packages:

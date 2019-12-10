@@ -1,6 +1,6 @@
-box: 
+box:
   id: ubuntu
-  ports: 
+  ports:
     - "$PORT"
 build:
   steps:

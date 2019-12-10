@@ -1,7 +1,4 @@
-box:
-  id: ubuntu
-  ports:
-    - "$PORT"
+box: ubuntu
 build:
   steps:
     - install-packages:
@@ -13,7 +10,7 @@ build:
     - script:
       name: add remote repository
       code: |
-        git remote add dokku dokku@$SERVER_HOSTNAME:$APP_NAME
+        git remote add dokku ssh://dokku@$SERVER_HOSTNAME:$PORT/$APP_NAME
     - script:
       name: push to server
       code: |

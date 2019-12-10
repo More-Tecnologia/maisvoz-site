@@ -28,4 +28,6 @@ class OrderItem < ApplicationRecord
   monetize :unit_price_cents
   monetize :total_cents
 
+  scope :activation, -> { where(product: Product.activation) }
+
 end

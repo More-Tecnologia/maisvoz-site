@@ -1,4 +1,5 @@
 class Trail < ApplicationRecord
+
   has_many :career_trails
   has_many :careers, through: :career_trails
   has_one :product

@@ -29,9 +29,9 @@ class Career < ApplicationRecord
   has_one :binary_qualified_career, class_name: 'Career',
                                     foreign_key: 'career_id'
 
-  validates :requalification_score, presence: true,
-                                    numericality: { only_integer: true },
-                                    uniqueness: true
+  validates :qualifying_score, presence: true,
+                               numericality: { only_integer: true },
+                               uniqueness: true
 
   enum kind: [:qualification, :adhesion]
 

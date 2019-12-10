@@ -51,8 +51,16 @@ class FinancialReason < ApplicationRecord
     find_by(code: '900')
   end
 
-  def self.order_payment
+  def self.indication_bonus
+    find_by(code: '1000')
+  end
+
+  def self.yield_bonus
     find_by(code: '1100')
+  end
+
+  def self.order_payment
+    find_by(code: '1200')
   end
 
   def self.chargeback_by_unqualification

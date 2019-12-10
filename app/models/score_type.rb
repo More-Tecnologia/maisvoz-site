@@ -8,7 +8,7 @@ class ScoreType < ApplicationRecord
                    uniqueness: { case_sensitive: false }
   validates :code, presence: true,
                    uniqueness: true
-                   
+
   enum tree_type: [:unilevel, :binary]
 
   def self.adhesion
@@ -24,19 +24,19 @@ class ScoreType < ApplicationRecord
   end
 
   def self.binary_score
-    find_by(id: '400')
+    find_by(code: '400')
   end
 
   def self.binary_unqualified_chargeback
-    find_by(id: '500')
+    find_by(code: '500')
   end
 
   def self.inactivity_chargeback
-    find_by(id: '600')
+    find_by(code: '600')
   end
 
   def self.binary_bonus_debit
-    find_by(id: '700')
+    find_by(code: '700')
   end
 
   def self.unilevel_inactivity_chargeback

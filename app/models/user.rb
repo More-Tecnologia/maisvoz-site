@@ -222,9 +222,13 @@ class User < ApplicationRecord
     current_career_trail.try(:career)
   end
 
-  def activate!
-    update!(active: true, active_until: 1.month.from_now)
+  def activate!(active_until = 1.month.from_now)
+    update!(active: true, active_until: active_until )
     update_sponsor_binary_qualified
+  end
+
+  def activate_until!(date)
+    update!(active_until: date)
   end
 
   def out_binary_tree?
@@ -355,7 +359,7 @@ class User < ApplicationRecord
 
   def update_sponsor_binary_qualified
     sponsor_node = sponsor.try(:binary_node)
-    sponsor.update_attribute(binary_qualified: sponsor_node.qualified?) if sponsor_node
+    sponsor.update_attributes!(binary_qualified: sponsor_node.qualified?) if sponsor_node
   end
 
   private

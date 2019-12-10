@@ -1,7 +1,7 @@
 module Shopping
-  class ClearCartOrders
+  class ClearCartOrders < ApplicationService
 
-    def call()
+    def call
       ActiveRecord::Base.transaction do
         Order.cart.where('created_at < ?', 1.day.ago).destroy_all
       end

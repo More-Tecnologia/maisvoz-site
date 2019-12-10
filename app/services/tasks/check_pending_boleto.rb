@@ -1,7 +1,7 @@
 module Tasks
-  class CheckPendingBoleto
+  class CheckPendingBoleto  < ApplicationService
 
-    def self.call
+    def call
       auth_key = Payment::Bradesco::GetAuthKey.call
 
       Order.pending_payment.boleto.find_each do |order|

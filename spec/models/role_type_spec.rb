@@ -13,5 +13,6 @@ RSpec.describe RoleType, type: :model do
   it { is_expected.to(validate_uniqueness_of(:code)) }
   it { is_expected.to(validate_numericality_of(:code).only_integer) }
   it { is_expected.to(validate_numericality_of(:code).is_greater_than(0)) }
+  it { is_expected.to(have_many(:users)) }
 
 end

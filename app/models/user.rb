@@ -134,6 +134,9 @@ class User < ApplicationRecord
   has_many :financial_transactions
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
+  belongs_to :role_type, class_name: 'RoleType',
+                         foreign_key: 'role_type_code',
+                         optional: true
 
   has_many :credits
   has_many :debits

@@ -26,21 +26,21 @@ module Financial
         update_user_purchase_flags
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user if adhesion_product
+        activate_user if adhesion_product || activation_product
         update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active
         propagate_binary_score if enabled_bonification
         propagate_products_scores if enabled_bonification
-        upgrade_user_career
+        upgrade_career_from(user.sponsor)
+        upgrade_career_from(user) if adhesion_product
         propagate_bonuses if enabled_bonification
         create_vouchers
         create_system_fee
+        create_next_activation_order_and_activate_user_until if adhesion_product || activation_product
         binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification
         notify_user_by_email_about_paid_order
       end
-      binary_bonus_nodes_verifier if user.inside_binary_tree?
-      notify_user_by_email_about_paid_order
     end
 
     def update_order_status
@@ -93,8 +93,8 @@ module Financial
       user.update_attributes!(attributes)
     end
 
-    def upgrade_user_career
-      UpgraderCareerService.call(user: user.sponsor)
+    def upgrade_career_from(user)
+      UpgraderCareerService.call(user: user)
     end
 
     def upgrade_user_trail
@@ -106,12 +106,27 @@ module Financial
       user.activate!
     end
 
+    def active_user_until!(order_maturity_date)
+      grace_period = user.current_career_trail.product.grace_period
+      user.active_until!(order_maturity_date + grace_period)
+    end
+
     def update_user_role
       user.update_attributes!(role: 'empreendedor')
     end
 
     def binary_bonus_nodes_verifier
       NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
+    end
+
+    def create_next_activation_order
+      Financial::CreatorActivationOrderService.call(user: user)
+    end
+
+    def create_next_activation_order_and_activate_user_until
+      order = create_next_activation_order
+      grace_period = user.try(:current_career_trail).try(:grace_period).to_i
+      user.activate_until!(order.expire_at + grace_period)
     end
 
     def adhesion_product
@@ -130,6 +145,10 @@ module Financial
       @subscription_product ||= order.products.detect(&:subscription?)
     end
 
+    def activation_product
+      @activation_product ||= order.products.detect(&:activation?)
+    end
+
     def new_trail?
       user.current_trail != adhesion_product.try(:trail)
     end
@@ -145,5 +164,6 @@ module Financial
     def notify_user_by_email_about_paid_order
       ShoppingMailer.with(order: order).order_paid.deliver_later
     end
+
   end
 end

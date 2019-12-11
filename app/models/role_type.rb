@@ -9,4 +9,8 @@ class RoleType < ApplicationRecord
                    numericality: { only_integer: true,
                                    greater_than: 0 }
 
+  def self.support_point_code
+    10
+  end
+
 end

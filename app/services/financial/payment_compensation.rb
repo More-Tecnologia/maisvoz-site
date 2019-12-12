@@ -131,7 +131,7 @@ module Financial
     end
 
     def associate_support_point
-      AssociateSupportPointService.call(adhesion_order: order)
+      AssociateSupportPointService.call(user: order.user)
     end
 
     def adhesion_product

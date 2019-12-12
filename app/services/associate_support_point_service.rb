@@ -10,11 +10,10 @@ class AssociateSupportPointService < ApplicationService
 
   private
 
-  attr_accessor :adhesion_order, :user, :support_point_users
+  attr_accessor :user, :support_point_users
 
   def initialize(args)
-    @adhesion_order = args[:adhesion_order]
-    @user = adhesion_order.user
+    @user = args[:user]
     @support_point_users = find_support_point_users_by(user.city, user.state)
   end
 

@@ -4,5 +4,8 @@ FactoryBot.define do
     phone_number { Faker::Number.number(digits: 13) }
     status { SimCard.statuses.keys.sample }
     status_change_date { Faker::Time.backward(days: 14) }
+    user { association(:user) }
+    order { association(:order) }
+    support_point_user { association(:user) }
   end
 end

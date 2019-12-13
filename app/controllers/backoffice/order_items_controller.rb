@@ -68,5 +68,9 @@ module Backoffice
       trail_product && product.price_cents <= trail_product.price_cents
     end
 
+    def product
+      @product ||= Product.find_by(id: params[:product][:id])
+    end
+
   end
 end

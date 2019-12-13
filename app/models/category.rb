@@ -18,4 +18,8 @@ class Category < ApplicationRecord
 
   scope :active, -> { where(active: true).order(:order) }
 
+  def self.sim_card
+    where(code: 10)
+  end
+
 end

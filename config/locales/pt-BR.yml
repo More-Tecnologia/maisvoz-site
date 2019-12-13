@@ -217,6 +217,11 @@ pt-BR:
     canceled: Cancelado
     binary_qualify: Binário Qualificado
     height: Geração
+    unit_price_cents: Preço Unitário
+    sim_card_quantity: Quantidade de CHIPS
+    order_id: Pedido
+    processed_at: Data de Processamento
+    quantity_per_product: Quantidade por Produto
   backoffice:
     orders:
       show:
@@ -328,6 +333,12 @@ pt-BR:
       pv_histories:
         index:
           title: Histórico de PVG
+      sim_card_controls:
+        new:
+          title: Pedidos de CHIP
+      sim_cards:
+        new:
+          title: Adicionar CHIPs ao Pedido / Usuário
     support:
       users:
         index:
@@ -530,6 +541,11 @@ pt-BR:
     source_leg_left: Perna Esquerda
     source_leg_right: Perna Direita
     lineage: Linhagem
+    sim_card_control: Controle de CHIP
+    add_sim_cards: Adicionar CHIPs
+    processed_at: Data de Processamento
+    sim_card_add: Adicionar CHIPs
+    sim_cards_added: CHIPS adicionados
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

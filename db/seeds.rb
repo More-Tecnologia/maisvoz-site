@@ -36,6 +36,24 @@ ActiveRecord::Base.transaction do
     end
   end
 
+  sim_card_category = Category.find_or_create_by!(name: 'CHIPs',
+                                                  active_session: true,
+                                                  active: true,
+                                                  code: 10)
+
+  sim_card = Product.find_or_create_by!(name: 'Pacote de CHIPs',
+                                        quantity: 10,
+                                        price_cents: 9990,
+                                        binary_score: 0,
+                                        binary_bonus: 0,
+                                        active: true,
+                                        virtual: false,
+                                        category: sim_card_category,
+                                        paid_by: :paid_by_user,
+                                        kind: :detached,
+                                        maturity_days: nil,
+                                        grace_period: 0)
+
   # SCORE TYPES
   score_types = [{ name: 'Pontuação de Adesões', code: '100' },
                  { name: 'Pontuação de Ativação', code: '200' },

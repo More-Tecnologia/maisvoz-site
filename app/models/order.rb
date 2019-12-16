@@ -47,7 +47,6 @@ class Order < ApplicationRecord
   has_many :pv_activity_histories
   has_many :scores
   has_many :financial_transactions
-  has_many :sim_cards
   has_one :payment_transaction
 
   belongs_to :user

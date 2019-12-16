@@ -14,7 +14,7 @@ RSpec.describe SimCard, type: :model do
   it { is_expected.to(validate_length_of(:phone_number).is_at_most(13)) }
   it { is_expected.to(validate_numericality_of(:phone_number).only_integer) }
   it { is_expected.to(belong_to(:user).optional) }
-  it { is_expected.to(belong_to(:order)) }
+  it { is_expected.to(belong_to(:order_item)) }
   it { is_expected.to(belong_to(:support_point_user).optional) }
 
 end

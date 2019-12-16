@@ -5,7 +5,7 @@ FactoryBot.define do
     status { SimCard.statuses.keys.sample }
     status_change_date { Faker::Time.backward(days: 14) }
     user { association(:user) }
-    order { association(:order) }
+    order_item { association(:order_item) }
     support_point_user { association(:user) }
   end
 end

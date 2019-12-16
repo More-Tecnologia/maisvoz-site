@@ -7,7 +7,7 @@ class CreateSimCards < ActiveRecord::Migration[5.2]
       t.datetime :status_change_date
       t.references :user
       t.bigint :support_point_user_id, index: true, foreign_key: true
-      t.references :order
+      t.references :order_item
 
       t.timestamps
     end

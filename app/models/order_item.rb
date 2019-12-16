@@ -27,6 +27,8 @@ class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
 
+  has_many :sim_cards
+
   monetize :unit_price_cents
   monetize :total_cents
 

@@ -228,6 +228,7 @@ pt-BR:
     in_stock: Em Estoque
     out_stock: Fora de Estoque
     transfered: Transferido
+    sim_card_quantity_added: CHIPs Adicionados
   backoffice:
     orders:
       show:

@@ -129,4 +129,5 @@ class Order < ApplicationRecord
   def paid!
     update_attributes(status: :completed, paid_at: Time.now)
   end
+
 end

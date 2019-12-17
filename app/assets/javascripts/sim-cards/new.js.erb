@@ -1,0 +1,33 @@
+$(document).ready(function() {
+
+  $("input#iccid").on('keypress', function(event){
+    var iccid = $(this).val();
+    if(is_end_char(event)) {
+      add_to_form_list(iccid);
+      add_to_list(iccid);
+      $(this).val('');
+      update_iccid_count();
+      event.preventDefault();
+    }
+  });
+
+  function is_end_char(event) { return event.which == 13 }
+
+  function add_to_form_list(iccid) {
+    var element = "<input type='hidden' name='sim_cards[iccids][]' value=" + iccid +">";
+    $("ul#iccids-hidden").prepend(element);
+  }
+
+  function add_to_list(iccid) {
+    var element = "<li>" + iccid + "</li>";
+    $("ul#iccids").prepend(element);
+  }
+
+  function update_iccid_count() {
+    var new_iccids = $("ul#iccids").children().length;
+    var added_iccids = $("table#sim-cards .added").length;
+    iccids_count = new_iccids + added_iccids;
+    $("strong#iccid-count").val(iccids_count);
+  }
+
+});

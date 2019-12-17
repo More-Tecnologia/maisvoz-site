@@ -56,4 +56,11 @@ class OrderItem < ApplicationRecord
     !processed?
   end
 
+  def create_sim_cards(iccids)
+    ActiveRecord::Base.transaction do
+      iccids.map { |iccid| sim_cards.create!(support_point_user: order.user,
+                                             iccid: iccid) }
+    end
+  end
+
 end

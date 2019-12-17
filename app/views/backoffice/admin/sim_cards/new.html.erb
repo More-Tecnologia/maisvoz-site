@@ -37,7 +37,7 @@
             </tr>
             <tr class='text-warning'>
               <td> <strong> <%= t('defaults.sim_cards_added') %></strong> </td>
-              <td> <strong> <%=  0  %> </strong> </td>
+              <td> <strong id='iccid-count'> <%=  @sim_cards.size  %> </strong> </td>
             </tr>
           </tbody>
         </table>
@@ -47,9 +47,31 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-4">
-    <div class="col-sm-12">
-      <%= text_field_tag :sim_card_iccid, '', class: 'form-control', placeholder: SimCard.human_attribute_name(:iccid).to_s.downcase  %>
-    </div>
+  <div class="col-sm-12">
+    <%= form_tag(backoffice_admin_order_item_sim_cards_path(@order_item)) do %>
+      <div class="form-row align-items-center">
+        <div class="col-sm-6">
+          <%= text_field_tag :sim_card_iccid, '', class: 'form-control',
+                                                  placeholder: SimCard.human_attribute_name(:iccid).to_s.downcase,
+                                                  id: 'iccid' %>
+        </div>
+        <div class="col-auto my-1">
+          <%= submit_tag t('helpers.submit.submit', model: ''), class: 'btn btn-primary' %>
+        </div>
+      </div>
+      <div class="form-row">
+        <ul id="iccids-hidden">
+        </ul>
+      </div>
+    <% end %>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-sm-12" style="margin-top: 10px;">
+    <ul id="iccids">
+    </ul>
+  </div>
+</div>
+
+<%= render 'backoffice/admin/sim_cards/index' %>

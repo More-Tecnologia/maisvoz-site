@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="table-responsive">
+          <table class="table table-striped table-bordered m-0">
+            <thead>
+              <tr>
+                <th> # </th>
+                <th> <%= SimCard.human_attribute_name(:iccid) %> </th>
+                <th> <%= SimCard.human_attribute_name(:support_point_user) %> </th>
+                <th> <%= SimCard.human_attribute_name(:user) %> </th>
+                <th> <%= SimCard.human_attribute_name(:status) %> </th>
+                <th> <%= SimCard.human_attribute_name(:phone_number) %> </th>
+              </tr>
+            </thead>
+            <tbody id="sim-cards">
+              <% @sim_cards.each do |sim_card| %>
+                <tr class="added">
+                  <td> <%= sim_card.hashid %> </td>
+                  <td> <%= sim_card.iccid %> </td>
+                  <td> <%= sim_card.try(:support_point_user).try(:username) %> </td>
+                  <td> <%= sim_card.try(:user).try(:username) %> </td>
+                  <td> <%= t("attributes.#{sim_card.status}") %> </td>
+                  <td> <%= sim_card.phone_number if sim_card.phone_number %> </td>
+                </tr>
+              <% end %>
+              <% if @sim_cards.empty? %>
+                <tr>
+                  <td colspan="10" class="text-center"><%= t('views.backoffice.orders.index.no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+          <%= paginate(@sim_cards) if @sim_cards.any? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

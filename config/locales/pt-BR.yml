@@ -229,6 +229,7 @@ pt-BR:
     out_stock: Fora de Estoque
     transfered: Transferido
     sim_card_quantity_added: CHIPs Adicionados
+    actions: Acões
   backoffice:
     orders:
       show:
@@ -554,6 +555,7 @@ pt-BR:
     sim_card_add: Adicionar CHIPs
     sim_cards_added: CHIPS adicionados
     sim_cards_created: CHIPS adicionados com sucesso.
+    sim_card_not_stoke: CHIP não está em estoque.
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

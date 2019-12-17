@@ -60,7 +60,12 @@ class OrderItem < ApplicationRecord
     ActiveRecord::Base.transaction do
       iccids.map { |iccid| sim_cards.create!(support_point_user: order.user,
                                              iccid: iccid) }
+      process! if sim_cards.count >= total_quantity
     end
+  end
+
+  def process!
+    update!(processed_at: Time.current) unless processed?
   end
 
 end

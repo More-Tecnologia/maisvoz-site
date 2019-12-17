@@ -35,7 +35,7 @@
               <td> <strong> <%= OrderItem.human_attribute_name(:sim_card_quantity) %> </strong> </td>
               <td> <strong> <%= @order_item.total_quantity.to_i %> </strong> </td>
             </tr>
-            <tr class="<%= @sim_cards.size > @order_item.total_quantity.to_i ? 'text-danger' : 'text-warning' %>">
+            <tr class="<%= @sim_cards.size >= @order_item.total_quantity.to_i ? 'text-danger' : 'text-warning' %>">
               <td> <strong> <%= t('defaults.sim_cards_added') %></strong> </td>
               <td> <strong id='iccid-count'> <%= @sim_cards.size  %> </strong> </td>
             </tr>

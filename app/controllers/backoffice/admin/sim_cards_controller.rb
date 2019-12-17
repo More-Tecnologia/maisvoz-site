@@ -11,14 +11,19 @@ module Backoffice
       end
 
       def create
-        sim_cards = @order_item.create_sim_cards(valid_iccids)
-        @sim_cards = Kaminari.paginate_array(sim_cards, total_count: sim_cards.size)
-                             .page(params[:page])
+        @order_item.create_sim_cards(valid_iccids)
+        @sim_cards = @order_item.sim_cards
+                                .page(params[:page])
         flash[:success] = t('defaults.sim_cards_created')
         render :new
       rescue StandardError => error
         flash[:error] = error.message
         redirect_to new_backoffice_admin_order_item_sim_card_path(@order_item)
+      end
+
+      def destroy
+        @sim_card = SimCard.find_by_hashid(params[:id]).delete
+        render js: "$('tr##{@sim_card.hashid}').remove();"
       end
 
       private

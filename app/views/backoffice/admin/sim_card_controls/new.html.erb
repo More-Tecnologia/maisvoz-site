@@ -5,6 +5,8 @@
   </div>
 </div>
 
+<%= render 'backoffice/admin/sim_card_controls/filters' %>
+
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
@@ -38,7 +40,7 @@
                   <td> <%= number_to_currency(order_item.unit_value) if order_item.unit_value %> </td>
                   <td> <%= number_to_currency(order_item.total) if order_item.try(:total) %> </td>
                   <td> <%= order_item.total_quantity.to_i %> </td>
-                  <td class="<%= order_item.sim_cards.size > order_item.total_quantity.to_i  ? 'text-danger' : 'text-warning' %>"> <%= order_item.sim_cards.size %> </td>
+                  <td class="<%= order_item.sim_cards.size >= order_item.total_quantity.to_i ? 'text-danger' : 'text-warning' %>"> <%= order_item.sim_cards.size %> </td>
                   <td> <%= l(order_item.processed_at, format: :long) if order_item.processed_at %> </td>
                   <td> <%= link_to t('defaults.sim_card_add'), new_backoffice_admin_order_item_sim_card_path(order_item),
                                                                class: 'btn btn-info btn-sm' if order_item.order && order_item.unprocessed? %>

@@ -53,14 +53,12 @@ Rails.application.routes.draw do
     end
 
     # Backoffice
-
     resources :dashboard, only: :index
     resource :documents, only: [:edit, :update]
     resources :downloads, only: [:index]
     resources :binary_scores, only: [:index]
     resources :unilevel_scores, only: [:index]
     resources :financial_transactions, only: [:index]
-
     resource :bank_account, only: [:edit, :update]
 
     # Shopping
@@ -91,8 +89,10 @@ Rails.application.routes.draw do
     resources :unilevel, only: [:index]
     resources :lineage_scores, only: [:index]
 
+    # Sim Cards
     resources :users, only: [] do
       resources :sim_cards, only: [:index, :create]
+      resources :sim_card_reports, only: [:index]
     end
   end
 

@@ -564,6 +564,7 @@ pt-BR:
     user_sim_cards: CHIPS do Usuário
     sim_card_inactive_user: Usuário inativo não pode receber CHIPs
     sim_card_unavailable_to_transfer: "CHIPs não cadastrados ou já transferidos %{iccids}"
+    user_sim_card_report: Relatório de CHIPs
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

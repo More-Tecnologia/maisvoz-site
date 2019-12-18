@@ -17,9 +17,6 @@ class Category < ApplicationRecord
   has_many :products
 
   scope :active, -> { where(active: true).order(:order) }
-
-  def self.sim_card
-    where(code: 10)
-  end
+  scope :sim_card, -> { where(code: 10) }
 
 end

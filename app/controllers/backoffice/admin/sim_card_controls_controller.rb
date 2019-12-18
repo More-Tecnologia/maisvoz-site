@@ -7,7 +7,7 @@ module Backoffice
         @sim_card_order_items = @q.result.includes(:product, :sim_cards, order: [:user])
                                          .sim_card
                                          .paid
-                                         .order(:created_at, processed_at: :desc)
+                                         .order(processed_at: :desc)
                                          .page(params[:page])
       end
 

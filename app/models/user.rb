@@ -385,6 +385,11 @@ class User < ApplicationRecord
     role_type_code == RoleType.support_point_code
   end
 
+  def support_point?
+    role_type_code == RoleType.support_point_code
+  end
+
+
   private
 
   def ensure_initial_career_trail

@@ -7,6 +7,7 @@ $(document).ready(function() {
       add_to_list(iccid);
       $(this).val('');
       update_iccid_count();
+      enable_submit_button();
       event.preventDefault();
     }
   });
@@ -27,7 +28,12 @@ $(document).ready(function() {
     var new_iccids = $("ul#iccids").children().length;
     var added_iccids = $("table#sim-cards .added").length;
     iccids_count = new_iccids + added_iccids;
-    $("strong#iccid-count").val(iccids_count);
+    console.log(iccids_count);
+    $("strong#iccid-count").html(iccids_count);
+  }
+
+  function enable_submit_button() {
+    $("input[type='submit']#send-iccids").prop('disabled', false);
   }
 
 });

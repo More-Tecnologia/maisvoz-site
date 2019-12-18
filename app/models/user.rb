@@ -134,15 +134,14 @@ class User < ApplicationRecord
   has_many :financial_transactions
   has_many :sim_cards
   has_many :supported_sim_cards, class_name: 'SimCard',
-                                 primary_key: 'support_point_user_id'
-  has_many :supported_point_users, class_name: 'User',
-                                   foreign_key: 'role_type_code'
-  has_many :supported_point_users
+                                 foreign_key: 'support_point_user_id'
+  has_many :supported_point_users, class_name: 'User'
 
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
   belongs_to :role_type, class_name: 'RoleType',
                          foreign_key: 'role_type_code',
+                         primary_key: 'code',
                          optional: true
   belongs_to :support_point_user, class_name: 'User',
                                   optional: true
@@ -162,6 +161,8 @@ class User < ApplicationRecord
     where('lower(unaccent(city)) = ? AND lower(unaccent(state)) = ?',
           I18n.transliterate(city.to_s.strip.downcase),
           I18n.transliterate(state.to_s.strip.downcase)) }
+  scope :by_support_point_and_consultant, ->(support_point, username) {
+    where(support_point_user: support_point, username: username) }
 
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
@@ -380,8 +381,8 @@ class User < ApplicationRecord
     sponsor.update_attributes!(binary_qualified: sponsor_node.qualified?) if sponsor_node
   end
 
-  def role_type
-    @role_type ||= RoleType.find_by(code: role_type_code)
+  def support_point?
+    role_type_code == RoleType.support_point_code
   end
 
   private

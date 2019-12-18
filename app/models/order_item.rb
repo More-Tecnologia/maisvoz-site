@@ -57,9 +57,9 @@ class OrderItem < ApplicationRecord
   end
 
   def create_sim_cards(iccids)
+    attributes = order.user.support_point? ? { support_point_user: order.user } : { user: order.user }
     ActiveRecord::Base.transaction do
-      iccids.map { |iccid| sim_cards.create!(support_point_user: order.user,
-                                             iccid: iccid) }
+      iccids.map { |iccid| sim_cards.create!(attributes.merge(iccid: iccid)) }
       process! if sim_cards.count >= total_quantity
     end
   end

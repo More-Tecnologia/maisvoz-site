@@ -68,5 +68,13 @@ module Backoffice
       sim_card.try(stock_out_attribute) ? t("attributes.out_stock") : t("attributes.in_stock")
     end
 
+    def detect_company_stock_in_at(sim_card)
+      l(sim_card.created_at, format: :long) if sim_card.created_at
+    end
+
+    def detect_company_stock_out_at(sim_card)
+      l(sim_card.stock_out_at, format: :long) if sim_card.stock_out_at
+    end
+
   end
 end

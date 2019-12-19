@@ -232,6 +232,8 @@ pt-BR:
     actions: Ações
     in_date: Data de Entrada
     out_date: Data de Saída
+    support_point: Ponto de Apoio
+    transference_date: Data de Transferência
   backoffice:
     orders:
       show:
@@ -620,6 +622,8 @@ pt-BR:
       sim_card_transfer: Transferir CHIP(s)
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
+    from: De
+    util: Até
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:

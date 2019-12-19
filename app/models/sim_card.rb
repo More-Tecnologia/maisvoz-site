@@ -42,6 +42,7 @@ class SimCard < ApplicationRecord
     self[:support_point_stock_out_at] = Time.current if user && !support_point_stock_out_at
     self[:user_stock_in_at] = Time.current if user && !user_stock_in_at
     self[:user_stock_out_at] = Time.current if actived_at && !user_stock_out_at
+    self[:stock_out_at] = self[:support_point_stock_in_at] || self[:user_stock_in_at] if !stock_out_at
   end
 
 end

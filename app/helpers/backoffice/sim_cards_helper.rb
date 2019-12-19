@@ -64,8 +64,11 @@ module Backoffice
     end
 
     def detect_stock_status_by(user, sim_card)
-      stock_out_attribute = user.support_point? ? :support_point_stock_out_at : :user_stock_out_at
-      sim_card.try(stock_out_attribute) ? t("attributes.out_stock") : t("attributes.in_stock")
+      stock_out_attribute = :user_stock_out_at
+      stock_out_attribute = :stock_out_at if  user.admin?
+      stock_out_attribute = :support_point_stock_out_at if user.support_point?
+      stock_out_at = sim_card.try(stock_out_attribute)
+      stock_out_at ? t("attributes.out_stock") : t("attributes.in_stock")
     end
 
     def detect_company_stock_in_at(sim_card)

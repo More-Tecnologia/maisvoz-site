@@ -18,19 +18,23 @@
               </div>
               <div class="col-md-2">
                 <%= f.label t('attributes.in_date') %>
-                <%= f.search_field find_in_stock_search_attribute_by(current_user), class: 'form-control input-sm' %>
+                <%= f.search_field find_in_stock_search_attribute_by(current_user), class: 'form-control input-sm',
+                                                                                    data: { provide: 'datepicker' } %>
               </div>
               <div class="col-md-2">
                 <%= f.label t('attributes.out_date') %>
-                <%= f.search_field find_out_stock_search_attribute_by(current_user), class: 'form-control input-sm' %>
+                <%= f.search_field find_out_stock_search_attribute_by(current_user), class: 'form-control input-sm',
+                                                                                     data: { provide: 'datepicker' } %>
               </div>
               <div class="col-md-1">
                 <%= f.label t('attributes.in_stock') %>
-                <%= f.check_box find_status_in_stock_search_attribute_by(current_user), class: 'form-control input-sm' %>
+                <%= f.check_box find_status_in_stock_search_attribute_by(current_user), class: 'form-control input-sm',
+                                                                                        data: { provide: 'datepicker' } %>
               </div>
               <div class="col-md-1">
                 <%= f.label t('attributes.out_stock') %>
-                <%= f.check_box find_status_out_stock_search_attribute_by(current_user), class: 'form-control input-sm' %>
+                <%= f.check_box find_status_out_stock_search_attribute_by(current_user), class: 'form-control input-sm',
+                                                                                         data: { provide: 'datepicker' } %>
               </div>
             </div>
           </div>

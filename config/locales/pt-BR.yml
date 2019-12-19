@@ -234,6 +234,7 @@ pt-BR:
     out_date: Data de Saída
     support_point: Ponto de Apoio
     transference_date: Data de Transferência
+    transferences: Transferências
   backoffice:
     orders:
       show:

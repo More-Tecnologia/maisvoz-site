@@ -2,8 +2,6 @@ class SimCard < ApplicationRecord
 
   include Hashid::Rails
 
-  has_paper_trail
-
   belongs_to :user, optional: true
   belongs_to :order_item
   belongs_to :support_point_user, class_name: 'User',

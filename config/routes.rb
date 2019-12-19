@@ -94,6 +94,7 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       resources :sim_cards, only: [:index, :create]
       resources :sim_card_reports, only: [:index]
+      resources :sim_card_transfers, only: :index
     end
   end
 

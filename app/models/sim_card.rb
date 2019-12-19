@@ -29,6 +29,7 @@ class SimCard < ApplicationRecord
   scope :by_support_point, ->(user) { where(support_point_user: user) }
   scope :available, -> { where(user: nil) }
   scope :by_iccids, ->(iccids) { where(iccid: iccids) }
+  scope :transfered, -> { where.not(support_point_stock_out_at: nil) }
 
   private
 

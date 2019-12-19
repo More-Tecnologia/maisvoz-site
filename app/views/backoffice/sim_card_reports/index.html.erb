@@ -1,6 +1,17 @@
 <div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('defaults.user_sim_card_report') %></h4>
+  </div>
+</div>
+
+<%= render 'backoffice/sim_card_reports/filters' %>
+
+<div class="row">
   <div class="col-sm-12">
     <div class="card-box">
+      <div class="row">
+        <p><strong> <%= t('attributes.quantity') %>: &nbsp;&nbsp;</strong><%= @sim_cards.size %> </p>
+      </div>
       <div class="row">
         <div class="col-lg-12">
           <div class="table-responsive">
@@ -11,12 +22,8 @@
                 <th> <%= SimCard.human_attribute_name(:iccid) %> </th>
                 <th> <%= SimCard.human_attribute_name(:phone_number) %> </th>
                 <th> <%= SimCard.human_attribute_name(:status) %> </th>
-
-                <th> <%= SimCard.human_attribute_name(:support_point_user) %> </th>
-                <th> <%= SimCard.human_attribute_name(:user) %> </th>
-
-
-                <th> <%= SimCard.human_attribute_name(:actions) %> </th>
+                <th> <%= SimCard.human_attribute_name(:in_date) %> </th>
+                <th> <%= SimCard.human_attribute_name(:out_date) %> </th>
               </tr>
             </thead>
             <tbody id="sim-cards">
@@ -24,17 +31,10 @@
                 <tr class="added" id='<%= sim_card.hashid %>'>
                   <td> <%= sim_card.hashid %> </td>
                   <td> <%= sim_card.iccid %> </td>
-                  <td> <%= sim_card.try(:support_point_user).try(:username) %> </td>
-                  <td> <%= sim_card.try(:user).try(:username) %> </td>
-                  <td> <%= t("attributes.#{sim_card.status}") %> </td>
-                  <td> <%= sim_card.phone_number if sim_card.phone_number %> </td>
-                  <td> <%= link_to backoffice_admin_order_item_sim_card_path(@order_item, sim_card),
-                                   method: :delete,
-                                   class: 'text-danger',
-                                   remote: true do %>
-                          <i class="far fa-trash-alt"></i>
-                       <% end if sim_card.in_stock?%>
-                  </td>
+                  <td> <%= hide_last_four_digits(sim_card.phone_number) if sim_card.phone_number %> </td>
+                  <td> <%= detect_stock_status_by(current_user, sim_card) %> </td>
+                  <td> <%= l(sim_card.support_point_stock_in_at, format: :long) if sim_card.support_point_stock_in_at %> </td>
+                  <td> <%= l(sim_card.support_point_stock_out_at, format: :long) if sim_card.support_point_stock_out_at %> </td>
                 </tr>
               <% end %>
               <% if @sim_cards.empty? %>

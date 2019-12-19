@@ -47,5 +47,26 @@ module Backoffice
       (chars + suffix).join
     end
 
+    def find_out_stock_search_attribute_by(user)
+      user.support_point? ? :support_point_stock_out_at_eq : :user_stock_out_at_eq
+    end
+
+    def find_in_stock_search_attribute_by(user)
+      user.support_point? ? :support_point_stock_in_at_eq : :user_stock_in_at_eq
+    end
+
+    def find_status_in_stock_search_attribute_by(user)
+      user.support_point? ? :support_point_stock_out_at_null : :user_stock_out_at_null
+    end
+
+    def find_status_out_stock_search_attribute_by(user)
+      user.support_point? ? :support_point_stock_out_at_not_null : :user_stock_out_at_not_null
+    end
+
+    def detect_stock_status_by(user, sim_card)
+      stock_out_attribute = user.support_point? ? :support_point_stock_out_at : :user_stock_out_at
+      sim_card.try(stock_out_attribute) ? t("attributes.out_stock") : t("attributes.in_stock")
+    end
+
   end
 end

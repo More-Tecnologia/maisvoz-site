@@ -230,6 +230,8 @@ pt-BR:
     transfered: Transferido
     sim_card_quantity_added: CHIPs Adicionados
     actions: Ações
+    in_date: Data de Entrada
+    out_date: Data de Saída
   backoffice:
     orders:
       show:

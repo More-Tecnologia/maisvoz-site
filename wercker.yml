@@ -5,12 +5,13 @@ build:
       packages: openssh-client git
     - add-to-known_hosts:
       hostname: $SERVER_HOSTNAME
+      port: $PORT
     - add-ssh-key:
       keyname: DOKKU
     - script:
       name: add remote repository
       code: |
-        git remote add dokku dokku@$SERVER_HOSTNAME:$APP_NAME
+        git remote add dokku ssh://dokku@$SERVER_HOSTNAME:$PORT/$APP_NAME
     - script:
       name: push to server
       code: |

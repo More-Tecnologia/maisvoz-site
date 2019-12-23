@@ -104,14 +104,6 @@ class Order < ApplicationRecord
     Digest::MD5.hexdigest("#{id * 1337}:#{hashid}")
   end
 
-  def decorated_type
-    if payable.present?
-      "#{I18n.t(payable.type)} - #{I18n.t(type)}"
-    else type.present?
-      I18n.t(type)
-    end
-  end
-
   def products
     @products ||= order_items.includes(product: [:trail]).map(&:product)
   end
@@ -131,10 +123,10 @@ class Order < ApplicationRecord
   end
 
   def taxable_product_cent_amount
-    order_items.sum { |i| i.system_taxable? ? i.product.price_cents : 0 }
+    order_items.sum { |i| i.system_taxable? ? i.product.product_value : 0 }
   end
 
   def paid!
-    update_attributes(status: :completed, paid_at: Time.current)
+    update_attributes(status: :completed, paid_at: Time.now)
   end
 end

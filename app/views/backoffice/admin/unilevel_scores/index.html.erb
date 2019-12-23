@@ -1,0 +1,60 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('backoffice.scores.index.title.unilevel') %></h4>
+  </div>
+</div>
+
+<%= render 'filters' %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover m-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th><%= Score.human_attribute_name(:user) %></th>
+                  <th><%= Score.human_attribute_name(:spreader_user) %></th>
+                  <th><strong><%= t('attributes.height') %> </strong></th>
+                  <th><%= Score.human_attribute_name(:score_type) %></th>
+                  <th><%= Score.human_attribute_name(:cent_amount) %></th>
+                  <th><%= Score.human_attribute_name(:balance) %></th>
+                  <th><%= Score.human_attribute_name(:order) %></th>
+                  <th><%= Score.human_attribute_name(:created_at) %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if @scores.any? %>
+                  <% cent_amount_sum = sum_score_cent_amount(@q, @scores) %>
+                  <% @scores.each do |score| %>
+                    <tr>
+                      <th><%= score.try(:hashid) %></th>
+                      <th><%= score.try(:user).try(:username) %></th>
+                      <td><%= score.try(:spreader_user).try(:username) %></td>
+                      <td><%= score.try(:height) %></td>
+                      <td><%= score.try(:score_type).try(:name) %></td>
+                      <td class=<%= score.cent_amount.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(score.try(:cent_amount)) %></td>
+                      <td class=<%= cent_amount_sum.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(cent_amount_sum) %></td>
+                      <% cent_amount_sum -= score.cent_amount %>
+                      <td><%= link_to score.try(:order).try(:hashid), backoffice_admin_order_path(score.try(:order)) if score.try(:order)  %></td>
+                      <td><%= l(score.try(:created_at), format: :short) %></td>
+                    </tr>
+                  <% end %>
+                <% else %>
+                  <tr>
+                    <td colspan="9" class="text-center"><%= t('.no_data') %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <%= paginate @scores if @scores.any? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

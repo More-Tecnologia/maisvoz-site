@@ -119,14 +119,14 @@
       <div class="col-lg-6 col-sm-6">
         <div class="widget-panel widget-style-2 bg-white">
           <i class="md md-attach-money text-success"></i>
-          <h2 class="m-0 text-dark counter font-600"><span><%= user.available_balance %></span></h2>
+          <h2 class="m-0 text-dark counter font-600"><span><%= user.available_balance_cents %></span></h2>
           <div class="text-muted m-t-5"><%= User.human_attribute_name(:available_balance) %></div>
         </div>
       </div>
       <div class="col-lg-6 col-sm-6">
         <div class="widget-panel widget-style-2 bg-white">
           <i class="md md-attach-money text-warning"></i>
-          <h2 class="m-0 text-dark counter font-600"><span><%= user.blocked_balance %></span></h2>
+          <h2 class="m-0 text-dark counter font-600"><span><%= user.blocked_balance_cents %></span></h2>
           <div class="text-muted m-t-5"><%= User.human_attribute_name(:blocked_balance) %></div>
         </div>
       </div>

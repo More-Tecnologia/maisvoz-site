@@ -8,7 +8,7 @@ module Payment
         'Authorization' => "Basic #{ENV.fetch('BRADESCO_CRED')}"
       }
 
-      URL = 'https://meiosdepagamentobradesco.com.br/SPSConsulta/Authentication/'.freeze
+      URL = ('https://' + (ENV.fetch('BRADESCO_SANDBOX') == 'true' ? 'homolog.' : '') + 'meiosdepagamentobradesco.com.br/SPSConsulta/Authentication/').freeze
 
       def call
         res = RestClient.get(URL + ENV.fetch('BRADESCO_MERCHANT_ID'), DEFAULT_HEADERS)

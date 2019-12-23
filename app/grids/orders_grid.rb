@@ -1,7 +1,7 @@
 class OrdersGrid < BaseGrid
 
   scope do
-    Order.where.not(status: :cart).includes(:payable).order(id: :desc)
+    Order.includes(:payable).order(id: :desc)
   end
 
   filter(:id, :integer)
@@ -68,6 +68,16 @@ class OrdersGrid < BaseGrid
         data: { confirm: 'Deseja aprovar esta fatura?' },
         class: 'm-r-10'
       ) do
+        '<i class="fa fa-check"></i>'.html_safe
+      end
+    end
+  end
+  column(:approve_without_bonification, html: true, header: I18n.t('defaults.approve_order_without_bonification')) do |order|
+    if !order.completed?
+      link_to(backoffice_admin_order_approver_without_bonification_path(order),
+              method: :patch,
+              data: { confirm: I18n.t('helpers.confirm.approve_order_without_bonification') },
+              class: 'm-r-10') do
         '<i class="fa fa-check"></i>'.html_safe
       end
     end

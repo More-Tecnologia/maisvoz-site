@@ -13,7 +13,8 @@ module FinancialReasonFactory
                      { title: 'Bonus Binário', code: '500'},
                      { title: 'Estorno de Bonus Binário por Limite de Tempo', code: '600' },
                      { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700' },
-                     { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '800' }]
+                     { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '800' },
+                     { title: 'Estorno de Bonus por Limite na Careeira', code: '900' }]
     bonus_reasons.each do |r|
       FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
     end

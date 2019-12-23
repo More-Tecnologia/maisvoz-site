@@ -28,9 +28,15 @@ class Score < ApplicationRecord
                                                                 score_type: ScoreType.binary) }
   scope :unilevel_by_user, ->(user) { includes_associations.where(user: user,
                                                                   score_type: ScoreType.unilevel) }
-  scope :sum_by_generation, -> { where('height > 1')
-                                .group(:height)
-                                .sum(:cent_amount) }
+  scope :binary, -> { where(score_type: ScoreType.binary) }
+  scope :unilevel, -> { where(score_type: ScoreType.unilevel) }
+  scope :accumulate, -> { where(score_type: ScoreType.unilevel) }
+  scope :sum_unilevel_received_by, ->(user_ids) { unilevel.where(user_id: user_ids)
+                                                          .group(:user)
+                                                          .sum(:cent_amount) }
+  scope :sum_unilevel_spreaded_by, ->(user_ids) { unilevel.where(spreader_user_id: user_ids)
+                                                          .group(:spreader_user)
+                                                          .sum(:cent_amount) }
 
   def chargeback!(score_type, amount = cent_amount)
     create_chargeback!(source_leg: source_leg,
@@ -42,9 +48,13 @@ class Score < ApplicationRecord
                        score_type: score_type)
   end
 
-  def self.debit_shortter_leg_score_from(user)
+  def chargeback_by_inactivity!
+    chargeback!(ScoreType.unilevel_inactivity_chargeback)
+  end
+
+  def self.debit_binary_score_from_legs(user, score)
     attrs = { user: user,
-              cent_amount: user.binary_node.shortter_leg_score,
+              cent_amount: -(score.to_i.abs),
               score_type: ScoreType.binary_bonus_debit }
     left_leg_attrs = attrs.merge(source_leg: :left)
     right_leg_attrs = attrs.merge(source_leg: :right)

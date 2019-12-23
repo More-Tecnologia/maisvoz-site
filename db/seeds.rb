@@ -37,13 +37,14 @@ ActiveRecord::Base.transaction do
   end
 
   # SCORE TYPES
-  score_types = [{ name: 'Pontuação de Adesões' },
-                 { name: 'Pontuação de Ativação' },
-                 { name: 'Pontuação de Compras' },
-                 { name: 'Pontuação Binária', tree_type: :binary },
-                 { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary },
-                 { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary },
-                 { name: 'Débito de Bonus Binário', tree_type: :binary }]
+  score_types = [{ name: 'Pontuação de Adesões', code: '100' },
+                 { name: 'Pontuação de Ativação', code: '200' },
+                 { name: 'Pontuação de Compras', code: '300' },
+                 { name: 'Estorno de Pontuação por Inatividade', code: '800' },
+                 { name: 'Pontuação Binária', tree_type: :binary, code: '400' },
+                 { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500' },
+                 { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600' },
+                 { name: 'Débito de Bonus Binário', tree_type: :binary, code: '700' }]
   score_types.each { |score_type| ScoreType.find_or_create_by!(score_type) }
 
 
@@ -60,7 +61,12 @@ ActiveRecord::Base.transaction do
                    { title: 'Bonus Binário', code: '500'},
                    { title: 'Estorno de Bonus Binário por Inatividade', code: '600' },
                    { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700' },
-                   { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '900' }]
+                   { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '900' },
+                   { title: 'Estorno de Bonus por Limite de Careeira', code: '900' },
+                   { title: 'Bonus Indicacao', code: '1000'},
+                   { title: 'Bonus Rendimento', code: '1100'},
+                   { title: 'Pagamento de Pedido', code: '1200'},
+                   { title: 'Estorno de Bonus Binário por Desqualificação', code: '1300' }]
   bonus_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
   end

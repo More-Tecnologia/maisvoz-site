@@ -58,7 +58,7 @@ pt-BR:
         blank: não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
         wrong_length: Tamanho errado
-        taken: Já está sendo utilizado
+        taken: já está sendo utilizado %{value}
         rule_type_missmatch: "Um objeto do tipo %{ruleable_type} não pode receber o tipo de regra %{rule_type_title}."
         restrict_dependent_destroy:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes

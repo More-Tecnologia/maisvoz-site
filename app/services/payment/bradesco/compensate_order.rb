@@ -9,11 +9,8 @@ module Payment
 
       def call
         return if current_transaction.blank? || !order.pending_payment? || current_transaction.paid?
-
         get_order_from_bradesco
-
         return if provider_response['status']['codigo'] != 0
-
         update_bradesco_transaction
         compensate_order
       end
@@ -35,9 +32,7 @@ module Payment
 
       def compensate_order
         return unless current_transaction.paid?
-
         order.boleto!
-
         PaymentCompensationWorker.perform_async(order.id)
       end
 

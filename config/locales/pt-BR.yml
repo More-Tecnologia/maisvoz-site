@@ -230,6 +230,11 @@ pt-BR:
     transfered: Transferido
     sim_card_quantity_added: CHIPs Adicionados
     actions: Ações
+    in_date: Data de Entrada
+    out_date: Data de Saída
+    support_point: Ponto de Apoio
+    transference_date: Data de Transferência
+    transferences: Transferências
   backoffice:
     orders:
       show:
@@ -564,6 +569,8 @@ pt-BR:
     user_sim_cards: CHIPS do Usuário
     sim_card_inactive_user: Usuário inativo não pode receber CHIPs
     sim_card_unavailable_to_transfer: "CHIPs não cadastrados ou já transferidos %{iccids}"
+    user_sim_card_report: Relatório de CHIPs
+    sim_card_transfers: Transferências de CHIPs
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -617,6 +624,8 @@ pt-BR:
       sim_card_transfer: Transferir CHIP(s)
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
+    from: De
+    util: Até
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:

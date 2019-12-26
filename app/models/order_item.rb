@@ -19,6 +19,8 @@
 
 class OrderItem < ApplicationRecord
 
+  include Hashid::Rails
+
   delegate :name, :adhesion?, to: :product
   delegate :system_taxable?, to: :product
 
@@ -31,5 +33,39 @@ class OrderItem < ApplicationRecord
   monetize :total_cents
 
   scope :activation, -> { where(product: Product.activation) }
+  scope :sim_card, -> { where(product: Product.sim_card) }
+  scope :paid, -> { where.not('orders.paid_at': nil) }
+
+  def total
+    total_cents / 100.0
+  end
+
+  def unit_value
+    unit_price_cents.to_f / 100.0
+  end
+
+  def total_quantity
+    quantity.to_f * try(:product).try(:quantity).to_f
+  end
+
+  def processed?
+    processed_at
+  end
+
+  def unprocessed?
+    !processed?
+  end
+
+  def create_sim_cards(iccids)
+    attributes = order.user.support_point? ? { support_point_user: order.user } : { user: order.user }
+    ActiveRecord::Base.transaction do
+      iccids.map { |iccid| sim_cards.create!(attributes.merge(iccid: iccid)) }
+      process! if sim_cards.count >= total_quantity
+    end
+  end
+
+  def process!
+    update!(processed_at: Time.current) unless processed?
+  end
 
 end

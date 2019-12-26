@@ -68,6 +68,7 @@ class Product < ApplicationRecord
 
   scope :regular, -> { where.not(kind: :activation) }
   scope :active, -> { where(active: true) }
+  scope :sim_card, -> { where(category: Category.sim_card) }
 
   validates :trail, presence: true, if: :adhesion?, on: :update
   validates :grace_period, presence: true, if: :adhesion?

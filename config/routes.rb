@@ -28,7 +28,11 @@ Rails.application.routes.draw do
         post :approve
         post :mark_as_billed
       end
+      resources :order_items, only: [] do
+        resources :sim_cards, only: [:new, :create, :destroy]
+      end
       resources :order_approver_without_bonifications, only: [:update]
+      resource :sim_card_control, only: [:new]
 
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]

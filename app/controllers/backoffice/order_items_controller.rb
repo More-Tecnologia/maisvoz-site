@@ -58,6 +58,7 @@ module Backoffice
     end
 
     def ensure_valid_product
+      byebug
       return unless current_user.active? && product.adhesion? && product_less_or_equal_current_trail_product?
       flash[:error] = I18n.t('defaults.cant_buy_product')
       redirect_back fallback_location: root_path
@@ -66,6 +67,10 @@ module Backoffice
     def product_less_or_equal_current_trail_product?
       trail_product = current_user.try(:current_trail).try(:product)
       trail_product && product.price_cents <= trail_product.price_cents
+    end
+
+    def product
+      @product ||= Product.find_by_hashid(params[:product][:id])
     end
 
   end

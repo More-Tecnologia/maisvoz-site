@@ -8,33 +8,95 @@
 
 ActiveRecord::Base.transaction do
   #CAREERS
-  careers = [{name: 'Carreira 1',
-              qualifying_score: 1000,
-              bonus: 100,
+  careers = [{name: 'Inscrito',
+              qualifying_score: -1,
+              bonus: 0,
               binary_limit: 0,
               kind: :adhesion,
-              image_path: 'bronze.png',
-              requalification_score: 500 },
-             {name: 'Carreira 2',
-              qualifying_score: 5000,
-              bonus: 200,
-              binary_limit: 10,
+              image_path: 'careers/inactive.png',
+              requalification_score: -1 },
+             {name: 'Consultor',
+              qualifying_score: 0,
+              bonus: 0,
+              binary_limit: 0,
               kind: :adhesion,
-              image_path: 'silver.png',
-              requalification_score: 1000}
+              image_path: 'careers/inactive.png',
+              requalification_score: 0},
+             {name: 'Executivo Bronze',
+              qualifying_score: 3_500,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 350},
+             {name: 'Executivo Prata',
+              qualifying_score: 10_500,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 1050},
+             {name: 'Executivo Ouro',
+              qualifying_score: 52_500,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 5250},
+             {name: 'Executivo Rubi',
+              qualifying_score: 175_000,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 17_500},
+             {name: 'Executivo Esmeralda',
+              qualifying_score: 350_000,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 35_000},
+             {name: 'Diamante',
+              qualifying_score: 1_750_000,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 175_000},
+             {name: 'Diamante Azul',
+              qualifying_score: 3_500_000,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 350_000},
+             {name: 'Diamante Negro',
+              qualifying_score: 10_500_000,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 1_050_000},
+             {name: 'Presidente',
+              qualifying_score: 17_500_000,
+              bonus: 0,
+              binary_limit: 0,
+              kind: :adhesion,
+              image_path: 'careers/inactive.png',
+              requalification_score: 1_750_000}
             ]
   persisted_careers = careers.map { |career| Career.find_or_create_by!(career) }
 
-  # TRAILS
-  trails  = [{name: 'Trilha 1'},
-             {name: 'Trilha 2'}]
-  persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
-
-  persisted_careers.each do |career|
-    persisted_trails.each do |trail|
-      CareerTrail.find_or_create_by!(career: career, trail: trail)
-    end
-  end
+  adhesion_category = Category.find_or_create_by!(name: 'Adesão',
+                                                  active_session: true,
+                                                  active: true)
+  activation_category = Category.find_or_create_by!(name: 'Ativação',
+                                                    active_session: false,
+                                                    active: false)
+  detached_category = Category.find_or_create_by!(name: 'Recargas',
+                                                  active_session: true,
+                                                  active: true)
 
   sim_card_category = Category.find_or_create_by!(name: 'CHIPs',
                                                   active_session: true,
@@ -54,8 +116,21 @@ ActiveRecord::Base.transaction do
                                         maturity_days: nil,
                                         grace_period: 0)
 
-  elite_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonus Elite',
-                                                   quantity: 1,
+elite_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonus Elite',
+                                                 quantity: 1,
+                                                 price_cents: 0,
+                                                 binary_score: 0,
+                                                 binary_bonus: 0,
+                                                 active: false,
+                                                 virtual: false,
+                                                 category: sim_card_category,
+                                                 paid_by: :paid_by_user,
+                                                 kind: :detached,
+                                                 maturity_days: nil,
+                                                 grace_period: 0)
+
+premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonus Premium',
+                                                   quantity: 3,
                                                    price_cents: 0,
                                                    binary_score: 0,
                                                    binary_bonus: 0,
@@ -67,18 +142,87 @@ ActiveRecord::Base.transaction do
                                                    maturity_days: nil,
                                                    grace_period: 0)
 
-  premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonus Premium',
-                                                     quantity: 3,
-                                                     price_cents: 0,
-                                                     binary_score: 0,
-                                                     binary_bonus: 0,
-                                                     active: false,
-                                                     virtual: false,
-                                                     category: sim_card_category,
-                                                     paid_by: :paid_by_user,
-                                                     kind: :detached,
-                                                     maturity_days: nil,
-                                                     grace_period: 0)
+  _99_product = Product.find_or_create_by!(name: '99,00',
+                                           quantity: 1,
+                                           price_cents: 9900,
+                                           binary_score: 50,
+                                           binary_bonus: 0,
+                                           active: true,
+                                           virtual: true,
+                                           category: activation_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :activation,
+                                           maturity_days: [5, 10],
+                                           grace_period: 5)
+
+  _149_product = Product.find_or_create_by!(name: '149,00',
+                                            quantity: 1,
+                                            price_cents: 14900,
+                                            binary_score: 75,
+                                            binary_bonus: 0,
+                                            active: true,
+                                            virtual: true,
+                                            category: activation_category,
+                                            paid_by: :paid_by_user,
+                                            kind: :activation,
+                                            maturity_days: [5, 10],
+                                            grace_period: 5)
+
+ elite = Product.find_or_create_by!(name: 'Elite',
+                                    quantity: 1,
+                                    price_cents: 34999,
+                                    binary_score: 175,
+                                    binary_bonus: 0,
+                                    active: true,
+                                    virtual: true,
+                                    category: adhesion_category,
+                                    paid_by: :paid_by_user,
+                                    kind: :adhesion)
+
+ premium = Product.find_or_create_by!(name: 'Premium',
+                                      quantity: 1,
+                                      price_cents: 69999,
+                                      binary_score: 350,
+                                      binary_bonus: 0,
+                                      active: true,
+                                      virtual: true,
+                                      category: adhesion_category,
+                                      paid_by: :paid_by_user,
+                                      kind: :adhesion)
+
+date_voice_89 = Product.find_or_create_by!(name: 'Dados e Voz 89',
+                                           quantity: 1,
+                                           price_cents: 8990,
+                                           binary_score: 45,
+                                           binary_bonus: 0,
+                                           active: true,
+                                           virtual: true,
+                                           category: detached_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :detached)
+
+date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
+                                           quantity: 1,
+                                           price_cents: 4990,
+                                           binary_score: 350,
+                                           binary_bonus: 0,
+                                           active: true,
+                                           virtual: true,
+                                           category: detached_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :detached)
+
+# TRAILS
+trails  = [{ name: 'Elite', product: elite, product_bonus: elite_product_bonus },
+           { name: 'Premium', product: premium, product_bonus: premium_product_bonus }]
+persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
+
+  persisted_careers.each do |career|
+    persisted_trails.each do |trail|
+      product = career.qualifying_score <= 10_500 ? _99_product : _149_product
+      CareerTrail.find_or_create_by!(career: career, trail: trail, product: product)
+    end
+  end
 
   # SCORE TYPES
   score_types = [{ name: 'Pontuação de Adesões', code: '100' },
@@ -105,7 +249,7 @@ ActiveRecord::Base.transaction do
                    { title: 'Bonus Binário', code: '500'},
                    { title: 'Estorno de Bonus Binário por Inatividade', code: '600' },
                    { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700' },
-                   { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '900' },
+                   { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '800' },
                    { title: 'Estorno de Bonus por Limite de Careeira', code: '900' },
                    { title: 'Bonus Indicacao', code: '1000'},
                    { title: 'Bonus Rendimento', code: '1100'},
@@ -115,9 +259,9 @@ ActiveRecord::Base.transaction do
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
   end
 
- # RoleTypes
- role_types = [{ name: 'Ponto de Apoio', code: 10 }]
- role_types.each { |role_type| RoleType.find_or_create_by(role_type) }
+  # RoleTypes
+  role_types = [{ name: 'Ponto de Apoio', code: 10 }]
+  role_types.each { |role_type| RoleType.find_or_create_by(role_type) }
 
   # USERS
   more_user = User.new(username: ENV['MORENWM_USERNAME'],
@@ -140,7 +284,5 @@ ActiveRecord::Base.transaction do
                password: '111111',
                email: 'customer-morenwm@morenwm.com',
                sponsor: admin_user)
-
-
 
 end

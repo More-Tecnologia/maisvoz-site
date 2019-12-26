@@ -15,13 +15,13 @@
 
             <thead>
               <tr>
-                <th>#</th>
+                <th width="1">#</th>
                 <th><%= Order.human_attribute_name(:total) %></th>
                 <th><%= Order.human_attribute_name(:status) %></th>
                 <th><%= Order.human_attribute_name(:expire_at) %></th>
                 <th><%= Order.human_attribute_name(:paid_at) %></th>
-                <th></th>
-                <th></th>
+                <th width="1"></th>
+                <th width="1"></th>
               </tr>
             </thead>
             <tbody>
@@ -37,8 +37,8 @@
                   </td>
                   <td>
                     <% if !order.completed? && !order.expired? %>
-                      <%= link_to 'Boleto', order.current_transaction.boleto_url, target: '_blank' if order.current_transaction %>
-                      <%= button_to(backoffice_order_generate_boleto_path(order), class: 'btn btn-primary btn-xs', method: :post, data: { disable_with: 'Gerando boleto...' }) do %>
+                      <%= link_to '<i class="fas fa-barcode m-r-5"></i> Imprimir Boleto'.html_safe, order.current_transaction.boleto_url, class: 'btn btn-primary btn-xs',  target: '_blank' if order.current_transaction %>
+                      <%= button_to(backoffice_order_generate_boleto_path(order), class: 'btn btn-primary btn-xs', method: :post, data: { disable_with: 'Gerando...' }) do %>
                         <i class="fas fa-file m-r-5"></i> Gerar Boleto
                       <% end if order.current_transaction.blank? %>
                     <% end %>

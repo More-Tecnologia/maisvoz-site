@@ -20,7 +20,7 @@ default: &default
   # For details on connection poolinsudo -u postgres createuser chris -sg, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: <%= 'postgres://postgres:postgres@localhost:5432/maisvoz_development' %>
+  url: <%= ENV['DATABASE_URL'] %>
 
 development:
   <<: *default

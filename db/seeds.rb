@@ -54,6 +54,32 @@ ActiveRecord::Base.transaction do
                                         maturity_days: nil,
                                         grace_period: 0)
 
+  elite_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonus Elite',
+                                                   quantity: 1,
+                                                   price_cents: 0,
+                                                   binary_score: 0,
+                                                   binary_bonus: 0,
+                                                   active: false,
+                                                   virtual: false,
+                                                   category: sim_card_category,
+                                                   paid_by: :paid_by_user,
+                                                   kind: :detached,
+                                                   maturity_days: nil,
+                                                   grace_period: 0)
+
+  premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonus Premium',
+                                                     quantity: 3,
+                                                     price_cents: 0,
+                                                     binary_score: 0,
+                                                     binary_bonus: 0,
+                                                     active: false,
+                                                     virtual: false,
+                                                     category: sim_card_category,
+                                                     paid_by: :paid_by_user,
+                                                     kind: :detached,
+                                                     maturity_days: nil,
+                                                     grace_period: 0)
+
   # SCORE TYPES
   score_types = [{ name: 'Pontuação de Adesões', code: '100' },
                  { name: 'Pontuação de Ativação', code: '200' },

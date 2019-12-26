@@ -41,6 +41,7 @@ module Financial
         associate_support_point if adhesion_product
         binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification
         notify_user_by_email_about_paid_order
+        add_product_bonus_to_order if adhesion_product
       end
     end
 
@@ -132,6 +133,12 @@ module Financial
 
     def associate_support_point
       AssociateSupportPointService.call(user: order.user)
+    end
+
+    def add_product_bonus_to_order
+      product_bonus = user.current_trail.product_bonus
+      order.order_items.create!(quantity: 1,
+                                product: product_bonus) if product_bonus
     end
 
     def adhesion_product

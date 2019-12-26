@@ -132,8 +132,12 @@ class User < ApplicationRecord
   has_many :career_trail_users, dependent: :destroy
   has_many :career_trails, through: :career_trail_users
   has_many :financial_transactions
+  has_many :sim_cards
+  has_many :supported_sim_cards, class_name: 'SimCard',
+                                 primary_key: 'support_point_user_id'
   has_many :supported_point_users, class_name: 'User',
                                    foreign_key: 'role_type_code'
+
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
   belongs_to :role_type, class_name: 'RoleType',

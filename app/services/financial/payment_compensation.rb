@@ -38,6 +38,7 @@ module Financial
         create_vouchers
         create_system_fee
         create_next_activation_order_and_activate_user_until if adhesion_product || activation_product
+        associate_support_point if adhesion_product
         binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification
         notify_user_by_email_about_paid_order
       end
@@ -127,6 +128,10 @@ module Financial
       order = create_next_activation_order
       grace_period = user.try(:current_career_trail).try(:grace_period).to_i
       user.activate_until!(order.expire_at + grace_period)
+    end
+
+    def associate_support_point
+      AssociateSupportPointService.call(user: order.user)
     end
 
     def adhesion_product

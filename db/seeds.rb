@@ -71,6 +71,9 @@ ActiveRecord::Base.transaction do
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
   end
 
+ # RoleTypes
+ role_types = [{ name: 'Ponto de Apoio', code: 10 }]
+ role_types.each { |role_type| RoleType.find_or_create_by(role_type) }
 
   # USERS
   more_user = User.new(username: ENV['MORENWM_USERNAME'],

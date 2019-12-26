@@ -132,11 +132,15 @@ class User < ApplicationRecord
   has_many :career_trail_users, dependent: :destroy
   has_many :career_trails, through: :career_trail_users
   has_many :financial_transactions
+  has_many :supported_point_users, class_name: 'User',
+                                   foreign_key: 'role_type_code'
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
   belongs_to :role_type, class_name: 'RoleType',
                          foreign_key: 'role_type_code',
                          optional: true
+  belongs_to :support_point_user, class_name: 'User',
+                                  optional: true
 
   has_many :credits
   has_many :debits
@@ -146,7 +150,13 @@ class User < ApplicationRecord
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
+  scope :bought_adhesion, -> { where(bought_adhesion: true) }
   scope :active, -> { where(active: true) }
+  scope :support_point, -> { where(role_type_code: RoleType.support_point_code) }
+  scope :by_location, ->(city, state) {
+    where('lower(unaccent(city)) = ? AND lower(unaccent(state)) = ?',
+          I18n.transliterate(city.to_s.strip.downcase),
+          I18n.transliterate(state.to_s.strip.downcase)) }
 
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
@@ -363,6 +373,10 @@ class User < ApplicationRecord
   def update_sponsor_binary_qualified
     sponsor_node = sponsor.try(:binary_node)
     sponsor.update_attributes!(binary_qualified: sponsor_node.qualified?) if sponsor_node
+  end
+
+  def role_type
+    @role_type ||= RoleType.find_by(code: role_type_code)
   end
 
   private

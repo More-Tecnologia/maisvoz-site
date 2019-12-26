@@ -229,7 +229,7 @@ pt-BR:
     out_stock: Fora de Estoque
     transfered: Transferido
     sim_card_quantity_added: CHIPs Adicionados
-    actions: Acões
+    actions: Ações
   backoffice:
     orders:
       show:
@@ -367,6 +367,10 @@ pt-BR:
           unilevel: Pontuações da Rede Unilevel
           binary: Pontuações da Rede Binária
           all: Pontuações
+    sim_cards:
+      index:
+        title: Transferência de CHIPs
+        success: CHIPs transferidos com sucesso.
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
@@ -556,6 +560,10 @@ pt-BR:
     sim_cards_added: CHIPS adicionados
     sim_cards_created: CHIPS adicionados com sucesso.
     sim_card_not_stoke: CHIP não está em estoque.
+    sim_card_transfer: Transferir CHIPs
+    user_sim_cards: CHIPS do Usuário
+    sim_card_inactive_user: Usuário inativo não pode receber CHIPs
+    sim_card_unavailable_to_transfer: "CHIPs não cadastrados ou já transferidos %{iccids}"
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -606,6 +614,7 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+      sim_card_transfer: Transferir CHIP(s)
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
   left: Esquerda

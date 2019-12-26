@@ -90,6 +90,10 @@ Rails.application.routes.draw do
     resources :binary_tree, only: [:index, :show]
     resources :unilevel, only: [:index]
     resources :lineage_scores, only: [:index]
+
+    resources :users, only: [] do
+      resources :sim_cards, only: [:index, :create]
+    end
   end
 
   namespace :api do

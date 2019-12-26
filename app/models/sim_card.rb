@@ -24,6 +24,10 @@ class SimCard < ApplicationRecord
   scope :available, -> { where(user: nil) }
   scope :by_iccids, ->(iccids) { where(iccid: iccids) }
 
+  scope :by_support_point, ->(user) { where(support_point_user: user) }
+  scope :available, -> { where(user: nil) }
+  scope :by_iccids, ->(iccids) { where(iccid: iccids) }
+
   private
 
   def cleasing

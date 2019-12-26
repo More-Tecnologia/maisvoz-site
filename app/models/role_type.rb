@@ -1,6 +1,7 @@
 class RoleType < ApplicationRecord
 
-  has_many :users, foreign_key: 'role_type_code'
+  has_many :users, foreign_key: 'role_type_code',
+                   primary_key: 'role_type_code'
 
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false }

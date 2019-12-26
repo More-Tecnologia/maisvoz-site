@@ -69,7 +69,7 @@ module Backoffice
     end
 
     def product
-      @product ||= Product.find_by(id: params[:product][:id])
+      @product ||= Product.find_by_hashid(params[:product][:id])
     end
 
   end

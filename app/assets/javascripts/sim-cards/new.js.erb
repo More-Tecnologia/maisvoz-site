@@ -1,18 +1,30 @@
 $(document).ready(function() {
 
+  var iccids = [""];
+
   $("input#iccid").on('keypress', function(event){
     var iccid = $(this).val();
     if(is_end_char(event)) {
-      add_to_form_list(iccid);
-      add_to_list(iccid);
-      $(this).val('');
-      update_iccid_count();
-      enable_submit_button();
+      if(validate(iccid)) {
+        console.log(validate(iccid));
+        iccids.push(iccid);
+        add_to_form_list(iccid);
+        add_to_list(iccid);
+        $(this).val('');
+        update_iccid_count();
+        enable_submit_button();
+      } else {
+        $(this).val('');
+      }
       event.preventDefault();
     }
   });
 
-  function is_end_char(event) { return event.which == 13 }
+  function is_end_char(event) { return event.which == 13; }
+
+  function validate(iccid) {
+    return ($.inArray(iccid, iccids) == -1);
+  }
 
   function add_to_form_list(iccid) {
     var element = "<input type='hidden' name='sim_cards[iccids][]' value=" + iccid +">";
@@ -26,9 +38,9 @@ $(document).ready(function() {
 
   function update_iccid_count() {
     var new_iccids = $("ul#iccids").children().length;
-    var added_iccids = $("table#sim-cards .added").length;
+    var added_iccids = $("tbody#sim-cards .added").length;
+
     iccids_count = new_iccids + added_iccids;
-    console.log(iccids_count);
     $("strong#iccid-count").html(iccids_count);
   }
 

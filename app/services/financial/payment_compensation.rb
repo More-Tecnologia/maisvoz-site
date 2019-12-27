@@ -27,6 +27,7 @@ module Financial
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
         activate_user if adhesion_product || activation_product
+        user.empreendedor! if adhesion_product
         update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active

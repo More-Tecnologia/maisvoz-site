@@ -57,6 +57,7 @@ class OrderItem < ApplicationRecord
   end
 
   def create_sim_cards(iccids)
+    validates_sim_cards_count_less_than_or_equal_to_threshold!(iccids.count)
     attributes = order.user.support_point? ? { support_point_user: order.user } : { user: order.user }
     ActiveRecord::Base.transaction do
       iccids.map { |iccid| sim_cards.create!(attributes.merge(iccid: iccid)) }
@@ -66,6 +67,13 @@ class OrderItem < ApplicationRecord
 
   def process!
     update!(processed_at: Time.current) unless processed?
+  end
+
+  private
+
+  def validates_sim_cards_count_less_than_or_equal_to_threshold!(iccids_count)
+    count = iccids_count + sim_cards.count
+    raise StandardError, I18n.t('defaults.sim_card_threshold_reached', count: total_quantity) if count > total_quantity
   end
 
 end

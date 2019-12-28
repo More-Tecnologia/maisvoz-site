@@ -565,6 +565,7 @@ pt-BR:
     sim_cards_added: CHIPS adicionados
     sim_cards_created: CHIPS adicionados com sucesso.
     sim_card_not_stoke: CHIP não está em estoque.
+    sim_card_threshold_reached: "Limite de chips atingido: %{count}."
     sim_card_transfer: Transferir CHIPs
     user_sim_cards: CHIPS do Usuário
     sim_card_inactive_user: Usuário inativo não pode receber CHIPs

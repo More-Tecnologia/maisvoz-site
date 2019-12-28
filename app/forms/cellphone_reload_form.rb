@@ -18,6 +18,10 @@ class CellphoneReloadForm < Form
     @product ||= Product.find_by(id: product_id)
   end
 
+  def cellphone_number
+    @ddd.to_s + @cellphone_number.to_s
+  end
+
   private
 
   def cleasing

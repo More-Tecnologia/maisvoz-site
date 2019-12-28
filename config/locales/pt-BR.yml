@@ -556,6 +556,7 @@ pt-BR:
     sim_cards_added: CHIPS adicionados
     sim_cards_created: CHIPS adicionados com sucesso.
     sim_card_not_stoke: CHIP não está em estoque.
+    sim_card_threshold_reached: "Limite de chips atingido: %{count}."
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

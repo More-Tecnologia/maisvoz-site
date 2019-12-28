@@ -69,6 +69,7 @@ class Product < ApplicationRecord
   scope :regular, -> { where.not(kind: :activation) }
   scope :active, -> { where(active: true) }
   scope :sim_card, -> { where(category: Category.sim_card) }
+  scope :cellphone_reloads, -> { where(category: Category.cellphone_reload).order(:price_cents) }
 
   validates :trail, presence: true, if: :adhesion?, on: :update
   validates :grace_period, presence: true, if: :adhesion?

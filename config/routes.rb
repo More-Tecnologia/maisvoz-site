@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show] do
       post :generate_boleto
     end
+    resources :cellphone_reloads, only: [:new, :create]
 
     # Financial
     resources :withdrawals, only: [:index, :new, :create]

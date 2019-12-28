@@ -55,6 +55,7 @@ class Order < ApplicationRecord
   monetize :subtotal_cents, :tax_cents, :shipping_cents, :total_cents
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
+  scope :paid, -> { where.not(paid_at: nil) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")

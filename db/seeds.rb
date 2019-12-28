@@ -98,6 +98,50 @@ ActiveRecord::Base.transaction do
                                                   active_session: true,
                                                   active: true)
 
+  sim_card_category = Category.find_or_create_by!(name: 'CHIPs',
+                                                  active_session: true,
+                                                  active: true,
+                                                  code: 10)
+
+  sim_card = Product.find_or_create_by!(name: 'Pacote de CHIPs',
+                                        quantity: 10,
+                                        price_cents: 9990,
+                                        binary_score: 0,
+                                        binary_bonus: 0,
+                                        active: true,
+                                        virtual: false,
+                                        category: sim_card_category,
+                                        paid_by: :paid_by_user,
+                                        kind: :detached,
+                                        maturity_days: nil,
+                                        grace_period: 0)
+
+elite_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonus Elite',
+                                                 quantity: 1,
+                                                 price_cents: 0,
+                                                 binary_score: 0,
+                                                 binary_bonus: 0,
+                                                 active: false,
+                                                 virtual: false,
+                                                 category: sim_card_category,
+                                                 paid_by: :paid_by_user,
+                                                 kind: :detached,
+                                                 maturity_days: nil,
+                                                 grace_period: 0)
+
+premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonus Premium',
+                                                   quantity: 3,
+                                                   price_cents: 0,
+                                                   binary_score: 0,
+                                                   binary_bonus: 0,
+                                                   active: false,
+                                                   virtual: false,
+                                                   category: sim_card_category,
+                                                   paid_by: :paid_by_user,
+                                                   kind: :detached,
+                                                   maturity_days: nil,
+                                                   grace_period: 0)
+
   _99_product = Product.find_or_create_by!(name: '99,00',
                                            quantity: 1,
                                            price_cents: 9900,
@@ -169,8 +213,8 @@ date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
                                            kind: :detached)
 
 # TRAILS
-trails  = [{ name: 'Elite', product: elite },
-           { name: 'Premium', product: premium }]
+trails  = [{ name: 'Elite', product: elite, product_bonus: elite_product_bonus },
+           { name: 'Premium', product: premium, product_bonus: premium_product_bonus }]
 persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
 
   persisted_careers.each do |career|
@@ -179,24 +223,6 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
       CareerTrail.find_or_create_by!(career: career, trail: trail, product: product)
     end
   end
-
-  sim_card_category = Category.find_or_create_by!(name: 'CHIPs',
-                                                  active_session: true,
-                                                  active: true,
-                                                  code: 10)
-
-  sim_card = Product.find_or_create_by!(name: 'Pacote de CHIPs',
-                                        quantity: 10,
-                                        price_cents: 9990,
-                                        binary_score: 0,
-                                        binary_bonus: 0,
-                                        active: true,
-                                        virtual: false,
-                                        category: sim_card_category,
-                                        paid_by: :paid_by_user,
-                                        kind: :detached,
-                                        maturity_days: nil,
-                                        grace_period: 0)
 
   # SCORE TYPES
   score_types = [{ name: 'Pontuação de Adesões', code: '100' },
@@ -232,6 +258,10 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
   bonus_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
   end
+
+  # RoleTypes
+  role_types = [{ name: 'Ponto de Apoio', code: 10 }]
+  role_types.each { |role_type| RoleType.find_or_create_by(role_type) }
 
   # USERS
   more_user = User.new(username: ENV['MORENWM_USERNAME'],

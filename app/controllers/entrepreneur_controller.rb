@@ -6,7 +6,6 @@ class EntrepreneurController < BackofficeController
 
   def ensure_admin_or_entrepreneur
     return if signed_in? && (current_user.admin? || current_user.empreendedor?)
-    flash[:error] = 'Você precisa ser admin ou empreendedor'
     redirect_to root_path
   end
 

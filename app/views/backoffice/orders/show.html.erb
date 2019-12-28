@@ -99,6 +99,14 @@
                         <hr>
                         <h3 class="text-right"><%= number_to_currency @order.total %></h3>
                     </div>
+                    <div class="pull-right">
+                      <% if !@order.completed? && !@order.expired? %>
+                        <%= link_to '<i class="fas fa-barcode m-r-5"></i> Imprimir Boleto'.html_safe, @order.current_transaction.boleto_url, class: 'btn btn-primary btn-xs',  target: '_blank' if @order.current_transaction %>
+                        <%= button_to(backoffice_order_generate_boleto_path(@order), class: 'btn btn-primary btn-xs', method: :post, data: { disable_with: 'Gerando...' }) do %>
+                          <i class="fas fa-file m-r-5"></i> Gerar Boleto
+                        <% end if @order.current_transaction.blank? %>
+                      <% end %>
+                    </div>
                 </div>
                 <hr>
                 <div class="hidden-print">

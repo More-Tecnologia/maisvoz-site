@@ -43,7 +43,7 @@ module Financial
     end
 
     def find_nearest_maturity_day_from_current_day
-      maturity_days = activation_product.maturity_days.uniq.sort
+      maturity_days = activation_product.maturity_days.to_a.uniq.sort
       grace_period = activation_product.grace_period
       current_day = Date.current.day
       maturity_days.detect { |day| current_day <= day + grace_period } || maturity_days.last

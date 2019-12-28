@@ -24,6 +24,11 @@ class SimCard < ApplicationRecord
   scope :available, -> { where(user: nil) }
   scope :by_iccids, ->(iccids) { where(iccid: iccids) }
 
+  scope :by_support_point, ->(user) { where(support_point_user: user) }
+  scope :available, -> { where(user: nil) }
+  scope :by_iccids, ->(iccids) { where(iccid: iccids) }
+  scope :transfered, -> { where.not(support_point_stock_out_at: nil) }
+
   private
 
   def cleasing
@@ -36,6 +41,7 @@ class SimCard < ApplicationRecord
     self[:support_point_stock_out_at] = Time.current if user && !support_point_stock_out_at
     self[:user_stock_in_at] = Time.current if user && !user_stock_in_at
     self[:user_stock_out_at] = Time.current if actived_at && !user_stock_out_at
+    self[:stock_out_at] = self[:support_point_stock_in_at] || self[:user_stock_in_at] if !stock_out_at
   end
 
 end

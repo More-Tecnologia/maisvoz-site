@@ -35,6 +35,7 @@ class OrderItem < ApplicationRecord
   scope :activation, -> { where(product: Product.activation) }
   scope :sim_card, -> { where(product: Product.sim_card) }
   scope :paid, -> { where.not('orders.paid_at': nil) }
+  scope :cellphone_reloads, ->() { where(product: Product.cellphone_reloads) }
 
   def total
     total_cents / 100.0

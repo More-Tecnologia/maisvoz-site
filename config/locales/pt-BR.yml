@@ -11,6 +11,7 @@ pt-BR:
     models:
       score_type: Tipo de Pontuação
       user: Usuário
+      order: Pedido
     attributes:
       pv_activity_history:
         from: De
@@ -87,6 +88,10 @@ pt-BR:
       credit_debit_wizard/create_form:
         master_password: Senha Master
         amount: Valor
+      cellphone_reload_form:
+        product: Valor
+        ddd: DDD
+        cellphone_number: Número do Telefone
   app_name: Mais Voz
   attributes:
     active_session: Sessão ativa
@@ -572,6 +577,8 @@ pt-BR:
     sim_card_unavailable_to_transfer: "CHIPs não cadastrados ou já transferidos %{iccids}"
     user_sim_card_report: Relatório de CHIPs
     sim_card_transfers: Transferências de CHIPs
+    cellphone_reloads: Recarga
+    new_cellphone_reload: Nova Recarga
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -623,6 +630,7 @@ pt-BR:
       submit: Salvar %{model}
       update: Atualizar %{model}
       sim_card_transfer: Transferir CHIP(s)
+      checkout: Gerar Pedido
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De

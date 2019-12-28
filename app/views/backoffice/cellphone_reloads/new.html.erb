@@ -1,0 +1,27 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('defaults.new_cellphone_reload') %></h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-md-12">
+          <%= simple_form_for(@cellphone_reload, url: backoffice_cellphone_reloads_path) do |f| %>
+            <div class="form-inputs">
+              <div class="col-sm-2">
+                <%= f.input :product_id, collection: cellphone_products_for_select, prompt: t('helpers.select.prompt') %>
+                <%= f.input :ddd, collection: available_ddds, prompt: t('helpers.select.prompt') %>
+                <%= f.input :cellphone_number, placeholder: '99999-9999', class: 'phone-mask-short'  %>
+                <%= f.button :submit, t('helpers.submit.create', model: t('activerecord.models.order')), class: 'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,5 +18,6 @@ class Category < ApplicationRecord
 
   scope :active, -> { where(active: true).order(:order) }
   scope :sim_card, -> { where(code: 10) }
+  scope :cellphone_reload, -> { where(code: 11) }
 
 end

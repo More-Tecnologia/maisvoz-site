@@ -103,6 +103,11 @@ ActiveRecord::Base.transaction do
                                                   active: true,
                                                   code: 10)
 
+  cellphone_reload_category = Category.find_or_create_by!(name: 'CHIPs',
+                                                          active_session: false,
+                                                          active: false,
+                                                          code: 11)
+
   sim_card = Product.find_or_create_by!(name: 'Pacote de CHIPs',
                                         quantity: 10,
                                         price_cents: 9990,
@@ -201,6 +206,28 @@ date_voice_89 = Product.find_or_create_by!(name: 'Dados e Voz 89',
                                            paid_by: :paid_by_user,
                                            kind: :detached)
 
+date_voice_49 = Product.find_or_create_by!(name: 'Recarga 34,99' ,
+                                           quantity: 1,
+                                           price_cents: 3499,
+                                           binary_score: 350,
+                                           binary_bonus: 0,
+                                           active: true,
+                                           virtual: true,
+                                           category: detached_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :detached)
+
+date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
+                                          quantity: 1,
+                                          price_cents: 4990,
+                                          binary_score: 350,
+                                          binary_bonus: 0,
+                                          active: true,
+                                          virtual: true,
+                                          category: detached_category,
+                                          paid_by: :paid_by_user,
+                                          kind: :detached)
+
 date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
                                            quantity: 1,
                                            price_cents: 4990,
@@ -209,6 +236,116 @@ date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
                                            active: true,
                                            virtual: true,
                                            category: detached_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :detached)
+
+ date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
+                                            quantity: 1,
+                                            price_cents: 4990,
+                                            binary_score: 350,
+                                            binary_bonus: 0,
+                                            active: true,
+                                            virtual: true,
+                                            category: detached_category,
+                                            paid_by: :paid_by_user,
+                                            kind: :detached)
+
+date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
+                                           quantity: 1,
+                                           price_cents: 4990,
+                                           binary_score: 350,
+                                           binary_bonus: 0,
+                                           active: true,
+                                           virtual: true,
+                                           category: detached_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :detached)
+
+date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
+                                          quantity: 1,
+                                          price_cents: 4990,
+                                          binary_score: 350,
+                                          binary_bonus: 0,
+                                          active: true,
+                                          virtual: true,
+                                          category: detached_category,
+                                          paid_by: :paid_by_user,
+                                          kind: :detached)
+
+date_voice_49 = Product.find_or_create_by!(name: 'Dados e Voz 49' ,
+                                           quantity: 1,
+                                           price_cents: 4990,
+                                           binary_score: 350,
+                                           binary_bonus: 0,
+                                           active: true,
+                                           virtual: true,
+                                           category: detached_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :detached)
+
+reload_34_99 = Product.find_or_create_by!(name: 'Recarga 34,90',
+                                     quantity: 1,
+                                     price_cents: 3499,
+                                     binary_score: 0,
+                                     binary_bonus: 0,
+                                     active: false,
+                                     virtual: false,
+                                     category: cellphone_reload_category,
+                                     paid_by: :paid_by_user,
+                                     kind: :detached)
+
+reload_44_99 = Product.find_or_create_by!(name: 'Recarga 44,99',
+                                          quantity: 1,
+                                          price_cents: 4499,
+                                          binary_score: 0,
+                                          binary_bonus: 0,
+                                          active: false,
+                                          virtual: false,
+                                          category: cellphone_reload_category,
+                                          paid_by: :paid_by_user,
+                                          kind: :detached)
+
+reload_69_90 = Product.find_or_create_by!(name: 'Recarga 69,90',
+                                          quantity: 1,
+                                          price_cents: 6990,
+                                          binary_score: 0,
+                                          binary_bonus: 0,
+                                          active: false,
+                                          virtual: false,
+                                          category: cellphone_reload_category,
+                                          paid_by: :paid_by_user,
+                                          kind: :detached)
+
+reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,99',
+                                          quantity: 1,
+                                          price_cents: 9999,
+                                          binary_score: 0,
+                                          binary_bonus: 0,
+                                          active: false,
+                                          virtual: false,
+                                          category: cellphone_reload_category,
+                                          paid_by: :paid_by_user,
+                                          kind: :detached)
+
+reload_119_90 = Product.find_or_create_by!(name: 'Recarga 119,90',
+                                           quantity: 1,
+                                           price_cents: 11999,
+                                           binary_score: 0,
+                                           binary_bonus: 0,
+                                           active: false,
+                                           virtual: false,
+                                           category: cellphone_reload_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :detached)
+
+reload_149_90 = Product.find_or_create_by!(name: 'Recarga 149,90',
+                                           quantity: 1,
+                                           price_cents: 14990,
+                                           binary_score: 0,
+                                           binary_bonus: 0,
+                                           active: false,
+                                           virtual: false,
+                                           category: cellphone_reload_category,
                                            paid_by: :paid_by_user,
                                            kind: :detached)
 
@@ -269,20 +406,20 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                        role: 'admin',
                        password: '111111',
                        email: 'morenwm@morenwm.com')
- more_user.save(validate: false)
+ more_user.save(validate: false) unless User.exists?(username: ENV['MORENWM_USERNAME'])
 
  admin_user = User.create!(username: ENV['MORENWM_CUSTOMER_ADMIN'],
                            name: ENV['MORENWM_CUSTOMER_ADMIN'],
                            role: 'admin',
                            password: '111111',
                            email: 'admin@morenwm.com',
-                           sponsor: more_user)
+                           sponsor: more_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_ADMIN'])
 
   User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
                name: ENV['MORENWM_CUSTOMER_USERNAME'],
                role: 'empreendedor',
                password: '111111',
                email: 'customer-morenwm@morenwm.com',
-               sponsor: admin_user)
+               sponsor: admin_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_USERNAME'])
 
 end

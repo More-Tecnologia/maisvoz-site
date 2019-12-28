@@ -79,5 +79,15 @@ module Backoffice
       l(sim_card.stock_out_at, format: :long) if sim_card.stock_out_at
     end
 
+    def detect_stock_in_at_by(user, sim_card)
+      date = user.support_point? ? sim_card.support_point_stock_in_at : sim_card.user_stock_in_at
+      l(date, format: :long) if date
+    end
+
+    def detect_stock_out_at_by(user, sim_card)
+      date = user.support_point? ? sim_card.support_point_stock_out_at : sim_card.user_stock_out_at
+      l(date, format: :long) if date
+    end
+
   end
 end

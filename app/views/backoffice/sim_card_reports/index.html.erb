@@ -33,8 +33,8 @@
                   <td> <%= sim_card.iccid %> </td>
                   <td> <%= hide_last_four_digits(sim_card.phone_number) if sim_card.phone_number %> </td>
                   <td> <%= detect_stock_status_by(current_user, sim_card) %> </td>
-                  <td> <%= l(sim_card.support_point_stock_in_at, format: :long) if sim_card.support_point_stock_in_at %> </td>
-                  <td> <%= l(sim_card.support_point_stock_out_at, format: :long) if sim_card.support_point_stock_out_at %> </td>
+                  <td> <%= detect_stock_in_at_by(current_user, sim_card) %> </td>
+                  <td> <%= detect_stock_out_at_by(current_user, sim_card) %> </td>
                 </tr>
               <% end %>
               <% if @sim_cards.empty? %>

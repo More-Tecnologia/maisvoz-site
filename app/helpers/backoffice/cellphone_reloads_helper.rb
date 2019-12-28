@@ -18,7 +18,7 @@ module Backoffice
         order = current_user.orders.create!(total_cents: cellphone_reload.product.price_cents,
                                            status: Order.statuses[:pending_payment])
         order.order_items.create!(product: cellphone_reload.product,
-                                  cellphone_number: cellphone_reload.cellphone_number,
+                                  cellphone_number: cellphone_reload.cellphone_number_normalized,
                                   quantity: 1,
                                   unit_price_cents: cellphone_reload.product.price_cents,
                                   total_cents: cellphone_reload.product.price_cents)

@@ -325,7 +325,11 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                    { title: 'Bonus Indicacao', code: '1000'},
                    { title: 'Bonus Rendimento', code: '1100'},
                    { title: 'Pagamento de Pedido', code: '1200'},
-                   { title: 'Estorno de Bonus Binário por Desqualificação', code: '1300' }]
+                   { title: 'Estorno de Bonus Binário por Desqualificação', code: '1300' },
+                   { title: 'Bonus Indicação Direta', code: '2000' },
+                   { title: 'Estorno de Bônus Indicação Direta por Inatividade', code: '2100', financial_reason: FinancialReason.find_by(code: '2000') },
+                   { title: 'Bonus Indicação Indireta', code: '2200' },
+                   { title: 'Estorno de Bônus Indicação Indireta por Inatividade', code: '2300', financial_reason: FinancialReason.find_by(code: '2200') }]
   bonus_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
   end

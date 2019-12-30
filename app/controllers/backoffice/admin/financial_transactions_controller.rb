@@ -5,9 +5,9 @@ module Backoffice
       def index
         authorize :admin_financial_entries, :index?
         @q = FinancialTransaction.ransack(params[:q])
-        @financial_transactions = @q.result(distinct: true).includes_associations
-                                                           .order(created_at: :desc)
-                                                           .page(params[:page])
+        @financial_transactions = @q.result.includes_associations
+                                           .order(created_at: :desc)
+                                           .page(params[:page])
         render 'backoffice/financial_transactions/index'
       end
 

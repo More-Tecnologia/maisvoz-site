@@ -9,7 +9,7 @@ module Backoffice
                                .includes(:order, :product)
                                .cellphone_reloads
                                .where(order: Order.completed.paid)
-                               .page(params[:q])
+                               .page(params[:page])
       end
 
     end

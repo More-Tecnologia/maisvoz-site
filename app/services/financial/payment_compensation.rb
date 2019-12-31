@@ -26,7 +26,8 @@ module Financial
         update_user_purchase_flags
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user if adhesion_product || activation_product
+        activate_user if adhesion_product
+        activate_user_until! if activation_product
         user.empreendedor! if adhesion_product
         update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
@@ -35,13 +36,13 @@ module Financial
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if adhesion_product
-        propagate_bonuses if enabled_bonification
+        #propagate_bonuses if enabled_bonification
         create_vouchers
         create_system_fee
         associate_support_point if adhesion_product
         binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification
-        notify_user_by_email_about_paid_order
         add_product_bonus_to_order if adhesion_product
+        notify_user_by_email_about_paid_order
       end
     end
 
@@ -108,9 +109,9 @@ module Financial
       user.activate!
     end
 
-    def active_user_until!(order_maturity_date)
-      grace_period = user.current_career_trail.product.grace_period
-      user.active_until!(order_maturity_date + grace_period)
+    def activate_user_until!
+      reference_date = user.active? ? user.active_until : Date.current
+      user.activate!(reference_date + 1.month)
     end
 
     def update_user_role

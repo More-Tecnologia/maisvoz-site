@@ -246,10 +246,6 @@ class User < ApplicationRecord
     update_sponsor_binary_qualified
   end
 
-  def activate_until!(date)
-    update!(active_until: date)
-  end
-
   def out_binary_tree?
     binary_node.nil?
   end
@@ -314,6 +310,15 @@ class User < ApplicationRecord
 
   def binary_qualified?
     binary_qualified
+  end
+
+  def active
+    return self[:active] unless ENV['ENABLED_ACTIVATION'] == 'true'
+    active_until && active_until >= Date.current && self[:active]
+  end
+
+  def active?
+    active
   end
 
   def inactive?

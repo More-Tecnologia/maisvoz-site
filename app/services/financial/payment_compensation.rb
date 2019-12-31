@@ -36,7 +36,7 @@ module Financial
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if adhesion_product
-        #propagate_bonuses if enabled_bonification
+        propagate_bonuses if enabled_bonification
         create_vouchers
         create_system_fee
         associate_support_point if adhesion_product

@@ -29,7 +29,7 @@
               </div>
               <div class="col-md-2">
                 <%= f.label t('attributes.product') %>
-                <%= f.select :product_id_eq, cellphone_products_for_select,
+                <%= f.select :product_id_in, cellphone_products_for_select,
                                              { include_blank: t('all') },
                                              { class: 'form-control input-sm', multiple: true } %>
               </div>

@@ -30,9 +30,8 @@ class UpdateProduct
     form_reason_scores
     attrs
   end
-  
+
   def form_reason_scores
-    product.product_reason_scores.destroy_all
     unless form.attributes[:financial_reason].blank?
       form.attributes[:financial_reason].each do |row, financial_reason_id|
         reason_score = ProductReasonScore.create({

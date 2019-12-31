@@ -63,7 +63,7 @@ end
 # Activation Bonus
 ActiveRecord::Base.transaction do
   reason = FinancialReason.find_by(code: '2400')
-  product = Product.find_by(name: 'Recarga 99,99')
+  product = Product.find_by(name: 'Recarga 99,99 - Ativação')
   product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
   elite_scores = [[0, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
                   [000, 000, 400, 400, 400, 400, 400, 400, 400, 400, 400],
@@ -81,7 +81,7 @@ end
 
 ActiveRecord::Base.transaction do
   reason = FinancialReason.find_by(code: '2400')
-  product = Product.find_by(name: 'Recarga 149,90')
+  product = Product.find_by(name: 'Recarga 149,90 - Ativação')
   product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
   premium_scores = [[000, 700, 700, 700, 700, 700, 700, 700, 700, 700, 700],
                     [000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500],

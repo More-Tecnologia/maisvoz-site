@@ -250,7 +250,7 @@ reload_69_90 = Product.find_or_create_by!(name: 'Recarga 69,90',
                                           paid_by: :paid_by_user,
                                           kind: :detached)
 
-reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,99',
+reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,99 - Ativação',
                                           quantity: 1,
                                           price_cents: 9999,
                                           binary_score: 0,
@@ -259,7 +259,7 @@ reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,99',
                                           virtual: false,
                                           category: cellphone_reload_category,
                                           paid_by: :paid_by_user,
-                                          kind: :detached)
+                                          kind: :activation)
 
 reload_119_90 = Product.find_or_create_by!(name: 'Recarga 119,90',
                                            quantity: 1,
@@ -272,7 +272,7 @@ reload_119_90 = Product.find_or_create_by!(name: 'Recarga 119,90',
                                            paid_by: :paid_by_user,
                                            kind: :detached)
 
-reload_149_90 = Product.find_or_create_by!(name: 'Recarga 149,90',
+reload_149_90 = Product.find_or_create_by!(name: 'Recarga 149,90 - Ativação',
                                            quantity: 1,
                                            price_cents: 14990,
                                            binary_score: 0,
@@ -281,7 +281,7 @@ reload_149_90 = Product.find_or_create_by!(name: 'Recarga 149,90',
                                            virtual: false,
                                            category: cellphone_reload_category,
                                            paid_by: :paid_by_user,
-                                           kind: :detached)
+                                           kind: :activation)
 
 # TRAILS
 trails  = [{ name: 'Elite', product: elite, product_bonus: elite_product_bonus },

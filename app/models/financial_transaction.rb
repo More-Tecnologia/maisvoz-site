@@ -1,4 +1,5 @@
 class FinancialTransaction < ApplicationRecord
+
   include Hashid::Rails
 
   belongs_to :user
@@ -53,8 +54,8 @@ class FinancialTransaction < ApplicationRecord
                        moneyflow: invert_money_flow)
   end
 
-  def chargeback_by_inactivity!
-    chargeback_binary_score!(FinancialReason.chargeback_by_inactivity, cent_amount)
+  def chargeback_by_inactivity!(reason = FinancialReason.chargeback_by_inactivity)
+    chargeback_binary_score!(reason, cent_amount)
   end
 
   def chargeback_by_unqualification!

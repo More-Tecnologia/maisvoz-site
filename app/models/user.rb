@@ -155,7 +155,8 @@ class User < ApplicationRecord
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
   scope :bought_adhesion, -> { where(bought_adhesion: true) }
-  scope :active, -> { where(active: true) }
+  scope :active,
+    -> { ENV['ENABLED_ACTIVATION'] == 'true' ? where('active_until >= ?', Date.current) : where(active: true) }
   scope :support_point, -> { where(role_type_code: RoleType.support_point_code) }
   scope :by_location, ->(city, state) {
     where('lower(unaccent(city)) = ? AND lower(unaccent(state)) = ?',
@@ -283,15 +284,15 @@ class User < ApplicationRecord
   end
 
   def self.find_morenwm_customer_user
-    find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
+    @@find_morenwm_customer_user ||= find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
   end
 
   def self.find_morenwm_customer_admin
-    find_by(username: ENV['MORENWM_CUSTOMER_ADMIN'])
+    @@find_morenwm_customer_user ||= find_by(username: ENV['MORENWM_CUSTOMER_ADMIN'])
   end
 
   def self.find_morenwm_user
-    find_by(username: ENV['MORENWM_USERNAME'])
+    @@find_morenwm_user ||= find_by(username: ENV['MORENWM_USERNAME'])
   end
 
   def update_blocked_balance!(amount)
@@ -354,7 +355,7 @@ class User < ApplicationRecord
                                     .financial_reason_bonus
                                     .where('financial_transactions.created_at >= ?', paid_at)
                                     .sum(:cent_amount)
-    (credits - debits).to_f / 1e8.to_f
+    (credits - debits).to_f
   end
 
   def calculate_excess_career_trail_bonus

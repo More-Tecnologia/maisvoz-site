@@ -2,6 +2,9 @@ class FinancialReason < ApplicationRecord
   has_many :financial_transactions
 
   belongs_to :financial_reason_type
+  belongs_to :financial_reason, optional: true
+
+  has_one :chargeback_by_inactivity, class_name: 'FinancialReason'
 
   validates :title, presence: true,
                     uniqueness: { case_sensitive: false }

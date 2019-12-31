@@ -3,8 +3,8 @@ module Backoffice
 
     def format_cent_amount_value(financial_transaction)
       amount = financial_transaction.cent_amount
-      return number_to_currency(-amount, precision: 8) if financial_transaction.debit?
-      number_to_currency(amount, precision: 8)
+      return number_to_currency(-amount, precision: 2) if financial_transaction.debit?
+      number_to_currency(amount, precision: 2)
     end
 
     def find_financial_transactions_search_url

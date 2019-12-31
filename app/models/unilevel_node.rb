@@ -25,6 +25,11 @@ class UnilevelNode < ApplicationRecord
 
   scope :binary_position_left, -> { joins(:user).merge(User.left) }
   scope :binary_position_right, -> { joins(:user).merge(User.right) }
+  scope :includes_users, -> { includes(user: [career_trail_users: [career_trail: [trail: [:product]]]]) }
+  scope :bonus_receivers, ->(count) { includes_users.last(count) }
+  scope :dynamic_compression, ->(count) { includes_users.joins(:user)
+                                                        .merge(User.active)
+                                                        .last(count) }
 
   def left_descendants_count
     @left_descendants_count ||= descendants.binary_position_left.count

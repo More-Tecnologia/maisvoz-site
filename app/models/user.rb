@@ -155,7 +155,8 @@ class User < ApplicationRecord
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
   scope :bought_adhesion, -> { where(bought_adhesion: true) }
-  scope :active, -> { where(active: true) }
+  scope :active,
+    -> { ENV['ENABLED_ACTIVATION'] == 'true' ? where('active_until >= ?', Date.current) : where(active: true) }
   scope :support_point, -> { where(role_type_code: RoleType.support_point_code) }
   scope :by_location, ->(city, state) {
     where('lower(unaccent(city)) = ? AND lower(unaccent(state)) = ?',

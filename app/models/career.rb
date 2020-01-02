@@ -21,6 +21,8 @@ class Career < ApplicationRecord
   belongs_to :binary_qualifying_career, class_name: 'Career',
                                         foreign_key: 'career_id',
                                         optional: true
+  belongs_to :unilevel_qualifying_career, class_name: 'Career',
+                                          optional: true
 
   has_many :products
   has_many :binary_nodes
@@ -50,7 +52,16 @@ class Career < ApplicationRecord
   end
 
   def unilevel_qualify?(user)
-    user.unilevel_score_count >= qualifying_score
+    unilevel_qualify_careers?(user) && user.unilevel_score_count >= qualifying_score
+  end
+
+  def unilevel_qualify_careers?(user)
+    return true if unilevel_qualifying_career_count <= 0 || unilevel_qualifying_career.nil?
+    user_count = user.unilevel_node
+                     .children
+                     .by_career(unilevel_qualifying_career)
+                     .count
+    user_count >= unilevel_qualifying_career_count.to_i
   end
 
   def binary_qualify?(user)

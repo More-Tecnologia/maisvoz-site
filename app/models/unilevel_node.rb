@@ -30,6 +30,10 @@ class UnilevelNode < ApplicationRecord
   scope :dynamic_compression, ->(count) { includes_users.joins(:user)
                                                         .merge(User.active)
                                                         .last(count) }
+  scope :by_career,
+    ->(career) { joins(user: [career_trail_users: [:career_trail]])
+                 .where('career_trail_users.career_trail_id': career.career_trails)
+                 .merge(User.active) }
 
   def left_descendants_count
     @left_descendants_count ||= descendants.binary_position_left.count

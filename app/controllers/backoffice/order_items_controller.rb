@@ -2,7 +2,7 @@ module Backoffice
   class OrderItemsController < BackofficeController
 
     before_action :ensure_valid_user
-    before_action :ensure_valid_product
+    before_action :ensure_valid_product, except: [:destroy]
 
     def create
       command = Shopping::AddToCart.call(current_order, product_params[:id])

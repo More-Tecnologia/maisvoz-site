@@ -19,7 +19,7 @@ module Shopping
         elsif add_to_order
           update_order_total
           update_order_pv_total
-          apply_discount if user_bought_subscription && product.adhesion? && !order.adhesion_product
+          apply_discount if user_bought_subscription? && product.adhesion?
           return order
         else
           errors.add(:product, I18n.t('cant_add_produt_to_cart'))
@@ -88,7 +88,7 @@ module Shopping
     end
 
     def item_subscription
-      @item_subscription ||= OrderItem.where(order: user.orders.completed.paid,
+      @item_subscription ||= OrderItem.where(order: order.user.orders.completed.paid,
                                              product: Product.subscription).first
     end
 

@@ -30,7 +30,6 @@ class FinancialTransaction < ApplicationRecord
   validates :financial_reason, presence: true,
                                unless: :is_note_present?
 
-  after_create :create_financial_log, if: :is_bonus_and_spreader_not_admin?
   after_create :update_balance_user
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
 
@@ -108,10 +107,6 @@ class FinancialTransaction < ApplicationRecord
     user.inactivate! if !chargeback? && user.empreendedor? && user.reached_career_trail_maximum_bonus?
   end
 
-  def is_bonus_and_spreader_not_admin?
-    financial_reason.is_bonus? && user != User.find_morenwm_customer_admin
-  end
-
   def chargeback_to_admin
     create_chargeback!(user: User.find_morenwm_customer_admin,
                        spreader: user,
@@ -119,10 +114,6 @@ class FinancialTransaction < ApplicationRecord
                        order: order,
                        cent_amount: cent_amount,
                        moneyflow: invert_money_flow)
-  end
-
-  def create_financial_log
-    chargeback_to_admin
   end
 
 end

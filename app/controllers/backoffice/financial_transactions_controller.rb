@@ -5,9 +5,10 @@ module Backoffice
 
     def index
       @q = FinancialTransaction.ransack(query_params)
-      @financial_transactions = @q.result(distinct: true).includes_associations
-                                                         .order(created_at: :desc)
-                                                         .page(params[:page])
+      @financial_transactions = @q.result(distinct: true)
+                                  .includes(:user, :spreader, :financial_reason, :order)
+                                  .order(created_at: :desc)
+                                  .page(params[:page])
     end
 
     private

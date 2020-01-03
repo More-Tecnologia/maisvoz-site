@@ -18,7 +18,7 @@ class Score < ApplicationRecord
   enum source_leg: SOURCE_LEGS
 
   scope :adhesion, -> { where(score_type_id: 1) }
-  scope :activation, -> { where(score_type_id: 2) }
+  scope :activation, -> { where(score_type: ScoreType.activation) }
   scope :detached, -> { where(score_type_id: 3) }
   scope :includes_associations, -> { includes(:order, :user, :spreader_user, :score_type) }
   scope :chargeback, -> { where('cent_amount < 0') }
@@ -37,6 +37,8 @@ class Score < ApplicationRecord
   scope :sum_unilevel_spreaded_by, ->(user_ids) { unilevel.where(spreader_user_id: user_ids)
                                                           .group(:spreader_user)
                                                           .sum(:cent_amount) }
+  scope :by_current_month,
+    -> { where(created_at: (Date.current.beginning_of_month..Date.current.end_of_month)) }
 
   def chargeback!(score_type, amount = cent_amount)
     create_chargeback!(source_leg: source_leg,

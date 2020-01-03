@@ -70,6 +70,17 @@ class Career < ApplicationRecord
         .exists_child_in_greater_binary_leg_by?(binary_qualifying_career)
   end
 
+  def self.detect_requalification_career_trail(user)
+    return user.current_career_trail if user.current_career.requalification_score.to_f <= 0.0
+    careers = Career.order(requalification_score: :desc)
+    user_activation_score = user.scores
+                                .activation
+                                .by_current_month
+                                .sum(:cent_amount)
+    career = careers.detect { |c| user_activation_score >= c.requalification_score.to_f }
+    career.try(:higher?, user.current_career) ? user.current_career : career
+  end
+
   private
 
   def higher_qualifying_score?(career)

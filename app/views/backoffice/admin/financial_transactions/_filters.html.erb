@@ -3,7 +3,7 @@
     <h3 class="panel-title"><%= t(:filters) %></h3>
   </div>
   <div class="panel-body">
-    <%= search_form_for @q, url: backoffice_financial_transactions_path do |f| %>
+    <%= search_form_for @q, url: backoffice_admin_financial_transactions_path do |f| %>
       <div class="form-group">
         <div class="row">
           <% if current_user.admin? && controller_path.include?('admin') %>
@@ -24,7 +24,7 @@
           </div>
           <div class="col-md-3">
             <%= t('activerecord.attributes.financial_transaction.financial_reason') %>
-            <%= f.select :financial_reason_id_in, FinancialReason.where.not(id: FinancialReason.morenwm_fee.id).pluck(:title, :id),
+            <%= f.select :financial_reason_id_in, FinancialReason.pluck(:title, :id),
                                                   { include_blank: t('all') },
                                                   { class: 'form-control input-sm', multiple: true } %>
           </div>

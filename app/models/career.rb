@@ -21,6 +21,8 @@ class Career < ApplicationRecord
   belongs_to :binary_qualifying_career, class_name: 'Career',
                                         foreign_key: 'career_id',
                                         optional: true
+  belongs_to :unilevel_qualifying_career, class_name: 'Career',
+                                          optional: true
 
   has_many :products
   has_many :binary_nodes
@@ -50,13 +52,34 @@ class Career < ApplicationRecord
   end
 
   def unilevel_qualify?(user)
-    user.unilevel_score_count >= qualifying_score
+    unilevel_qualify_careers?(user) && user.unilevel_score_count >= qualifying_score
+  end
+
+  def unilevel_qualify_careers?(user)
+    return true if unilevel_qualifying_career_count <= 0 || unilevel_qualifying_career.nil?
+    user_count = user.unilevel_node
+                     .children
+                     .by_career(unilevel_qualifying_career)
+                     .count
+    user_count >= unilevel_qualifying_career_count.to_i
   end
 
   def binary_qualify?(user)
     return true unless binary_qualifying_career
     user.unilevel_node
         .exists_child_in_greater_binary_leg_by?(binary_qualifying_career)
+  end
+
+  def self.detect_requalification_career_trail(user)
+    return user.current_career_trail if user.current_career.requalification_score.to_f <= 0.0
+    careers = Career.order(requalification_score: :desc)
+    user_activation_score = user.scores
+                                .activation
+                                .by_current_month
+                                .sum(:cent_amount)
+    career = careers.detect { |c| user_activation_score >= c.requalification_score.to_f }
+    career = user.current_career if career.try(:higher?, user.current_career)
+    career.career_trails.where(trail: user.current_trail).first
   end
 
   private

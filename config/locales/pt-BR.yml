@@ -240,6 +240,8 @@ pt-BR:
     support_point: Ponto de Apoio
     transference_date: Data de Transferência
     transferences: Transferências
+    unilevel_qualifying_career_count: Quantidade de Indicados Qualificadores
+    unilevel_qualifying_career_id: Carreira de Indicados Qualificadores
   backoffice:
     orders:
       show:

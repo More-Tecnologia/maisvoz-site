@@ -101,19 +101,13 @@ ActiveRecord::Base.transaction do
   adhesion_category = Category.find_or_create_by!(name: 'Adesão',
                                                   active_session: true,
                                                   active: true)
-  activation_category = Category.find_or_create_by!(name: 'Ativação',
-                                                    active_session: false,
-                                                    active: false)
-  detached_category = Category.find_or_create_by!(name: 'Recargas',
-                                                  active_session: true,
-                                                  active: true)
 
   sim_card_category = Category.find_or_create_by!(name: 'CHIPs',
                                                   active_session: true,
                                                   active: true,
                                                   code: 10)
 
-  cellphone_reload_category = Category.find_or_create_by!(name: 'CHIPs',
+  cellphone_reload_category = Category.find_or_create_by!(name: 'Recargas',
                                                           active_session: false,
                                                           active: false,
                                                           code: 11)
@@ -157,31 +151,38 @@ premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonu
                                                    maturity_days: nil,
                                                    grace_period: 0)
 
-  _99_product = Product.find_or_create_by!(name: '99,00',
+  _99_product = Product.find_or_create_by!(name: 'Recarga de Ativação R$ 99,90',
                                            quantity: 1,
-                                           price_cents: 9900,
+                                           price_cents: 9990,
                                            binary_score: 50,
                                            binary_bonus: 0,
                                            active: true,
                                            virtual: true,
-                                           category: activation_category,
+                                           category: cellphone_reload_category,
                                            paid_by: :paid_by_user,
-                                           kind: :activation,
-                                           maturity_days: [5, 10],
-                                           grace_period: 5)
+                                           kind: :activation)
 
-  _149_product = Product.find_or_create_by!(name: '149,00',
+ _129_product = Product.find_or_create_by!(name: 'Recarga de Ativação R$ 129,90',
+                                           quantity: 1,
+                                           price_cents: 12990,
+                                           binary_score: 65,
+                                           binary_bonus: 0,
+                                           active: true,
+                                           virtual: true,
+                                           category: cellphone_reload_category,
+                                           paid_by: :paid_by_user,
+                                           kind: :activation)
+
+  _149_product = Product.find_or_create_by!(name: 'Recarga de Ativação R$ 149,90',
                                             quantity: 1,
-                                            price_cents: 14900,
+                                            price_cents: 14990,
                                             binary_score: 75,
                                             binary_bonus: 0,
                                             active: true,
                                             virtual: true,
-                                            category: activation_category,
+                                            category: cellphone_reload_category,
                                             paid_by: :paid_by_user,
-                                            kind: :activation,
-                                            maturity_days: [5, 10],
-                                            grace_period: 5)
+                                            kind: :activation)
 
  elite = Product.find_or_create_by!(name: 'Elite',
                                     quantity: 1,
@@ -205,28 +206,6 @@ premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonu
                                       paid_by: :paid_by_user,
                                       kind: :adhesion)
 
-date_voice_89 = Product.find_or_create_by!(name: 'Dados e Voz 89',
-                                           quantity: 1,
-                                           price_cents: 8990,
-                                           binary_score: 45,
-                                           binary_bonus: 0,
-                                           active: true,
-                                           virtual: true,
-                                           category: detached_category,
-                                           paid_by: :paid_by_user,
-                                           kind: :detached)
-
-date_voice_49 = Product.find_or_create_by!(name: 'Recarga 34,99' ,
-                                           quantity: 1,
-                                           price_cents: 3499,
-                                           binary_score: 350,
-                                           binary_bonus: 0,
-                                           active: true,
-                                           virtual: true,
-                                           category: detached_category,
-                                           paid_by: :paid_by_user,
-                                           kind: :detached)
-
 reload_34_99 = Product.find_or_create_by!(name: 'Recarga 34,90',
                                      quantity: 1,
                                      price_cents: 3499,
@@ -236,7 +215,8 @@ reload_34_99 = Product.find_or_create_by!(name: 'Recarga 34,90',
                                      virtual: false,
                                      category: cellphone_reload_category,
                                      paid_by: :paid_by_user,
-                                     kind: :detached)
+                                     kind: :detached,
+                                     binary_score: 15)
 
 reload_44_99 = Product.find_or_create_by!(name: 'Recarga 44,99',
                                           quantity: 1,
@@ -247,7 +227,8 @@ reload_44_99 = Product.find_or_create_by!(name: 'Recarga 44,99',
                                           virtual: false,
                                           category: cellphone_reload_category,
                                           paid_by: :paid_by_user,
-                                          kind: :detached)
+                                          kind: :detached,
+                                          binary_score: 20)
 
 reload_69_90 = Product.find_or_create_by!(name: 'Recarga 69,90',
                                           quantity: 1,
@@ -258,7 +239,8 @@ reload_69_90 = Product.find_or_create_by!(name: 'Recarga 69,90',
                                           virtual: false,
                                           category: cellphone_reload_category,
                                           paid_by: :paid_by_user,
-                                          kind: :detached)
+                                          kind: :detached,
+                                          binary_score: 30)
 
 reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,99 - Ativação',
                                           quantity: 1,
@@ -269,29 +251,8 @@ reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,99 - Ativação',
                                           virtual: false,
                                           category: cellphone_reload_category,
                                           paid_by: :paid_by_user,
-                                          kind: :activation)
-
-reload_119_90 = Product.find_or_create_by!(name: 'Recarga 119,90',
-                                           quantity: 1,
-                                           price_cents: 11999,
-                                           binary_score: 0,
-                                           binary_bonus: 0,
-                                           active: false,
-                                           virtual: false,
-                                           category: cellphone_reload_category,
-                                           paid_by: :paid_by_user,
-                                           kind: :detached)
-
-reload_149_90 = Product.find_or_create_by!(name: 'Recarga 149,90 - Ativação',
-                                           quantity: 1,
-                                           price_cents: 14990,
-                                           binary_score: 0,
-                                           binary_bonus: 0,
-                                           active: false,
-                                           virtual: false,
-                                           category: cellphone_reload_category,
-                                           paid_by: :paid_by_user,
-                                           kind: :activation)
+                                          kind: :detached,
+                                          binary_score: 45)
 
 # TRAILS
 trails  = [{ name: 'Elite', product: elite, product_bonus: elite_product_bonus },

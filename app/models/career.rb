@@ -78,7 +78,8 @@ class Career < ApplicationRecord
                                 .by_current_month
                                 .sum(:cent_amount)
     career = careers.detect { |c| user_activation_score >= c.requalification_score.to_f }
-    career.try(:higher?, user.current_career) ? user.current_career : career
+    career = user.current_career if career.try(:higher?, user.current_career)
+    career.career_trails.where(trail: user.current_trail).first
   end
 
   private

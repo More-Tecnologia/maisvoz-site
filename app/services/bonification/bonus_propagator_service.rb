@@ -44,10 +44,10 @@ module Bonification
     end
 
     def detect_product_score_by(sponsor, generation, product_reason_score)
-      product_score = product_reason_score.product_scores
+      product_scores = product_reason_score.product_scores
       pay_by_requalification_score = product_reason_score.pay_bonus_by_requalification_score
       receiver_career_trail =
-        pay_by_requalification_score ? Career.find_requalification_career_trail(sponsor) : sponsor.current_career_trail
+        pay_by_requalification_score ? Career.detect_requalification_career_trail(sponsor) : sponsor.current_career_trail
       product_scores.detect do |s|
         s.generation == generation &&
         s.career_trail_id == receiver_career_trail.id

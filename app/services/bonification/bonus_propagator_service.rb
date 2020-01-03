@@ -24,20 +24,18 @@ module Bonification
     end
 
     def create_bonus_by(product)
-      financial_reasons = find_financial_reasons_by(product)
-      financial_reasons.each do |financial_reason|
-        sponsor_inactive_bonus = []
-        product_scores = find_product_scores_by(financial_reason)
-        sponsors = find_sponsors_by(product_scores, financial_reason.dynamic_compression)
-        create_financial_transactions_to(sponsors, product, financial_reason, product_scores)
+      product_reason_scores.each do |product_reason_score|
+        financial_reason = product_reason_score.financial_reason
+        sponsors = find_sponsors_by(product_reason_score, financial_reason.dynamic_compression)
+        create_financial_transactions_to(sponsors, product, financial_reason, product_reason_score)
       end
     end
 
-    def create_financial_transactions_to(sponsors, product, financial_reason, product_scores)
+    def create_financial_transactions_to(sponsors, product, financial_reason, product_reason_score)
       sponsors.each_with_index do |sponsor, index|
-        next unless sponsor.empreendedor? && !sponsor.support_point?
+        next unless sponsor.empreendedor?
         generation = index + 1
-        product_score = detect_product_score_by(sponsor, generation, product_scores)
+        product_score = detect_product_score_by(sponsor, generation, product_reason_score)
         next unless product_score.try(:amount_cents).to_f > 0
         financial_transaction =
           create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
@@ -45,14 +43,19 @@ module Bonification
       end
     end
 
-    def detect_product_score_by(sponsor, generation, product_scores)
+    def detect_product_score_by(sponsor, generation, product_reason_score)
+      product_scores = product_reason_score.product_scores
+      pay_by_requalification_score = product_reason_score.pay_bonus_by_requalification_score
+      receiver_career_trail =
+        pay_by_requalification_score ? Career.detect_requalification_career_trail(sponsor) : sponsor.current_career_trail
       product_scores.detect do |s|
         s.generation == generation &&
-        s.career_trail_id == sponsor.current_career_trail.id
+        s.career_trail_id == receiver_career_trail.id
       end
     end
 
-    def find_sponsors_by(product_scores, dynamic_compression)
+    def find_sponsors_by(product_reason_scores, dynamic_compression)
+      product_scores = product_reason_scores.product_scores
       receiver_generations_count = product_scores.map(&:generation).max
       unilevel_nodes = if dynamic_compression
                           user.unilevel_node

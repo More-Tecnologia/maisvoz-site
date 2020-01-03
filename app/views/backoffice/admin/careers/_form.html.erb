@@ -9,6 +9,11 @@
   <%= f.input :career_id, collection: careers_for_select,
                           selected: find_binary_qualifying_career(f.object.career_id),
                           include_blank: true %>
+  <%= f.input :unilevel_qualifying_career_id,
+               collection: careers_for_select,
+               selected: find_unilevel_qualifying_career(f.object.unilevel_qualifying_career_id),
+               include_blank: true %>
+ <%= f.input :unilevel_qualifying_career_count, collection: (0..20).to_a %>
 
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
 <% end %>

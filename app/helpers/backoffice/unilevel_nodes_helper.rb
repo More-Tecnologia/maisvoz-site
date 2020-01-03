@@ -20,7 +20,8 @@ module Backoffice
     end
 
     def render_unilevel_node_active(unilevel_node)
-      I18n.t(unilevel_node.try(:user).try(:active).to_s)
+      active = unilevel_node.try(:user).try(:active?) ? true : false
+      I18n.t(active.to_s)
     end
 
     def render_unilevel_node_html_class(unilevel_node, current_unilevel_node)

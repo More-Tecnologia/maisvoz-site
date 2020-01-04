@@ -43,13 +43,15 @@
             </span>
             <% end %>
           </li>
+          <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
-            <span class="text-warning">
-              <%= number_to_currency current_user.blocked_balance_cents %>
-            </span>
+              <span class="text-warning">
+                <%= number_to_currency current_user.blocked_balance_cents %>
+              </span>
             <% end %>
           </li>
+          <% end %>
         <% end %>
         <li class="hidden-xs">
           <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
@@ -144,13 +146,15 @@
           </span>
           <% end %>
         </li>
-        <li>
-          <%= link_to backoffice_financial_transactions_path do %>
-          <span class="text-warning">
-            <%= number_to_currency current_user.blocked_balance_cents %>
-          </span>
-          <% end %>
-        </li>
+        <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
+          <li>
+            <%= link_to backoffice_financial_transactions_path do %>
+            <span class="text-warning">
+              <%= number_to_currency current_user.blocked_balance_cents %>
+            </span>
+            <% end %>
+          </li>
+        <% end %>
       <% end %>
       <li class="hidden-xs">
         <a href="#" id="btn-fullscreen" class="waves-effect waves-light">

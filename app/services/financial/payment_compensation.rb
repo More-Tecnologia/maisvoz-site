@@ -31,8 +31,8 @@ module Financial
         user.empreendedor! if adhesion_product
         update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
-        qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active
-        propagate_binary_score if enabled_bonification
+        qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
+        propagate_binary_score if enabled_bonification && enabled_binary?
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if adhesion_product
@@ -40,7 +40,7 @@ module Financial
         create_vouchers
         create_system_fee
         associate_support_point if adhesion_product
-        binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification
+        binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification && enabled_binary?
         add_product_bonus_to_order if adhesion_product
         notify_user_by_email_about_paid_order
       end
@@ -183,6 +183,10 @@ module Financial
 
     def enabled_activation?
       ENV['ENABLED_ACTIVATION'] == 'true'
+    end
+
+    def enabled_binary?
+      ENV['ENABLED_BINARY'] == 'true'
     end
 
   end

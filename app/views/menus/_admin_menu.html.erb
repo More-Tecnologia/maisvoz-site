@@ -40,8 +40,8 @@
 <li class="has_sub">
   <a href="javascript:void(0);" class="waves-effect"><i class="ti-sharethis"></i><span class="menu-arrow"></span><span> <%= t('defaults.network') %> </span></a>
   <ul class="list-unstyled">
-    <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path %></li>
-    <li><%= link_to t('defaults.binary_tree'), backoffice_binary_tree_index_path %></li>
+    <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path if ENV['ENABLED_BINARY'] == 'true' %></li>
+    <li><%= link_to t('defaults.binary_tree'), backoffice_binary_tree_index_path if ENV['ENABLED_BINARY'] == 'true' %></li>
     <li><%= link_to t('defaults.unilevel'), backoffice_unilevel_index_path %></li>
     <li><%= link_to t('defaults.career_histories'), backoffice_admin_career_histories_path, class: 'admin-link' %></li>
   </ul>
@@ -53,15 +53,9 @@
   <ul class="list-unstyled">
     <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
     <li><%= link_to t('defaults.lineage_scores'), backoffice_lineage_scores_path %></li>
-    <!-- <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path %> </li> -->
+    <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path if ENV['ENABLED_BINARY'] == 'true' %> </li>
     <li> <%= link_to t('defaults.unilevel'), backoffice_admin_unilevel_scores_path, class: 'admin-link' %> </li>
-    <li> <%= link_to t('defaults.binary'), backoffice_admin_binary_scores_path, class: 'admin-link' %> </li>
-    <!-- <li><%= link_to t('defaults.accumulated_pva'), backoffice_accumulated_pva_index_path %></li> -->
-    <!-- <li><%= link_to t('defaults.admin_accumulated_pva'), backoffice_admin_accumulated_pva_index_path, class: 'admin-link' %></li> -->
-    <!-- <li><%= link_to t('defaults.pv_activity_histories'), backoffice_admin_pv_activity_histories_path, class: 'admin-link' %></li> -->
-    <!-- <li><%= link_to t('defaults.pv_admin_histories'), backoffice_admin_pv_histories_path, class: 'admin-link' %></li> -->
-    <!-- <li><%= link_to t('defaults.pv_histories'), backoffice_pv_histories_path %></li> -->
-    <!-- <li><%= link_to t('defaults.pv_activity_history'), backoffice_pv_activity_histories_path %></li> -->
+    <li> <%= link_to t('defaults.binary'), backoffice_admin_binary_scores_path, class: 'admin-link' if ENV['ENABLED_BINARY'] == 'true' %> </li>
   </ul>
 </li>
 

@@ -13,6 +13,7 @@ class FinancialReason < ApplicationRecord
 
   scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
   scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
+  scope :active, -> { where(active: true) }
 
   def is_bonus?
     financial_reason_type.code == '200'

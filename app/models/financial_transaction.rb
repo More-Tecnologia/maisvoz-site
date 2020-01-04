@@ -34,8 +34,8 @@ class FinancialTransaction < ApplicationRecord
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
 
   def chargeback!
-    create_chargeback!(user: user,
-                       spreader: User.find_morenwm_customer_admin,
+    create_chargeback!(user: spreader,
+                       spreader: user,
                        financial_reason: FinancialReason.chargeback,
                        order: order,
                        cent_amount: cent_amount,
@@ -47,10 +47,12 @@ class FinancialTransaction < ApplicationRecord
   end
 
   def chargeback_binary_score!(financial_reason, amount)
-    create_chargeback!(user: user,
+    create_chargeback!(user: spreader,
+                       spreader: user,
                        financial_reason: financial_reason,
                        cent_amount: amount.to_i,
-                       moneyflow: invert_money_flow)
+                       moneyflow: invert_money_flow,
+                       order: order)
   end
 
   def chargeback_by_inactivity!(reason = FinancialReason.chargeback_by_inactivity)
@@ -84,6 +86,10 @@ class FinancialTransaction < ApplicationRecord
 
   def financial_reason_type_bonus?
     financial_reason.try(:financial_reason_type) == FinancialReasonType.bonus
+  end
+
+  def payment_bonus?
+    financial_reason_type_bonus? && credit?
   end
 
   private

@@ -581,6 +581,7 @@ pt-BR:
     sim_card_transfers: Transferências de CHIPs
     cellphone_reloads: Recarga
     new_cellphone_reload: Nova Recarga
+    financial_reports: Extrato Financeiro
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

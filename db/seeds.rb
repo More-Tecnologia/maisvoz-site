@@ -282,7 +282,8 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
   administrative_type = FinancialReasonType.find_or_create_by!(name: 'Administrativo Financeiro', code: '100')
   administrative_reasons = [{ title: 'Taxa do Sistema', code: '200' },
                             { title: 'Saque', code: '300' },
-                            { title: 'Taxa de Saque', code: '400' }]
+                            { title: 'Taxa de Saque', code: '400' },
+                            { title: 'Pagamento de Pedido', code: '1200' }]
   administrative_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: administrative_type}))
   end
@@ -295,7 +296,6 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                    { title: 'Estorno de Bonus por Limite de Careeira', code: '900' },
                    { title: 'Bonus Indicacao', code: '1000'},
                    { title: 'Bonus Rendimento', code: '1100'},
-                   { title: 'Pagamento de Pedido', code: '1200'},
                    { title: 'Estorno de Bonus Binário por Desqualificação', code: '1300' },
                    { title: 'Bonus Indicação Direta', code: '2000' },
                    { title: 'Estorno de Bônus Indicação Direta por Inatividade', code: '2100', financial_reason: FinancialReason.find_by(code: '2000') },

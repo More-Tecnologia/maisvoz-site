@@ -18,56 +18,60 @@ class FinancialReason < ApplicationRecord
     financial_reason_type.code == '200'
   end
 
+  def withdrawal?
+    financial_reason_type.code == '300'
+  end
+
   def self.chargeback
-    find_by(code: '100')
+    @@chargeback ||= find_by(code: '100')
   end
 
   def self.morenwm_fee
-    find_by(code: '200')
+    @@more_fee ||= find_by(code: '200')
   end
 
   def self.withdrawal
-    find_by(code: '300')
+    @@withdrawal ||= find_by(code: '300')
   end
 
   def self.withdrawal_fee
-    find_by(code: '400')
+    @@withdrawal_fee ||= find_by(code: '400')
   end
 
   def self.binary_bonus
-    find_by(code: '500')
+    @@binary_bonus ||= find_by(code: '500')
   end
 
   def self.chargeback_by_inactivity
-    find_by(code: '600')
+    @@chargeback_by_inactivity ||= find_by(code: '600')
   end
 
   def self.chargeback_excess_monthly
-    find_by(code: '700')
+    @@chargeback_excess_monthly ||= find_by(code: '700')
   end
 
   def self.chargeback_excess_weekly
-    find_by(code: '800')
+    @@chargeback_excess_weekly ||= find_by(code: '800')
   end
 
   def self.career_trail_excess_bonus
-    find_by(code: '900')
+    @@career_trail_excess_bonus ||= find_by(code: '900')
   end
 
   def self.indication_bonus
-    find_by(code: '1000')
+    @@indication_bonus ||= find_by(code: '1000')
   end
 
   def self.yield_bonus
-    find_by(code: '1100')
+    @@yield_bonus = find_by(code: '1100')
   end
 
   def self.order_payment
-    find_by(code: '1200')
+    @@order_payment ||= find_by(code: '1200')
   end
 
   def self.chargeback_by_unqualification
-    find_by(code: '1300')
+    @@chargeback_by_unqualification ||= find_by(code: '1300')
   end
 
 end

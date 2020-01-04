@@ -3,7 +3,12 @@ module Backoffice
 
     def cellphone_products_for_select
       reload_products = Product.cellphone_reloads
-      reload_products.map { |p| [number_to_currency(p.product_value), p.id] }
+      reload_products.map { |p| [format_reload_product_label(p), p.id] }
+    end
+
+    def format_reload_product_label(product)
+      product_value = number_to_currency(product.product_value)
+      product.activation? ? t('defaults.activation', product_value: product_value) : product_value
     end
 
     def available_ddds

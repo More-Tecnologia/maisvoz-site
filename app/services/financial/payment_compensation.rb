@@ -27,7 +27,7 @@ module Financial
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
         activate_user if adhesion_product
-        activate_user_until! if activation_product
+        activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
         user.empreendedor! if adhesion_product
         update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
@@ -170,6 +170,19 @@ module Financial
 
     def notify_user_by_email_about_paid_order
       ShoppingMailer.with(order: order).order_paid.deliver_later
+    end
+
+    def validates_code_of?(product)
+      return true unless product.code
+      activation_product_codes = user.current_career_trail
+                                     .activation_product_codes
+                                     .to_a
+      return true if activation_product_codes.empty?
+      product.code.in?(activation_product_codes)
+    end
+
+    def enabled_activation?
+      ENV['ENABLED_ACTIVATION'] == 'true'
     end
 
   end

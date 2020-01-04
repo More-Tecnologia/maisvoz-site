@@ -21,8 +21,9 @@
                 <%= f.search_field :iccid_eq, class: 'form-control input-sm' %>
               </div>
               <div class="col-md-1">
-                <%= f.label t('attributes.transferences') %>
-                <%= f.check_box :support_point_stock_out_at_not_null, { class: 'form-control input-sm' } %>
+                <%= f.label t('attributes.status') %>
+                <%= f.select :status_in, sim_card_statuses_for_select, { include_blank: t('all') },
+                                                                       { class: 'form-control input-sm', multiple: true } %>
               </div>
               <div class="col-md-1">
                 <label> &nbsp; </label><br>
@@ -45,32 +46,31 @@
                 <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
                                                      data: { provide: 'datepicker' } %>
               </div>
-            </div><br>
-            <div class="row collapse">
-              <div class="col-md-1">
-                <%= f.label t('attributes.out_stock') %><br>
+            </div>
+            <div class="row collapse"><br>
+              <div class="col-md-2">
+                <%= f.label t('attributes.transference_date') %><br>
                 <span> <%= t('helpers.from') %> </span>
-                <%= f.search_field :stock_out_at_gteq, class: 'form-control input-sm',
-                                                       data: { provide: 'datepicker' } %>
+                <%= f.search_field :support_point_stock_out_at, class: 'form-control input-sm',
+                                                                data: { provide: 'datepicker' } %>
               </div>
-              <div class="col-md-1"><br>
+              <div class="col-md-2"><br>
                 <span> <%= t('helpers.util') %> </span>
-                <%= f.search_field :stock_out_at_lteq, class: 'form-control input-sm',
-                                                       data: { provide: 'datepicker' } %>
+                <%= f.search_field :support_point_stock_out_at, class: 'form-control input-sm',
+                                                                data: { provide: 'datepicker' } %>
               </div>
-            </div><br>
-            <div class="row collapse">
-              <div class="col-md-1">
-                <%= f.label t('attributes.in_stock') %><br>
+            </div>
+            <div class="row collapse"><br>
+              <div class="col-md-2">
+                <%= f.label t('attributes.activation_date') %><br>
                 <span> <%= t('helpers.from') %> </span>
-                <%= f.search_field :user_stock_in_at_gteq, class: 'form-control input-sm',
-                                                           data: { provide: 'datepicker' } %>
+                <%= f.search_field :stock_out_at, class: 'form-control input-sm',
+                                                  data: { provide: 'datepicker' } %>
               </div>
-              <div class="col-md-1">
-                <%= f.label t('attributes.out_stock') %>
+              <div class="col-md-2"><br>
                 <span> <%= t('helpers.util') %> </span>
-                <%= f.search_field :user_stock_in_at_lteq, class: 'form-control input-sm',
-                                                           data: { provide: 'datepicker' } %>
+                <%= f.search_field :stock_out_at, class: 'form-control input-sm',
+                                                  data: { provide: 'datepicker' } %>
               </div>
             </div>
           </div>

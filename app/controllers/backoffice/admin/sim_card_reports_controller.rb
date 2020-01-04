@@ -3,18 +3,11 @@ module Backoffice
     class SimCardReportsController < AdminController
 
       def index
-        @q = SimCard.ransack(search_params)
+        @q = SimCard.ransack(params[:q])
         @sim_cards = @q.result
                        .includes(:support_point_user, :user)
+                       .order(created_at: :desc)
                        .page(params[:page])
-      end
-
-      private
-
-      def search_params
-        query = params[:q] || {}
-        query = query.except(:support_point_stock_out_at_not_null) if query[:support_point_stock_out_at_not_null] == '0'
-        query
       end
 
     end

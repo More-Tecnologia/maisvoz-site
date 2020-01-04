@@ -236,7 +236,7 @@ pt-BR:
     sim_card_quantity_added: CHIPs Adicionados
     actions: Ações
     in_date: Data de Entrada
-    out_date: Data de Saída
+    activation_date: Data de Ativação
     support_point: Ponto de Apoio
     transference_date: Data de Transferência
     transferences: Transferências
@@ -751,7 +751,7 @@ pt-BR:
       admin:
         orders:
           index:
-            no_data: No data
+            no_data: sem registros
             title: Title
         products:
           basic_info: Informações Básicas

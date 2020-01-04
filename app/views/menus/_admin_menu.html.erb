@@ -27,6 +27,7 @@
   <a href="javascript:void(0);" class="waves-effect"><i class="ti-money"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span></a>
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.credits_debits'), backoffice_admin_credits_debit_path(:find_user), class: 'admin-link' %></li>
+    <li><%= link_to t('defaults.financial_reports'), backoffice_admin_financial_report_index_url, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.financial_transactions'), backoffice_admin_financial_transactions_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.manage_withdrawals'), backoffice_admin_withdrawals_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.cellphone_reloads').pluralize, backoffice_admin_cellphone_reloads_path, class: 'admin-link' %></li>

@@ -70,6 +70,10 @@ class OrderItem < ApplicationRecord
     update!(processed_at: Time.current) unless processed?
   end
 
+  def value
+    total_cents.to_f / 100.0
+  end
+
   private
 
   def validates_sim_cards_count_less_than_or_equal_to_threshold!(iccids_count)

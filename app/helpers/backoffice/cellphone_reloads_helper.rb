@@ -1,3 +1,5 @@
+require 'csv'
+
 module Backoffice
   module CellphoneReloadsHelper
 
@@ -29,6 +31,58 @@ module Backoffice
                                   total_cents: cellphone_reload.product.price_cents)
         order
       end
+    end
+
+    def find_cellphone_reloads_to_html(q)
+      q.result.includes(order: [:user])
+               .cellphone_reloads
+               .where(order: Order.completed.paid)
+               .page(params[:page])
+    end
+
+    def find_cellphone_reloads_to_csv(q)
+      q.result.includes(order: [:user])
+               .cellphone_reloads
+               .where(order: Order.completed.paid)
+    end
+
+    def render_reloads_as_csv(reloads)
+      text = CSV.generate(col_sep: ';') do |csv|
+               csv << build_reload_csv_header
+               reloads.each do |reload|
+                 csv << format_reload_to_csv(reload)
+               end
+             end
+      send_reloads_by_csv_file(text)
+    end
+
+    private
+
+    def build_reload_csv_header
+      [OrderItem.human_attribute_name(:item),
+       CellphoneReloadForm.human_attribute_name(:value),
+       CellphoneReloadForm.human_attribute_name(:created_at),
+       CellphoneReloadForm.human_attribute_name(:cellphone_number),
+       OrderItem.human_attribute_name(:user),
+       OrderItem.human_attribute_name(:order_id),
+       OrderItem.human_attribute_name(:processed_at)]
+    end
+
+    def format_reload_to_csv(reload)
+      [reload.try(:hashid),
+       reload.value,
+       reload.created_at ? reload.created_at.strftime("%d/%m/%Y") : '',
+       reload.cellphone_number,
+       reload.try(:order).try(:user).try(:username),
+       reload.try(:order).try(:hashid),
+       reload.processed_at ? reload.processed_at.strftime("%d/%m/%Y") : ''
+     ]
+    end
+
+    def send_reloads_by_csv_file(text)
+      send_data text, type: "text/csv",
+                      disposition: 'inline',
+                      filename: t('defaults.reloads_csv_filename', datetime: Date.current.to_s)
     end
 
   end

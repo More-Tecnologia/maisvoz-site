@@ -1,5 +1,7 @@
 class CareerTrail < ApplicationRecord
 
+  serialize :activation_product_codes, Array
+
   belongs_to :career
   belongs_to :trail
   belongs_to :product, optional: true

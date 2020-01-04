@@ -160,7 +160,8 @@ premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonu
                                            virtual: true,
                                            category: cellphone_reload_category,
                                            paid_by: :paid_by_user,
-                                           kind: :activation)
+                                           kind: :activation,
+                                           code: 20)
 
  _129_product = Product.find_or_create_by!(name: 'Recarga de Ativação R$ 129,90',
                                            quantity: 1,
@@ -171,7 +172,8 @@ premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonu
                                            virtual: true,
                                            category: cellphone_reload_category,
                                            paid_by: :paid_by_user,
-                                           kind: :activation)
+                                           kind: :activation,
+                                           code: 21)
 
   _149_product = Product.find_or_create_by!(name: 'Recarga de Ativação R$ 149,90',
                                             quantity: 1,
@@ -182,7 +184,8 @@ premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonu
                                             virtual: true,
                                             category: cellphone_reload_category,
                                             paid_by: :paid_by_user,
-                                            kind: :activation)
+                                            kind: :activation,
+                                            code: 22)
 
  elite = Product.find_or_create_by!(name: 'Elite',
                                     quantity: 1,
@@ -261,8 +264,8 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
 
   persisted_careers.each do |career|
     persisted_trails.each do |trail|
-      product = career.qualifying_score <= 10_500 ? _99_product : _149_product
-      CareerTrail.find_or_create_by!(career: career, trail: trail, product: product)
+      activation_product_codes = career.qualifying_score < 52_500 ? [20, 21, 22] : [22]
+      CareerTrail.find_or_create_by!(career: career, trail: trail, activation_product_codes: activation_product_codes)
     end
   end
 

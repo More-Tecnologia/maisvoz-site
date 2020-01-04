@@ -18,7 +18,7 @@
           </div>
           <div class="col-md-3">
             <%= t('activerecord.attributes.financial_transaction.financial_reason') %>
-            <%= f.select :financial_reason_id_in, FinancialReason.pluck(:title, :id),
+            <%= f.select :financial_reason_id_in, FinancialReason.active.pluck(:title, :id),
                                                   { include_blank: t('all') },
                                                   { class: 'form-control input-sm', multiple: true } %>
           </div>

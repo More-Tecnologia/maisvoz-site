@@ -271,10 +271,10 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                  { name: 'Pontuação de Ativação', code: '200' },
                  { name: 'Pontuação de Compras', code: '300' },
                  { name: 'Estorno de Pontuação por Inatividade', code: '800' },
-                 { name: 'Pontuação Binária', tree_type: :binary, code: '400' },
-                 { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500' },
-                 { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600' },
-                 { name: 'Débito de Bonus Binário', tree_type: :binary, code: '700' }]
+                 { name: 'Pontuação Binária', tree_type: :binary, code: '400', active: false },
+                 { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500', active: false },
+                 { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600', active: false },
+                 { name: 'Débito de Bonus Binário', tree_type: :binary, code: '700', active: false }]
   score_types.each { |score_type| ScoreType.find_or_create_by!(score_type) }
 
 
@@ -288,21 +288,21 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: administrative_type}))
   end
   bonus_type = FinancialReasonType.find_or_create_by!(name: 'Bonus', code: '200')
-  bonus_reasons = [{ title: 'Estorno de Bonus', code: '100' },
-                   { title: 'Bonus Binário', code: '500'},
-                   { title: 'Estorno de Bonus Binário por Inatividade', code: '600' },
-                   { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700' },
-                   { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '800' },
-                   { title: 'Estorno de Bonus por Limite de Careeira', code: '900' },
-                   { title: 'Bonus Indicacao', code: '1000'},
-                   { title: 'Bonus Rendimento', code: '1100'},
-                   { title: 'Estorno de Bonus Binário por Desqualificação', code: '1300' },
-                   { title: 'Bonus Indicação Direta', code: '2000' },
-                   { title: 'Estorno de Bônus Indicação Direta por Inatividade', code: '2100', financial_reason: FinancialReason.find_by(code: '2000') },
-                   { title: 'Bonus Indicação Indireta', code: '2200' },
-                   { title: 'Estorno de Bônus Indicação Indireta por Inatividade', code: '2300', financial_reason: FinancialReason.find_by(code: '2200') },
-                   { title: 'Bonus Ativação', code: '2400', dynamic_compression: true },
-                   { title: 'Estorno de Bônus Ativação por Inatividade', code: '2500', financial_reason: FinancialReason.find_by(code: '2400') }]
+  bonus_reasons = [{ title: 'Estorno de Bonus', code: '100', active: false },
+                   { title: 'Bonus Binário', code: '500', active: false   },
+                   { title: 'Estorno de Bonus Binário por Inatividade', code: '600', active: false  },
+                   { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700', active: false  },
+                   { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '800', active: false  },
+                   { title: 'Estorno de Bonus por Limite de Careeira', code: '900', active: false  },
+                   { title: 'Bonus Indicacao', code: '1000', active: false },
+                   { title: 'Bonus Rendimento', code: '1100', active: false },
+                   { title: 'Estorno de Bonus Binário por Desqualificação', code: '1300', active: false  },
+                   { title: 'Bonus Indicação Direta', code: '2000', active: true  },
+                   { title: 'Estorno de Bônus Indicação Direta por Inatividade', code: '2100', financial_reason: FinancialReason.find_by(code: '2000'), active: true },
+                   { title: 'Bonus Indicação Indireta', code: '2200', active: true },
+                   { title: 'Estorno de Bônus Indicação Indireta por Inatividade', code: '2300', financial_reason: FinancialReason.find_by(code: '2200'), active: true },
+                   { title: 'Bonus Ativação', code: '2400', dynamic_compression: true, active: true },
+                   { title: 'Estorno de Bônus Ativação por Inatividade', code: '2500', financial_reason: FinancialReason.find_by(code: '2400'), active: true }]
   bonus_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
   end

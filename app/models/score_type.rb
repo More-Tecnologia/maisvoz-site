@@ -11,6 +11,8 @@ class ScoreType < ApplicationRecord
 
   enum tree_type: [:unilevel, :binary]
 
+  scope :active, -> { where(active: true) }
+
   def self.adhesion
     find_by(code: '100')
   end

@@ -7,6 +7,6 @@ class FinancialReasonType < ApplicationRecord
                    numericality: { only_integer: true }
 
   def self.bonus
-    find_by(code: '200')
+      @@bonus ||= find_by(code: '200')
   end
 end

@@ -98,6 +98,7 @@ pt-BR:
         product: Valor
         ddd: DDD
         cellphone_number: Número do Telefone
+        value: Valor
   app_name: Mais Voz
   attributes:
     active_session: Sessão ativa
@@ -592,6 +593,7 @@ pt-BR:
     new_cellphone_reload: Nova Recarga
     financial_reports: Extrato Financeiro
     activation: "%{product_value} - Ativação"
+    reloads_csv_filename: "Recargas %{datetime}.csv"
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -649,6 +651,7 @@ pt-BR:
     from: De
     util: Até
     approve_support_point: Aprovar Ponto de Apoio
+    export_to_csv: Exportar para CSV
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:

@@ -32,7 +32,7 @@
               <% @cellphone_reloads.each do |order_item| %>
                 <tr>
                   <td> <%= order_item.try(:hashid) %> </td>
-                  <td> <%= number_to_currency(order_item.total_cents / 100.0) %> </td>
+                  <td> <%= number_to_currency(order_item.value) %> </td>
                   <td> <%= l(order_item.created_at, format: :short) if order_item.created_at %> </td>
                   <td> <%= order_item.cellphone_number %> </td>
                   <td> <%= order_item.try(:order).try(:user).try(:username) %> </td>
@@ -46,6 +46,10 @@
               <% end %>
             </tbody>
           </table>
+          <br>
+          <%= link_to t('helpers.export_to_csv'),
+                      backoffice_admin_cellphone_reloads_path(format: :csv),
+                      class: 'btn btn-success' %>
           </div>
           <%= paginate(@cellphone_reloads) if @cellphone_reloads.any? %>
         </div>

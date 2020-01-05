@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       resources :documents_validation, only: [:index, :update]
       resources :blocked_users, only: [:update]
       resources :canceled_users, only: [:update]
+      resource :support_point_users, only: :create
     end
 
     # Backoffice

@@ -154,6 +154,8 @@ class User < ApplicationRecord
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
 
+  validate :support_point_requisits, on: :update, if: :support_point?
+
   scope :bought_adhesion, -> { where(bought_adhesion: true) }
   scope :active,
     -> { ENV['ENABLED_ACTIVATION'] == 'true' ? where('active_until >= ?', Date.current) : where(active: true) }
@@ -391,11 +393,6 @@ class User < ApplicationRecord
     role_type_code == RoleType.support_point_code
   end
 
-  def support_point?
-    role_type_code == RoleType.support_point_code
-  end
-
-
   private
 
   def ensure_initial_career_trail
@@ -409,4 +406,10 @@ class User < ApplicationRecord
     ids = sponsor_ids + sponsor_id
     self[:ascendant_sponsors_ids] = ids.compact
   end
+
+  def support_point_requisits
+    errors.add(:document_verification_status, :not_verified) unless verified?
+    errors.add(:registration_type, :not_pj) unless pj?
+  end
+
 end

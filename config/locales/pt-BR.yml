@@ -21,6 +21,8 @@ pt-BR:
         description: Descrição
       user:
         login: Email/Login
+        registration_type: Tipo de Registro
+        document_verification_status: Documentos
       order:
         paid_by: Pago por
         payment_type: Tipo de Pgto.
@@ -55,6 +57,10 @@ pt-BR:
               taken: Este email já está sendo utilizado
             password_confirmation:
               confirmation: Senhas diferentes
+            registration_type:
+              not_pj: deve ser Pessoa Jurídica
+            document_verification_status:
+              not_verified: não verificados
       messages:
         blank: não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
@@ -368,6 +374,9 @@ pt-BR:
           sign_in: Logar
         show:
           direct_users: Indicados Diretos
+      support_point_users:
+        create:
+          success: Usuário atualizado para Ponto de Apoio
     bank_accounts:
       edit:
         title: Conta Bancária
@@ -641,6 +650,7 @@ pt-BR:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De
     util: Até
+    approve_support_point: Aprovar Ponto de Apoio
     export_to_csv: Exportar para CSV
   left: Esquerda
   left_strategy: Sempre para Esquerda

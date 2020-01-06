@@ -221,7 +221,7 @@ reload_34_99 = Product.find_or_create_by!(name: 'Recarga 34,90',
                                      kind: :detached,
                                      binary_score: 15)
 
-reload_44_99 = Product.find_or_create_by!(name: 'Recarga 44,99',
+reload_44_99 = Product.find_or_create_by!(name: 'Recarga 44,90',
                                           quantity: 1,
                                           price_cents: 4499,
                                           binary_score: 0,
@@ -245,7 +245,7 @@ reload_69_90 = Product.find_or_create_by!(name: 'Recarga 69,90',
                                           kind: :detached,
                                           binary_score: 30)
 
-reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,99 - Ativação',
+reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,90',
                                           quantity: 1,
                                           price_cents: 9999,
                                           binary_score: 0,
@@ -305,7 +305,9 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                    { title: 'Bonus Indicação Indireta', code: '2200', active: true, company_moneyflow: :debit },
                    { title: 'Estorno de Bônus Indicação Indireta por Inatividade', code: '2300', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Ativação', code: '2400', dynamic_compression: true, active: true, company_moneyflow: :debit },
-                   { title: 'Estorno de Bônus Ativação por Inatividade', code: '2500', active: true, company_moneyflow: :credit }]
+                   { title: 'Estorno de Bônus Ativação por Inatividade', code: '2500', active: true, company_moneyflow: :credit },
+                   { title: 'Bonus Residual', code: '2600', dynamic_compression: true, active: true, company_moneyflow: :debit },
+                   { title: 'Estorno de Bônus Residual', code: '2700', active: true, company_moneyflow: :credit }]
 
   bonus_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
@@ -339,7 +341,7 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
 
 end
 
-chargebacks = [['2100', '2000'], ['2300', '2200'], ['2500', '2400']]
+chargebacks = [['2100', '2000'], ['2300', '2200'], ['2500', '2400'], ['2700', '2600']]
 chargebacks.each do |chargeback|
   chargeback_reason = FinancialReason.find_by(code: chargeback[0])
   chargeback_reason.update(financial_reason: FinancialReason.find_by(code: chargeback[1]))

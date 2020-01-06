@@ -7,13 +7,13 @@ module Bonification
       sponsors.each_with_index do |sponsor, index|
         return unless sponsor.empreendedor?
         create_detached_score(sponsor, index + 1)
-        upgrade_career
+        upgrade_career(sponsor)
       end
     end
 
     private
 
-    attr_reader :order, :detached_score, :user
+    attr_reader :order, :detached_score, :user, :score_type
 
     def initialize(args)
       @order = args[:order]

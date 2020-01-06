@@ -122,3 +122,55 @@ ActiveRecord::Base.transaction do
   create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 1)
   create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 2)
 end
+
+# Residual Bonus
+
+elite_scores = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                [0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                [0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                [0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]]
+
+ActiveRecord::Base.transaction do
+  reason = FinancialReason.find_by(code: '2600')
+  product = Product.find_by(name: 'Recarga 34,90')
+  product_reason = ProductReasonScore.create!(product: product,
+                                              financial_reason: reason,
+                                              pay_bonus_by_requalification_score: true)
+
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = false, 1)
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = false, 2)
+end
+
+ActiveRecord::Base.transaction do
+  reason = FinancialReason.find_by(code: '2600')
+  product = Product.find_by(name: 'Recarga 44,90')
+  product_reason = ProductReasonScore.create!(product: product,
+                                              financial_reason: reason,
+                                              pay_bonus_by_requalification_score: true)
+
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = false, 1)
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = false, 2)
+end
+
+ActiveRecord::Base.transaction do
+  reason = FinancialReason.find_by(code: '2600')
+  product = Product.find_by(name: 'Recarga 69,90')
+  product_reason = ProductReasonScore.create!(product: product,
+                                              financial_reason: reason,
+                                              pay_bonus_by_requalification_score: true)
+
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = false, 1)
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = false, 2)
+end
+
+ActiveRecord::Base.transaction do
+  reason = FinancialReason.find_by(code: '2600')
+  product = Product.find_by(name: 'Recarga 99,90')
+  product_reason = ProductReasonScore.create!(product: product,
+                                              financial_reason: reason,
+                                              pay_bonus_by_requalification_score: true)
+
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = false, 1)
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = false, 2)
+end

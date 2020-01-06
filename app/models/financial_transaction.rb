@@ -23,6 +23,8 @@ class FinancialTransaction < ApplicationRecord
   scope :by_user, ->(user) { includes_associations.where(user: user) }
   scope :financial_reason_bonus,
     -> { includes_associations.where(financial_reason: FinancialReason.bonus) }
+  scope :company_credit, -> { joins(:financial_reason).merge(FinancialReason.credit) }
+  scope :company_debit, -> { joins(:financial_reason).merge(FinancialReason.debit) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }

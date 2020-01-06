@@ -1,6 +1,8 @@
 class FinancialReason < ApplicationRecord
   has_many :financial_transactions
 
+  enum company_moneyflow: [:credit, :debit]
+
   belongs_to :financial_reason_type
   belongs_to :financial_reason, optional: true
 

@@ -6,7 +6,7 @@ module Backoffice
     def index
       @q = FinancialTransaction.ransack(query_params)
       @financial_transactions = @q.result(distinct: true)
-                                  .includes(:user, :spreader, :financial_reason, :order)
+                                  .includes(:spreader, :financial_reason, :order)
                                   .order(created_at: :desc)
                                   .page(params[:page])
     end
@@ -15,7 +15,7 @@ module Backoffice
 
     def query_params
       query = params[:q] ? params[:q] : {}
-      query.merge(user_id_eq: current_user.id)
+      query.merge(user_id_or_spreader_id_eq: current_user.id)
     end
 
   end

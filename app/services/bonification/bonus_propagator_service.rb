@@ -66,8 +66,7 @@ module Bonification
                              .ancestors
                              .bonus_receivers(receiver_generations_count)
                        end
-      unilevel_nodes.reverse
-                    .map(&:user)
+      unilevel_nodes.is_a?(Array) ? unilevel_nodes.reverse.map(&:user) : [unilevel_nodes.user]
     end
 
     def create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)

@@ -18,5 +18,16 @@ module Backoffice
       credit_amount - debit_amount
     end
 
+    def sum_previous_company_financial_transactions(q, financial_transactions)
+      date = financial_transactions.first.created_at
+      credit_amount = q.result.company_credit
+                              .where('financial_transactions.created_at <= ?', date)
+                              .sum(:cent_amount)
+      debit_amount = q.result.company_debit
+                             .where('financial_transactions.created_at <= ?', date)
+                             .sum(:cent_amount)
+      credit_amount - debit_amount
+    end
+
   end
 end

@@ -5,7 +5,8 @@ module Financial
                                    spreader: order.user,
                                    financial_reason: FinancialReason.morenwm_fee,
                                    cent_amount: amount,
-                                   order: order) if amount > 0
+                                   order: order,
+                                   moneyflow: :debit) if amount > 0
     end
 
     private

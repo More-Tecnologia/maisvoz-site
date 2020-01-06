@@ -6,12 +6,6 @@
     <%= search_form_for @q, url: backoffice_admin_financial_transactions_path do |f| %>
       <div class="form-group">
         <div class="row">
-          <% if current_user.admin? && controller_path.include?('admin') %>
-            <div class="col-md-3">
-              <%= f.label t('attributes.username') %>
-              <%= f.search_field :user_username_eq, class: 'form-control input-sm' %>
-            </div>
-          <% end %>
           <div class="col-md-3">
             <%= f.label t('attributes.from') %>
             <%= f.search_field :created_at_gteq, class: 'form-control input-sm',

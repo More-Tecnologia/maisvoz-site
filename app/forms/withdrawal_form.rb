@@ -6,7 +6,7 @@ class WithdrawalForm < Form
   attribute :fiscal_document_photo
 
   validates :amount, presence: true
-  validates :amount, numericality: { greater_than_or_equal_to: 250.0 }
+  validates :amount, numericality: { greater_than_or_equal_to: ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f }
 
   validate :user_has_balance
   validate :fiscal_document_presence, if: -> { user.pj? }
@@ -28,7 +28,7 @@ class WithdrawalForm < Form
 
   def user_balance
     return user.balance * 1e2 if user.pj?
-    user.available_balance_cents
+    user.available_balance_cents * 1e2
   end
 
   def fiscal_document_presence

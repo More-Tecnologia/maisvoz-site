@@ -393,6 +393,14 @@ class User < ApplicationRecord
     role_type_code == RoleType.support_point_code
   end
 
+  def morenwm_user?
+    self == User.find_morenwm_user
+  end
+
+  def customer_admin?
+    self == User.find_morenwm_customer_admin
+  end
+
   private
 
   def ensure_initial_career_trail

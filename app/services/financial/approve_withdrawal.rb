@@ -26,7 +26,7 @@ module Financial
                                                 spreader: User.find_morenwm_customer_user,
                                                 financial_reason: FinancialReason.withdrawal,
                                                 cent_amount: withdrawal.gross_amount,
-                                                money_flow: :debit)
+                                                moneyflow: :debit)
     end
 
     def create_withdrawal_fee_financial_transaction

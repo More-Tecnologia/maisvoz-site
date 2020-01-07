@@ -56,7 +56,7 @@ ActiveRecord::Base.transaction do
   product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
 
   create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 1)
-  create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 2)
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 2)
 end
 
 ActiveRecord::Base.transaction do
@@ -64,7 +64,7 @@ ActiveRecord::Base.transaction do
   product = Product.find_by(name: 'Premium')
   product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
 
-  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 1)
+  create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 1)
   create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 2)
 end
 

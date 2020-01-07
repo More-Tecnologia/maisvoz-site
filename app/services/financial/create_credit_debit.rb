@@ -13,8 +13,6 @@ module Financial
       return unless valid_form?
       ActiveRecord::Base.transaction do
         create_financial_transaction
-        update_available_balance
-        create_system_financial_log
       end
     end
 
@@ -25,9 +23,9 @@ module Financial
     def create_financial_transaction
       user.financial_transactions.create!(spreader: spreader,
                                           note: form.note,
-                                          amount_cents: form.amount,
+                                          cent_amount: form.amount,
                                           moneyflow: find_moneyflow,
-                                          financial_reason: find_financial_reason)
+                                          financial_reason: find_financial_reason) if form.amount > 0
     end
 
     def find_moneyflow
@@ -35,28 +33,14 @@ module Financial
     end
 
     def find_financial_reason
-      FinancialReason.credit_reason if form.credit?
-      FinancialReason.debit_reason if form.debit?
-    end
-
-    def update_available_balance
-      return user.increment!(:available_balance_cents, form.amount) if form.credit?
-      user.decrement!(:available_balance_cents, form.amount)
-    end
-
-    def create_system_financial_log
-      amount = form.credit? ? -form.amount : form.amount
-      SystemFinancialLog.new.tap do |entry|
-        entry.description  = form.note
-        entry.amount_cents = amount
-        entry.kind = form.credit? ? SystemFinancialLog.kinds[:credit_by_admin] : SystemFinancialLog.kinds[:debit_by_admin]
-        entry.save!
-      end
+      return FinancialReason.credit_reason if form.credit?
+      FinancialReason.debit_reason
     end
 
     def valid_form?
       return true if form.valid?
       errors.add(:form, form.errors.full_messages)
     end
+
   end
 end

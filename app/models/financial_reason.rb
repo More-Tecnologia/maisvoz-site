@@ -81,11 +81,11 @@ class FinancialReason < ApplicationRecord
   end
 
   def self.credit_reason
-    @@credit ||= find_by(code: '2800')
+    @@credit_reason ||= find_by(code: '2800')
   end
 
   def self.debit_reason
-    @@debit ||= find_by(code: '2900')
+    @@debit_reason ||= find_by(code: '2900')
   end
 
 end

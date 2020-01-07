@@ -20,13 +20,18 @@ class FinancialTransaction < ApplicationRecord
   scope :not_chargeback, -> { where(financial_transaction: nil) }
   scope :includes_associations, -> { includes(:user, :spreader, :financial_reason,
                                              :order, :financial_transaction, :chargeback) }
-  scope :by_user, ->(user) { includes_associations.where(user: user) }
+  scope :by_user, ->(user) { where(user: user) }
   scope :financial_reason_bonus,
     -> { includes_associations.where(financial_reason: FinancialReason.bonus) }
   scope :company_credit, -> { joins(:financial_reason).merge(FinancialReason.credit) }
   scope :company_debit, -> { joins(:financial_reason).merge(FinancialReason.debit) }
   scope :backward_at, ->(date) { where('financial_transactions.created_at <= ?', date) }
   scope :not_bonus, -> { where.not(financial_reason: FinancialReason.bonus) }
+  scope :to_morenwm, -> { joins(:financial_reason).merge(FinancialReason.to_morenwm) }
+  scope :to_customer_admin, -> { joins(:financial_reason).merge(FinancialReason.to_customer_admin) }
+  scope :to_empreendedor, -> { joins(:financial_reason).merge(FinancialReason.to_empreendedor) }
+  scope :chargebacks_from, ->(user) { where(spreader: user, user: User.find_morenwm_customer_admin) }
+  scope :by_current_user, ->(user) { where(user: user).or(FinancialTransaction.chargebacks_from(user)) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }
@@ -38,8 +43,8 @@ class FinancialTransaction < ApplicationRecord
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
 
   def chargeback!
-    create_chargeback!(user: user,
-                       spreader: User.find_morenwm_customer_admin,
+    create_chargeback!(user: User.find_morenwm_customer_admin,
+                       spreader: user,
                        financial_reason: FinancialReason.chargeback,
                        order: order,
                        cent_amount: cent_amount,
@@ -51,8 +56,8 @@ class FinancialTransaction < ApplicationRecord
   end
 
   def chargeback_binary_score!(financial_reason, amount)
-    create_chargeback!(user: user,
-                       spreader: User.find_morenwm_customer_admin,
+    create_chargeback!(user: User.find_morenwm_customer_admin,
+                       spreader: user,
                        financial_reason: financial_reason,
                        cent_amount: amount.to_i,
                        moneyflow: invert_money_flow,

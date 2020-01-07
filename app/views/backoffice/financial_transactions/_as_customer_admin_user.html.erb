@@ -1,4 +1,4 @@
-<% cent_amount_sum = sum_previous_company_financial_transactions(@q) %>
+<% cent_amount_sum = sum_previous_financial_transactions_by_customer_admin(@q) %>
 <% @financial_transactions.each do |transaction| %>
   <tr>
     <td><%= transaction.hashid %></td>

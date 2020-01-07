@@ -166,6 +166,7 @@ class User < ApplicationRecord
           I18n.transliterate(state.to_s.strip.downcase)) }
   scope :by_support_point_and_consultant, ->(support_point, username) {
     where(support_point_user: support_point, username: username) }
+  scope :with_support_point, -> { where.not(support_point_user: nil) }
 
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail

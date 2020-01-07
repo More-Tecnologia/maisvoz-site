@@ -26,13 +26,11 @@
                 <th><%= FinancialTransaction.human_attribute_name(:user) %></th>
                 <th><%= FinancialTransaction.human_attribute_name(:order) %></th>
                 <th><%= FinancialTransaction.human_attribute_name(:cent_amount) %></th>
-                <th><%= FinancialTransaction.human_attribute_name(:balance) %></th>
                 <th><%= FinancialTransaction.human_attribute_name(:created_at) %></th>
               </tr>
             </thead>
             <tbody>
-              <% if @financial_transactions.any? %>
-                <% cent_amount_sum = sum_previous_company_financial_transactions(@q, @financial_transactions) / 1e8.to_f %>
+              <% if @financial_transactions.length > 0 %>
                 <% @financial_transactions.each do |transaction| %>
                   <tr>
                     <td><%= transaction.hashid %></td>
@@ -43,8 +41,6 @@
                     <% amount = transaction.cent_amount %>
                     <% amount = -amount if transaction.financial_reason.debit? %>
                     <td class='<%= 'text-danger' if amount < 0 %>'> <%= number_to_currency(amount) %></td>
-                    <td class='<%= 'text-danger' if cent_amount_sum < 0 %>'><%= number_to_currency(cent_amount_sum, precision: 2) %></td>
-                    <% cent_amount_sum -= amount %>
                     <td><%= l(transaction.created_at, format: :short) %></td>
                   </tr>
                 <% end %>

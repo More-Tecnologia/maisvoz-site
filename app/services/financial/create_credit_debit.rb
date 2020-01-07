@@ -26,11 +26,17 @@ module Financial
       user.financial_transactions.create!(spreader: spreader,
                                           note: form.note,
                                           amount_cents: form.amount,
-                                          moneyflow: find_moneyflow)
+                                          moneyflow: find_moneyflow,
+                                          financial_reason: find_financial_reason)
     end
 
     def find_moneyflow
       form.credit? ? :credit : :debit
+    end
+
+    def find_financial_reason
+      FinancialReason.credit_reason if form.credit?
+      FinancialReason.debit_reason if form.debit?
     end
 
     def update_available_balance

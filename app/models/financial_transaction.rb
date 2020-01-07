@@ -25,6 +25,8 @@ class FinancialTransaction < ApplicationRecord
     -> { includes_associations.where(financial_reason: FinancialReason.bonus) }
   scope :company_credit, -> { joins(:financial_reason).merge(FinancialReason.credit) }
   scope :company_debit, -> { joins(:financial_reason).merge(FinancialReason.debit) }
+  scope :backward_at, ->(date) { where('financial_transactions.created_at <= ?', date) }
+  scope :not_bonus, -> { where.not(financial_reason: FinancialReason.bonus) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }
@@ -36,8 +38,8 @@ class FinancialTransaction < ApplicationRecord
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
 
   def chargeback!
-    create_chargeback!(user: User.find_morenwm_customer_admin,
-                       spreader: user,
+    create_chargeback!(user: user,
+                       spreader: User.find_morenwm_customer_admin,
                        financial_reason: FinancialReason.chargeback,
                        order: order,
                        cent_amount: cent_amount,
@@ -49,8 +51,8 @@ class FinancialTransaction < ApplicationRecord
   end
 
   def chargeback_binary_score!(financial_reason, amount)
-    create_chargeback!(user: User.find_morenwm_customer_admin,
-                       spreader: user,
+    create_chargeback!(user: user,
+                       spreader: User.find_morenwm_customer_admin,
                        financial_reason: financial_reason,
                        cent_amount: amount.to_i,
                        moneyflow: invert_money_flow,

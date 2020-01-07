@@ -16,6 +16,9 @@ class FinancialReason < ApplicationRecord
   scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
   scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
   scope :active, -> { where(active: true) }
+  scope :to_morenwm, -> { where(code: ['200', '300', '400', '2800', '2900']) }
+  scope :to_customer_admin, -> { where.not(code: '300') }
+  scope :to_empreendedor, -> { where.not(code: ['200', '1200']) }
 
   def is_bonus?
     financial_reason_type.code == '200'
@@ -75,6 +78,14 @@ class FinancialReason < ApplicationRecord
 
   def self.chargeback_by_unqualification
     @@chargeback_by_unqualification ||= find_by(code: '1300')
+  end
+
+  def self.credit_reason
+    @@credit ||= find_by(code: '2800')
+  end
+
+  def self.debit_reason
+    @@debit ||= find_by(code: '2900')
   end
 
 end

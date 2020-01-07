@@ -286,7 +286,9 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
   administrative_reasons = [{ title: 'Taxa do Sistema', code: '200', company_moneyflow: :debit },
                             { title: 'Saque', code: '300', company_moneyflow: :debit },
                             { title: 'Taxa de Saque', code: '400', company_moneyflow: :credit },
-                            { title: 'Pagamento de Pedido', code: '1200', company_moneyflow: :credit }]
+                            { title: 'Pagamento de Pedido', code: '1200', company_moneyflow: :credit },
+                            { title: 'Credito', code: '2800', company_moneyflow: :debit },
+                            { title: 'Debito', code: '2900', company_moneyflow: :credit }]
   administrative_reasons.each do |r|
     FinancialReason.find_or_create_by!(r.merge({financial_reason_type: administrative_type}))
   end

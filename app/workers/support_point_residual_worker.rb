@@ -2,7 +2,7 @@ class SupportPointResidualWorker
 
   include Sidekiq::Worker
 
-  def perform_async
+  def perform
     Bonification::SupportPointResidualService.call
   end
 

@@ -135,7 +135,8 @@ class User < ApplicationRecord
   has_many :sim_cards
   has_many :supported_sim_cards, class_name: 'SimCard',
                                  foreign_key: 'support_point_user_id'
-  has_many :supported_point_users, class_name: 'User'
+  has_many :supported_point_users, class_name: 'User',
+                                   foreign_key: 'support_point_user_id'
 
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true

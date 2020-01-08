@@ -6,7 +6,8 @@ module Bonification
     def call
       support_points = User.support_point
       support_points.each do |support_point|
-        create_residual_bonus_for(support_point) if support_point.empreendedor?
+        transaction = create_residual_bonus_for(support_point)
+        chargeback_by_inactivity(transaction) if support_point.inactive?
       end
     end
 
@@ -19,25 +20,30 @@ module Bonification
     end
 
     def create_residual_bonus_for(support_point)
-      cent_amount = sum_residual_bonus_for(support_point.supported_point_users)
-      byebug
+      cent_amount = sum_residual_bonus_of(support_point.supported_point_users)
       support_point.financial_transactions
-                   .at_last_month
                    .create!(spreader: User.find_morenwm_customer_admin,
                             financial_reason: residual_bonus,
-                            cent_amount: cent_amount.to_f * PERCENTAGE) if cent_amount.to_i > 0
+                            cent_amount: cent_amount.to_f * PERCENTAGE) if cent_amount.to_f > 0
     end
 
-    def sum_residual_bonus_for(users)
+    def sum_residual_bonus_of(users)
       credit = FinancialReason.residual_bonus
                               .financial_transactions
-                              .where('financial_transactions.user_id': users)
                               .credit
+                              .by_current_user(users)
+                              .sum(:cent_amount)
       debit = FinancialReason.residual_bonus
                              .financial_transactions
-                             .where('financial_transactions.user_id': users.map(&:id))
                              .debit
+                             .by_current_user(users)
+                             .sum(:cent_amount)
       (credit - debit) / 1e8.to_f
+    end
+
+    def chargeback_by_inactivity(transaction)
+      reason = residual_bonus.chargeback_by_inactivity
+      transaction.chargeback_by_inactivity!(reason)
     end
 
   end

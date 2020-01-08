@@ -110,5 +110,12 @@ module Backoffice
       params[:page].nil? || params[:page].to_i == 1
     end
 
+    def format_financial_reason(transaction)
+      reason = transaction.try(:financial_reason)
+      label = reason.try(:title)
+      return "#{label} | #{transaction.note}" if reason.credit_reason? || reason.debit_reason?
+      label
+    end
+
   end
 end

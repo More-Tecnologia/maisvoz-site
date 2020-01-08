@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('[data-input]').on('keyup', function() {
       var val = input.get() || 0;
 
-      var feeTotal = (val - $this.withdrawalFee).toFixed(2);
+      var feeTotal = ($this.withdrawalFee).toFixed(2);
       var total = val - feeTotal;
 
       feeText.set(feeTotal)

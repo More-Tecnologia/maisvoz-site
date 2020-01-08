@@ -49,7 +49,7 @@ class FinancialTransaction < ApplicationRecord
                        spreader: user,
                        financial_reason: FinancialReason.chargeback,
                        order: order,
-                       cent_amount: cent_amount,
+                       cent_amount: cent_amount.to_f,
                        moneyflow: invert_money_flow)
   end
 

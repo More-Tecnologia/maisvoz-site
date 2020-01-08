@@ -6,7 +6,8 @@ class FinancialReason < ApplicationRecord
   belongs_to :financial_reason_type
   belongs_to :financial_reason, optional: true
 
-  has_one :chargeback_by_inactivity, class_name: 'FinancialReason'
+  has_one :chargeback_by_inactivity, class_name: 'FinancialReason',
+                                     foreign_key: 'financial_reason_id'
 
   validates :title, presence: true,
                     uniqueness: { case_sensitive: false }
@@ -96,8 +97,12 @@ class FinancialReason < ApplicationRecord
     @@debit_reason ||= find_by(code: '2900')
   end
 
+  def self.support_point_activation_bonus
+    @@support_point_activation_bonus ||= find_by(code: '3100')
+  end 
+  
   def self.residual_bonus
-      @@residual_bonus ||= find_by(code: '2600')
+    @@residual_bonus ||= find_by(code: '2600')
   end
 
   def self.support_point_residual_bonus

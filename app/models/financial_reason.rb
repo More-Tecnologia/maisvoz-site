@@ -15,7 +15,6 @@ class FinancialReason < ApplicationRecord
 
   scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
   scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
-  scope :support_point_residual_bonus, -> { FinancialReason.where(code: '1400') }
   scope :active, -> { where(active: true) }
   scope :to_morenwm, -> { where(code: ['200', '300', '400', '2800', '2900']) }
   scope :to_customer_admin, -> { where.not(code: '300') }

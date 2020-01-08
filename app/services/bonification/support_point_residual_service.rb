@@ -31,11 +31,13 @@ module Bonification
       credit = FinancialReason.residual_bonus
                               .financial_transactions
                               .credit
+                              .at_last_month
                               .by_current_user(users)
                               .sum(:cent_amount)
       debit = FinancialReason.residual_bonus
                              .financial_transactions
                              .debit
+                             .at_last_month
                              .by_current_user(users)
                              .sum(:cent_amount)
       (credit - debit) / 1e8.to_f

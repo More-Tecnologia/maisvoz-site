@@ -302,6 +302,8 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                    { title: 'Bonus Indicacao', code: '1000', active: false, company_moneyflow: :debit },
                    { title: 'Bonus Rendimento', code: '1100', active: false, company_moneyflow: :debit },
                    { title: 'Estorno de Bonus Binário por Desqualificação', code: '1300', active: false, company_moneyflow: :credit  },
+                   { title: 'Bônus Residual de Ponto de Apoio', code: '1400', active: true, company_moneyflow: :debit },
+                   { title: 'Estorno de Bônus Residual de Ponto de Apoio por Inatividade', code: '3000', active: true, company_moneyflow: :credit},
                    { title: 'Bonus Indicação Direta', code: '2000', active: true, company_moneyflow: :debit  },
                    { title: 'Estorno de Bônus Indicação Direta por Inatividade', code: '2100', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Indicação Indireta', code: '2200', active: true, company_moneyflow: :debit },
@@ -309,7 +311,7 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                    { title: 'Bonus Ativação', code: '2400', dynamic_compression: true, active: true, company_moneyflow: :debit },
                    { title: 'Estorno de Bônus Ativação por Inatividade', code: '2500', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Residual', code: '2600', dynamic_compression: true, active: true, company_moneyflow: :debit },
-                   { title: 'Estorno de Bônus Residual', code: '2700', active: true, company_moneyflow: :credit },
+                   { title: 'Estorno de Bônus Residual por Inatividade', code: '2700', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Ativação de Ponto de Apoio', code: '3100', active: true, company_moneyflow: :debit },
                    { title: 'Estorno de Bonus Ativação de Ponto de Apoio por Inatividade', code: '3200', active: true, company_moneyflow: :credit }]
 
@@ -345,7 +347,7 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
 
 end
 
-chargebacks = [['2100', '2000'], ['2300', '2200'], ['2500', '2400'], ['2700', '2600'], ['3200', '3100']]
+chargebacks = [['2100', '2000'], ['2300', '2200'], ['2500', '2400'], ['2700', '2600'], ['3000', '1400'], ['3200', '3100']]
 chargebacks.each do |chargeback|
   chargeback_reason = FinancialReason.find_by(code: chargeback[0])
   chargeback_reason.update(financial_reason: FinancialReason.find_by(code: chargeback[1]))

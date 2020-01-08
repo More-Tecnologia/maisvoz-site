@@ -17,10 +17,11 @@ module Fee
     attr_reader :withdrawal, :fee
 
     def create_withdrawal_fee_financial_transaction
-      withdrawal.user.financial_transactions.create!(spreader: User.find_morenwm_customer_user,
-                                                     financial_reason: FinancialReason.withdrawal_fee,
-                                                     cent_amount: fee,
-                                                     moneyflow: :debit)
+      admin_user = User.find_morenwm_customer_admin
+      admin_user.financial_transactions.create!(spreader: withdrawal.user,
+                                                financial_reason: FinancialReason.withdrawal_fee,
+                                                cent_amount: fee,
+                                                moneyflow: :credit)
     end
 
   end

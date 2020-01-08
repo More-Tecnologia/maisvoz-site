@@ -135,7 +135,8 @@ class User < ApplicationRecord
   has_many :sim_cards
   has_many :supported_sim_cards, class_name: 'SimCard',
                                  foreign_key: 'support_point_user_id'
-  has_many :supported_point_users, class_name: 'User'
+  has_many :supported_point_users, class_name: 'User',
+                                   foreign_key: 'support_point_user_id'
 
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
@@ -166,6 +167,7 @@ class User < ApplicationRecord
           I18n.transliterate(state.to_s.strip.downcase)) }
   scope :by_support_point_and_consultant, ->(support_point, username) {
     where(support_point_user: support_point, username: username) }
+  scope :with_support_point, -> { where.not(support_point_user: nil) }
 
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail

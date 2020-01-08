@@ -32,6 +32,8 @@ class FinancialTransaction < ApplicationRecord
   scope :to_empreendedor, -> { joins(:financial_reason).merge(FinancialReason.to_empreendedor) }
   scope :chargebacks_from, ->(user) { where(spreader: user, user: User.find_morenwm_customer_admin) }
   scope :by_current_user, ->(user) { where(user: user).or(FinancialTransaction.chargebacks_from(user)) }
+  scope :at_last_month,
+    -> { where(created_at: (1.month.ago.beginning_of_month..1.month.ago.end_of_month)) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }
@@ -59,7 +61,7 @@ class FinancialTransaction < ApplicationRecord
     create_chargeback!(user: User.find_morenwm_customer_admin,
                        spreader: user,
                        financial_reason: financial_reason,
-                       cent_amount: amount.to_i,
+                       cent_amount: amount.to_f,
                        moneyflow: invert_money_flow,
                        order: order)
   end

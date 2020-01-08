@@ -96,4 +96,12 @@ class FinancialReason < ApplicationRecord
     @@debit_reason ||= find_by(code: '2900')
   end
 
+  def self.residual_bonus
+      @@residual_bonus ||= find_by(code: '2600')
+  end
+
+  def self.support_point_residual_bonus
+    @@support_point_residual_bonus ||= find_by(code: '1400')
+  end
+
 end

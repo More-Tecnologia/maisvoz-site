@@ -47,7 +47,7 @@ class FinancialTransaction < ApplicationRecord
                        spreader: user,
                        financial_reason: FinancialReason.chargeback,
                        order: order,
-                       cent_amount: cent_amount,
+                       cent_amount: cent_amount.to_f,
                        moneyflow: invert_money_flow)
   end
 
@@ -59,7 +59,7 @@ class FinancialTransaction < ApplicationRecord
     create_chargeback!(user: User.find_morenwm_customer_admin,
                        spreader: user,
                        financial_reason: financial_reason,
-                       cent_amount: amount.to_i,
+                       cent_amount: amount.to_f,
                        moneyflow: invert_money_flow,
                        order: order)
   end

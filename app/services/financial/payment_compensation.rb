@@ -42,6 +42,7 @@ module Financial
         associate_support_point if adhesion_product
         binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification && enabled_binary?
         add_product_bonus_to_order if adhesion_product
+        create_support_point_activation_bonus if activation_product && user.support_point_user
         notify_user_by_email_about_paid_order
       end
     end
@@ -187,6 +188,10 @@ module Financial
 
     def enabled_binary?
       ENV['ENABLED_BINARY'] == 'true'
+    end
+
+    def create_support_point_activation_bonus
+      Bonification::SupportPointActivationService.call(order: order)
     end
 
   end

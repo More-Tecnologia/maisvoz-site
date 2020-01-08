@@ -19,7 +19,7 @@ class FinancialReason < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :to_morenwm, -> { where(code: ['200', '300', '400', '2800', '2900']) }
   scope :to_customer_admin, -> { where.not(code: '300') }
-  scope :to_empreendedor, -> { where.not(code: ['200', '1200']) }
+  scope :to_empreendedor, -> { where.not(code: ['200', '1200', '400']) }
 
   def is_bonus?
     financial_reason_type.code == '200'
@@ -27,6 +27,14 @@ class FinancialReason < ApplicationRecord
 
   def withdrawal?
     financial_reason_type.code == '300'
+  end
+
+  def credit_reason?
+    code == '2800'
+  end
+
+  def debit_reason?
+    code == '2900'
   end
 
   def self.chargeback

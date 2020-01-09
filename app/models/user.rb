@@ -85,6 +85,8 @@
 
 class User < ApplicationRecord
 
+  include Hashid::Rails
+
   attr_accessor :login
 
   monetize :available_balance_cents, :blocked_balance_cents

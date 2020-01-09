@@ -111,7 +111,7 @@ class Order < ApplicationRecord
 
   def detached_products_score
     items = order_items.includes(:product).select { |item| item.product.detached? }
-    items.sum { |item| item.quantity * item.product.advance_score }
+    items.sum { |item| item.quantity.to_f * item.product.binary_score.to_f }
   end
 
   def activation_products_score

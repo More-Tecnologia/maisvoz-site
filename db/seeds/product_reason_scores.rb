@@ -88,7 +88,8 @@ premium_scores = [[000, 700, 700, 700, 700, 700, 700, 700, 700, 700, 700],
                   [000, 000, 000, 000, 000, 000, 250, 250, 250, 250, 250],
                   [000, 000, 000, 000, 000, 000, 000, 200, 200, 200, 200],
                   [000, 000, 000, 000, 000, 000, 000, 000, 200, 200, 200],
-                  [000, 000, 000, 000, 000, 000, 000, 000, 000, 150, 150]]
+                  [000, 000, 000, 000, 000, 000, 000, 000, 000, 150, 150],
+                  [000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 150]]
 
 ActiveRecord::Base.transaction do
   reason = FinancialReason.find_by(code: '2400')
@@ -98,7 +99,7 @@ ActiveRecord::Base.transaction do
                                               pay_bonus_by_requalification_score: true)
 
   create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 1)
-  create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 2)
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 2)
 end
 
 ActiveRecord::Base.transaction do
@@ -109,7 +110,7 @@ ActiveRecord::Base.transaction do
                                               pay_bonus_by_requalification_score: true)
 
   create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 1)
-  create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 2)
+  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 2)
 end
 
 ActiveRecord::Base.transaction do
@@ -119,7 +120,7 @@ ActiveRecord::Base.transaction do
                                               financial_reason: reason,
                                               pay_bonus_by_requalification_score: true)
 
-  create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 1)
+  create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 1)
   create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 2)
 end
 

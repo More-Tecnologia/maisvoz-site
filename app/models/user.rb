@@ -161,7 +161,10 @@ class User < ApplicationRecord
 
   scope :bought_adhesion, -> { where(bought_adhesion: true) }
   scope :active,
-    -> { ENV['ENABLED_ACTIVATION'] == 'true' ? where('active_until >= ?', Date.current) : where(active: true) }
+    -> { ENV['ENABLED_ACTIVATION'] == 'true' ?
+          where('active_until >= ?', Date.current).where(active: true) : where(active: true) }
+  scope :inactive, -> { ENV['ENABLED_ACTIVATION'] == 'true' ?
+                          where('active_until < ?', Date.current).or(User.where(active: false)) : where(active: false) }
   scope :support_point, -> { where(role_type_code: RoleType.support_point_code) }
   scope :by_location, ->(city, state) {
     where('lower(unaccent(city)) = ? AND lower(unaccent(state)) = ?',

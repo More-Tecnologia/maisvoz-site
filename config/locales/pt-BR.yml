@@ -250,6 +250,7 @@ pt-BR:
     unilevel_qualifying_career_count: Quantidade de Indicados Qualificadores
     unilevel_qualifying_career_id: Carreira de Indicados Qualificadores
     indications: Indicações
+    role_type: Tipo de Regra
   backoffice:
     orders:
       show:

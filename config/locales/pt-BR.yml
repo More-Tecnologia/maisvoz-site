@@ -349,12 +349,15 @@ pt-BR:
       withdrawals:
         index:
           title: Gerenciar Saques
+          approve_withdraw: Deseja realmente aprovar este saque?
         filters:
           status: Status
           created_from: Criado a partir de
           created_until: Criado até
         form:
           fees: Taxas
+        update:
+          success: Saque Aprovado!
       pv_activity_histories:
         index:
           title: Histórico de PVA/PVG

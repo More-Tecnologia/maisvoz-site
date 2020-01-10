@@ -31,6 +31,7 @@ class UsersGrid < BaseGrid
     user.try(:sponsor).try(:username)
   end
   column(:pretty_name, mandatory: true, header: I18n.t('attributes.user'))
+  column(:support_point_pretty_name, mandatory: true, header: I18n.t('attributes.support_point_user'))
   column(:main_document, mandatory: true, header: I18n.t('attributes.main_document'))
   column(:activity, html: true, mandatory: true, header: I18n.t('attributes.activity'))
   column(:qualification, html: true, mandatory: true, header: I18n.t('attributes.qualification')) if ENV['ENABLED_BINARY'] == 'true'

@@ -133,4 +133,8 @@ class UserDecorator < ApplicationDecorator
     current_trail.try(:name)
   end
 
+  def support_point_pretty_name
+    support_point_user.try(:username).to_s
+  end
+
 end

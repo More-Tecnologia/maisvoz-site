@@ -292,7 +292,7 @@ pt-BR:
     unilevel:
       index:
         title: Unilevel
-        no_binary_node: Seu cadastro precisa ser ativado primeiro
+        no_binary_node: Sem indicações
         generation: Geração
     financial_entries:
       index:

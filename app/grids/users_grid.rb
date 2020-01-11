@@ -1,7 +1,7 @@
 class UsersGrid < BaseGrid
 
   scope do
-    User.includes(:sponsor, career_trail_users: [career_trail: [:career, :trail]])
+    User.includes(:sponsor, :support_point_user, career_trail_users: [career_trail: [:career, :trail]])
         .order(id: :desc)
   end
 

@@ -7,47 +7,45 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <div class="col-md-6">
-      <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'btn btn-default' do %>
-        <i class="fa fa-angle-double-up"></i>
-      <% end if @current_node.user.sponsor %>
-      <%= link_to backoffice_unilevel_index_path(user: @current_node.user.sponsor), class: 'btn btn-primary' do %>
-        <i class="fa fa-angle-up"></i>
-      <% end if @current_node.user.sponsor %>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'btn btn-default' do %>
+          <i class="fa fa-angle-double-up"></i>
+        <% end if @current_node.user.sponsor %>
+        <%= link_to backoffice_unilevel_index_path(user: @current_node.user.sponsor), class: 'btn btn-primary' do %>
+          <i class="fa fa-angle-up"></i>
+        <% end if @current_node.user.sponsor %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center"><br>
+        <%= image_tag(@current_node.user.current_career.try(:image_path),
+                      size: 80,
+                      class: 'unilevel_node',
+                      data: {
+                        username: @current_node.user.username,
+                        career: @current_node.user.current_career.try(:name),
+                        sponsor: @current_node.user.try(:sponsor).try(:username).to_s }) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-center"><br>
+        <% direct_children(@unilevel_nodes).each do |child| %>
+          <%= link_to backoffice_unilevel_index_path(user: child.user) do %>
+            <%= image_tag(child.user.current_career.try(:image_path),
+                          size: 55,
+                          class: 'unilevel_node',
+                          data: {
+                            username: child.user.username,
+                            career: child.user.current_career.try(:name),
+                            sponsor: child.user.try(:sponsor).try(:username).to_s }) %>
+          <% end %>
+          &nbsp;&nbsp;
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="col-sm-12">
-    <table class="table table-responsive text-center">
-      <tbody>
-        <tr>
-          <td colspan='1000'> <%= image_tag(@current_node.user.current_career.try(:image_path),
-                                            size: 40,
-                                            class: 'tree-node',
-                                            data: {
-                                              username: @current_node.user.username,
-                                              career: @current_node.user.current_career.try(:name),
-                                              sponsor: @current_node.user.try(:sponsor).try(:username).to_s }) %>
-          </td>
-        </tr>
-        <tr>
-          <% direct_children(@unilevel_nodes).each do |child| %>
-            <%= content_tag :td do %>
-              <%= link_to backoffice_unilevel_index_path(user: child.user) do %>
-                <%= image_tag(child.user.current_career.try(:image_path),
-                                                  size: 20,
-                                                  class: 'tree-node',
-                                                  data: {
-                                                    username: child.user.username,
-                                                    career: child.user.current_career.try(:name),
-                                                    sponsor: child.user.try(:sponsor).try(:username).to_s }) %>
-              <% end %>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+</div><br>
 
 <div class="row">
   <div class="col-sm-12">
@@ -92,7 +90,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
-  $('.tree-node').webuiPopover({
+  $('.unilevel_node').webuiPopover({
     trigger: 'hover',
     html: true,
     content: function() {

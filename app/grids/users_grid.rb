@@ -1,7 +1,8 @@
 class UsersGrid < BaseGrid
 
   scope do
-    User.all.order(id: :desc)
+    User.includes(:sponsor, career_trail_users: [career_trail: [:career, :trail]])
+        .order(id: :desc)
   end
 
   decorate {|user| user.decorate }
@@ -15,9 +16,12 @@ class UsersGrid < BaseGrid
   filter(:document_cpf, header: I18n.t('attributes.document_cpf'))
   filter(:email)
   filter(:role, :enum, select: User.roles, header: I18n.t('attributes.role'))
-  filter(:active, :xboolean, header: I18n.t('attributes.active'))
+  filter(:role_type_code, :enum, select: RoleType.order(:name).pluck(:name, :code), header: I18n.t('attributes.role_type'))
+  filter(:active, :xboolean, header: I18n.t('attributes.active')) do |value|
+     value == true ? merge(User.active) : merge(User.inactive)
+  end
   filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
-  filter(:binary_qualified, :xboolean, header: I18n.t('attributes.binary_qualify'))
+  filter(:binary_qualified, :xboolean, header: I18n.t('attributes.binary_qualify')) if ENV['ENABLED_BINARY'] == 'true'
 
   column_names_filter(:header => "Colunas Extras", checkboxes: true)
 
@@ -27,9 +31,10 @@ class UsersGrid < BaseGrid
     user.try(:sponsor).try(:username)
   end
   column(:pretty_name, mandatory: true, header: I18n.t('attributes.user'))
+  column(:support_point_pretty_name, mandatory: true, header: I18n.t('attributes.support_point_user'))
   column(:main_document, mandatory: true, header: I18n.t('attributes.main_document'))
   column(:activity, html: true, mandatory: true, header: I18n.t('attributes.activity'))
-  column(:qualification, html: true, mandatory: true, header: I18n.t('attributes.qualification'))
+  column(:qualification, html: true, mandatory: true, header: I18n.t('attributes.qualification')) if ENV['ENABLED_BINARY'] == 'true'
   column(:career_name, mandatory: true, header: I18n.t('attributes.career_kind'))
   column(:trail_name, mandatory: true, header: I18n.t('attributes.trail'))
   column(:created_at, html: false, mandatory: true, header: I18n.t('attributes.created_at'))

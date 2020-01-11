@@ -45,13 +45,21 @@ module Bonification
 
     def detect_product_score_by(sponsor, generation, product_reason_score)
       product_scores = product_reason_score.product_scores
-      pay_by_requalification_score = product_reason_score.pay_bonus_by_requalification_score
+      pay_by_requalification_score =
+        should_pay_bonus_by_requalification_score?(product_reason_score, sponsor)
       receiver_career_trail =
         pay_by_requalification_score ? Career.detect_requalification_career_trail(sponsor) : sponsor.current_career_trail
       product_scores.detect do |s|
         s.generation == generation &&
         s.career_trail_id == receiver_career_trail.id
       end
+    end
+
+    def should_pay_bonus_by_requalification_score?(product_reason_score, sponsor)
+      reason_pay_bonus_by_requalification_score = product_reason_score.pay_bonus_by_requalification_score
+      qualification_date = sponsor.current_career_trail.created_at
+      qualified_more_than_1_month = qualification_date + 1.month <= Date.current
+      reason_pay_bonus_by_requalification_score && qualified_more_than_1_month
     end
 
     def find_sponsors_by(product_reason_scores, dynamic_compression)

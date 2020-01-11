@@ -159,7 +159,10 @@ class User < ApplicationRecord
 
   scope :bought_adhesion, -> { where(bought_adhesion: true) }
   scope :active,
-    -> { ENV['ENABLED_ACTIVATION'] == 'true' ? where('active_until >= ?', Date.current) : where(active: true) }
+    -> { ENV['ENABLED_ACTIVATION'] == 'true' ?
+          where('active_until >= ?', Date.current).where(active: true) : where(active: true) }
+  scope :inactive, -> { ENV['ENABLED_ACTIVATION'] == 'true' ?
+                          where('active_until < ?', Date.current).or(User.where(active: false)) : where(active: false) }
   scope :support_point, -> { where(role_type_code: RoleType.support_point_code) }
   scope :by_location, ->(city, state) {
     where('lower(unaccent(city)) = ? AND lower(unaccent(state)) = ?',
@@ -168,6 +171,7 @@ class User < ApplicationRecord
   scope :by_support_point_and_consultant, ->(support_point, username) {
     where(support_point_user: support_point, username: username) }
   scope :with_support_point, -> { where.not(support_point_user: nil) }
+  scope :without_support_point, -> { where(support_point_user: nil) }
 
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail

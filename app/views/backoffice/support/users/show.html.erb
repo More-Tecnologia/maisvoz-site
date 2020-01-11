@@ -168,7 +168,7 @@
           <%= link_to t('helpers.approve_support_point'),
                       backoffice_support_support_point_users_path(user_id: params[:id]),
                       method: :post,
-                      class: 'btn btn-warning m-l-15' %>
+                      class: 'btn btn-warning m-l-15' unless user.support_point? %>
           <hr>
 
           <%= link_to(cl_image_tag(user.document_rg_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_rg_photo.path), target: '_blank') if user.document_rg_photo %>

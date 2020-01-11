@@ -1,17 +1,11 @@
-<%#
-Local variables:
-* grid - instance of Datagrid
-* assets - Array of database Entities
-* options - passed options Hash
-%>
-<% if grid.html_columns(*options[:columns]).any? %>
+<% if !grid.html_columns(*options[:columns]).empty? %>
 <div class="table-responsive">
     <table class="table table-bordered">
       <thead>
         <%= datagrid_header(grid, options) %>
       </thead>
       <tbody>
-        <% if assets.any? %>
+        <% if !assets.empty? %>
           <%= datagrid_rows(grid, assets, options) %>
         <% else %>
           <tr><td class="noresults" colspan="100%"><%= I18n.t('datagrid.no_results').html_safe %></td></tr>

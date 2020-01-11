@@ -14,7 +14,7 @@
       <div class="panel-body">
         <ul class="list-unstyled w-list">
           <li><b><%= t('.available_balance') %>:</b> <%= number_to_currency current_user.pj? ? current_user.balance : current_user.available_balance_cents %> </li>
-          <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(ENV['WITHDRAWAL_FEE']).to_f %></li>
+          <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(ENV['WITHDRAWAL_FEE'].to_f) %></li>
         </ul>
       </div>
     </div>

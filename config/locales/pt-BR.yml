@@ -250,6 +250,7 @@ pt-BR:
     unilevel_qualifying_career_count: Quantidade de Indicados Qualificadores
     unilevel_qualifying_career_id: Carreira de Indicados Qualificadores
     indications: Indicações
+    role_type: Tipo de Regra
   backoffice:
     orders:
       show:
@@ -349,12 +350,15 @@ pt-BR:
       withdrawals:
         index:
           title: Gerenciar Saques
+          approve_withdraw: Deseja realmente aprovar este saque?
         filters:
           status: Status
           created_from: Criado a partir de
           created_until: Criado até
         form:
           fees: Taxas
+        update:
+          success: Saque Aprovado!
       pv_activity_histories:
         index:
           title: Histórico de PVA/PVG

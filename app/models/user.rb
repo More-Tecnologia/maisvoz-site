@@ -84,7 +84,7 @@
 #
 
 class User < ApplicationRecord
-  
+
   attr_accessor :login
 
   monetize :available_balance_cents, :blocked_balance_cents
@@ -104,6 +104,9 @@ class User < ApplicationRecord
   enum binary_position: { left: 'left', right: 'right' }
 
   serialize :ascendant_sponsors_ids, Array
+  store :financial_transactions_checkpoint,
+        accessors: [:financial_transaction_checkpoint_id, :financial_transaction_checkpoint_balance],
+        coder: JSON
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -252,7 +255,7 @@ class User < ApplicationRecord
 
   def activate!(active_until = 1.month.from_now)
     update!(active: true, active_until: active_until )
-    update_sponsor_binary_qualified
+    update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
   end
 
   def out_binary_tree?
@@ -282,9 +285,8 @@ class User < ApplicationRecord
   end
 
   def available_cent_amount
-    credit_amount = FinancialTransaction.credit.where(user: self).sum(:cent_amount)
-    debit_amount = FinancialTransaction.debit.where(user: self).sum(:cent_amount)
-    (credit_amount.to_i - debit_amount.to_i) / 1e2.to_f
+    return calculate_available_balance_cents_and_update_it_as_customer_admin_user if customer_admin?
+    calculate_available_balance_and_update_it
   end
 
   def self.find_morenwm_customer_user
@@ -292,7 +294,7 @@ class User < ApplicationRecord
   end
 
   def self.find_morenwm_customer_admin
-    @@find_morenwm_customer_user ||= find_by(username: ENV['MORENWM_CUSTOMER_ADMIN'])
+    @@find_morenwm_customer_admin_user ||= find_by(username: ENV['MORENWM_CUSTOMER_ADMIN'])
   end
 
   def self.find_morenwm_user
@@ -336,7 +338,7 @@ class User < ApplicationRecord
 
   def inactivate!
     update_attribute(:active, false)
-    update_sponsor_binary_qualified
+    update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
   end
 
   def binary_qualify!
@@ -404,7 +406,15 @@ class User < ApplicationRecord
   end
 
   def customer_admin?
-    self == User.find_morenwm_customer_admin
+    self == User.find_morenwm_customer_user
+  end
+
+  def financial_transactions_by_user_role
+    return FinancialTransaction.by_current_user(self)
+                               .to_morenwm if morenwm_user?
+    return FinancialTransaction.to_customer_admin if customer_admin?
+    return FinancialTransaction.by_current_user(self)
+                               .to_empreendedor if empreendedor?
   end
 
   private
@@ -424,6 +434,40 @@ class User < ApplicationRecord
   def support_point_requisits
     errors.add(:document_verification_status, :not_verified) unless verified?
     errors.add(:registration_type, :not_pj) unless pj?
+  end
+
+  def calculate_available_balance_and_update_it_as_customer_admin_user
+    credits = FinancialTransaction.to_customer_admin
+                                  .from_id(financial_transaction_checkpoint_id.to_i)
+                                  .company_credit
+    debits = FinancialTransaction.to_customer_admin
+                                 .from_id(financial_transaction_checkpoint_id.to_i)
+                                 .company_debit
+    last_transaction_id = [credits.try(:last).try(:id), debits.try(:last).try(:id)].max.to_i
+    return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
+
+    new_balance = credits.sum(&:cent_amount) - debits.sum(&:cent_amount)
+    new_balance += financial_transaction_checkpoint_balance.to_f
+    update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
+    available_balance_cents
+  end
+
+  def calculate_available_balance_and_update_it
+    transactions = financial_transactions_by_user_role.from_id(transaction_id_checkpoint).to_a
+    last_transaction_id = transactions.try(:last).try(:id).to_i
+    return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
+
+    new_balance = transactions.select(&:credit?) - transactions.select(&:debit?)
+    new_balance += financial_transaction_checkpoint_balance.to_f
+    new_balance = -new_balance if morenwm_user?
+    update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
+    available_balance_cents
+  end
+
+  def update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
+    update_attributes(financial_transaction_checkpoint_balance: new_balance,
+                      available_balance_cents: new_balance,
+                      financial_transaction_checkpoint_id: last_transaction_id)
   end
 
 end

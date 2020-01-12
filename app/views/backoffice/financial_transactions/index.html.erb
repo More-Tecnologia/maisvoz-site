@@ -47,7 +47,7 @@
             </tbody>
           </table>
           </div>
-          <%= paginate @financial_transactions %>
+          <%= paginate @financial_transactions if !@financial_transactions.empty? %>
         </div>
       </div>
     </div>

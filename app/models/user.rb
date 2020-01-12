@@ -406,7 +406,7 @@ class User < ApplicationRecord
   end
 
   def customer_admin?
-    self == User.find_morenwm_customer_user
+    self == User.find_morenwm_customer_admin
   end
 
   def financial_transactions_by_user_role
@@ -436,7 +436,7 @@ class User < ApplicationRecord
     errors.add(:registration_type, :not_pj) unless pj?
   end
 
-  def calculate_available_balance_and_update_it_as_customer_admin_user
+  def calculate_available_balance_cents_and_update_it_as_customer_admin_user
     credits = FinancialTransaction.to_customer_admin
                                   .from_id(financial_transaction_checkpoint_id.to_i)
                                   .company_credit
@@ -453,13 +453,14 @@ class User < ApplicationRecord
   end
 
   def calculate_available_balance_and_update_it
-    transactions = financial_transactions_by_user_role.from_id(transaction_id_checkpoint).to_a
+    transactions = financial_transactions_by_user_role.from_id(financial_transaction_checkpoint_id.to_i).to_a
     last_transaction_id = transactions.try(:last).try(:id).to_i
     return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
 
-    new_balance = transactions.select(&:credit?) - transactions.select(&:debit?)
-    new_balance += financial_transaction_checkpoint_balance.to_f
+    new_balance = transactions.select(&:credit?).sum(&:cent_amount) - transactions.select(&:debit?).sum(&:cent_amount)
     new_balance = -new_balance if morenwm_user?
+    new_balance += financial_transaction_checkpoint_balance.to_f
+
     update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
     available_balance_cents
   end

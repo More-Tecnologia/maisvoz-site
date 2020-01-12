@@ -34,6 +34,7 @@ class FinancialTransaction < ApplicationRecord
   scope :by_current_user, ->(user) { where(user: user).or(FinancialTransaction.chargebacks_from(user)) }
   scope :at_last_month,
     -> { where(created_at: (1.month.ago.beginning_of_month..1.month.ago.end_of_month)) }
+  scope :from_id, ->(id) { id ? where('financial_transactions.id > ?', id).order(:id) : order(:id) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }

@@ -50,9 +50,7 @@ module Backoffice
                              .debit
                              .backward_at(date)
                              .sum(:cent_amount)
-      amount = (credit_amount - debit_amount).abs / 1e8.to_f
-      update_user_available_balance_cents(amount) if user_is_in_first_page?
-      amount
+      (credit_amount - debit_amount).abs / 1e8.to_f
     end
 
     def sum_previous_financial_transactions_by_customer_admin(q)
@@ -66,9 +64,7 @@ module Backoffice
                              .company_debit
                              .backward_at(date)
                              .sum(:cent_amount)
-      amount = (credit_amount - debit_amount) / 1e8.to_f
-      update_user_available_balance_cents(amount) if user_is_in_first_page?
-      amount
+      (credit_amount - debit_amount) / 1e8.to_f
     end
 
     def sum_previous_financial_transactions_by_empreendedor(q)
@@ -84,9 +80,7 @@ module Backoffice
                              .debit
                              .backward_at(date)
                              .sum(:cent_amount)
-      amount = (credit_amount - debit_amount) / 1e8.to_f
-      update_user_available_balance_cents(amount) if user_is_in_first_page?
-      amount
+      (credit_amount - debit_amount) / 1e8.to_f
     end
 
     def find_first_financial_transaction_created_at_from_query(q)
@@ -94,20 +88,11 @@ module Backoffice
       financial_transactions.first.try(:created_at)
     end
 
-    def update_user_available_balance_cents(amount)
-      return if amount == current_user.available_balance_cents
-      current_user.update_attributes(available_balance_cents: amount)
-    end
-
     def detect_financial_reasons_by_current_user
       return FinancialReason.active.to_morenwm.order(:title).pluck(:title, :id) if current_user.morenwm_user?
       return FinancialReason.active.to_customer_admin.order(:title).pluck(:title, :id) if current_user.customer_admin?
       return FinancialReason.active.to_empreendedor.order(:title).pluck(:title, :id) if current_user.empreendedor?
       []
-    end
-
-    def user_is_in_first_page?
-      params[:page].nil? || params[:page].to_i == 1
     end
 
     def format_financial_reason(transaction)

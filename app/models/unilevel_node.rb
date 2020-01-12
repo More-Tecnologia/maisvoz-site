@@ -34,6 +34,7 @@ class UnilevelNode < ApplicationRecord
     ->(career) { joins(user: [career_trail_users: [:career_trail]])
                  .where('career_trail_users.career_trail_id': career.career_trails)
                  .merge(User.active) }
+  scope :with_active_users, -> { joins(:user).merge(User.active) }
 
   def left_descendants_count
     @left_descendants_count ||= descendants.binary_position_left.count

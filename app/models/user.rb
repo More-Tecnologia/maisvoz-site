@@ -357,7 +357,10 @@ class User < ApplicationRecord
   end
 
   def unilevel_ancestors
-    unilevel_node.ancestors.includes(:user).map(&:user)
+    unilevel_node.ancestors
+                 .includes(:user)
+                 .with_active_users
+                 .map(&:user)
   end
 
   def sum_career_trail_bonus

@@ -2,6 +2,7 @@ module Backoffice
   class WithdrawalsController < EntrepreneurController
 
     prepend_before_action :ensure_admin_or_entrepreneur, :should_be_verified
+    before_action :ensure_bank_account_valid
 
     def index
       render(:index, locals: { withdrawals: withdrawals })
@@ -44,6 +45,12 @@ module Backoffice
 
     def withdraw_day?
       true
+    end
+
+    def ensure_bank_account_valid
+      return if current_user.try(:account).try(:valid, :withdrawal)
+      flash[:error] = t('activerecord.errors.messages.bank_account_presence')
+      redirect_to edit_backoffice_bank_account_path
     end
 
   end

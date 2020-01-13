@@ -61,10 +61,11 @@ class Career < ApplicationRecord
     return true if unilevel_qualifying_career.nil?
 
     qualified_children_count = 0
-    qualifiying_children = user.lineage_scores.each do |child, score|
-      qualified_children_count = qualified_children_count + 1 if qualify_lineage?(user, score)
-      return true if qualified_children_count >= unilevel_qualifying_career_count.to_i
+    user.lineage_scores.each do |child, score|
+      qualified_children_count = qualified_children_count + 1 if qualify_lineage?(child, score)
+      break if qualified_children_count >= unilevel_qualifying_career_count.to_i
     end
+    qualified_children_count >= unilevel_qualifying_career_count.to_i
   end
 
   def qualify_lineage?(user, score)
@@ -89,6 +90,10 @@ class Career < ApplicationRecord
     career.career_trails.where(trail: user.current_trail).first
   end
 
+  def higher_or_equal_to(career)
+    higher?(career) || self == career
+  end
+
   private
 
   def higher_qualifying_score?(career)
@@ -97,10 +102,6 @@ class Career < ApplicationRecord
 
   def higher_id?(career)
     id > career.id
-  end
-
-  def higher_or_equal_to(career)
-    higher?(career) || self == career
   end
 
 end

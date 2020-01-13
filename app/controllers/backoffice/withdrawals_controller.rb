@@ -48,7 +48,7 @@ module Backoffice
     end
 
     def ensure_bank_account_valid
-      return if current_user.try(:account).try(:valid, :withdrawal)
+      return if current_user.try(:valid?, :withdrawal)
       flash[:error] = t('activerecord.errors.messages.bank_account_presence')
       redirect_to edit_backoffice_bank_account_path
     end

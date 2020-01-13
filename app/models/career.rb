@@ -52,16 +52,23 @@ class Career < ApplicationRecord
   end
 
   def unilevel_qualify?(user)
-    unilevel_qualify_careers?(user) && user.unilevel_score_count >= qualifying_score
+    unilevel_score_sum = user.lineage_scores.values.sum
+    unilevel_qualify_lineages?(user) && unilevel_score_sum >= qualifying_score.to_i
   end
 
-  def unilevel_qualify_careers?(user)
-    return true if unilevel_qualifying_career_count <= 0 || unilevel_qualifying_career.nil?
-    user_count = user.unilevel_node
-                     .children
-                     .by_career(unilevel_qualifying_career)
-                     .count
-    user_count >= unilevel_qualifying_career_count.to_i
+  def unilevel_qualify_lineages?(user)
+    return true if unilevel_qualifying_career_count.to_i <= 0
+    return true if unilevel_qualifying_career.nil?
+
+    qualified_children_count = 0
+    qualifiying_children = user.lineage_scores.each do |child, score|
+      qualified_children_count = qualified_children_count + 1 if qualify_lineage?(user, score)
+      return true if qualified_children_count >= unilevel_qualifying_career_count.to_i
+    end
+  end
+
+  def qualify_lineage?(user, score)
+    user.current_career.higher_or_equal_to(unilevel_qualifying_career) && score >= lineage_score.to_i
   end
 
   def binary_qualify?(user)
@@ -90,6 +97,10 @@ class Career < ApplicationRecord
 
   def higher_id?(career)
     id > career.id
+  end
+
+  def higher_or_equal_to(career)
+    higher?(career) || self == career
   end
 
 end

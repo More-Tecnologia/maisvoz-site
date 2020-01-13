@@ -24,6 +24,10 @@
                 <th>#</th>
                 <th><%= Career.human_attribute_name(:name) %></th>
                 <th><%= Career.human_attribute_name(:qualifying_score) %></th>
+                <th><%= Career.human_attribute_name(:requalification_score) %></th>
+                <th><%= Career.human_attribute_name(:unilevel_qualifying_career_id) %></th>
+                <th><%= Career.human_attribute_name(:unilevel_qualifying_career_count) %></th>
+                <th><%= Career.human_attribute_name(:lineage_score) %></th>
                 <th><%= Career.human_attribute_name(:bonus) %></th>
                 <th><%= Career.human_attribute_name(:binary_limit) %></th>
                 <th><%= Career.human_attribute_name(:binary_percentage) %></th>
@@ -36,6 +40,10 @@
                   <th><%= career.id %></th>
                   <td><%= career.name %></td>
                   <td><%= career.qualifying_score %></td>
+                  <td><%= career.requalification_score %></td>
+                  <td><%= career.unilevel_qualifying_career.try(:name) %></td>
+                  <td><%= career.unilevel_qualifying_career_count %></td>
+                  <td><%= career.lineage_score %></td>
                   <td><%= career.bonus %></td>
                   <td><%= career.binary_limit %></td>
                   <td><%= career.binary_percentage %>%</td>

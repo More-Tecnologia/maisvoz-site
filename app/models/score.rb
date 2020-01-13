@@ -39,6 +39,7 @@ class Score < ApplicationRecord
                                                           .sum(:cent_amount) }
   scope :by_current_month,
     -> { where(created_at: (Date.current.beginning_of_month..Date.current.end_of_month)) }
+  scope :spreaded_to, ->(user) { where(user: user) }
 
   def chargeback!(score_type, amount = cent_amount)
     create_chargeback!(source_leg: source_leg,
@@ -68,6 +69,26 @@ class Score < ApplicationRecord
   def score_type_is_binary_bonus_debit?
     binary_bonus_debit = ScoreType.binary_bonus_debit
     binary_bonus_debit && binary_bonus_debit == score_type
+  end
+
+  def self.unilevel_scores_by_lineage(user, q = Score.ransack)
+    children_ids = user.unilevel_node
+                       .children
+                       .pluck(:user_id)
+    received_scores = q.result
+                       .sum_unilevel_received_by(children_ids)
+    spreaded_scores_from_children = q.result
+                                     .spreaded_to(user)
+                                     .sum_unilevel_spreaded_by(children_ids)
+    lineage_scores =
+      sum_scores_by_user(received_scores, spreaded_scores_from_children).to_a
+                                                                        .sort_by(&:second)
+                                                                        .reverse
+    Score.sum_scores_by_user(received_scores, spreaded_scores_from_children)
+  end
+
+  def self.sum_scores_by_user(received_scores, spreaded_scores)
+    received_scores.merge(spreaded_scores) { |key, old, new| old + new }
   end
 
 end

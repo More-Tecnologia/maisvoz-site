@@ -10,6 +10,7 @@ class CareerForm < Form
   attribute :unilevel_qualifying_career_id
   attribute :unilevel_qualifying_career
   attribute :unilevel_qualifying_career_count
+  attribute :lineage_score
 
   validates :name, :qualifying_score, :bonus, :binary_limit, :binary_percentage,
             :kind, presence: true

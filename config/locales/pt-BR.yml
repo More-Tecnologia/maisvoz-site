@@ -251,6 +251,9 @@ pt-BR:
     unilevel_qualifying_career_id: Carreira de Indicados Qualificadores
     indications: Indicações
     role_type: Tipo de Regra
+    lineage_score: Pontuação de Linhagem
+    requalification_score: Pontuação de Requalificação
+    qualifying_score: Pontuação de Qualificação
   backoffice:
     orders:
       show:
@@ -315,7 +318,7 @@ pt-BR:
         title: PVA Acumulado
     lineage_scores:
       index:
-        title: Pontuação por Geração
+        title: Pontuação por Linhagem
     financial_transactions:
       index:
         title: Transações Financeiras
@@ -599,6 +602,7 @@ pt-BR:
     financial_reports: Extrato Financeiro
     activation: "%{product_value} - Ativação"
     reloads_csv_filename: "Recargas %{datetime}.csv"
+    lineage_scores: Linhagens
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

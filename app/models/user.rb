@@ -420,6 +420,10 @@ class User < ApplicationRecord
                                .to_empreendedor if empreendedor?
   end
 
+  def lineage_scores
+    @lineage_scores ||= Score.unilevel_scores_by_lineage(self, q = Score.ransack)
+  end
+
   private
 
   def ensure_initial_career_trail
@@ -446,7 +450,7 @@ class User < ApplicationRecord
     debits = FinancialTransaction.to_customer_admin
                                  .from_id(financial_transaction_checkpoint_id.to_i)
                                  .company_debit
-    last_transaction_id = [credits.try(:last).try(:id), debits.try(:last).try(:id)].max.to_i
+    last_transaction_id = [credits.try(:last).try(:id).to_i, debits.try(:last).try(:id).to_i].max
     return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
 
     new_balance = credits.sum(&:cent_amount) - debits.sum(&:cent_amount)

@@ -91,6 +91,7 @@ Rails.application.routes.draw do
     resources :binary_tree, only: [:index, :show]
     resources :unilevel, only: [:index]
     resources :lineage_scores, only: [:index]
+    resources :career_trail_users, only: [:index]
 
     # Sim Cards
     resources :users, only: [] do

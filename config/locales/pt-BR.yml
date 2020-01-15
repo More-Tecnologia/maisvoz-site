@@ -402,6 +402,9 @@ pt-BR:
       index:
         title: Transferência de CHIPs
         success: CHIPs transferidos com sucesso.
+    career_trail_users:
+      index:
+        title: Histórico de Carreira
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
@@ -604,6 +607,7 @@ pt-BR:
     activation: "%{product_value} - Ativação"
     reloads_csv_filename: "Recargas %{datetime}.csv"
     lineage_scores: Linhagens
+    qualification_date: Data de Qualificação
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

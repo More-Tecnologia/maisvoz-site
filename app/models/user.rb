@@ -85,6 +85,8 @@
 
 class User < ApplicationRecord
 
+  has_paper_trail
+
   attr_accessor :login
 
   enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce' }

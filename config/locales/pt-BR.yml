@@ -256,6 +256,7 @@ pt-BR:
     lineage_score: Pontuação de Linhagem
     requalification_score: Pontuação de Requalificação
     qualifying_score: Pontuação de Qualificação
+    updated_at: Data da Alteração
     document: Documento
     bank: Banco
     bank_account: Conta
@@ -383,6 +384,9 @@ pt-BR:
       sim_cards:
         new:
           title: Adicionar CHIPs ao Pedido / Usuário
+      user_versions:
+        index:
+          title: Relatório de Atividade de Usuário
     support:
       users:
         index:
@@ -620,6 +624,8 @@ pt-BR:
     irpf: Imposto sobre a Renda da Pessoa Física (IRPF)
     inss: Instituto Nacional do Seguro Social (INSS)
     qualification_date: Data de Qualificação
+    user_versions: Relatório de Atividade
+    no_data: Sem registros
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

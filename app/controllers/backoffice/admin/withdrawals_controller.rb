@@ -3,31 +3,24 @@ module Backoffice
     class WithdrawalsController < FinancialController
 
       def index
-        render(:index, locals: { withdrawals: withdrawals, q: q })
+        @q = Withdrawal.ransack(params[:q])
+        @withdrawals = @q.result
+                         .includes(:user)
+                         .order(created_at: :desc)
+                         .page(params[:page])
+                         .decorate
       end
 
       def update
-        command = Financial::UpdateWithdrawalStatus.call(current_user, params)
-
-        if command.success?
-          flash[:success] = I18n.t('.success')
-        else
-          flash[:error] = command.errors
-        end
-
+        withdrawal = Withdrawal.find(params[:id])
+        Financial::UpdaterWithdrawalStatusService.call(updater_user: current_user,
+                                                       status: params[:status] ? params[:status].to_i : nil,
+                                                       withdrawal: withdrawal)
+        flash[:success] = t('.success')
         redirect_to backoffice_admin_withdrawals_path
-      end
-
-      private
-
-      def withdrawals
-        @withdrawals ||= q.result.page(params[:page]).decorate
-      end
-
-      def q
-        @q ||= Withdrawal.ransack(params[:q])
-        @q.sorts = 'created_at desc' if @q.sorts.empty?
-        @q
+      rescue Exception => error
+        flash[:error] = error
+        redirect_to backoffice_admin_withdrawals_path
       end
 
     end

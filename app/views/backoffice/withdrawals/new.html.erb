@@ -13,8 +13,12 @@
       </div>
       <div class="panel-body">
         <ul class="list-unstyled w-list">
-          <li><b><%= t('.available_balance') %>:</b> <%= number_to_currency current_user.pj? ? current_user.balance : current_user.available_balance_cents %> </li>
-          <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(ENV['WITHDRAWAL_FEE'].to_f) %></li>
+          <li><b><%= t('.available_balance') %>:</b> <%= number_to_currency(current_user.available_balance) %> </li>
+          <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(@form.withdrawal_fee) %></li>
+          <% if @form.user.pf? %>
+            <li><b><%= t('defaults.irpf', value: @form.irpf) %>:</b> <%= number_to_percentage(@form.irpf, precision: 2) %> </li>
+            <li><b><%= t('defaults.inss', value: @form.inss) %>:</b> <%= number_to_percentage(@form.inss, precision: 2) %> </li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -27,11 +31,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="p-20">
-            <% if withdraw_day %>
-              <%= render partial: "form_#{current_user.registration_type}", locals: { form: form, url: backoffice_withdrawals_path, method: :post } %>
-            <% else %>
-              <%= render partial: 'withdraw_notice' %>
-            <% end %>
+            <%= render partial: "form_#{current_user.registration_type}" %>
           </div>
         </div>
       </div>

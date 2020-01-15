@@ -91,6 +91,7 @@ pt-BR:
         too_long: "de no máximo %{count} caracteres"
         still_in_cart: Pedido ainda no carrinho de compra
         already_approved: Pedido já aprovado
+        without_available_balance: Usuário não tem saldo disponível.
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master
@@ -255,6 +256,10 @@ pt-BR:
     lineage_score: Pontuação de Linhagem
     requalification_score: Pontuação de Requalificação
     qualifying_score: Pontuação de Qualificação
+    document: Documento
+    bank: Banco
+    bank_account: Conta
+    bank_agency: Agência
   backoffice:
     orders:
       show:
@@ -276,6 +281,8 @@ pt-BR:
       form:
         fees: Taxas
         total: Total
+      create:
+        success: Sua solicitação de saque foi recebida.
     binary_strategies:
       index:
         title: Estratégia do Binário
@@ -355,6 +362,7 @@ pt-BR:
         index:
           title: Gerenciar Saques
           approve_withdraw: Deseja realmente aprovar este saque?
+          refuse_withdraw: Deseja realmente rejeitar este saque?
         filters:
           status: Status
           created_from: Criado a partir de
@@ -607,6 +615,10 @@ pt-BR:
     activation: "%{product_value} - Ativação"
     reloads_csv_filename: "Recargas %{datetime}.csv"
     lineage_scores: Linhagens
+    fiscal_document_warning: Favor gerar nota fiscal do valor bruto, caso contrário o pedido de saque será rejeitado.
+    fiscal_document_company: A nota deverá ser emitida para o seguinte %{company_id}
+    irpf: Imposto sobre a Renda da Pessoa Física (IRPF)
+    inss: Instituto Nacional do Seguro Social (INSS)
     qualification_date: Data de Qualificação
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
@@ -666,6 +678,7 @@ pt-BR:
     util: Até
     approve_support_point: Aprovar Ponto de Apoio
     export_to_csv: Exportar para CSV
+    save_with_disable: "<i class='fa fa-spinner fa-spin'></i> Salvando..."
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:
@@ -896,7 +909,7 @@ pt-BR:
   credit_by_admin: Crédito do Admin
   debit_by_admin: Débito do Admin
   fee: Taxa de Administração
-  withdrawal_fee: Taxa de Saque
+  withdrawal_fee: Taxa de Saque / Imposto(s)
   product_return: Retorno de Produto
   tax: Impostos
   transfer: Transferência

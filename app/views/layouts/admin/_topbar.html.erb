@@ -31,7 +31,7 @@
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
             <span class="text-success">
-              <%= number_to_currency(current_user.available_cent_amount) %>
+              <%= number_to_currency(current_user.available_balance) %>
             </span>
             <% end %>
           </li>
@@ -39,7 +39,7 @@
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
             <span class="text-success">
-              <%= number_to_currency(current_user.available_cent_amount) %>
+              <%= number_to_currency(current_user.available_balance) %>
             </span>
             <% end %>
           </li>
@@ -47,7 +47,7 @@
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
               <span class="text-warning">
-                <%= number_to_currency current_user.blocked_balance_cents %>
+                <%= number_to_currency current_user.blocked_balance %>
               </span>
             <% end %>
           </li>
@@ -134,7 +134,7 @@
         <li>
           <%= link_to backoffice_financial_transactions_path do %>
           <span class="text-success">
-            <%= number_to_currency(current_user.available_cent_amount) %>
+            <%= number_to_currency(current_user.available_balance) %>
           </span>
           <% end %>
         </li>
@@ -142,7 +142,7 @@
         <li>
           <%= link_to backoffice_financial_transactions_path do %>
           <span class="text-success">
-            <%= number_to_currency(current_user.available_cent_amount) %>
+            <%= number_to_currency(current_user.available_balance) %>
           </span>
           <% end %>
         </li>
@@ -150,7 +150,7 @@
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
             <span class="text-warning">
-              <%= number_to_currency current_user.blocked_balance_cents %>
+              <%= number_to_currency current_user.blocked_balance %>
             </span>
             <% end %>
           </li>

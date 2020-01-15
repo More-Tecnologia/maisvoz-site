@@ -11,33 +11,63 @@ class WithdrawalForm < Form
   validate :user_has_balance
   validate :fiscal_document_presence, if: -> { user.pj? }
 
+  def amount=(value)
+    @amount = value.to_s.gsub('.','').gsub(',','.').to_f if value
+  end
+
   def amount_cents
-    Integer(amount.to_d * 1e2)
+    amount
   end
 
   def net_amount_cents
     amount_cents - fee_cents
   end
 
+  def fee
+    amount ? amount.to_d - fee_cents : 0
+  end
+
+  def total
+    amount ? amount.to_d - fee : 0
+  end
+
+  def withdrawal_fee
+    ENV['WITHDRAWAL_FEE'].to_d
+  end
+
+  def irpf
+    ENV['IRPF'].to_f if ENV['IRPF'].to_f > 0
+  end
+
+  def irpf_cents
+    irpf ? irpf * amount_cents / 100.0 : 0
+  end
+
+  def inss
+    ENV['INSS'].to_f if ENV['INSS'].to_f > 0
+  end
+
+  def inss_cents
+    inss ? inss * amount_cents / 100.0 : 0
+  end
+
+  def fee_cents
+    value = ENV['WITHDRAWAL_FEE'].to_f
+    value += irpf_cents if user.pf?
+    value += inss_cents if user.pf?
+    value
+  end
+
   private
 
   def user_has_balance
-    return if amount_cents <= user_balance
-    errors.add(:amount, I18n.t('defaults.errors.no_funds'))
-  end
-
-  def user_balance
-    return user.balance * 1e2 if user.pj?
-    user.available_balance_cents * 1e2
+    return if amount_cents <= user.available_balance
+    errors.add(:base, I18n.t('defaults.errors.no_funds'))
   end
 
   def fiscal_document_presence
     return if fiscal_document_link.present? || fiscal_document_photo.present?
-    errors.add(:fiscal_document_link, 'precisamos da nota')
-  end
-
-  def fee_cents
-    ENV['WITHDRAWAL_FEE'].to_d * 1e2
+    errors.add(:fiscal_document_link, :blank)
   end
 
 end

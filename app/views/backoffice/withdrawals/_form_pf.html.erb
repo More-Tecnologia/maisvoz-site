@@ -1,16 +1,38 @@
-<%= simple_form_for(form, url: url, method: method, html: { class: 'form-horizontal' }) do |f| %>
-  <div data-withdraw-simulator="true" data-fee="<%= ENV['WITHDRAWAL_FEE'].to_f %>">
+<%= simple_form_for(@form, url: backoffice_withdrawals_path,
+                           method: :post,
+                           html: { class: 'form-horizontal' }) do |f| %>
+  <div data-withdraw-simulator="true" data-fee="<%= ENV['WITHDRAWAL_FEE'].to_f %>"
+                                      data-irpf="<%= @form.irpf %>"
+                                      data-inss="<%= @form.inss %>"
+                                      data-registration-type="<%= @form.user.registration_type %>">
     <%= f.input :amount do %>
       <div class="input-group">
-        <span class="input-group-addon">R$</span>
-        <%= f.input_field :amount, class: "form-control autonumber", value: form.amount, data: { input: true, autonumeric: { aSep: '.', aDec: ',' } } %>
+        <span class="input-group-addon"> <%= number_to_currency(1, format: '%u') %> </span>
+        <%= f.input_field :amount, class: "form-control autonumber",
+                                   value: @form.amount,
+                                   data: { input: true,
+                                           autonumeric: { aSep: '.', aDec: ',' } } %>
       </div>
     <% end %>
     <ul class="list-unstyled w-list m-b-30">
-      <% fee = form.amount ? form.amount.to_d - ENV['WITHDRAWAL_FEE'].to_d : 0 %>
-      <li><b><%= t('backoffice.admin.withdrawals.form.fees') %>:</b> R$ <span data-fee-text><%= fee %></span> </li>
-      <li><b><%= t('.total') %>:</b> R$ <span data-total-text><%= form.amount ? form.amount.to_d - fee : 0 %></span> </li>
+      <li>
+        <b> <%= t('backoffice.admin.withdrawals.form.fees') %>:</b> <%= number_to_currency(1, format: '%u') %>
+        <span data-fee-text><%= f.object.fee %></span>
+      </li>
+      <li>
+        <b> <%= t('defaults.irpf') %>:</b> <%= number_to_currency(1, format: '%u') %>
+        <span data-irpf-text><%= f.object.total %></span>
+      </li>
+      <li>
+        <b> <%= t('defaults.inss') %>:</b> <%= number_to_currency(1, format: '%u') %>
+        <span data-inss-text><%= f.object.total %></span>
+      </li>
+      <li>
+        <b> <%= t('.total') %>:</b> <%= number_to_currency(1, format: '%u') %>
+        <span data-total-text><%= f.object.total %></span>
+      </li>
     </ul>
-    <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Salvando...".html_safe } %>
+    <%= f.button :button, t("defaults.post"),
+                          data: { disable_with: t('helpers.save_with_disable') } %>
   </div>
 <% end %>

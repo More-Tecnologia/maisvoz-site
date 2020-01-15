@@ -21,12 +21,29 @@ class Withdrawal < ApplicationRecord
   include Hashid::Rails
 
   belongs_to :user
+  belongs_to :updater_user, class_name: 'User',
+                            optional: true
 
   has_many :financial_transactions
 
-  enum status: { pending: 'pending', approved: 'approved', approved_balance: 'approved_balance', refused: 'refused' }
+  enum status: [:pending,  :approved, :approved_balance, :refused]
 
-  monetize :gross_amount_cents, :net_amount_cents
+  def gross_amount_cents
+    self[:gross_amount_cents] / 1e8.to_f if self[:gross_amount_cents]
+  end
+
+  def gross_amount_cents=(amount)
+    self[:gross_amount_cents] = (amount * 1e8).to_i
+  end
+
+  def net_amount_cents
+    self[:net_amount_cents] / 1e8.to_f if self[:net_amount_cents]
+  end
+
+  def net_amount_cents=(amount)
+    self[:net_amount_cents] = (amount * 1e8).to_i
+  end
+
 
   has_attachment :fiscal_document_photo
 

@@ -89,8 +89,6 @@ class User < ApplicationRecord
 
   attr_accessor :login
 
-  monetize :available_balance_cents, :blocked_balance_cents
-
   enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce' }
   enum marital_status: { single: 'single', married: 'married', widowed: 'widowed', divorced: 'divorced' }
   enum gender: { male: 'male', female: 'female' }
@@ -188,11 +186,15 @@ class User < ApplicationRecord
   after_create :insert_into_binary_tree
 
   def balance
-    (available_balance + blocked_balance).to_f
+    (available_balance + blocked_balance).to_f / 1e8
   end
 
-  def balance_cents
-    available_balance_cents + blocked_balance_cents
+  def available_balance
+    available_cent_amount - blocked_balance
+  end
+
+  def blocked_balance
+    blocked_balance_cents + withdrawal_order_amount
   end
 
   def available_balance_cents
@@ -209,6 +211,14 @@ class User < ApplicationRecord
 
   def blocked_balance_cents=(amount)
     self[:blocked_balance_cents] = (amount * 1e8).to_i
+  end
+
+  def withdrawal_order_amount
+    self[:withdrawal_order_amount] / 1e8.to_f if self[:withdrawal_order_amount]
+  end
+
+  def withdrawal_order_amount=(amount)
+    self[:withdrawal_order_amount] = (amount * 1e8).to_i
   end
 
   def unilevel_score_count

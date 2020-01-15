@@ -42,6 +42,7 @@
     <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path if ENV['ENABLED_BINARY'] == 'true' %></li>
     <li><%= link_to t('defaults.binary_tree'), backoffice_binary_tree_index_path if ENV['ENABLED_BINARY'] == 'true' %></li>
     <li><%= link_to t('defaults.unilevel'), backoffice_unilevel_index_path(user: current_user) %></li>
+    <li><%= link_to t('defaults.career_histories'), backoffice_career_trail_users_path %></li>
     <li><%= link_to t('defaults.career_histories'), backoffice_admin_career_histories_path, class: 'admin-link' %></li>
   </ul>
 </li>

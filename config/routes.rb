@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resources :order_approver_without_bonifications, only: [:update]
       resource :sim_card_control, only: [:new]
       resources :sim_card_reports, only: [:index]
+      resources :user_versions, only: [:index]
 
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]

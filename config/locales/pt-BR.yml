@@ -255,6 +255,7 @@ pt-BR:
     lineage_score: Pontuação de Linhagem
     requalification_score: Pontuação de Requalificação
     qualifying_score: Pontuação de Qualificação
+    updated_at: Data da Alteração
   backoffice:
     orders:
       show:
@@ -375,6 +376,9 @@ pt-BR:
       sim_cards:
         new:
           title: Adicionar CHIPs ao Pedido / Usuário
+      user_versions:
+        index:
+          title: Relatório de Atividade de Usuário
     support:
       users:
         index:
@@ -608,6 +612,8 @@ pt-BR:
     reloads_csv_filename: "Recargas %{datetime}.csv"
     lineage_scores: Linhagens
     qualification_date: Data de Qualificação
+    user_versions: Relatório de Atividade
+    no_data: Sem registros
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

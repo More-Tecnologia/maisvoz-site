@@ -7,7 +7,7 @@ $(document).ready(function() {
     this.irpf = parseFloat($el.data('irpf'));
     this.inss = parseFloat($el.data('inss'));
     this.withdrawalFee = parseFloat($el.data('fee'));
-    this.registrationType = $el.data('registration-type]');
+    this.registrationType = $el.data('registration-type');
   }
 
   WithdrawSimulator.prototype.init = function() {
@@ -44,10 +44,6 @@ $(document).ready(function() {
       }
 
     })
-
-    function calculate_total_to_pf() {
-
-    }
 
   }
 

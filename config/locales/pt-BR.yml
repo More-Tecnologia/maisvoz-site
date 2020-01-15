@@ -410,6 +410,9 @@ pt-BR:
       index:
         title: Transferência de CHIPs
         success: CHIPs transferidos com sucesso.
+    career_trail_users:
+      index:
+        title: Histórico de Carreira
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
@@ -616,6 +619,7 @@ pt-BR:
     fiscal_document_company: A nota deverá ser emitida para o seguinte %{company_id}
     irpf: Imposto sobre a Renda da Pessoa Física (IRPF)
     inss: Instituto Nacional do Seguro Social (INSS)
+    qualification_date: Data de Qualificação
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

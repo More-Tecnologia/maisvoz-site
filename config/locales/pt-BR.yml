@@ -331,6 +331,11 @@ pt-BR:
     financial_transactions:
       index:
         title: Transações Financeiras
+    order_items:
+      update:
+        cart_updated: Carrinho atualizado
+      destroy:
+        cart_updated: Carrinho atualizado
     admin:
       credits_debits:
         step_1: Passo 1

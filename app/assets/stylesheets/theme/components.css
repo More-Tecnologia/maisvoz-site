@@ -36,7 +36,7 @@ File: Components
 .btn-inverse,
 .btn-purple,
 .btn-pink {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 .btn-default,
 .btn-default:hover,
@@ -48,8 +48,8 @@ File: Components
 .btn-default:focus,
 .btn-default:hover,
 .open > .dropdown-toggle.btn-default {
-  background-color: #5fbeaa !important;
-  border: 1px solid #5fbeaa !important;
+  background-color: #ffcc00 !important;
+  border: 1px solid #ffcc00 !important;
 }
 .btn-white,
 .btn-white:hover,
@@ -111,8 +111,8 @@ File: Components
 .btn-primary:focus,
 .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary {
-  background-color: #5d9cec !important;
-  border: 1px solid #5d9cec !important;
+  background-color: #ffcc00 !important;
+  border: 1px solid #ffcc00 !important;
 }
 .btn-success,
 .btn-success:hover,
@@ -955,7 +955,7 @@ File: Components
   background-color: #5d9cec;
 }
 .progress-bar-success {
-  background-color: #81c868;
+  background-color: #ffcc00;
 }
 .progress-bar-info {
   background-color: #34d3eb;
@@ -1917,7 +1917,7 @@ ul.ColVis_collection li {
   border-top-right-radius: 4px !important;
   padding: 70px 0px;
   background-size: cover;
-  background: url("../images/big/bg.jpg") center right no-repeat;
+  background: url("../images/bg.png") center right no-repeat;
 }
 /* Blog styles */
 .blog-box-one {

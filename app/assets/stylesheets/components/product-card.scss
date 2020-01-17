@@ -19,13 +19,13 @@
 .product-card__btn {
   width: 100%;
   text-align: center;
-  color: white;
+  color: #ffcc00;
   font-size: 13px;
   padding: 12px;
 
   &:first-child {
     border-radius: 0 0 0 3px;
-    background-color: #373435;
+    background-color: #000000;
     &:hover, &:focus {
       color: #fff;
     }

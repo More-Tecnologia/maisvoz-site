@@ -1,11 +1,11 @@
 <li>
   <%= link_to backoffice_dashboard_index_path, class: 'waves-effect' do %>
-    <i class="ti-home"></i> <span>Dashboard</span>
+    <i class="fas fa-home"></i> <span>Dashboard</span>
   <% end %>
 </li>
 <!-- Shop menu -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-shopping-cart"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.categories'), backoffice_admin_categories_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.products'), backoffice_admin_products_path, class: 'admin-link' %></li>
@@ -24,7 +24,7 @@
 </li>
 <!-- Financial menu -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-money"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span></a>
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.credits_debits'), backoffice_admin_credits_debit_path(:find_user), class: 'admin-link' %></li>
     <li><%= link_to t('defaults.financial_transactions'), backoffice_admin_financial_transactions_path, class: 'admin-link' %></li>
@@ -49,7 +49,7 @@
 
 <!-- pv history menu -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-world"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
   <ul class="list-unstyled">
     <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
     <li><%= link_to t('defaults.lineage_scores'), backoffice_lineage_scores_path %></li>
@@ -61,7 +61,7 @@
 
 <!-- Admin menu -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-world"></i><span class="menu-arrow"></span><span> <%= t('defaults.admin') %> </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-user-shield"></i><span class="menu-arrow"></span><span> <%= t('defaults.admin') %> </span></a>
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.users'), backoffice_support_users_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.user_versions'), backoffice_admin_user_versions_path, class: 'admin-link' %> </li>

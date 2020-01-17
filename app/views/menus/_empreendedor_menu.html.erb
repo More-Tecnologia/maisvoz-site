@@ -1,11 +1,11 @@
 <li>
   <%= link_to backoffice_dashboard_index_path, class: 'waves-effect' do %>
-    <i class="ti-home"></i> <span>Dashboard</span>
+    <i class="fas fa-home"></i> <span>Dashboard</span>
   <% end %>
 </li>
 <!-- Shop menu -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-shopping-cart"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
     <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
@@ -22,7 +22,7 @@
 </li>
 <!-- Financial menu -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-money"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span></a>
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
     <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
@@ -32,7 +32,7 @@
 </li>
 <!-- PV History -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-book"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
   <ul class="list-unstyled">
     <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
     <li><%= link_to t('defaults.lineage_scores'), backoffice_lineage_scores_path %></li>
@@ -41,7 +41,7 @@
 </li>
 <!-- Network -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="ti-sharethis"></i><span class="menu-arrow"></span><span> <%= t('defaults.network') %> </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-user-shield"></i><span class="menu-arrow"></span><span> <%= t('defaults.network') %> </span></a>
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path if ENV['ENABLED_BINARY'] == 'true' %></li>
     <li><%= link_to t('defaults.binary_tree'), backoffice_binary_tree_index_path if ENV['ENABLED_BINARY'] == 'true' %></li>

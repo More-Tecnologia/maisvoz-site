@@ -394,3 +394,6 @@ end
 
 products = Product.where(name: ['+ Voz Elite', '+ Voz Premium'])
 products.update_all(active: true)
+
+sistem_fee = FinancialReason.morenwm_fee
+sistem_fee.financial_transactions.update_all(moneyflow: 1)

@@ -64,7 +64,7 @@ module Financial
 
     def create_order_payment
       order.paid!
-      Financial::OrderPaymentService.call(order: order) if enabled_bonification
+      Financial::OrderPaymentService.call(order: order)
     end
 
     def propagate_binary_score

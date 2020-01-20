@@ -39,7 +39,6 @@ module Bonification
         next unless product_score.try(:amount_cents).to_f > 0
         financial_transaction =
           create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
-        Financial::UnlockBlockedBalance.call(user: sponsor)
       end
     end
 
@@ -85,14 +84,19 @@ module Bonification
                                                financial_reason: financial_reason,
                                                generation: generation,
                                                cent_amount: bonus,
-                                               order: order)
+                                               order: order) if bonus > 0
       chargeback_by_inactivity!(transaction, financial_reason) if sponsor.inactive?
-      excess = career_trail_excess_bonus(sponsor)
-      transaction.chargeback_by_career_trail_excess!(excess) if excess > 0
+      block_bonus_value(sponsor, bonus) if sponsor.active?
+      transaction
     end
 
     def chargeback_by_inactivity!(transaction, financial_reason)
       transaction.chargeback_by_inactivity!(financial_reason.chargeback_by_inactivity)
+    end
+
+    def block_bonus_value(sponsor, cent_amount)
+      amount = sponsor.blocked_balance_cents + cent_amount
+      sponsor.update_attributes!(blocked_balance_cents: amount)
     end
 
     def find_product_reason_scores_by(products)

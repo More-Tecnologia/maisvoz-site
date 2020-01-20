@@ -20,7 +20,7 @@ premium_scores = [[8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8
 
 ActiveRecord::Base.transaction do
   reason = FinancialReason.find_by(code: '2000')
-  product = Product.find_by(name: 'Elite')
+  product = Product.find_by(name: '+ Voz Elite')
   product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
 
   create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 1)
@@ -29,7 +29,7 @@ end
 
 ActiveRecord::Base.transaction do
   reason = FinancialReason.find_by(code: '2000')
-  product = Product.find_by(name: 'Premium')
+  product = Product.find_by(name: '+ Voz Premium')
   product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
 
   create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 1)
@@ -52,7 +52,7 @@ elite_scores = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
 ActiveRecord::Base.transaction do
   reason = FinancialReason.find_by(code: '2200')
-  product = Product.find_by(name: 'Elite')
+  product = Product.find_by(name: '+ Voz Elite')
   product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
 
   create_product_scores_by_trail(product, reason, product_reason, elite_scores, fix_value = true, 1)
@@ -61,7 +61,7 @@ end
 
 ActiveRecord::Base.transaction do
   reason = FinancialReason.find_by(code: '2200')
-  product = Product.find_by(name: 'Premium')
+  product = Product.find_by(name: '+ Voz Premium')
   product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
 
   create_product_scores_by_trail(product, reason, product_reason, premium_scores, fix_value = true, 1)

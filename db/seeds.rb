@@ -7,7 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
-  #CAREERS
+  c = CareerTrail.where(career_id: 2).delete_all
+  c = Career.where(id: 2).delete_all
+  c = Career.find_by(name: 'Consultor Premium')
+  c.update_attribute(:name, 'Consultor')
+
   careers = [{name: 'Inscrito',
               qualifying_score: -1,
               bonus: 0,
@@ -46,7 +50,8 @@ ActiveRecord::Base.transaction do
               kind: :adhesion,
               image_path: 'careers/ouro.png',
               requalification_score: 5250,
-              unilevel_qualifying_career_count: 5},
+              unilevel_qualifying_career_count: 5,
+              lineage_score: 10500},
              {name: 'Executivo Rubi',
               qualifying_score: 175_000,
               bonus: 0,
@@ -54,7 +59,8 @@ ActiveRecord::Base.transaction do
               kind: :adhesion,
               image_path: 'careers/rubi.png',
               requalification_score: 17_500,
-              unilevel_qualifying_career_count: 7},
+              unilevel_qualifying_career_count: 7,
+              lineage_score: 25000},
              {name: 'Executivo Esmeralda',
               qualifying_score: 350_000,
               bonus: 0,
@@ -62,7 +68,8 @@ ActiveRecord::Base.transaction do
               kind: :adhesion,
               image_path: 'careers/esmeralda.png',
               requalification_score: 35_000,
-              unilevel_qualifying_career_count: 7},
+              unilevel_qualifying_career_count: 7,
+              lineage_score: 50000},
              {name: 'Diamante',
               qualifying_score: 1_750_000,
               bonus: 0,
@@ -70,7 +77,8 @@ ActiveRecord::Base.transaction do
               kind: :adhesion,
               image_path: 'careers/diamante.png',
               requalification_score: 175_000,
-              unilevel_qualifying_career_count: 8},
+              unilevel_qualifying_career_count: 8,
+              lineage_score: 218750},
              {name: 'Diamante Azul',
               qualifying_score: 3_500_000,
               bonus: 0,
@@ -78,7 +86,8 @@ ActiveRecord::Base.transaction do
               kind: :adhesion,
               image_path: 'careers/diamante-azul.png',
               requalification_score: 350_000,
-              unilevel_qualifying_career_count: 8},
+              unilevel_qualifying_career_count: 8,
+              lineage_score: 437500},
              {name: 'Diamante Negro',
               qualifying_score: 10_500_000,
               bonus: 0,
@@ -86,7 +95,8 @@ ActiveRecord::Base.transaction do
               kind: :adhesion,
               image_path: 'careers/diamante-negro.png',
               requalification_score: 1_050_000,
-              unilevel_qualifying_career_count: 9},
+              unilevel_qualifying_career_count: 9,
+              lineage_score: 1166666},
              {name: 'Presidente',
               qualifying_score: 17_500_000,
               bonus: 0,
@@ -94,13 +104,21 @@ ActiveRecord::Base.transaction do
               kind: :adhesion,
               image_path: 'careers/presidente.png',
               requalification_score: 1_750_000,
-              unilevel_qualifying_career_count: 10}
+              unilevel_qualifying_career_count: 10,
+              lineage_score: 1_750_000}
             ]
-  persisted_careers = careers.map { |career| Career.find_or_create_by!(career) }
+  persisted_careers = careers.map do |attributes|
+    career = Career.find_by(name: attributes[:name])
+    if career
+      career.update_attributes(attributes.except(:qualifying_score, :requalification_score))
+    else
+      Career.find_or_create_by(attributes.except(:qualifying_score, :requalification_score))
+    end
+  end
 
-  adhesion_category = Category.find_or_create_by!(name: 'Adesão',
-                                                  active_session: true,
-                                                  active: true)
+  # adhesion_category = Category.find_or_create_by!(name: '+ Voz Pack',
+  #                                                 active_session: true,
+  #                                                 active: true)
 
   sim_card_category = Category.find_or_create_by!(name: 'CHIPs',
                                                   active_session: true,
@@ -187,39 +205,39 @@ premium_product_bonus = Product.find_or_create_by!(name: 'Pacote de CHIPs - Bonu
                                             kind: :activation,
                                             code: 22)
 
- elite = Product.find_or_create_by!(name: 'Elite',
-                                    quantity: 1,
-                                    price_cents: 34999,
-                                    binary_score: 175,
-                                    binary_bonus: 0,
-                                    active: true,
-                                    virtual: true,
-                                    category: adhesion_category,
-                                    paid_by: :paid_by_user,
-                                    kind: :adhesion)
-
- premium = Product.find_or_create_by!(name: 'Premium',
-                                      quantity: 1,
-                                      price_cents: 69999,
-                                      binary_score: 350,
-                                      binary_bonus: 0,
-                                      active: true,
-                                      virtual: true,
-                                      category: adhesion_category,
-                                      paid_by: :paid_by_user,
-                                      kind: :adhesion)
+ # elite = Product.find_or_create_by!(name: '+ Voz Elite',
+ #                                    quantity: 1,
+ #                                    price_cents: 34999,
+ #                                    binary_score: 175,
+ #                                    binary_bonus: 0,
+ #                                    active: true,
+ #                                    virtual: true,
+ #                                    category: adhesion_category,
+ #                                    paid_by: :paid_by_user,
+ #                                    kind: :adhesion)
+ #
+ # premium = Product.find_or_create_by!(name: '+ Voz Premium',
+ #                                      quantity: 1,
+ #                                      price_cents: 69999,
+ #                                      binary_score: 350,
+ #                                      binary_bonus: 0,
+ #                                      active: true,
+ #                                      virtual: true,
+ #                                      category: adhesion_category,
+ #                                      paid_by: :paid_by_user,
+ #                                      kind: :adhesion)
 
 reload_34_99 = Product.find_or_create_by!(name: 'Recarga 34,90',
-                                     quantity: 1,
-                                     price_cents: 3499,
-                                     binary_score: 0,
-                                     binary_bonus: 0,
-                                     active: false,
-                                     virtual: false,
-                                     category: cellphone_reload_category,
-                                     paid_by: :paid_by_user,
-                                     kind: :detached,
-                                     binary_score: 15)
+                                         quantity: 1,
+                                         price_cents: 3499,
+                                         binary_score: 0,
+                                         binary_bonus: 0,
+                                         active: false,
+                                         virtual: false,
+                                         category: cellphone_reload_category,
+                                         paid_by: :paid_by_user,
+                                         kind: :detached,
+                                         binary_score: 15)
 
 reload_44_99 = Product.find_or_create_by!(name: 'Recarga 44,90',
                                           quantity: 1,
@@ -258,15 +276,20 @@ reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,90',
                                           binary_score: 45)
 
 # TRAILS
-trails  = [{ name: 'Elite', product: elite, product_bonus: elite_product_bonus },
-           { name: 'Premium', product: premium, product_bonus: premium_product_bonus }]
-persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
+# trails  = [{ name: 'Elite', product: elite, product_bonus: elite_product_bonus },
+#            { name: 'Premium', product: premium, product_bonus: premium_product_bonus }]
+# persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
+#
+#   persisted_careers.each do |career|
+#     persisted_trails.each do |trail|
+#       CareerTrail.find_or_create_by!(career: career, trail: trail)
+#     end
+#   end
 
-  persisted_careers.each do |career|
-    persisted_trails.each do |trail|
-      activation_product_codes = career.qualifying_score < 52_500 ? [20, 21, 22] : [22]
-      CareerTrail.find_or_create_by!(career: career, trail: trail, activation_product_codes: activation_product_codes)
-    end
+  career_trails = CareerTrail.includes(:career, :trail).all
+  career_trails.each do |c|
+    activation_product_codes = c.career.qualifying_score < 52_500 ? [20, 21, 22] : [22]
+    c.update_attributes!(activation_product_codes: activation_product_codes)
   end
 
   # SCORE TYPES
@@ -278,7 +301,7 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                  { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500', active: false },
                  { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600', active: false },
                  { name: 'Débito de Bonus Binário', tree_type: :binary, code: '700', active: false }]
-  score_types.each { |score_type| ScoreType.find_or_create_by!(score_type) }
+  score_types.each { |score_type| ScoreType.find_or_create_by!(score_type) unless ScoreType.exists?(code: score_type[:code]) }
 
 
   # FINANCIAL REASONS
@@ -289,8 +312,13 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                             { title: 'Pagamento de Pedido', code: '1200', company_moneyflow: :credit },
                             { title: 'Credito', code: '2800', company_moneyflow: :debit },
                             { title: 'Debito', code: '2900', company_moneyflow: :credit }]
-  administrative_reasons.each do |r|
-    FinancialReason.find_or_create_by!(r.merge({financial_reason_type: administrative_type}))
+  administrative_reasons.each do |attributes|
+    financial_reason = FinancialReason.find_by(code: attributes[:code])
+    if financial_reason
+      financial_reason.update_attributes(attributes)
+    else
+      FinancialReason.find_or_create_by!(attributes.merge({financial_reason_type: administrative_type}))
+    end
   end
   bonus_type = FinancialReasonType.find_or_create_by!(name: 'Bonus', code: '200')
   bonus_reasons = [{ title: 'Estorno de Bonus', code: '100', active: false, company_moneyflow: :credit },
@@ -315,8 +343,13 @@ persisted_trails = trails.map { |trail| Trail.find_or_create_by!(trail) }
                    { title: 'Bonus Ativação de Ponto de Apoio', code: '3100', active: true, company_moneyflow: :debit },
                    { title: 'Estorno de Bonus Ativação de Ponto de Apoio por Inatividade', code: '3200', active: true, company_moneyflow: :credit }]
 
-  bonus_reasons.each do |r|
-    FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
+  bonus_reasons.each do |attributes|
+    financial_reason = FinancialReason.find_by(code: attributes[:code])
+    if financial_reason
+      financial_reason.update_attributes(attributes)
+    else
+      FinancialReason.find_or_create_by!(attributes.merge({financial_reason_type: bonus_type}))
+    end
   end
 
   # RoleTypes
@@ -352,3 +385,12 @@ chargebacks.each do |chargeback|
   chargeback_reason = FinancialReason.find_by(code: chargeback[0])
   chargeback_reason.update(financial_reason: FinancialReason.find_by(code: chargeback[1]))
 end
+
+careers = Career.where('qualifying_score > 0')
+consultant = Career.find_by(name: 'Consultor')
+careers.each do |career|
+  career.update_attribute(:unilevel_qualifying_career, consultant)
+end
+
+products = Product.where(name: ['+ Voz Elite', '+ Voz Premium'])
+products.update_all(active: true)

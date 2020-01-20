@@ -86,7 +86,7 @@ module Bonification
                                                cent_amount: bonus,
                                                order: order) if bonus > 0
       chargeback_by_inactivity!(transaction, financial_reason) if sponsor.inactive?
-      block_bonus_value(sponsor, bonus) if sponsor.active?
+      block_bonus_value(sponsor, bonus) if sponsor.active? && sponsor.pf?
       transaction
     end
 

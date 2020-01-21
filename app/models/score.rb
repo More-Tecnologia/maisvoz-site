@@ -41,6 +41,8 @@ class Score < ApplicationRecord
     -> { where(created_at: (Date.current.beginning_of_month..Date.current.end_of_month)) }
   scope :spreaded_to, ->(user) { where(user: user) }
 
+  after_commit :upgrade_user_career, on: :create
+
   def chargeback!(score_type, amount = cent_amount)
     create_chargeback!(source_leg: source_leg,
                        order: order,
@@ -89,6 +91,12 @@ class Score < ApplicationRecord
 
   def self.sum_scores_by_user(received_scores, spreaded_scores)
     received_scores.merge(spreaded_scores) { |key, old, new| old + new }
+  end
+
+  private
+
+  def upgrade_user_career
+    UpgraderCareerService.call(user: user)
   end
 
 end

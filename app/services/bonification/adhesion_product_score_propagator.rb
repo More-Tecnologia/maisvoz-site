@@ -21,7 +21,6 @@ module Bonification
       sponsors.each_with_index do |sponsor, index|
         next unless sponsor.empreendedor?
         create_adhesion_score(sponsor, index + 1)
-        upgrade_career(sponsor)
       end
     end
 
@@ -32,10 +31,6 @@ module Bonification
                              score_type: score_type,
                              cent_amount: cent_amount.to_i,
                              height: height) if cent_amount > 0
-    end
-
-    def upgrade_career(sponsor)
-      UpgraderCareerService.call(user: sponsor)
     end
 
     def adhesion_score

@@ -7,10 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ActiveRecord::Base.transaction do
-  c = CareerTrail.where(career_id: 2).delete_all
-  c = Career.where(id: 2).delete_all
-  c = Career.find_by(name: 'Consultor Premium')
-  c.update_attribute(:name, 'Consultor')
 
   careers = [{name: 'Inscrito',
               qualifying_score: -1,
@@ -291,6 +287,13 @@ reload_99_99 = Product.find_or_create_by!(name: 'Recarga 99,90',
     activation_product_codes = c.career.qualifying_score < 52_500 ? [20, 21, 22] : [22]
     c.update_attributes!(activation_product_codes: activation_product_codes)
   end
+
+  elite_product_bonus = Product.find_by(name: 'Pacote de CHIPs - Bonus Elite')
+  premium_product_bonus = Product.find_by(name: 'Pacote de CHIPs - Bonus Premium')
+  trail = Trail.find_by(name: 'Elite')
+  trail.update_attributes!(product_bonus: elite_product_bonus)
+  trail = Trail.find_by(name: 'Premium')
+  trail.update_attributes!(product_bonus: premium_product_bonus)
 
   # SCORE TYPES
   score_types = [{ name: 'Pontuação de Adesões', code: '100' },

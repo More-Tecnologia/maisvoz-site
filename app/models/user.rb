@@ -161,6 +161,11 @@ class User < ApplicationRecord
   validates :bank_account, presence: true, on: :withdrawal
   validates :bank_agency, presence: true, on: :withdrawal
   validates :bank_code, presence: true, on: :withdrawal
+  validates :document_cpf_photo, presence: true, on: :document_verification
+  validates :document_rg_photo, presence: true, on: :document_verification
+  validates :document_pis_photo, presence: true, on: :document_verification, if: :pf?
+  validates :document_address_photo, presence: true, on: :document_verification
+  validates :document_scontract_photo, presence: true, on: :document_verification, if: :pj?
 
   validate :support_point_requisits, on: :update, if: :support_point?
 

@@ -49,6 +49,12 @@ pt-BR:
         credit: Crédito
         debit: Débito
         generation: Geração
+      user:
+        document_cpf_photo: Foto do CPF
+        document_rg_photo: Foto do RG
+        document_pis_photo: Foto do PIS/PASEP
+        document_address_photo: Comprovante de endereço
+        document_scontract_photo: Contrato Social
     errors:
       models:
         user:

@@ -638,6 +638,7 @@ pt-BR:
     user_versions: Relatório de Atividade
     no_data: Sem registros
     indication_link: Link de indicação
+    filters: Filtros
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

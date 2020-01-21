@@ -16,7 +16,7 @@
           <%= text_field_tag :sim_card_iccid, '', class: 'form-control',
                                                   placeholder: SimCard.human_attribute_name(:iccid).to_s.downcase,
                                                   id: 'iccid' %>
-          <%= hidden_field_tag :username, params[:q].try(:fetch, :username_eq), name: 'sim_cards[username]' %>
+          <%= hidden_field_tag :username, @consultant.username, name: 'sim_cards[username]' %>
         </div>
         <div class="col-auto my-1">
           <%= submit_tag t('helpers.submit.sim_card_transfer'), class: 'btn btn-primary',
@@ -71,13 +71,13 @@
               <% end %>
               <% if @consultant_sim_cards.empty? %>
                 <tr>
-                  <td colspan="10" class="text-center"><%= t('views.backoffice.orders.index.no_data') %></td>
+                  <td colspan="10" class="text-center"><%= t('defaults.no_data') %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
           </div>
-          <%= paginate(@consultant_sim_cards) if @consultant_sim_cards.any? %>
+            <%= paginate(@consultant_sim_cards) if @consultant_sim_cards.any? %>
         </div>
       </div>
     </div>

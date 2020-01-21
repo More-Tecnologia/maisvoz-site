@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   var iccids = [""];
-  var iccids_count_maximun = parseInt($("#iccids-count").text());
+  var iccids_count_maximun = parseInt($("#iccids-count").text()) || 100000000;
 
   $("input#iccid").on('keypress', function(event){
     var iccid = $(this).val();

@@ -267,6 +267,7 @@ pt-BR:
     bank: Banco
     bank_account: Conta
     bank_agency: Agência
+    cellphone_number: Telefone
   backoffice:
     orders:
       show:

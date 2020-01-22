@@ -1,4 +1,7 @@
 class Trail < ApplicationRecord
+
+  belongs_to :product_bonus, class_name: 'Product'
+
   has_many :career_trails
   has_many :careers, through: :career_trails
   has_one :product

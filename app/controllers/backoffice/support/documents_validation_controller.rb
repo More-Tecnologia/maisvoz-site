@@ -8,7 +8,12 @@ module Backoffice
 
       def update
         if params[:status] == 'verified'
-          user.update!(document_verification_status: 'verified', document_verification_updated_at: Time.now)
+          if user.valid?(:document_verification)
+            user.update!(document_verification_status: 'verified', document_verification_updated_at: Time.now)
+          else
+            flash['error'] = user.errors.full_messages.join(', ')
+            redirect_to(backoffice_support_user_path(user)) and return
+          end
         elsif params[:delete].present? && params[:status] == User.document_verification_statuses['refused_verification']
           ActiveRecord::Base.transaction do
             user.update!(document_refused_reason: params[:reason], document_verification_updated_at: Time.now)
@@ -35,7 +40,7 @@ module Backoffice
       end
 
       def user
-        User.find(params[:id])
+        @user ||= User.find(params[:id])
       end
 
     end

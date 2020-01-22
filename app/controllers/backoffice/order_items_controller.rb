@@ -2,7 +2,7 @@ module Backoffice
   class OrderItemsController < BackofficeController
 
     before_action :ensure_valid_user
-    before_action :ensure_valid_product
+    before_action :ensure_valid_product, except: [:destroy, :update]
 
     def create
       command = Shopping::AddToCart.call(current_order, product_params[:id])
@@ -20,7 +20,7 @@ module Backoffice
       order_item.update!(quantity: order_item_params[:quantity].to_i.abs) unless order_item.adhesion?
       update_order_total
       update_order_pv_total
-      flash[:success] = t('cart.cart_updated')
+      flash[:success] = t('.cart_updated')
       redirect_to backoffice_cart_path
     end
 
@@ -28,7 +28,7 @@ module Backoffice
       order_item = OrderItem.find(params[:id])
       order_item.destroy!
       update_order_total
-      flash[:success] = t('cart.cart_updated')
+      flash[:success] = t('.cart_updated')
       redirect_to backoffice_cart_path
     end
 
@@ -66,6 +66,10 @@ module Backoffice
     def product_less_or_equal_current_trail_product?
       trail_product = current_user.try(:current_trail).try(:product)
       trail_product && product.price_cents <= trail_product.price_cents
+    end
+
+    def product
+      @product ||= Product.find_by_hashid(params[:product][:id])
     end
 
   end

@@ -24,7 +24,7 @@
               </div>
               <div class="col-md-4">
                 <%= t('activerecord.attributes.score.score_type') %>
-                <%= f.select :score_type_id_in, ScoreType.unilevel.pluck(:name, :id),
+                <%= f.select :score_type_id_in, ScoreType.unilevel.active.pluck(:name, :id),
                                                 { include_blank: t('all') },
                                                 { class: 'form-control input-sm', multiple: true } %>
               </div>

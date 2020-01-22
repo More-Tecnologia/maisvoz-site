@@ -10,5 +10,10 @@ module Backoffice
       careers_for_select.detect { |c| c.second.to_i == career_id.to_i }
     end
 
+    def find_unilevel_qualifying_career(career_id)
+      return unless career_id
+      careers_for_select.detect { |c| c.second.to_i == career_id.to_i }
+    end
+
   end
 end

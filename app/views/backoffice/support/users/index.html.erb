@@ -13,9 +13,9 @@
 
       <%= link_to "Download CSV", url_for(format: 'csv', users_grid: params[:users_grid]), class: 'btn btn-primary btn-sm m-t-10' %>
 
-      <%= paginate(@grid.assets) %>
+      <%= paginate = paginate(@grid.assets) %>
       <%= datagrid_table @grid %>
-      <%= paginate(@grid.assets) %>
+      <%= paginate %>
 
     </div>
   </div>

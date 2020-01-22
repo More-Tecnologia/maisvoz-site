@@ -1,8 +1,4 @@
-<div class="alert alert-welcome">
-  <span><i class="md md-person-outline"></i> Olá, <%= current_user.name %></span>
-  <span>Seja Bem vindo!</span>
-</div>
-
+<br>
 <div class="row linhaHome">
   <div class="col-md-3">
     <div class="dashboard-card">
@@ -58,7 +54,7 @@
       </div>
     </div>
   </div>
-</div>
+</div><br><br>
 
 <div class="row">
   <div class="col-md-4">
@@ -79,7 +75,7 @@
               <tr>
                 <td><%= l withdraw.created_at, format: :short %></td>
                 <td><%= t withdraw.status %></td>
-                <td><%= number_to_currency withdraw.gross_amount %></td>
+                <td><%= number_to_currency withdraw.gross_amount_cents %></td>
               </tr>
             <% end %>
             <% if last_withdrawals.blank? %>

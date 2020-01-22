@@ -49,6 +49,7 @@
                                     <tr><th>#</th>
                                     <th><%= OrderItem.human_attribute_name(:item) %></th>
                                     <th><%= OrderItem.human_attribute_name(:quantity) %></th>
+                                    <th><%= OrderItem.human_attribute_name(:cellphone_number) %></th>
                                     <th><%= OrderItem.human_attribute_name(:unit_cost) %></th>
                                     <th><%= OrderItem.human_attribute_name(:total) %></th>
                                 </tr></thead>
@@ -58,6 +59,7 @@
                                     <td><%= oi.product.id %></td>
                                     <td><%= link_to oi.product.name, backoffice_product_path(oi.product) %></td>
                                     <td><%= oi.quantity %></td>
+                                    <th><%= number_to_phone(oi.cellphone_number, pattern: /(\d{2})(\d{5})(\d{4})$/) if oi.cellphone_number.present? %></th>
                                     <td><%= number_to_currency oi.unit_price %></td>
                                     <td><%= number_to_currency oi.total %></td>
                                   </tr>
@@ -98,6 +100,14 @@
                         <p class="text-right"><%= t('.taxes') %>: <%= @order.tax %></p>
                         <hr>
                         <h3 class="text-right"><%= number_to_currency @order.total %></h3>
+                    </div>
+                    <div class="pull-right">
+                      <% if !@order.completed? && !@order.expired? %>
+                        <%= link_to '<i class="fas fa-barcode m-r-5"></i> Imprimir Boleto'.html_safe, @order.current_transaction.boleto_url, class: 'btn btn-primary btn-xs',  target: '_blank' if @order.current_transaction %>
+                        <%= button_to(backoffice_order_generate_boleto_path(@order), class: 'btn btn-primary btn-xs', method: :post, data: { disable_with: 'Gerando...' }) do %>
+                          <i class="fas fa-file m-r-5"></i> Gerar Boleto
+                        <% end if @order.current_transaction.blank? %>
+                      <% end %>
                     </div>
                 </div>
                 <hr>

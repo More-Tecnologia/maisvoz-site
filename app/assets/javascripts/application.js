@@ -47,6 +47,9 @@
 //= require users/registrations/new
 //= require credits-debits
 //= require unilevel-nodes/unilevel-node
+//= require sim-cards/new
+//= require copy-button
+//= require cellphone-reloads/new
 
 $(document).ready(function() {
   $("#sidebar-menu a").each(function() {

@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :trail do
     name { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
-    product { association(:product) }
+    product { association(:product, :adhesion) }
   end
 end

@@ -1,0 +1,59 @@
+$(document).ready(function() {
+
+  var iccids = [""];
+  var iccids_count_maximun = parseInt($("#iccids-count").text()) || 100000000;
+
+  $("input#iccid").on('keypress', function(event){
+    var iccid = $(this).val();
+    if(is_end_char(event)) {
+      if(validate(iccid)) {
+        iccids.push(iccid);
+        add_to_form_list(iccid);
+        add_to_list(iccid);
+        $(this).val('');
+        update_iccid_count();
+        enable_submit_button();
+      }
+      event.preventDefault();
+    }
+  });
+
+  function is_end_char(event) { return event.which == 13; }
+
+  function validate(iccid) {
+    return (is_uniq(iccid) && iccid_less_than_to_maximum());
+  }
+
+  function is_uniq(iccid) {
+    return $.inArray(iccid, iccids) == -1;
+  }
+
+  function iccid_less_than_to_maximum() {
+    return iccids_count() < iccids_count_maximun;
+  }
+
+  function add_to_form_list(iccid) {
+    var element = "<input type='hidden' name='sim_cards[iccids][]' value=" + iccid +">";
+    $("ul#iccids-hidden").prepend(element);
+  }
+
+  function add_to_list(iccid) {
+    var element = "<li>" + iccid + "</li>";
+    $("ul#iccids").prepend(element);
+  }
+
+  function update_iccid_count() {
+    $("strong#iccid-count").html(iccids_count);
+  }
+
+  function iccids_count() {
+    var new_iccids = $("ul#iccids").children().length;
+    var added_iccids = $("tbody#sim-cards .added").length;
+    return (new_iccids + added_iccids);
+  }
+
+  function enable_submit_button() {
+    $("input[type='submit']#send-iccids").prop('disabled', false);
+  }
+
+});

@@ -85,9 +85,9 @@
 
 class User < ApplicationRecord
 
-  attr_accessor :login
+  has_paper_trail
 
-  monetize :available_balance_cents, :blocked_balance_cents
+  attr_accessor :login
 
   enum role: { consumidor: 'consumidor', empreendedor: 'empreendedor', admin: 'admin', suporte: 'suporte', financeiro: 'financeiro', ecommerce: 'ecommerce' }
   enum marital_status: { single: 'single', married: 'married', widowed: 'widowed', divorced: 'divorced' }
@@ -104,6 +104,9 @@ class User < ApplicationRecord
   enum binary_position: { left: 'left', right: 'right' }
 
   serialize :ascendant_sponsors_ids, Array
+  store :financial_transactions_checkpoint,
+        accessors: [:financial_transaction_checkpoint_id, :financial_transaction_checkpoint_balance],
+        coder: JSON
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -132,8 +135,20 @@ class User < ApplicationRecord
   has_many :career_trail_users, dependent: :destroy
   has_many :career_trails, through: :career_trail_users
   has_many :financial_transactions
+  has_many :sim_cards
+  has_many :supported_sim_cards, class_name: 'SimCard',
+                                 foreign_key: 'support_point_user_id'
+  has_many :supported_point_users, class_name: 'User',
+                                   foreign_key: 'support_point_user_id'
+
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
+  belongs_to :role_type, class_name: 'RoleType',
+                         foreign_key: 'role_type_code',
+                         primary_key: 'code',
+                         optional: true
+  belongs_to :support_point_user, class_name: 'User',
+                                  optional: true
 
   has_many :credits
   has_many :debits
@@ -142,8 +157,33 @@ class User < ApplicationRecord
   has_many :vouchers
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
+  validates :bank_account_type, presence: true, on: :withdrawal
+  validates :bank_account, presence: true, on: :withdrawal
+  validates :bank_agency, presence: true, on: :withdrawal
+  validates :bank_code, presence: true, on: :withdrawal
+  validates :document_cpf_photo, presence: true, on: :document_verification
+  validates :document_rg_photo, presence: true, on: :document_verification
+  validates :document_pis_photo, presence: true, on: :document_verification, if: :pf?
+  validates :document_address_photo, presence: true, on: :document_verification
+  validates :document_scontract_photo, presence: true, on: :document_verification, if: :pj?
 
-  scope :active, -> { where(active: true) }
+  validate :support_point_requisits, on: :update, if: :support_point?
+
+  scope :bought_adhesion, -> { where(bought_adhesion: true) }
+  scope :active,
+    -> { ENV['ENABLED_ACTIVATION'] == 'true' ?
+          where('active_until >= ?', Date.current).where(active: true) : where(active: true) }
+  scope :inactive, -> { ENV['ENABLED_ACTIVATION'] == 'true' ?
+                          where('active_until < ?', Date.current).or(User.where(active: false)) : where(active: false) }
+  scope :support_point, -> { where(role_type_code: RoleType.support_point_code) }
+  scope :by_location, ->(city, state) {
+    where('lower(unaccent(city)) = ? AND lower(unaccent(state)) = ?',
+          I18n.transliterate(city.to_s.strip.downcase),
+          I18n.transliterate(state.to_s.strip.downcase)) }
+  scope :by_support_point_and_consultant, ->(support_point, username) {
+    where(support_point_user: support_point, username: username) }
+  scope :with_support_point, -> { where.not(support_point_user: nil) }
+  scope :without_support_point, -> { where(support_point_user: nil) }
 
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
@@ -151,11 +191,15 @@ class User < ApplicationRecord
   after_create :insert_into_binary_tree
 
   def balance
-    (available_balance + blocked_balance).to_f
+    (available_balance + blocked_balance).to_f / 1e8
   end
 
-  def balance_cents
-    available_balance_cents + blocked_balance_cents
+  def available_balance
+    available_cent_amount - blocked_balance
+  end
+
+  def blocked_balance
+    blocked_balance_cents + withdrawal_order_amount
   end
 
   def available_balance_cents
@@ -172,6 +216,14 @@ class User < ApplicationRecord
 
   def blocked_balance_cents=(amount)
     self[:blocked_balance_cents] = (amount * 1e8).to_i
+  end
+
+  def withdrawal_order_amount
+    self[:withdrawal_order_amount] / 1e8.to_f if self[:withdrawal_order_amount]
+  end
+
+  def withdrawal_order_amount=(amount)
+    self[:withdrawal_order_amount] = (amount * 1e8).to_i
   end
 
   def unilevel_score_count
@@ -222,9 +274,13 @@ class User < ApplicationRecord
     current_career_trail.try(:career)
   end
 
-  def activate!
-    update!(active: true, active_until: 1.month.from_now)
-    update_sponsor_binary_qualified
+  def current_career_trail_user
+    career_trail_users.last
+  end
+
+  def activate!(active_until = 1.month.from_now)
+    update!(active: true, active_until: active_until )
+    update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
   end
 
   def out_binary_tree?
@@ -254,21 +310,20 @@ class User < ApplicationRecord
   end
 
   def available_cent_amount
-    credit_amount = FinancialTransaction.credit.where(user: self).sum(:cent_amount)
-    debit_amount = FinancialTransaction.debit.where(user: self).sum(:cent_amount)
-    (credit_amount.to_i - debit_amount.to_i) / 1e2.to_f
+    return calculate_available_balance_cents_and_update_it_as_customer_admin_user if customer_admin?
+    calculate_available_balance_and_update_it
   end
 
   def self.find_morenwm_customer_user
-    find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
+    @@find_morenwm_customer_user ||= find_by(username: ENV['MORENWM_CUSTOMER_USERNAME'])
   end
 
   def self.find_morenwm_customer_admin
-    find_by(username: ENV['MORENWM_CUSTOMER_ADMIN'])
+    @@find_morenwm_customer_admin_user ||= find_by(username: ENV['MORENWM_CUSTOMER_ADMIN'])
   end
 
   def self.find_morenwm_user
-    find_by(username: ENV['MORENWM_USERNAME'])
+    @@find_morenwm_user ||= find_by(username: ENV['MORENWM_USERNAME'])
   end
 
   def update_blocked_balance!(amount)
@@ -293,13 +348,22 @@ class User < ApplicationRecord
     binary_qualified
   end
 
+  def active
+    return self[:active] unless ENV['ENABLED_ACTIVATION'] == 'true'
+    active_until && active_until >= Date.current && self[:active]
+  end
+
+  def active?
+    active
+  end
+
   def inactive?
     !active
   end
 
   def inactivate!
     update_attribute(:active, false)
-    update_sponsor_binary_qualified
+    update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
   end
 
   def binary_qualify!
@@ -318,7 +382,10 @@ class User < ApplicationRecord
   end
 
   def unilevel_ancestors
-    unilevel_node.ancestors.includes(:user).map(&:user)
+    unilevel_node.ancestors
+                 .includes(:user)
+                 .with_active_users
+                 .map(&:user)
   end
 
   def sum_career_trail_bonus
@@ -331,7 +398,7 @@ class User < ApplicationRecord
                                     .financial_reason_bonus
                                     .where('financial_transactions.created_at >= ?', paid_at)
                                     .sum(:cent_amount)
-    (credits - debits).to_f / 1e8.to_f
+    (credits - debits).to_f
   end
 
   def calculate_excess_career_trail_bonus
@@ -355,7 +422,31 @@ class User < ApplicationRecord
 
   def update_sponsor_binary_qualified
     sponsor_node = sponsor.try(:binary_node)
-    sponsor.update_attribute(binary_qualified: sponsor_node.qualified?) if sponsor_node
+    sponsor.update_attributes!(binary_qualified: sponsor_node.qualified?) if sponsor_node
+  end
+
+  def support_point?
+    role_type_code == RoleType.support_point_code
+  end
+
+  def morenwm_user?
+    self == User.find_morenwm_user
+  end
+
+  def customer_admin?
+    self == User.find_morenwm_customer_admin
+  end
+
+  def financial_transactions_by_user_role
+    return FinancialTransaction.by_current_user(self)
+                               .to_morenwm if morenwm_user?
+    return FinancialTransaction.to_customer_admin if customer_admin?
+    return FinancialTransaction.by_current_user(self)
+                               .to_empreendedor if empreendedor?
+  end
+
+  def lineage_scores
+    @lineage_scores ||= Score.unilevel_scores_by_lineage(self, q = Score.ransack)
   end
 
   private
@@ -371,4 +462,45 @@ class User < ApplicationRecord
     ids = sponsor_ids + sponsor_id
     self[:ascendant_sponsors_ids] = ids.compact
   end
+
+  def support_point_requisits
+    errors.add(:document_verification_status, :not_verified) unless verified?
+    errors.add(:registration_type, :not_pj) unless pj?
+  end
+
+  def calculate_available_balance_cents_and_update_it_as_customer_admin_user
+    credits = FinancialTransaction.to_customer_admin
+                                  .from_id(financial_transaction_checkpoint_id.to_i)
+                                  .company_credit
+    debits = FinancialTransaction.to_customer_admin
+                                 .from_id(financial_transaction_checkpoint_id.to_i)
+                                 .company_debit
+    last_transaction_id = [credits.try(:last).try(:id).to_i, debits.try(:last).try(:id).to_i].max
+    return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
+
+    new_balance = credits.sum(&:cent_amount) - debits.sum(&:cent_amount)
+    new_balance += financial_transaction_checkpoint_balance.to_f
+    update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
+    available_balance_cents
+  end
+
+  def calculate_available_balance_and_update_it
+    transactions = financial_transactions_by_user_role.from_id(financial_transaction_checkpoint_id.to_i).to_a
+    last_transaction_id = transactions.try(:last).try(:id).to_i
+    return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
+
+    new_balance = transactions.select(&:credit?).sum(&:cent_amount) - transactions.select(&:debit?).sum(&:cent_amount)
+    new_balance = -new_balance if morenwm_user?
+    new_balance += financial_transaction_checkpoint_balance.to_f
+
+    update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
+    available_balance_cents
+  end
+
+  def update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
+    update_attributes(financial_transaction_checkpoint_balance: new_balance,
+                      available_balance_cents: new_balance,
+                      financial_transaction_checkpoint_id: last_transaction_id)
+  end
+
 end

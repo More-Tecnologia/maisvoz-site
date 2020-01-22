@@ -28,7 +28,7 @@
               </div>
               <div class="col-md-4">
                 <strong> <%= t('activerecord.attributes.score.score_type') %> </strong>
-                <%= f.select :score_type_id_in, ScoreType.binary.pluck(:name, :id),
+                <%= f.select :score_type_id_in, ScoreType.binary.active.pluck(:name, :id),
                                                 { include_blank: t('all') },
                                                 { class: 'form-control input-sm', multiple: true } %>
               </div>

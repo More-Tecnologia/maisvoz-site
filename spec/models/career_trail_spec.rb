@@ -5,6 +5,7 @@ RSpec.describe CareerTrail, type: :model do
 
   it { is_expected.to belong_to(:career) }
   it { is_expected.to belong_to(:trail) }
+  it { is_expected.to belong_to(:product).optional }
   it { is_expected.to have_many(:career_trail_users) }
   it { is_expected.to have_many(:users).through(:career_trail_users) }
   it { is_expected.to have_one(:product_score) }

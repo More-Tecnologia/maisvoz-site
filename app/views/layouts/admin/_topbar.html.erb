@@ -31,7 +31,7 @@
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
             <span class="text-success">
-              <%= number_to_currency(current_user.available_balance_cents) %>
+              <%= number_to_currency(current_user.available_balance) %>
             </span>
             <% end %>
           </li>
@@ -39,17 +39,19 @@
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
             <span class="text-success">
-              <%= number_to_currency(current_user.available_balance_cents) %>
+              <%= number_to_currency(current_user.available_balance) %>
             </span>
             <% end %>
           </li>
+          <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
           <li>
             <%= link_to backoffice_financial_transactions_path do %>
-            <span class="text-warning">
-              <%= number_to_currency current_user.blocked_balance_cents %>
-            </span>
+              <span class="text-danger">
+                <%= number_to_currency current_user.blocked_balance %>
+              </span>
             <% end %>
           </li>
+          <% end %>
         <% end %>
         <li class="hidden-xs">
           <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
@@ -61,21 +63,6 @@
             <i class="icon-basket"></i>
             <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
           <% end %>
-        </li>
-        <li>
-          <a href="?locale=en" class="flag">
-            <%= image_tag('countries/us.svg') %>
-          </a>
-        </li>
-        <li>
-          <a href="?locale=es" class="flag">
-            <%= image_tag('countries/es.svg') %>
-          </a>
-        </li>
-        <li>
-          <a href="?locale=pt-BR" class="flag">
-            <%= image_tag('countries/br.svg') %>
-          </a>
         </li>
         <li>
             <%= link_to edit_user_registration_path do %>
@@ -102,17 +89,37 @@
             <%= t('views.backoffice.topbar.logout') %>
             <% end %>
           </li>
+          <% if current_user.empreendedor? %>
+            <li class="hide">
+              <%= link_to shop_index_url(sponsor: current_user.username) do %>
+                <i class="fa fa-link"></i>
+                <span id="sponsor-link"> <%= shop_index_url(sponsor: current_user.username, locale: '').remove('locale=&') %> </span>
+              <% end %>
+            </li>
+            <li>
+              <a class="btn btn-link copy-trigger" href="#" style="padding: 0px 15px 0px 0px;" data-copyable="#sponsor-link">
+                <%= t('defaults.indication_link') %>
+                <i class="far fa-copy"></i>
+              </a>
+            </li>
+          <% end %>
           </ul>
         </li>
       </ul>
 
       <ul class="nav navbar-nav hidden-xs">
         <% if current_user.empreendedor? %>
-        <li>
-          <%= link_to shop_index_url(sponsor: current_user.username) do %>
-            <i class="fa fa-link"></i> <%= shop_index_url(sponsor: current_user.username, locale: '').remove('locale=&') %>
-          <% end %>
-        </li>
+          <li>
+            <%= link_to shop_index_url(sponsor: current_user.username) do %>
+              <i class="fa fa-link"></i>
+              <span id="sponsor-link"> <%= shop_index_url(sponsor: current_user.username, locale: '').remove('locale=&') %> </span>
+            <% end %>
+          </li>
+          <li>
+            <a class="btn btn-link copy-trigger" href="#" style="padding: 0px 15px 0px 0px;" data-copyable="#sponsor-link">
+              <i class="far fa-copy"></i>
+            </a>
+          </li>
         <% end %>
       </ul>
 
@@ -126,7 +133,7 @@
         <li>
           <%= link_to backoffice_financial_transactions_path do %>
           <span class="text-success">
-            <%= number_to_currency(current_user.available_balance_cents) %>
+            <%= number_to_currency(current_user.available_balance) %>
           </span>
           <% end %>
         </li>
@@ -134,17 +141,19 @@
         <li>
           <%= link_to backoffice_financial_transactions_path do %>
           <span class="text-success">
-            <%= number_to_currency(current_user.available_balance_cents) %>
+            <%= number_to_currency(current_user.available_balance) %>
           </span>
           <% end %>
         </li>
-        <li>
-          <%= link_to backoffice_financial_transactions_path do %>
-          <span class="text-warning">
-            <%= number_to_currency current_user.blocked_balance_cents %>
-          </span>
-          <% end %>
-        </li>
+        <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
+          <li>
+            <%= link_to backoffice_financial_transactions_path do %>
+            <span class="text-danger">
+              <%= number_to_currency current_user.blocked_balance %>
+            </span>
+            <% end %>
+          </li>
+        <% end %>
       <% end %>
       <li class="hidden-xs">
         <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
@@ -156,21 +165,6 @@
           <i class="icon-basket"></i>
           <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
         <% end %>
-      </li>
-      <li>
-        <a href="?locale=en" class="flag">
-          <%= image_tag('countries/us.svg') %>
-        </a>
-      </li>
-      <li>
-        <a href="?locale=es" class="flag">
-          <%= image_tag('countries/es.svg') %>
-        </a>
-      </li>
-      <li>
-        <a href="?locale=pt-BR" class="flag">
-          <%= image_tag('countries/br.svg') %>
-        </a>
       </li>
       <li class="dropdown top-menu-item-xs">
         <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">

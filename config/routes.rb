@@ -28,7 +28,13 @@ Rails.application.routes.draw do
         post :approve
         post :mark_as_billed
       end
+      resources :order_items, only: [] do
+        resources :sim_cards, only: [:new, :create, :destroy]
+      end
       resources :order_approver_without_bonifications, only: [:update]
+      resource :sim_card_control, only: [:new]
+      resources :sim_card_reports, only: [:index]
+      resources :user_versions, only: [:index]
 
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]
@@ -38,7 +44,7 @@ Rails.application.routes.draw do
       resources :pv_histories, only: [:index]
       resources :accumulated_pva, only: [:index]
       resources :career_histories, only: [:index]
-      resources :bonus_financial_transactions, only: [:index]
+      resources :cellphone_reloads, only: [:index]
     end
 
     namespace :support do
@@ -46,17 +52,16 @@ Rails.application.routes.draw do
       resources :documents_validation, only: [:index, :update]
       resources :blocked_users, only: [:update]
       resources :canceled_users, only: [:update]
+      resource :support_point_users, only: :create
     end
 
     # Backoffice
-
     resources :dashboard, only: :index
     resource :documents, only: [:edit, :update]
     resources :downloads, only: [:index]
     resources :binary_scores, only: [:index]
     resources :unilevel_scores, only: [:index]
     resources :financial_transactions, only: [:index]
-
     resource :bank_account, only: [:edit, :update]
 
     # Shopping
@@ -67,6 +72,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show] do
       post :generate_boleto
     end
+    resources :cellphone_reloads, only: [:new, :create]
 
     # Financial
     resources :withdrawals, only: [:index, :new, :create]
@@ -86,6 +92,14 @@ Rails.application.routes.draw do
     resources :binary_tree, only: [:index, :show]
     resources :unilevel, only: [:index]
     resources :lineage_scores, only: [:index]
+    resources :career_trail_users, only: [:index]
+
+    # Sim Cards
+    resources :users, only: [] do
+      resources :sim_cards, only: [:index, :create]
+      resources :sim_card_reports, only: [:index]
+      resources :sim_card_transfers, only: :index
+    end
   end
 
   namespace :api do

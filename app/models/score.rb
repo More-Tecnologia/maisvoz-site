@@ -18,7 +18,7 @@ class Score < ApplicationRecord
   enum source_leg: SOURCE_LEGS
 
   scope :adhesion, -> { where(score_type_id: 1) }
-  scope :activation, -> { where(score_type_id: 2) }
+  scope :activation, -> { where(score_type: ScoreType.activation) }
   scope :detached, -> { where(score_type_id: 3) }
   scope :includes_associations, -> { includes(:order, :user, :spreader_user, :score_type) }
   scope :chargeback, -> { where('cent_amount < 0') }
@@ -37,6 +37,11 @@ class Score < ApplicationRecord
   scope :sum_unilevel_spreaded_by, ->(user_ids) { unilevel.where(spreader_user_id: user_ids)
                                                           .group(:spreader_user)
                                                           .sum(:cent_amount) }
+  scope :by_current_month,
+    -> { where(created_at: (Date.current.beginning_of_month..Date.current.end_of_month)) }
+  scope :spreaded_to, ->(user) { where(user: user) }
+
+  after_commit :upgrade_user_career, on: :create
 
   def chargeback!(score_type, amount = cent_amount)
     create_chargeback!(source_leg: source_leg,
@@ -66,6 +71,32 @@ class Score < ApplicationRecord
   def score_type_is_binary_bonus_debit?
     binary_bonus_debit = ScoreType.binary_bonus_debit
     binary_bonus_debit && binary_bonus_debit == score_type
+  end
+
+  def self.unilevel_scores_by_lineage(user, q = Score.ransack)
+    children_ids = user.unilevel_node
+                       .children
+                       .pluck(:user_id)
+    received_scores = q.result
+                       .sum_unilevel_received_by(children_ids)
+    spreaded_scores_from_children = q.result
+                                     .spreaded_to(user)
+                                     .sum_unilevel_spreaded_by(children_ids)
+    lineage_scores =
+      sum_scores_by_user(received_scores, spreaded_scores_from_children).to_a
+                                                                        .sort_by(&:second)
+                                                                        .reverse
+    Score.sum_scores_by_user(received_scores, spreaded_scores_from_children)
+  end
+
+  def self.sum_scores_by_user(received_scores, spreaded_scores)
+    received_scores.merge(spreaded_scores) { |key, old, new| old + new }
+  end
+
+  private
+
+  def upgrade_user_career
+    UpgraderCareerService.call(user: user)
   end
 
 end

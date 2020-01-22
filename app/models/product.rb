@@ -60,13 +60,22 @@ class Product < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :trail, optional: true
   has_many :product_reason_scores
+  has_many :career_trails
 
   monetize :price_cents
 
+  serialize :maturity_days, Array
+
   scope :regular, -> { where.not(kind: :activation) }
   scope :active, -> { where(active: true) }
+  scope :sim_card, -> { where(category: Category.sim_card) }
+  scope :cellphone_reloads, -> { where(category: Category.cellphone_reload).order(:price_cents) }
 
-  validates :trail, presence: true, if: :adhesion?
+  validates :trail, presence: true, if: :adhesion?, on: :update
+  validates :grace_period, presence: true, if: :adhesion?
+  validates :grace_period, numericality: { only_integer: true,
+                                           greater_than_or_equal_to: 0 }
+  validates :code, presence: true, if: :activation?
 
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?

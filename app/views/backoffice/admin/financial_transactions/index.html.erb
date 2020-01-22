@@ -1,0 +1,60 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('defaults.financial_transactions') %></h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= render 'backoffice/admin/financial_transactions/filters' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover m-0">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th><%= FinancialTransaction.human_attribute_name(:financial_reason) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:spreader) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:user) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:order) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:cent_amount) %></th>
+                <th><%= FinancialTransaction.human_attribute_name(:created_at) %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @financial_transactions.length > 0 %>
+                <% @financial_transactions.each do |transaction| %>
+                  <tr>
+                    <td><%= transaction.hashid %></td>
+                    <td><%= format_financial_reason(transaction) %></td>
+                    <td><%= transaction.spreader.try(:username) %></td>
+                    <td><%= transaction.user.username %></td>
+                    <td><%= link_to transaction.try(:order).try(:hashid), backoffice_admin_order_path(transaction.try(:order)) if transaction.order %></td>
+                    <% amount = transaction.cent_amount %>
+                    <% amount = -amount if transaction.financial_reason.debit? %>
+                    <td class='<%= 'text-danger' if amount < 0 %>'> <%= number_to_currency(amount) %></td>
+                    <td><%= l(transaction.created_at, format: :short) %></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="50" class="text-center"><%= t('.no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+          <%= paginate @financial_transactions %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

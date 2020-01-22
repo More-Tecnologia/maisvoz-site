@@ -1,12 +1,13 @@
 class UsersGrid < BaseGrid
 
   scope do
-    User.all.order(id: :desc)
+    User.includes(:sponsor, :support_point_user, career_trail_users: [career_trail: [:career, :trail]])
+        .order(id: :desc)
   end
 
   decorate {|user| user.decorate }
 
-  filter(:username, header: I18n.t('attributes.username')) do |value, scope|
+  filter(:username, header: I18n.t('attributes.user')) do |value, scope|
     scope.where('users.username ILIKE ?', "%#{value}%")
   end
   filter(:name, header: I18n.t('attributes.name')) do |value, scope|
@@ -15,21 +16,25 @@ class UsersGrid < BaseGrid
   filter(:document_cpf, header: I18n.t('attributes.document_cpf'))
   filter(:email)
   filter(:role, :enum, select: User.roles, header: I18n.t('attributes.role'))
-  filter(:active, :xboolean, header: I18n.t('attributes.active'))
+  filter(:role_type_code, :enum, select: RoleType.order(:name).pluck(:name, :code), header: I18n.t('attributes.role_type'))
+  filter(:active, :xboolean, header: I18n.t('attributes.active')) do |value|
+     value == true ? merge(User.active) : merge(User.inactive)
+  end
   filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
-  filter(:binary_qualified, :xboolean, header: I18n.t('attributes.binary_qualify'))
+  filter(:binary_qualified, :xboolean, header: I18n.t('attributes.binary_qualify')) if ENV['ENABLED_BINARY'] == 'true'
 
   column_names_filter(:header => "Colunas Extras", checkboxes: true)
 
   column(:id, mandatory: true)
+  column(:pretty_username, mandatory: true, header: I18n.t('attributes.user'))
   column(:pretty_name, mandatory: true, header: I18n.t('attributes.username'))
   column(:sponsor_username, mandatory: true, header: I18n.t('attributes.sponsor')) do |user|
     user.try(:sponsor).try(:username)
   end
-  column(:pretty_name, mandatory: true, header: I18n.t('attributes.user'))
+  column(:support_point_pretty_name, mandatory: true, header: I18n.t('attributes.support_point_user'))
   column(:main_document, mandatory: true, header: I18n.t('attributes.main_document'))
   column(:activity, html: true, mandatory: true, header: I18n.t('attributes.activity'))
-  column(:qualification, html: true, mandatory: true, header: I18n.t('attributes.qualification'))
+  column(:qualification, html: true, mandatory: true, header: I18n.t('attributes.qualification')) if ENV['ENABLED_BINARY'] == 'true'
   column(:career_name, mandatory: true, header: I18n.t('attributes.career_kind'))
   column(:trail_name, mandatory: true, header: I18n.t('attributes.trail'))
   column(:created_at, html: false, mandatory: true, header: I18n.t('attributes.created_at'))
@@ -52,7 +57,6 @@ class UsersGrid < BaseGrid
     format(user) do
       [
         link_to(backoffice_support_user_path(user), title: 'Ver perfil') { content_tag(:i, nil, class: 'fa fa-user m-r-5') },
-        link_to(backoffice_admin_bonus_financial_transactions_path(username: user.username), title: 'Histórico de Bônus') { content_tag(:i, nil, class: 'fa fa-star m-r-5') },
         link_to(backoffice_admin_financial_transactions_path('q[user_username_cont]' => user.username), title: 'Histórico Financeiro') { content_tag(:i, nil, class: 'fa fa-dollar m-r-5') },
         link_to(backoffice_admin_pv_activity_histories_path(username: user.username), title: 'Histórico PV Atividade') { content_tag(:i, nil, class: 'fa fa-plus-square m-r-5') },
         link_to(backoffice_admin_pv_histories_path(username: user.username), title: 'Histórico PVs') { content_tag(:i, nil, class: 'fa fa-clock-o m-r-5') },

@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('defaults.user_sim_card_report') %></h4>
+  </div>
+</div>
+
+<%= render 'backoffice/admin/sim_card_reports/filters' %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <p><strong> <%= t('attributes.quantity') %>: &nbsp;&nbsp;</strong><%= @sim_cards.size %> </p>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="table-responsive">
+          <table class="table table-striped table-bordered m-0">
+            <thead>
+              <tr>
+                <th> # </th>
+                <th> <%= SimCard.human_attribute_name(:iccid) %> </th>
+                <th> <%= SimCard.human_attribute_name(:phone_number) %> </th>
+                <th> <%= SimCard.human_attribute_name(:status) %> </th>
+                <th> <%= SimCard.human_attribute_name(:support_point) %> </th>
+                <th> <%= SimCard.human_attribute_name(:user) %> </th>
+                <th> <%= SimCard.human_attribute_name(:in_date) %> </th>
+                <th> <%= SimCard.human_attribute_name(:transference_date) %> </th>
+                <th> <%= SimCard.human_attribute_name(:activation_date) %> </th>
+              </tr>
+            </thead>
+            <tbody id="sim-cards">
+              <% @sim_cards.each do |sim_card| %>
+                <tr class="added" id='<%= sim_card.hashid %>'>
+                  <td> <%= sim_card.hashid %> </td>
+                  <td> <%= sim_card.iccid %> </td>
+                  <td> <%= hide_last_four_digits(sim_card.phone_number) if sim_card.phone_number %> </td>
+                  <td> <%= t("attributes.#{sim_card.status}") %> </td>
+                  <td> <%= sim_card.try(:support_point_user).try(:username) %> </td>
+                  <td> <%= sim_card.try(:user).try(:username) %> </td>
+                  <td> <%= l(sim_card.created_at, format: :long) if sim_card.created_at %> </td>
+                  <td> <%= l(sim_card.support_point_stock_out_at, format: :long) if sim_card.support_point_stock_out_at %> </td>
+                  <td> <%= l(sim_card.stock_out_at, format: :long) if sim_card.stock_out_at %> </td>
+                </tr>
+              <% end %>
+              <% if @sim_cards.empty? %>
+                <tr>
+                  <td colspan="10" class="text-center"><%= t('no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+          <%= paginate(@sim_cards) if @sim_cards.any? %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

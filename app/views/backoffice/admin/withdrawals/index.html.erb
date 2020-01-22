@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<%= render 'filters', q: q %>
+<%= render 'filters', q: @q %>
 
 <div class="row">
   <div class="col-sm-12">
@@ -21,19 +21,19 @@
                   <th><%= User.human_attribute_name(:name) %></th>
                   <th><%= User.human_attribute_name(:registration_type) %></th>
                   <th><%= Withdrawal.human_attribute_name(:fiscal_document_link) %></th>
-                  <th>Documento</th>
-                  <th>Banco</th>
-                  <th>Conta</th>
-                  <th>Agência</th>
-                  <th><%= sort_link(q, :gross_amount_cents, Withdrawal.human_attribute_name(:gross_amount)) %></th>
-                  <th><%= sort_link(q, :net_amount_cents, Withdrawal.human_attribute_name(:net_amount)) %></th>
-                  <th><%= sort_link(q, :status, Withdrawal.human_attribute_name(:status)) %></th>
-                  <th><%= sort_link(q, :created_at, Withdrawal.human_attribute_name(:created_at), default_order: :desc) %></th>
+                  <th><%= t('attributes.document') %></th>
+                  <th><%= t('attributes.bank') %></th>
+                  <th><%= t('attributes.bank_account') %></th>
+                  <th><%= t('attributes.bank_agency') %></th>
+                  <th><%= sort_link(@q, :gross_amount_cents, Withdrawal.human_attribute_name(:gross_amount)) %></th>
+                  <th><%= sort_link(@q, :net_amount_cents, Withdrawal.human_attribute_name(:net_amount)) %></th>
+                  <th><%= sort_link(@q, :status, Withdrawal.human_attribute_name(:status)) %></th>
+                  <th><%= sort_link(@q, :created_at, Withdrawal.human_attribute_name(:created_at), default_order: :desc) %></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <% withdrawals.each do |withdraw| %>
+                <% @withdrawals.each do |withdraw| %>
                   <tr>
                     <th><%= withdraw.id %></th>
                     <th><%= link_to withdraw.user.name, backoffice_support_user_path(withdraw.user) %></th>
@@ -50,8 +50,8 @@
                     <td><%= "#{withdraw.user.bank_name} - #{withdraw.user.bank_code} - #{withdraw.user.bank_account_type}" %></td>
                     <td><%= withdraw.user.bank_account %></td>
                     <td><%= withdraw.user.bank_agency %></td>
-                    <td><%= number_to_currency withdraw.gross_amount %></td>
-                    <td><%= number_to_currency withdraw.net_amount %></td>
+                    <td><%= number_to_currency withdraw.gross_amount_cents %></td>
+                    <td><%= number_to_currency withdraw.net_amount_cents %></td>
                     <td><%= withdraw.pretty_status %></td>
                     <td><%= l withdraw.created_at, format: :short %></td>
                     <td>
@@ -75,7 +75,7 @@
                     </td>
                   </tr>
                 <% end %>
-                <% if withdrawals.empty? %>
+                <% if @withdrawals.empty? %>
                   <tr>
                     <td colspan="10" class="text-center"><%= t('.no_data') %></td>
                   </tr>
@@ -83,7 +83,7 @@
               </tbody>
             </table>
           </div>
-          <%= paginate withdrawals %>
+          <%= paginate @withdrawals %>
 
         </div>
       </div>

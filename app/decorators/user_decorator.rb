@@ -18,8 +18,12 @@ class UserDecorator < ApplicationDecorator
     end
   end
 
-  def pretty_name
+  def pretty_username
     username
+  end
+
+  def pretty_name
+    name
   end
 
   def name_or_company_name
@@ -131,6 +135,10 @@ class UserDecorator < ApplicationDecorator
 
   def trail_name
     current_trail.try(:name)
+  end
+
+  def support_point_pretty_name
+    support_point_user.try(:username).to_s
   end
 
 end

@@ -5,7 +5,7 @@
   <div class="topbar-left">
     <div class="text-center">
       <a href="/" class="logo">
-        <span><%= image_tag('logo.png', height: 35) %></span> 
+        <span><%= image_tag('logo.png', height: 35) %></span>
       </a>
     </div>
   </div>
@@ -14,17 +14,75 @@
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="">
-
-      <ul class="nav navbar-nav text-right visible-xs">
-        <li class="dropdown top-menu-item-xs">
-          <a href="" class="btn dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
-          </a>
-          <ul class="dropdown-menu">
+        <ul class="nav navbar-nav text-right visible-xs">
+          <li class="dropdown top-menu-item-xs">
+            <a href="" class="btn dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+              <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+              <% if user_masquerade? %>
+                <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
+              <% end %>
+              </li>
+              <li>
+                <%= link_to shop_index_path do %>
+                <i class="fa fa-home"></i> <%= t('shop') %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to backoffice_orders_path do %>
+                <i class="fa fa-bars"></i> <%= t('defaults.orders') %>
+                <% end %>
+              </li>
+              <li class="hidden-xs">
+                <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
+                  <i class="icon-size-fullscreen"></i>
+                </a>
+              </li>
+              <li class="hidden-xs">
+                <%= link_to backoffice_cart_path, class: 'waves-effect waves-light' do %>
+                  <i class="icon-basket"></i>
+                  <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
+                <% end %>
+              </li>
+              <li>
+                    <%= link_to edit_user_registration_path do %>
+                      <i class="fa fa-user m-r-10 text-custom"></i>
+                      <%= t('views.backoffice.topbar.edit_account') %>
+                    <% end %>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to destroy_user_session_path, method: :delete do %>
+                    <i class="ti-power-off m-r-10 text-danger"></i>
+                    <%= t('views.backoffice.topbar.logout') %>
+                    <% end %>
+                  </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav hidden-xs">
+            <li><a href="">Seja bem vindo, <%= current_user.name.split.first %>!</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right pull-right hidden-xs">
+            <% if current_user.empreendedor? %>
             <li>
-            <% if user_masquerade? %>
-              <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
+              <%= link_to shop_index_url(sponsor: current_user.username) do %>
+                <i class="fa fa-link"></i>
+                <span id="sponsor-link"> <%= shop_index_url(sponsor: current_user.username, locale: '').remove('locale=&') %> </span>
+              <% end %>
+            </li>
+            <li>
+              <a class="btn btn-link copy-trigger" href="#" style="padding: 0px 15px 0px 0px;" data-copyable="#sponsor-link">
+                <i class="far fa-copy"></i>
+              </a>
+            </li>
             <% end %>
+            <li>
+              <% if user_masquerade? %>
+                <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
+              <% end %>
             </li>
             <li>
               <%= link_to shop_index_path do %>
@@ -47,22 +105,12 @@
                 <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
               <% end %>
             </li>
-            <li>
-              <a href="?locale=en" class="flag">
-                <%= image_tag('countries/us.svg') %>
+            <li class="dropdown top-menu-item-xs">
+              <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+                <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
               </a>
-            </li>
-            <li>
-              <a href="?locale=es" class="flag">
-                <%= image_tag('countries/es.svg') %>
-              </a>
-            </li>
-            <li>
-              <a href="?locale=pt-BR" class="flag">
-                <%= image_tag('countries/br.svg') %>
-              </a>
-            </li>
-            <li>
+              <ul class="dropdown-menu">
+                <li>
                   <%= link_to edit_user_registration_path do %>
                     <i class="fa fa-user m-r-10 text-custom"></i>
                     <%= t('views.backoffice.topbar.edit_account') %>
@@ -75,77 +123,9 @@
                   <%= t('views.backoffice.topbar.logout') %>
                   <% end %>
                 </li>
-          </ul>
-        </li>
-      </ul>
 
-
-      <ul class="nav navbar-nav hidden-xs">
-          <li><a href="">Seja bem vindo, <%= current_user.name.split.first %>!</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right pull-right  hidden-xs">
-          <li>
-            <% if user_masquerade? %>
-              <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to shop_index_path do %>
-            <i class="fa fa-home"></i> <%= t('shop') %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to backoffice_orders_path do %>
-            <i class="fa fa-bars"></i> <%= t('defaults.orders') %>
-            <% end %>
-          </li>
-          <li class="hidden-xs">
-            <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
-              <i class="icon-size-fullscreen"></i>
-            </a>
-          </li>
-          <li class="hidden-xs">
-            <%= link_to backoffice_cart_path, class: 'waves-effect waves-light' do %>
-              <i class="icon-basket"></i>
-              <span class="badge badge-xs badge-danger"><%= current_order.order_items.count %></span>
-            <% end %>
-          </li>
-          <li>
-            <a href="?locale=en" class="flag">
-              <%= image_tag('countries/us.svg') %>
-            </a>
-          </li>
-          <li>
-            <a href="?locale=es" class="flag">
-              <%= image_tag('countries/es.svg') %>
-            </a>
-          </li>
-          <li>
-            <a href="?locale=pt-BR" class="flag">
-              <%= image_tag('countries/br.svg') %>
-            </a>
-          </li>
-          <li class="dropdown top-menu-item-xs">
-            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-              <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <%= link_to edit_user_registration_path do %>
-                  <i class="fa fa-user m-r-10 text-custom"></i>
-                  <%= t('views.backoffice.topbar.edit_account') %>
-                <% end %>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="ti-power-off m-r-10 text-danger"></i>
-                <%= t('views.backoffice.topbar.logout') %>
-                <% end %>
-              </li>
-
-            </ul>
-          </li>
+              </ul>
+            </li>
         </ul>
       </div>
       <!--/.nav-collapse -->

@@ -11,6 +11,7 @@ pt-BR:
     models:
       score_type: Tipo de Pontuação
       user: Usuário
+      order: Pedido
     attributes:
       pv_activity_history:
         from: De
@@ -20,6 +21,8 @@ pt-BR:
         description: Descrição
       user:
         login: Email/Login
+        registration_type: Tipo de Registro
+        document_verification_status: Documentos
       order:
         paid_by: Pago por
         payment_type: Tipo de Pgto.
@@ -46,6 +49,12 @@ pt-BR:
         credit: Crédito
         debit: Débito
         generation: Geração
+      user:
+        document_cpf_photo: Foto do CPF
+        document_rg_photo: Foto do RG
+        document_pis_photo: Foto do PIS/PASEP
+        document_address_photo: Comprovante de endereço
+        document_scontract_photo: Contrato Social
     errors:
       models:
         user:
@@ -54,16 +63,21 @@ pt-BR:
               taken: Este email já está sendo utilizado
             password_confirmation:
               confirmation: Senhas diferentes
+            registration_type:
+              not_pj: deve ser Pessoa Jurídica
+            document_verification_status:
+              not_verified: não verificados
       messages:
         blank: não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
         wrong_length: Tamanho errado
-        taken: Já está sendo utilizado
+        taken: já está sendo utilizado %{value}
         rule_type_missmatch: "Um objeto do tipo %{ruleable_type} não pode receber o tipo de regra %{rule_type_title}."
         restrict_dependent_destroy:
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
         invalid: Inválido
+        bank_account_presence: Preencha os dados bancários antes de solicitar saque.
   activemodel:
     errors:
       models:
@@ -83,10 +97,16 @@ pt-BR:
         too_long: "de no máximo %{count} caracteres"
         still_in_cart: Pedido ainda no carrinho de compra
         already_approved: Pedido já aprovado
+        without_available_balance: Usuário não tem saldo disponível.
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master
         amount: Valor
+      cellphone_reload_form:
+        product: Valor
+        ddd: DDD
+        cellphone_number: Número do Telefone
+        value: Valor
   app_name: Mais Voz
   attributes:
     active_session: Sessão ativa
@@ -217,6 +237,37 @@ pt-BR:
     canceled: Cancelado
     binary_qualify: Binário Qualificado
     height: Geração
+    unit_price_cents: Preço Unitário
+    sim_card_quantity: Quantidade de CHIPS
+    order_id: Pedido
+    processed_at: Data de Processamento
+    quantity_per_product: Quantidade por Produto
+    iccid: ICCID
+    support_point_user: Ponto de Apoio
+    phone_number: Número de Telefone
+    in_stock: Em Estoque
+    out_stock: Fora de Estoque
+    transfered: Transferido
+    sim_card_quantity_added: CHIPs Adicionados
+    actions: Ações
+    in_date: Data de Entrada
+    activation_date: Data de Ativação
+    support_point: Ponto de Apoio
+    transference_date: Data de Transferência
+    transferences: Transferências
+    unilevel_qualifying_career_count: Quantidade de Indicados Qualificadores
+    unilevel_qualifying_career_id: Carreira de Indicados Qualificadores
+    indications: Indicações
+    role_type: Tipo de Regra
+    lineage_score: Pontuação de Linhagem
+    requalification_score: Pontuação de Requalificação
+    qualifying_score: Pontuação de Qualificação
+    updated_at: Data da Alteração
+    document: Documento
+    bank: Banco
+    bank_account: Conta
+    bank_agency: Agência
+    cellphone_number: Telefone
   backoffice:
     orders:
       show:
@@ -238,6 +289,8 @@ pt-BR:
       form:
         fees: Taxas
         total: Total
+      create:
+        success: Sua solicitação de saque foi recebida.
     binary_strategies:
       index:
         title: Estratégia do Binário
@@ -258,7 +311,7 @@ pt-BR:
     unilevel:
       index:
         title: Unilevel
-        no_binary_node: Seu cadastro precisa ser ativado primeiro
+        no_binary_node: Sem indicações
         generation: Geração
     financial_entries:
       index:
@@ -281,10 +334,15 @@ pt-BR:
         title: PVA Acumulado
     lineage_scores:
       index:
-        title: Pontuação por Geração
+        title: Pontuação por Linhagem
     financial_transactions:
       index:
         title: Transações Financeiras
+    order_items:
+      update:
+        cart_updated: Carrinho atualizado
+      destroy:
+        cart_updated: Carrinho atualizado
     admin:
       credits_debits:
         step_1: Passo 1
@@ -316,18 +374,31 @@ pt-BR:
       withdrawals:
         index:
           title: Gerenciar Saques
+          approve_withdraw: Deseja realmente aprovar este saque?
+          refuse_withdraw: Deseja realmente rejeitar este saque?
         filters:
           status: Status
           created_from: Criado a partir de
           created_until: Criado até
         form:
           fees: Taxas
+        update:
+          success: Saque Aprovado!
       pv_activity_histories:
         index:
           title: Histórico de PVA/PVG
       pv_histories:
         index:
           title: Histórico de PVG
+      sim_card_controls:
+        new:
+          title: Pedidos de CHIP
+      sim_cards:
+        new:
+          title: Adicionar CHIPs ao Pedido / Usuário
+      user_versions:
+        index:
+          title: Relatório de Atividade de Usuário
     support:
       users:
         index:
@@ -336,6 +407,9 @@ pt-BR:
           sign_in: Logar
         show:
           direct_users: Indicados Diretos
+      support_point_users:
+        create:
+          success: Usuário atualizado para Ponto de Apoio
     bank_accounts:
       edit:
         title: Conta Bancária
@@ -348,6 +422,13 @@ pt-BR:
           unilevel: Pontuações da Rede Unilevel
           binary: Pontuações da Rede Binária
           all: Pontuações
+    sim_cards:
+      index:
+        title: Transferência de CHIPs
+        success: CHIPs transferidos com sucesso.
+    career_trail_users:
+      index:
+        title: Histórico de Carreira
   balanced_strategy: Balanceado
   cart:
     cart_updated: Carrinho atualizado
@@ -530,19 +611,77 @@ pt-BR:
     source_leg_left: Perna Esquerda
     source_leg_right: Perna Direita
     lineage: Linhagem
+    sim_card_control: Controle de CHIP
+    add_sim_cards: Adicionar CHIPs
+    processed_at: Data de Processamento
+    sim_card_add: Adicionar CHIPs
+    sim_cards_added: CHIPS adicionados
+    sim_cards_created: CHIPS adicionados com sucesso.
+    sim_card_not_stoke: CHIP não está em estoque.
+    sim_card_threshold_reached: "Limite de chips atingido: %{count}."
+    sim_card_transfer: Transferir CHIPs
+    user_sim_cards: CHIPS do Usuário
+    sim_card_inactive_user: Usuário inativo não pode receber CHIPs
+    sim_card_unavailable_to_transfer: "CHIPs não cadastrados ou já transferidos %{iccids}"
+    user_sim_card_report: Relatório de CHIPs
+    sim_card_transfers: Transferências de CHIPs
+    cellphone_reloads: Recarga
+    new_cellphone_reload: Nova Recarga
+    financial_reports: Extrato Financeiro
+    activation: "%{product_value} - Ativação"
+    reloads_csv_filename: "Recargas %{datetime}.csv"
+    lineage_scores: Linhagens
+    fiscal_document_warning: Favor gerar nota fiscal do valor bruto, caso contrário o pedido de saque será rejeitado.
+    fiscal_document_company: A nota deverá ser emitida para o seguinte %{company_id}
+    irpf: Imposto sobre a Renda da Pessoa Física (IRPF)
+    inss: Instituto Nacional do Seguro Social (INSS)
+    qualification_date: Data de Qualificação
+    user_versions: Relatório de Atividade
+    no_data: Sem registros
+    indication_link: Link de indicação
+    filters: Filtros
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
-      invalid: Inválido
       invalid_password: Senha inválida
       not_enough_balance: Saldo insuficiente
       not_found: Não encontrado
-      required: Obrigatório
       wrong_master_pw: Senha master incorreta
-      blank: não pode ficar em branco
-      greater_than: Deve ser maior que %{count}
-      greater_than_or_equal_to: Deve ser maior ou igual a %{count}
       accepted: Você deve aceitar os termos antes de prosseguir
+      blank: não pode ficar em branco
+      confirmation: não é igual a %{attribute}
+      empty: não pode ficar vazio
+      equal_to: deve ser igual a %{count}
+      even: deve ser par
+      exclusion: não está disponível
+      greater_than: deve ser maior que %{count}
+      greater_than_or_equal_to: deve ser maior ou igual a %{count}
+      inclusion: não está incluído na lista
+      invalid: não é válido
+      less_than: deve ser menor que %{count}
+      less_than_or_equal_to: deve ser menor ou igual a %{count}
+      model_invalid: 'A validação falhou: %{errors}'
+      not_a_number: não é um número
+      not_an_integer: não é um número inteiro
+      odd: deve ser ímpar
+      other_than: deve ser diferente de %{count}
+      present: deve ficar em branco
+      required: é obrigatório(a)
+      taken: já está em uso
+      too_long:
+        one: 'é muito longo (máximo: 1 caracter)'
+        other: 'é muito longo (máximo: %{count} caracteres)'
+      too_short:
+        one: 'é muito curto (mínimo: 1 caracter)'
+        other: 'é muito curto (mínimo: %{count} caracteres)'
+      wrong_length:
+        one: não possui o tamanho esperado (1 caracter)
+        other: não possui o tamanho esperado (%{count} caracteres)
+    template:
+      body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
+      header:
+        one: 'Não foi possível gravar %{model}: 1 erro'
+        other: 'Não foi possível gravar %{model}: %{count} erros'
   filters: Filtros
   helpers:
     select:
@@ -551,8 +690,15 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+      sim_card_transfer: Transferir CHIP(s)
+      checkout: Gerar Pedido
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
+    from: De
+    util: Até
+    approve_support_point: Aprovar Ponto de Apoio
+    export_to_csv: Exportar para CSV
+    save_with_disable: "<i class='fa fa-spinner fa-spin'></i> Salvando..."
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:
@@ -665,7 +811,7 @@ pt-BR:
       admin:
         orders:
           index:
-            no_data: No data
+            no_data: sem registros
             title: Title
         products:
           basic_info: Informações Básicas
@@ -783,7 +929,7 @@ pt-BR:
   credit_by_admin: Crédito do Admin
   debit_by_admin: Débito do Admin
   fee: Taxa de Administração
-  withdrawal_fee: Taxa de Saque
+  withdrawal_fee: Taxa de Saque / Imposto(s)
   product_return: Retorno de Produto
   tax: Impostos
   transfer: Transferência

@@ -55,6 +55,7 @@ class Order < ApplicationRecord
   monetize :subtotal_cents, :tax_cents, :shipping_cents, :total_cents
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
+  scope :paid, -> { where.not(paid_at: nil) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")
@@ -93,11 +94,11 @@ class Order < ApplicationRecord
   end
 
   def adhesion_product
-    @adhesion_product ||= products.select(&:adhesion?).first
+    @adhesion_product ||= products.detect(&:adhesion?)
   end
 
   def activation_product
-    @activation_product ||= products.select(&:activation?).first
+    @activation_product ||= products.detect(&:activation?)
   end
 
   def token
@@ -110,7 +111,7 @@ class Order < ApplicationRecord
 
   def detached_products_score
     items = order_items.includes(:product).select { |item| item.product.detached? }
-    items.sum { |item| item.quantity * item.product.binary_score }
+    items.sum { |item| item.quantity.to_f * item.product.binary_score.to_f }
   end
 
   def activation_products_score
@@ -129,4 +130,5 @@ class Order < ApplicationRecord
   def paid!
     update_attributes(status: :completed, paid_at: Time.now)
   end
+
 end

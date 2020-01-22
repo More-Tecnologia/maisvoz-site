@@ -15,5 +15,6 @@ FactoryBot.define do
     binary_strategy { User.binary_strategies.values.sample }
     binary_position { User.binary_positions.values.sample }
     active { true }
+    role_type { association(:role_type) }
   end
 end

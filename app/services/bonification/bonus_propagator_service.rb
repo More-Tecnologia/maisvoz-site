@@ -1,68 +1,109 @@
 module Bonification
   class BonusPropagatorService < ApplicationService
+
     def call
-      sponsors = user.unilevel_ancestors.reverse
-      sponsors.each_with_index do |sponsor, index|
-        propagate_product_bonus(sponsor, index + 1) if sponsor.empreendedor?
+      products.each do |product|
+        ActiveRecord::Base.transaction do
+          create_bonus_by(product)
+        end
       end
     end
 
     private
 
     attr_reader :order, :user, :products, :product_reason_scores,
-                :product_scores, :order_items
+                :product_scores, :order_items, :customer_admin
 
     def initialize(args)
       @order = args[:order]
       @user = order.user
       @products = order.products
       @product_reason_scores = find_product_reason_scores_by(products)
-      @product_scores = index_product_scores_by_career_trail_id
       @order_items = order.order_items.index_by(&:product_id)
+      @customer_admin = User.find_morenwm_customer_admin
     end
 
-    def propagate_product_bonus(ascendant_sponsor, generation)
-      products.each do |product|
-        ActiveRecord::Base.transaction do
-          create_product_bonuses(ascendant_sponsor, generation, product)
-        end
+    def create_bonus_by(product)
+      product_reason_scores.each do |product_reason_score|
+        financial_reason = product_reason_score.financial_reason
+        sponsors = find_sponsors_by(product_reason_score, financial_reason.dynamic_compression)
+        create_financial_transactions_to(sponsors, product, financial_reason, product_reason_score)
       end
     end
 
-    def create_product_bonuses(ascendant_sponsor, generation, product)
-      financial_reasons = find_financial_reasons_by(product)
-      financial_reasons.each do |financial_reason|
-        product_score = find_product_score(ascendant_sponsor, financial_reason, product, generation)
-        return unless product_score && product_score.amount_cents > 0
-        create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
-        Financial::UnlockBlockedBalance.call(user: ascendant_sponsor)
+    def create_financial_transactions_to(sponsors, product, financial_reason, product_reason_score)
+      sponsors.each_with_index do |sponsor, index|
+        next unless sponsor.empreendedor?
+        generation = index + 1
+        product_score = detect_product_score_by(sponsor, generation, product_reason_score)
+        next unless product_score.try(:amount_cents).to_f > 0
+        financial_transaction =
+          create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
       end
     end
 
-    def create_financial_transaction(ascendant_sponsor, generation, product, financial_reason, product_score)
+    def detect_product_score_by(sponsor, generation, product_reason_score)
+      product_scores = product_reason_score.product_scores
+      pay_by_requalification_score =
+        should_pay_bonus_by_requalification_score?(product_reason_score, sponsor)
+      receiver_career_trail =
+        pay_by_requalification_score ? Career.detect_requalification_career_trail(sponsor) : sponsor.current_career_trail
+      product_scores.detect do |s|
+        s.generation == generation &&
+        s.career_trail_id == receiver_career_trail.id
+      end
+    end
+
+    def should_pay_bonus_by_requalification_score?(product_reason_score, sponsor)
+      reason_pay_bonus_by_requalification_score = product_reason_score.pay_bonus_by_requalification_score
+      qualification_date = sponsor.current_career_trail_user.created_at
+      qualified_more_than_1_month = qualification_date + 1.month <= Date.current
+      reason_pay_bonus_by_requalification_score && qualified_more_than_1_month
+    end
+
+    def find_sponsors_by(product_reason_scores, dynamic_compression)
+      product_scores = product_reason_scores.product_scores
+      receiver_generations_count = product_scores.map(&:generation).max
+      unilevel_nodes = if dynamic_compression
+                          user.unilevel_node
+                              .ancestors
+                              .dynamic_compression(receiver_generations_count)
+                       else
+                         user.unilevel_node
+                             .ancestors
+                             .bonus_receivers(receiver_generations_count)
+                       end
+      unilevel_nodes.is_a?(Array) ? unilevel_nodes.reverse.map(&:user) : [unilevel_nodes.user]
+    end
+
+    def create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
       bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
-      financial_transaction = FinancialTransaction.create!(user: ascendant_sponsor,
-                                                           spreader: user,
-                                                           financial_reason: financial_reason,
-                                                           generation: generation,
-                                                           cent_amount: bonus,
-                                                           order: order)
-      return financial_transaction.chargeback_by_inactivity! if ascendant_sponsor.inactive?
-      excess = career_trail_excess_bonus(ascendant_sponsor)
-      financial_transaction.chargeback_by_career_trail_excess!(excess) if excess > 0
+      transaction =
+        sponsor.financial_transactions.create!(spreader: user,
+                                               financial_reason: financial_reason,
+                                               generation: generation,
+                                               cent_amount: bonus,
+                                               order: order) if bonus > 0
+      chargeback_by_inactivity!(transaction, financial_reason) if sponsor.inactive?
+      block_bonus_value(sponsor, bonus) if sponsor.active? && sponsor.pf?
+      transaction
+    end
+
+    def chargeback_by_inactivity!(transaction, financial_reason)
+      transaction.chargeback_by_inactivity!(financial_reason.chargeback_by_inactivity)
+    end
+
+    def block_bonus_value(sponsor, cent_amount)
+      amount = sponsor.blocked_balance_cents + cent_amount
+      sponsor.update_attributes!(blocked_balance_cents: amount)
     end
 
     def find_product_reason_scores_by(products)
-      ProductReasonScore.includes(:product, :product_scores)
+      ProductReasonScore.includes(:product,
+                                  :product_scores,
+                                  financial_reason: [:chargeback_by_inactivity, :financial_reason_type])
                         .where(product: products)
-    end
-
-    def index_product_scores_by_career_trail_id
-      reason_scores = product_reason_scores.index_by(&:financial_reason_id)
-      reason_scores.transform_values do |reason_score|
-        reason_score.product_scores.index_by(&:career_trail_id)
-      end
     end
 
     def find_financial_reasons_by(product)
@@ -75,13 +116,8 @@ module Bonification
       sponsor.calculate_excess_career_trail_bonus
     end
 
-    def find_product_score(ascendant_sponsor, financial_reason, product, generation)
-      ProductScore.includes(:career_trail)
-                  .joins(product_reason_score: [:product, :financial_reason])
-                  .where(career_trail: ascendant_sponsor.current_career_trail)
-                  .where('product_reason_scores.financial_reason_id = ?', financial_reason.id)
-                  .where('product_reason_scores.product_id = ?', product.id)
-                  .where(generation: generation)
+    def find_product_scores_by(financial_reason)
+      product_reason_scores.detect { |s| s.financial_reason_id == financial_reason.id }.try(:product_scores)
     end
 
   end

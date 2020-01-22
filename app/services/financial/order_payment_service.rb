@@ -1,13 +1,12 @@
 module Financial
   class OrderPaymentService < ApplicationService
+
     def call
-      FinancialTransaction.create!(
-        user: User.find_morenwm_customer_admin,
-        spreader: order.user,
-        financial_reason: FinancialReason.order_payment,
-        cent_amount: total,
-        order: order
-      )
+      user = User.find_morenwm_customer_admin
+      user.financial_transactions.create!(spreader: order.user,
+                                          financial_reason: FinancialReason.order_payment,
+                                          cent_amount: total,
+                                          order: order)
     end
 
     private
@@ -21,5 +20,6 @@ module Financial
     def total
       order.total_cents / 100.0
     end
+
   end
 end

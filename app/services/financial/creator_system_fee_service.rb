@@ -1,12 +1,13 @@
 module Financial
   class CreatorSystemFeeService < ApplicationService
+
     def call
-      FinancialTransaction.create!(user: User.find_morenwm_user,
-                                   spreader: order.user,
-                                   financial_reason: FinancialReason.morenwm_fee,
-                                   cent_amount: amount,
-                                   order: order,
-                                   moneyflow: :debit) if amount > 0
+      user = User.find_morenwm_user
+      user.financial_transactions.create!(spreader: order.user,
+                                          financial_reason: FinancialReason.morenwm_fee,
+                                          cent_amount: amount,
+                                          order: order,
+                                          moneyflow: :debit) if amount > 0
     end
 
     private
@@ -19,9 +20,9 @@ module Financial
     end
 
     def calculate_amount_fee
-      amount = order.taxable_product_cent_amount.to_i
-      amount *= ENV['SYSTEM_FEE'].to_d
-      amount.to_i
+      order_value = order.taxable_product_cent_amount.to_f
+      order_value * ENV['SYSTEM_FEE'].to_d
     end
+
   end
 end

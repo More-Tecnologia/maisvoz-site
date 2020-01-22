@@ -18,8 +18,12 @@ class UserDecorator < ApplicationDecorator
     end
   end
 
-  def pretty_name
+  def pretty_username
     username
+  end
+
+  def pretty_name
+    name
   end
 
   def name_or_company_name

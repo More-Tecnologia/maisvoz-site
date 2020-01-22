@@ -7,7 +7,7 @@ class UsersGrid < BaseGrid
 
   decorate {|user| user.decorate }
 
-  filter(:username, header: I18n.t('attributes.username')) do |value, scope|
+  filter(:username, header: I18n.t('attributes.user')) do |value, scope|
     scope.where('users.username ILIKE ?', "%#{value}%")
   end
   filter(:name, header: I18n.t('attributes.name')) do |value, scope|
@@ -26,11 +26,11 @@ class UsersGrid < BaseGrid
   column_names_filter(:header => "Colunas Extras", checkboxes: true)
 
   column(:id, mandatory: true)
+  column(:pretty_username, mandatory: true, header: I18n.t('attributes.user'))
   column(:pretty_name, mandatory: true, header: I18n.t('attributes.username'))
   column(:sponsor_username, mandatory: true, header: I18n.t('attributes.sponsor')) do |user|
     user.try(:sponsor).try(:username)
   end
-  column(:pretty_name, mandatory: true, header: I18n.t('attributes.user'))
   column(:support_point_pretty_name, mandatory: true, header: I18n.t('attributes.support_point_user'))
   column(:main_document, mandatory: true, header: I18n.t('attributes.main_document'))
   column(:activity, html: true, mandatory: true, header: I18n.t('attributes.activity'))

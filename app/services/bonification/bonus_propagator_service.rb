@@ -56,7 +56,7 @@ module Bonification
 
     def should_pay_bonus_by_requalification_score?(product_reason_score, sponsor)
       reason_pay_bonus_by_requalification_score = product_reason_score.pay_bonus_by_requalification_score
-      qualification_date = sponsor.current_career_trail.created_at
+      qualification_date = sponsor.current_career_trail_user.created_at
       qualified_more_than_1_month = qualification_date + 1.month <= Date.current
       reason_pay_bonus_by_requalification_score && qualified_more_than_1_month
     end

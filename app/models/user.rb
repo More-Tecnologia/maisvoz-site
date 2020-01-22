@@ -274,6 +274,10 @@ class User < ApplicationRecord
     current_career_trail.try(:career)
   end
 
+  def current_career_trail_user
+    career_trail_users.last
+  end
+
   def activate!(active_until = 1.month.from_now)
     update!(active: true, active_until: active_until )
     update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'

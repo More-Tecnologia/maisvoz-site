@@ -38,7 +38,7 @@ module Financial
         upgrade_career_from(user) if adhesion_product
         propagate_bonuses if enabled_bonification
         create_vouchers
-        create_system_fee if adhesion_product
+        create_system_fee if adhesion_product || subscription_product
         associate_support_point if adhesion_product
         binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification && enabled_binary?
         add_product_bonus_to_order if adhesion_product

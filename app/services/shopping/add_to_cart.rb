@@ -19,7 +19,7 @@ module Shopping
         elsif add_to_order
           update_order_total
           update_order_pv_total
-          apply_discount if user_bought_subscription? && product.adhesion?
+          apply_discount if can_apply_discount_to_subscription_users?
           return order
         else
           errors.add(:product, I18n.t('cant_add_produt_to_cart'))
@@ -90,6 +90,15 @@ module Shopping
     def item_subscription
       @item_subscription ||= OrderItem.where(order: order.user.orders.completed.paid,
                                              product: Product.subscription).first
+    end
+
+    def exists_adhesion_order_pending_payment?
+      OrderItem.exists?(order: order.user.orders.pending_payment,
+                        product: Product.adhesion)
+    end
+
+    def can_apply_discount_to_subscription_users?
+      user_bought_subscription? && product.adhesion? && !order.user.bought_adhesion && !exists_adhesion_order_pending_payment?
     end
 
   end

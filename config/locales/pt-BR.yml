@@ -443,6 +443,15 @@ pt-BR:
             Bem vindo ao futuro.
       footer: Atenciosamente, <br>
               Equipe %{company_name}
+    upgrade_career:
+      subject: Avanço de Título
+      body: É com imenso prazer que a %{company_name}, em nome de todos os colaboradores,
+            lhe parabeniza pelo bom desempenho, comprometimento, engajamento e dedicação,
+            no que diz respeito a promover a expansão de clientes, e, à abrangência
+            de nossas atividades em todo o território nacional.<b> Tendo em vista promover e
+            incentivar, ainda mais vossa participação em nosso projeto, certificamos-lhe o
+            título de %{career_name} .</b> Aproveitamos a
+            oportunidade para reforçar nosso compromisso com o seu crescimento pessoal e profissional.
   shopping_mailer:
     order_paid:
       body: Informamos que sua compra dos produto(s) <strong> %{product_names} </strong> foi concluída com sucesso!

@@ -1,19 +1,42 @@
-<p>Olá, <%= @user.email %></p>
+<table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
+  <tr>
+    <td style="font-size:6px;line-height:10px;padding:0px 0px 0px 0px;" valign="top" align="center">
+      <img class="max-width"
+           border="0"
+           style="display:block;color:#000000;text-decoration:none;font-family:Helvetica, arial, sans-serif;font-size:16px;max-width:20% !important;width:30%;height:auto !important;"
+           src="https://s3.amazonaws.com/mail-assets-fm/parabens.png"
+           alt="parabens"
+           width="142">
+    </td>
+  </tr>
+</table>
 
-<br>
+<table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
+  <tr>
+    <td style="padding:18px 0px 18px 0px;line-height:22px;text-align:inherit;"
+        height="100%"
+        valign="top"
+        bgcolor="">
+      <h2 style="text-align: center;">
+        <span style="color:#A9A9A9;"> <%= t('user_mailer.welcome.call', name: @user.name) %> </span>
+      </h2><br>
+      <div style="color:#808080;font-size: 16px;text-indent: 30px;">
+        <span>
+          <%= t('.body', order_value: number_to_currency(@order.total)).html_safe %><br>
+        </span>
+      </div><br>
+      <p> <%= t('.bank_account').html_safe %> </p><br>
+      <p> <%= t('.payment_receipt', financial_email_link: link_to(ENV['FINANCIAL_EMAIL'], "mailto:#{ENV['FINANCIAL_EMAIL']}")).html_safe %> </p><br>
+      <p> <%= link_to t('defaults.my_orders'), backoffice_orders_url %> </p><br>
+      <span style="color:#808080;">
+        <%= t('user_mailer.welcome.footer', company_name: t('defaults.company_name')).html_safe %>
+      </span>
+    </td>
+  </tr>
+</table>
 
-<p>Seu pedido no valor de <%= number_to_currency @order.total %> foi realizado. Complete o pagamento e aguarde o processamento.</p>
-
-<br>
-
-<p>Para agilizar o pagamento realize uma transferência (TED) para a conta baixo: <br><br>
-  Bradesco: 237 <br>
-  Agência: 0343 <br>
-  Conta Corrente: 28106-9 <br>
-  MAISVOZ TELECOMUNICAÇÕES EIRELI <br>
-  CNPJ: 31.852.400/0001-59 <br>
-  Nos envie o comprovante de transferência no e-mail <a href="mailto:financeiro@maisvoz.com.br">financeiro@maisvoz.com.br</a>, para que possamos concluir o pagamento do seu pedido em nosso sistema.</p>
-
-<br>
-
-<p><%= link_to 'Meus Pedidos', backoffice_orders_url %></p>
+<style>
+  p {
+    color:#808080;
+  }
+</style>

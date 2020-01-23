@@ -437,6 +437,48 @@ pt-BR:
   user_mailer:
     welcome:
       subject: Bem-vindo
+      call: Sr(a) %{name}
+      body: Seu registro foi concluído com sucesso. Obrigado  por fazer parte dessa
+            nova revolução. Agora você está um passo adiante em direção à inovação.
+            Bem vindo ao futuro.
+      footer: Atenciosamente, <br>
+              Equipe %{company_name}
+    upgrade_career:
+      subject: Avanço de Título
+      body: É com imenso prazer que a %{company_name}, em nome de todos os colaboradores,
+            lhe parabeniza pelo bom desempenho, comprometimento, engajamento e dedicação,
+            no que diz respeito a promover a expansão de clientes, e, à abrangência
+            de nossas atividades em todo o território nacional.<b> Tendo em vista promover e
+            incentivar, ainda mais vossa participação em nosso projeto, certificamos-lhe o
+            título de %{career_name} .</b> Aproveitamos a
+            oportunidade para reforçar nosso compromisso com o seu crescimento pessoal e profissional.
+  shopping_mailer:
+    order_paid:
+      body: Informamos que sua compra dos produto(s) <strong> %{product_names} </strong> foi concluída com sucesso!
+            Agradecemos e parabenizamos você por adquirir nossos produtos.
+      adhesion_body: Obrigado por tornar-se nosso cliente autorizado.
+                     O pagamento de <b>%{adhesion_order_value}</b> referente ao produto <b>%{adhesion_product_name}</b> foi concluído com sucesso!<br><br>
+                     Agradecemos e parabenizamos você por tomar uma decisão para um futuro promissor e de sucesso.
+                     Em breve você poderá usar seu Chip Mais Voz, além de ganhar muito compartilhando essa maravilha para milhões de outros usuários.
+                     Juntos, espalharemos cada vez mais serviços de alta qualidade e inovação no mercado que mais cresce no Brasil.
+    order_made:
+      body: Seu <b>pedido</b> no valor de <b>%{order_value}</b> foi realizado.
+            Complete o pagamento e aguarde o processamento.
+      bank_account: 'Para agilizar o pagamento realize uma transferência (TED) para a conta baixo: <br><br>
+                    Bradesco: 237 <br>
+                    Agência: 0343 <br>
+                    Conta Corrente: 28106-9 <br>
+                    MAISVOZ TELECOMUNICAÇÕES EIRELI <br>
+                    CNPJ: 31.852.400/0001-59'
+      payment_receipt: Nos envie o comprovante de transferência no e-mail
+                       %{financial_email_link},
+                       para que possamos concluir o pagamento do seu pedido em nosso sistema.'
+  devise_mailer:
+    reset_password_instructions:
+      order_link: Você solicitou um link para alterar sua senha. Você pode alterá-la através do link abaixo.
+      password_reset: Alterar minha senha
+      order_alert: Se não foi você que solicitou, por favor ignore este e-mail.<br>
+                   Sua senha não irá mudar até que você acesse o link acima e crie uma nova.
   date:
     abbr_day_names:
     - Dom
@@ -640,6 +682,8 @@ pt-BR:
     no_data: Sem registros
     indication_link: Link de indicação
     filters: Filtros
+    company_name: Maisvoz
+    my_orders: Meus pedidos
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -991,6 +1035,7 @@ pt-BR:
   there_are_adhesion_product: Carrinho já tem um produto do tipo adesão
   cant_add_produt_to_cart: Não foi possível add produto ao carrinho
   product_is_not_active: Produto Inativo
+  more_details: Mais detalhes
   datagrid:
     form:
       search: Filtrar

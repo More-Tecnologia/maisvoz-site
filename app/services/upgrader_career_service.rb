@@ -4,6 +4,7 @@ class UpgraderCareerService < ApplicationService
     new_career = find_new_career
     return unless upgraded_career?(new_career)
     create_career_trail_user(new_career)
+    send_congratulations_email_to_user(new_career)
   end
 
   private
@@ -32,5 +33,9 @@ class UpgraderCareerService < ApplicationService
     descendent_careers = careers.reverse
     descendent_careers.detect { |career| career.qualify?(user) }
   end
-  
+
+  def send_congratulations_email_to_user(new_career)
+    UserMailer.upgrade_career(user, new_career).deliver_later
+  end
+
 end

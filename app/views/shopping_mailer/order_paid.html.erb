@@ -1,9 +1,42 @@
-<p>Olá, <%= @user.email %></p>
+<table class="wrapper" role="module" data-type="image" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
+  <tr>
+    <td style="font-size:6px;line-height:10px;padding:0px 0px 0px 0px;" valign="top" align="center">
+      <img class="max-width"
+           border="0"
+           style="display:block;color:#000000;text-decoration:none;font-family:Helvetica, arial, sans-serif;font-size:16px;max-width:20% !important;width:30%;height:auto !important;"
+           src="https://s3.amazonaws.com/mail-assets-fm/parabens.png"
+           alt="parabens"
+           width="142">
+    </td>
+  </tr>
+</table>
 
-<br>
-
-<p>Seu pedido no valor de <%= number_to_currency @order.total %> foi pago com sucesso.</p>
-
-<br>
-
-<p><%= link_to 'Mais detalhes', backoffice_order_url(@order) %></p>
+<table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
+  <tr>
+    <td style="padding:18px 0px 18px 0px;line-height:22px;text-align:inherit;"
+        height="100%"
+        valign="top"
+        bgcolor="">
+      <h2 style="text-align: center;">
+        <span style="color:#A9A9A9;"> <%= t('user_mailer.welcome.call', name: @user.name) %> </span>
+      </h2><br>
+      <div style="color:#808080;font-size: 16px;text-indent: 30px;">
+        <% adhesion_product = @order.adhesion_product %>
+        <% if adhesion_product %>
+          <span>
+            <%= t('.adhesion_body', adhesion_order_value: number_to_currency(@order.total),
+                                    adhesion_product_name: adhesion_product.try(:name)).html_safe %>
+          </span>
+        <% else %>
+          <span>
+            <%= t('.body', product_names: @order.products.map(&:name).join(', ')).html_safe %><br>
+          </span>
+        <% end %>
+      </div><br>
+      <p> <%= link_to t('more_details'), backoffice_order_url(@order) unless adhesion_product %> </p><br>
+      <span style="color:#808080;">
+        <%= t('user_mailer.welcome.footer', company_name: t('defaults.company_name')).html_safe %>
+      </span>
+    </td>
+  </tr>
+</table>

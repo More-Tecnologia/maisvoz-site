@@ -12,7 +12,8 @@ module Financial
     def call
       return unless valid_form?
       ActiveRecord::Base.transaction do
-        create_financial_transaction
+        transaction = create_financial_transaction
+        increment_user_blocked_balance(transaction.cent_amount) if transaction.credit?
       end
     end
 
@@ -40,6 +41,10 @@ module Financial
     def valid_form?
       return true if form.valid?
       errors.add(:form, form.errors.full_messages)
+    end
+
+    def increment_user_blocked_balance(amount)
+      user.update!(blocked_balance_cents: user.blocked_balance_cents + amount)
     end
 
   end

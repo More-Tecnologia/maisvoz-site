@@ -195,8 +195,7 @@ class User < ApplicationRecord
   end
 
   def available_balance
-    amount = available_cent_amount
-    amount > 0 ? available_cent_amount - blocked_balance : amout
+    available_cent_amount - blocked_balance
   end
 
   def blocked_balance

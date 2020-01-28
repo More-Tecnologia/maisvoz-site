@@ -434,6 +434,9 @@ pt-BR:
     cart_updated: Carrinho atualizado
     see_cart: Ver carrinho
     title: Carrinho
+  mailer:
+    automatic: Este Email foi enviado automaticamente. Por favor não responder.
+               Em caso de dúvidas, entre em contato com %{contact_mail}
   user_mailer:
     welcome:
       subject: Bem-vindo

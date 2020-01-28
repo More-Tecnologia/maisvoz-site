@@ -86,7 +86,7 @@ module Payment
     end
 
     def today
-      @today ||= Time.zone.today
+      @today ||= Time.now.in_time_zone('Brasilia').to_date
     end
 
   end

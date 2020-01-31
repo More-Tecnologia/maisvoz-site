@@ -52,8 +52,7 @@ class Career < ApplicationRecord
   end
 
   def unilevel_qualify?(user)
-    unilevel_score_sum = user.lineage_scores.values.sum
-    unilevel_qualify_lineages?(user) && unilevel_score_sum >= qualifying_score.to_i
+    unilevel_qualify_lineages?(user) && user.unilevel_score_sum >= qualifying_score.to_i
   end
 
   def unilevel_qualify_lineages?(user)

@@ -227,8 +227,8 @@ class User < ApplicationRecord
     self[:withdrawal_order_amount] = (amount * 1e8).to_i
   end
 
-  def unilevel_score_count
-    scores.accumulate.sum(:cent_amount)
+  def unilevel_score_sum
+    scores.unilevel.sum(:cent_amount)
   end
 
   def self.find_for_database_authentication warden_conditions

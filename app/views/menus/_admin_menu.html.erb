@@ -11,17 +11,17 @@
     <li><%= link_to t('defaults.products'), backoffice_admin_products_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.orders'), backoffice_admin_orders_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
-    <li><%= link_to t('defaults.cellphone_reloads'), new_backoffice_cellphone_reload_path %></li>
+    <!-- <li><%= link_to t('defaults.cellphone_reloads'), new_backoffice_cellphone_reload_path %></li> -->
     <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
   </ul>
 </li>
-<li class="has_sub">
+<!-- <li class="has_sub">
   <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-sim-card"></i><span class="menu-arrow"></span><span> <%= t('defaults.sim_card_control') %> </span></a>
   <ul class="list-unstyled">
     <li><%= link_to t('defaults.add_sim_cards'), new_backoffice_admin_sim_card_control_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.user_sim_card_report'), backoffice_admin_sim_card_reports_path, class: 'admin-link' %> </li>
   </ul>
-</li>
+</li> -->
 <!-- Financial menu -->
 <li class="has_sub">
   <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span></a>
@@ -29,7 +29,7 @@
     <li><%= link_to t('defaults.credits_debits'), backoffice_admin_credits_debit_path(:find_user), class: 'admin-link' %></li>
     <li><%= link_to t('defaults.financial_transactions'), backoffice_admin_financial_transactions_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.manage_withdrawals'), backoffice_admin_withdrawals_path, class: 'admin-link' %></li>
-    <li><%= link_to t('defaults.cellphone_reloads').pluralize, backoffice_admin_cellphone_reloads_path, class: 'admin-link' %></li>
+    <!-- <li><%= link_to t('defaults.cellphone_reloads').pluralize, backoffice_admin_cellphone_reloads_path, class: 'admin-link' %></li> -->
     <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
     <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
     <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>

@@ -112,4 +112,5 @@ class NewRegistrationForm < Form
     errors.add(:document_cnpj,
                I18n.t('activemodel.errors.messages.taken')) if user_exists
   end
+
 end

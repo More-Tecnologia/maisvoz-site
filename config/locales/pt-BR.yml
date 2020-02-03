@@ -850,6 +850,7 @@ pt-BR:
         update: Atualizar Conta
       new:
         sign_up: Cadastrar
+        title: Novo Usuário
         next: Próximo
         previous: Anterior
   view_all: View all

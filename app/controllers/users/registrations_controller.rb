@@ -7,17 +7,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     build_resource({})
-    sponsor_username = User.empreendedor.find_by(username: params[:sponsor]).try(:username)
-
-    form = NewRegistrationForm.new(sponsor_username: sponsor_username)
-    render locals: { form: form }
+    @form = build_registration_form(sponsor_username: params[:sponsor])
   end
 
   # POST /resource
   def create
     # super
-    build_resource(form.attributes.except(:sponsor_username, :role, :contract))
-    if form.valid? && resource.save
+    @form = build_registration_form(params[:user])
+    build_resource(@form.attributes.except(:sponsor_username, :role, :contract, :g_recaptcha_response))
+    if @form.valid? && resource.save
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
@@ -31,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      render(:new, locals: { form: form, sponsor: params[:sponsor] })
+      render :new
     end
   end
 
@@ -105,8 +103,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     )
   end
 
-  def form
-    @form ||= NewRegistrationForm.new(params.fetch(:user, {}).permit!)
+  def build_registration_form(attributes)
+    return ShortNewRegistrationForm.new(attributes) if ENV['ENABLED_SHORT_REGISTRATION_FORM'] == 'true'
+    NewRegistrationForm.new(attributes)
   end
 
   def edit_form
@@ -142,8 +141,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
     UserMailer.welcome(user).deliver_later
   end
 
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
 end

@@ -3,35 +3,16 @@
   <div class="container">
     <div class="row m-t-30 m-b-30">
       <div class="col-md-3 d-flex">
-        <i class="fas fa-phone footer-cmp__icon"></i>
         <div>
-          <p class="footer-cmp__title">Entre em contato</p>
-          <p class="footer-cmp__info">SAC (49) 3452-0292</p>
+          <p class="footer-cmp__title"></p>
+          <p class="footer-cmp__info"></p>
         </div>
       </div>
       <div class="col-md-3 d-flex">
         <i class="fas fa-envelope footer-cmp__icon"></i>
         <div>
           <p class="footer-cmp__title">Envie um e-mail</p>
-          <p class="footer-cmp__info">contato@maisvoz.com.br</p>
-        </div>
-      </div>
-      <div class="col-md-3 d-flex">
-        <i class="fas fa-map-marker-alt footer-cmp__icon"></i>
-        <div>
-          <p class="footer-cmp__title">Sede Comercial</p>
-          <p class="footer-cmp__info">
-            Rua Herculano Hércules Zanuzzo – Nº 379 – Sala 05 <br>
-            Edifício Vinã Del Mar - Bairro Industrial <br>
-            Seara / SC - CEP 89770-000
-          </p>
-        </div>
-      </div>
-      <div class="col-md-3 d-flex">
-        <i class="fas fa-cog footer-cmp__icon"></i>
-        <div>
-          <p class="footer-cmp__title">Desenvolvido por </p>
-          <%= image_tag 'logo_more.png', style: 'padding-top: 18px;', title: 'More Network Marketing' %>
+          <p class="footer-cmp__info"><%= ENV['SANDBOX_EMAIL'] %></p>
         </div>
       </div>
     </div>

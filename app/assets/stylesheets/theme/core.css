@@ -740,8 +740,8 @@ textarea.form-control {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-  background-color: #ffcc00;
-  border-color: #ffcc00;
+  background-color: #000000;
+  border-color: #000000;
 }
 .pager li > a,
 .pager li > span {
@@ -795,13 +795,13 @@ textarea.form-control {
   line-height: 36px !important;
 }
 .nav-pills li.active a {
-  background-color: #ffcc00 !important;
+  background-color: #000000 !important;
 }
 .nav-pills li.active a:hover {
-  background-color: #ffcc00 !important;
+  background-color: #000000 !important;
 }
 .nav-pills li.active a:focus {
-  background-color: #ffcc00 !important;
+  background-color: #000000 !important;
 }
 .nav.nav-tabs + .tab-content {
   background: #ffffff;
@@ -1162,7 +1162,7 @@ pre {
   right: 7px;
 }
 .nav > li > a {
-  color: #000000 !important;
+  color: #FFF !important;
   line-height: 60px;
   padding: 0px 15px;
   position: relative;

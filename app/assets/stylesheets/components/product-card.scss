@@ -1,9 +1,6 @@
-.product-card {
-}
-
 .product-card__name {
-  background: #fad328;
-  color: #373435;
+  background: #966108a6;
+  color: #FFF;
   border-radius: 50px;
   display: inline-block;
   padding: 2px 20px;
@@ -19,22 +16,22 @@
 .product-card__btn {
   width: 100%;
   text-align: center;
-  color: #ffcc00;
+  color: #FFF;
   font-size: 13px;
   padding: 12px;
 
   &:first-child {
     border-radius: 0 0 0 3px;
-    background-color: #000000;
+    background-color: #966108a6;
     &:hover, &:focus {
-      color: #fff;
+      color: #FFF;
     }
   }
 
   &:last-child {
-    background-color: #fad328;
+    background-color: #000000;
     border-radius: 0 0 3px 0;
-    color: #373435;
+    color: #FFF;
     &:hover, &:focus {
       color: #373435;
     }

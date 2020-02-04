@@ -58,6 +58,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'via_cep'
 gem 'virtus', '~> 1.0.5'
 gem 'paper_trail', '~> 10.3', '>= 10.3.1'
+gem 'rqrcode', '~> 1.1', '>= 1.1.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

@@ -49,6 +49,12 @@ pt-BR:
         credit: Crédito
         debit: Débito
         generation: Geração
+      order:
+        shipping: Frete
+        total: Total
+        subtotal: Subtotal
+      payment_transaction:
+        transcation_id: Número da transação
       user:
         document_cpf_photo: Foto do CPF
         document_rg_photo: Foto do RG
@@ -97,6 +103,7 @@ pt-BR:
         too_long: "de no máximo %{count} caracteres"
         still_in_cart: Pedido ainda no carrinho de compra
         already_approved: Pedido já aprovado
+        too_long: "de no máximo %{count} caracteres"
         without_available_balance: Usuário não tem saldo disponível.
     attributes:
       credit_debit_wizard/create_form:
@@ -338,6 +345,11 @@ pt-BR:
     financial_transactions:
       index:
         title: Transações Financeiras
+    payment_transactions:
+      show:
+        title: Pagamento
+        transfer_note_html: "Transfira <strong>%{value}</strong> para o endereço abaixo"
+        transfer_rate_warning_html: 'Para agilizar a identificação do pagamento, recomendamos utilizar a <strong>Taxa Expressa<strong>'
     order_items:
       update:
         cart_updated: Carrinho atualizado
@@ -430,6 +442,8 @@ pt-BR:
       index:
         title: Histórico de Carreira
   balanced_strategy: Balanceado
+  buy_cart:
+    updated: Carrinho atualizado
   cart:
     cart_updated: Carrinho atualizado
     see_cart: Ver carrinho
@@ -648,6 +662,11 @@ pt-BR:
     unilevel_binary: Relatório
     financial_transactions: Histórico Financeiro
     wrong_master_password: Senha master errada
+    details: Detalhes
+    total_at: "Total em %{digital_currency}"
+    order_do_not_paid: "Pedido não pago. Saldo insuficiente: %{available_balance}."
+    started: 'Iniciada'
+    paid: 'Pago'
     support: Suporte
     contract_link_html: contrato de consultor de vendas
     accept_contract_html: "Aceito o %{link}"

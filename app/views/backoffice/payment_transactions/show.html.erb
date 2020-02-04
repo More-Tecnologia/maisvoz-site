@@ -1,0 +1,91 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title m-b-30"><%= t('backoffice.payment_transactions.show.title') %></h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <table class="table table-bordered cart-table">
+
+            <thead class="cart-table__title">
+              <tr>
+                <th></th>
+                <th><%= Product.human_attribute_name(:name) %></th>
+                <th><%= OrderItem.human_attribute_name(:quantity) %></th>
+                <th><%= OrderItem.human_attribute_name(:unit_price) %></th>
+                <th><%= OrderItem.human_attribute_name(:total) %></th>
+              </tr>
+            </thead>
+            <tbody class="cart-table__body">
+              <% @payment_transaction.order.order_items.each do |order_item| %>
+                <tr>
+                  <td><%= cl_image_tag(order_item.product.main_photo_id, { size: '150x150', class: 'thumb-md' }) %></td>
+                  <td><%= order_item.name %></td>
+                  <td><%= order_item.quantity %></td>
+                  <td><%= number_to_currency(order_item.unit_price, unit: ENV['CURRENT_CURRENCY']) %></td>
+                  <td><%= number_to_currency(order_item.total, unit: ENV['CURRENT_CURRENCY']) %></td>
+                </tr>
+              <% end %>
+              <% if @payment_transaction.order.order_items.empty? %>
+                <tr>
+                  <td colspan="6" class="text-center"><%= t('views.backoffice.cart.show.no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row m-t-30">
+        <% if @payment_transaction.order.shipping > 0 %>
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <h3> <%= Order.human_attribute_name(:shipping) %> </h3>
+          </div>
+          <div class="col-md-11">
+            <h3> <%= number_to_currency(@payment_transaction.order.shipping,
+                                        unit: ENV['CURRENT_CURRENCY']) %> </h3>
+          </div>
+        </div>
+        <% end %>
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <h3> <%= Order.human_attribute_name(:total) %> </h3>
+          </div>
+          <div class="col-md-11">
+            <h3>
+              <%= number_to_currency(@payment_transaction.order.total,
+                                        unit: ENV['CURRENT_CURRENCY'] ) %>
+              <br>
+              <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+                <%= format_digital_currency(@payment_transaction.amount) %>
+              <% end %>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class='row text-center'>
+        <div class='col-md-12'>
+          <h3 class='text-primary'>
+            <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@payment_transaction.amount)) %>
+          </h3>
+          <h4 class='text-danger'>
+            <span class='glyphicon glyphicon-alert'> </span>
+            <%= t('backoffice.payment_transactions.show.transfer_rate_warning_html') %>
+          </h4>
+        </div>
+      </div>
+      <div class='row text-center'>
+        <div class='col-md-4 col-md-offset-4'>
+          <%= render_qr_code_img(@payment_transaction.wallet_address) %> <br>
+          <%= @payment_transaction.wallet_address %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ class BackofficeController < ApplicationController
   before_action :authenticate_user!
 
   helper_method :current_order
+  helper_method :clean_shopping_cart
 
   protected def current_order
    if session[:order_id].present? && current_user.orders.exists?(session[:order_id])
@@ -14,6 +15,10 @@ class BackofficeController < ApplicationController
    else
      @current_order ||= Order.new(user: current_user)
    end
+  end
+
+  protected def clean_shopping_cart
+    session.delete(:order_id)
   end
 
   private def define_layout

@@ -15,39 +15,40 @@
 
             <thead>
               <tr>
-                <th width="1">#</th>
+                <th>#</th>
                 <th><%= Order.human_attribute_name(:total) %></th>
+                <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+                <th><%= t('defaults.total_at', digital_currency: ENV['CURRENT_DIGITAL_CURRENCY']) %></th>
+                <% end %>
                 <th><%= Order.human_attribute_name(:status) %></th>
                 <th><%= Order.human_attribute_name(:expire_at) %></th>
                 <th><%= Order.human_attribute_name(:paid_at) %></th>
-                <th width="1"></th>
-                <th width="1"></th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <% @orders.each do |order| %>
                 <tr>
-                  <th><%= order.hashid %></th>
-                  <td><%= number_to_currency order.total %></td>
+                  <td><%= order.hashid %></td>
+                  <td><%= number_to_currency(order.total, unit: ENV['CURRENT_CURRENCY']) %></td>
+                  <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+                  <td><%= "#{ENV['CURRENT_DIGITAL_CURRENCY']} #{order.try(:payment_transaction).try(:amount)}"%></td>
+                  <% end %>
                   <td><%= t "defaults.#{order.status}" %></td>
                   <td><%= l(order.expire_at, format: :short) if order.expire_at.present? %></td>
                   <td><%= l(order.paid_at, format: :short) if order.paid_at.present? %></td>
                   <td>
-                    <%= link_to 'Detalhes', backoffice_order_path(order) %>
+                    <%= link_to t('defaults.details'), backoffice_order_path(order) %>
                   </td>
-                  <td>
-                    <% if !order.completed? && !order.expired? %>
-                      <%= link_to '<i class="fas fa-barcode m-r-5"></i> Imprimir Boleto'.html_safe, order.current_transaction.boleto_url, class: 'btn btn-primary btn-xs',  target: '_blank' if order.current_transaction %>
-                      <%= button_to(backoffice_order_generate_boleto_path(order), class: 'btn btn-primary btn-xs', method: :post, data: { disable_with: 'Gerando...' }) do %>
-                        <i class="fas fa-file m-r-5"></i> Gerar Boleto
-                      <% end if order.current_transaction.blank? %>
-                    <% end %>
-                  </td>
+                  <% if order.try(:payment_transaction) && !order.paid_at %>
+                  <td> <%= link_to t('defaults.pay'), backoffice_payment_transaction_path(id: order.try(:payment_transaction).id) %> </td>
+                  <% end %>
                 </tr>
               <% end %>
               <% if @orders.empty? %>
                 <tr>
-                  <td colspan="7" class="text-center"><%= t('views.backoffice.orders.index.no_data') %></td>
+                  <td colspan="8" class="text-center"><%= t('views.backoffice.orders.index.no_data') %></td>
                 </tr>
               <% end %>
             </tbody>

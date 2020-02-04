@@ -13,16 +13,3 @@
 <% if flash[:alert] %>
   <div class="alert alert-warning"><%= flash[:alert] %></div>
 <% end %>
-
-<% if flash[:popup] %>
-<div class="modal fade" tabindex="-1" role="dialog" id="modal-popup">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content p-0 b-0" style="background-color: transparent;">
-      <img src="https://res.cloudinary.com/maisvoz/image/upload/v1574453332/maisvoz-popup_dlcvkq.png" alt="Caro Cliente" />
-    </div>
-  </div>
-</div>
-<script type="text/javascript">
-  $(document).ready(function () { $('#modal-popup').modal('show'); });
-</script>
-<% end %>

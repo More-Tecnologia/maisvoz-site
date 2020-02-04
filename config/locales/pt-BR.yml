@@ -695,7 +695,6 @@ pt-BR:
     no_data: Sem registros
     indication_link: Link de indicação
     filters: Filtros
-    company_name: Maisvoz
     my_orders: Meus pedidos
     send_email: Envie nos um email
     copyright: Todos os direitos reservados %{company_name}

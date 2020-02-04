@@ -93,6 +93,11 @@ class Score < ApplicationRecord
     received_scores.merge(spreaded_scores) { |key, old, new| old + new }
   end
 
+  def active?
+    return true if expire_at.nil?
+    expire_at > Time.now
+  end
+
   private
 
   def upgrade_user_career

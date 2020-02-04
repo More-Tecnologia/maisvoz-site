@@ -25,6 +25,8 @@
                   <th><%= Score.human_attribute_name(:balance) %></th>
                   <th><%= Score.human_attribute_name(:order) %></th>
                   <th><%= Score.human_attribute_name(:created_at) %></th>
+                  <th><%= Score.human_attribute_name(:status) %></th>
+                  <th><%= Score.human_attribute_name(:expire_at) %></th>
                 </tr>
               </thead>
               <tbody>
@@ -42,11 +44,13 @@
                       <% cent_amount_sum -= score.cent_amount %>
                       <td><%= link_to score.try(:order).try(:hashid), backoffice_admin_order_path(score.try(:order)) if score.try(:order)  %></td>
                       <td><%= l(score.try(:created_at), format: :short) %></td>
+                      <td><%= score_status(score) %></td>
+                      <td><%= l(score.expire_at, format: :long) if score.expire_at %></td>
                     </tr>
                   <% end %>
                 <% else %>
                   <tr>
-                    <td colspan="9" class="text-center"><%= t('.no_data') %></td>
+                    <td colspan="50" class="text-center"><%= t('helpers.no_data') %></td>
                   </tr>
                 <% end %>
               </tbody>

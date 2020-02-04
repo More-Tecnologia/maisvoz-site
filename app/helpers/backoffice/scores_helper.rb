@@ -18,5 +18,10 @@ module Backoffice
        .sum(:cent_amount)
     end
 
+    def score_status(score)
+      return content_tag(:span, t('defaults.score_active'), class: 'label label-success') if score.active?
+      content_tag(:span, t('defaults.score_expired'), class: 'label label-danger')
+    end
+
   end
 end

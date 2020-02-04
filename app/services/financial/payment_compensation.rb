@@ -31,6 +31,7 @@ module Financial
         user.empreendedor! if adhesion_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
+        create_pool_point_for_user
         propagate_binary_score if enabled_bonification && enabled_binary?
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
@@ -184,6 +185,10 @@ module Financial
 
     def create_support_point_activation_bonus
       Bonification::SupportPointActivationService.call(order: order)
+    end
+
+    def create_pool_point_for_user
+      Bonification::CreatorPoolPointService.call(order: order)
     end
 
   end

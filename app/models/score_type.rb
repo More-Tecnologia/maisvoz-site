@@ -45,4 +45,8 @@ class ScoreType < ApplicationRecord
     find_by(code: '800')
   end
 
+  def self.pool_point
+    find_by(code: '900')
+  end
+
 end

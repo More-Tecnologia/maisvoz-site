@@ -1,6 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
 
-  default from: 'no-reply@maisvoz.com.br'
+  default from: ENV['SENDER_EMAIL']
   layout 'mailer'
 
   include Sendgrid

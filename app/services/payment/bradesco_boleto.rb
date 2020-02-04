@@ -56,7 +56,7 @@ module Payment
         uf: user.state
       }
       params[:boleto] = {
-        beneficiario: 'MAISVOZ TELECOMUNICAÇÕES EIRELI',
+        beneficiario: ENV['COMPANY_NAME_FOR_BILLET'],
         nosso_numero: 1000 + order.id,
         carteira: 26,
         valor_titulo: order.total_cents,

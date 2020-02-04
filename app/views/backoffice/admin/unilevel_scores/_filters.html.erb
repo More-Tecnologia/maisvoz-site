@@ -13,20 +13,14 @@
                 <%= f.search_field :user_username_eq, class: 'form-control input-sm' %>
               </div>
               <div class="col-md-2">
-                <%= f.label t('attributes.from') %>
+                <%= f.label t('helpers.expire_at_from') %>
                 <%= f.search_field :created_at_gteq, class: 'form-control input-sm',
                                                      data: { provide: 'datepicker' } %>
               </div>
               <div class="col-md-2">
-                <%= f.label t('attributes.until') %>
+                <%= f.label t('helpers.expire_at_until') %>
                 <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
                                                      data: { provide: 'datepicker' } %>
-              </div>
-              <div class="col-md-4">
-                <%= t('activerecord.attributes.score.score_type') %>
-                <%= f.select :score_type_id_in, ScoreType.unilevel.active.pluck(:name, :id),
-                                                { include_blank: t('all') },
-                                                { class: 'form-control input-sm', multiple: true } %>
               </div>
             </div>
           </div>

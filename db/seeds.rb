@@ -141,7 +141,8 @@ score_types = [{ name: 'Pontuação de Adesões', code: '100' },
                { name: 'Pontuação Binária', tree_type: :binary, code: '400', active: true },
                { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500', active: true },
                { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600', active: true },
-               { name: 'Débito de Bonus Binário', tree_type: :binary, code: '700', active: true }]
+               { name: 'Débito de Bonus Binário', tree_type: :binary, code: '700', active: true },
+               { name: 'Pool Point', code: '900', active: true }]
 score_types.each { |score_type| ScoreType.find_or_create_by!(score_type) unless ScoreType.exists?(code: score_type[:code]) }
 
 

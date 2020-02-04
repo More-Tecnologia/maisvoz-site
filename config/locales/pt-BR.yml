@@ -277,6 +277,7 @@ pt-BR:
     cellphone_number: Telefone
     wallet_address: Carteira Digital
     image_path: Pin
+    expire_at: Validade
   backoffice:
     orders:
       show:
@@ -435,7 +436,7 @@ pt-BR:
     scores:
       index:
         title:
-          unilevel: Pontuações da Rede Unilevel
+          unilevel: Pool Points
           binary: Pontuações da Rede Binária
           all: Pontuações
     sim_cards:
@@ -630,7 +631,6 @@ pt-BR:
     settings: Configurações
     shop: Loja
     success: Sucesso
-    unilevel: Unilevel
     users: Usuários
     withdrawal_fee: Taxa de Saque
     withdrawals: Histórico de Saque
@@ -648,7 +648,7 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
-    unilevel: Unilevel
+    unilevel: Pool Points
     binary: Binária
     unilevel_binary: Relatório
     financial_transactions: Histórico Financeiro
@@ -698,6 +698,8 @@ pt-BR:
     my_orders: Meus pedidos
     send_email: Envie nos um email
     copyright: Todos os direitos reservados %{company_name}
+    score_active: Ativo
+    score_expired: Expirado
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -757,6 +759,9 @@ pt-BR:
     approve_support_point: Aprovar Ponto de Apoio
     export_to_csv: Exportar para CSV
     save_with_disable: "<i class='fa fa-spinner fa-spin'></i> Salvando..."
+    expire_at_from: Válido de
+    expire_at_until: Válido até
+    no_data: sem registros
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:

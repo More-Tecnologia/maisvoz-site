@@ -29,7 +29,6 @@ module Financial
         activate_user if adhesion_product
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
         user.empreendedor! if adhesion_product
-        update_user_role if subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
         propagate_binary_score if enabled_bonification && enabled_binary?
@@ -38,11 +37,8 @@ module Financial
         upgrade_career_from(user) if adhesion_product
         propagate_bonuses if enabled_bonification
         create_vouchers
-        create_system_fee if adhesion_product || subscription_product
-        associate_support_point if adhesion_product
+        #create_system_fee if adhesion_product || subscription_product
         binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification && enabled_binary?
-        add_product_bonus_to_order if adhesion_product
-        create_support_point_activation_bonus if activation_product && user.support_point_user
         notify_user_by_email_about_paid_order
       end
     end
@@ -125,10 +121,6 @@ module Financial
 
     def create_next_activation_order
       Financial::CreatorActivationOrderService.call(user: user)
-    end
-
-    def associate_support_point
-      AssociateSupportPointService.call(user: order.user)
     end
 
     def add_product_bonus_to_order

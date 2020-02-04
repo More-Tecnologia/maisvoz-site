@@ -11,7 +11,7 @@ class WithdrawalsMailer < ApplicationMailer
     @withdrawal = params[:withdrawal]
     @user = @withdrawal.user
 
-    mail to: @user.email, subject: 'Mais Voz - Pedido de Saque Aprovado'
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido de Saque Aprovado"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -25,6 +25,6 @@ class WithdrawalsMailer < ApplicationMailer
     @withdrawal = params[:withdrawal]
     @user = @withdrawal.user
 
-    mail to: @user.email, subject: 'Mais Voz - Pedido de Saque Rejeitado'
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido de Saque Rejeitado"
   end
 end

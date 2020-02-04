@@ -42,9 +42,16 @@
           <i class="icon-plus"></i>
           <%= t('views.backoffice.products.index.details') %>
         <% end %>
-        <%= link_to backoffice_order_items_path(product: {id: product.hashid}), method: :post, class: 'btn product-card__btn text-center' do %>
-          <i class="icon-basket"></i>
-          <%= t('views.backoffice.products.show.buy') %>
+        <% if current_user.bought_adhesion %>
+          <i class="icon-basket"></i>	          <%= link_to '#', class: 'btn product-card__btn text-center' do %>
+          <%= t('views.backoffice.products.show.buy') %>	            <i class="icon-basket"></i>
+            <%= t('views.backoffice.products.show.paid') %>
+          <% end %>
+        <% else %>
+          <%= link_to backoffice_order_items_path(product: {id: product.hashid}), method: :post, class: 'btn product-card__btn text-center' do %>
+            <i class="icon-basket"></i>
+            <%= t('views.backoffice.products.show.buy') %>
+          <% end %>
         <% end %>
       </div>
     </div>

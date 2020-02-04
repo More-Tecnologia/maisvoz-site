@@ -25,7 +25,7 @@ module Backoffice
       qr_code = generate_qr_code(string)
       qr_code_base64 = Base64.encode64(qr_code.to_blob)
       src = "data:image/png;base64,#{qr_code_base64}"
-      image_tag src, calss: 'img img-responsive'
+      image_tag src
     end
 
   end

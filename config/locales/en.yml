@@ -298,3 +298,8 @@ en:
       last: Last
       next: Next
       previous: Previous
+    payment_transactions:
+      show:
+        title: Pagamento
+        transfer_note_html: "Transfer <strong>%{value}</strong> wallet address below"
+        transfer_rate_warning_html: 'To expedite payment identification, we recommend using the <strong>Express Rate<strong>'

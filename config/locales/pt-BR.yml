@@ -277,6 +277,7 @@ pt-BR:
     bank_agency: Agência
     cellphone_number: Telefone
     wallet_address: Carteira Digital
+    image_path: Pin
   backoffice:
     orders:
       show:

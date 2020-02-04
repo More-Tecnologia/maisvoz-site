@@ -12,6 +12,7 @@ class CareerForm < Form
   attribute :unilevel_qualifying_career_count
   attribute :lineage_score
   attribute :requalification_score
+  attribute :image_path
 
   validates :name, :qualifying_score, :bonus, :binary_limit, :binary_percentage,
             :kind, presence: true

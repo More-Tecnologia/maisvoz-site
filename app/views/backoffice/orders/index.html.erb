@@ -42,7 +42,7 @@
                     <%= link_to t('defaults.details'), backoffice_order_path(order) %>
                   </td>
                   <% if order.try(:payment_transaction) && !order.paid_at %>
-                  <td> <%= link_to t('defaults.pay'), backoffice_payment_transaction_path(id: order.try(:payment_transaction).id) %> </td>
+                  <td> <%= link_to t('defaults.pay'), backoffice_payment_transaction_path(order.try(:payment_transaction)) %> </td>
                   <% end %>
                 </tr>
               <% end %>

@@ -9,7 +9,7 @@ class PaymentTransaction < ApplicationRecord
   belongs_to :order
 
   enum status: [:started, :paid]
-    status == '21' || status == '23'
+
   validates :transaction_id, presence: true,
                              uniqueness: true
 

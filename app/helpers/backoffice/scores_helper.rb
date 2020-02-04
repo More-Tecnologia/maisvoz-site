@@ -10,7 +10,8 @@ module Backoffice
     end
 
     def sum_score_cent_amount(q, scores)
-      first_score_id = scores.first.id
+      first_score_id = scores.try(:first).try(:id)
+      return 0 unless first_score_id
       q.result
        .where('scores.id <= ?', first_score_id)
        .order(created_at: :desc)

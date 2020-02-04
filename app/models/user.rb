@@ -166,6 +166,7 @@ class User < ApplicationRecord
   validates :document_pis_photo, presence: true, on: :document_verification, if: :pf?
   validates :document_address_photo, presence: true, on: :document_verification
   validates :document_scontract_photo, presence: true, on: :document_verification, if: :pj?
+  validates :wallet_address, presence: true, on: :withdrawal_with_digital_coin
 
   validate :support_point_requisits, on: :update, if: :support_point?
 

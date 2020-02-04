@@ -39,8 +39,8 @@
                       </button>
                     <% end %>
                   </td>
-                  <td><%= number_to_currency order_item.unit_price %></td>
-                  <td><%= number_to_currency order_item.total %></td>
+                  <td><%= number_to_currency(order_item.unit_price, unit: ENV['CURRENT_CURRENCY']) %></td>
+                  <td><%= number_to_currency(order_item.total, unit: ENV['CURRENT_CURRENCY']) %></td>
                   <td>
                     <%= link_to backoffice_order_item_path(order_item), method: :delete do %>
                       <i class="icon-trash"></i>
@@ -55,20 +55,20 @@
               <% end %>
 
               <tr>
-                <th colspan="5"><span class="pull-right">PVs</span></th>
+                <th colspan="5"><span class="pull-right"><%= t('attributes.score') %></span></th>
                 <th><%= number_with_delimiter current_order.total_score %></th>
               </tr>
               <tr>
-                  <th colspan="5"><span class="pull-right">Sub Total</span></th>
-                  <th><%= number_to_currency current_order.subtotal %></th>
+                  <th colspan="5"><span class="pull-right"><%= t('attributes.subtotal') %></span></th>
+                  <th><%= number_to_currency(current_order.subtotal, unit: ENV['CURRENT_CURRENCY']) %></th>
               </tr>
               <tr>
-                  <th colspan="5"><span class="pull-right">Frete</span></th>
-                  <th><%= number_to_currency current_order.shipping %></th>
+                  <th colspan="5"><span class="pull-right"><%= t('attributes.shipping') %></span></th>
+                  <th><%= number_to_currency(current_order.shipping, unit: ENV['CURRENT_CURRENCY']) %></th>
               </tr>
               <tr>
-                  <th colspan="5"><span class="pull-right">Total</span></th>
-                  <th><%= number_to_currency current_order.total %></th>
+                  <th colspan="5"><span class="pull-right"><%= t('attributes.total') %></span></th>
+                  <th><%= number_to_currency(current_order.total, unit: ENV['CURRENT_CURRENCY']) %></th>
               </tr>
             </tbody>
           </table>
@@ -79,7 +79,9 @@
         <div class="col-md-12">
           <%= link_to t('views.backoffice.cart.show.continue_shopping'), backoffice_products_path, class: 'btn btn-default text-uppercase' %>
           <% if current_order.order_items.present? %>
-            <%= link_to backoffice_checkout_path, method: :put, class: 'btn btn-default pull-right text-uppercase', data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>...".html_safe } do %>
+            <%= link_to new_backoffice_payment_block_checkout_path,
+                        class: 'btn btn-default pull-right text-uppercase',
+                        data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>...".html_safe } do %>
               <%= t('views.backoffice.cart.show.place_order') %>
               <i class="icon-arrow-right"></i>
             <% end %>

@@ -1,46 +1,32 @@
-# == Schema Information
-#
-# Table name: payment_transactions
-#
-#  id                     :bigint(8)        not null, primary key
-#  order_id               :bigint(8)
-#  user_id                :bigint(8)
-#  boleto_url             :string
-#  boleto_barcode         :string
-#  boleto_expiration_date :datetime
-#  status                 :string
-#  pagarme_tid            :bigint(8)
-#  amount_cents           :bigint(8)
-#  paid_amount_cents      :bigint(8)        default(0)
-#  installments           :integer          default(1)
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  type                   :string
-#  provider_response      :text
-#
-# Indexes
-#
-#  index_payment_transactions_on_order_id     (order_id)
-#  index_payment_transactions_on_pagarme_tid  (pagarme_tid) UNIQUE WHERE (pagarme_tid IS NOT NULL)
-#  index_payment_transactions_on_status       (status)
-#  index_payment_transactions_on_type         (type)
-#  index_payment_transactions_on_user_id      (user_id)
-#
-
 class PaymentTransaction < ApplicationRecord
 
-  # 10, 13, 14 ou 15 Boleto Gerado
-  # 21 Boleto Pago igual
-  # 22 Boleto Pago a Menor
-  # 23 Boleto Pago a Maior
+  include Hashid::Rails
 
   serialize :provider_response, JSON
 
-  belongs_to :order
-  belongs_to :user
+  attr_accessor :wallet_address
 
-  def paid?
+  belongs_to :order
+
+  enum status: [:started, :paid]
     status == '21' || status == '23'
+  validates :transaction_id, presence: true,
+                             uniqueness: true
+
+  serialize :provider_response, JSON
+
+  def wallet_label
+    hashid
+  end
+
+  def amount=(value)
+    self[:amount] = to_eight_scale(value)
+  end
+
+  private
+
+  def to_eight_scale(value)
+    (value.to_f * 10e7).to_i / 10e7
   end
 
 end

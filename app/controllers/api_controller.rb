@@ -2,6 +2,10 @@ class ApiController < ActionController::API
 
   before_action :authenticate_request
 
+  def render_error(error_code, error_message)
+    head error_code, json: { error_message: error_message }
+  end
+
   private
 
   def authenticate_request

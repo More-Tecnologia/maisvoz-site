@@ -1,7 +1,6 @@
 module Backoffice
   class OrderItemsController < BackofficeController
 
-    before_action :ensure_valid_user
     before_action :ensure_valid_product, except: [:destroy, :update]
 
     def create
@@ -48,13 +47,6 @@ module Backoffice
 
     def update_order_pv_total
       current_order.update!(pv_total: current_order.total_score)
-    end
-
-    def ensure_valid_user
-      return if BoletoPolicy.new(user: current_user).can_generate?
-
-      flash[:error] = 'Você precisa preencher seus dados corretamente antes de poder gerar o boleto.'
-      redirect_to edit_user_registration_path
     end
 
     def ensure_valid_product

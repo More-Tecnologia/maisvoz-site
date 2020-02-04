@@ -115,7 +115,6 @@ pt-BR:
         ddd: DDD
         cellphone_number: Número do Telefone
         value: Valor
-  app_name: Mais Voz
   attributes:
     active_session: Sessão ativa
     order: Ordem
@@ -460,20 +459,16 @@ pt-BR:
     welcome:
       subject: Bem-vindo
       call: Sr(a) %{name}
-      body: Seu registro foi concluído com sucesso. Obrigado  por fazer parte dessa
-            nova revolução. Agora você está um passo adiante em direção à inovação.
+      body: Seu registro foi concluído com sucesso. Obrigado  por juntar-se à nossa equipe.
             Bem vindo ao futuro.
       footer: Atenciosamente, <br>
               Equipe %{company_name}
     upgrade_career:
       subject: Avanço de Título
-      body: É com imenso prazer que a %{company_name}, em nome de todos os colaboradores,
-            lhe parabeniza pelo bom desempenho, comprometimento, engajamento e dedicação,
-            no que diz respeito a promover a expansão de clientes, e, à abrangência
-            de nossas atividades em todo o território nacional.<b> Tendo em vista promover e
-            incentivar, ainda mais vossa participação em nosso projeto, certificamos-lhe o
-            título de %{career_name} .</b> Aproveitamos a
-            oportunidade para reforçar nosso compromisso com o seu crescimento pessoal e profissional.
+      body: É com imenso prazer que lhe parabenizamos pelo bom desempenho,
+            comprometimento, engajamento e dedicação, ao expandir nossas atividades.
+            <b> Tendo em vista promover e incentivar, ainda mais vossa participação
+            em nosso projeto, certificamos-lhe o título de %{career_name}.</b>
   shopping_mailer:
     order_paid:
       body: Informamos que sua compra dos produto(s) <strong> %{product_names} </strong> foi concluída com sucesso!
@@ -481,20 +476,11 @@ pt-BR:
       adhesion_body: Obrigado por tornar-se nosso cliente autorizado.
                      O pagamento de <b>%{adhesion_order_value}</b> referente ao produto <b>%{adhesion_product_name}</b> foi concluído com sucesso!<br><br>
                      Agradecemos e parabenizamos você por tomar uma decisão para um futuro promissor e de sucesso.
-                     Em breve você poderá usar seu Chip Mais Voz, além de ganhar muito compartilhando essa maravilha para milhões de outros usuários.
-                     Juntos, espalharemos cada vez mais serviços de alta qualidade e inovação no mercado que mais cresce no Brasil.
     order_made:
       body: Seu <b>pedido</b> no valor de <b>%{order_value}</b> foi realizado.
             Complete o pagamento e aguarde o processamento.
-      bank_account: 'Para agilizar o pagamento realize uma transferência (TED) para a conta baixo: <br><br>
-                    Bradesco: 237 <br>
-                    Agência: 0343 <br>
-                    Conta Corrente: 28106-9 <br>
-                    MAISVOZ TELECOMUNICAÇÕES EIRELI <br>
-                    CNPJ: 31.852.400/0001-59'
-      payment_receipt: Nos envie o comprovante de transferência no e-mail
-                       %{financial_email_link},
-                       para que possamos concluir o pagamento do seu pedido em nosso sistema.'
+      bank_account: ''
+      payment_receipt: ''
   devise_mailer:
     reset_password_instructions:
       order_link: Você solicitou um link para alterar sua senha. Você pode alterá-la através do link abaixo.
@@ -711,6 +697,8 @@ pt-BR:
     filters: Filtros
     company_name: Maisvoz
     my_orders: Meus pedidos
+    send_email: Envie nos um email
+    copyright: Todos os direitos reservados %{company_name}
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -781,7 +769,7 @@ pt-BR:
         separator: ","
         significant: false
         strip_insignificant_zeros: false
-        unit: R$
+        unit: USD
     format:
       delimiter: "."
       precision: 3
@@ -944,7 +932,7 @@ pt-BR:
       products:
         index:
           details: Detalhes
-          title: Loja Mais Voz
+          title: Loja %{company_name}
         show:
           buy: Comprar
           description: Descrição

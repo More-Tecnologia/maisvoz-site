@@ -6,7 +6,7 @@ class ShoppingMailer < ApplicationMailer
     @order = params[:order]
     @user = @order.user
 
-    mail to: @user.email, subject: 'Mais Voz - Pedido Realizado'
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido Realizado"
   end
 
   def order_paid
@@ -15,7 +15,7 @@ class ShoppingMailer < ApplicationMailer
     @order = params[:order]
     @user = @order.user
 
-    mail to: @user.email, subject: 'Mais Voz - Pagamento Recebido'
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pagamento Recebido"
   end
 
 end

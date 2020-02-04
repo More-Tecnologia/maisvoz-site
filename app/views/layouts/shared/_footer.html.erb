@@ -11,13 +11,13 @@
       <div class="col-md-3 d-flex">
         <i class="fas fa-envelope footer-cmp__icon"></i>
         <div>
-          <p class="footer-cmp__title">Envie um e-mail</p>
-          <p class="footer-cmp__info"><%= ENV['SANDBOX_EMAIL'] %></p>
+          <p class="footer-cmp__title"> <%= t('defaults.send_email') %> </p>
+          <p class="footer-cmp__info"> <%= ENV['SANDBOX_EMAIL'] %> </p>
         </div>
       </div>
     </div>
   </div>
   <div class="footer-cmp__copyright py-3 text-center">
-    &copy; Todos os direitos reservados Mais Voz - <a href="#" target="_blank">Termos e condições</a>
+    &copy; <%= t('defaults.copyright', company_name: ENV['COMPANY_NAME']) %>
   </div>
 </footer>

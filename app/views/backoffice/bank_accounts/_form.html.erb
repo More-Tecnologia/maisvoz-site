@@ -1,11 +1,9 @@
-<%= f.input :bank_code, collection: form.bank_codes %>
-<%= f.input :bank_account_type, collection: form.bank_account_types %>
+<%= f.input :bank_code, collection: form.bank_codes, disabled: f.user.bank_account_present? %>
+<%= f.input :bank_account_type, collection: form.bank_account_types, disabled: f.user.bank_account_present? %>
 
 <div class="form-row">
-  <%= f.input :account_number, as: :integer, wrapper_html: { class: 'col-sm-4 p-l-0' } %>
-  <%= f.input :account_digit, as: :integer, wrapper_html: { class: 'col-sm-2' } %>
-  <%= f.input :agency_number, as: :integer, wrapper_html: { class: 'col-sm-4' } %>
-  <%= f.input :agency_digit, as: :integer, wrapper_html: { class: 'col-sm-2 p-r-0' } %>
+  <%= f.input :account_number, as: :integer, wrapper_html: { class: 'col-sm-4 p-l-0' }, disabled: f.user.bank_account_present? %>
+  <%= f.input :account_digit, as: :integer, wrapper_html: { class: 'col-sm-2' }, disabled: f.user.bank_account_present? %>
+  <%= f.input :agency_number, as: :integer, wrapper_html: { class: 'col-sm-4' }, disabled: f.user.bank_account_present? %>
+  <%= f.input :agency_digit, as: :integer, wrapper_html: { class: 'col-sm-2 p-r-0' }, disabled: f.user.bank_account_present? %>
 </div>
-
-<%= f.submit t('save'), class: 'btn btn-default' %>

@@ -83,10 +83,6 @@ class UserDecorator < ApplicationDecorator
     @sponsored_count ||= sponsored.count
   end
 
-  def bank_account_present?
-    bank_code? && bank_account? && bank_agency? && bank_account_type?
-  end
-
   def pretty_career
     career_name
   end

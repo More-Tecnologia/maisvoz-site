@@ -1,0 +1,27 @@
+<%= simple_form_for current_user, url: backoffice_bank_account_path, method: :put do |f| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card-box">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-row">
+              <% if current_user.wallet_address.present? %>
+                <div class="col-sm-2">
+                  <%= User.human_attribute_name(:wallet_address) %>
+                </div>
+                <div class="col-sm-2">
+                  <%= f.object.wallet_address %>
+                </div>
+              <% else %>
+                <%= f.input :wallet_address, required: true %>
+                <div class="form-row">
+                  <%= f.submit t('save'), class: 'btn btn-default' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

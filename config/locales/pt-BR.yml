@@ -55,6 +55,7 @@ pt-BR:
         document_pis_photo: Foto do PIS/PASEP
         document_address_photo: Comprovante de endereço
         document_scontract_photo: Contrato Social
+        wallet_address: Carteira Digital
     errors:
       models:
         user:
@@ -268,6 +269,7 @@ pt-BR:
     bank_account: Conta
     bank_agency: Agência
     cellphone_number: Telefone
+    wallet_address: Carteira Digital
   backoffice:
     orders:
       show:
@@ -416,6 +418,8 @@ pt-BR:
         subtitle: Esta conta será utilizada nos saques da plataforma
         save: Salvar conta bancária
         ownership_info: Só aceitamos contas bancárias em sua titularidade
+      update:
+        success: Conta bancária atualizada com sucesso
     scores:
       index:
         title:

@@ -117,89 +117,11 @@ persisted_careers = careers.map do |attributes|
   end
 end
 
-adhesion_category = Category.find_or_create_by!(name: 'Courses',
-                                                active_session: true,
-                                                active: true)
-
-basic = Product.find_or_create_by!(name: 'Basic',
-                                   quantity: 1,
-                                   price_cents: 10000,
-                                   binary_score: 0,
-                                   binary_bonus: 0,
-                                   active: true,
-                                   virtual: true,
-                                   category: adhesion_category,
-                                   paid_by: :paid_by_user,
-                                   kind: :adhesion)
-
-vision = Product.find_or_create_by!(name: 'Vision',
-                                    quantity: 1,
-                                    price_cents: 25000,
-                                    binary_score: 0,
-                                    binary_bonus: 0,
-                                    active: true,
-                                    virtual: true,
-                                    category: adhesion_category,
-                                    paid_by: :paid_by_user,
-                                    kind: :adhesion)
-
-advance = Product.find_or_create_by!(name: 'Advance',
-                                    quantity: 1,
-                                    price_cents: 50000,
-                                    binary_score: 0,
-                                    binary_bonus: 0,
-                                    active: true,
-                                    virtual: true,
-                                    category: adhesion_category,
-                                    paid_by: :paid_by_user,
-                                    kind: :adhesion)
-
-vouchers_category = Category.find_or_create_by!(name: 'Vouchers',
-                                                active_session: true,
-                                                active: true)
-
-_1_voucher = Product.find_or_create_by!(name: '1 Voucher Advance 50% off',
-                                        quantity: 1,
-                                        price_cents: 25000,
-                                        binary_score: 0,
-                                        binary_bonus: 0,
-                                        active: true,
-                                        virtual: true,
-                                        category: vouchers_category,
-                                        paid_by: :paid_by_user,
-                                        kind: :voucher)
-_5_voucher = Product.find_or_create_by!(name: '5 Voucher Advance 50% off',
-                                        quantity: 1,
-                                        price_cents: 125000,
-                                        binary_score: 0,
-                                        binary_bonus: 0,
-                                        active: true,
-                                        virtual: true,
-                                        category: vouchers_category,
-                                        paid_by: :paid_by_user,
-                                        kind: :voucher)
-_10_voucher = Product.find_or_create_by!(name: '10 Voucher Advance 50% off',
-                                         quantity: 1,
-                                         price_cents: 250000,
-                                         binary_score: 0,
-                                         binary_bonus: 0,
-                                         active: true,
-                                         virtual: true,
-                                         category: vouchers_category,
-                                         paid_by: :paid_by_user,
-                                         kind: :voucher)
-
-subscription_category = Category.find_or_create_by!(name: 'Subscription',
-                                                    active_session: true,
-                                                    active: true)
-membership_product = Product.find_by(name: 'Subscription')
-membership_product.update_attribute(:name, 'Membership 2020') if membership_product
-
 trail1 = Trail.find_by(name: 'Trilha 1')
-trail1.update_attributes(name: 'Basic', product: basic) if trail1
+trail1.update_attributes(name: 'Basic', product: Product.find(5)) if trail1
 
-trails  = [{ name: 'Vision', product: vision },
-           { name: 'Advance', product: advance }]
+trails  = [{ name: 'Vision', product: Product.find(6) },
+           { name: 'Advance', product: Product.find(7) }]
 persisted_trails = trails.map do |trail|
   trail = Trail.find_or_create_by!(trail)
 end

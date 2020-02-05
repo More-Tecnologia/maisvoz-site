@@ -9,7 +9,7 @@
   <br>
   <div class=" card-box">
     <div class="panel-heading">
-      <h3 class="text-left"><%= title('Reenviar instruções de desbloqueio') %></h3>
+      <h3 class="text-left"><%= t('.title') %></h3>
     </div>
 
     <div class="panel-body">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, t('defaults.post') %>
+          <%= f.button :submit, t('.send') %>
         </div>
         <hr>
         <%= render "users/shared/links" %>

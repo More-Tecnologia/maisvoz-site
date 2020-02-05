@@ -869,6 +869,14 @@ pt-BR:
         title: Novo Usuário
         next: Próximo
         previous: Anterior
+      unlocks:
+        new:
+          title: Reenviar instruções de desbloqueio
+          send: Enviar
+    passwords:
+      new:
+        title: Esqueceu a Senha?
+        get_password_reset_link: Obter link de troca de senha
   view_all: View all
   views:
     backoffice:

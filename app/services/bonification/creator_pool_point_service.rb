@@ -2,7 +2,7 @@ module Bonification
   class CreatorPoolPointService < ApplicationService
 
     def call
-      cent_amount = order.total_score
+      cent_amount = calculate_order_pool_point
       @user.scores.create!(order: @order,
                            spreader_user: @user,
                            score_type: ScoreType.pool_point,
@@ -15,6 +15,10 @@ module Bonification
     def initialize(args)
       @order = args[:order]
       @user = @order.user
+    end
+
+    def calculate_order_pool_point
+      @order.products.sum(&:binary_score)
     end
 
   end

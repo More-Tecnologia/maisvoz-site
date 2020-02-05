@@ -177,6 +177,12 @@ en:
         send: Send
   attributes:
     document_cpf: ID
+    sponsor_username: Sponsor Username
+    name: Name
+    country: Country
+    username: Username
+    password: Password
+    password_confirmation: Password Confirmation
   defaults:
     admin: Admin
     approved_success: Approved success

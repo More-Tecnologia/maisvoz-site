@@ -28,7 +28,7 @@ module Financial
         update_user_purchase_flags
         activate_user if adhesion_product
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
-        user.empreendedor! if adhesion_product
+        user.empreendedor! if adhesion_product || subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
         create_pool_point_for_user

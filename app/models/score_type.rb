@@ -26,7 +26,7 @@ class ScoreType < ApplicationRecord
   end
 
   def self.binary_score
-    find_by(code: '400')
+    @@binary_score ||= find_by(code: '400')
   end
 
   def self.binary_unqualified_chargeback

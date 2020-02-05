@@ -437,7 +437,7 @@ pt-BR:
       index:
         title:
           unilevel: Pool Points
-          binary: Pontuações da Rede Binária
+          binary: Point Commissions
           all: Pontuações
     sim_cards:
       index:
@@ -649,7 +649,7 @@ pt-BR:
     upgrades: Upgrades
     scores: Pontuações
     unilevel: Pool Points
-    binary: Binária
+    binary: Point Commissions
     unilevel_binary: Relatório
     financial_transactions: Histórico Financeiro
     wrong_master_password: Senha master errada

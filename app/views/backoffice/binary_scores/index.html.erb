@@ -18,7 +18,6 @@
                 <tr>
                   <th>#</th>
                   <th><%= Score.human_attribute_name(:spreader_user) %></th>
-                  <th><%= Score.human_attribute_name(:height) %></th>
                   <th><%= Score.human_attribute_name(:score_type) %></th>
                   <th><%= Score.human_attribute_name(:cent_amount) %></th>
                   <th><%= Score.human_attribute_name(:balance) %></th>
@@ -32,7 +31,6 @@
                   <tr>
                     <th><%= score.try(:hashid) %></th>
                     <td><%= score.try(:spreader_user).try(:username) %></td>
-                    <td><%= score.try(:height) %></td>
                     <td><%= score.try(:score_type).try(:name) %></td>
                     <td class=<%= score.cent_amount.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(score.try(:cent_amount)) %></td>
                     <td class=<%= cent_amount_sum.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(cent_amount_sum) %></td>

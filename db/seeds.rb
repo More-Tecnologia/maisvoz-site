@@ -134,16 +134,24 @@ persisted_careers.each do |career|
 end
 
 # SCORE TYPES
-score_types = [{ name: 'Pontuação de Adesões', code: '100' },
-               { name: 'Pontuação de Ativação', code: '200' },
-               { name: 'Pontuação de Compras', code: '300' },
-               { name: 'Estorno de Pontuação por Inatividade', code: '800' },
-               { name: 'Pontuação Binária', tree_type: :binary, code: '400', active: true },
-               { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500', active: true },
-               { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600', active: true },
-               { name: 'Débito de Bonus Binário', tree_type: :binary, code: '700', active: true },
+score_types = [{ name: 'Pontuação de Adesões', code: '100', active: false },
+               { name: 'Pontuação de Ativação', code: '200', active: false },
+               { name: 'Pontuação de Compras', code: '300', active: false },
+               { name: 'Estorno de Pontuação por Inatividade', code: '800', active: false },
+               { name: 'Points Commissions', tree_type: :binary, code: '400', active: true },
+               { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500', active: false },
+               { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600', active: false },
+               { name: 'Points Commissions Debit', tree_type: :binary, code: '700', active: true },
                { name: 'Pool Point', code: '900', active: true }]
-score_types.each { |score_type| ScoreType.find_or_create_by!(score_type) unless ScoreType.exists?(code: score_type[:code]) }
+score_types.each do |score_type|
+  score = ScoreType.find_by(code: score_type[:code])
+  if score
+    score.update_attributes(score_type)
+    score
+  else
+    ScoreType.create!(score_type)
+  end
+end
 
 
 # FINANCIAL REASONS

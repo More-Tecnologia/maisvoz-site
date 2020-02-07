@@ -14,7 +14,7 @@ module Bonification
 
     private
 
-    attr_reader :binary_node, :user, :daily_bonus_total
+    attr_reader :binary_node, :user
 
     def initialize(args)
       @binary_node = args[:binary_node]

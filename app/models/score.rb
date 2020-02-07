@@ -107,7 +107,7 @@ class Score < ApplicationRecord
   end
 
   def score_type_is_binary_bonus?
-    score_type == ScoreType.binary_bonus
+    score_type == ScoreType.binary_score
   end
 
   def create_binary_fest_score

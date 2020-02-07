@@ -4,7 +4,7 @@ module Bonification
     def call
       return if invalid_binary_fest_promotional_date?
       return unless current_trail_available_to_promotion?
-      return add_binary_fest_score_to_source_leg unless @unilevel_node.binary_fest
+      return add_binary_fest_score_to_source_leg unless @binary_node.binary_fest
       add_fest_promotional_score_to_work_leg
     end
 
@@ -24,24 +24,24 @@ module Bonification
     end
 
     def current_trail_available_to_promotion?
-      user.current_career_trail.product.code == Product.advance_score_code
+      @user.current_trail.product.advance?
     end
 
     def add_binary_fest_score_to_source_leg
-      score = user.scores.create!(spreader: User.find_morenwm_customer_admin,
-                                  cent_amount: 5_000,
-                                  score_type: ScoreType.binary_score,
-                                  source_leg: @binary_node.source_leg,
-                                  binary_fest: true)
-      @unilevel_node.update!(:binary_fest, true)
+      score = @user.scores.create!(spreader_user: User.find_morenwm_customer_admin,
+                                   cent_amount: 5_000,
+                                   score_type: ScoreType.binary_score,
+                                   source_leg: @binary_node.source_leg,
+                                   binary_fest: true)
+      @binary_node.update!(binary_fest: true)
     end
 
     def add_fest_promotional_score_to_work_leg
-      user.scores.create!(spreader: User.find_morenwm_customer_admin,
-                          cent_amount: next_binary_fest_cent_amount * 2,
-                          score_type: ScoreType.binary_score,
-                          source_leg: @binary_node.work_leg,
-                          binary_fest: true) if next_binary_fest_cent_amount > 0
+      @user.scores.create!(spreader_user: User.find_morenwm_customer_admin,
+                           cent_amount: next_binary_fest_cent_amount * 2,
+                           score_type: ScoreType.binary_score,
+                           source_leg: @binary_node.work_leg,
+                           binary_fest: true) if next_binary_fest_cent_amount > 0
     end
 
     def next_binary_fest_cent_amount

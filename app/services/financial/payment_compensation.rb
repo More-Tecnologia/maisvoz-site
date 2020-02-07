@@ -193,7 +193,7 @@ module Financial
     end
 
     def create_binary_fest_promotion_score
-      Bonification::Binaryfest
+      Bonification::BinaryFestPromotionService.call(binary_node: user.binary_node)
     end
 
   end

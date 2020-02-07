@@ -39,7 +39,6 @@ module Financial
         propagate_bonuses if enabled_bonification
         create_vouchers
         #create_system_fee if adhesion_product || subscription_product
-        binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification && enabled_binary?
         notify_user_by_email_about_paid_order
       end
     end

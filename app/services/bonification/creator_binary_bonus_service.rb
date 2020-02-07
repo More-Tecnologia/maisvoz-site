@@ -2,57 +2,57 @@ module Bonification
   class CreatorBinaryBonusService < ApplicationService
 
     def call
-      return unless binary_bonus_score > 0 && valid_binary_bonus > 0
+      byebug
+      return unless @valid_score > ENV['BINARY_SCORE_MINIMUM_PAID'].to_i && @daily_valid_bonus > 0
       ActiveRecord::Base.transaction do
         transaction = credit_binary_bonus
         return transaction.chargeback_by_inactivity! if user.inactive?
         return transaction.chargeback_by_unqualification! if user.binary_unqualified?
-        transaction.chargeback_by_career_trail_excess!(career_trail_excess_bonus) if career_trail_excess_bonus > 0
-        Financial::UnlockBlockedBalance.call(user: ascendant_sponsor)
+        transaction.binary_bonus_chargeback_by_daily_excees(@daily_excess_bonus) if @daily_excess_bonus > 0
+        user.increment_blocked_bonus!(transaction.cent_amount - @daily_excess_bonus)
       end
     end
 
     private
 
-    attr_reader :binary_node, :user, :score_cycle, :binary_bonus_score
+    attr_reader :binary_node, :user, :daily_bonus_total
 
     def initialize(binary_node)
       @binary_node = binary_node
-      @user        = binary_node.user
-      @score_cycle = ENV['BINARY_SCORE_MINIMUM_PAID'].to_i
-      @binary_bonus_score = shortter_leg_score.div(score_cycle) * score_cycle
+      @user = binary_node.user
+      @daily_bonus_total = ENV['BINARY_BONUS_SCORE_RATE'].to_f * shortter_leg_score_from_yesterday
+      @daily_excess_bonus = ENV['BINARY_BONUS_SCORE_RATE'].to_f * calculate_daily_excess_score
+      @daily_valid_bonus = @daily_bonus_total - @daily_excess_bonus
+      @valid_score = @daily_valid_bonus / ENV['BINARY_BONUS_SCORE_RATE'].to_f
     end
 
     def credit_binary_bonus
       financial_transaction = create_bonus
-      Score.debit_binary_score_from_legs(user, binary_bonus_score)
+      Score.debit_binary_score_from_legs(user, @valid_score)
       financial_transaction
     end
 
     def create_bonus
       user.financial_transactions.create!(financial_reason: FinancialReason.binary_bonus,
-                                          cent_amount: valid_binary_bonus,
+                                          cent_amount: @daily_valid_bonus,
                                           spreader: User.find_morenwm_customer_admin)
     end
 
-    def valid_binary_bonus
-      @valid_binary_bonus ||= user.current_trail.calculate_binary_bonus(binary_bonus_score)
+    def shortter_leg_score_from_yesterday
+      @shortter_leg_score_from_yesterday ||= [right_leg_score_from_yesterday, left_leg_score_from_yesterday].compact.min
     end
 
-    def binary_percent
-      user.current_trail.product.binary_bonus_percent
+    def left_leg_score_from_yesterday
+      @left_leg_score_from_yesterday ||= user.scores.binary.left.sum(:cent_amount)
     end
 
-    def shortter_leg_score
-      @shortter_leg_score ||= binary_node.shortter_leg_score
+    def right_leg_score_from_yesterday
+      @right_leg_score_from_yesterday ||= user.scores.binary.right.sum(:cent_amount)
     end
 
-    def career_trail_excess_bonus
-      @career_trail_excess_bonus ||= user.calculate_excess_career_trail_bonus
-    end
-
-    def ensure_cycle_score
-      ENV['BINARY_SCORE_MINIMUM_PAID'].to_i
+    def calculate_daily_excess_score
+      return 0 if shortter_leg_score_from_yesterday <= ENV['DAILY_MAXIMUM_BINARY_SCORE'].to_f
+      shortter_leg_score_from_yesterday - ENV['DAILY_MAXIMUM_BINARY_SCORE'].to_f
     end
 
   end

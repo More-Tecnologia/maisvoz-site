@@ -104,6 +104,11 @@ class FinancialTransaction < ApplicationRecord
     financial_reason_type_bonus? && credit?
   end
 
+  def binary_bonus_chargeback_by_daily_excees(amount)
+    reason = FinancialReason.binary_bonus_chargeback_by_daily_excees
+    chargeback_binary_score!(reason, amount)
+  end
+
   private
 
   def invert_money_flow

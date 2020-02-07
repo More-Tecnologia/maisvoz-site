@@ -74,4 +74,30 @@ class BinaryNode < ApplicationRecord
     user.active && user.current_trail.greater_or_equal_to?(trail)
   end
 
+  def source_leg_accumulated_score
+    return left_leg_accumulated_score if user.left?
+    right_leg_accumulated_score if user.right?
+  end
+
+  def work_leg_accumulated_score
+    return left_leg_accumulated_score if user.right?
+    right_leg_accumulated_score if user.left?
+  end
+
+  def left_leg_accumulated_score
+    user.scores.left.binary_qualification.sum(:cent_amount)
+  end
+
+  def right_leg_accumulated_score
+    user.scores.right.binary_qualification.sum(:cent_amount)
+  end
+
+  def source_leg
+    user.binary_position
+  end
+
+  def work_leg
+    (User.binary_positions.keys - [source_leg]).first
+  end
+
 end

@@ -2,7 +2,7 @@ module Bonification
   class CreatorBinaryBonusService < ApplicationService
 
     def call
-      return unless @valid_score > ENV['BINARY_SCORE_MINIMUM_PAID'].to_i && @daily_valid_bonus > 0
+      return unless @valid_score >= ENV['BINARY_SCORE_MINIMUM_PAID'].to_i && @daily_valid_bonus > 0
       ActiveRecord::Base.transaction do
         transaction = credit_binary_bonus
         return transaction.chargeback_by_inactivity! if user.inactive?

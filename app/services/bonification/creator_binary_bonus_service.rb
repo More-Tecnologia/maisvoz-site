@@ -2,7 +2,6 @@ module Bonification
   class CreatorBinaryBonusService < ApplicationService
 
     def call
-      byebug
       return unless @valid_score > ENV['BINARY_SCORE_MINIMUM_PAID'].to_i && @daily_valid_bonus > 0
       ActiveRecord::Base.transaction do
         transaction = credit_binary_bonus
@@ -17,9 +16,10 @@ module Bonification
 
     attr_reader :binary_node, :user, :daily_bonus_total
 
-    def initialize(binary_node)
-      @binary_node = binary_node
-      @user = binary_node.user
+    def initialize(args)
+      @binary_node = args[:binary_node]
+      @date = args[:date]
+      @user = @binary_node.user
       @daily_bonus_total = ENV['BINARY_BONUS_SCORE_RATE'].to_f * shortter_leg_score_from_yesterday
       @daily_excess_bonus = ENV['BINARY_BONUS_SCORE_RATE'].to_f * calculate_daily_excess_score
       @daily_valid_bonus = @daily_bonus_total - @daily_excess_bonus
@@ -43,11 +43,11 @@ module Bonification
     end
 
     def left_leg_score_from_yesterday
-      @left_leg_score_from_yesterday ||= user.scores.binary.left.sum(:cent_amount)
+      @left_leg_score_from_yesterday ||= user.scores.binary.left.by_date(@date).sum(:cent_amount)
     end
 
     def right_leg_score_from_yesterday
-      @right_leg_score_from_yesterday ||= user.scores.binary.right.sum(:cent_amount)
+      @right_leg_score_from_yesterday ||= user.scores.binary.right.by_date(@date).sum(:cent_amount)
     end
 
     def calculate_daily_excess_score

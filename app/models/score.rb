@@ -40,7 +40,7 @@ class Score < ApplicationRecord
   scope :by_current_month,
     -> { where(created_at: (Date.current.beginning_of_month..Date.current.end_of_month)) }
   scope :spreaded_to, ->(user) { where(user: user) }
-  scope :created_at_yesterday, -> { where(created_at: (1.day.ago.beginning_of_day..1.day.ago.end_of_day)) }
+  scope :by_date, ->(date) { where(created_at: (date.beginning_of_day..date.end_of_day)) }
 
   after_commit :upgrade_user_career, on: :create
 

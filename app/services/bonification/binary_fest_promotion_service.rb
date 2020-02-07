@@ -45,7 +45,7 @@ module Bonification
     end
 
     def next_binary_fest_cent_amount
-      last_binary_fest_score = user.scores.where(binary_fest: true).last
+      last_binary_fest_score = @user.scores.where(binary_fest: true).last
       last_binary_fest_score.try(:cent_amount).to_i
     end
 

@@ -9,10 +9,11 @@ module Backoffice
     def sum_previous_contract_cent_amount(q, bonus_contracts)
       first_contract_id = bonus_contracts.try(:first).try(:id)
       return 0 if first_contract_id.nil?
-      q.result
-       .where('id <= ?', first_contract_id)
-       .order(created_at: :desc)
-       .sum(:cent_amount)
+      sum = q.result
+             .where('id <= ?', first_contract_id)
+             .order(created_at: :desc)
+             .sum(:cent_amount)
+      sum / 1e2.to_f
     end
 
   end

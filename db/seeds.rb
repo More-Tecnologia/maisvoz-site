@@ -236,3 +236,6 @@ end
 
 sistem_fee = FinancialReason.morenwm_fee
 sistem_fee.financial_transactions.update_all(moneyflow: 1)
+
+advance_product = Product.find_by(name: 'Advance')
+advance_product.update!(code: 20)

@@ -14,7 +14,7 @@ module Backoffice
     def query_params
       query = params[:q] ? params[:q].to_hash.symbolize_keys : {}
       query.merge!(source_leg_eq: Score.source_legs[:left]) unless filled?(query[:source_leg_eq])
-      query.merge!(score_type_id_in: ScoreType.binary.pluck(:id)) unless filled?(query[:score_type_id_in])
+      query.merge!(score_type_id_in: ScoreType.binary.active.pluck(:id)) unless filled?(query[:score_type_id_in])
       query.merge!(user_id_eq: current_user.id)
     end
 

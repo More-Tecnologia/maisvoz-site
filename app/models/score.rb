@@ -40,10 +40,9 @@ class Score < ApplicationRecord
   scope :by_current_month,
     -> { where(created_at: (Date.current.beginning_of_month..Date.current.end_of_month)) }
   scope :spreaded_to, ->(user) { where(user: user) }
-  scope :binary_qualification, -> { where(score_type: Score.binary_score) }
+  scope :binary_qualification, -> { where(score_type: ScoreType.binary_score) }
 
   after_commit :upgrade_user_career, on: :create
-  after_commit :create_binary_fest_score, on: :create, if: :score_type_is_binary_bonus?
 
   def chargeback!(score_type, amount = cent_amount)
     create_chargeback!(source_leg: source_leg,
@@ -108,10 +107,6 @@ class Score < ApplicationRecord
 
   def score_type_is_binary_bonus?
     score_type == ScoreType.binary_score
-  end
-
-  def create_binary_fest_score
-    Bonification::BinaryFestPromotionService.call(binary_node: user.binary_node)
   end
 
 end

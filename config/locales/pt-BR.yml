@@ -278,6 +278,8 @@ pt-BR:
     wallet_address: Carteira Digital
     image_path: Pin
     expire_at: Validade
+    received_balance: Valor Recebido
+    remaining_balance: Valor à Receber
   backoffice:
     orders:
       show:
@@ -701,6 +703,9 @@ pt-BR:
     copyright: Todos os direitos reservados %{company_name}
     score_active: Ativo
     score_expired: Expirado
+    contract_active: Ativo
+    contract_expired: Expirado
+    bonus_contracts: Contratos de Bonus
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

@@ -451,6 +451,11 @@ class User < ApplicationRecord
     @lineage_scores ||= Score.unilevel_scores_by_lineage(self, q = Score.ransack)
   end
 
+  def increment_blocked_bonus!(amount)
+    blocked_balance = blocked_balance_cents.to_f + amount.to_f
+    update!(:blocked_balance_cents, blocked_balance)
+  end
+
   private
 
   def ensure_initial_career_trail

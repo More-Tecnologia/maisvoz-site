@@ -48,7 +48,7 @@ class Order < ApplicationRecord
   has_many :scores
   has_many :financial_transactions
   has_one :payment_transaction
-  has_one :bonus_contracts
+  has_one :bonus_contract
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true
@@ -130,6 +130,10 @@ class Order < ApplicationRecord
 
   def paid!
     update_attributes(status: :completed, paid_at: Time.now)
+  end
+
+  def total_value
+    total_cents / 100.0
   end
 
 end

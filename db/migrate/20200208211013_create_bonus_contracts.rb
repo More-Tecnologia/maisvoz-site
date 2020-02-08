@@ -4,10 +4,10 @@ class CreateBonusContracts < ActiveRecord::Migration[5.2]
       t.references :user
       t.datetime :paid_at
       t.datetime :expire_at
-      t.integer :cent_amount
+      t.bigint :cent_amount, default: 0
       t.references :order
-      t.bigint :received_balance
-      t.bigint :remaining_balance
+      t.bigint :received_balance, default: 0
+      t.bigint :remaining_balance, default: 0
 
       t.timestamps
     end

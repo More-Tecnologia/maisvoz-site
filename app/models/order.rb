@@ -48,6 +48,7 @@ class Order < ApplicationRecord
   has_many :scores
   has_many :financial_transactions
   has_one :payment_transaction
+  has_one :bonus_contracts
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true

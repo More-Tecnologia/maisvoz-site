@@ -16,7 +16,7 @@
             <table class="table table-striped table-bordered table-hover m-0">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>ID</th>
                   <th><%= Score.human_attribute_name(:description) %></th>
                   <th><%= Score.human_attribute_name(:amount) %></th>
                   <th><%= Score.human_attribute_name(:order) %></th>
@@ -32,7 +32,7 @@
                   <% @bonus_contracts.each do |bonus_contract| %>
                     <% order = bonus_contract.try(:order) %>
                     <tr>
-                      <td> <%= bonus_contract.hashid %></td>
+                      <td> <%= link_to(bonus_contract.hashid, backoffice_bonus_contract_path(bonus_contract)) %></td>
                       <td> <%= order.products.map(&:name).join(', ') %></td>
                       <td> <%= number_to_currency(bonus_contract.cent_amount) %></td>
                       <td> <%= link_to(order.try(:hashid), backoffice_order_path(order)) if order %></td>

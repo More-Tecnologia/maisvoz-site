@@ -42,6 +42,7 @@ class Score < ApplicationRecord
   scope :spreaded_to, ->(user) { where(user: user) }
   scope :binary_qualification, -> { where(score_type: ScoreType.binary_score) }
   scope :by_date, ->(date) { where(created_at: date) }
+  scope :pool_point_by, ->(order) { where(order: order, score_type: ScoreType.pool_point) }
 
   after_commit :upgrade_user_career, on: :create
 

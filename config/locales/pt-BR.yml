@@ -280,6 +280,7 @@ pt-BR:
     expire_at: Validade
     received_balance: Valor Recebido
     remaining_balance: Valor à Receber
+    contract_balance: Saldo de Contrato
   backoffice:
     orders:
       show:

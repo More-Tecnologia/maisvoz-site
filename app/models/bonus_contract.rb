@@ -5,19 +5,19 @@ class BonusContract < ApplicationRecord
   belongs_to :order
   belongs_to :user
 
-  validates :cent_amount, presence: true,
-                          numericality: true
-  validates :remaining_balance, presence: true,
-                                numericality: true
-  validates :received_balance, presence: true,
-                               numericality: true
+  has_many :bonus_contract_items
 
-  has_many :financial_reasons
+  validates :cent_amount, presence: true,
+                          numericality: { greater_than_or_equal_to: 0 }
+  validates :remaining_balance, presence: true,
+                                numericality: { greater_than_or_equal_to: 0 }
+  validates :received_balance, presence: true,
+                               numericality: { greater_than_or_equal_to: 0 }
+  scope :active, -> { where('expire_at > ? AND paid_at IS NULL', Date.current) }
 
   def active?
-    return false if expire_at.nil?
-    return true if paid_at
-    expire_at > Date.current
+    return false if paid_at || expire_at < Date.current
+    return true
   end
 
   def cent_amount

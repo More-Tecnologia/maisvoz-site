@@ -6,13 +6,13 @@ module Backoffice
       content_tag(:span, t('defaults.contract_expired'), class: 'label label-danger')
     end
 
-    def sum_previous_contract_cent_amount(q, bonus_contracts)
+    def sum_previous_contract_by(attribute, q, bonus_contracts)
       first_contract_id = bonus_contracts.try(:first).try(:id)
       return 0 if first_contract_id.nil?
       sum = q.result
              .where('id <= ?', first_contract_id)
              .order(created_at: :desc)
-             .sum(:cent_amount)
+             .sum(attribute.to_sym)
       sum / 1e2.to_f
     end
 

@@ -2,7 +2,7 @@ module Bonification
   class CreatorPoolPointService < ApplicationService
 
     def call
-      cent_amount = order.calculate_order_pool_point
+      cent_amount = calculate_order_pool_point
       @user.scores.create!(order: @order,
                            spreader_user: @user,
                            score_type: ScoreType.pool_point,

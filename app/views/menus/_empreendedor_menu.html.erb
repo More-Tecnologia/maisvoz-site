@@ -35,7 +35,6 @@
 <li class="has_sub">
   <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
   <ul class="list-unstyled">
-    <li> <%= link_to t('.bonus_contracts'), backoffice_bonus_contracts_path %> </li>
     <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
     <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path if ENV['ENABLED_BINARY'] == 'true' %> </li>
     <li> <%= link_to t('defaults.point_qualifications'), backoffice_point_qualifications_path if ENV['ENABLED_BINARY'] == 'true' %> </li>

@@ -281,6 +281,10 @@ pt-BR:
     received_balance: Valor Recebido
     remaining_balance: Valor à Receber
     contract_balance: Saldo de Contrato
+    bonus_contract: Contrato de Bonus
+    financial_transaction: Bonus
+    bonus_contract_balance: Saldo do Contrato
+    bonus_id: Bonus
   backoffice:
     orders:
       show:
@@ -707,6 +711,7 @@ pt-BR:
     contract_active: Ativo
     contract_expired: Expirado
     bonus_contracts: Contratos de Bonus
+    bonus_contract_items: Bonus por Contrato
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

@@ -28,7 +28,7 @@ module Financial
         update_user_purchase_flags
         activate_user if adhesion_product
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
-        user.empreendedor! if adhesion_product
+        user.empreendedor! if adhesion_product || subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
         create_pool_point_for_user
@@ -38,8 +38,10 @@ module Financial
         upgrade_career_from(user) if adhesion_product
         propagate_bonuses if enabled_bonification
         create_vouchers
+        create_bonus_contract if adhesion_product || voucher_product
         #create_system_fee if adhesion_product || subscription_product
         binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification && enabled_binary?
+        create_binary_fest_promotion_score if adhesion_product && adhesion_product.advance?
         notify_user_by_email_about_paid_order
       end
     end
@@ -189,6 +191,14 @@ module Financial
 
     def create_pool_point_for_user
       Bonification::CreatorPoolPointService.call(order: order)
+    end
+
+    def create_binary_fest_promotion_score
+      Bonification::BinaryFestPromotionService.call(binary_node: user.binary_node)
+    end
+
+    def create_bonus_contract
+      CreatorBonusContractService.call(order: order)
     end
 
   end

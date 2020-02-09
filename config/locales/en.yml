@@ -145,6 +145,44 @@ en:
     cart_updated: Cart updated
     see_cart: See cart
     title: Title
+  users:
+    sessions:
+      new:
+        login: Login
+    shared:
+      links:
+        didnt_receive_instructions: Didn't receive unlock instructions?
+        forgot_password: Forgotten password?
+        login: Login
+        sign_up: Register
+        unlock_instructions: Didn't receive unlock instructions?
+    registrations:
+      edit:
+        basic_info: Basic Informations
+        address: Address
+        leave_blank: Deixe em branco se não pretende mudar a senha
+        update: Update account
+      new:
+        sign_up: Register
+        title: New User
+        next: Next
+        previous: Previous
+    passwords:
+      new:
+        title: Password Reset
+        get_password_reset_link: Get password reset link
+    unlocks:
+      new:
+        title: Resend unlock instructions
+        send: Send
+  attributes:
+    document_cpf: ID
+    sponsor_username: Sponsor Username
+    name: Name
+    country: Country
+    username: Username
+    password: Password
+    password_confirmation: Password Confirmation
   defaults:
     admin: Admin
     approved_success: Approved success

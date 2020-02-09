@@ -99,14 +99,22 @@ class FinancialReason < ApplicationRecord
 
   def self.support_point_activation_bonus
     @@support_point_activation_bonus ||= find_by(code: '3100')
-  end 
-  
+  end
+
   def self.residual_bonus
     @@residual_bonus ||= find_by(code: '2600')
   end
 
   def self.support_point_residual_bonus
     @@support_point_residual_bonus ||= find_by(code: '1400')
+  end
+
+  def self.binary_bonus_chargeback_by_daily_excees
+    @@binary_bonus_chargeback_by_daily_excees ||= find_by(code: '3300')
+  end
+
+  def self.chargeback_by_contract_limit
+    @@chargeback_by_contract_limit ||= find_by(code: '3400')
   end
 
 end

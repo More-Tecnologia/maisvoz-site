@@ -28,6 +28,7 @@
     <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
     <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>
     <li><%= link_to t('defaults.my_vouchers'), backoffice_vouchers_path %></li>
+    <li> <%= link_to t('defaults.bonus_contracts'), backoffice_bonus_contracts_path %> </li>
   </ul>
 </li>
 <!-- PV History -->
@@ -35,8 +36,8 @@
   <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span></a>
   <ul class="list-unstyled">
     <li> <%= link_to t('defaults.unilevel'), backoffice_unilevel_scores_path %> </li>
-    <li><%= link_to t('defaults.lineage_scores'), backoffice_lineage_scores_path %></li>
     <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path if ENV['ENABLED_BINARY'] == 'true' %> </li>
+    <li> <%= link_to t('defaults.point_qualifications'), backoffice_point_qualifications_path if ENV['ENABLED_BINARY'] == 'true' %> </li>
   </ul>
 </li>
 <!-- Network -->

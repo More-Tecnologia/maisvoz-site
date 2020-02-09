@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :unilevel_scores, only: [:index]
       resources :binary_scores, only: [:index]
+      resources :point_qualifications, only: [:index]
       resources :orders, only: [:index, :show] do
         post :approve
         post :mark_as_billed
@@ -61,6 +62,7 @@ Rails.application.routes.draw do
     resources :downloads, only: [:index]
     resources :binary_scores, only: [:index]
     resources :unilevel_scores, only: [:index]
+    resources :bonus_contracts, only: [:index, :show]
     resources :financial_transactions, only: [:index]
     resource :bank_account, only: [:edit, :update]
 
@@ -96,6 +98,7 @@ Rails.application.routes.draw do
     resources :unilevel, only: [:index]
     resources :lineage_scores, only: [:index]
     resources :career_trail_users, only: [:index]
+    resources :point_qualifications, only: [:index]
 
     # Sim Cards
     resources :users, only: [] do

@@ -29,7 +29,7 @@
                   <th><%= voucher.order.hashid if voucher.order %></th>
                   <th><%= t(voucher.invoice_type) if voucher.invoice_type %></th>
                   <th><%= l(voucher.used_at, format: :short) if voucher.used_at %></th>
-                  <th><%= link_to 'Utilizar Voucher', backoffice_pay_with_voucher_path(voucher), class: 'btn btn-sm btn-primary' unless voucher.used? %></th>
+                  <th></th>
                 </tr>
               <% end %>
               <% if vouchers.empty? %>

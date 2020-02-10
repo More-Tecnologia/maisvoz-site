@@ -25,7 +25,7 @@ module Backoffice
 
     def show_query_params
       query = params[:q] ? params[:q].to_hash.symbolize_keys : {}
-      query.merge!(bonus_contract: @bonus_contract)
+      query.merge!(bonus_contract_id_eq: @bonus_contract.id)
     end
 
   end

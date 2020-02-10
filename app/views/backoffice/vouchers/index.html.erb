@@ -1,7 +1,7 @@
 <!-- Page-Title -->
 <div class="row">
   <div class="col-sm-12 m-b-23">
-    <h4 class="page-title">Meus Vouchers</h4>
+    <h4 class="page-title"><%= t('defaults.my_vouchers') %></h4>
   </div>
 </div>
 
@@ -13,11 +13,11 @@
           <table class="table table-striped table-bordered table-hover m-0">
             <thead>
               <tr>
-                <th>Código</th>
-                <th>Status</th>
-                <th>ID fatura</th>
-                <th>Tipo de Fatura</th>
-                <th>Data e hora do uso</th>
+                <th> <%= Voucher.human_attribute_name(:voucher_code) %> </th>
+                <th> <%= Voucher.human_attribute_name(:status) %> </th>
+                <th> <%= Voucher.human_attribute_name(:voucher_order) %> </th>
+                <th> <%= Voucher.human_attribute_name(:order_kind) %> </th>
+                <th> <%= Voucher.human_attribute_name(:voucher_use_date) %> </th>
                 <th width="1"></th>
               </tr>
             </thead>
@@ -29,7 +29,7 @@
                   <th><%= voucher.order.hashid if voucher.order %></th>
                   <th><%= t(voucher.invoice_type) if voucher.invoice_type %></th>
                   <th><%= l(voucher.used_at, format: :short) if voucher.used_at %></th>
-                  <th><%= link_to 'Utilizar Voucher', backoffice_pay_with_voucher_path(voucher), class: 'btn btn-sm btn-primary' unless voucher.used? %></th>
+                  <th></th>
                 </tr>
               <% end %>
               <% if vouchers.empty? %>

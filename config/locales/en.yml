@@ -1071,3 +1071,5 @@
         desc: DESC
   invalid_password: 'Invalid Password'
   confirmation_warning: 'we need your current password to confirm your request'
+  success_withdrawal: 'Your withdrawal in the amount of #{value} was made.'
+  rejected_withdrawal: 'Your withdrawal in the amount of #{value} cannot be made.'

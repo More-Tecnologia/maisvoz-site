@@ -1093,3 +1093,5 @@ pt-BR:
         desc: DESC
   invalid_password: 'Senha incorreta'
   confirmation_warning: 'nós precisamos da sua senha atual para confirmar sua solicitação'
+  success_withdrawal: 'Seu pedido de saque no valor de #{value} foi efetuado com sucesso.'
+  rejected_withdrawal: 'Seu pedido de saque no valor de #{value} não pode ser efetuado.'

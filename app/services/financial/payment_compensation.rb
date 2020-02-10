@@ -82,7 +82,7 @@ module Financial
 
     def create_vouchers
       return unless voucher_product
-      Vouchers::Create.new(user: user, product: voucher_product).call
+      Vouchers::Create.new(user: user, order: order).call
     end
 
     def create_system_fee

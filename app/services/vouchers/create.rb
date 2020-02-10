@@ -1,9 +1,9 @@
 module Vouchers
   class Create
 
-    def initialize(user:, product:)
-      @user    = user
-      @product = product
+    def initialize(user:, order:)
+      @user = user
+      @order = order
     end
 
     def call
@@ -14,10 +14,11 @@ module Vouchers
 
     private
 
-    attr_reader :user, :product
+    attr_reader :user, :order
 
     def vouchers_count
-      product.quantity.to_i
+      voucher_products = order.order_items.select { |i| i.product.voucher? }
+      voucher_products.sum { |i| i.quantity.to_i * i.product.quantity.to_i }
     end
 
     def create_voucher

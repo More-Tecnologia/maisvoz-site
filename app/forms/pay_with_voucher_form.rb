@@ -23,32 +23,22 @@ class PayWithVoucherForm < Form
 
   def valid_voucher
     return if voucher_code.blank?
-
-    if voucher.blank?
-      errors.add(:voucher_code, 'Cupom inválido')
-    elsif voucher
-      errors.add(:voucher_code, 'Cupom já utilizado') if voucher.used?
-    end
+    return errors.add(:voucher_code, :invalid_voucher) if voucher.blank?
+    errors.add(:voucher_code, :used_voucher) if voucher.used?
   end
 
   def valid_order
-    return if order_id.blank?
-
-    if order.blank?
-      errors.add(:order_id, 'Pedido inválido.')
-    elsif order.completed?
-      errors.add(:order_id, 'Pedido já está pago.')
-    elsif order.products.detect(&:subscription?).nil?
-      errors.add(:order_id, 'Pedido não é do tipo inscrição.')
-    elsif order.payable.present? && order.payable.orders.count > 1
-      errors.add(:order_id, 'Pedido não pode ser pago pois possui mais de uma fatura.')
-    end
+    return errors.add(:order_id, :invalid) unless order
+    return errors.add(:order_id, :invalid_order_status_for_payment) unless order.pending_payment?
+    errors.add(:order_id, :only_advance_product_can_be_paid_with_voucher) unless order_has_only_advance_product?
   end
 
   def valid_password
-    return if user.valid_password?(password)
+    errors.add(:password, :wrong_password) unless user.valid_password?(password)
+  end
 
-    errors.add(:password, 'Senha incorreta')
+  def order_has_only_advance_product?
+    order.order_items.all? { |i| i.product.code == Product.advance_product_code }
   end
 
 end

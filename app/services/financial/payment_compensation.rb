@@ -37,7 +37,7 @@ module Financial
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if adhesion_product
         propagate_bonuses if enabled_bonification
-        create_vouchers
+        create_vouchers if voucher_product
         create_bonus_contract if adhesion_product || voucher_product
         create_binary_fest_promotion_score if adhesion_product && adhesion_product.advance?
         notify_user_by_email_about_paid_order
@@ -79,7 +79,6 @@ module Financial
     end
 
     def create_vouchers
-      return unless voucher_product
       Vouchers::Create.new(user: user, order: order).call
     end
 

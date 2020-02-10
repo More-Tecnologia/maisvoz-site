@@ -35,7 +35,7 @@
                       <td> <%= link_to(bonus_contract.hashid, backoffice_bonus_contract_path(bonus_contract)) %> </td>
                       <td> <%= link_to(order.try(:hashid), backoffice_order_path(order)) if order %> </td>
                       <td> <%= number_to_currency(order.total) %> </td>
-                      <td> <%= order.user.scores.pool_point_by(order).first.try(:cent_amount) %></td>
+                      <td> <%= bonus_contract.cent_amount.to_i %></td>
                       <td> <%= number_to_currency(bonus_contract.remaining_balance.to_i) %></td>
                       <td> <%= l(bonus_contract.try(:created_at), format: :short) %></td>
                       <td> <%= l(bonus_contract.expire_at, format: :long) if bonus_contract.expire_at %></td>

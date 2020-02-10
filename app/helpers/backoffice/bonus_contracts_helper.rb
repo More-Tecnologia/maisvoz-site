@@ -16,8 +16,8 @@ module Backoffice
       sum / 1e2.to_f
     end
 
-    def find_pool_point(contract)
-      ScoreType.pool_point.scores.where(order: contract.order).first.try(:cent_amount).try(:to_i)
+    def find_pool_point(order)
+      ScoreType.pool_point.scores.where(order: order).first.try(:cent_amount).try(:to_i)
     end
 
   end

@@ -25,16 +25,18 @@
               <% vouchers.each do |voucher| %>
                 <tr>
                   <th><%= voucher.code %></th>
-                  <th><%= voucher.used? ? 'Sim' : 'Não' %></th>
+                  <th><%= t(voucher.used?.to_s) %></th>
                   <th><%= voucher.order.hashid if voucher.order %></th>
                   <th><%= t(voucher.invoice_type) if voucher.invoice_type %></th>
                   <th><%= l(voucher.used_at, format: :short) if voucher.used_at %></th>
-                  <th></th>
+                  <th><%= link_to t('helpers.use_voucher'),
+                                  backoffice_pay_with_voucher_path(voucher),
+                                  class: 'btn btn-sm btn-primary' unless voucher.used? %></th>
                 </tr>
               <% end %>
               <% if vouchers.empty? %>
                 <tr>
-                  <td colspan="6" class="text-center">Você não adquiriu vouchers ainda.</td>
+                  <td colspan="50" class="text-center"> <%= t('helpers.no_data') %> </td>
                 </tr>
               <% end %>
             </tbody>

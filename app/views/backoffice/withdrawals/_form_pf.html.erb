@@ -5,34 +5,41 @@
                                       data-irpf="<%= @form.irpf %>"
                                       data-inss="<%= @form.inss %>"
                                       data-registration-type="<%= @form.user.registration_type %>">
-    <%= f.input :amount do %>
-      <div class="input-group">
-        <span class="input-group-addon"> <%= number_to_currency(1, format: '%u') %> </span>
-        <%= f.input_field :amount, class: "form-control autonumber",
-                                   value: @form.amount,
-                                   data: { input: true,
-                                           autonumeric: { aSep: '.', aDec: ',' } } %>
+
+    <div>
+      <div class="col-md-4">
+        <%= f.input :amount do %>
+          <div class="input-group">
+            <span class="input-group-addon"> <%= number_to_currency(1, format: '%u') %> </span>
+            <%= f.input_field :amount, class: "form-control autonumber",
+                                       value: @initial_amount,
+                                       data: { input: true,
+                                               autonumeric: { aSep: '.', aDec: ',' } } %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-    <ul class="list-unstyled w-list m-b-30">
-      <li>
-        <b> <%= t('backoffice.admin.withdrawals.form.fees') %>:</b> <%= number_to_currency(1, format: '%u') %>
-        <span data-fee-text><%= f.object.fee %></span>
-      </li>
-      <li>
-        <b> <%= t('defaults.irpf') %>:</b> <%= number_to_currency(1, format: '%u') %>
-        <span data-irpf-text><%= f.object.total %></span>
-      </li>
-      <li>
-        <b> <%= t('defaults.inss') %>:</b> <%= number_to_currency(1, format: '%u') %>
-        <span data-inss-text><%= f.object.total %></span>
-      </li>
-      <li>
-        <b> <%= t('.total') %>:</b> <%= number_to_currency(1, format: '%u') %>
-        <span data-total-text><%= f.object.total %></span>
-      </li>
-    </ul>
-    <%= f.button :button, t("defaults.post"),
-                          data: { disable_with: t('helpers.save_with_disable') } %>
+      <div class="col-md-4">
+        <%= f.label :password %> <i>(<%= t('confirmation_warning') %>)</i><br />
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <br>
+      <ul class="list-unstyled w-list m-b-30">
+        <li>
+          <b><%= t('backoffice.admin.withdrawals.form.fees') %>:</b> <%= number_to_currency(1, format: '%u') %>
+          <span data-fee-text><%= f.object.fee %></span>
+        </li>
+        <li>
+          <b> <%= t('.total') %>:</b> <%= number_to_currency(1, format: '%u') %>
+          <span data-total-text><%= f.object.total %></span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-12">
+      <%= f.button :button, t("defaults.post"),
+                            data: { disable_with: t('helpers.save_with_disable') } %>
+    </div>
+
   </div>
 <% end %>

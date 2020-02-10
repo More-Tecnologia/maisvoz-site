@@ -52,7 +52,7 @@ class Career < ApplicationRecord
   end
 
   def unilevel_qualify?(user)
-    unilevel_qualify_lineages?(user) && user.unilevel_score_sum >= qualifying_score.to_i
+    unilevel_qualify_lineages?(user)
   end
 
   def unilevel_qualify_lineages?(user)
@@ -72,9 +72,7 @@ class Career < ApplicationRecord
   end
 
   def binary_qualify?(user)
-    return true unless binary_qualifying_career
-    user.unilevel_node
-        .exists_child_in_greater_binary_leg_by?(binary_qualifying_career)
+    user.binary_node.shortter_leg_accumulated_score >= qualifying_score
   end
 
   def self.detect_requalification_career_trail(user)

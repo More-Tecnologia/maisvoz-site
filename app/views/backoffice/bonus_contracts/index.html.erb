@@ -17,18 +17,18 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th><%= Score.human_attribute_name(:description) %></th>
-                  <th><%= Score.human_attribute_name(:amount) %></th>
                   <th><%= Score.human_attribute_name(:order) %></th>
+                  <th><%= Score.human_attribute_name(:amount) %></th>
+                  <th><%= Score.human_attribute_name(:pool_points) %></th>
                   <th><%= Score.human_attribute_name(:contract_balance) %></th>
                   <th><%= Score.human_attribute_name(:in_date) %></th>
                   <th><%= Score.human_attribute_name(:expire_at) %></th>
+                  <th><%= Score.human_attribute_name(:status) %></th>
                   <th><%= Score.human_attribute_name(:processed_at) %></th>
                 </tr>
               </thead>
               <tbody>
                 <% if @bonus_contracts.any? %>
-                  <% cent_amount_sum = sum_previous_contract_by(:remaining_balance, @q, @bonus_contracts) %>
                   <% @bonus_contracts.each do |bonus_contract| %>
                     <% order = bonus_contract.try(:order) %>
                     <tr>
@@ -38,8 +38,9 @@
                       <td> <%= find_pool_point(bonus_contract) %></td>
                       <td> <%= number_to_currency(bonus_contract.calculate_remaining_balance.to_i) %></td>
                       <td> <%= l(bonus_contract.try(:created_at), format: :short) %></td>
-                      <td><%= l(bonus_contract.expire_at, format: :long) if bonus_contract.expire_at %></td>
-                      <td><%= l(bonus_contract.paid_at, format: :long) if bonus_contract.paid_at %></td>
+                      <td> <%= l(bonus_contract.expire_at, format: :long) if bonus_contract.expire_at %></td>
+                      <td> <%= bonus_contract_status(bonus_contract) %></td>
+                      <td> <%= l(bonus_contract.paid_at, format: :long) if bonus_contract.paid_at %></td>
                     </tr>
                   <% end %>
                 <% else %>

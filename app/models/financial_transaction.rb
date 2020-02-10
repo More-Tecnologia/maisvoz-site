@@ -42,8 +42,10 @@ class FinancialTransaction < ApplicationRecord
   validates :financial_reason, presence: true,
                                unless: :is_note_present?
 
-  after_create :update_balance_user
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
+  after_commit :debits_bonus_of_contract, on: :create,
+                                          if: :financial_reason_type_bonus?,
+                                          unless: :chargeback?
 
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_admin,
@@ -104,6 +106,11 @@ class FinancialTransaction < ApplicationRecord
     financial_reason_type_bonus? && credit?
   end
 
+  def binary_bonus_chargeback_by_daily_excees(amount)
+    reason = FinancialReason.binary_bonus_chargeback_by_daily_excees
+    chargeback_binary_score!(reason, amount)
+  end
+
   private
 
   def invert_money_flow
@@ -112,13 +119,6 @@ class FinancialTransaction < ApplicationRecord
 
   def is_note_present?
     note.present?
-  end
-
-  def update_balance_user
-    amount = debit? ? -self[:cent_amount] : self[:cent_amount]
-    return user.update_available_balance!(amount) if user.admin?
-    return user.update_blocked_balance!(amount) if financial_reason_type_bonus?
-    user.update_available_balance!(amount)
   end
 
   def inactivate_user!
@@ -132,6 +132,10 @@ class FinancialTransaction < ApplicationRecord
                        order: order,
                        cent_amount: cent_amount,
                        moneyflow: invert_money_flow)
+  end
+
+  def debits_bonus_of_contract
+    Financial::BonusContractDistributorService.call(financial_transaction: self)
   end
 
 end

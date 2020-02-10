@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-border panel-custom">
+      <div class="panel-heading">
+  			<h3 class="panel-title"><%= t(:filters) %></h3>
+  		</div>
+      <div class="panel-body">
+        <%= search_form_for @q, url: backoffice_bonus_contracts_path do |f| %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-2">
+                <%= f.label t('helpers.expire_at_from') %>
+                <%= f.search_field :expire_at_gteq, class: 'form-control input-sm',
+                                                    data: { provide: 'datepicker' } %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t('helpers.expire_at_until') %>
+                <%= f.search_field :expire_at_lteq, class: 'form-control input-sm',
+                                                    data: { provide: 'datepicker' } %>
+              </div>
+            </div>
+          </div>
+          <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

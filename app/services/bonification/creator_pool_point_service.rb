@@ -18,7 +18,8 @@ module Bonification
     end
 
     def calculate_order_pool_point
-      @order.products.sum(&:binary_score)
+      products = @order.products.select { |p| p.adhesion? || p.voucher? }
+      products.sum(&:binary_score)
     end
 
   end

@@ -17,12 +17,11 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th><%= Score.human_attribute_name(:spreader_user) %></th>
-                  <th><strong><%= t('attributes.height') %> </strong></th>
-                  <th><%= Score.human_attribute_name(:score_type) %></th>
-                  <th><%= Score.human_attribute_name(:cent_amount) %></th>
-                  <th><%= Score.human_attribute_name(:balance) %></th>
                   <th><%= Score.human_attribute_name(:order) %></th>
+                  <th><%= Score.human_attribute_name(:amount) %></th>
+                  <th><%= Score.human_attribute_name(:pool_points) %></th>
+                  <th><%= Score.human_attribute_name(:contract_balance) %></th>
+
                   <th><%= Score.human_attribute_name(:created_at) %></th>
                   <th><%= Score.human_attribute_name(:status) %></th>
                   <th><%= Score.human_attribute_name(:expire_at) %></th>
@@ -30,16 +29,17 @@
               </thead>
               <tbody>
                 <% if @scores.any? %>
-                  <% cent_amount_sum = sum_score_cent_amount(@q, @scores) %>
                   <% @scores.each do |score| %>
                     <tr>
-                      <th><%= score.try(:hashid) %></th>
-                      <td><%= score.try(:spreader_user).try(:username) %></td>
-                      <td><%= score.try(:height) %></td>
-                      <td><%= score.try(:score_type).try(:name) %></td>
+                      <td> <%= link_to(bonus_contract.hashid, backoffice_bonus_contract_path(bonus_contract)) %></td>
+                      <td> <%= link_to(order.try(:hashid), backoffice_order_path(order)) if order %></td>
+                      <th> <%= number_to_currency(score.order.total_cents) %></th>
+                      <td> <%= number_to_currency(score.cent_amount) %></td>
+                      <td> <%= %> </td>
+
+
+
                       <td class=<%= score.cent_amount.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(score.try(:cent_amount)) %></td>
-                      <td class=<%= cent_amount_sum.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(cent_amount_sum) %></td>
-                      <% cent_amount_sum -= score.cent_amount %>
                       <td><%= score.try(:order).try(:hashid) %></td>
                       <td><%= l(score.try(:created_at), format: :short) %></td>
                       <td><%= score_status(score)  %></td>

@@ -278,6 +278,13 @@ pt-BR:
     wallet_address: Carteira Digital
     image_path: Pin
     expire_at: Validade
+    received_balance: Valor Recebido
+    remaining_balance: Valor à Receber
+    contract_balance: Saldo de Contrato
+    bonus_contract: Contrato de Bonus
+    financial_transaction: Bonus
+    bonus_contract_balance: Saldo do Contrato
+    bonus_id: Bonus
   backoffice:
     orders:
       show:
@@ -701,6 +708,11 @@ pt-BR:
     copyright: Todos os direitos reservados %{company_name}
     score_active: Ativo
     score_expired: Expirado
+    contract_active: Ativo
+    contract_expired: Encerrado
+    bonus_contracts: Contrato Pool Point
+    bonus_contract_items: Contrato Pool Point
+    unilevel_tree: Unilevel
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

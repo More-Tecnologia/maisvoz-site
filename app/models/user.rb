@@ -155,6 +155,7 @@ class User < ApplicationRecord
   has_many :investment_shares
   has_many :bonus, class_name: 'Bonus'
   has_many :vouchers
+  has_many :bonus_contracts
 
   validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
   validates :bank_account_type, presence: true, on: :withdrawal
@@ -449,6 +450,11 @@ class User < ApplicationRecord
 
   def lineage_scores
     @lineage_scores ||= Score.unilevel_scores_by_lineage(self, q = Score.ransack)
+  end
+
+  def increment_blocked_bonus!(amount)
+    blocked_balance = blocked_balance_cents.to_f + amount.to_f
+    update!(:blocked_balance_cents, blocked_balance)
   end
 
   private

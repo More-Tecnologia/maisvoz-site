@@ -27,10 +27,10 @@ module Financial
       remaining_balance = bonus_amount
       @active_bonus_contracts.each_with_index do |contract, index|
         bonus = remaining_balance
-        remaining_balance -= contract.remaining_balance.to_f
+        remaining_balance -= contract.calculate_remaining_balance.to_f
         last_contract = index == @contract_count - 1
         if last_contract && remaining_balance > 0
-          bonus = contract.remaining_balance.to_f
+          bonus = contract.calculate_remaining_balance.to_f
           chargeback_to_admin(remaining_balance)
         end
         credit_bonus_to(contract, bonus)

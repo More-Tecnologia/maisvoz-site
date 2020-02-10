@@ -44,4 +44,12 @@ class BonusContract < ApplicationRecord
     self[:received_balance] = (amount * 1e2).to_i
   end
 
+  def calculate_remaining_balance
+    cent_amount - calculate_received_balance
+  end
+
+  def calculate_received_balance
+    bonus_contract_items.sum(&:cent_amount) / 1e2.to_f
+  end
+
 end

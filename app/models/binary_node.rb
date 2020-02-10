@@ -100,4 +100,8 @@ class BinaryNode < ApplicationRecord
     (User.binary_positions.keys - [source_leg]).first
   end
 
+  def shortter_leg_accumulated_score
+    [left_leg_accumulated_score, right_leg_accumulated_score].min
+  end
+
 end

@@ -1,5 +1,4 @@
----
-en:
+﻿en:
   '':
     success: Success
   active_admin:
@@ -7,236 +6,831 @@ en:
     dashboard_welcome:
       call_to_action: Call to action
       welcome: Welcome
-  app_name: App name
-  backoffice:
-    admin:
-      credits_debits:
-        credit_debit:
-          subtitle: Subtitle
-          title: Title
-          transfer_to: Transfer to
-        find_user:
-          subtitle: Subtitle
-          title: Title
-        form:
-          credit: Credit
-          debit: Debit
-        step_1: Step 1
-        step_2: Step 2
-      orders:
-        filters:
-          id_in: Id in
-          paid_from: Paid from
-          paid_until: Paid until
-          status: Status
-          total: Total
-          user: User
-        index:
-          approve_withdraw: Approve withdraw
-          subtitle: Subtitle
-          title: Title
-      users:
-        index:
-          no_data: No data
-          subtitle: Subtitle
-          title: Title
-        show:
-          address: Address
-          available_balance: Available balance
-          birthdate: Birthdate
-          blocked_balance: Blocked balance
-          direct_users: Direct users
-          document_cpf: Document value
-          email: Email
-          left_pv: Left pv
-          name: Name
-          phone: Phone
-          right_pv: Right pv
-          skype: Skype
-          sponsor: Sponsor
-      withdrawals:
-        filters:
-          created_from: Created from
-          created_until: Created until
-          status: Status
-        index:
-          approve_withdraw: Approve withdraw
-          no_data: No data
-          refuse_withdraw: Refuse withdraw
-          subtitle: Subtitle
-          title: Title
-    binary_strategies:
-      index:
-        default_strategy: Default strategy
-        default_strategy_sub: Default strategy sub
-        indicated_strategy: Indicated strategy
-        indicated_strategy_sub: Indicated strategy sub
-        save: Save
-        subtitle: Subtitle
-        title: Title
-    binary_tree:
-      index:
-        left_pv: Left pv
-        no_binary_node: No binary node
-        right_pv: Right pv
-        sponsor: Sponsor
-        subtitle: Subtitle
-        title: Title
-        username: Username
-      show:
-        left_pv: Left pv
-        right_pv: Right pv
-        sponsor: Sponsor
-        subtitle: Subtitle
-        title: Title
-        username: Username
-    financial_entries:
-      index:
-        no_data: No data
-        subtitle: Subtitle
-        title: Title
-    products:
-      index:
-        all: All
-    pv_activity_histories:
-      index:
-        invoice_no: Invoice no
-        no_data: No data
-        subtitle: Subtitle
-        title: Title
-    pv_histories:
-      index:
-        binary_bonus_debit: Binary bonus debit
-        invoice_no: Invoice no
-        left: Left
-        no_data: No data
-        right: Right
-        subtitle: Subtitle
-        title: Title
-    transfers:
-      find_user:
-        subtitle: Subtitle
-        title: Title
-      new_transfer:
-        subtitle: Subtitle
-        title: Title
-        transfer_to: Transfer to
-      step_1: Step 1
-      step_2: Step 2
-    unilevel:
-      index:
+  activerecord:
+    models:
+      score_type: Score Type
+      user: User
+      order: Order
+    attributes:
+      pv_activity_history:
+        from: From
+        order: Order
+      pv_history:
+        balance: Balance
+        description: Description
+      user:
+        login: Email/Login
+        registration_type: Type of Registation
+        document_verification_status: Documents
+      order:
+        paid_by: Paid by
+        payment_type: Type of Payment
+        dr_recorded: DR rec.
+      score:
+        user: For
+        spreader_user: Of
+        order: Order
+        score_type: Score Type
+        height: Generation
+        cent_amount: Amount
+        created_at: Added on
+        source_leg: Source leg
+      financial_transaction:
+        user: For
+        spreader: Of
+        financial_reason: Motive
+        order: Order
+        financial_transaction: Financial Transaction
+        chargeback: Chargeback
+        moneyflow: Flow
+        cent_amount: Value
+        created_at: Added in
+        credit: Credit
+        debit: Debit
         generation: Generation
-        no_binary_node: No binary node
-        subtitle: Subtitle
-        title: Title
+      order:
+        shipping: Shipping
+        total: Total
+        subtotal: Subtotal
+      payment_transaction:
+        transcation_id: Transaction ID
+      user:
+        document_cpf_photo: Photo of CPF
+        document_rg_photo: Photo of RG
+        document_pis_photo: Photo of PIS/PASEP
+        document_address_photo: Proof of residence
+        document_scontract_photo: Social Contract
+        wallet_address: Digital Wallet
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: This email is already being used
+            password_confirmation:
+              confirmation: Different passwords
+            registration_type:
+              not_pj: Must be a legal entity
+            document_verification_status:
+              not_verified: Not verified
+      messages:
+        blank: cannot be blank
+        record_invalid: 'Validation failed: %{errors}'
+        wrong_length: Wrong size
+        taken: Is already being used %{value}
+        rule_type_missmatch: "an object of type %{ruleable_type} cannot receive the rule type %{rule_type_title}."
+        restrict_dependent_destroy:
+          has_many: You cannot delete the record because there %{record} dependents
+          has_one: You cannot delete the record because there is a %{record} dependent
+        invalid: Invalid
+        bank_account_presence: Fill in your bank details before requesting a withdrawal.
+  activemodel:
+    errors:
+      models:
+        new_registration_form:
+          attributes:
+            username:
+              format: only lowercase letters and numbers
+            document_cpf:
+              cpf: 'invalid'
+        credit_debit_wizard/create_form:
+          attributes:
+            amount:
+              not_a_number: it's not a number
+      messages:
+        taken: It's already being used
+        not_authenticate: not authenticated
+        too_long: "max %{count} characters"
+        still_in_cart: Order still in the shopping cart
+        already_approved: Order already approved
+        too_long: "max %{count} characters"
+        without_available_balance: User has no available balance.
+    attributes:
+      credit_debit_wizard/create_form:
+        master_password: Master Password
+        amount: Value
+      cellphone_reload_form:
+        product: Value
+        ddd: DDD
+        cellphone_number: Telephone number
+        value: Value
+  attributes:
+    active_session: Active Session
+    order: Order
+    accept_terms: Accept terms
+    amount: Value
+    created_at: Creation date
+    expire_at: Expiration date
+    description: Description
+    gross_amount: Gross amount
+    name: Name
+    net_amount: Net value
+    paid_at: Paid in
+    password: Password
+    password_confirmation: Password confirmation
+    phone: Telephone
+    product: Product
+    quantity: Quantity
+    price: Price
+    score: Point(s)
+    profit: Profit
+    next_bonus_payment: Next payment
+    remember_me: Remember
+    sponsor_username: Sponsor User
+    unit_cost: Unit Cost
+    subtotal: Subtotal
+    shipping: Shipping
+    tax: Tax
+    user: User
+    username: Username
+    activity: Activity
+    qualification: Qualification
+    order_date: Order date
+    order_status: Order status
+    binary_position: Binary Position
+    binary_qualified: Binary
+    active_until: Active until
+    registration_type: Account type
+    pva_total: PVA Total
+    from: From
+    until: Until
+    to: To
+    type: Type
+    from_user: From
+    to_user: To
+    kind: type
+    birthdate: Date of Birth
+    main_document: Document
+    document_cpf: CPF
+    document_cnpj: CNPJ
+    document_ie: IE
+    document_rg: RG
+    document_rg_expeditor: Issuing Agency
+    document_pis: PIS/PASEP
+    document_company_name: Company Name
+    document_fantasy_name: Fantasy Name
+    gender: Gender
+    marital_status: Marital Status
+    address: Address
+    address_2: Address complement
+    address_number: Address number
+    district: District
+    country: Country
+    state: State
+    city: City
+    zipcode: Zipcode
+    fiscal_document_link: Link to Invoice
+    fiscal_document_photo: Invoice
+    bank_code: Bank
+    bank_account_type: Account type
+    account_number: Account
+    account_digit: Account digit
+    agency_number: Agency number
+    agency_digit: Agency digit
+    balance: Balance
+    unit_price: Unit price
+    role: Type
+    career_kind: Career
+    old_career: Old career
+    new_career: New career
+    available_balance: Available balance
+    blocked_balance: Blocked balance
+    left_pv: PV Left
+    right_pv: PV Right
+    sponsor: Sponsor
+    active: Active
+    invoice_id: Invoice ID
+    product_id: Product
+    product_serial: Product Serial
+    status_message: Message Status
+    product_name: Product Name
+    status_updated_at: Status Updated On
+    updated_at: Last updated date
+    bonus_1: Bônus Instalador
+    binary_bonus: Binary Bonus
+    binary_score: Binary Score
+    document_verification_status: Document Verification Status
+    plate: Plate
+    cnpj_cpf: CNPJ/CPF
+    owner_name: Owner
+    manufacture_year: Year of manufacture
+    model_year: Year of model
+    fuel: Type of fuel
+    mileage: Mileage
+    gearbox: Exchange type
+    mercosul_code: Motorization
+    color: Color
+    color_type: Type of color
+    origin: Import
+    admin_company_username: '* Administrator Name'
+    trail: Trail
+    career: Career
+    email: Email
+    not_applicable: ''
+    left: Left
+    right: Right
+    financial_reason_types: Types of Reasons
+    message: Message
+    master_password: Master Password
+    financial_reason_id: Reason
+    financial_reason: Reason
+    generation: Generation
+    status: Situation
+    pf: Physcial person
+    pj: Legal person
+    note: Message
+    blocked: Blocked
+    canceled: Cancelled
+    binary_qualify: Binary Qualified
+    height: Generation
+    unit_price_cents: Unit Price
+    sim_card_quantity: CHIPS Quantity
+    order_id: Order
+    processed_at: Processing Date
+    quantity_per_product: Quantity per product
+    iccid: ICCID
+    support_point_user: Support point
+    phone_number: Phone number
+    in_stock: In stock
+    out_stock: Out of stock
+    transfered: Transferred
+    sim_card_quantity_added: Added CHIPs
+    actions: Actions
+    in_date: Entry date
+    activation_date: Activation date
+    support_point: Support point
+    transference_date: Transfer Date
+    transferences: Transfers
+    unilevel_qualifying_career_count: Number of Referral Qualifiers
+    unilevel_qualifying_career_id: Qualifying Nominee Career
+    indications: Indications
+    role_type: Rule type
+    lineage_score: Lineage Score
+    requalification_score: Requalification Score
+    qualifying_score: Qualifying Score
+    updated_at: Change date
+    document: Document
+    bank: Bank
+    bank_account: Account
+    bank_agency: Agency
+    cellphone_number: Telephone
+    wallet_address: Wallet address
+    image_path: Pin
+    expire_at: Shelf life
+    voucher_code: Code
+    voucher_order: Order
+    order_kind: Order Kind
+    voucher_use_date: Use Date
+    my_vouchers: Meus Vouchers
+  backoffice:
+    orders:
+      show:
+        invoice: Invoice
+        order_date: Invoice date
+        status: Invoice status
+        subtotal: Subtotal
+        taxes: Taxes
+        title: Invoice
     withdrawals:
+      index:
+        no_data: No withdrawals made
+        title: My withdrawals
+        unverified_account: To request withdrawals your account needs to be verified.
+      new:
+        available_balance: Available balance
+        title: New withdrawal
+        unverified_account: To request withdrawals your account needs to be verified.
       form:
         fees: Fees
         total: Total
+      create:
+        success: Your withdrawal request has been received.
+    binary_strategies:
       index:
-        no_data: No data
-        subtitle: Subtitle
-        title: Title
-      new:
-        available_balance: Available balance
-        subtitle: Subtitle
-        title: Title
+        title: Binary Strategy
+        subtitle: Define your network strategy
+        save: Save Strategy
+        default_strategy: Standard Strategy
+        default_strategy_sub: This is the standard strategy for your network
+        indicated_strategy: Direct Referral Strategy
+        indicated_strategy_sub: Define precisely where each direct referral will be distributed
+    binary_tree:
+      show:
+        title: Binary Tree
+        left_pv: PV Left
+        right_pv: PV Right
+        username: Username
+        sponsor: Sponsor
+        search: Search
+    unilevel:
+      index:
+        title: Unilevel
+        no_binary_node: No indications
+        generation: Generation
+    financial_entries:
+      index:
+        title: Financial History
+        no_data: No financial records yet
+    pv_histories:
+      index:
+        title: PV Binary
+        left: Left
+        right: Right
+        no_data: No PV record yet
+        invoice_no: 'User generated PV %{username}'
+    pv_activity_histories:
+      index:
+        title: PVG History
+        invoice_no: 'PV generated from invoice ID: %{id}'
+        no_data: No activity PV records found
+    accumulated_pva:
+      index:
+        title: PVA Accumulated
+    lineage_scores:
+      index:
+        title: Lineage Score
+    financial_transactions:
+      index:
+        title: Financial transactions
+    payment_transactions:
+      show:
+        title: Payment
+        transfer_note_html: "Transfer <strong>%{value}</strong> to the address below"
+        transfer_rate_warning_html: 'To speed up payment identification, we recommend using the <strong>Express Rate<strong>'
+    order_items:
+      update:
+        cart_updated: Cart updated
+      destroy:
+        cart_updated: Cart updated
+    admin:
+      credits_debits:
+        step_1: Step 1
+        step_2: Step 2
+      accumulated_pva:
+        index:
+          title: PVs Title Advancement
+      career_histories:
+        index:
+          title: Career History
+      financial_entries:
+        index:
+          title: Financial report
+        filters:
+          from_user: User name
+          type: Financial event type
+          created_from: Created from
+          created_until: Created until
+      orders:
+        index:
+          title: Orders Report
+        filters:
+          user: User
+          total: Total
+          status: Status
+          paid_from: Paid from
+          paid_until: Paid until
+          id_in: List ID
+      withdrawals:
+        index:
+          title: Manage Withdrawals
+          approve_withdraw: Do you really want to approve this withdrawal?
+          refuse_withdraw: Do you really want to reject this withdrawal?
+        filters:
+          status: Status
+          created_from: Created from
+          created_until: Created until
+        form:
+          fees: Fees
+        update:
+          success: Withdrawal Approved!
+      pv_activity_histories:
+        index:
+          title: History of PVA/PVG
+      pv_histories:
+        index:
+          title: History of PVG
+      sim_card_controls:
+        new:
+          title: CHIP orders
+      sim_cards:
+        new:
+          title: Add CHIPs to Order / User
+      user_versions:
+        index:
+          title: User Activity Report
+    support:
+      users:
+        index:
+          title: Manage Users
+          actions: Actions
+          sign_in: Sign in
+        show:
+          direct_users: Direct Referrals
+      support_point_users:
+        create:
+          success: User updated to Support Point
+    bank_accounts:
+      edit:
+        title: Bank account
+        subtitle: This account will be used for withdrawals from the platform
+        save: Save bank account
+        ownership_info: We only accept bank accounts in your possession
+      update:
+        success: Bank account updated successfully
+    scores:
+      index:
+        title:
+          unilevel: Pool Points
+          binary: Point Commissions
+          all: Ratings
+    sim_cards:
+      index:
+        title: Transfer of CHIPs
+        success: CHIPs successfully transferred.
+    career_trail_users:
+      index:
+        title: Career History
+  balanced_strategy: Balanced
+  buy_cart:
+    updated: Cart updated
   cart:
     cart_updated: Cart updated
-    see_cart: See cart
-    title: Title
-  users:
-    sessions:
-      new:
-        login: Login
-    shared:
-      links:
-        didnt_receive_instructions: Didn't receive unlock instructions?
-        forgot_password: Forgotten password?
-        login: Login
-        sign_up: Register
-        unlock_instructions: Didn't receive unlock instructions?
-    registrations:
-      edit:
-        basic_info: Basic Informations
-        address: Address
-        leave_blank: Deixe em branco se não pretende mudar a senha
-        update: Update account
-      new:
-        sign_up: Register
-        title: New User
-        next: Next
-        previous: Previous
-    passwords:
-      new:
-        title: Password Reset
-        get_password_reset_link: Get password reset link
-    unlocks:
-      new:
-        title: Resend unlock instructions
-        send: Send
-  attributes:
-    document_cpf: ID
-    sponsor_username: Sponsor Username
-    name: Name
-    country: Country
-    username: Username
-    password: Password
-    password_confirmation: Password Confirmation
+    see_cart: View Cart
+    title: Cart
+  mailer:
+    automatic: This email was sent automatically. Please don't answer.
+               In case of doubt, contact %{contact_mail}
+  user_mailer:
+    welcome:
+      subject: Welcome
+      call: Sr(a) %{name}
+      body: Your registration was completed successfully. Thank you for joining our team.
+            Welcome to the future.
+      footer: Graciously, <br>
+              Team %{company_name}
+    upgrade_career:
+      subject: Title Advance
+      body: It is with great pleasure that we congratulate you for the good performance,
+            commitment, engagement and dedication, when expanding our activities.
+            <b> In order to promote and encourage, even more your participation
+            in our project, we certify you the title of %{career_name}.</b>
+  shopping_mailer:
+    order_paid:
+      body: We inform that your purchase of the product(s) <strong> %{product_names} </strong> was successfully completed!
+            We thank and congratulate you for purchasing our products.
+      adhesion_body: Thank you for becoming our authorized customer.
+                     The payment of <b>%{adhesion_order_value}</b> referring to the product <b>%{adhesion_product_name}</b> was successfully completed!<br><br>
+                     We thank and congratulate you for making a decision for a promising and successful future.
+    order_made:
+      body: Your <b>order</b> worth of <b>%{order_value}</b> was carried out.
+            Complete payment and wait for processing.
+      bank_account: ''
+      payment_receipt: ''
+  devise_mailer:
+    reset_password_instructions:
+      order_link: You requested a link to change your password. You can change it via the link below.
+      password_reset: Change my password
+      order_alert: If you did not request it, please ignore this email.<br>
+                   Your password will not change until you access the link above and create a new one.
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tues
+    - Wed
+    - Thurs
+    - Fri
+    - Sat
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sept
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: approximately 1 hour
+        other: approximately %{count} hours
+      about_x_months:
+        one: approximately 1 month
+        other: approximately %{count} month
+      about_x_years:
+        one: approximately 1 year
+        other: approximately %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than one minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than one second
+        other: less than %{count} seconds
+      over_x_years:
+        one: more than 1 year
+        other: more than %{count} years
+      x_days:
+        one: 1 day
+        other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+      x_years:
+        one: 1 year
+        other: "%{count} years"
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Second
+      year: Year
   defaults:
     admin: Admin
-    approved_success: Approved success
-    binary_strategy: Binary strategy
-    binary_tree: Binary tree
-    careers: Careers
+    approved_success: Successfully Approved
+    binary_strategy: Binary Strategy
+    binary_tree: Binary Tree
+    bonus_entries: Bonus History
+    careers: Career
     categories: Categories
+    completed: Paid
+    expired: Payment Expired
     confirm_removal: Confirm removal
-    credits_debits: Credits debits
-    destroying_error: Destroying error
-    destroying_success: Destroying success
+    credits_debits: Credits and Debits
+    destroying_error: Error removing
+    destroying_success: Success removing
     error: Error
     errors:
       career_required: Career required
       different_sponsor: Different sponsor
-      no_funds: No funds
-      not_unique: Not unique
+      no_funds: You don't have enough funds in your balance
+      not_unique: It is not unique
     financial: Financial
-    financial_entries: Financial entries
-    manage_withdrawals: Manage withdrawals
+    financial_entries: Financial History
+    manage_withdrawals: Manage Withdrawals
     my_orders: My orders
     network: Network
-    new_transfer: New transfer
-    new_withdraw: New withdraw
+    new_transfer: Request Transfer
+    new_withdraw: Request Withdrawal
     order_placed: Order placed
     orders: Orders
+    post: Submit
+    put: Update
+    processing: Processing
+    pending_payment: Payment pending
     products: Products
-    pv_activity_history: Pv activity history
-    pv_history: Pv history
-    saving_error: Saving error
-    saving_success: Saving success
+    pv_activity_history: PV General
+    pv_history: PV History
+    pv_histories: PV Binary
+    pv_binary_history: PV Binary
+    saving_error: Error saving
+    saving_success: Success in saving
     search: Search
     settings: Settings
     shop: Shop
     success: Success
-    unilevel: Unilevel
     users: Users
-    withdrawal_fee: Withdrawal fee
-    withdrawals: Withdrawals
+    withdrawal_fee: Withdrawal Fee
+    withdrawals: Withdrawal History
+    accumulated_pva: PV Title Advance
+    admin_accumulated_pva: PVs Title Advancement
+    pv_activity_histories: General PVG
+    pv_admin_histories: PVs Binary
+    generation_scores: Generations
+    career_histories: Career History
+    documents_validation: Documents approved
+    my_vouchers: Voucher Center
+    pay: Pay
+    new_product_setup: New Installation
+    vehicles: Vehicles
+    my_vehicles: My Vehicles
+    upgrades: Upgrades
+    scores: Scores
+    unilevel: Pool Points
+    binary: Point Commissions
+    point_qualifications: Points Qualifications
+    unilevel_binary: Report
+    financial_transactions: Financial History
+    wrong_master_password: Wrong master password
+    details: Details
+    total_at: "Total in %{digital_currency}"
+    order_do_not_paid: "Unpaid order. Insufficient funds: %{available_balance}."
+    started: 'Started'
+    paid: 'Paid'
+    support: Support
+    contract_link_html: sales consultant contract
+    accept_contract_html: "I accept the %{link}"
+    cant_buy_product: You cannot purchase a membership package of less than or equal score.
+    approve_order_without_bonification: Approve Order without Bonus
+    source_leg_left: Left Leg
+    source_leg_right: Right Leg
+    lineage: Lineage
+    sim_card_control: CHIP control
+    add_sim_cards: Add CHIPs
+    processed_at: Processing Date
+    sim_card_add: Add CHIPs
+    sim_cards_added: CHIPS added
+    sim_cards_created: CHIPS added successfully.
+    sim_card_not_stoke: CHIP is not in stock.
+    sim_card_threshold_reached: "Chip limit reached: %{count}."
+    sim_card_transfer: Transfer CHIPs
+    user_sim_cards: User CHIPS
+    sim_card_inactive_user: Inactive user cannot receive CHIPs
+    sim_card_unavailable_to_transfer: "CHIPs not registered or already transferred %{iccids}"
+    user_sim_card_report: CHIPs report
+    sim_card_transfers: CHIPs Transfers
+    cellphone_reloads: Refill
+    new_cellphone_reload: New Refill
+    financial_reports: Financial Report
+    activation: "%{product_value} - Activation"
+    reloads_csv_filename: "Refills %{datetime}.csv"
+    lineage_scores: Strains
+    fiscal_document_warning: Please generate invoice of the gross amount, otherwise the withdrawal request will be rejected.
+    fiscal_document_company: The note should be issued for the folling %{company_id}
+    irpf: Personal Income Tax (IRPF)
+    inss: National Social Security Institute (INSS)
+    qualification_date: Qualification Date
+    user_versions: Activity Report
+    no_data: No records
+    indication_link: Referral link
+    filters: Filters
+    my_orders: My orders
+    send_email: Send us an email
+    copyright: All rights reserved %{company_name}
+    score_active: Active
+    score_expired: Expired
   errors:
-    cant_access_binary_node: Cant access binary node
+    cant_access_binary_node: User not found on your binary network
     messages:
-      invalid: Invalid
       invalid_password: Invalid password
-      not_enough_balance: Not enough balance
+      not_enough_balance: Insufficient funds
       not_found: Not found
-      required: Required
-      wrong_master_pw: Wrong master pw
+      wrong_master_pw: Incorrect master password
+      accepted: You must accept the terms before proceeding
+      blank: cannot be blank
+      confirmation: is not equal to %{attribute}
+      empty: cannot be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: not available
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: it is not valid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      model_invalid: 'Validation failed: %{errors}'
+      not_a_number: it's not a number
+      not_an_integer: it is not an integer
+      odd: must be odd
+      other_than: must be different from %{count}
+      present: must be blank
+      required: is required
+      taken: is already being used
+      too_long:
+        one: "it's too long (maximum: 1 character)"
+        other: "it's too long (maximum: %{count} characters)"
+      too_short:
+        one: "it's too short (minimum: 1 character)"
+        other: "it's too short (minimum: %{count} characters)"
+      wrong_length:
+        one: does not have the expected size (1 character)
+        other: does not have the expected size (%{count} characters)
+    template:
+      body: 'Please check the following field(s) :'
+      header:
+        one: 'Failed to record %{model}: 1 error'
+        other: 'Failed to record %{model}: %{count} errors'
   filters: Filters
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+      sim_card_transfer: Transfer CHIP(s)
+      checkout: Generate Order
+    confirm:
+      approve_order_without_bonification: Do you want to approve this order without a bonus?
+    from: From
+    util: Until
+    approve_support_point: Approve Support Point
+    export_to_csv: Export to CSV
+    save_with_disable: "<i class='fa fa-spinner fa-spin'></i> Saving..."
+    expire_at_from: Valid from
+    expire_at_until: Valid until
+    no_data: no records
+  left: Left
+  left_strategy: Always Left
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u %n"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: USD
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: billion
+            other: billions
+          million:
+            one: million
+            other: million
+          quadrillion:
+            one: quadrillion
+            other: quadrillions
+          thousand: thousand
+          trillion:
+            one: trillion
+            other: trillions
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
   registrations:
     user:
       edit:
-        subtitle: Subtitle
-        title: Title
+        title: Edit account
+  right: Right
+  right_strategy: Always Right
   rotateZ: Rotatez
   scale: Scale
   scaleX: Scalex
@@ -244,88 +838,126 @@ en:
   search: Search
   skewX: Skewx
   skewY: Skewy
+  support:
+    array:
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      long: "%d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+    pm: ''
   translateX: Translatex
   translateY: Translatey
+  users:
+    sessions:
+      new:
+        login: Log in
+    shared:
+      links:
+        didnt_receive_instructions: Didn't receive confirmation instructions?
+        forgot_password: Forgot your password?
+        login: Login
+        sign_up: Sign up
+        unlock_instructions: Didn't receive the unlock instructions?
+    registrations:
+      edit:
+        basic_info: Basic Information
+        address: Address
+        leave_blank: Leave blank if you don't want to change your password
+        update: Upgrade account
+      new:
+        sign_up: Sign up
+        title: New user
+        next: Next
+        previous: Previous
   view_all: View all
   views:
     backoffice:
       admin:
         orders:
           index:
-            no_data: No data
+            no_data: No records
             title: Title
         products:
-          basic_info: Basic info
+          basic_info: Basic Information
           bonus: Bonus
           dimensions: Dimensions
           edit:
-            subtitle: Subtitle
-            title: Title
+            subtitle: Edit product details
+            title: Edit
           index:
             new_product: New product
-            no_data: No data
-            subtitle: Subtitle
-            title: Title
+            no_data: No registered products
+            title: List of Products
           new:
-            subtitle: Subtitle
-            title: Title
+            subtitle: Create a new product
+            title: New product
+        credits_debits:
+          index:
+            transfer_to: Transfer to
       careers:
         edit:
-          subtitle: Subtitle
-          title: Title
+          subtitle: Edit Career
+          title: Edit Career
         index:
-          new_career: New career
+          new_career: New Career
           no_data: No data
           subtitle: Subtitle
-          title: Title
+          title: Careers
         new:
-          subtitle: Subtitle
-          title: Title
+          subtitle: New Caeer
+          title: New Career
       cart:
         show:
-          continue_shopping: Continue shopping
-          no_data: No data
-          place_order: Place order
-          subtitle: Subtitle
-          title: Title
+          continue_shopping: Continue Shopping
+          no_data: Empty Cart
+          place_order: Close Purchase
+          title: Cart
       categories:
         edit:
-          subtitle: Subtitle
-          title: Title
+          subtitle: Edit Category
+          title: Edit Category
         index:
-          new_category: New category
-          no_data: No data
+          new_category: New Category
+          no_data: No categories registered
           subtitle: Subtitle
-          title: Title
+          title: List of Categories
         new:
           subtitle: Subtitle
           title: Title
+      credits_debits:
+        index:
+          title: Credits and Debits
       orders:
         index:
-          no_data: No data
-          subtitle: Subtitle
-          title: Title
+          no_data: No purchases made
+          title: My Orders
         show:
           title: Title
       products:
         index:
           details: Details
-          subtitle: Subtitle
-          title: Title
+          title: Store %{company_name}
         show:
           buy: Buy
           description: Description
           specifications: Specifications
-          title: Title
       topbar:
         edit_account: Edit account
+        edit_bank_account: Bank account
+        documents: Documents
+        subscriptions: Subscriptions
         logout: Logout
     dashboard:
       admin:
         active_products: Active products
         subtitle: Subtitle
         title: Title
-        today_orders: Today orders
+        today_orders: Today's Orders
         total_orders: Total orders
         total_users: Total users
       client:
@@ -336,6 +968,7 @@ en:
       last: Last
       next: Next
       previous: Previous
+<<<<<<< HEAD
     payment_transactions:
       show:
         title: Pagamento
@@ -343,3 +976,106 @@ en:
         transfer_rate_warning_html: 'To expedite payment identification, we recommend using the <strong>Express Rate<strong>'
   invalid_password: 'Invalid Password'
   confirmation_warning: 'we need your current password to confirm your request'
+=======
+  pending: Pending
+  approved: Approved
+  refused: Rejected
+  in_analysis: In Review
+  finished: Finished
+  account_false: Unverified account
+  account_true: Verified account
+  pf: Physcial person
+  pj: Legal person
+  male: Male
+  female: Female
+  single: Single
+  married: Married
+  widowed: Widower
+  divorced: Divorced
+  direct_indication_bonus: Direct Referral Bonus
+  indirect_bonus: Indirect Referral Bonus
+  executive_sale_bonus: Direct Selling Bonus
+  binary_bonus: Binary Bonus
+  reverse_binary_bonus: Binary Bonus Reversal
+  flex_bonus: Flex Bonus
+  activity_bonus: Activity Bonus
+  reverse_bonus: Bonus Chargeback
+  direct_captation_bonus: Direct Funding Bonus
+  indirect_captation_bonus: Indirect Funding Bonuses
+  participation_bonus: Participation Bonus
+  bonus_chargeback:
+  credit_by_admin: Admin Credit
+  debit_by_admin: Admin Debit
+  fee: Administration fee
+  withdrawal_fee: Withdrawal Fee / Tax(es)
+  product_return: Product Return
+  tax: Tax
+  transfer: Transfer
+  withdrawal: Withdrawal
+  save: Save
+  active: Active
+  inactive: Inactive
+  qualified: Qualified
+  unqualified: Disqualified
+  shop: Shop
+  signup: Sign Up
+  login: Login
+  no_data: No entry
+  all: All
+  affiliate: Affiliate
+  executive: Executive
+  bronze: Bronze
+  silver: Silver
+  gold: Gold
+  ruby: Ruby
+  emerald: Emerald
+  diamond: Diamond
+  white_diamond: White Diamond
+  blue_diamond: Blue Diamond
+  black_diamond: Black Diamond
+  chairman: Chairman
+  chairman_two_star: Chairman Two Star
+  chairman_three_star: Chairman Three Star
+  pending_verification: Pending verification
+  verified: Verified
+  refused_verification: Declined
+  left_count: Left Quantity
+  right_count: Right Quantity
+  invoice: Invoice
+  cart: Cart
+  pending_payment: Pending Payment
+  processing: Processing
+  completed: Paid complete
+  expired: Expired
+  past_due: Expired
+  upgrade: Upgrade
+  ancore: FuturePRO
+  up_to_10: Up to 1.0
+  from_10_to_15: From 1.0 to 1.5
+  from_15_to_30: From 1.5 to 3.0
+  from_30: From 3.0
+  cargo: Cargo
+  manual: Manual
+  automatic: Automatic
+  national: National
+  imported_direct: Direct importation
+  imported_internal: Domestic Import
+  national_import: Imported National
+  tracker: FutureSAT
+  credit: Credit
+  debit: Debit
+  "true": Yes
+  "false": No
+  there_are_adhesion_product: Cart already has a membership type product
+  cant_add_produt_to_cart: Unable to add product to cart
+  product_is_not_active: Inactive Product
+  more_details: More details
+  datagrid:
+    form:
+      search: Search
+      reset: Reset
+    table:
+      order:
+        asc: ASC
+        desc: DESC
+>>>>>>> 4f82fc2e8cbafe80b78377200006bf97898e2f68

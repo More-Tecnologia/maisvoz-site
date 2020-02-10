@@ -1085,3 +1085,5 @@ pt-BR:
       order:
         asc: ASC
         desc: DESC
+  invalid_password: 'Senha incorreta'
+  confirmation_warning: 'nós precisamos da sua senha atual para confirmar sua solicitação'

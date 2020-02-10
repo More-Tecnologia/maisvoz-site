@@ -341,3 +341,5 @@ en:
         title: Pagamento
         transfer_note_html: "Transfer <strong>%{value}</strong> wallet address below"
         transfer_rate_warning_html: 'To expedite payment identification, we recommend using the <strong>Express Rate<strong>'
+  invalid_password: 'Invalid Password'
+  confirmation_warning: 'we need your current password to confirm your request'

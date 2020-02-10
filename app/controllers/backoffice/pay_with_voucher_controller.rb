@@ -13,7 +13,7 @@ module Backoffice
           voucher: form.voucher
         ).call
 
-        flash[:success] = 'Voucher utilizado com sucesso!'
+        flash[:success] = t('.success')
         redirect_to backoffice_orders_path
       else
         render_new(params[:pay_with_voucher_id])
@@ -39,8 +39,8 @@ module Backoffice
 
     def verify_user_active
       return if current_user.active?
-
-      redirect_back(fallback_location: root_path, alert: 'Usuários inativos não podem pagar com voucher')
+      message = t('activemodel.errors.messages.inactive_user_cant_be_use_voucher')
+      redirect_back(fallback_location: root_path, alert: message)
     end
 
   end

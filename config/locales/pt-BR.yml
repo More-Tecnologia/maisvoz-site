@@ -106,6 +106,12 @@ pt-BR:
         already_approved: Pedido já aprovado
         too_long: "de no máximo %{count} caracteres"
         without_available_balance: Usuário não tem saldo disponível.
+        invalid: Inválido
+        invalid_order_status_for_payment: Status do pedido não permite pagamento
+        only_advance_product_can_be_paid_with_voucher: Somente o produto Advance pode ser pago com voucher
+        invalid_voucher: Voucher inválido
+        user_voucher: Voucher já utilizado
+        wrong_password: Senha incorreta
     attributes:
       credit_debit_wizard/create_form:
         master_password: Senha Master
@@ -457,6 +463,9 @@ pt-BR:
     career_trail_users:
       index:
         title: Histórico de Carreira
+    pay_with_voucher:
+      create:
+        success: Voucher utilizado com sucesso
   balanced_strategy: Balanceado
   buy_cart:
     updated: Carrinho atualizado
@@ -719,6 +728,7 @@ pt-BR:
     unilevel_tree: Unilevel
     voucher_payment: Voucher só paga o produto Advance
     my_vouchers: Meus Vouchers
+    pay_with_voucher: Pagar com Voucher
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -781,6 +791,7 @@ pt-BR:
     expire_at_from: Válido de
     expire_at_until: Válido até
     no_data: sem registros
+    use_voucher: Utilizar Voucher
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:
@@ -1091,3 +1102,7 @@ pt-BR:
       order:
         asc: ASC
         desc: DESC
+  invalid_password: 'Senha incorreta'
+  confirmation_warning: 'nós precisamos da sua senha atual para confirmar sua solicitação'
+  success_withdrawal: 'Seu pedido de saque no valor de #{value} foi efetuado com sucesso.'
+  rejected_withdrawal: 'Seu pedido de saque no valor de #{value} não pode ser efetuado.'

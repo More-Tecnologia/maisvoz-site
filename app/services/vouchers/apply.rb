@@ -24,13 +24,9 @@ module Vouchers
     end
 
     def update_order
-      order.update!(
-        total_cents: 0,
-        subtotal_cents: 0,
-        payment_type: Order.payment_types[:voucher],
-        paid_by: payer.username,
-        status: :completed
-      )
+      order.update!(payment_type: Order.payment_types[:voucher],
+                    paid_by: payer.username)
+      Financial::PaymentCompensation.call(order, false)
     end
 
     def update_voucher

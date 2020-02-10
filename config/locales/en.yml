@@ -105,6 +105,12 @@
         already_approved: Order already approved
         too_long: "max %{count} characters"
         without_available_balance: User has no available balance.
+        invalid: Inválido
+        invalid_order_status_for_payment: "Order status don't permit payment"
+        only_advance_product_can_be_paid_with_voucher: Only Advance product can be paid by voucher
+        invalid_voucher: Invalid Voucher
+        user_voucher: Voucher already used
+        wrong_password: Wrong password
     attributes:
       credit_debit_wizard/create_form:
         master_password: Master Password
@@ -450,6 +456,9 @@
     career_trail_users:
       index:
         title: Career History
+    pay_with_voucher:
+      create:
+        success: Voucher used!
   balanced_strategy: Balanced
   buy_cart:
     updated: Cart updated
@@ -705,6 +714,7 @@
     copyright: All rights reserved %{company_name}
     score_active: Active
     score_expired: Expired
+    pay_with_voucher: Pay with Voucher
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -767,6 +777,7 @@
     expire_at_from: Valid from
     expire_at_until: Valid until
     no_data: no records
+    use_voucher: Use Voucher
   left: Left
   left_strategy: Always Left
   number:
@@ -1069,3 +1080,7 @@
       order:
         asc: ASC
         desc: DESC
+  invalid_password: 'Invalid Password'
+  confirmation_warning: 'we need your current password to confirm your request'
+  success_withdrawal: 'Your withdrawal in the amount of #{value} was made.'
+  rejected_withdrawal: 'Your withdrawal in the amount of #{value} cannot be made.'

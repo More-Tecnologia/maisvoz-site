@@ -1,8 +1,7 @@
 module Backoffice
   class WithdrawalsController < EntrepreneurController
-
     before_action :ensure_bank_account_valid
-    before_action :unavailable_withdrawal
+    before_action :validate_password, only: :create
 
     def index
       @withdrawals = current_user.withdrawals
@@ -34,9 +33,10 @@ module Backoffice
             .merge(user: current_user)
     end
 
-    def unavailable_withdrawal
-      redirect_to backoffice_dashboard_index_path, alert: 'Withdrawal unavailable yet'
+    def validate_password
+      return if current_user.valid_password?(params[:withdrawal_form][:password])
+      flash[:error] = t('invalid_password')
+      redirect_to [:new, :backoffice, :withdrawal]
     end
-
   end
 end

@@ -39,8 +39,6 @@ module Financial
         propagate_bonuses if enabled_bonification
         create_vouchers
         create_bonus_contract if adhesion_product || voucher_product
-        #create_system_fee if adhesion_product || subscription_product
-        binary_bonus_nodes_verifier if user.inside_binary_tree? && enabled_bonification && enabled_binary?
         create_binary_fest_promotion_score if adhesion_product && adhesion_product.advance?
         notify_user_by_email_about_paid_order
       end
@@ -116,10 +114,6 @@ module Financial
 
     def update_user_role
       user.update_attributes!(role: 'empreendedor')
-    end
-
-    def binary_bonus_nodes_verifier
-      NodesBinaryBonusVerifierWorker.perform_async(order.user.binary_node.id)
     end
 
     def create_next_activation_order

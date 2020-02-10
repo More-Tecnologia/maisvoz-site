@@ -285,6 +285,10 @@ pt-BR:
     financial_transaction: Bonus
     bonus_contract_balance: Saldo do Contrato
     bonus_id: Bonus
+    voucher_code: Código
+    voucher_order: Pedido
+    order_kind: Tipo do Pedido
+    voucher_use_date: Data de Uso
   backoffice:
     orders:
       show:
@@ -713,6 +717,8 @@ pt-BR:
     bonus_contracts: Contrato Pool Point
     bonus_contract_items: Contrato Pool Point
     unilevel_tree: Unilevel
+    voucher_payment: Voucher só paga o produto Advance
+    my_vouchers: Meus Vouchers
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

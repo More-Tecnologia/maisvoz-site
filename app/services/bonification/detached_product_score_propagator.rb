@@ -2,6 +2,7 @@ module Bonification
   class DetachedProductScorePropagator < ApplicationService
 
     def call
+      return unless @score_type.active
       return if detached_score <= 0
       sponsors = user.unilevel_ancestors.reverse
       sponsors.each_with_index do |sponsor, index|

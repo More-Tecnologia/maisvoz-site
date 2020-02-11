@@ -7,15 +7,30 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <div class="panel panel-default panel-border">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= t('.available_balance') %></h3>
+    <div class=" col-sm-6">
+      <div class="panel panel-default panel-border">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= t('.available_balance') %></h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-unstyled w-list">
+            <li><b><%= t('.available_balance') %>:</b> <%= number_to_currency(current_user.available_balance) %> </li>
+            <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(@form.try(:withdrawal_fee).to_f) %></li>
+          </ul>
+        </div>
       </div>
-      <div class="panel-body">
-        <ul class="list-unstyled w-list">
-          <li><b><%= t('.available_balance') %>:</b> <%= number_to_currency(current_user.available_balance) %> </li>
-          <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(@form.try(:withdrawal_fee).to_f) %></li>
-        </ul>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-default panel-border">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= User.human_attribute_name(:wallet_address) %></h3>
+        </div>
+        <div class="panel-body">
+          <ul class="list-unstyled w-list">
+            <li><b><%= User.human_attribute_name(:wallet_address) %>:</b> <%= current_user.wallet_address %> </li>
+            <p class="text-muted page-title-alt"><%= t('backoffice.bank_accounts.edit.subtitle') %></p>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

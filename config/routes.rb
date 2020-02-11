@@ -80,7 +80,7 @@ Rails.application.routes.draw do
     resources :cellphone_reloads, only: [:new, :create]
 
     # Financial
-    resources :withdrawals, only: [:index, :new, :create]
+    resources :withdrawals, only: [:index, :new, :create, :edit, :update]
     resources :financial_transactions, only: [:index]
     resources :pv_histories, only: [:index]
     resources :pv_activity_histories, only: [:index]

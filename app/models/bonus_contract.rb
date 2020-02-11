@@ -44,4 +44,8 @@ class BonusContract < ApplicationRecord
     self[:received_balance] = (amount * 1e2).to_i
   end
 
+  def received?
+    cent_amount.round == received_balance.round && remaining_balance.round == 0
+  end
+
 end

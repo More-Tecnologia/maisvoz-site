@@ -9,9 +9,10 @@ class WithdrawalsMailer < ApplicationMailer
     category('withdrawal_approved')
 
     @withdrawal = params[:withdrawal]
+    @locale = params[:locale]
     @user = @withdrawal.user
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido de Saque Aprovado"
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - " + t('withdrawal_solicitaion') + ' ' + t('approved')
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -24,7 +25,24 @@ class WithdrawalsMailer < ApplicationMailer
 
     @withdrawal = params[:withdrawal]
     @user = @withdrawal.user
+    @locale = params[:locale]
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido de Saque Rejeitado"
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - " + t('withdrawal_solicitaion') + ' ' + t('rejected')
+  end
+
+  def waiting
+    @withdrawal = params[:withdrawal]
+    @user = @withdrawal.user
+    @locale = params[:locale]
+
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - "  + t('withdrawal_solicitaion') + ' ' + t('effected')
+  end
+
+  def canceled
+    @withdrawal = params[:withdrawal]
+    @user = @withdrawal.user
+    @locale = params[:locale]
+
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - " + t('withdrawal_solicitaion') + ' ' + t('canceleds')
   end
 end

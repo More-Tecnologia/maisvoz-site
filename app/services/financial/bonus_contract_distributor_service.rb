@@ -7,7 +7,8 @@ module Financial
       bonus_amount -= @chargeback.cent_amount if @chargeback
       return if bonus_amount <= 0
       ActiveRecord::Base.transaction do
-        distribute_bonus_to_contracts(bonus_amount)
+        remaining_bonus = distribute_bonus_to_contracts(bonus_amount)
+        chargeback_to_admin(remaining_bonus) if remaining_bonus > 0
         @user.inactivate! unless @active_bonus_contracts.any?(&:active?)
       end
     end
@@ -24,25 +25,26 @@ module Financial
     end
 
     def distribute_bonus_to_contracts(bonus_amount)
-      remaining_balance = bonus_amount
-      @active_bonus_contracts.each_with_index do |contract, index|
-        bonus = remaining_balance
-        remaining_balance -= contract.remaining_balance.to_f
-        last_contract = index == @contract_count - 1
-        if last_contract && remaining_balance > 0
-          bonus = contract.remaining_balance.to_f
-          chargeback_to_admin(remaining_balance)
-        end
-        credit_bonus_to(contract, bonus)
-        add_bonus_contract_item_to(contract, bonus)
-        inactive_contract_pool_point(contract) unless contract.active?
-        break if remaining_balance <= 0
+      remaining_bonus = bonus_amount
+      @active_bonus_contracts.each do |contract|
+        bonus = if remaining_bonus < contract.remaining_balance.to_f
+                  remaining_bonus
+                else
+                  contract.remaining_balance.to_f
+                end
+        remaining_bonus -= bonus
+        contract = credit_bonus_to(contract, bonus)
+        contract = add_bonus_contract_item_to(contract, bonus)
+        inactive_contract_pool_point(contract) if contract.received?
+        break if remaining_bonus <= 0
       end
+      remaining_bonus
     end
 
     def add_bonus_contract_item_to(contract, bonus)
       contract.bonus_contract_items.create!(financial_transaction: @financial_transaction,
                                             cent_amount: bonus)
+      contract
     end
 
     def credit_bonus_to(contract, bonus_amount)
@@ -50,6 +52,7 @@ module Financial
       contract.remaining_balance = contract.cent_amount - contract.received_balance.to_f
       contract.paid_at = Date.current if contract.remaining_balance.to_f.round == 0
       contract.save!
+      contract
     end
 
     def chargeback_to_admin(remaining_balance)

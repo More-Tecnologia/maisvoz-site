@@ -26,7 +26,7 @@ class Withdrawal < ApplicationRecord
 
   has_many :financial_transactions
 
-  enum status: [:pending,  :approved, :approved_balance, :refused]
+  enum status: [:pending,  :approved, :approved_balance, :refused, :waiting, :canceled]
 
   def gross_amount_cents
     self[:gross_amount_cents] / 1e8.to_f if self[:gross_amount_cents]

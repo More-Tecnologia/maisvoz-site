@@ -466,6 +466,19 @@ pt-BR:
     pay_with_voucher:
       create:
         success: Voucher utilizado com sucesso
+    withdrawals:
+      new:
+        title: 'Novo saque'
+        available_balance: 'Saldo disponível'
+      index:
+        title: 'Meu histórico de saques'
+      create:
+        success: 'Sua solicitação de saque foi recebida. Verifique seu email para confirmar a solicitação de saque'
+      edit:
+        pending_withdraw: 'Você tem certeza que deseja confirmar o saque?'
+        cancel_withdraw: 'Você tem certeza que deseja cancelar o saque?'
+      update:
+        success: 'Sua solicitação foi atendida com sucesso'
   balanced_strategy: Balanceado
   buy_cart:
     updated: Carrinho atualizado
@@ -1004,6 +1017,8 @@ pt-BR:
   pending: Pendente
   approved: Aprovado
   refused: Rejeitado
+  waiting: 'Aguardando'
+  canceled: 'Cancelado'
   in_analysis: Em Análise
   finished: Finalizado
   account_false: Conta não verificada
@@ -1104,5 +1119,19 @@ pt-BR:
         desc: DESC
   invalid_password: 'Senha incorreta'
   confirmation_warning: 'nós precisamos da sua senha atual para confirmar sua solicitação'
-  success_withdrawal: 'Seu pedido de saque no valor de #{value} foi efetuado com sucesso.'
+  success_withdrawal: '#{value} foi efetuado com sucesso.'
   rejected_withdrawal: 'Seu pedido de saque no valor de #{value} não pode ser efetuado.'
+
+  success_withdrawal: 'Seu pedido de saque no valor de %{value} na carteira digital %{wallet} foi efetuado com sucesso.'
+  rejected_withdrawal: 'Seu pedido de saque no valor de %{value} na carteira digital %{wallet} não pode ser efetuado.'
+  canceled_withdrawal: 'Seu pedido de saque no valor de %{value} na carteira digital %{wallet} foi cancelado como solicitado.'
+  refuse_withdraw: 'Se você não reconhece essa solicitação clique'
+  confirm_withdraw: 'Se você fez e confirma essa solicitação clique'
+  can_confirm_withdraw: 'Confirme ou cancele essa solicitação através do nosso site clicando'
+  waiting_withdrawal: 'Você acabou de fazer uma solicitação de saque no valor de %{value} na carteira digital: %{wallet}'
+  withdrawals_history: 'Seu histórico de saques'
+  here: 'aqui'
+  request_already_processed: 'Solicitação já processada'
+  close: 'Fechar'
+  digital_wallet: 'Carteira Digital'
+  id: 'ID'

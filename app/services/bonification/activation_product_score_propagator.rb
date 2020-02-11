@@ -2,7 +2,7 @@ module Bonification
   class ActivationProductScorePropagator < ApplicationService
 
     def call
-      return unless activation_product
+      return unless activation_product && @score_type.active
       propagate_activation_score(order.user)
     end
 

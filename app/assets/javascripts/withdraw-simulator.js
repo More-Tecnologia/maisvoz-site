@@ -4,8 +4,6 @@ $(document).ready(function() {
     this.$el = $el;
     this.$fee = $el.find('[data-fee-text]');
     this.$total = $el.find('[data-total-text]');
-    this.irpf = parseFloat($el.data('irpf'));
-    this.inss = parseFloat($el.data('inss'));
     this.withdrawalFee = parseFloat($el.data('fee'));
     this.registrationType = $el.data('registration-type');
   }
@@ -22,27 +20,12 @@ $(document).ready(function() {
     }
 
     $('[data-input]').on('keyup', function() {
-
       var val = input.get() || 0;
       var feeTotal = ($this.withdrawalFee).toFixed(2);
-      var irpf = 0
-      var inss = 0
-
-      if ($this.registrationType == 'pf'){
-        var irpf = (($this.irpf).toFixed(2) || 0) * val / 100;
-        var inss = (($this.inss).toFixed(2) || 0) * val / 100;
-      }
-
-      var total = val - feeTotal - inss - irpf;
+      var total = val - feeTotal;
 
       feeText.set(feeTotal)
       totalText.set(total)
-
-      if ($this.registrationType == 'pf'){
-        irpfText.set(irpf)
-        inssText.set(inss)
-      }
-
     })
 
   }

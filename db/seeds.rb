@@ -193,7 +193,8 @@ end
                    { title: 'Estorno de Bônus Residual por Inatividade', code: '2700', active: false, company_moneyflow: :credit },
                    { title: 'Bonus Ativação de Ponto de Apoio', code: '3100', active: false, company_moneyflow: :debit },
                    { title: 'Estorno de Bonus Ativação de Ponto de Apoio por Inatividade', code: '3200', active: false, company_moneyflow: :credit },
-                   { title: 'Binary Bonus Chargeback for Daily Excess', code: '3300', active: true, company_moneyflow: :credit }]
+                   { title: 'Binary Bonus Chargeback for Daily Excess', code: '3300', active: true, company_moneyflow: :credit },
+                   { title: 'Bonus Chargeback for Contract Limit', code: '3400', active: true, company_moneyflow: :credit }]
 
   bonus_reasons.each do |attributes|
     financial_reason = FinancialReason.find_by(code: attributes[:code])
@@ -236,3 +237,6 @@ end
 
 sistem_fee = FinancialReason.morenwm_fee
 sistem_fee.financial_transactions.update_all(moneyflow: 1)
+
+advance_product = Product.find_by(name: 'Advance')
+advance_product.update!(code: 20)

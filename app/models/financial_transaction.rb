@@ -43,6 +43,9 @@ class FinancialTransaction < ApplicationRecord
                                unless: :is_note_present?
 
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
+  after_commit :debits_bonus_of_contract, on: :create,
+                                          if: :financial_reason_type_bonus?,
+                                          unless: :chargeback?
 
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_admin,
@@ -129,6 +132,10 @@ class FinancialTransaction < ApplicationRecord
                        order: order,
                        cent_amount: cent_amount,
                        moneyflow: invert_money_flow)
+  end
+
+  def debits_bonus_of_contract
+    Financial::BonusContractDistributorService.call(financial_transaction: self)
   end
 
 end

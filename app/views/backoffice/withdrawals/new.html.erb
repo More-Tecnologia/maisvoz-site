@@ -14,11 +14,7 @@
       <div class="panel-body">
         <ul class="list-unstyled w-list">
           <li><b><%= t('.available_balance') %>:</b> <%= number_to_currency(current_user.available_balance) %> </li>
-          <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(@form.withdrawal_fee) %></li>
-          <% if @form.user.pf? %>
-            <li><b><%= t('defaults.irpf', value: @form.irpf) %>:</b> <%= number_to_percentage(@form.irpf, precision: 2) %> </li>
-            <li><b><%= t('defaults.inss', value: @form.inss) %>:</b> <%= number_to_percentage(@form.inss, precision: 2) %> </li>
-          <% end %>
+          <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(@form.try(:withdrawal_fee).to_f) %></li>
         </ul>
       </div>
     </div>
@@ -31,7 +27,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="p-20">
-            <%= render partial: "form_#{current_user.registration_type}" %>
+            <%= render partial: "form_pf" %>
           </div>
         </div>
       </div>

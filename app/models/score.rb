@@ -107,4 +107,8 @@ class Score < ApplicationRecord
     UpgraderCareerService.call(user: user)
   end
 
+  def score_type_is_binary_bonus?
+    score_type == ScoreType.binary_score
+  end
+
 end

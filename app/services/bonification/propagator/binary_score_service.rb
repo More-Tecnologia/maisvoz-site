@@ -33,6 +33,7 @@ module Bonification
                             cent_amount: total_score,
                             height: generation,
                             score_type: binary_score)
+        Bonification::BinaryFestPromotionService.call(binary_node: user.binary_node)
       end
 
       def user_binary_node

@@ -102,4 +102,12 @@ class Product < ApplicationRecord
     price_cents.to_f / 100.0
   end
 
+  def advance?
+    code == Product.advance_product_code
+  end
+
+  def self.advance_product_code
+    20
+  end
+
 end

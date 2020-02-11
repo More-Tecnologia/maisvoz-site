@@ -113,4 +113,8 @@ class FinancialReason < ApplicationRecord
     @@binary_bonus_chargeback_by_daily_excees ||= find_by(code: '3300')
   end
 
+  def self.chargeback_by_contract_limit
+    @@chargeback_by_contract_limit ||= find_by(code: '3400')
+  end
+
 end

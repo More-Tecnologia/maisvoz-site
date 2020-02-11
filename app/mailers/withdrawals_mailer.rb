@@ -9,6 +9,7 @@ class WithdrawalsMailer < ApplicationMailer
     category('withdrawal_approved')
 
     @withdrawal = params[:withdrawal]
+    @locale = params[:locale]
     @user = @withdrawal.user
 
     mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido de Saque Aprovado"
@@ -24,7 +25,24 @@ class WithdrawalsMailer < ApplicationMailer
 
     @withdrawal = params[:withdrawal]
     @user = @withdrawal.user
+    @locale = params[:locale]
 
     mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido de Saque Rejeitado"
+  end
+
+  def waiting
+    @withdrawal = params[:withdrawal]
+    @user = @withdrawal.user
+    @locale = params[:locale]
+
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido de Saque Efetuado"
+  end
+
+  def canceled
+    @withdrawal = params[:withdrawal]
+    @user = @withdrawal.user
+    @locale = params[:locale]
+
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Pedido de Saque Cancelado"
   end
 end

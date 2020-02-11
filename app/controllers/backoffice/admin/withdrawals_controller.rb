@@ -13,9 +13,9 @@ module Backoffice
 
       def update
         withdrawal = Withdrawal.find(params[:id])
-        Financial::UpdaterWithdrawalStatusService.call(updater_user: current_user,
+        Financial::UpdaterWithdrawalStatusService.call({ updater_user: current_user,
                                                        status: params[:status] ? params[:status].to_i : nil,
-                                                       withdrawal: withdrawal)
+                                                       withdrawal: withdrawal }, params[:locale])
         flash[:success] = t('.success')
         redirect_to backoffice_admin_withdrawals_path
       rescue Exception => error

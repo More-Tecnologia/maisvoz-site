@@ -87,17 +87,11 @@ module Bonification
                                                cent_amount: bonus,
                                                order: order) if bonus > 0
       chargeback_by_inactivity!(transaction, financial_reason) if sponsor.inactive?
-      block_bonus_value(sponsor, bonus) if sponsor.active? && sponsor.pf?
       transaction
     end
 
     def chargeback_by_inactivity!(transaction, financial_reason)
       transaction.chargeback_by_inactivity!(financial_reason.chargeback_by_inactivity)
-    end
-
-    def block_bonus_value(sponsor, cent_amount)
-      amount = sponsor.blocked_balance_cents + cent_amount
-      sponsor.update_attributes!(blocked_balance_cents: amount)
     end
 
     def find_product_reason_scores_by(products)

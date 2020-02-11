@@ -40,7 +40,9 @@ class Score < ApplicationRecord
   scope :by_current_month,
     -> { where(created_at: (Date.current.beginning_of_month..Date.current.end_of_month)) }
   scope :spreaded_to, ->(user) { where(user: user) }
-  scope :by_date, ->(date) { where(created_at: date) }
+  scope :binary_qualification, -> { where(score_type: ScoreType.binary_score) }
+  scope :by_date, ->(date) { where(created_at: (date.beginning_of_day..date.end_of_day)) }
+  scope :pool_point_by, ->(order) { where(order: order, score_type: ScoreType.pool_point) }
 
   after_commit :upgrade_user_career, on: :create
 

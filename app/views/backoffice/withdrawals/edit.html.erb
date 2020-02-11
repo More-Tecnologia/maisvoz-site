@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('.title') %></h4>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default panel-border">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= t('hello')%>, <%= current_user.name %></h3>
+      </div>
+      <div class="panel-body">
+
+        <p><%= t('waiting_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), wallet: current_user.wallet_address) %></p>
+
+        <hr />
+
+        <p>
+          <%= t('confirm_withdraw') %>
+          <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:pending]), method: :patch,  data: { confirm: t('.pending_withdraw') }, class: 'btn btn-success' %>
+        </p>
+
+        <hr />
+
+        <p>
+          <%= t('refuse_withdraw') %>
+          <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:canceled]), method: :patch, data: { confirm: t('.cancel_withdraw') }, class: 'btn btn-danger' %>
+        </p>
+
+        <br>
+
+        <p><%= link_to t('withdrawals_history'), backoffice_withdrawals_path %></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -310,7 +310,13 @@
         fees: Fees
         total: Total
       create:
-        success: Your withdrawal request has been received.
+        success: 'Your withdrawal request has been received. Check your email to confirm your withdrawal request.'
+      edit:
+        title: Confirm withdrawal
+        pending_withdraw: 'Are you sure you want to confirm the request?'
+        cancel_withdraw: 'Are you sure you want to cancel the request?'
+      update:
+        success: 'Your request was successfully made'
     binary_strategies:
       index:
         title: Binary Strategy
@@ -409,6 +415,7 @@
           fees: Fees
         update:
           success: Withdrawal Approved!
+          rejected: Withdrawal Rejected!
       pv_activity_histories:
         index:
           title: History of PVA/PVG
@@ -1082,5 +1089,18 @@
         desc: DESC
   invalid_password: 'Invalid Password'
   confirmation_warning: 'we need your current password to confirm your request'
-  success_withdrawal: 'Your withdrawal in the amount of #{value} was made.'
-  rejected_withdrawal: 'Your withdrawal in the amount of #{value} cannot be made.'
+  success_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was made.'
+  rejected_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} cannot be made.'
+  canceled_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was canceled as you wish.'
+  refuse_withdraw: 'If you do not recognize this request click'
+  confirm_withdraw: 'If you did this request click'
+  can_confirm_withdraw: 'Confirm or cancel your request through our website'
+  waiting_withdrawal: 'You just made a %{value} withdrawal request to the digital wallet: %{wallet}'
+  withdrawals_history: 'Your withdrawals history'
+  here: 'here'
+  request_already_processed: 'Request already processed'
+  close: 'Close'
+  digital_wallet: 'Digital Wallet'
+  id: 'ID'
+  hello: 'Hello'
+  effected: 'effected'

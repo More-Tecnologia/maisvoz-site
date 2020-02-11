@@ -16,7 +16,11 @@ module Backoffice
         Financial::UpdaterWithdrawalStatusService.call({ updater_user: current_user,
                                                        status: params[:status] ? params[:status].to_i : nil,
                                                        withdrawal: withdrawal }, params[:locale])
-        flash[:success] = t('.success')
+        if params[:status] == :approved
+          flash[:success] = t('.success')
+        else
+          flash[:error] = t('.rejected')
+        end
         redirect_to backoffice_admin_withdrawals_path
       rescue Exception => error
         flash[:error] = error

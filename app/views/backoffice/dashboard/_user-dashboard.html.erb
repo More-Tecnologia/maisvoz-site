@@ -1,6 +1,6 @@
 <br>
 <div class="row linhaHome">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
         <span>Status da Conta</span>
@@ -16,9 +16,24 @@
   <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
-        <span>PV Carreira</span>
+        <span><%= t('defaults.point_qualifications') %></span>
       </div>
-      <div class="dashboard-card__value label-success"><%= number_with_delimiter current_user.unilevel_score_sum %></div>
+      <div class="dashboard-card__value label-success"><%= number_with_delimiter current_user.binary_node.shortter_leg_accumulated_score %></div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span><%= t('binary_qualified') %></span>
+      </div>
+      <div class="dashboard-card__value label-success">
+        <% if current_user.binary_qualified? %>
+          <%= t('qualified') %>
+        <% else %>
+          <%= t('unqualified') %>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -44,7 +59,7 @@
     </div>
   </div>
 
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
         <span>Próximo Título</span>

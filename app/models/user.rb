@@ -454,7 +454,7 @@ class User < ApplicationRecord
 
   def increment_blocked_bonus!(amount)
     blocked_balance = blocked_balance_cents.to_f + amount.to_f
-    update!(:blocked_balance_cents, blocked_balance)
+    update!(blocked_balance_cents: blocked_balance)
   end
 
   private

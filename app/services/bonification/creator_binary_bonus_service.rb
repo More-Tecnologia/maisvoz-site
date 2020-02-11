@@ -8,7 +8,6 @@ module Bonification
         return transaction.chargeback_by_inactivity! if user.inactive?
         return transaction.chargeback_by_unqualification! if user.binary_unqualified?
         transaction.binary_bonus_chargeback_by_daily_excees(@daily_excess_bonus) if @daily_excess_bonus > 0
-        user.increment_blocked_bonus!(transaction.cent_amount - @daily_excess_bonus)
       end
     end
 

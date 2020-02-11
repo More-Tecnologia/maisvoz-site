@@ -1,0 +1,9 @@
+<p><%= t('hello')%>, <%= @user.email %></p>
+
+<br>
+
+<p><%= t('canceled_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), wallet: @user.wallet_address) %></p>
+
+<br>
+
+<p><%= link_to t('withdrawals_history'), backoffice_withdrawals_url(locale: @locale) %></p>

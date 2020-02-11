@@ -1,0 +1,16 @@
+<p><%= t('hello')%>, <%= @user.email %></p>
+
+<br>
+
+<p><%= t('waiting_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), wallet: @user.wallet_address) %></p>
+
+<br>
+
+<p>
+  <%= t('can_confirm_withdraw') %>
+  <%= link_to t('here'), edit_backoffice_withdrawal_url(@withdrawal, locale: @locale) %>
+</p>
+
+<br>
+
+<p><%= link_to t('withdrawals_history'), backoffice_withdrawals_url(locale: @locale) %></p>

@@ -475,6 +475,7 @@ pt-BR:
       create:
         success: 'Sua solicitação de saque foi recebida. Verifique seu email para confirmar a solicitação de saque'
       edit:
+        title: 'Confirme o saque'
         pending_withdraw: 'Você tem certeza que deseja confirmar o saque?'
         cancel_withdraw: 'Você tem certeza que deseja cancelar o saque?'
       update:
@@ -1119,9 +1120,6 @@ pt-BR:
         desc: DESC
   invalid_password: 'Senha incorreta'
   confirmation_warning: 'nós precisamos da sua senha atual para confirmar sua solicitação'
-  success_withdrawal: '#{value} foi efetuado com sucesso.'
-  rejected_withdrawal: 'Seu pedido de saque no valor de #{value} não pode ser efetuado.'
-
   success_withdrawal: 'Seu pedido de saque no valor de %{value} na carteira digital %{wallet} foi efetuado com sucesso.'
   rejected_withdrawal: 'Seu pedido de saque no valor de %{value} na carteira digital %{wallet} não pode ser efetuado.'
   canceled_withdrawal: 'Seu pedido de saque no valor de %{value} na carteira digital %{wallet} foi cancelado como solicitado.'
@@ -1135,3 +1133,4 @@ pt-BR:
   close: 'Fechar'
   digital_wallet: 'Carteira Digital'
   id: 'ID'
+  hello: 'Olá'

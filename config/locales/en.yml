@@ -313,6 +313,8 @@
         success: 'Your withdrawal request has been received. Check your email to confirm your withdrawal request.'
       edit:
         title: Confirm withdrawal
+        pending_withdraw: 'Are you sure you want to confirm the request?'
+        cancel_withdraw: 'Are you sure you want to cancel the request?'
       update:
         success: 'Your request was successfully made'
     binary_strategies:
@@ -1099,3 +1101,4 @@
   close: 'Close'
   digital_wallet: 'Digital Wallet'
   id: 'ID'
+  hello: 'Hello'

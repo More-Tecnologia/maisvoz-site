@@ -23,6 +23,7 @@
               <%= f.label t('.created_until') %>
               <%= f.search_field :date_created_at_lteq, class: 'form-control input-sm', data: { provide: 'datepicker' } %>
             </div>
+            <%= hidden_field_tag :locale, params[:locale]  %>
           </div>
         </div>
 

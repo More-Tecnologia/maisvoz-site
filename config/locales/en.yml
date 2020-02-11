@@ -415,6 +415,7 @@
           fees: Fees
         update:
           success: Withdrawal Approved!
+          rejected: Withdrawal Rejected!
       pv_activity_histories:
         index:
           title: History of PVA/PVG
@@ -1102,3 +1103,4 @@
   digital_wallet: 'Digital Wallet'
   id: 'ID'
   hello: 'Hello'
+  effected: 'effected'

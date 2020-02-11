@@ -416,6 +416,7 @@ pt-BR:
           fees: Taxas
         update:
           success: Saque Aprovado!
+          rejected: Saque Reprovado!
       pv_activity_histories:
         index:
           title: Histórico de PVA/PVG
@@ -1134,3 +1135,5 @@ pt-BR:
   digital_wallet: 'Carteira Digital'
   id: 'ID'
   hello: 'Olá'
+  withdrawal_solicitaion: 'Solicitação de saque'
+  effected: 'Efetuada'

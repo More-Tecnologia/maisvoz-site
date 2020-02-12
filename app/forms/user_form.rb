@@ -35,7 +35,6 @@ class UserForm < Form
   validates :name, :email, presence: true
   validates :email, email: true
 
-  validate :document_cpf_is_unique
   validate :valid_password
 
   private
@@ -47,11 +46,6 @@ class UserForm < Form
     elsif password != password_confirmation
       errors.add(:password, 'as senhas não são as mesmas')
     end
-  end
-
-  def document_cpf_is_unique
-    return unless User.where(document_cpf: document_cpf).where('id != ?', user_id).exists?
-    errors.add(:document_cpf, 'Já está registrado em outra conta')
   end
 
 end

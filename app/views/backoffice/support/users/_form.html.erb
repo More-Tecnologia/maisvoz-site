@@ -4,31 +4,14 @@
     <%= f.input :email, wrapper_html: { class: 'col-md-6' } %>
   </div>
   <div class="row">
-    <%= f.input :birthdate, as: :date, wrapper_html: { class: 'col-md-4' } %>
-    <%= f.input :phone, input_html: { class: 'input-phone'}, wrapper_html: { class: 'col-md-4' } %>
-    <%= f.input :skype, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :birthdate, as: :date, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :document_cpf, wrapper_html: { class: 'col-md-3' }, label: t(:id) %>
+    <%= f.input :phone, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :skype, wrapper_html: { class: 'col-md-3' } %>
+  </div>
 
-  </div>
-  <%= f.collection_radio_buttons :registration_type, User.registration_types, :first, :last do |b| %>
-    <div class="radio radio-info form-check-inline m-r-15 radio-inline">
-      <%= b.radio_button %>
-      <%= b.label { t(b.text) } %>
-    </div>
-  <% end %>
   <div class="row">
-    <%= f.input :document_cpf, input_html: { class: 'input-cpf'}, wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :document_rg, wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :document_rg_expeditor, wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :document_pis, wrapper_html: { class: 'col-md-3' } %>
-  </div>
-  <div class="row">
-    <%= f.input :document_company_name, wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :document_fantasy_name, wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :document_cnpj, wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :document_ie, wrapper_html: { class: 'col-md-3' } %>
-  </div>
-  <div class="row">
-    <%= f.input :zipcode, input_html: { class: 'input-zipcode'}, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :zipcode, wrapper_html: { class: 'col-md-3' } %>
     <%= f.input :address, wrapper_html: { class: 'col-md-3' } %>
     <%= f.input :address_2, wrapper_html: { class: 'col-md-3' } %>
     <%= f.input :district, wrapper_html: { class: 'col-md-3' } %>
@@ -36,26 +19,21 @@
   <div class="row">
     <%= f.input :address_number, wrapper_html: { class: 'col-md-3' } %>
     <%= f.input :city, wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :state, collection: ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'], wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :country, only: ['BR'], wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :state, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :country, wrapper_html: { class: 'col-md-3' } %>
   </div>
   <div class="row">
-    <%= f.input :bank_code, collection: user_form.bank_codes, wrapper_html: { class: 'col-md-4' } %>
-    <%= f.input :bank_account, wrapper_html: { class: 'col-md-4' } %>
-    <%= f.input :bank_agency, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :password, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :password_confirmation, wrapper_html: { class: 'col-md-4' } %>
   </div>
+  <hr />
   <div class="row">
-    <%= f.input :password, wrapper_html: { class: 'col-md-6' } %>
-    <%= f.input :password_confirmation, wrapper_html: { class: 'col-md-6' } %>
+    <div class="col-md-4">
+      <label class="control-label password optional" for="current_password"><%= t('current_user_password') %></label>
+      <input class="form-control password" required type="password" name="current_password" id="current_password" placeholder="<%= t('actual_user_password_required') %>">
+    </div>
   </div>
+  <hr />
+    <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
 
-  <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
 <% end %>
-
-<script>
-  window.onload = function(){
-    $('.input-phone').mask('(00) 0000-00009', {clearIfNotMatch: true})
-    $('.input-cpf').mask('000.000.000-00', {clearIfNotMatch: true})
-    $('.input-zipcode').mask('00000-000', {clearIfNotMatch: true})
-  }
-</script>

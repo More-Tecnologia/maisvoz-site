@@ -122,6 +122,7 @@ class User < ApplicationRecord
   has_one :account
   has_one :binary_node
   has_one :unilevel_node
+  has_many :emails
   has_many :orders
   has_many :withdrawals
   has_many :pv_histories

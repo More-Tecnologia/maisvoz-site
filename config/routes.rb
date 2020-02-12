@@ -122,6 +122,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :users do
+    resources :emails, except: %i[show destroy]
+  end
+
   devise_for(
     :users,
     controllers: {

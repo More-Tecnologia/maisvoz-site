@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <div class="card-box">
+      <div>
+        <h4><%= 'Seus emails' %></h4>
+        <hr>
+        <div class="text-left m-t-30">
+          <table class="table table-striped">
+            <% @emails.each do |email| %>
+              <tr>
+                <td><%= email.body %></td>
+                <td><%= email.status %></td>
+                <td>
+                  <% if email.inactive? %>
+                    <%= link_to 'Tornar padrão', [:users, :emails], method: :put, class: 'btn btn-sm btn-primary' %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

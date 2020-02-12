@@ -17,7 +17,6 @@ module Bonification
 
     def initialize(args)
       @binary_node = args[:binary_node]
-      @date = args[:date]
       @user = @binary_node.user
       @daily_bonus_total = ENV['BINARY_BONUS_SCORE_RATE'].to_f * shortter_leg_score_from_yesterday
       @daily_excess_bonus = ENV['BINARY_BONUS_SCORE_RATE'].to_f * calculate_daily_excess_score
@@ -42,11 +41,11 @@ module Bonification
     end
 
     def left_leg_score_from_yesterday
-      @left_leg_score_from_yesterday ||= user.scores.binary.left.by_date(@date).sum(:cent_amount)
+      @left_leg_score_from_yesterday ||= user.scores.binary.left.backward.sum(:cent_amount)
     end
 
     def right_leg_score_from_yesterday
-      @right_leg_score_from_yesterday ||= user.scores.binary.right.by_date(@date).sum(:cent_amount)
+      @right_leg_score_from_yesterday ||= user.scores.binary.right.backward.sum(:cent_amount)
     end
 
     def calculate_daily_excess_score

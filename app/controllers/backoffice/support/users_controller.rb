@@ -1,6 +1,7 @@
 module Backoffice
   module Support
     class UsersController < SupportController
+      before_action :validate_password, only: :update
 
       def index
         @grid = UsersGrid.new(params.fetch(:users_grid, {}).permit!)
@@ -58,6 +59,11 @@ module Backoffice
           filename: "users-#{Time.now.to_s}.csv"
       end
 
+      def validate_password
+        return if current_user.valid_password?(params[:current_password])
+        flash[:error] = t('invalid_password')
+        redirect_to [:edit, :backoffice, :support, :user]
+      end
     end
   end
 end

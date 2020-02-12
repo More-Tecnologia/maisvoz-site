@@ -3,12 +3,12 @@
   <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
-        <span>Status da Conta</span>
+        <span><%= t(:account_status) %></span>
       </div>
       <% if current_user.active? %>
-        <div class="dashboard-card__value label-default">Ativo</div>
+        <div class="dashboard-card__value label-default"><%= t(:active) %></div>
       <% else %>
-        <div class="dashboard-card__value label-danger">Inativo</div>
+        <div class="dashboard-card__value label-danger"><%= t(:inactive) %></div>
       <% end %>
     </div>
   </div>
@@ -40,7 +40,7 @@
   <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
-        <span>Pacote</span>
+        <span><%= t(:course) %></span>
       </div>
       <div class="dashboard-card__value label-warning">
         <%= current_user.try(:current_trail).try(:name) %>
@@ -51,7 +51,7 @@
   <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
-        <span>Título</span>
+        <span><%= t(:career) %></span>
       </div>
       <div class="dashboard-card__value label-warning">
         <%= current_user.try(:current_career).try(:name) %>
@@ -62,7 +62,7 @@
   <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
-        <span>Próximo Título</span>
+        <span><%= t(:next) + ' ' + t(:career) %></span>
       </div>
       <div class="dashboard-card__value label-info">
         <%= current_user.next_career_kind.try(:name) %>
@@ -75,15 +75,15 @@
   <div class="col-md-4">
     <div class="dashboard-card-box">
       <div class="dashboard-card-box__title">
-        <span>Saques</span>
+      <span class="text-white"><%= t(:withdrawal) %></span>
       </div>
         <div class="inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
           <table class="table table-bordered table-highlight">
             <thead class="table-highlight__head">
               <tr>
-                <th>Data</th>
-                <th>Status</th>
-                <th>Valor</th>
+                <th><%= t(:datae) %></th>
+                <th><%= t(:status) %></th>
+                <th><%= t(:value) %></th>
               </tr>
             </thead>
             <% last_withdrawals.each do |withdraw| %>
@@ -105,7 +105,7 @@
   <div class="col-md-4">
     <div class="dashboard-card-box">
       <div class="dashboard-card-box__title">
-        <span>Últimos Qualificados</span>
+        <span class="text-white"><%= t(:last_qualifications) %></span>
       </div>
       <div class="dashboard-card-box__container inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
         <% last_qualifications.each do |qualification| %>
@@ -122,7 +122,7 @@
   <div class="col-md-4">
     <div class="dashboard-card-box">
       <div class="dashboard-card-box__title">
-        <span>Últimas Postagens</span>
+        <span class="text-white"><%= t(:last_posts) %></span>
       </div>
       <div class="dashboard-card-box__containe">
         <div class="inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
@@ -137,7 +137,7 @@
   <div class="col-md-12">
     <div class="support-material">
       <div class="support-material__left-box">
-        Download Material de apoio
+        <%= t(:download_support_material) %>
       </div>
 
       <div class="support-material__right-box">
@@ -148,7 +148,7 @@
                 <div>
                   <%= image_tag 'download-list/presentation.jpg' %>
                 </div>
-                <div>Apresentação do negócio</div>
+                <div><%= t(:business_presentation) %></div>
               </a>
             </li>
 
@@ -166,7 +166,7 @@
                 <div>
                   <%= image_tag 'download-list/paper.jpg' %>
                 </div>
-                <div>Contrato de Adesão</div>
+                <div><%= t(:adhesion_contract) %></div>
               </a>
             </li>
 

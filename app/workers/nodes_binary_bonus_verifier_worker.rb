@@ -6,7 +6,7 @@ class NodesBinaryBonusVerifierWorker
     BinaryNode.includes(:user).find_each do |binary_node|
       begin
         ActiveRecord::Base.transaction do
-          Bonification::CreatorBinaryBonusService.call(binary_node: binary_node, date: Date.yesterday)
+          Bonification::CreatorBinaryBonusService.call(binary_node: binary_node)
         end
       rescue Exception => error
         puts "Binary Bonus Error For #{binary_node.try(:user).try(:username)}: #{error.message}"

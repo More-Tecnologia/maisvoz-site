@@ -1,5 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  before_action :validate_password, only: :update
+  before_action :ensure_email, only: :update
   before_action :configure_account_update_params, only: [:update]
 
   layout :define_layout, only: [:edit, :update]
@@ -49,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if is_flashing_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
           :update_needs_confirmation : :updated
-        set_flash_message :notice, flash_key
+        set_flash_message :success, flash_key
       end
       bypass_sign_in resource, scope: resource_name
       respond_with resource, location: after_update_path_for(resource)
@@ -118,7 +120,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,
-      keys: [:name, :birthdate, :marital_status, :phone, :email, :document_cpf, :document_cnpj, :address, :address_2, :country, :state, :city, :avatar]
+      keys: [:name, :birthdate, :marital_status, :email, :phone, :document_cpf, :document_cnpj, :address, :address_2, :country, :state, :city, :avatar]
     )
   end
 
@@ -139,6 +141,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def send_welcome_email(user)
     UserMailer.welcome(user).deliver_later
+  end
+
+  def validate_password
+    return if current_user.valid_password?(params[:current_password])
+    flash[:error] = t('invalid_password')
+    redirect_to edit_registration_path(current_user)
+  end
+
+  def ensure_email
+    params[:user].merge!(email: current_user.email)
   end
 
 end

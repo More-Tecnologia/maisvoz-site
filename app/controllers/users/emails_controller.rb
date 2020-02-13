@@ -14,7 +14,7 @@ module Users
     def create
       @email = Email.new(ensured_params)
       if @email.save
-        flash[:success] = 'Criado'
+        flash[:success] = t('.success')
         notify_user_email_confirmation
         redirect_to root_path
       else
@@ -27,7 +27,7 @@ module Users
 
     def update
       if @email.update(params[:status])
-        flash[:success] = 'Confirmado'
+        flash[:success] = t('.success')
         redirect_to current_user
       else
         flash[:error] = @email.errors.full_messages.join(', ')

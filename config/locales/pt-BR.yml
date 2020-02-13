@@ -408,6 +408,8 @@ pt-BR:
           title: Gerenciar Saques
           approve_withdraw: Deseja realmente aprovar este saque?
           refuse_withdraw: Deseja realmente rejeitar este saque?
+          resend_withdrawal_confirmation_text: Deseja realmente reenviar um email de confirmação para este cliente?
+          resend_withdrawal_confirmation: 'Reenviar confirmação de saque'
         filters:
           status: Status
           created_from: Criado a partir de
@@ -417,6 +419,9 @@ pt-BR:
         update:
           success: Saque Aprovado!
           rejected: Saque Reprovado!
+      withdrawals_mailer:
+        send_email_confirmation:
+          success: 'Um email de confirmação foi reenviado ao cliente'
       pv_activity_histories:
         index:
           title: Histórico de PVA/PVG

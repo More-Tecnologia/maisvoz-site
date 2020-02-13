@@ -418,7 +418,8 @@
         update:
           success: Withdrawal Approved!
           rejected: Withdrawal Rejected!
-        resend:
+      withdrawals_mailer:
+        send_email_confirmation:
           success: 'A confirmation email was resent to the customer'
       pv_activity_histories:
         index:

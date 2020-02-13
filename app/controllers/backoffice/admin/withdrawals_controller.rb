@@ -26,15 +26,6 @@ module Backoffice
         flash[:error] = error
         redirect_to backoffice_admin_withdrawals_path
       end
-
-      def resend
-        withdrawal = Withdrawal.find_by_hashid(params[:withdrawal_id])
-        WithdrawalsMailer.with(withdrawal: withdrawal, locale: params[:locale])
-                         .waiting
-                         .deliver_later
-        flash[:success] = t('.success')
-        redirect_to backoffice_admin_withdrawals_path
-      end
     end
   end
 end

@@ -40,8 +40,9 @@ Rails.application.routes.draw do
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]
       resources :financial_transactions, only: [:index]
-      resources :withdrawals, only: %i[index update] do
-        put :resend
+      resources :withdrawals, only: %i[index update]
+      resources :withdrawals_mailer, only: :none do
+        put :send_email_confirmation
       end
       resources :pv_activity_histories, only: [:index]
       resources :pv_histories, only: [:index]

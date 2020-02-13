@@ -419,7 +419,8 @@ pt-BR:
         update:
           success: Saque Aprovado!
           rejected: Saque Reprovado!
-        resend:
+      withdrawals_mailer:
+        send_email_confirmation:
           success: 'Um email de confirmação foi reenviado ao cliente'
       pv_activity_histories:
         index:

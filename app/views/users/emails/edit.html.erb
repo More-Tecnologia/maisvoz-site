@@ -9,25 +9,25 @@
       </div>
       <div class="panel-body">
 
-        <p><%= t('waiting_email_confirmation', email: @email.body) %></p>
+        <p><%= t('.waiting_email_confirmation_html', email: @email.body, current_email: current_user.email) %></p>
 
         <hr />
 
         <p>
-          <%= t('confirm_email_change') %>
+          <%= t('.confirm_email_change') %>
           <%= link_to t('here'), users_email_path(@email, status: :active), method: :patch,  data: { confirm: t('.confirm_email_change_question') }, class: 'btn btn-success' %>
         </p>
 
         <hr />
 
         <p>
-          <%= t('refuse_email_change') %>
+          <%= t('.refuse_email_change') %>
           <%= link_to t('here'), users_email_path(@email, status: :inactive), method: :patch, data: { confirm: t('.refuse_email_change_question') }, class: 'btn btn-danger' %>
         </p>
 
         <br>
 
-        <p><%= link_to t('emails_list'), users_emails_path %></p>
+        <p><%= link_to t('.emails_list'), users_emails_path %></p>
       </div>
     </div>
   </div>

@@ -58,6 +58,11 @@
                           ) do %>
                           <i class="icon-dislike"></i>
                         <% end %>
+                      <% elsif withdraw.waiting? %>
+                        <%= link_to t('.resend_withdrawal_confirmation'),
+                          backoffice_admin_withdrawal_resend_path(withdraw, locale: params[:locale]),
+                          method: :put,
+                          data: { confirm: t('.resend_withdrawal_confirmation_text') }, class: 'btn btn-info' %>
                       <% end %>
                     </td>
                   </tr>

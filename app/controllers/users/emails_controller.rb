@@ -26,9 +26,9 @@ module Users
     def edit; end
 
     def update
-      if @email.update(params[:status])
+      if @email.update(status: params[:status])
         flash[:success] = t('.success')
-        redirect_to current_user
+        redirect_to users_emails_path
       else
         flash[:error] = @email.errors.full_messages.join(', ')
         render :edit

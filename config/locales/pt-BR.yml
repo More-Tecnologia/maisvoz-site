@@ -893,6 +893,9 @@ pt-BR:
   translateX: Translatex
   translateY: Translatey
   users:
+    emails:
+      create:
+        success: 'A solicitação de mudança de email foi efetuada. Verifique o seu email antigo para confirmar a alteração'
     sessions:
       new:
         login: Entrar

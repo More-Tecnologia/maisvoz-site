@@ -12,7 +12,7 @@
                 <td><%= email.status %></td>
                 <td>
                   <% if email.inactive? %>
-                    <%= link_to 'Tornar padrão', [:users, :emails], method: :put, class: 'btn btn-sm btn-primary' %>
+                    <%= link_to 'Tornar padrão', [:users, email, status: :pending], method: :put, params: { status: :pending }, class: 'btn btn-sm btn-primary' %>
                   <% end %>
                 </td>
               </tr>

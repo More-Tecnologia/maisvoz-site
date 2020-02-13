@@ -884,7 +884,7 @@
         confirm_email_change_question: 'Are you sure you want to change your email?'
         refuse_email_change: 'If you did not request or do not want to change your email click'
         refuse_email_change_question: 'Are you sure you want to decline the email change?'
-        emails_list: 'Email history'
+        emails_list: 'Emails history'
     shared:
       links:
         didnt_receive_instructions: Didn't receive confirmation instructions?
@@ -1133,3 +1133,6 @@
   new_password: 'New password'
   new_password_confirmation: 'New password confirmation'
   email: 'Email'
+  email_change_solicitaion: 'Email change solicitation'
+  email_changed_info: 'Email change completed'
+  new_email: 'Change email address'

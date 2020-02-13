@@ -1165,3 +1165,6 @@ pt-BR:
   new_password: 'Nova senha'
   new_password_confirmation: 'Confirme a nova senha'
   email: 'Email'
+  email_change_solicitaion: 'Solicitação de alteração de email'
+  email_changed_info: 'Alteração de email concluída'
+  new_email: 'Alterar endereço de email'

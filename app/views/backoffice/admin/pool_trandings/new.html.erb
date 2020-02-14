@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('pool_tranding') %></h4>
+  </div>
+</div>
+
+
+<%= simple_form_for [:backoffice, :admin, @pool_tranding], url: backoffice_admin_pool_trandings_path,
+                                                           method: :post,
+                                                           class: 'form-horizontal' do |f| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card-box">
+        <div class="row">
+          <div class="col-md-2">
+            <%= f.input :amount %>
+            <%= f.submit t('helpers.submit.submit', model: '') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

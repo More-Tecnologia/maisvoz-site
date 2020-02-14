@@ -192,6 +192,8 @@ class User < ApplicationRecord
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
   after_create :insert_into_binary_tree
+  after_create :ensure_email_existence
+  after_update :ensure_email_existence, unless: :active_email?
 
   def balance
     (available_balance + blocked_balance).to_f / 1e8
@@ -285,6 +287,18 @@ class User < ApplicationRecord
   def activate!(active_until = 1.month.from_now)
     update!(active: true, active_until: active_until )
     update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
+  end
+
+  def active_email
+    emails.where(body: email)
+  end
+
+  def active_email?
+    active_email.any?
+  end
+
+  def ensure_email_existence
+    emails.create(body: email, status: :active)
   end
 
   def out_binary_tree?

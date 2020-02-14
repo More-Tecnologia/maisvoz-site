@@ -1,7 +1,8 @@
 module Users
   class EmailsController < BackofficeController
-
     before_action :ensure_email, only: %i[edit update]
+    before_action :same_email_verification, only: :create
+    before_action :ensure_status, only: :create
 
     def index
       @emails = current_user.emails.order(updated_at: :desc)
@@ -12,10 +13,8 @@ module Users
     end
 
     def create
-      @email = Email.new(ensured_params)
-      if @email.save
+      if ensure_email_existence
         flash[:success] = t('.success')
-        Emails::NotifyService.call(@email, params[:locale], type: :confirmation)
         redirect_to root_path
       else
         flash[:error] = @email.errors.full_messages.join(', ')
@@ -31,7 +30,7 @@ module Users
     end
 
     def update
-      if Emails::UpdateService.call(@email, params[:status], params[:locale])
+      if update_email
         flash[:success] = t('.success')
         redirect_to users_emails_path
       else
@@ -52,5 +51,30 @@ module Users
       @email = Email.find_by_hashid(params[:id])
     end
 
+    def ensure_email_existence
+      @email = current_user.emails.where(body: params[:email][:body]).first || Email.new(ensured_params)
+
+
+      @email.persisted? ? update_email : create_email
+    end
+
+    def ensure_status
+      params[:email].merge!(status: :pending)
+    end
+
+    def create_email
+      Emails::CreateService.call(@email, params[:locale])
+    end
+
+    def update_email
+      Emails::UpdateService.call(@email, params[:email][:status], params[:locale])
+    end
+
+    def same_email_verification
+      return unless params[:email][:body] == current_user.email
+
+      flash[:error] = t('.same_email', email: params[:email][:body])
+      redirect_to new_users_email_path
+    end
   end
 end

@@ -5,10 +5,11 @@ class Email < ApplicationRecord
 
   belongs_to :user
 
-  validates :body, presence: true, email: true, uniqueness: { if: :any_active? }
+  validates :body, presence: true, email: true
+  validates :body, uniqueness: { if: :any_active? }
 
-  after_update :change_user_email, if: :active?
-  after_update :inactive_emails, if: :active?
+  after_save :change_user_email, if: :active?
+  after_save :inactive_emails, if: :active?
 
   def change_user_email
     user.update(email: body)

@@ -413,6 +413,8 @@
           title: Manage Withdrawals
           approve_withdraw: Do you really want to approve this withdrawal?
           refuse_withdraw: Do you really want to reject this withdrawal?
+          resend_withdrawal_confirmation_text: Do you really want to resend an email confirmation to this customer?
+          resend_withdrawal_confirmation: 'Resend withdrawal confirmation'
         filters:
           status: Status
           created_from: Created from
@@ -422,6 +424,9 @@
         update:
           success: Withdrawal Approved!
           rejected: Withdrawal Rejected!
+      withdrawals_mailer:
+        send_email_confirmation:
+          success: 'A confirmation email was resent to the customer'
       pv_activity_histories:
         index:
           title: History of PVA/PVG
@@ -1136,7 +1141,7 @@
   download_support_material: 'Download Support Material'
   business_presentation: 'Business Presentation'
   adhesion_contract: 'Adhesion Contract'
-  actual_user_password_required: 'Enter the password of the current user to confirm changes'
+  actual_user_password_required: 'Enter your password to confirm changes'
   current_user_password: 'Current user password (support authenticity check)'
   current_password: 'Current password'
   password_confirmation_text: 'we need your current password to confirm your changes'

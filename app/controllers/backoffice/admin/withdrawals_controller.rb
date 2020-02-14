@@ -26,7 +26,6 @@ module Backoffice
         flash[:error] = error
         redirect_to backoffice_admin_withdrawals_path
       end
-
     end
   end
 end

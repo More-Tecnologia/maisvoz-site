@@ -414,6 +414,8 @@ pt-BR:
           title: Gerenciar Saques
           approve_withdraw: Deseja realmente aprovar este saque?
           refuse_withdraw: Deseja realmente rejeitar este saque?
+          resend_withdrawal_confirmation_text: Deseja realmente reenviar um email de confirmação para este cliente?
+          resend_withdrawal_confirmation: 'Reenviar confirmação de saque'
         filters:
           status: Status
           created_from: Criado a partir de
@@ -423,6 +425,9 @@ pt-BR:
         update:
           success: Saque Aprovado!
           rejected: Saque Reprovado!
+      withdrawals_mailer:
+        send_email_confirmation:
+          success: 'Um email de confirmação foi reenviado ao cliente'
       pv_activity_histories:
         index:
           title: Histórico de PVA/PVG
@@ -1168,7 +1173,7 @@ pt-BR:
   download_support_material: 'Baixar material de apoio'
   business_presentation: 'Apresentação do negócio'
   adhesion_contract: 'Contrato de adesão'
-  actual_user_password_required: 'Digite a senha do usuário atual para confirmar as alterações'
+  actual_user_password_required: 'Digite a sua senha para confirmar as alterações'
   current_user_password: 'Senha do usuário atual (verificação de autenticidade do suporte)'
   current_password: 'Senha atual'
   password_confirmation_text: 'nós precisamos de sua senha atual para confirmar as mudanças'

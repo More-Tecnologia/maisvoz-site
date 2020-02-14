@@ -4,7 +4,7 @@ module Users
     before_action :ensure_email, only: %i[edit update]
 
     def index
-      @emails = current_user.emails
+      @emails = current_user.emails.order(updated_at: :desc)
     end
 
     def new
@@ -15,7 +15,7 @@ module Users
       @email = Email.new(ensured_params)
       if @email.save
         flash[:success] = t('.success')
-        notify_user_email_confirmation
+        Emails::NotifyService.call(@email, params[:locale], type: :confirmation)
         redirect_to root_path
       else
         flash[:error] = @email.errors.full_messages.join(', ')
@@ -23,10 +23,15 @@ module Users
       end
     end
 
-    def edit; end
+    def edit
+      return if @email.status.to_sym == :pending && params[:path] == 'email'
+
+      flash[:success] = t('.unauthorized_action')
+      redirect_to users_emails_path
+    end
 
     def update
-      if @email.update(status: params[:status])
+      if Emails::UpdateService.call(@email, params[:status], params[:locale])
         flash[:success] = t('.success')
         redirect_to users_emails_path
       else
@@ -45,18 +50,6 @@ module Users
 
     def ensure_email
       @email = Email.find_by_hashid(params[:id])
-    end
-
-    def notify_user_email_confirmation
-      EmailsMailer.with(email: @email, locale: @locale)
-                  .confirmation
-                  .deliver_later
-    end
-
-    def notify_user_email_changed
-      EmailsMailer.with(email: @email, locale: @locale)
-                  .changed
-                  .deliver_later
     end
 
   end

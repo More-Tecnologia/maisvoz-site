@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       resources :accumulated_pva, only: [:index]
       resources :career_histories, only: [:index]
       resources :cellphone_reloads, only: [:index]
+      resources :pool_trandings, only: [:new, :create]
     end
 
     namespace :support do

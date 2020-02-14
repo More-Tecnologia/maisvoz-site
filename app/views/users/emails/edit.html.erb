@@ -15,14 +15,14 @@
 
         <p>
           <%= t('.confirm_email_change') %>
-          <%= link_to t('here'), users_email_path(@email, status: :active), method: :patch,  data: { confirm: t('.confirm_email_change_question') }, class: 'btn btn-success' %>
+          <%= link_to t('here'), users_email_path(@email, email: { status: :active }), method: :patch,  data: { confirm: t('.confirm_email_change_question') }, class: 'btn btn-success' %>
         </p>
 
         <hr />
 
         <p>
           <%= t('.refuse_email_change') %>
-          <%= link_to t('here'), users_email_path(@email, status: :inactive), method: :patch, data: { confirm: t('.refuse_email_change_question') }, class: 'btn btn-danger' %>
+          <%= link_to t('here'), users_email_path(@email, email: { status: :inactive }), method: :patch, data: { confirm: t('.refuse_email_change_question') }, class: 'btn btn-danger' %>
         </p>
 
         <br>

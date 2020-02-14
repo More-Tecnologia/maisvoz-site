@@ -48,6 +48,12 @@
         credit: Credit
         debit: Debit
         generation: Generation
+      email:
+        body: 'Email address'
+        status:
+          pending: 'Pending'
+          active: 'Active'
+          inactive: 'Inactive'
       order:
         shipping: Shipping
         total: Total
@@ -876,6 +882,7 @@
         login: Log in
     emails:
       create:
+        same_email: '%{email} is already your email address'
         success: 'An email change request was made. Check your old/current email to confirm the change'
       edit:
         title: 'Email change request'
@@ -885,6 +892,8 @@
         refuse_email_change: 'If you did not request or do not want to change your email click'
         refuse_email_change_question: 'Are you sure you want to decline the email change?'
         emails_list: 'Emails history'
+      update:
+        success: Action successfully performed
     shared:
       links:
         didnt_receive_instructions: Didn't receive confirmation instructions?
@@ -1136,3 +1145,12 @@
   email_change_solicitaion: 'Email change solicitation'
   email_changed_info: 'Email change completed'
   new_email: 'Change email address'
+  can_confirm_email_change: 'Confirm or cancel your request through our website'
+  waiting_email_reativation: 'You requested to change your email to %{email}'
+  email_activated: 'You have approved changing your account email to %{email}'
+  email_refused: 'You declined to change your email to the address %{email}'
+  email_change_solicitation: 'Email change request'
+  email_changed_info: 'Email change completed'
+  email_refuse_info: 'Email change rejected'
+  email_reactive_info: 'Email reactivation request'
+  make_default: 'Make default'

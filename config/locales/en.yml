@@ -892,6 +892,7 @@
         refuse_email_change: 'If you did not request or do not want to change your email click'
         refuse_email_change_question: 'Are you sure you want to decline the email change?'
         emails_list: 'Emails history'
+        unauthorized_action: 'Invalid Action'
       update:
         success: Action successfully performed
     shared:

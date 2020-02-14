@@ -911,6 +911,7 @@ pt-BR:
         refuse_email_change: 'Se você não solicitou ou não deseja alterar o seu email clique'
         refuse_email_change_question: 'Você tem certeza que deseja recusar a alteração de email?'
         emails_list: 'Histórico de emails'
+        unauthorized_action: 'Ação inválida'
       update:
         success: Ação realizada com sucesso
     sessions:

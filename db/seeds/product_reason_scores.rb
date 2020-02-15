@@ -27,3 +27,27 @@ ActiveRecord::Base.transaction do
     create_product_scores_by_trail(product, reason, product_reason, indication_bonus_scores, fix_value = false, 3)
   end
 end
+
+residual_bonus_scores = [[000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                         [000, 000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                         [000, 000, 000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
+                         [000, 000, 000, 000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500]]
+TRAIL_QUANTITY = 3
+fix_value = false
+ActiveRecord::Base.transaction do
+  product_names = ['Mensality']
+  reason = FinancialReason.find_by(code: '2600')
+  products = Product.where(name: product_names)
+  products.each do |product|
+    product_reason_score = ProductReasonScore.create!(product: product, financial_reason: reason)
+    TRAIL_QUANTITY.times do |i|
+      trail_id = i + 1
+      create_product_scores_by_trail(product,
+                                     reason,
+                                     product_reason_score,
+                                     residual_bonus_scores,
+                                     fix_value,
+                                     trail_id)
+    end
+  end
+end

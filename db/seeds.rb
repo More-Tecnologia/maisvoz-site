@@ -134,10 +134,30 @@ persisted_careers.each do |career|
 end
 
 # Category
+<<<<<<< Updated upstream
 
 mensalities = Category.create(name: 'Mensalities')
 
 # Product
+=======
+mensalities = Category.create(name: 'Mensalities',
+                              active: false,
+                              active_session: false)
+
+# Product
+product = Product.find_by(code: 30)
+params = {
+  name: 'Mensality',
+  quantity: 1,
+  active: true,
+  virtual: true,
+  category: mensalities,
+  code: 30,
+  binary_score: 0,
+  kind: :activation,
+  price_cents: 10000
+}
+>>>>>>> Stashed changes
 
 Product.create(name: 'Mensality', quantity: 1, active: true, virtual: true, category: mensalities)
 

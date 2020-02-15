@@ -134,10 +134,9 @@ persisted_careers.each do |career|
 end
 
 # Category
-
 mensalities = Category.create(name: 'Mensalities',
                               active: false,
-                              session_active: false)
+                              active_session: false)
 
 # Product
 product = Product.find_by(code: 30)
@@ -149,7 +148,8 @@ params = {
   category: mensalities,
   code: 30,
   binary_score: 0,
-  kind: :activation
+  kind: :activation,
+  price_cents: 10000
 }
 
 product ? product.update(params) : Product.create(params)

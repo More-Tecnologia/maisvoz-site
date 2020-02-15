@@ -133,6 +133,16 @@ persisted_careers.each do |career|
   end
 end
 
+# Category
+
+mensalities = Category.create(name: 'Mensalities')
+
+# Product
+
+Product.create(name: 'Mensality', quantity: 1, active: true, virtual: true, category: mensalities)
+
+
+
 # SCORE TYPES
 score_types = [{ name: 'Pontuação de Adesões', code: '100', active: false },
                { name: 'Pontuação de Ativação', code: '200', active: false },
@@ -189,8 +199,8 @@ end
                    { title: 'Estorno de Bônus Indicação Indireta por Inatividade', code: '2300', active: false, company_moneyflow: :credit },
                    { title: 'Bonus Ativação', code: '2400', dynamic_compression: true, active: false, company_moneyflow: :debit },
                    { title: 'Estorno de Bônus Ativação por Inatividade', code: '2500', active: false, company_moneyflow: :credit },
-                   { title: 'Bonus Residual', code: '2600', dynamic_compression: true, active: false, company_moneyflow: :debit },
-                   { title: 'Estorno de Bônus Residual por Inatividade', code: '2700', active: false, company_moneyflow: :credit },
+                   { title: 'Residual Bonus', code: '2600', dynamic_compression: false, active: true, company_moneyflow: :debit },
+                   { title: 'Residual Bonus Chargeback for Inactivity', code: '2700', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Ativação de Ponto de Apoio', code: '3100', active: false, company_moneyflow: :debit },
                    { title: 'Estorno de Bonus Ativação de Ponto de Apoio por Inatividade', code: '3200', active: false, company_moneyflow: :credit },
                    { title: 'Binary Bonus Chargeback for Daily Excess', code: '3300', active: true, company_moneyflow: :credit },

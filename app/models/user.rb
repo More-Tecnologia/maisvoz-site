@@ -202,7 +202,7 @@ class User < ApplicationRecord
   end
 
   def blocked_balance
-    blocked_balance_cents + withdrawal_order_amount
+    blocked_balance_cents + withdrawal_order_amount + pool_tranding_blocked_balance
   end
 
   def available_balance_cents
@@ -227,6 +227,14 @@ class User < ApplicationRecord
 
   def withdrawal_order_amount=(amount)
     self[:withdrawal_order_amount] = (amount * 1e8).to_i
+  end
+
+  def pool_tranding_blocked_balance
+    self[:pool_tranding_blocked_balance] / 1e8.to_f if self[:pool_tranding_blocked_balance]
+  end
+
+  def pool_tranding_blocked_balance=(amount)
+    self[:pool_tranding_blocked_balance] = (amount * 1e8).to_i
   end
 
   def unilevel_score_sum

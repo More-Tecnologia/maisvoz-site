@@ -28,7 +28,7 @@ module Bonification
       transaction =
         sponsor.financial_transactions
                .create!(cent_amount: amount,
-                        spreader: User.find_morenwm_customer_admin,
+                        spreader: @user,
                         financial_reason: FinancialReason.matching_bonus,
                         generation: generation)
       chargeback_by_inactivity!(transaction) unless sponsor.active?

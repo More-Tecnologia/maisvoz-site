@@ -437,6 +437,9 @@ pt-BR:
       user_versions:
         index:
           title: Relatório de Atividade de Usuário
+      pool_trandings:
+        create:
+          success: Valor do Pool Tranding salvo com sucesso.
     support:
       users:
         index:

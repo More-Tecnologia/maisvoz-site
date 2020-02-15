@@ -117,4 +117,8 @@ class FinancialReason < ApplicationRecord
     @@chargeback_by_contract_limit ||= find_by(code: '3400')
   end
 
+  def self.pool_tranding
+    @@pool_tranding ||= find_by(code: '3500')
+  end
+
 end

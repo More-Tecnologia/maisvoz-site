@@ -26,7 +26,7 @@ module Financial
         update_user_purchase_flags
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user if adhesion_product
+        activate_user if adhesion_product || voucher_product
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
         user.empreendedor! if adhesion_product || subscription_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product

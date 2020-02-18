@@ -7,10 +7,10 @@ class UpdateUser
 
   def call
     return false unless form.valid?
+
     ActiveRecord::Base.transaction do
       update_user
     end
-    true
   end
 
   private
@@ -18,8 +18,7 @@ class UpdateUser
   attr_reader :form, :user
 
   def update_user
-    user.update_column(:email, form.email)
-    user.update!(form_attributes)
+    user.update(form_attributes)
   end
 
   def form_attributes
@@ -28,7 +27,7 @@ class UpdateUser
       attrs.delete(:password)
       attrs.delete(:password_confirmation)
     end
-    attrs.except(:user_id, :email)
+    attrs.except(:user_id)
   end
 
 end

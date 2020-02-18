@@ -128,6 +128,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :digital_wallets, except: %i[show destroy]
+    resources :emails, except: %i[show destroy]
   end
 
   devise_for(

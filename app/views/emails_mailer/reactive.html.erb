@@ -1,0 +1,16 @@
+<p><%= t(:hello)%>, <%= @user.name %></p>
+
+<br>
+
+<p><%= t(:waiting_email_reativation, email: @email.body) %></p>
+
+<br>
+
+<p>
+  <%= t(:can_confirm_email_change) %>
+  <%= link_to t('here'), edit_users_email_url(@email, locale: @locale, path: :email) %>
+</p>
+
+<br>
+
+<p><%= link_to t('users.emails.edit.emails_list'), users_emails_url(locale: @locale) %></p>

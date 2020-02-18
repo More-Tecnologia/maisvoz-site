@@ -49,6 +49,12 @@ pt-BR:
         credit: Crédito
         debit: Débito
         generation: Geração
+      email:
+        body: 'Endereço'
+        status:
+          pending: 'Pendente'
+          active: 'Ativo'
+          inactive: 'Inativo'
       order:
         shipping: Frete
         total: Total
@@ -907,6 +913,21 @@ pt-BR:
   translateX: Translatex
   translateY: Translatey
   users:
+    emails:
+      create:
+        same_email: '%{email} é o seu endereço de email atual'
+        success: 'A solicitação de mudança de email foi efetuada. Verifique o seu email antigo/atual para confirmar a alteração'
+      edit:
+        title: 'Solicitação de alteração de email'
+        waiting_email_confirmation_html: 'Você solicitou a transferencia de seu email atual (<span class="text-info">%{current_email}</span>) para o endereço: <span class="text-danger">%{email}</span>'
+        confirm_email_change: 'Se você realmente deseja alterar o seu email clique'
+        confirm_email_change_question: 'Você tem certeza que deseja alterar o seu email?'
+        refuse_email_change: 'Se você não solicitou ou não deseja alterar o seu email clique'
+        refuse_email_change_question: 'Você tem certeza que deseja recusar a alteração de email?'
+        emails_list: 'Histórico de emails'
+        unauthorized_action: 'Ação inválida'
+      update:
+        success: Ação realizada com sucesso
     sessions:
       new:
         login: Entrar
@@ -1194,3 +1215,16 @@ pt-BR:
   digital_wallet_changed_info: 'Alteração da carteira digital finalizada'
   digital_wallet_refuse_info: 'Alteração da carteira digital rejeitada'
   digital_wallet_reactive_info: 'Reativação da carteira digital solicitada'
+  email_change_solicitaion: 'Solicitação de alteração de email'
+  email_changed_info: 'Alteração de email concluída'
+  new_email: 'Alterar endereço de email'
+  can_confirm_email_change: 'Confirme ou cancele essa solicitação através do nosso site clicando'
+  waiting_email_reativation: 'Você solicitou a alteração do seu email para %{email}'
+  email_activated: 'Você aprovou a alteração de email da sua conta para %{email}'
+  email_refused: 'Você recusou a alteração de seu email para o endereço %{email}'
+  email_change_solicitation: 'Alteração de email solicitada'
+  email_changed_info: 'Alteração de email finalizada'
+  email_refuse_info: 'Alteração de email rejeitada'
+  email_reactive_info: 'Reativação de email solicitada'
+  make_default: 'Tornar padrão'
+

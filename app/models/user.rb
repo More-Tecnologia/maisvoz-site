@@ -244,7 +244,7 @@ class User < ApplicationRecord
   end
 
   def ensure_digital_wallet_existence
-    digital_wallets.create(address: wallet_address, status: :active)
+    digital_wallets.create(address: wallet_address, status: :active) if wallet_address.present?
   end
 
   def pool_tranding_blocked_balance

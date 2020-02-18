@@ -1,25 +1,25 @@
-<%= simple_form_for current_user, url: backoffice_bank_account_path, method: :put do |f| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card-box">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="form-row">
-              <% if current_user.wallet_address.present? %>
-                <div class="col-sm-2">
-                  <%= User.human_attribute_name(:wallet_address) %>
-                </div>
-                <div class="col-sm-2">
-                  <%= f.object.wallet_address %>
-                </div>
-              <% else %>
-                <%= f.input :wallet_address, required: true %>
-                <div class="form-row">
-                  <%= f.submit t('save'), class: 'btn btn-default' %>
-                </div>
-              <% end %>
+<%= simple_form_for current_user, url: backoffice_bank_account_path, method: :put, html: { class: 'form-inline' } do |f| %>
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-md-12">
+          <% if current_user.wallet_address.present? %>
+              <div class="col-md-1">
+                <%= t(:account_code) %>:
+              </div>
+              <div class="col-md-8">
+                <strong class="form-control"><%= current_user.wallet_address %></strong>
+              </div>
+              <%= link_to t(:new_digital_wallet), new_users_digital_wallet_path, target: '_blank', class: 'btn btn-primary pull-right' %>
+          <% else %>
+            <div class="col-md-2">
+              <%= f.label :wallet_address, for: 'user[wallet_address]' %>
             </div>
-          </div>
+              <div class="col-md-9">
+              <%= f.input_field :wallet_address, required: true, class: 'form-control', style: 'min-width: 100%' %>
+            </div>
+            <%= f.submit t('save'), class: 'btn btn-default pull-right' %>
+          <% end %>
         </div>
       </div>
     </div>

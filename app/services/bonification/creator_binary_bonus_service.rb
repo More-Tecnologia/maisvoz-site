@@ -8,6 +8,7 @@ module Bonification
         return transaction.chargeback_by_inactivity! if user.inactive?
         return transaction.chargeback_by_unqualification! if user.binary_unqualified?
         transaction.binary_bonus_chargeback_by_daily_excees(@daily_excess_bonus) if @daily_excess_bonus > 0
+        create_matching_bonus_for_user
       end
     end
 
@@ -51,6 +52,10 @@ module Bonification
     def calculate_daily_excess_score
       return 0 if shortter_leg_score_from_yesterday <= ENV['DAILY_MAXIMUM_BINARY_SCORE'].to_f
       shortter_leg_score_from_yesterday - ENV['DAILY_MAXIMUM_BINARY_SCORE'].to_f
+    end
+
+    def create_matching_bonus_for_user
+      Bonification::MatchingBonusService.call(user: @user, binary_bonus: @daily_valid_bonus)
     end
 
   end

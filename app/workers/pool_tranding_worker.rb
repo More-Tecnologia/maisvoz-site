@@ -3,15 +3,31 @@ class PoolTrandingWorker
   include Sidekiq::Worker
 
   def perform
+    next_run_date = Date.tomorrow.beginning_of_day + 20.minutes
+    PoolTrandingWorker.perform_at(next_run_date)
+    run unless Date.current.saturday? || Date.current.sunday?
+  end
+
+  private
+
+  def run
+    errors = []
     User.active.find_each do |user|
       begin
         Bonification::PoolTrandingService.call(commission_percent: PoolTranding.current_pool_tranding,
                                                user: user)
       rescue Exception => error
-        puts "Error while create Pool Tranding for #{user.username}: #{error.message}"
-        puts error.backtrace
+        error = { message: "Error while create Pool Tranding for #{user.username}: #{error.message}",
+                  backtrace: error.backtrace }
+        errors <<  error
       end
     end
+    notify_admin_by_email(errors)
+  end
+
+  def notify_admin_by_email(errors)
+    subject = "Pool Tranding Errors: #{errors.size}"
+    ErrorsMailer.notify_admin(subject, errors).deliver_now
   end
 
 end

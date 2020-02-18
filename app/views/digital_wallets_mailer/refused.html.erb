@@ -1,0 +1,9 @@
+<p><%= t(:hello)%>, <%= @user.name %></p>
+
+<br>
+
+<p><%= t(:digital_wallet_refused, digital_wallet: @digital_wallet.address) %></p>
+
+<br>
+
+<p><%= link_to t('users.digital_wallets.edit.digital_wallets_list'), users_digital_wallets_url(locale: @locale) %></p>

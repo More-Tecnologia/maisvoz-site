@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <div class="card-box">
+      <div>
+        <h4><%= t('users.digital_wallets.edit.digital_wallets_list') %></h4>
+        <hr>
+        <div class="text-left m-t-30">
+          <table class="table table-striped">
+            <% @digital_wallets.each do |digital_wallet| %>
+              <tr>
+                <td><%= digital_wallet.address %></td>
+                <td><%= I18n.t(digital_wallet.status, scope: [:activerecord, :attributes, :digital_wallet, :status]) %></td>
+                <td>
+                  <% if digital_wallet.inactive? %>
+                    <%= link_to t(:make_default), [:users, digital_wallet, digital_wallet: { status: :pending }], method: :put, class: 'btn btn-sm btn-primary' %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

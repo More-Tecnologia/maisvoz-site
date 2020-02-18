@@ -122,6 +122,7 @@ class User < ApplicationRecord
   has_one :account
   has_one :binary_node
   has_one :unilevel_node
+  has_many :digital_wallets
   has_many :emails
   has_many :orders
   has_many :withdrawals
@@ -192,6 +193,8 @@ class User < ApplicationRecord
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
   after_create :insert_into_binary_tree
+
+  after_update :ensure_digital_wallet_existence
   after_create :ensure_email_existence
   after_update :ensure_email_existence, unless: :active_email?
 
@@ -230,6 +233,18 @@ class User < ApplicationRecord
 
   def withdrawal_order_amount=(amount)
     self[:withdrawal_order_amount] = (amount * 1e8).to_i
+  end
+
+  def active_digital_wallet
+    digital_wallets.where(address: wallet_address)
+  end
+
+  def active_digital_wallet?
+    active_digital_wallet.any?
+  end
+
+  def ensure_digital_wallet_existence
+    emails.create(address: wallet_address, status: :active)
   end
 
   def pool_tranding_blocked_balance

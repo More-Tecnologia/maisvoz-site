@@ -1,0 +1,16 @@
+<p><%= t(:hello)%>, <%= @user.name %></p>
+
+<br>
+
+<p><%= t('users.digital_wallets.edit.waiting_digital_wallet_confirmation_html', digital_wallet: @digital_wallet.address, current_wallet: @user.wallet_address) %></p>
+
+<br>
+
+<p>
+  <%= t(:can_confirm_digital_wallet_change) %>
+  <%= link_to t('here'), edit_users_digital_wallet_url(@digital_wallet, locale: @locale, path: :email) %>
+</p>
+
+<br>
+
+<p><%= link_to t('users.digital_wallets.edit.digital_wallets_list'), users_digital_wallets_url(locale: @locale) %></p>

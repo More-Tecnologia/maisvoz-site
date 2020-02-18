@@ -68,6 +68,12 @@ pt-BR:
         document_address_photo: Comprovante de endereço
         document_scontract_photo: Contrato Social
         wallet_address: Carteira Digital
+      digital_wallet:
+        address: 'Código da carteira'
+        status:
+          pending: 'Pendente'
+          active: 'Ativo'
+          inactive: 'Inativo'
     errors:
       models:
         user:
@@ -459,12 +465,12 @@ pt-BR:
           success: Usuário atualizado para Ponto de Apoio
     bank_accounts:
       edit:
-        title: Conta Bancária
+        title: Conta Digital
         subtitle: Esta conta será utilizada nos saques da plataforma
-        save: Salvar conta bancária
-        ownership_info: Só aceitamos contas bancárias em sua titularidade
+        save: Salvar conta digital
+        ownership_info: Só aceitamos contas digitais em sua titularidade
       update:
-        success: Conta bancária atualizada com sucesso
+        success: Conta digital atualizada com sucesso
     scores:
       index:
         title:
@@ -951,6 +957,21 @@ pt-BR:
       new:
         title: Esqueceu a Senha?
         get_password_reset_link: Obter link de troca de senha
+    digital_wallets:
+      create:
+        same_digital_wallet: '%{digital_wallet} é o seu endereço da carteira digital atual'
+        success: 'A solicitação de mudança de carteira digital foi efetuada. Verifique o seu email para confirmar a alteração'
+      edit:
+        title: 'Solicitação de alteração de carteira digital'
+        waiting_digital_wallet_confirmation_html: 'Você solicitou a transferencia da sua carteira digital atual (<span class="text-info">%{current_wallet}</span>) para a carteira: <span class="text-danger">%{digital_wallet}</span>'
+        confirm_digital_wallet_change: 'Se você realmente deseja alterar a sua carteira digital clique'
+        confirm_digital_wallet_change_question: 'Você tem certeza que deseja alterar a sua carteira digital?'
+        refuse_digital_wallet_change: 'Se você não solicitou ou não deseja alterar a sua carteira digital clique'
+        refuse_digital_wallet_change_question: 'Você tem certeza que deseja recusar a alteração da carteira digital?'
+        digital_wallets_list: 'Histórico de carteiras'
+        unauthorized_action: 'Ação inválida'
+      update:
+        success: Ação realizada com sucesso
   view_all: View all
   views:
     backoffice:
@@ -1183,6 +1204,17 @@ pt-BR:
   new_password: 'Nova senha'
   new_password_confirmation: 'Confirme a nova senha'
   email: 'Email'
+  digital_wallet_change_solicitaion: 'Solicitação de alteração de carteira digital'
+  digital_wallet_changed_info: 'Alteração de carteira digital concluída'
+  new_digital_wallet: 'Alterar endereço de carteira digital'
+  can_confirm_digital_wallet_change: 'Confirme ou cancele essa solicitação através do nosso site clicando'
+  waiting_digital_wallet_reativation: 'Você solicitou a alteração da sua carteira digital para %{digital_wallet}'
+  digital_wallet_activated: 'Você aprovou a alteração da carteira digital da sua conta para %{digital_wallet}'
+  digital_wallet_refused: 'Você recusou a alteração da sua carteira digital para a conta %{digital_wallet}'
+  digital_wallet_change_solicitation: 'Alteração da carteira digital solicitada'
+  digital_wallet_changed_info: 'Alteração da carteira digital finalizada'
+  digital_wallet_refuse_info: 'Alteração da carteira digital rejeitada'
+  digital_wallet_reactive_info: 'Reativação da carteira digital solicitada'
   email_change_solicitaion: 'Solicitação de alteração de email'
   email_changed_info: 'Alteração de email concluída'
   new_email: 'Alterar endereço de email'
@@ -1195,3 +1227,4 @@ pt-BR:
   email_refuse_info: 'Alteração de email rejeitada'
   email_reactive_info: 'Reativação de email solicitada'
   make_default: 'Tornar padrão'
+

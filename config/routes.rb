@@ -127,6 +127,7 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
+    resources :digital_wallets, except: %i[show destroy]
     resources :emails, except: %i[show destroy]
   end
 

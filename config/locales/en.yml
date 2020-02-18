@@ -1201,7 +1201,7 @@
   can_confirm_digital_wallet_change: 'Confirm or cancel your request through our website'
   waiting_digital_wallet_reativation: 'You requested to change your digital_wallet to %{digital_wallet}'
   digital_wallet_activated: 'You have approved changing your account digital_wallet to %{digital_wallet}'
-  digital_wallet_refused: 'You declined to change your digital_wallet to the address %{digital_wallet}'
+  digital_wallet_refused: 'You declined to change your digital wallet to the account %{digital_wallet}'
   digital_wallet_change_solicitation: 'Digital Wallet change request'
   digital_wallet_changed_info: 'Digital Wallet change completed'
   digital_wallet_refuse_info: 'Digital Wallet change rejected'
@@ -1218,3 +1218,4 @@
   email_refuse_info: 'Email change rejected'
   email_reactive_info: 'Email reactivation request'
   make_default: 'Make default'
+  account_code: 'Account code'

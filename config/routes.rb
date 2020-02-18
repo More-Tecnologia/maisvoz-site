@@ -65,7 +65,7 @@ Rails.application.routes.draw do
     # Backoffice
     resources :dashboard, only: :index
     resource :documents, only: [:edit, :update]
-    resources :downloads, only: [:index]
+    resources :downloads, only: :index
     resources :binary_scores, only: [:index]
     resources :unilevel_scores, only: [:index]
     resources :bonus_contracts, only: [:index, :show]

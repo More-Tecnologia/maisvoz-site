@@ -1,0 +1,4 @@
+<% @errors.each do |error| %>
+  <p> <%= error[:message] %> </p><br>
+  <p> <%= error[:backtrace] %> </p><br><br>
+<% end %>

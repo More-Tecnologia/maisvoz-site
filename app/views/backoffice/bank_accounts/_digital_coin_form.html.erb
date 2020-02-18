@@ -9,6 +9,7 @@
                 <div class="col-sm-2">
                   <%= User.human_attribute_name(:wallet_address) %>
                 </div>
+                <%= link_to t(:new_digital_wallet), new_users_digital_wallet_path, target: '_blank' %>
                 <div class="col-sm-2">
                   <%= f.object.wallet_address %>
                 </div>

@@ -121,4 +121,12 @@ class FinancialReason < ApplicationRecord
     @@pool_tranding ||= find_by(code: '3500')
   end
 
+  def self.matching_bonus
+    @@matching_bonus ||= find_by(code: '3600')
+  end
+
+  def self.matching_bonus_chargeback_by_inactivity
+    @@matching_bonus_chargeback_by_inactivity ||= find_by(code: '3700')
+  end
+
 end

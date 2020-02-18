@@ -21,9 +21,11 @@ module Backoffice
       end
 
       def update
-        if UpdateUser.new(user_form, user).call
-          redirect_to backoffice_support_user_path(user)
+        @user = User.find(params[:id])
+        if UpdateUser.new(user_form, @user).call
+          redirect_to backoffice_support_user_path(@user)
         else
+          flash[:error] = @user.errors.full_messages.join(', ')
           render_edit
         end
       end

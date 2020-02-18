@@ -49,6 +49,12 @@
         credit: Credit
         debit: Debit
         generation: Generation
+      email:
+        body: 'Email address'
+        status:
+          pending: 'Pending'
+          active: 'Active'
+          inactive: 'Inactive'
       order:
         shipping: Shipping
         total: Total
@@ -64,6 +70,12 @@
         wallet_address: Digital Wallet
       media_file:
         file_content: 'File'
+      digital_wallet:
+        address: 'Wallet code'
+        status:
+          pending: 'Pending'
+          active: 'Active'
+          inactive: 'Inactive'
     errors:
       models:
         user:
@@ -890,9 +902,39 @@
   translateX: Translatex
   translateY: Translatey
   users:
+    digital_wallets:
+      create:
+        same_digital_wallet: '%{digital_wallet} is already your wallet address'
+        success: 'An wallet address change request was made. Check your email to confirm the change'
+      edit:
+        title: 'Digital Wallet change request'
+        waiting_digital_wallet_confirmation_html: 'You have requested to transfer your current digital wallet (<span class = "text-info">%{current_wallet} </span>) to the wallet address: <span class = "text-danger">%{digital_wallet} </span>'
+        confirm_digital_wallet_change: 'If you really want to change your wallet address click'
+        confirm_digital_wallet_change_question: 'Are you sure you want to change your digital_wallet?'
+        refuse_digital_wallet_change: 'If you did not request or do not want to change your wallet address click'
+        refuse_digital_wallet_change_question: 'Are you sure you want to decline the digital wallet change?'
+        digital_wallets_list: 'Digital Wallet history'
+        unauthorized_action: 'Invalid Action'
+      update:
+        success: Action successfully performed
     sessions:
       new:
         login: Log in
+    emails:
+      create:
+        same_email: '%{email} is already your email address'
+        success: 'An email change request was made. Check your old/current email to confirm the change'
+      edit:
+        title: 'Email change request'
+        waiting_email_confirmation_html: 'You have requested to transfer your current email (<span class = "text-info">%{current_email} </span>) to the address: <span class = "text-danger">%{email} </span>'
+        confirm_email_change: 'If you really want to change your email click'
+        confirm_email_change_question: 'Are you sure you want to change your email?'
+        refuse_email_change: 'If you did not request or do not want to change your email click'
+        refuse_email_change_question: 'Are you sure you want to decline the email change?'
+        emails_list: 'Emails history'
+        unauthorized_action: 'Invalid Action'
+      update:
+        success: Action successfully performed
     shared:
       links:
         didnt_receive_instructions: Didn't receive confirmation instructions?
@@ -1153,3 +1195,26 @@
   media_file_corrupted_tooltip: 'This attachment has been corrupted. Please request support'
   media_file_corrupted_tooltip_support: 'This attachment has been corrupted. Edit and resubmit the file, please'
   media_file_inactive_tooltip: 'This attachment has been disabled and will be listed only for administrators'
+  digital_wallet_change_solicitaion: 'Digital Wallet change solicitation'
+  digital_wallet_changed_info: 'Digital Wallet change completed'
+  new_digital_wallet: 'Change digital_wallet address'
+  can_confirm_digital_wallet_change: 'Confirm or cancel your request through our website'
+  waiting_digital_wallet_reativation: 'You requested to change your digital_wallet to %{digital_wallet}'
+  digital_wallet_activated: 'You have approved changing your account digital_wallet to %{digital_wallet}'
+  digital_wallet_refused: 'You declined to change your digital_wallet to the address %{digital_wallet}'
+  digital_wallet_change_solicitation: 'Digital Wallet change request'
+  digital_wallet_changed_info: 'Digital Wallet change completed'
+  digital_wallet_refuse_info: 'Digital Wallet change rejected'
+  digital_wallet_reactive_info: 'Digital Wallet reactivation request'
+  email_change_solicitaion: 'Email change solicitation'
+  email_changed_info: 'Email change completed'
+  new_email: 'Change email address'
+  can_confirm_email_change: 'Confirm or cancel your request through our website'
+  waiting_email_reativation: 'You requested to change your email to %{email}'
+  email_activated: 'You have approved changing your account email to %{email}'
+  email_refused: 'You declined to change your email to the address %{email}'
+  email_change_solicitation: 'Email change request'
+  email_changed_info: 'Email change completed'
+  email_refuse_info: 'Email change rejected'
+  email_reactive_info: 'Email reactivation request'
+  make_default: 'Make default'

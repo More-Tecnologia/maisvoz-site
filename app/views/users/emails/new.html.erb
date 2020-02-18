@@ -1,0 +1,17 @@
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card-box">
+      <%= content_tag(:h4, t(:new_email)) %>
+      <hr />
+      <%= simple_form_for([:users, @email], html: { class: 'form-horizontal' }) do |f| %>
+      <div class="col-md-9">
+        <%= f.input_field :body, class: "form-control", placeholder: t(:email) %>
+      </div>
+
+        <%= f.button :button, t("defaults.post"),
+                                data: { disable_with: t('helpers.save_with_disable') }, class: 'btn' %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

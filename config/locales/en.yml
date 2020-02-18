@@ -11,6 +11,7 @@
       score_type: Score Type
       user: User
       order: Order
+      media_file: Attachment
     attributes:
       pv_activity_history:
         from: From
@@ -67,6 +68,8 @@
         document_address_photo: Proof of residence
         document_scontract_photo: Social Contract
         wallet_address: Digital Wallet
+      media_file:
+        file_content: 'File'
       digital_wallet:
         address: 'Wallet code'
         status:
@@ -387,6 +390,17 @@
       destroy:
         cart_updated: Cart updated
     admin:
+      media_files:
+        form:
+          title: 'Title'
+        new:
+          title: 'New attachment'
+        create:
+          success: 'Attachment created'
+        edit:
+          title: 'Update attachment'
+        update:
+          success: 'Attachment updated'
       credits_debits:
         step_1: Step 1
         step_2: Step 2
@@ -557,9 +571,9 @@
     - Friday
     - Saturday
     formats:
-      default: "%d/%m/%Y"
-      long: "%d de %B de %Y"
-      short: "%d de %B"
+      default: '%B %d, %Y'
+      long: "%d of %B, %Y"
+      short: "%d of %B"
     month_names:
     -
     - January
@@ -1169,6 +1183,18 @@
   new_password: 'New password'
   new_password_confirmation: 'New password confirmation'
   email: 'Email'
+  yep: 'Yes'
+  nope: 'No'
+  new: 'New'
+  back: 'Back'
+  see_all: 'See all'
+  edit: 'Edit'
+  download: 'Download'
+  inactive: 'Inactive'
+  corrupted_attachment: 'Corrupted Attachment'
+  media_file_corrupted_tooltip: 'This attachment has been corrupted. Please request support'
+  media_file_corrupted_tooltip_support: 'This attachment has been corrupted. Edit and resubmit the file, please'
+  media_file_inactive_tooltip: 'This attachment has been disabled and will be listed only for administrators'
   digital_wallet_change_solicitaion: 'Digital Wallet change solicitation'
   digital_wallet_changed_info: 'Digital Wallet change completed'
   new_digital_wallet: 'Change digital_wallet address'
@@ -1192,4 +1218,3 @@
   email_refuse_info: 'Email change rejected'
   email_reactive_info: 'Email reactivation request'
   make_default: 'Make default'
-

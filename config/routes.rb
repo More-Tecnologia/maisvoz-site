@@ -50,6 +50,8 @@ Rails.application.routes.draw do
       resources :career_histories, only: [:index]
       resources :cellphone_reloads, only: [:index]
       resources :pool_trandings, only: [:new, :create]
+
+      resources :media_files, only: %i[show new create edit update]
     end
 
     namespace :support do
@@ -63,7 +65,7 @@ Rails.application.routes.draw do
     # Backoffice
     resources :dashboard, only: :index
     resource :documents, only: [:edit, :update]
-    resources :downloads, only: [:index]
+    resources :downloads, only: :index
     resources :binary_scores, only: [:index]
     resources :unilevel_scores, only: [:index]
     resources :bonus_contracts, only: [:index, :show]

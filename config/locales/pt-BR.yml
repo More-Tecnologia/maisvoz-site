@@ -12,6 +12,7 @@ pt-BR:
       score_type: Tipo de Pontuação
       user: Usuário
       order: Pedido
+      media_file: 'Anexo'
     attributes:
       pv_activity_history:
         from: De
@@ -62,6 +63,10 @@ pt-BR:
         document_address_photo: Comprovante de endereço
         document_scontract_photo: Contrato Social
         wallet_address: Carteira Digital
+      media_file:
+        title: 'Título'
+        file_content: 'Arquivo'
+        active: Ativo
     errors:
       models:
         user:
@@ -376,6 +381,17 @@ pt-BR:
       destroy:
         cart_updated: Carrinho atualizado
     admin:
+      media_files:
+        form:
+          title: 'Título'
+        new:
+          title: 'Novo anexo'
+        create:
+          success: 'Arquivo anexado com sucesso'
+        edit:
+          title: 'Atualizar anexo'
+        update:
+          success: 'Arquivo atualizado com sucesso'
       credits_debits:
         step_1: Passo 1
         step_2: Passo 2
@@ -1162,3 +1178,14 @@ pt-BR:
   new_password: 'Nova senha'
   new_password_confirmation: 'Confirme a nova senha'
   email: 'Email'
+  yep: 'Sim'
+  nope: 'Não'
+  new: 'Novo'
+  back: 'Voltar'
+  see_all: 'Ver todos'
+  edit: 'Editar'
+  download: 'Baixar'
+  corrupted_attachment: 'Anexo corrompido'
+  media_file_corrupted_tooltip: 'Este anexo foi corrompido. Por favor, solicite suporte'
+  media_file_corrupted_tooltip_support: 'Este anexo foi corrompido. Edite e reenvie o arquivo, por favor'
+  media_file_inactive_tooltip: 'Este anexo foi inativado e será listado somente para os administradores'

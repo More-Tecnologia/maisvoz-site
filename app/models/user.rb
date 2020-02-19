@@ -483,7 +483,7 @@ class User < ApplicationRecord
                                .to_morenwm if morenwm_user?
     return FinancialTransaction.to_customer_admin if customer_admin?
     return FinancialTransaction.by_current_user(self)
-                               .to_empreendedor if empreendedor?
+                               .to_empreendedor
   end
 
   def lineage_scores

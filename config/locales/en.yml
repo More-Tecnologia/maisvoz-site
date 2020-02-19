@@ -303,6 +303,7 @@
     order_kind: Order Kind
     voucher_use_date: Use Date
     my_vouchers: Meus Vouchers
+    system_taxable: System Taxable
   backoffice:
     orders:
       show:

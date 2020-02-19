@@ -70,6 +70,7 @@ class Product < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :sim_card, -> { where(category: Category.sim_card) }
   scope :cellphone_reloads, -> { where(category: Category.cellphone_reload).order(:price_cents) }
+  scope :system_taxables, -> { where(system_taxable: true) }
 
   validates :trail, presence: true, if: :adhesion?, on: :update
   validates :grace_period, presence: true, if: :adhesion?
@@ -84,14 +85,6 @@ class Product < ApplicationRecord
 
   def regular?
     !adhesion?
-  end
-
-  def system_taxable?
-    kind.to_s.in?(Product.taxable_kinds)
-  end
-
-  def self.taxable_kinds
-    kinds.keys
   end
 
   def binary_bonus_percent

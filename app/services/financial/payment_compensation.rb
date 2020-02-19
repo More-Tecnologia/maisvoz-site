@@ -40,6 +40,7 @@ module Financial
         create_vouchers if voucher_product
         create_bonus_contract if adhesion_product || voucher_product
         create_binary_fest_promotion_score if adhesion_product && adhesion_product.advance?
+        create_system_fee if order.products.any?(&:system_taxable)
         notify_user_by_email_about_paid_order
       end
     end

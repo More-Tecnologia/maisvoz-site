@@ -22,7 +22,6 @@ class OrderItem < ApplicationRecord
   include Hashid::Rails
 
   delegate :name, :adhesion?, to: :product
-  delegate :system_taxable?, to: :product
 
   belongs_to :order
   belongs_to :product
@@ -72,6 +71,10 @@ class OrderItem < ApplicationRecord
 
   def value
     total_cents.to_f / 100.0
+  end
+
+  def amount
+    quantity * product.product_value
   end
 
   private

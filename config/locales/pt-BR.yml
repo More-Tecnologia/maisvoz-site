@@ -312,6 +312,7 @@ pt-BR:
     voucher_order: Pedido
     order_kind: Tipo do Pedido
     voucher_use_date: Data de Uso
+    system_taxable: Taxável pelo sistema
   backoffice:
     orders:
       show:

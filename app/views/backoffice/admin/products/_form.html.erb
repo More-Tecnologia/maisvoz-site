@@ -62,6 +62,7 @@
             <%= f.hidden_field :trail_id, value: Trail.first.id if Trail.count == 1 %>
             <%= f.input :active, as: :boolean %>
             <%= f.input :virtual, as: :boolean %>
+            <%= f.input :system_taxable, as: :boolean %>
         </div>
       </div>
     </div>

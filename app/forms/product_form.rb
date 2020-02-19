@@ -26,17 +26,18 @@ class ProductForm < Form
   attribute :product_scores
   attribute :product_scores_fix
   attribute :financial_reason
+  attribute :system_taxable
 
   validates :name, :quantity, :price, :kind, :binary_score, :category_id, presence: true
 
-  validates :low_stock_alert, :binary_score, :advance_score, 
+  validates :low_stock_alert, :binary_score, :advance_score,
             numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_blank: true }
 
-  validates :length, :width, :height, :weight, :price, 
+  validates :length, :width, :height, :weight, :price,
             numericality: { greater_than_or_equal_to: 0.0, allow_blank: true }
 
   validate :sku_is_unique
-  
+
   def scores(product_reason_score_id)
     ProductScore.joins(career_trail: :career, product_reason_score: :product)
       .where('products.id': id, 'career_trails.trail_id': trail_id, product_reason_score_id: product_reason_score_id)

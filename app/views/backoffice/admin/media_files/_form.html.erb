@@ -1,0 +1,25 @@
+<%= form_for([:backoffice, :admin, @media_file], html: { role: 'form' }) do |f| %>
+  <div class="text-left m-t-30">
+    <table class="table table-striped">
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label :title %></strong></td>
+        <td><%= f.text_field :title, class: 'form-control', placeholder: t('.title') %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :file_content %></strong></td>
+        <td><%= f.attachinary_file_field :file_content, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle; text-align: center;">
+          <%= f.label :active %>
+        </td>
+        <td> <%= f.check_box :active %></td>
+      </tr>
+    </table>
+    <%= f.submit class: 'btn btn-primary pull-right' %>
+    <%= link_to t('back'), [:backoffice, :admin, @media_file], class: 'btn btn-primary' if params[:action] == 'edit' %>
+    <%= link_to t('new'), [:new, :backoffice, :admin, :media_file], class: 'btn btn-primary' %>
+    <%= link_to t('see_all'), [:backoffice, :downloads], class: 'btn btn-primary' %>
+    <br>
+  </div>
+<% end %>

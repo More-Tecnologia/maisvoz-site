@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-4 col-lg-4">
+    <div class="profile-detail card-box">
+      <div>
+        <h4 class="m-b-20"><%= @media_file.title %></h4>
+        <hr>
+        <div class="text-left m-t-30">
+          <table class="table table-striped">
+            <tr>
+              <td><strong><%= t('activerecord.attributes.media_file.title') %>:</strong></td>
+              <td><%= @media_file.title %></td>
+            </tr>
+            <tr>
+              <td><strong><%= t('activerecord.attributes.media_file.file_content') %>:</strong></td>
+              <td>
+                <% if @media_file.file_content? %>
+                  <%= link_to @media_file.filename, @media_file.file_content.fullpath, target: '_blank' %>
+                <% else %>
+                  <div class="text-danger" disabled="disabled">
+                    <%= content_tag(:div, t(:corrupted_attachment),  title: t(:media_file_corrupted_tooltip_support)) %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td><strong><%= t('activerecord.attributes.media_file.active') %>?</strong></td>
+              <td><%= @media_file.active ? t('yep') : t('nope') %></td>
+            </tr>
+          </table>
+          <%= link_to t('new'), [:new, :backoffice, :admin, :media_file], class: 'btn btn-primary' %>
+          <%= link_to t('edit'), [:edit, :backoffice, :admin, @media_file], class: 'btn btn-primary' %>
+          <%= link_to t('see_all'), [:backoffice, :downloads], class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

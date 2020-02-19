@@ -31,8 +31,12 @@
 
                           <%= f.input :registration_type, as: :hidden %>
                           <%= f.input :name, autofocus: true %>
-                          <div class="form-group email required user_email">
-                            <label class="control-label email"><%= t(:email) %></label>
+                          <div class="form-group">
+                            <label class="control-label">
+                              <%= t(:email) %> -
+                              <%= link_to t(:new_email), new_users_email_path, target: '_blank' %>
+                            </label>
+
                             <input class="form-control" disabled type="email" value="<%= current_user.email %>">
                           </div>
                           <%= f.input :birthdate, start_year: Time.now.year - 90, end_year: Time.now.year - 18, as: :date, html5: true %>

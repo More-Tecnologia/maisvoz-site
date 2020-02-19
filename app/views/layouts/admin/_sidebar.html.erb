@@ -7,7 +7,12 @@
             <ul>
 
               <%= render "menus/#{current_user.role}_menu" %>
-
+              <!-- Downloads menu -->
+              <li>
+                <%= link_to backoffice_downloads_path do %>
+                  <i class="md md-cloud-download"></i>  <%= t(:download_support_material) %>
+                <% end %>
+              </li>
             </ul>
             <div class="clearfix"></div>
         </div>

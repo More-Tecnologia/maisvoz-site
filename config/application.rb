@@ -25,6 +25,10 @@ module BackOffice
 
     config.active_job.queue_adapter = :sidekiq
 
+    config.to_prepare do
+      Devise::Mailer.layout 'mailer'
+    end
+
     config.middleware.use Rack::Attack
     config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
 

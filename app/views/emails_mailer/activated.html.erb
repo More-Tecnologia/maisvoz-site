@@ -1,0 +1,9 @@
+<p><%= t(:hello)%>, <%= @user.name %></p>
+
+<br>
+
+<p><%= t(:email_activated, email: @email.body) %></p>
+
+<br>
+
+<p><%= link_to t('users.emails.edit.emails_list'), users_emails_url(locale: @locale) %></p>

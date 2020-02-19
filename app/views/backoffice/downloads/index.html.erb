@@ -1,55 +1,41 @@
 <div class="col-sm-12 m-b-23">
   <h4 class="page-title">Downloads</h4>
+  <%= link_to t('new'), [:new, :backoffice, :admin, :media_file], class: 'btn btn-primary pull-right', style: 'margin-right: 2%;' if current_user.admin? %>
 </div>
-
 <div class="masonry-container col-md-12">
 
-  <% links.each do |link| %>
-    <div class="filter apn" style="">
-      <div class="card-box">
-        <img src="" class="img-responsive">
-        <div class="card-body">
-          <h4 class="card-title"><%= link[:name] %></h4>
-          <a type="button" class="btn btn-success waves-effect waves-light" href="<%= link[:url] %>" target="_blank">
-            <span class="btn-label"><i class="md md-cloud-download"></i></span>Download
-          </a>
+  <% @media_files.each do |media_file| %>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+          <h4 class="panel-heading">
+            <% if current_user.admin? %>
+              <%= link_to media_file.title,  [:backoffice, :admin, media_file] %>
+            <% else %>
+              <%= media_file.title.truncate(22, omission: '...') %>
+            <% end %>
+            <div class="pull-right">
+              <%= l(media_file.created_at.to_date) %>
+            </div>
+          </h4>
+          <div class="panel-body">
+            <% if media_file.file_content? %>
+                <a type="button" class="btn btn-success waves-effect waves-light" href="<%= media_file.path %>" target="_blank">
+                  <span class="btn-label"><i class="md md-cloud-download"></i></span><%= t('download') %>
+                </a>
+              <% else %>
+                <div class="btn btn-danger" disabled="disabled">
+                  <%= content_tag(:div, t(:corrupted_attachment),  title: t(:media_file_corrupted_tooltip)) %>
+                </div>
+              <% end %>
+            <%= link_to t('edit'), [:edit, :backoffice, :admin, media_file], class: 'btn btn-primary pull-right' if current_user.admin? %>
+          <% unless media_file.active %>
+          <div class="btn btn-warning" disabled="disabled">
+            <%= content_tag(:div, t('inactive'), title: t(:media_file_inactive_tooltip)) %>
+          <% end %>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
-
 </div>
-
-<div class="col-md-12">
-  <h4>Imagens para Mídias Sociais</h4>
-</div>
-
-<% images.each_with_index do |image, i| %>
-
-  <div class="col-md-2" style="margin-bottom: 8px">
-    <a href="<%= image %>" target="_blank">
-      <img class="card-img-top img-fluid img-responsive" src="<%= image %>" >
-    </a>
-  </div>
-
- <% end %>
-
-<style>
-.masonry-container {
-  display: flex;
-  flex-flow: row wrap;
-  margin-left: -8px;
-  width: 100%;
-}
-
-.apn {
-  flex: auto;
-  width: 280px;
-  margin: 0 8px 8px 0;
-}
-
-.apn .card-box {
-  margin-bottom: 0;
-  height: 150px;
-}
-</style>
+<%= paginate @media_files %>

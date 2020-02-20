@@ -844,6 +844,7 @@ pt-BR:
     expire_at_until: Válido até
     no_data: sem registros
     use_voucher: Utilizar Voucher
+    in: em
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:

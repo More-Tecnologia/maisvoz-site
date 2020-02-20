@@ -817,6 +817,7 @@
     expire_at_until: Valid until
     no_data: no records
     use_voucher: Use Voucher
+    in: in
   left: Left
   left_strategy: Always Left
   number:

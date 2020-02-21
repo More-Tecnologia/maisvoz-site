@@ -63,7 +63,11 @@ Rails.application.routes.draw do
     end
 
     # Backoffice
-    resources :dashboard, only: :index
+    resources :dashboard, only: :index do
+      collection do 
+        get :user_data
+      end
+    end
     resource :documents, only: [:edit, :update]
     resources :downloads, only: :index
     resources :binary_scores, only: [:index]

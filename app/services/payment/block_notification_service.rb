@@ -3,6 +3,7 @@ module Payment
 
     def call
       payment_transaction.paid!
+      payment_transaction.order.btc!
       PaymentCompensationWorker.perform_async(payment_transaction.order.id)
     rescue Exception => error
       register_notification_error(error.message)

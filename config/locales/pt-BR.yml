@@ -348,8 +348,8 @@ pt-BR:
     binary_tree:
       show:
         title: Árvore Binária
-        left_pv: PV Esquerdo
-        right_pv: PV Direito
+        left_pv: Points Qualifications da Perna Esquerda
+        right_pv: Points Qualifications da Perna Direita
         username: Nome de usuário
         sponsor: Patrocinador
         search: Pesquisar

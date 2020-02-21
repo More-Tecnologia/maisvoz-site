@@ -303,6 +303,7 @@
     order_kind: Order Kind
     voucher_use_date: Use Date
     my_vouchers: Meus Vouchers
+    system_taxable: System Taxable
   backoffice:
     orders:
       show:
@@ -816,6 +817,7 @@
     expire_at_until: Valid until
     no_data: no records
     use_voucher: Use Voucher
+    in: in
   left: Left
   left_strategy: Always Left
   number:

@@ -86,14 +86,6 @@ class Product < ApplicationRecord
     !adhesion?
   end
 
-  def system_taxable?
-    kind.to_s.in?(Product.taxable_kinds)
-  end
-
-  def self.taxable_kinds
-    kinds.keys
-  end
-
   def binary_bonus_percent
     binary_bonus.to_f / 100.0
   end

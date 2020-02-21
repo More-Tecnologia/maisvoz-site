@@ -16,11 +16,12 @@ module Financial
 
     def initialize(args)
       @order = args[:order]
+      @order_items = @order.order_items
       @amount = calculate_amount_fee
     end
 
     def calculate_amount_fee
-      order_value = order.taxable_product_cent_amount.to_f
+      order_value = @order_items.sum { |i| i.product.system_taxable ? i.amount : 0 }
       order_value * ENV['SYSTEM_FEE'].to_d
     end
 

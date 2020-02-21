@@ -50,6 +50,7 @@
 //= require sim-cards/new
 //= require copy-button
 //= require cellphone-reloads/new
+//= require regressive-timer
 
 $(document).ready(function() {
   $("#sidebar-menu a").each(function() {

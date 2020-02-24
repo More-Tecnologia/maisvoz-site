@@ -40,8 +40,8 @@ class DashboardUserDecorator
         receivable_amount: I18n.t(:receivable_amount),
         received_amount: I18n.t(:received_amount),
         unilevel_affiliates_count: I18n.t(:unilevel_affiliates_count),
-        unilevel_affiliates_left_count: I18n.t(:unilevel_affiliates_left_count),
-        unilevel_affiliates_right_count: I18n.t(:unilevel_affiliates_right_count)
+        unilevel_affiliates_actives_count: I18n.t(:unilevel_affiliates_actives_count),
+        unilevel_affiliates_inactives_count: I18n.t(:unilevel_affiliates_inactives_count)
       }
     }
   end
@@ -151,8 +151,8 @@ class DashboardUserDecorator
   def unilevel_counts
     {
       unilevel_affiliates_count: unilevel_affiliates_count,
-      unilevel_affiliates_left_count: unilevel_affiliates_left_count,
-      unilevel_affiliates_right_count: unilevel_affiliates_right_count
+      unilevel_affiliates_actives_count: unilevel_affiliates_actives_count,
+      unilevel_affiliates_inactives_count: unilevel_affiliates_inactives_count
     }
   end
 
@@ -160,12 +160,12 @@ class DashboardUserDecorator
     @children.count
   end
 
-  def unilevel_affiliates_left_count
-    @children.includes(:user).where(users: { binary_position: :left }).count
+  def unilevel_affiliates_actives_count
+    @children.includes(:user).where(user: User.active).count
   end
 
-  def unilevel_affiliates_right_count
-    @children.includes(:user).where(users: { binary_position: :right }).count
+  def unilevel_affiliates_inactives_count
+    @children.includes(:user).where(user: User.inactive).count
   end
 
 end

@@ -1,16 +1,17 @@
 class OrdersGrid < BaseGrid
 
   scope do
-    Order.includes(:payable).order(id: :desc)
+    Order.includes(:user).order(id: :desc)
   end
 
   filter(:id, :integer)
-  filter(:status, :enum, select: Order.statuses.map {|k,v| [I18n.t(k), v]})
-  filter(:username) do |value, scope|
+  filter(:status, :enum, header: I18n.t('attributes.status'), select: Order.statuses.map {|k,v| [I18n.t(k), v]})
+  filter(:username, header: I18n.t('attributes.username')) do |value, scope|
     scope.joins(:user).where('users.username ILIKE ?', "%#{value}%")
   end
-  filter(:billed, :xboolean)
-  filter(:created_at, :date, :range => true)
+  filter(:billed, :xboolean, header: I18n.t('attributes.billed'))
+  filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
+  filter(:payment_type, :enum, select: Order.payment_types, header: I18n.t('attributes.payment_type'))
 
   column(:id)
   column(:hashid)

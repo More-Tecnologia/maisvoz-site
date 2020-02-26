@@ -1,7 +1,6 @@
 const locale = $("#locale").attr('value');
 
 $(document).on('click', '.bt-toggle', {}, function(e) {
-  $('.bt-toggle').prop('hidden', true);
   let group = $(this).attr('group');
   let head = $(this).attr('head');
   let subheads = $(this).attr('subheads') || null;
@@ -36,25 +35,18 @@ async function getInstance(group, head, subheads, data, colors) {
         })
       }
 
-      let chartData = data.split(', ').map(function(key) {
-        return { label: labels[key], value: user_data[group][key] }
-      });
-
       let chart = Morris.Donut({
         element: group,
         colors: colors.split(', '),
-        data: chartData
+        data: data.split(', ').map(key => ({ label: labels[key], value: user_data[group][key]}))
       });
 
       chart.options.data.forEach(function(label, i){
         let legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
 
         legendItem.find('i').css('backgroundColor', chart.options.colors[i]);
-        $('#legend_' + group).append(legendItem)
-        $('#legend_' + group).addClass('text-center')
+        $('#legend_' + group).append(legendItem).addClass('text-center')
       })
-
-      $('.bt-toggle').prop('hidden', false);
 
       return instances;
     }

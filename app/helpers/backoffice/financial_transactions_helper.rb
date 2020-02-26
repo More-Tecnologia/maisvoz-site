@@ -98,7 +98,7 @@ module Backoffice
     def format_financial_reason(transaction)
       reason = transaction.try(:financial_reason)
       label = reason.try(:title)
-      return "#{label} | #{transaction.note}" if reason.credit_reason? || reason.debit_reason?
+      return "#{label} | #{transaction.note}" if reason.credit_reason? || reason.debit_reason? || reason.expense_reason?
       label
     end
 

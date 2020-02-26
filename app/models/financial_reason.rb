@@ -37,6 +37,10 @@ class FinancialReason < ApplicationRecord
     code == '2900'
   end
 
+  def expense_reason?
+    code == '3800'
+  end
+
   def self.chargeback
     @@chargeback ||= find_by(code: '100')
   end

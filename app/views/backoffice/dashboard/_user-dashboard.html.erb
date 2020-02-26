@@ -54,6 +54,9 @@
     vertical-align: middle;
     border-radius: 1px;
   }
+  .card-placeholder {
+    min-height: 640px;
+  }
 </style>
 <br>
 <div class="row linhaHome">
@@ -130,15 +133,16 @@
 
 <div class="row">
   <div class="col-md-2">
-    <div class="card">
-      <label class="dashboard-card__label">
-        <%= t(:account_earnings_limit) %>
-        <div id="account_earnings_limit"></div>
-      </label>
-
-      <div id="earnings"></div>
-      <div id="legend_earnings" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#424242, #5c5a5a">
+    <div class="card card-placeholder">
+        <label class="dashboard-card__label">
+          <%= t(:account_earnings_limit) %>
+          <div id="account_earnings_limit"></div>
+        </label>
+      <div class="card-body">
+        <div id="earnings"></div>
+        <div id="legend_earnings" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#424242, #5c5a5a">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -146,23 +150,24 @@
 
   </div>
   <div class="col-md-2">
-    <div class="card">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <%= t(:balance) %>
         <div id="balance">
         </div>
       </label>
-
-      <div id="balances">
+      <div class="card-body">
+        <div id="balances">
+        </div>
+        <div id="legend_balances" class="donut-legend"></div>
       </div>
-      <div id="legend_balances" class="donut-legend"></div>
       <span href="#" class="btn btn-white bt-toggle" head="balance" group="balances" object="available_balance, blocked_balance" colors="#5cb85c, #d9534f">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
   </div>
   <div class="col-md-2">
-    <div class="card">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <strong class="text-black">
           <%= t(:total_bonus) %>
@@ -183,11 +188,12 @@
 
         </strong>
       </label>
-
-      <div id="bonus">
+      <div class="card-body">
+        <div id="bonus">
+        </div>
+        <div id="legend_bonus" class="donut-legend"></div>
       </div>
-      <div id="legend_bonus" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" head="total_bonus" group="bonus" object="binary, direct_commission, matching, pool_trade, residual, chargebacks" colors="#099f8c, #5cb85c, #206d34, #8fdfa5, #21f259, #d9534f" subheads="gross_bonus, chargebacks">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="total_bonus" group="bonus" object="binary, direct_commission, matching, pool_trade, residual, chargebacks" colors="#099f8c, #5cb85c, #206d34, #8fdfa5, #21f259, #d9534f" subheads="gross_bonus, chargebacks">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -195,47 +201,51 @@
 
   </div>
   <div class="col-md-2">
-    <div class="card">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <%= t(:unilevel_affiliates_count) %>
         <div id="unilevel_affiliates_count">
         </div>
       </label>
-
-      <div id="unilevel_counts"></div>
-      <div id="legend_unilevel_counts" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#5cb85c, #d9534f">
+      <div class="card-body">
+        <div id="unilevel_counts"></div>
+        <div id="legend_unilevel_counts" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#5cb85c, #d9534f">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
   </div>
 
   <div class="col-md-2">
-    <div class="card">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <%= t(:binary_affiliates_count) %>
         <div id="binary_affiliates_count">
         </div>
       </label>
-
-      <div id="binary_count">
+      <div class="card-body">
+        <div id="binary_count">
+        </div>
+        <div id="legend_binary_count" class="donut-legend"></div>
       </div>
-      <div id="legend_binary_count" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#424242, #5c5a5a">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#424242, #5c5a5a">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
 
   </div>
   <div class="col-md-2">
-    <div class="card">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <%= t(:binary_scores) %>
         <div id="binary_score"></div>
       </label>
-      <div id="binary_scores"></div>
-      <div id="legend_binary_scores" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#424242, #5c5a5a">
+      <div class="card-body">
+        <div id="binary_scores"></div>
+        <div id="legend_binary_scores" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#424242, #5c5a5a">
         <i class="fa fa-refresh"></i>
       </span>
     </div>

@@ -24,6 +24,11 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  #pie-chart6 {
+    max-height: 280px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
   #pie-refresh {
     max-height: 280px;
     margin-top: 20px;
@@ -135,6 +140,9 @@
       <div id="pie-chart">
       </div>
       <div id="legend1" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
 
 
@@ -150,6 +158,9 @@
       <div id="pie-chart2">
       </div>
       <div id="legend2" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
 
 
@@ -180,6 +191,9 @@
       <div id="pie-chart3">
       </div>
       <div id="legend3" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
 
 
@@ -195,9 +209,10 @@
       <div id="pie-chart4">
       </div>
       <div id="legend4" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
-
-
   </div>
   <div class="col-md-2">
     <div class="card" class="none-background">
@@ -210,20 +225,33 @@
       <div id="pie-chart5">
       </div>
       <div id="legend5" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
 
 
   </div>
   <div class="col-md-2">
-    <div id="pie-refresh" class="panel text-center" class="none-background" style="background-color: rgba(245, 245, 245, 0.0);border: none;">
-      <br><br><br><br><br><br><br>
-      <div class="panel-body">
-        <a href="#" class="btn btn-info btn-lg bt-toggle" value="backoffice/dashboard/user_data.json">
-          <i class="fa fa-refresh"></i> <%= t(:refresh) %>
-        </a>
+    <div class="card">
+      <label class="dashboard-card__label">
+        <%= t(:binary_score) %>
+        <div id="binary_score">
+
+        </div>
+      </label>
+      <div id="pie-chart6">
+
       </div>
+      <div id="legend6" class="donut-legend">
+
+      </div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
   </div>
+
 </div><br><br>
 
 <div class="row">

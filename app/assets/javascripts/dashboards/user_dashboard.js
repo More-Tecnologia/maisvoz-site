@@ -1,4 +1,4 @@
-const pieCharts = ["", "2", "3", "4", "5"]
+const pieCharts = ["", "2", "3", "4", "5", '6']
 const locale = $("#locale").attr('value');
 const account_earnings_limit = $('#account_earnings_limit');
 const balance = $('#balance');
@@ -7,6 +7,7 @@ const gross_bonus = $('#gross_bonus');
 const chargebacks = $('#chargebacks');
 const unilevel_affiliates_count = $('#unilevel_affiliates_count');
 const binary_affiliates_count = $('#binary_affiliates_count');
+const binary_score = $('#binary_score')
 
 $(document).on('click', '.bt-toggle', {}, function(e) {
   charts_cleaner();
@@ -25,6 +26,7 @@ function charts_cleaner() {
   chargebacks.empty();
   unilevel_affiliates_count.empty();
   binary_affiliates_count.empty();
+  binary_score.empty();
   return false;
 };
 
@@ -42,6 +44,7 @@ async function getInstance() {
       let balances = user_data.balances
       let unilevel_counts = user_data.unilevel_counts
       let binary_count = user_data.binary_count
+      let binary_score_count = user_data.binary_score
 
       account_earnings_limit.append("<strong>" + earnings.account_earnings_limit + "</strong>").addClass('btn-info');
       balance.append(balances.balance).addClass('btn-success');
@@ -50,6 +53,7 @@ async function getInstance() {
       chargebacks.append(bonus.chargebacks).addClass('btn-danger');
       unilevel_affiliates_count.append(unilevel_counts.unilevel_affiliates_count).addClass('btn-primary');
       binary_affiliates_count.append(binary_count.binary_affiliates_count).addClass('btn-white');
+      binary_score.append(binary_score_count.score).addClass('btn-success')
       var browsersChart = Morris.Donut({
         element: 'pie-chart',
         colors: ["#00a65a", "#555299"],
@@ -139,6 +143,23 @@ async function getInstance() {
         legendItem.find('i').css('backgroundColor', browsersChart5.options.colors[i]);
         $('#legend5').append(legendItem)
         $('#legend5').addClass('text-center')
+      });
+
+      var browsersChart6 = Morris.Donut({
+        element: 'pie-chart6',
+        colors: ["#00a65a", "#f39c12"],
+        data: [
+          {label: labels.right_binary_score, value: binary_score_count.right_binary_score},
+          {label: labels.left_binary_score, value: binary_score_count.left_binary_score}
+        ]
+      });
+
+      browsersChart6.options.data.forEach(function(label, i){
+        var legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
+
+        legendItem.find('i').css('backgroundColor', browsersChart6.options.colors[i]);
+        $('#legend6').append(legendItem)
+        $('#legend6').addClass('text-center')
       });
 
 

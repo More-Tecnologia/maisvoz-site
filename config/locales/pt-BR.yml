@@ -313,6 +313,8 @@ pt-BR:
     order_kind: Tipo do Pedido
     voucher_use_date: Data de Uso
     system_taxable: Taxável pelo sistema
+    payment_type: Tipo de Pagamento
+    billed: Faturado
   backoffice:
     orders:
       show:
@@ -348,8 +350,8 @@ pt-BR:
     binary_tree:
       show:
         title: Árvore Binária
-        left_pv: PV Esquerdo
-        right_pv: PV Direito
+        left_pv: Points Qualifications da Perna Esquerda
+        right_pv: Points Qualifications da Perna Direita
         username: Nome de usuário
         sponsor: Patrocinador
         search: Pesquisar
@@ -1263,3 +1265,26 @@ pt-BR:
   email_reactive_info: 'Reativação de email solicitada'
   make_default: 'Tornar padrão'
   account_code: 'Código da conta'
+  balance: Saldo
+  available_balance: Saldo disponível
+  blocked_balance: Saldo bloqueado
+  binary_affiliates_count: Total de afiliados na rede binária
+  binary_affiliates_left_count: Rede binária esquerda
+  binary_affiliates_right_count: Rede binária direita
+  total_bonus: Bônus Total
+  matching_bonus: Matching
+  pool_trade_bonus: Pool trade
+  residual_bonus: Residual
+  direct_commission_bonus: 'Comissão direta'
+  account_earnings_limit: Teto da conta
+  receivable_amount: Valor possível a receber
+  received_amount: Valor recebido
+  unilevel_affiliates_count: Total de afiliados na rede unilevel
+  unilevel_affiliates_actives_count: Rede unilevel ativa
+  unilevel_affiliates_inactives_count: Rede unilevel inativa
+  refresh: 'Atualizar'
+  chargebacks: 'Estornos'
+  gross_bonus: 'Bônus bruto'
+  binary_scores: 'Points qualifications'
+  left_binary_score: 'Perna esquerda'
+  right_binary_score: 'Perna direita'

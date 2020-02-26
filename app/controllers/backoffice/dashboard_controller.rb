@@ -14,7 +14,15 @@ module Backoffice
       )
     end
 
+    def user_data
+      render json: dashboard_data_constructor
+    end
+
     private
+
+    def dashboard_data_constructor
+      DashboardUserDecorator.new(current_user).build
+    end
 
     def last_orders
       return unless current_user.admin?

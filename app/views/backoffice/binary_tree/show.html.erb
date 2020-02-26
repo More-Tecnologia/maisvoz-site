@@ -13,13 +13,13 @@
        <table class="table table-bordered table-sm">
         <tr>
           <td><strong><%= t('.left_pv') %></strong></td>
-          <td><%= number_with_delimiter node.left_leg_score %></td>
+          <td><%= number_with_delimiter node.left_leg_accumulated_score.to_i %></td>
           <td><strong><%= t('left_count') %></strong></td>
           <td><%= number_with_delimiter node.left_count %></td>
         </tr>
         <tr>
           <td><strong><%= t('.right_pv') %></strong></td>
-          <td><%= number_with_delimiter node.right_leg_score %></td>
+          <td><%= number_with_delimiter node.right_leg_accumulated_score.to_i %></td>
           <td><strong><%= t('right_count') %></strong></td>
           <td><%= number_with_delimiter node.right_count %></td>
         </tr>
@@ -75,8 +75,8 @@
                               data: {
                                 username: node.user.username,
                                 sponsor: node.user.sponsor.try(:username) || '',
-                                left_pv: node.left_leg_score,
-                                right_pv: node.right_leg_score,
+                                left_pv: node.left_leg_accumulated_score,
+                                right_pv: node.right_leg_accumulated_score,
                                 career: node.user.current_career.try(:name) || '',
                               }
                             ) if node.user.current_career.present? %>
@@ -101,8 +101,8 @@
                                     data: {
                                       username: current_node.left_child.user.username,
                                       sponsor: current_node.left_child.user.sponsor.username,
-                                      left_pv: current_node.left_child.left_leg_score,
-                                      right_pv: current_node.left_child.right_leg_score,
+                                      left_pv: current_node.left_child.left_leg_accumulated_score,
+                                      right_pv: current_node.left_child.right_leg_accumulated_score,
                                       career: current_node.left_child.user.current_career.try(:name),
                                     }
                                   ) do %>
@@ -120,8 +120,8 @@
                                     data: {
                                       username: current_node.right_child.user.username,
                                       sponsor: current_node.right_child.user.sponsor.username,
-                                      left_pv: current_node.right_child.left_leg_score,
-                                      right_pv: current_node.right_child.right_leg_score,
+                                      left_pv: current_node.right_child.left_leg_accumulated_score,
+                                      right_pv: current_node.right_child.right_leg_accumulated_score,
                                       career: current_node.right_child.user.current_career.try(:name)
                                     }
                                   ) do %>
@@ -165,7 +165,7 @@
     <div class="col-xs-12">
     <div class="table-responsive">
       <table class="text-center table binary-tree m-t-30" style="margin: 0 auto;">
-      <% Career.all.each_with_index do |career, i| %>
+      <% Career.qualifying.each_with_index do |career, i| %>
         <% if i % 5 == 0 %>
           <tr>
         <% end %>
@@ -184,6 +184,14 @@
   </div>
 </div>
 
+<div class='hide'>
+  <span id='i18n-user'> <%= t('attributes.user') %> </span>
+  <span id='i18n-sponsor'> <%= t('attributes.sponsor') %> </span>
+  <span id='i18n-career'> <%= t('career') %> </span>
+  <span id='i18n-right-leg-score'> <%= t('backoffice.binary_tree.show.right_pv') %> </span>
+  <span id='i18n-left-leg-score'> <%= t('backoffice.binary_tree.show.left_pv') %> </span>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
   $('.tree-node').webuiPopover({
@@ -192,12 +200,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     content: function() {
       let $this = $(this);
 
+      const user_label = $('span#i18n-user').html();
+      const sponsor_label = $('span#i18n-sponsor').html();
+      const career_label = $('span#i18n-career').html();
+      const right_leg_score_label = $('span#i18n-right-leg-score').html();
+      const left_leg_score_label = $('span#i18n-left-leg-score').html();
+
       var html = '' +
-      '<strong>Usuário:</strong> ' + $this.data('username') +
-      '<br /> <strong>Patrocinador:</strong> ' + $this.data('sponsor') +
-      '<br /> <strong>Carreira:</strong> ' + $this.data('career') +
-      '<br /> <strong>PV Esquerda:</strong> ' + $this.data('left-pv') +
-      '<br /> <strong>PV Direita:</strong> ' + $this.data('right-pv');
+      '<strong>' + user_label + ':</strong> ' + $this.data('username') +
+      '<br /> <strong>'+ sponsor_label + ':</strong> ' + $this.data('sponsor') +
+      '<br /> <strong>' + career_label + ':</strong> ' + $this.data('career') +
+      '<br /> <strong>' + left_leg_score_label + ':</strong> ' + $this.data('left-pv') +
+      '<br /> <strong>' + right_leg_score_label + ':</strong> ' + $this.data('right-pv');
 
       return html;
     }

@@ -30,7 +30,7 @@ class DashboardUserDecorator
         bonus: bonus,
         unilevel_counts: unilevel_counts,
         binary_count: binary_count,
-        binary_score: binary_score
+        binary_scores: binary_scores
       },
       labels: {
         account_earnings_limit: I18n.t(:account_earnings_limit),
@@ -39,15 +39,15 @@ class DashboardUserDecorator
         binary_affiliates_count: I18n.t(:binary_affiliates_count),
         binary_affiliates_left_count: I18n.t(:binary_affiliates_left_count),
         binary_affiliates_right_count: I18n.t(:binary_affiliates_right_count),
-        binary_bonus: I18n.t(:binary_bonus),
-        binary_score: I18n.t(:binary_score),
+        binary: I18n.t(:binary_bonus),
+        binary_scores: I18n.t(:binary_scores),
         blocked_balance: I18n.t(:blocked_balance),
         chargebacks: I18n.t(:chargebacks),
-        direct_commission_bonus: I18n.t(:direct_commission_bonus),
+        direct_commission: I18n.t(:direct_commission_bonus),
         left_binary_score: I18n.t(:left_binary_score),
-        matching_bonus: I18n.t(:matching_bonus),
-        pool_trade_bonus: I18n.t(:pool_trade_bonus),
-        residual_bonus: I18n.t(:residual_bonus),
+        matching: I18n.t(:matching_bonus),
+        pool_trade: I18n.t(:pool_trade_bonus),
+        residual: I18n.t(:residual_bonus),
         receivable_amount: I18n.t(:receivable_amount),
         received_amount: I18n.t(:received_amount),
         right_binary_score: I18n.t(:right_binary_score),
@@ -109,9 +109,9 @@ class DashboardUserDecorator
     }
   end
 
-  def binary_score
+  def binary_scores
     {
-      score: @binary_score,
+      binary_score: @binary_score,
       left_binary_score: left_binary_score,
       right_binary_score: right_binary_score
     }
@@ -123,12 +123,12 @@ class DashboardUserDecorator
 
   def bonus
     {
-      binary_bonus: binary_bonus,
+      binary: binary_bonus,
       total_bonus: total_bonus,
-      direct_commission_bonus: direct_commission_bonus,
-      matching_bonus: matching_bonus,
-      pool_trade_bonus: pool_trade_bonus,
-      residual_bonus: residual_bonus,
+      direct_commission: direct_commission_bonus,
+      matching: matching_bonus,
+      pool_trade: pool_trade_bonus,
+      residual: residual_bonus,
       chargebacks: @chargeback.sum(&:cent_amount),
       gross_bonus: @bonus.sum(&:cent_amount)
     }

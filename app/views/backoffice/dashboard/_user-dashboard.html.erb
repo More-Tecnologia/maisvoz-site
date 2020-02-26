@@ -24,10 +24,18 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  #pie-chart6 {
+    max-height: 280px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
   #pie-refresh {
     max-height: 280px;
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+  .fix-right-a {
+    margin-right: 5px;
   }
   .donut-legend > div {
     display: inline-block;
@@ -132,6 +140,9 @@
       <div id="pie-chart">
       </div>
       <div id="legend1" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
 
 
@@ -147,6 +158,9 @@
       <div id="pie-chart2">
       </div>
       <div id="legend2" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
 
 
@@ -158,12 +172,28 @@
           <%= t(:total_bonus) %>
           <div id="total_bonus">
           </div>
+          <div class="row">
+            <div class="col-md-6">
+              <%= t(:gross_bonus) %>
+              <div id="gross_bonus">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <%= t(:chargebacks) %>
+              <div id="chargebacks">
+              </div>
+            </div>
+          </div>
+
         </strong>
       </label>
 
       <div id="pie-chart3">
       </div>
       <div id="legend3" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
 
 
@@ -179,9 +209,10 @@
       <div id="pie-chart4">
       </div>
       <div id="legend4" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
-
-
   </div>
   <div class="col-md-2">
     <div class="card" class="none-background">
@@ -194,20 +225,33 @@
       <div id="pie-chart5">
       </div>
       <div id="legend5" class="donut-legend"></div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
 
 
   </div>
   <div class="col-md-2">
-    <div id="pie-refresh" class="panel text-center" class="none-background" style="background-color: rgba(245, 245, 245, 0.0);border: none;">
-      <br><br><br><br><br><br><br>
-      <div class="panel-body">
-        <a href="#" class="btn btn-info btn-lg bt-toggle" value="backoffice/dashboard/user_data.json">
-          <i class="fa fa-refresh"></i> <%= t(:refresh) %>
-        </a>
+    <div class="card">
+      <label class="dashboard-card__label">
+        <%= t(:binary_score) %>
+        <div id="binary_score">
+
+        </div>
+      </label>
+      <div id="pie-chart6">
+
       </div>
+      <div id="legend6" class="donut-legend">
+
+      </div>
+      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+        <i class="fa fa-refresh"></i>
+      </span>
     </div>
   </div>
+
 </div><br><br>
 
 <div class="row">
@@ -318,165 +362,6 @@
 
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js">
-
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js">
-
-</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
 
-<script type="text/javascript">
-  const pieCharts = ["", "2", "3", "4", "5"]
-  const locale = $("#locale").attr('value');
-  const account_earnings_limit = $('#account_earnings_limit');
-  const balance = $('#balance');
-  const total_bonus = $('#total_bonus');
-  const unilevel_affiliates_count = $('#unilevel_affiliates_count');
-  const binary_affiliates_count = $('#binary_affiliates_count');
-
-  $(document).on('click', '.bt-toggle', {}, function(e) {
-    charts_cleaner();
-    $('.donut-legend').empty();
-    getInstance();
-  });
-
-  function charts_cleaner() {
-    pieCharts.forEach(function(item, _, _) {
-      $('#pie-chart' + item).empty();
-    })
-    account_earnings_limit.empty();
-    balance.empty();
-    total_bonus.empty();
-    unilevel_affiliates_count.empty();
-    binary_affiliates_count.empty();
-    return false;
-  };
-
-
-  async function getInstance() {
-    let path = '/backoffice/dashboard/user_data.json?locale=' + locale
-    try {
-      let response = await fetch(path);
-      if (response.ok) {
-        let instances = await response.json();
-        let user_data = JSON.parse(JSON.stringify(instances.data))
-        let labels = JSON.parse(JSON.stringify(instances.labels))
-        let bonus = user_data.bonus
-        let earnings = user_data.earnings
-        let balances = user_data.balances
-        let unilevel_counts = user_data.unilevel_counts
-        let binary_count = user_data.binary_count
-        account_earnings_limit.append("<strong>" + earnings.account_earnings_limit + "</strong>").addClass('btn-info');
-        balance.append(balances.balance).addClass('btn-success');
-        total_bonus.append(bonus.bonus_total).addClass('btn-warning');
-        unilevel_affiliates_count.append(unilevel_counts.unilevel_affiliates_count).addClass('btn-primary');
-        binary_affiliates_count.append(binary_count.binary_affiliates_count).addClass('btn-white');
-        var browsersChart = Morris.Donut({
-          element: 'pie-chart',
-          colors: ["#00a65a", "#555299"],
-          data: [
-            {label: labels.receivable_amount, value: earnings.receivable_amount},
-            {label: labels.received_amount, value: earnings.received_amount}
-          ]
-        });
-
-
-        browsersChart.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-          console.log(legendItem)
-
-            legendItem.find('i').css('backgroundColor', browsersChart.options.colors[i]);
-            $('#legend1').append(legendItem)
-            $('#legend1').addClass('text-center')
-          })
-
-
-        let browsersChart2 = Morris.Donut({
-          element: 'pie-chart2',
-          colors: ["#f39c12", "#3c8dbc"],
-          data: [
-            {label: labels.available_balance, value: balances.available_balance},
-            {label: labels.blocked_balance, value: balances.blocked_balance},
-          ]
-        });
-
-        browsersChart2.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-          console.log(legendItem)
-
-            legendItem.find('i').css('backgroundColor', browsersChart2.options.colors[i]);
-            $('#legend2').append(legendItem)
-            $('#legend2').addClass('text-center')
-          })
-
-        let browsersChart3 = Morris.Donut({
-          element: 'pie-chart3',
-          colors: ["#00a65a", "#f39c12", "#3c8dbc", "#dd4b39"],
-          data: [
-            {label: labels.binary_bonus, value: bonus.binary_bonus},
-            {label: labels.matching_bonus, value: bonus.matching_bonus},
-            {label: labels.pool_trade_bonus, value: bonus.pool_trade_bonus},
-            {label: labels.residual_bonus, value: bonus.residual_bonus}
-          ]
-        });
-
-        browsersChart3.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-          console.log(legendItem)
-
-            legendItem.find('i').css('backgroundColor', browsersChart3.options.colors[i]);
-            $('#legend3').append(legendItem)
-            $('#legend3').addClass('text-center')
-          })
-
-        let browsersChart4 = Morris.Donut({
-          element: 'pie-chart4',
-          colors: ["#3c8dbc", "#dd4b39", "#555299"],
-          data: [
-            {label: labels.unilevel_affiliates_left_count, value: unilevel_counts.unilevel_affiliates_left_count},
-            {label: labels.unilevel_affiliates_right_count, value: unilevel_counts.unilevel_affiliates_right_count}
-          ]
-        });
-
-        browsersChart4.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-          console.log(legendItem)
-
-            legendItem.find('i').css('backgroundColor', browsersChart4.options.colors[i]);
-            $('#legend4').append(legendItem)
-            $('#legend4').addClass('text-center')
-          })
-
-      let browsersChart5 = Morris.Donut({
-          element: 'pie-chart5',
-          colors: ["#00a65a", "#f39c12"],
-          data: [
-            {label: labels.binary_affiliates_left_count, value: binary_count.binary_affiliates_left_count},
-            {label: labels.binary_affiliates_right_count, value: binary_count.binary_affiliates_right_count}
-          ]
-        });
-
-        browsersChart5.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-
-          legendItem.find('i').css('backgroundColor', browsersChart5.options.colors[i]);
-          $('#legend5').append(legendItem)
-          $('#legend5').addClass('text-center')
-        });
-
-
-        return instances;
-      }
-      throw new Error('Request failed!');
-    }
-    catch(error) {
-      console.log(error);
-    }
-  }
-
-  $(document).ready(function(){
-    getInstance();
-  });
-
-</script>
+<%= javascript_include_tag 'dashboards/user_dashboard', 'data-turbolinks-track': 'reload' %>

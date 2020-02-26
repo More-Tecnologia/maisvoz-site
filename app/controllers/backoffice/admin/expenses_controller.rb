@@ -31,7 +31,7 @@ module Backoffice
 
       def validate_master_password
         master_password = params[:financial_transaction][:master_password]
-        return if authenticate_master_password(master_password)
+        return if authenticate_master_password?(master_password)
         flash[:error] = t('defaults.unauthenticate_master_password')
         redirect_to new_backoffice_admin_expense_path
       end

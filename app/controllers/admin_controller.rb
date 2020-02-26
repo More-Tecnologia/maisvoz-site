@@ -12,7 +12,7 @@ class AdminController < BackofficeController
     redirect_to backoffice_dashboard_index_path
   end
 
-  def authenticate_master_password(master_password)
+  def authenticate_master_password?(master_password)
     digest = Digest::SHA256.hexdigest(master_password)
     digest == ENV['MASTER_PASSWORD_DIGEST']
   end

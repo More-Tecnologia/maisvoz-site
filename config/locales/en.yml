@@ -1241,3 +1241,6 @@
   refresh: 'Refresh'
   chargebacks: 'Chargebacks'
   gross_bonus: 'Gross bonus'
+  binary_score: 'Points qualifications'
+  left_binary_score: 'Left leg'
+  right_binary_score: 'Right leg'

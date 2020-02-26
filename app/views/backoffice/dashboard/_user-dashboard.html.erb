@@ -121,7 +121,7 @@
       <div class="dashboard-card__label">
         <span><%= t(:next) + ' ' + t(:career) %></span>
       </div>
-      <div class="dashboard-card__value label-info">
+      <div class="dashboard-card__value btn-default">
         <%= current_user.next_career_kind.try(:name) %>
       </div>
     </div>

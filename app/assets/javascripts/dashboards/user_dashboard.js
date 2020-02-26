@@ -47,7 +47,7 @@ async function getInstance(group, head, subheads, data, colors) {
       });
 
       chart.options.data.forEach(function(label, i){
-        var legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
+        let legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
 
         legendItem.find('i').css('backgroundColor', chart.options.colors[i]);
         $('#legend_' + group).append(legendItem)

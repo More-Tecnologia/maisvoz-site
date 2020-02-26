@@ -757,6 +757,7 @@
     score_active: Active
     score_expired: Expired
     pay_with_voucher: Pay with Voucher
+    unauthenticate_master_password: Unauthenticated master password
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:

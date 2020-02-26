@@ -2,6 +2,8 @@ module Backoffice
   module Admin
     class ExpensesController < AdminController
 
+      before_action :validate_master_password, only: :create
+
       def new
         @financial_transaction = FinancialTransaction.new
       end
@@ -12,7 +14,6 @@ module Backoffice
           flash[:success] = t('.success')
           redirect_to new_backoffice_admin_expense_path
         else
-          flash[:error] = @financial_transaction.errors.full_messages.join(', ')
           render :new
         end
       end
@@ -24,14 +25,15 @@ module Backoffice
                            .permit(:cent_amount, :note)
                            .merge(user: User.find_morenwm_customer_admin,
                                   financial_reason: FinancialReason.expense)
-        cleasing_cent_amount(attributes)
+        attributes[:cent_amount] = cleasing_decimal_number(attributes[:cent_amount])
         attributes
       end
 
-      def cleasing_cent_amount(attributes)
-        attributes[:cent_amount] = attributes[:cent_amount].to_s.gsub('.','')
-                                                                .gsub(',','.')
-                                                                .to_f
+      def validate_master_password
+        master_password = params[:financial_transaction][:master_password]
+        return if authenticate_master_password(master_password)
+        flash[:error] = t('defaults.unauthenticate_master_password')
+        redirect_to new_backoffice_admin_expense_path
       end
 
     end

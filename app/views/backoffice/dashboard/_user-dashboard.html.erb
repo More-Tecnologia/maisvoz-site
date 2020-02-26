@@ -54,6 +54,9 @@
     vertical-align: middle;
     border-radius: 1px;
   }
+  .card-placeholder {
+    min-height: 640px;
+  }
 </style>
 <br>
 <div class="row linhaHome">
@@ -121,7 +124,7 @@
       <div class="dashboard-card__label">
         <span><%= t(:next) + ' ' + t(:career) %></span>
       </div>
-      <div class="dashboard-card__value label-info">
+      <div class="dashboard-card__value btn-default">
         <%= current_user.next_career_kind.try(:name) %>
       </div>
     </div>
@@ -130,17 +133,16 @@
 
 <div class="row">
   <div class="col-md-2">
-    <div class="card" class="none-background">
-      <label class="dashboard-card__label">
-        <%= t(:account_earnings_limit) %>
-        <div id="account_earnings_limit">
-        </div>
-      </label>
-
-      <div id="pie-chart">
+    <div class="card card-placeholder">
+        <label class="dashboard-card__label">
+          <%= t(:account_earnings_limit) %>
+          <div id="account_earnings_limit"></div>
+        </label>
+      <div class="card-body">
+        <div id="earnings"></div>
+        <div id="legend_earnings" class="donut-legend"></div>
       </div>
-      <div id="legend1" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -148,50 +150,49 @@
 
   </div>
   <div class="col-md-2">
-    <div class="card" class="none-background">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <%= t(:balance) %>
         <div id="balance">
         </div>
       </label>
-
-      <div id="pie-chart2">
+      <div class="card-body">
+        <div id="balances">
+        </div>
+        <div id="legend_balances" class="donut-legend"></div>
       </div>
-      <div id="legend2" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+      <span href="#" class="btn btn-white bt-toggle" head="balance" group="balances" object="available_balance, blocked_balance" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
-
-
   </div>
   <div class="col-md-2">
-    <div class="card" class="none-background">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <strong class="text-black">
           <%= t(:total_bonus) %>
           <div id="total_bonus">
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <%= t(:gross_bonus) %>
-              <div id="gross_bonus">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <%= t(:chargebacks) %>
-              <div id="chargebacks">
-              </div>
-            </div>
-          </div>
-
         </strong>
       </label>
-
-      <div id="pie-chart3">
+      <div class="card-body">
+        <div id="bonus">
+        </div>
+        <div id="legend_bonus" class="donut-legend"></div>
       </div>
-      <div id="legend3" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+      <div class="row text-center">
+        <div class="col-md-6">
+          <%= t(:gross_bonus) %>
+          <div id="gross_bonus">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <%= t(:chargebacks) %>
+          <div id="chargebacks">
+          </div>
+        </div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle " head="total_bonus" group="bonus" object="binary, direct_commission, matching, pool_trade, residual, chargebacks" colors="#734A27, #BF8049, #D9AB82, #D9D7D7, #0D0D0D, #d9534f" subheads="gross_bonus, chargebacks">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -199,54 +200,51 @@
 
   </div>
   <div class="col-md-2">
-    <div class="card" class="none-background">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <%= t(:unilevel_affiliates_count) %>
         <div id="unilevel_affiliates_count">
         </div>
       </label>
-
-      <div id="pie-chart4">
+      <div class="card-body">
+        <div id="unilevel_counts"></div>
+        <div id="legend_unilevel_counts" class="donut-legend"></div>
       </div>
-      <div id="legend4" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
   </div>
+
   <div class="col-md-2">
-    <div class="card" class="none-background">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <%= t(:binary_affiliates_count) %>
         <div id="binary_affiliates_count">
         </div>
       </label>
-
-      <div id="pie-chart5">
+      <div class="card-body">
+        <div id="binary_count">
+        </div>
+        <div id="legend_binary_count" class="donut-legend"></div>
       </div>
-      <div id="legend5" class="donut-legend"></div>
-      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
 
-
   </div>
   <div class="col-md-2">
-    <div class="card">
+    <div class="card card-placeholder">
       <label class="dashboard-card__label">
-        <%= t(:binary_score) %>
-        <div id="binary_score">
-
-        </div>
+        <%= t(:binary_scores) %>
+        <div id="binary_score"></div>
       </label>
-      <div id="pie-chart6">
-
+      <div class="card-body">
+        <div id="binary_scores"></div>
+        <div id="legend_binary_scores" class="donut-legend"></div>
       </div>
-      <div id="legend6" class="donut-legend">
-
-      </div>
-      <span href="#" class="btn btn-white bt-toggle" value="backoffice/dashboard/user_data.json">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>

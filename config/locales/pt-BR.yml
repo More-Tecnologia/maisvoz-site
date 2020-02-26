@@ -1279,6 +1279,6 @@ pt-BR:
   refresh: 'Atualizar'
   chargebacks: 'Estornos'
   gross_bonus: 'Bônus bruto'
-  binary_score: 'Points qualifications'
+  binary_scores: 'Points qualifications'
   left_binary_score: 'Perna esquerda'
   right_binary_score: 'Perna direita'

@@ -1,8 +1,14 @@
 class DashboardUserDecorator
-  POOL_TRADE = FinancialReason.pool_tranding
   BINARY = FinancialReason.binary_bonus
-  RESIDUAL = FinancialReason.residual_bonus
+  BINARY_CHARGEBACK = FinancialReason.binary_bonus
+  DIRECT_COMMISSION = FinancialReason.direct_commission_bonus
+  DIRECT_COMMISSION_CHARGEBACK = FinancialReason.direct_commission_bonus_chargeback
   MATCHING = FinancialReason.matching_bonus
+  MATCHING_CHARGEBACK = FinancialReason.matching_bonus
+  POOL_TRADE = FinancialReason.pool_tranding
+  POOL_TRADE_CHARGEBACK = FinancialReason.pool_tranding
+  RESIDUAL = FinancialReason.residual_bonus
+  RESIDUAL_CHARGEBACK = FinancialReason.residual_bonus
 
   def initialize(user)
     @user = user
@@ -32,10 +38,12 @@ class DashboardUserDecorator
         binary_affiliates_left_count: I18n.t(:binary_affiliates_left_count),
         binary_affiliates_right_count: I18n.t(:binary_affiliates_right_count),
         binary_bonus: I18n.t(:binary_bonus),
-        bonus_total: I18n.t(:bonus_total),
+        total_bonus: I18n.t(:total_bonus),
+        chargebacks: I18n.t(:chargebacks),
         matching_bonus: I18n.t(:matching_bonus),
         pool_trade_bonus: I18n.t(:pool_trade_bonus),
         residual_bonus: I18n.t(:residual_bonus),
+        direct_commission_bonus: I18n.t(:direct_commission_bonus),
         account_earnings_limit: I18n.t(:account_earnings_limit),
         receivable_amount: I18n.t(:receivable_amount),
         received_amount: I18n.t(:received_amount),
@@ -92,7 +100,7 @@ class DashboardUserDecorator
 
   def binary_bonus
     @bonus.by_bonus(BINARY)
-          .sum(&:cent_amount) - @chargeback.by_bonus(BINARY)
+          .sum(&:cent_amount) - @chargeback.by_bonus(BINARY_CHARGEBACK)
                                            .sum(&:cent_amount)
   end
 
@@ -103,15 +111,24 @@ class DashboardUserDecorator
   def bonus
     {
       binary_bonus: binary_bonus,
-      bonus_total: bonus_total,
+      total_bonus: total_bonus,
+      direct_commission_bonus: direct_commission_bonus,
       matching_bonus: matching_bonus,
       pool_trade_bonus: pool_trade_bonus,
-      residual_bonus: residual_bonus
+      residual_bonus: residual_bonus,
+      chargebacks: @chargeback.sum(&:cent_amount),
+      gross_bonus: @bonus.sum(&:cent_amount)
     }
   end
 
-  def bonus_total
+  def total_bonus
     @bonus.sum(&:cent_amount) - @chargeback.sum(&:cent_amount)
+  end
+
+  def direct_commission_bonus
+    @bonus.by_bonus(DIRECT_COMMISSION)
+          .sum(&:cent_amount) - @chargeback.by_bonus(DIRECT_COMMISSION_CHARGEBACK)
+                                           .sum(&:cent_amount)
   end
 
   def earnings
@@ -124,13 +141,13 @@ class DashboardUserDecorator
 
   def matching_bonus
     @bonus.by_bonus(MATCHING)
-          .sum(&:cent_amount) - @chargeback.by_bonus(MATCHING)
+          .sum(&:cent_amount) - @chargeback.by_bonus(MATCHING_CHARGEBACK)
                                            .sum(&:cent_amount)
   end
 
   def pool_trade_bonus
     @bonus.by_bonus(POOL_TRADE)
-          .sum(&:cent_amount) - @chargeback.by_bonus(POOL_TRADE)
+          .sum(&:cent_amount) - @chargeback.by_bonus(POOL_TRADE_CHARGEBACK)
                                            .sum(&:cent_amount)
   end
 
@@ -144,7 +161,7 @@ class DashboardUserDecorator
 
   def residual_bonus
     @bonus.by_bonus(RESIDUAL)
-          .sum(&:cent_amount) - @chargeback.by_bonus(RESIDUAL)
+          .sum(&:cent_amount) - @chargeback.by_bonus(RESIDUAL_CHARGEBACK)
                                            .sum(&:cent_amount)
   end
 

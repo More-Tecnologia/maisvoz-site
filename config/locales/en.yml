@@ -304,6 +304,8 @@
     voucher_use_date: Use Date
     my_vouchers: Meus Vouchers
     system_taxable: System Taxable
+    payment_type: Payment Type
+    billed: Billed
   backoffice:
     orders:
       show:

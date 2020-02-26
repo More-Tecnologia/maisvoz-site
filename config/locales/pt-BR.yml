@@ -313,6 +313,8 @@ pt-BR:
     order_kind: Tipo do Pedido
     voucher_use_date: Data de Uso
     system_taxable: Taxável pelo sistema
+    payment_type: Tipo de Pagamento
+    billed: Faturado
   backoffice:
     orders:
       show:

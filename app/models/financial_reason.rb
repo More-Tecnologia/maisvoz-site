@@ -129,4 +129,8 @@ class FinancialReason < ApplicationRecord
     @@matching_bonus_chargeback_by_inactivity ||= find_by(code: '3700')
   end
 
+  def self.expense
+    @@expense ||= find_by(code: '3800')
+  end
+
 end

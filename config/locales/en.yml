@@ -463,6 +463,9 @@
       user_versions:
         index:
           title: User Activity Report
+      expenses:
+        create:
+          success: Created expense
     support:
       users:
         index:

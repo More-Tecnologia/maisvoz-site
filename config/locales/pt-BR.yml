@@ -469,6 +469,9 @@ pt-BR:
       pool_trandings:
         create:
           success: Valor do Pool Tranding salvo com sucesso.
+      expenses:
+        create:
+          success: Despesa lançada com sucesso
     support:
       users:
         index:
@@ -781,6 +784,7 @@ pt-BR:
     voucher_payment: Voucher só paga o produto Advance
     my_vouchers: Meus Vouchers
     pay_with_voucher: Pagar com Voucher
+    expenses: Lançamento de Despesas
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -833,6 +837,7 @@ pt-BR:
       update: Atualizar %{model}
       sim_card_transfer: Transferir CHIP(s)
       checkout: Gerar Pedido
+      send_expense: Lançar Despesa
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De

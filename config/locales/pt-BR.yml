@@ -1263,10 +1263,11 @@ pt-BR:
   binary_affiliates_count: Total de afiliados na rede binária
   binary_affiliates_left_count: Rede binária esquerda
   binary_affiliates_right_count: Rede binária direita
-  bonus_total: Total de bonus
+  total_bonus: Bônus Total
   matching_bonus: Matching
   pool_trade_bonus: Pool trade
   residual_bonus: Residual
+  direct_commission_bonus: 'Comissão direta'
   account_earnings_limit: Teto da conta
   receivable_amount: Valor possível a receber
   received_amount: Valor recebido
@@ -1274,3 +1275,5 @@ pt-BR:
   unilevel_affiliates_actives_count: Rede unilevel ativa
   unilevel_affiliates_inactives_count: Rede unilevel inativa
   refresh: 'Atualizar'
+  chargebacks: 'Estornos'
+  gross_bonus: 'Bônus bruto'

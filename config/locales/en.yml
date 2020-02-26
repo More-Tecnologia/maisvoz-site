@@ -1227,10 +1227,11 @@
   binary_affiliates_count: Total affiliates in the binary tree
   binary_affiliates_left_count: Left binary tree
   binary_affiliates_right_count: Right binary tree
-  bonus_total: Bonus total
+  total_bonus: Total Bonus
   matching_bonus: Matching
   pool_trade_bonus: Pool trade
   residual_bonus: Residual
+  direct_commission_bonus: 'Direct commission'
   account_earnings_limit: Account earnings limit
   receivable_amount: Receivable amout
   received_amount: Received amout
@@ -1238,3 +1239,5 @@
   unilevel_affiliates_actives_count: Active unilevel tree
   unilevel_affiliates_inactives_count: Inactive unilevel tree
   refresh: 'Refresh'
+  chargebacks: 'Chargebacks'
+  gross_bonus: 'Gross bonus'

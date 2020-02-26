@@ -1,4 +1,4 @@
-<style media="screen">
+total_bonus<style media="screen">
   #pie-chart {
     max-height: 280px;
     margin-top: 20px;
@@ -28,6 +28,9 @@
     max-height: 280px;
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+  .fix-right-a {
+    margin-right: 5px;
   }
   .donut-legend > div {
     display: inline-block;
@@ -158,6 +161,19 @@
           <%= t(:total_bonus) %>
           <div id="total_bonus">
           </div>
+          <div class="row">
+            <div class="col-md-6">
+              <%= t(:gross_bonus) %>
+              <div id="gross_bonus">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <%= t(:chargebacks) %>
+              <div id="chargebacks">
+              </div>
+            </div>
+          </div>
+
         </strong>
       </label>
 
@@ -332,6 +348,8 @@
   const account_earnings_limit = $('#account_earnings_limit');
   const balance = $('#balance');
   const total_bonus = $('#total_bonus');
+  const gross_bonus = $('#gross_bonus');
+  const chargebacks = $('#chargebacks');
   const unilevel_affiliates_count = $('#unilevel_affiliates_count');
   const binary_affiliates_count = $('#binary_affiliates_count');
 
@@ -348,6 +366,8 @@
     account_earnings_limit.empty();
     balance.empty();
     total_bonus.empty();
+    gross_bonus.empty();
+    chargebacks.empty();
     unilevel_affiliates_count.empty();
     binary_affiliates_count.empty();
     return false;
@@ -367,9 +387,12 @@
         let balances = user_data.balances
         let unilevel_counts = user_data.unilevel_counts
         let binary_count = user_data.binary_count
+
         account_earnings_limit.append("<strong>" + earnings.account_earnings_limit + "</strong>").addClass('btn-info');
         balance.append(balances.balance).addClass('btn-success');
-        total_bonus.append(bonus.bonus_total).addClass('btn-warning');
+        total_bonus.append(bonus.total_bonus).addClass('btn-warning');
+        gross_bonus.append(bonus.gross_bonus).addClass('btn-success');
+        chargebacks.append(bonus.chargebacks).addClass('btn-danger');
         unilevel_affiliates_count.append(unilevel_counts.unilevel_affiliates_count).addClass('btn-primary');
         binary_affiliates_count.append(binary_count.binary_affiliates_count).addClass('btn-white');
         var browsersChart = Morris.Donut({
@@ -383,8 +406,7 @@
 
 
         browsersChart.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-          console.log(legendItem)
+          var legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
 
             legendItem.find('i').css('backgroundColor', browsersChart.options.colors[i]);
             $('#legend1').append(legendItem)
@@ -394,7 +416,7 @@
 
         let browsersChart2 = Morris.Donut({
           element: 'pie-chart2',
-          colors: ["#f39c12", "#3c8dbc"],
+          colors: ["#00a65a", "#d9534f"],
           data: [
             {label: labels.available_balance, value: balances.available_balance},
             {label: labels.blocked_balance, value: balances.blocked_balance},
@@ -402,8 +424,7 @@
         });
 
         browsersChart2.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-          console.log(legendItem)
+          var legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
 
             legendItem.find('i').css('backgroundColor', browsersChart2.options.colors[i]);
             $('#legend2').append(legendItem)
@@ -412,18 +433,19 @@
 
         let browsersChart3 = Morris.Donut({
           element: 'pie-chart3',
-          colors: ["#00a65a", "#f39c12", "#3c8dbc", "#dd4b39"],
+          colors: ["#00a65a", "#292b2c", "#3c8dbc", "#5bc0de", "#a3a3a3", "#d9534f"],
           data: [
             {label: labels.binary_bonus, value: bonus.binary_bonus},
             {label: labels.matching_bonus, value: bonus.matching_bonus},
             {label: labels.pool_trade_bonus, value: bonus.pool_trade_bonus},
-            {label: labels.residual_bonus, value: bonus.residual_bonus}
+            {label: labels.residual_bonus, value: bonus.residual_bonus},
+            {label: labels.direct_commission_bonus, value: bonus.direct_commission_bonus},
+            {label: labels.chargebacks, value: bonus.chargebacks}
           ]
         });
 
         browsersChart3.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-          console.log(legendItem)
+          var legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
 
             legendItem.find('i').css('backgroundColor', browsersChart3.options.colors[i]);
             $('#legend3').append(legendItem)
@@ -440,8 +462,7 @@
         });
 
         browsersChart4.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
-          console.log(legendItem)
+          var legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
 
             legendItem.find('i').css('backgroundColor', browsersChart4.options.colors[i]);
             $('#legend4').append(legendItem)
@@ -458,7 +479,7 @@
         });
 
         browsersChart5.options.data.forEach(function(label, i){
-          var legendItem = $('<div></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
+          var legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
 
           legendItem.find('i').css('backgroundColor', browsersChart5.options.colors[i]);
           $('#legend5').append(legendItem)

@@ -313,6 +313,8 @@ pt-BR:
     order_kind: Tipo do Pedido
     voucher_use_date: Data de Uso
     system_taxable: Taxável pelo sistema
+    payment_type: Tipo de Pagamento
+    billed: Faturado
   backoffice:
     orders:
       show:
@@ -348,8 +350,8 @@ pt-BR:
     binary_tree:
       show:
         title: Árvore Binária
-        left_pv: PV Esquerdo
-        right_pv: PV Direito
+        left_pv: Points Qualifications da Perna Esquerda
+        right_pv: Points Qualifications da Perna Direita
         username: Nome de usuário
         sponsor: Patrocinador
         search: Pesquisar

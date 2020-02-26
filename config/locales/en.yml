@@ -304,6 +304,8 @@
     voucher_use_date: Use Date
     my_vouchers: Meus Vouchers
     system_taxable: System Taxable
+    payment_type: Payment Type
+    billed: Billed
   backoffice:
     orders:
       show:
@@ -345,8 +347,8 @@
     binary_tree:
       show:
         title: Binary Tree
-        left_pv: PV Left
-        right_pv: PV Right
+        left_pv: Left Leg Points Qualifications
+        right_pv: Right Leg Points Qualifications
         username: Username
         sponsor: Sponsor
         search: Search

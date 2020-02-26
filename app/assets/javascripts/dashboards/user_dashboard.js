@@ -6,14 +6,22 @@ $(document).on('click', '.bt-toggle', {}, function(e) {
   let subheads = $(this).attr('subheads') || null;
   let data = $(this).attr('object');
   let colors = $(this).attr('colors');
-  chart_cleaner(group, head);
+  if(subheads) {
+    subheads = subheads.split(', ')
+  }
+  chart_cleaner(group, head, subheads);
 
   getInstance(group, head, subheads, data, colors);
 });
 
-function chart_cleaner(group, head) {
+function chart_cleaner(group, head, subheads) {
   $('#' + group).empty();
   $('#' + head).empty();
+  if(subheads) {
+    subheads.forEach(function(i) {
+      $('#' + i).empty();
+    });
+  }
   $('#legend_' + group).empty();
 
   return false;
@@ -30,7 +38,7 @@ async function getInstance(group, head, subheads, data, colors) {
 
       $('#' + head).append(user_data[group][head]).addClass('btn-primary');
       if(subheads) {
-        subheads.split(', ').forEach(function(key) {
+        subheads.forEach(function(key) {
           $('#' + key).append(user_data[group][key]).addClass('btn-primary');
         })
       }

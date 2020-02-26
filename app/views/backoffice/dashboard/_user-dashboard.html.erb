@@ -142,7 +142,7 @@
         <div id="earnings"></div>
         <div id="legend_earnings" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#424242, #5c5a5a">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -161,7 +161,7 @@
         </div>
         <div id="legend_balances" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle" head="balance" group="balances" object="available_balance, blocked_balance" colors="#5cb85c, #d9534f">
+      <span href="#" class="btn btn-white bt-toggle" head="balance" group="balances" object="available_balance, blocked_balance" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -173,19 +173,6 @@
           <%= t(:total_bonus) %>
           <div id="total_bonus">
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <%= t(:gross_bonus) %>
-              <div id="gross_bonus">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <%= t(:chargebacks) %>
-              <div id="chargebacks">
-              </div>
-            </div>
-          </div>
-
         </strong>
       </label>
       <div class="card-body">
@@ -193,7 +180,19 @@
         </div>
         <div id="legend_bonus" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="total_bonus" group="bonus" object="binary, direct_commission, matching, pool_trade, residual, chargebacks" colors="#099f8c, #5cb85c, #206d34, #8fdfa5, #21f259, #d9534f" subheads="gross_bonus, chargebacks">
+      <div class="row text-center">
+        <div class="col-md-6">
+          <%= t(:gross_bonus) %>
+          <div id="gross_bonus">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <%= t(:chargebacks) %>
+          <div id="chargebacks">
+          </div>
+        </div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle " head="total_bonus" group="bonus" object="binary, direct_commission, matching, pool_trade, residual, chargebacks" colors="#734A27, #BF8049, #D9AB82, #D9D7D7, #0D0D0D, #d9534f" subheads="gross_bonus, chargebacks">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -211,7 +210,7 @@
         <div id="unilevel_counts"></div>
         <div id="legend_unilevel_counts" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#5cb85c, #d9534f">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -229,7 +228,7 @@
         </div>
         <div id="legend_binary_count" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#424242, #5c5a5a">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -245,7 +244,7 @@
         <div id="binary_scores"></div>
         <div id="legend_binary_scores" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#424242, #5c5a5a">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#B49259, #0D0D0D">
         <i class="fa fa-refresh"></i>
       </span>
     </div>

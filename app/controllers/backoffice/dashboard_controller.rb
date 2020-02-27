@@ -22,6 +22,10 @@ module Backoffice
       render json: user_binary_counts
     end
 
+    def binary_scores_data
+      render json: user_binary_scores
+    end
+
     def bonus_data
       render json: user_bonus
     end
@@ -32,10 +36,6 @@ module Backoffice
 
     def unilevel_counts_data
       render json: user_unilevel_counts
-    end
-
-    def user_data
-      render json: dashboard_data_constructor
     end
 
     private
@@ -50,6 +50,10 @@ module Backoffice
 
     def user_binary_counts
       Dashboards::Users::BinaryCountsPresenter.new(current_user).build
+    end
+
+    def user_binary_scores
+      Dashboards::Users::BinaryScoresPresenter.new(current_user).build
     end
 
     def user_bonus

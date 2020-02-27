@@ -67,6 +67,7 @@ Rails.application.routes.draw do
       collection do
         get :user_data
         get :balances_data
+        get :bonus_data
         get :earnings_data
       end
     end

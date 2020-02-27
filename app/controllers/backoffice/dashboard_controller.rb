@@ -18,6 +18,10 @@ module Backoffice
       render json: user_balances
     end
 
+    def bonus_data
+      render json: user_bonus
+    end
+
     def earnings_data
       render json: user_earnings
     end
@@ -34,6 +38,10 @@ module Backoffice
 
     def user_balances
       Dashboards::Users::BalancesPresenter.new(current_user).build
+    end
+
+    def user_bonus
+      Dashboards::Users::BonusPresenter.new(current_user).build
     end
 
     def user_earnings

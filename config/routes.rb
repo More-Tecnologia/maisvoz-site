@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: :index do
       collection do
         get :user_data
+        get :balances_data
         get :earnings_data
       end
     end

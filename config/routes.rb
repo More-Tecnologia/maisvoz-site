@@ -50,8 +50,14 @@ Rails.application.routes.draw do
       resources :career_histories, only: [:index]
       resources :cellphone_reloads, only: [:index]
       resources :pool_trandings, only: [:new, :create]
+      resources :dashboard, only: :index do
+        collection do
+          get :bonus_data
+          get :payment_data
+          get :withdrawals_data
+        end
+      end
       resources :expenses, only: [:new, :create]
-
       resources :media_files, only: %i[show new create edit update]
     end
 

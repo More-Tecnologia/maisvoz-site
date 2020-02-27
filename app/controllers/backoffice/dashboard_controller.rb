@@ -26,6 +26,10 @@ module Backoffice
       render json: user_earnings
     end
 
+    def unilevel_counts_data
+      render json: user_unilevel_counts
+    end
+
     def user_data
       render json: dashboard_data_constructor
     end
@@ -46,6 +50,10 @@ module Backoffice
 
     def user_earnings
       Dashboards::Users::EarningsPresenter.new(current_user).build
+    end
+
+    def user_unilevel_counts
+      Dashboards::Users::UnilevelCountsPresenter.new(current_user).build
     end
 
     def last_orders

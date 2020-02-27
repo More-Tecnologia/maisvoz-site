@@ -69,6 +69,7 @@ Rails.application.routes.draw do
         get :balances_data
         get :bonus_data
         get :earnings_data
+        get :unilevel_counts_data
       end
     end
     resource :documents, only: [:edit, :update]

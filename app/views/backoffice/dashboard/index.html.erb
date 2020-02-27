@@ -251,8 +251,21 @@
         <span class="text-white"><%= t(:last_posts) %></span>
       </div>
       <div class="dashboard-card-box__containe">
-        <div class="inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
-
+        <div class="inbox-widget mx-box text-center" tabindex="5000" style="overflow: auto; outline: none; padding-top: 2px;">
+          <div class="fb-page"
+               data-href="<%= ENV['FACEBOOK_URL'] %>"
+               data-tabs="timeline"
+               data-width="500"
+               data-height=""
+               data-small-header="false"
+               data-adapt-container-width="true"
+               data-hide-cover="false"
+               data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/Empireasy-105134351026289/"
+                        class="fb-xfbml-parse-ignore">
+              <a href="<%= ENV['FACEBOOK_URL'] %>"><%= ENV['COMPANY_NAME'] %></a>
+            </blockquote>
+          </div>
         </div>
       </div>
     </div>
@@ -301,10 +314,11 @@
     </div>
   </div>
 </div>
-<div id="locale" value="<%= params[:locale] %>">
-
-</div>
-
+<div id="locale" value="<%= params[:locale] %>"></div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+                    src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v6.0&appId=1005612036250425&autoLogAppEvents=1">
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
 
 <%= javascript_include_tag 'dashboards/user_dashboard', 'data-turbolinks-track': 'reload' %>

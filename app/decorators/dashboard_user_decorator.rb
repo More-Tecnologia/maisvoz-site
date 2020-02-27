@@ -12,7 +12,6 @@ class DashboardUserDecorator
 
   def initialize(user)
     @user = user
-    @bonus_contracts = @user.bonus_contracts.active
     @financial_transactions = FinancialTransaction.by_current_user(@user)
                                                   .to_empreendedor
                                                   .with_active_bonus
@@ -25,7 +24,6 @@ class DashboardUserDecorator
   def build
     {
       data: {
-        earnings: earnings,
         balances: balances,
         bonus: bonus,
         unilevel_counts: unilevel_counts,
@@ -33,7 +31,6 @@ class DashboardUserDecorator
         binary_scores: binary_scores
       },
       labels: {
-        account_earnings_limit: I18n.t(:account_earnings_limit),
         available_balance: I18n.t(:available_balance),
         balance: I18n.t(:balance),
         binary_affiliates_count: I18n.t(:binary_affiliates_count),
@@ -48,8 +45,6 @@ class DashboardUserDecorator
         matching: I18n.t(:matching_bonus),
         pool_trade: I18n.t(:pool_trade_bonus),
         residual: I18n.t(:residual_bonus),
-        receivable_amount: I18n.t(:receivable_amount),
-        received_amount: I18n.t(:received_amount),
         right_binary_score: I18n.t(:right_binary_score),
         total_bonus: I18n.t(:total_bonus),
         unilevel_affiliates_count: I18n.t(:unilevel_affiliates_count),
@@ -57,10 +52,6 @@ class DashboardUserDecorator
         unilevel_affiliates_inactives_count: I18n.t(:unilevel_affiliates_inactives_count)
       }
     }
-  end
-
-  def account_earnings_limit
-    @bonus_contracts.sum(&:cent_amount)
   end
 
   def available_balance
@@ -140,14 +131,6 @@ class DashboardUserDecorator
                                            .sum(&:cent_amount)
   end
 
-  def earnings
-    {
-      account_earnings_limit: account_earnings_limit,
-      receivable_amount: receivable_amount,
-      received_amount: received_amount
-    }
-  end
-
   def left_binary_score
     @user.binary_node.left_leg_accumulated_score
   end
@@ -162,14 +145,6 @@ class DashboardUserDecorator
     @bonus.by_bonus(POOL_TRADE)
           .sum(&:cent_amount) - @chargeback.by_bonus(POOL_TRADE_CHARGEBACK)
                                            .sum(&:cent_amount)
-  end
-
-  def receivable_amount
-    @bonus_contracts.sum(&:remaining_balance)
-  end
-
-  def received_amount
-    @bonus_contracts.sum(&:received_balance)
   end
 
   def residual_bonus

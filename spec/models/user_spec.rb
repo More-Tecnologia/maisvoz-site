@@ -23,6 +23,8 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:career_trails).through(:career_trail_users) }
   it { is_expected.to serialize(:ascendant_sponsors_ids).as(Array) }
   it { is_expected.to belong_to(:role_type) }
+  it { is_expected.to belong_to(:career) }
+  it { is_expected.to belong_to(:trail) }
   it { is_expected.to have_many(:sim_cards) }
   it { is_expected.to have_many(:sim_cards).class_name('SimCard')
                                            .primary_key(:support_point_user_id) }

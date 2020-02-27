@@ -2,6 +2,7 @@ module Backoffice
   class DashboardController < EntrepreneurController
 
     # before_action :redirect_if_consumer
+    MODULE = Dashboards::Users
 
     def index
       render(
@@ -15,57 +16,33 @@ module Backoffice
     end
 
     def balances_data
-      render json: user_balances
+      dashboard_data_constructor(MODULE::BalancesPresenter)
     end
 
     def binary_counts_data
-      render json: user_binary_counts
+      dashboard_data_constructor(MODULE::BinaryCountsPresenter)
     end
 
     def binary_scores_data
-      render json: user_binary_scores
+      dashboard_data_constructor(MODULE::BinaryScoresPresenter)
     end
 
     def bonus_data
-      render json: user_bonus
+      dashboard_data_constructor(MODULE::BonusPresenter)
     end
 
     def earnings_data
-      render json: user_earnings
+      dashboard_data_constructor(MODULE::EarningsPresenter)
     end
 
     def unilevel_counts_data
-      render json: user_unilevel_counts
+      dashboard_data_constructor(MODULE::UnilevelCountsPresenter)
     end
 
     private
 
-    def dashboard_data_constructor
-      DashboardUserDecorator.new(current_user).build
-    end
-
-    def user_balances
-      Dashboards::Users::BalancesPresenter.new(current_user).build
-    end
-
-    def user_binary_counts
-      Dashboards::Users::BinaryCountsPresenter.new(current_user).build
-    end
-
-    def user_binary_scores
-      Dashboards::Users::BinaryScoresPresenter.new(current_user).build
-    end
-
-    def user_bonus
-      Dashboards::Users::BonusPresenter.new(current_user).build
-    end
-
-    def user_earnings
-      Dashboards::Users::EarningsPresenter.new(current_user).build
-    end
-
-    def user_unilevel_counts
-      Dashboards::Users::UnilevelCountsPresenter.new(current_user).build
+    def dashboard_data_constructor(klass)
+      render json: klass.new(current_user).build
     end
 
     def last_orders

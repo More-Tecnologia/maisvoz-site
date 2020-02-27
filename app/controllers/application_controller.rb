@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
     attribute.join.present? if attribute.is_a?(Array)
   end
 
+  def cleasing_decimal_number(number)
+    number.to_s.gsub('.','').gsub(',','.').to_f
+  end
+
 end

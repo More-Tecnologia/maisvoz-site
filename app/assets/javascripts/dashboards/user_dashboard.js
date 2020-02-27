@@ -6,12 +6,12 @@ $(document).on('click', '.bt-toggle', {}, function(e) {
   let subheads = $(this).attr('subheads') || null;
   let data = $(this).attr('object');
   let colors = $(this).attr('colors');
-  if(subheads) {
-    subheads = subheads.split(', ')
-  }
+  let path = $(this).attr('path');
+  if(subheads) { subheads = subheads.split(', ') }
+
   chart_cleaner(group, head, subheads);
 
-  getInstance(group, head, subheads, data, colors);
+  getInstance(group, head, subheads, data, colors, path);
 });
 
 function chart_cleaner(group, head, subheads) {
@@ -27,10 +27,10 @@ function chart_cleaner(group, head, subheads) {
   return false;
 };
 
-async function getInstance(group, head, subheads, data, colors) {
-  let path = '/backoffice/dashboard/user_data.json?locale=' + locale
+async function getInstance(group, head, subheads, data, colors, path) {
+  let url = '/backoffice/dashboard/' + path + '.json?locale=' + locale
   try {
-    let response = await fetch(path);
+    let response = await fetch(url);
     if (response.ok) {
       let instances = await response.json();
       let user_data = JSON.parse(JSON.stringify(instances.data))

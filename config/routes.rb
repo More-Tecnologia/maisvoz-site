@@ -64,8 +64,13 @@ Rails.application.routes.draw do
 
     # Backoffice
     resources :dashboard, only: :index do
-      collection do 
-        get :user_data
+      collection do
+        get :balances_data
+        get :binary_counts_data
+        get :binary_scores_data
+        get :bonus_data
+        get :earnings_data
+        get :unilevel_counts_data
       end
     end
     resource :documents, only: [:edit, :update]

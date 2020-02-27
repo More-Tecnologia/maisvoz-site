@@ -957,6 +957,10 @@
         title: New user
         next: Next
         previous: Previous
+    passwords:
+      new:
+        title: Forgot password?
+        get_password_reset_link: Get password reset link
   view_all: View all
   views:
     backoffice:

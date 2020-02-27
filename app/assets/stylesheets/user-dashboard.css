@@ -56,3 +56,11 @@
 .card-placeholder {
   min-height: 640px;
 }
+
+.label-dark {
+  background-color: #000000;
+}
+
+.label-inactive {
+  background-color: #DCDCDC;
+}

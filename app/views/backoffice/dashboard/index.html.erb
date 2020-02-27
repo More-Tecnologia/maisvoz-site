@@ -5,9 +5,9 @@
         <span><%= t(:account_status) %></span>
       </div>
       <% if current_user.active? %>
-        <div class="dashboard-card__value label-default"><%= t(:active) %></div>
+        <div class="dashboard-card__value label-dark"><%= t(:active) %></div>
       <% else %>
-        <div class="dashboard-card__value label-danger"><%= t(:inactive) %></div>
+        <div class="dashboard-card__value label-inactive"><%= t(:inactive) %></div>
       <% end %>
     </div>
   </div>
@@ -17,7 +17,7 @@
       <div class="dashboard-card__label">
         <span><%= t('defaults.point_qualifications') %></span>
       </div>
-      <div class="dashboard-card__value label-success"><%= number_with_delimiter current_user.binary_node.shortter_leg_accumulated_score %></div>
+      <div class="dashboard-card__value label-dark"><%= number_with_delimiter current_user.binary_node.shortter_leg_accumulated_score.to_i %></div>
     </div>
   </div>
 
@@ -26,13 +26,11 @@
       <div class="dashboard-card__label">
         <span><%= t('binary_qualified') %></span>
       </div>
-      <div class="dashboard-card__value label-success">
         <% if current_user.binary_qualified? %>
-          <%= t('qualified') %>
+          <div class="dashboard-card__value label-dark"> <%= t('qualified') %> </div>
         <% else %>
-          <%= t('unqualified') %>
+          <div class="dashboard-card__value label-inactive"> <%= t('unqualified') %> </div>
         <% end %>
-      </div>
     </div>
   </div>
 
@@ -41,7 +39,7 @@
       <div class="dashboard-card__label">
         <span><%= t(:course) %></span>
       </div>
-      <div class="dashboard-card__value label-warning">
+      <div class="dashboard-card__value label-dark">
         <%= current_user.try(:current_trail).try(:name) %>
       </div>
     </div>
@@ -52,7 +50,7 @@
       <div class="dashboard-card__label">
         <span><%= t(:career) %></span>
       </div>
-      <div class="dashboard-card__value label-warning">
+      <div class="dashboard-card__value label-dark">
         <%= current_user.try(:current_career).try(:name) %>
       </div>
     </div>
@@ -63,7 +61,7 @@
       <div class="dashboard-card__label">
         <span><%= t(:next) + ' ' + t(:career) %></span>
       </div>
-      <div class="dashboard-card__value btn-default">
+      <div class="dashboard-card__value label-dark">
         <%= current_user.next_career_kind.try(:name) %>
       </div>
     </div>
@@ -203,7 +201,7 @@
               <tr>
                 <th><%= t(:data) %></th>
                 <th><%= t(:status) %></th>
-                <th><%= t(:value) %></th>
+                <th><%= t('attributes.amount') %></th>
               </tr>
             </thead>
             <% last_withdrawals.each do |withdraw| %>

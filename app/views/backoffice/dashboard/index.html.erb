@@ -1,5 +1,310 @@
-<% if current_user.admin? %>
-  <%= render 'admin-dashboard', last_orders: last_orders %>
-<% else %>
-  <%= render 'user-dashboard', last_qualifications: last_qualifications, last_withdrawals: last_withdrawals %>
-<% end %>
+<div class="row linhaHome">
+  <div class="col-md-2">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span><%= t(:account_status) %></span>
+      </div>
+      <% if current_user.active? %>
+        <div class="dashboard-card__value label-default"><%= t(:active) %></div>
+      <% else %>
+        <div class="dashboard-card__value label-danger"><%= t(:inactive) %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span><%= t('defaults.point_qualifications') %></span>
+      </div>
+      <div class="dashboard-card__value label-success"><%= number_with_delimiter current_user.binary_node.shortter_leg_accumulated_score %></div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span><%= t('binary_qualified') %></span>
+      </div>
+      <div class="dashboard-card__value label-success">
+        <% if current_user.binary_qualified? %>
+          <%= t('qualified') %>
+        <% else %>
+          <%= t('unqualified') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span><%= t(:course) %></span>
+      </div>
+      <div class="dashboard-card__value label-warning">
+        <%= current_user.try(:current_trail).try(:name) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span><%= t(:career) %></span>
+      </div>
+      <div class="dashboard-card__value label-warning">
+        <%= current_user.try(:current_career).try(:name) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
+        <span><%= t(:next) + ' ' + t(:career) %></span>
+      </div>
+      <div class="dashboard-card__value btn-default">
+        <%= current_user.next_career_kind.try(:name) %>
+      </div>
+    </div>
+  </div>
+</div><br><br>
+
+<div class="row">
+  <div class="col-md-2">
+    <div class="card card-placeholder">
+        <label class="dashboard-card__label">
+          <%= t(:account_earnings_limit) %>
+          <div id="account_earnings_limit"></div>
+        </label>
+      <div class="card-body">
+        <div id="earnings"></div>
+        <div id="legend_earnings" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#B49259, #0D0D0D" path="earnings_data">
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+
+
+  </div>
+  <div class="col-md-2">
+    <div class="card card-placeholder">
+      <label class="dashboard-card__label">
+        <%= t(:balance) %>
+        <div id="balance">
+        </div>
+      </label>
+      <div class="card-body">
+        <div id="balances">
+        </div>
+        <div id="legend_balances" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle" head="balance" group="balances" object="available_balance, blocked_balance" colors="#B49259, #0D0D0D" path="balances_data">
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="card card-placeholder">
+      <label class="dashboard-card__label">
+        <strong class="text-black">
+          <%= t(:total_bonus) %>
+          <div id="total_bonus">
+          </div>
+        </strong>
+      </label>
+      <div class="card-body">
+        <div id="bonus">
+        </div>
+        <div id="legend_bonus" class="donut-legend"></div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-6">
+          <%= t(:gross_bonus) %>
+          <div id="gross_bonus">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <%= t(:chargebacks) %>
+          <div id="chargebacks">
+          </div>
+        </div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle " head="total_bonus" group="bonus" object="binary, direct_commission, matching, pool_trade, residual, chargebacks" colors="#734A27, #BF8049, #D9AB82, #D9D7D7, #0D0D0D, #d9534f" subheads="gross_bonus, chargebacks" path="bonus_data">
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+
+
+  </div>
+  <div class="col-md-2">
+    <div class="card card-placeholder">
+      <label class="dashboard-card__label">
+        <%= t(:unilevel_affiliates_count) %>
+        <div id="unilevel_affiliates_count">
+        </div>
+      </label>
+      <div class="card-body">
+        <div id="unilevel_counts"></div>
+        <div id="legend_unilevel_counts" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#B49259, #0D0D0D" path="unilevel_counts_data">
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="card card-placeholder">
+      <label class="dashboard-card__label">
+        <%= t(:binary_affiliates_count) %>
+        <div id="binary_affiliates_count">
+        </div>
+      </label>
+      <div class="card-body">
+        <div id="binary_count">
+        </div>
+        <div id="legend_binary_count" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#B49259, #0D0D0D" path="binary_counts_data">
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+
+  </div>
+  <div class="col-md-2">
+    <div class="card card-placeholder">
+      <label class="dashboard-card__label">
+        <%= t(:binary_scores) %>
+        <div id="binary_score"></div>
+      </label>
+      <div class="card-body">
+        <div id="binary_scores"></div>
+        <div id="legend_binary_scores" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#B49259, #0D0D0D" path="binary_scores_data">
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+  </div>
+
+</div><br><br>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="dashboard-card-box">
+      <div class="dashboard-card-box__title">
+      <span class="text-white"><%= t(:withdrawal) %></span>
+      </div>
+        <div class="inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
+          <table class="table table-bordered table-highlight">
+            <thead class="table-highlight__head">
+              <tr>
+                <th><%= t(:data) %></th>
+                <th><%= t(:status) %></th>
+                <th><%= t(:value) %></th>
+              </tr>
+            </thead>
+            <% last_withdrawals.each do |withdraw| %>
+              <tr>
+                <td><%= l withdraw.created_at, format: :short %></td>
+                <td><%= t withdraw.status %></td>
+                <td><%= number_to_currency withdraw.gross_amount_cents %></td>
+              </tr>
+            <% end %>
+            <% if last_withdrawals.blank? %>
+              <tr>
+                <td colspan="3" class="text-center"><%= t('no_data') %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="dashboard-card-box">
+      <div class="dashboard-card-box__title">
+        <span class="text-white"><%= t(:last_qualifications) %></span>
+      </div>
+      <div class="inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
+        <table class="table table-bordered table-highlight">
+          <thead class="table-highlight__head">
+            <tr>
+              <th><%= t('attributes.user') %></th>
+              <th><%= t('attributes.career') %></th>
+            </tr>
+          </thead>
+          <% last_qualifications.each do |qualification| %>
+            <tr>
+              <td><%= qualification.try(:user).try(:username) %></td>
+              <td><%= image_tag(qualification.try(:career_trail).try(:career).image_path, size: 30) %> &nbsp <%= qualification.try(:career_trail).try(:career).try(:name) %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="dashboard-card-box">
+      <div class="dashboard-card-box__title">
+        <span class="text-white"><%= t(:last_posts) %></span>
+      </div>
+      <div class="dashboard-card-box__containe">
+        <div class="inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="support-material">
+      <div class="support-material__left-box">
+        <%= link_to t(:download_support_material), backoffice_downloads_path %>
+      </div>
+
+      <div class="support-material__right-box">
+          <ul class="support-material__download-list">
+
+            <li style="padding-right: 24px;">
+              <a href="#" target="blank">
+                <div>
+                  <%= image_tag 'download-list/presentation.jpg' %>
+                </div>
+                <div><%= t(:business_presentation) %></div>
+              </a>
+            </li>
+
+            <li style="padding-right: 24px;">
+              <a href="#" target="blank">
+                <div>
+                  <%= image_tag 'download-list/video.jpg' %>
+                </div>
+                <div> <%= ENV['COMPANY_NAME'] %> </div>
+              </a>
+            </li>
+
+            <li style="padding-right: 24px;">
+              <a href="#" target="blank">
+                <div>
+                  <%= image_tag 'download-list/paper.jpg' %>
+                </div>
+                <div><%= t(:adhesion_contract) %></div>
+              </a>
+            </li>
+
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="locale" value="<%= params[:locale] %>">
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
+
+<%= javascript_include_tag 'dashboards/user_dashboard', 'data-turbolinks-track': 'reload' %>

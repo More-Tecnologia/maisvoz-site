@@ -24,21 +24,17 @@ class DashboardUserDecorator
   def build
     {
       data: {
-        balances: balances,
         bonus: bonus,
         unilevel_counts: unilevel_counts,
         binary_count: binary_count,
         binary_scores: binary_scores
       },
       labels: {
-        available_balance: I18n.t(:available_balance),
-        balance: I18n.t(:balance),
         binary_affiliates_count: I18n.t(:binary_affiliates_count),
         binary_affiliates_left_count: I18n.t(:binary_affiliates_left_count),
         binary_affiliates_right_count: I18n.t(:binary_affiliates_right_count),
         binary: I18n.t(:binary_bonus),
         binary_scores: I18n.t(:binary_scores),
-        blocked_balance: I18n.t(:blocked_balance),
         chargebacks: I18n.t(:chargebacks),
         direct_commission: I18n.t(:direct_commission_bonus),
         left_binary_score: I18n.t(:left_binary_score),
@@ -51,22 +47,6 @@ class DashboardUserDecorator
         unilevel_affiliates_actives_count: I18n.t(:unilevel_affiliates_actives_count),
         unilevel_affiliates_inactives_count: I18n.t(:unilevel_affiliates_inactives_count)
       }
-    }
-  end
-
-  def available_balance
-    @user.available_balance
-  end
-
-  def balance
-    available_balance + blocked_balance
-  end
-
-  def balances
-    {
-      balance: balance,
-      available_balance: available_balance,
-      blocked_balance: blocked_balance
     }
   end
 
@@ -106,10 +86,6 @@ class DashboardUserDecorator
       left_binary_score: left_binary_score,
       right_binary_score: right_binary_score
     }
-  end
-
-  def blocked_balance
-    @user.blocked_balance
   end
 
   def bonus

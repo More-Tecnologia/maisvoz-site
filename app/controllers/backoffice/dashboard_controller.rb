@@ -18,10 +18,18 @@ module Backoffice
       render json: dashboard_data_constructor
     end
 
+    def earnings_data
+      render json: user_earnings
+    end
+
     private
 
     def dashboard_data_constructor
       DashboardUserDecorator.new(current_user).build
+    end
+
+    def user_earnings
+      Dashboards::Users::EarningsPresenter.new(current_user).build
     end
 
     def last_orders

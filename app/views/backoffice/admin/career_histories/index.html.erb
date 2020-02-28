@@ -24,11 +24,7 @@
 </div>
 
 <script>
-  window.onload = function(){
-
-    $('.date_filter').datepicker({
-      format: 'dd/mm/yyyy'
-    })
-
-  }
+  document.addEventListener("DOMContentLoaded", function(event) {
+      $('.date_filter').prop("type", "date");
+  });
 </script>

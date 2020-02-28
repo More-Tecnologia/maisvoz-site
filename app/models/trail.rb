@@ -5,7 +5,6 @@ class Trail < ApplicationRecord
 
   has_many :career_trails
   has_many :careers, through: :career_trails
-  has_many :users
   has_one :product
 
   validates :name, presence: true,

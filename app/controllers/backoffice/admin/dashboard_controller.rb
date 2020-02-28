@@ -14,7 +14,7 @@ module Backoffice
       end
 
       def payment_data
-        render json: { data: '' }
+        render json: Dashboards::Admins::PaymentPresenter.new.build
       end
 
       def withdrawals_data

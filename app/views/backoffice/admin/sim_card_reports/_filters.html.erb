@@ -39,12 +39,12 @@
                 <%= f.label t('attributes.in_date') %><br>
                 <span> <%= t('helpers.from') %> </span>
                 <%= f.search_field :created_at_gteq, class: 'form-control input-sm',
-                                                     data: { provide: 'datepicker' } %>
+                                                     type: 'date' %>
               </div>
               <div class="col-md-2"><br>
                 <span> <%= t('helpers.util') %> </span>
                 <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
-                                                     data: { provide: 'datepicker' } %>
+                                                     type: 'date' %>
               </div>
             </div>
             <div class="row collapse"><br>
@@ -52,12 +52,12 @@
                 <%= f.label t('attributes.transference_date') %><br>
                 <span> <%= t('helpers.from') %> </span>
                 <%= f.search_field :support_point_stock_out_at, class: 'form-control input-sm',
-                                                                data: { provide: 'datepicker' } %>
+                                                                type: 'date' %>
               </div>
               <div class="col-md-2"><br>
                 <span> <%= t('helpers.util') %> </span>
                 <%= f.search_field :support_point_stock_out_at, class: 'form-control input-sm',
-                                                                data: { provide: 'datepicker' } %>
+                                                                type: 'date' %>
               </div>
             </div>
             <div class="row collapse"><br>
@@ -65,12 +65,12 @@
                 <%= f.label t('attributes.activation_date') %><br>
                 <span> <%= t('helpers.from') %> </span>
                 <%= f.search_field :stock_out_at, class: 'form-control input-sm',
-                                                  data: { provide: 'datepicker' } %>
+                                                  type: 'date' %>
               </div>
               <div class="col-md-2"><br>
                 <span> <%= t('helpers.util') %> </span>
                 <%= f.search_field :stock_out_at, class: 'form-control input-sm',
-                                                  data: { provide: 'datepicker' } %>
+                                                  type: 'date' %>
               </div>
             </div>
           </div>

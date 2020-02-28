@@ -31,11 +31,11 @@
           <div class="row">
             <div class="col-md-4">
               <%= f.label t('.paid_from') %>
-              <%= f.search_field :date_paid_at_gteq, class: 'form-control input-sm', data: { provide: 'datepicker' } %>
+              <%= f.search_field :date_paid_at_gteq, class: 'form-control input-sm', type: 'date' %>
             </div>
             <div class="col-md-4">
               <%= f.label t('.paid_until') %>
-              <%= f.search_field :date_paid_at_lteq, class: 'form-control input-sm', data: { provide: 'datepicker' } %>
+              <%= f.search_field :date_paid_at_lteq, class: 'form-control input-sm', type: 'date' %>
             </div>
             <div class="col-md-4">
               <%= f.label t('.id_in') %>

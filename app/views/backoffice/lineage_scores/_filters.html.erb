@@ -9,12 +9,12 @@
           <div class="col-md-4">
             <%= f.label t('attributes.from') %>
             <%= f.search_field :created_at_gteq, class: 'form-control input-sm',
-                                                 data: { provide: 'datepicker' } %>
+                                                 type: 'date' %>
           </div>
           <div class="col-md-4">
             <%= f.label t('attributes.until') %>
             <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
-                                                 data: { provide: 'datepicker' } %>
+                                                 type: 'date' %>
           </div>
           <div class="col-md-4">
             <%= t('activerecord.attributes.score.score_type') %>

@@ -15,17 +15,17 @@
               <div class="col-md-2">
                 <%= f.label t('attributes.from') %>
                 <%= f.search_field :created_at_gteq, class: 'form-control input-sm',
-                                                     data: { provide: 'datepicker' } %>
+                                                     type: 'date' %>
               </div>
               <div class="col-md-2">
                 <%= f.label t('attributes.until') %>
                 <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
-                                                     data: { provide: 'datepicker' } %>
+                                                     type: 'date' %>
               </div>
               <div class="col-md-2">
                 <%= f.label t('attributes.processed_at') %>
                 <%= f.search_field :processed_at_eq, class: 'form-control input-sm',
-                                                     data: { provide: 'datepicker' } %>
+                                                     type: 'date' %>
               </div>
               <div class="col-md-2">
                 <%= f.label t('attributes.product') %>

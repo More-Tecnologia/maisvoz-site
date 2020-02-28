@@ -61,6 +61,7 @@ class Order < ApplicationRecord
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
   scope :paid, -> { where.not(paid_at: nil) }
+  scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")

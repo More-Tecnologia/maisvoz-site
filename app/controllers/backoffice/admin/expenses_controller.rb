@@ -14,6 +14,7 @@ module Backoffice
           flash[:success] = t('.success')
           redirect_to new_backoffice_admin_expense_path
         else
+          flash[:error] = @financial_transaction.errors.full_messages.join(', ')
           render :new
         end
       end

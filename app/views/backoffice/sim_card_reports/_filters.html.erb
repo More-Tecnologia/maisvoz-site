@@ -19,12 +19,12 @@
               <div class="col-md-2">
                 <%= f.label t('attributes.in_date') %>
                 <%= f.search_field find_in_stock_search_attribute_by(current_user), class: 'form-control input-sm',
-                                                                                    data: { provide: 'datepicker' } %>
+                                                                                    type: 'date' %>
               </div>
               <div class="col-md-2">
                 <%= f.label t('attributes.transference_date') %>
                 <%= f.search_field :support_point_stock_out_at_eq, class: 'form-control input-sm',
-                                                                   data: { provide: 'datepicker' } %>
+                                                                   type: 'date' %>
               </div>
               <div class="col-md-1">
                 <%= f.label t('attributes.status') %>

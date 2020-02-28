@@ -17,11 +17,11 @@
             </div>
             <div class="col-md-4">
               <%= f.label t('.created_from') %>
-              <%= f.search_field :date_created_at_gteq, class: 'form-control input-sm', data: { provide: 'datepicker' } %>
+              <%= f.search_field :date_created_at_gteq, class: 'form-control input-sm', type: 'date' %>
             </div>
             <div class="col-md-4">
               <%= f.label t('.created_until') %>
-              <%= f.search_field :date_created_at_lteq, class: 'form-control input-sm', data: { provide: 'datepicker' } %>
+              <%= f.search_field :date_created_at_lteq, class: 'form-control input-sm', type: 'date' %>
             </div>
             <%= hidden_field_tag :locale, params[:locale]  %>
           </div>

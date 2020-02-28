@@ -9,7 +9,8 @@ module Backoffice
       end
 
       def bonus_data
-        render json: { data: '' }
+        render json: Dashboards::Admins::BonusPresenter.new
+                                                       .build
       end
 
       def payment_data

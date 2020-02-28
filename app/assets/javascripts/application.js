@@ -21,7 +21,6 @@
 //= require jquery-slimscroll/jquery.slimscroll
 //= require print-this/printThis
 //= require notifyjs
-//= require bootstrap-datepicker
 //= require raphael
 //= require product-form-kind
 //= require withdraw-simulator

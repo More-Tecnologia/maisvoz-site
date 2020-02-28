@@ -44,6 +44,11 @@ class FinancialTransaction < ApplicationRecord
 
   validates :financial_reason, presence: true,
                                unless: :is_note_present?
+  validates :note, presence: true, on: :expense
+  validates :user, presence: true, on: :expense
+  validates :financial_reason, presence: true, on: :expense
+  validates :cent_amount, presence: true,
+                          numericality: { greater_than: 0 }, on: :expense
 
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
   after_commit :debits_bonus_of_contract, on: :create,

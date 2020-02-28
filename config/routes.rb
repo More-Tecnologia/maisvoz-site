@@ -57,7 +57,7 @@ Rails.application.routes.draw do
           get :withdrawals_data
         end
       end
-
+      resources :expenses, only: [:new, :create]
       resources :media_files, only: %i[show new create edit update]
     end
 

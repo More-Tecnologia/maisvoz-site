@@ -8,11 +8,12 @@ $(document).on('click', '.bt-toggle', {}, function(e) {
   let colors = $(this).attr('colors');
   let path = $(this).attr('path');
   let admin = $(this).attr('admin') || null
+  let amount_sign = $(this).attr('amount_sign') || ''
   if(subheads) { subheads = subheads.split(', ') }
 
   chart_cleaner(group, head, subheads);
 
-  getInstance(group, head, subheads, data, colors, path, admin);
+  getInstance(group, head, subheads, data, colors, path, admin, amount_sign);
 });
 
 function chart_cleaner(group, head, subheads) {
@@ -28,7 +29,7 @@ function chart_cleaner(group, head, subheads) {
   return false;
 };
 
-async function getInstance(group, head, subheads, data, colors, path, admin = false) {
+async function getInstance(group, head, subheads, data, colors, path, admin = false, amount_sign = '') {
   let admin_path = admin ? 'admin/' : ''
   let url = '/backoffice/' + admin_path + 'dashboard/' + path + '.json?locale=' + locale
   try {
@@ -38,10 +39,10 @@ async function getInstance(group, head, subheads, data, colors, path, admin = fa
       let user_data = JSON.parse(JSON.stringify(instances.data))
       let labels = JSON.parse(JSON.stringify(instances.labels))
 
-      $('#' + head).append(user_data[group][head]).addClass('btn-primary');
+      $('#' + head).append(amount_sign + user_data[group][head]).addClass('btn-primary');
       if(subheads) {
         subheads.forEach(function(key) {
-          $('#' + key).append(user_data[group][key]).addClass('btn-primary');
+          $('#' + key).append(amount_sign + user_data[group][key]).addClass('btn-primary');
         })
       }
 
@@ -52,7 +53,7 @@ async function getInstance(group, head, subheads, data, colors, path, admin = fa
       });
 
       chart.options.data.forEach(function(label, i){
-        let legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " +label['value'] + " )").prepend('<i>&nbsp;</i>');
+        let legendItem = $('<div class="fix-right-a"></div>').text(label['label'] + " ( " + amount_sign + label['value'] + " )").prepend('<i>&nbsp;</i>');
 
         legendItem.find('i').css('backgroundColor', chart.options.colors[i]);
         $('#legend_' + group).append(legendItem).addClass('text-center')

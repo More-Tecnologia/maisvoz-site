@@ -1,38 +1,3 @@
-#pie-chart {
-  max-height: 280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#pie-chart2 {
-  max-height: 280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#pie-chart3 {
-  max-height: 280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#pie-chart4 {
-  max-height: 280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#pie-chart5 {
-  max-height: 280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#pie-chart6 {
-  max-height: 280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-#pie-refresh {
-  max-height: 280px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 .fix-right-a {
   margin-right: 5px;
 }
@@ -55,6 +20,10 @@
 }
 .card-placeholder {
   min-height: 640px;
+}
+
+.card-box-placeholder {
+  min-height: 500px;
 }
 
 .label-dark {

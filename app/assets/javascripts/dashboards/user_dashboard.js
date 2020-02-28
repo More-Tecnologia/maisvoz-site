@@ -7,11 +7,12 @@ $(document).on('click', '.bt-toggle', {}, function(e) {
   let data = $(this).attr('object');
   let colors = $(this).attr('colors');
   let path = $(this).attr('path');
+  let admin = $(this).attr('admin') || null
   if(subheads) { subheads = subheads.split(', ') }
 
   chart_cleaner(group, head, subheads);
 
-  getInstance(group, head, subheads, data, colors, path);
+  getInstance(group, head, subheads, data, colors, path, admin);
 });
 
 function chart_cleaner(group, head, subheads) {
@@ -27,8 +28,9 @@ function chart_cleaner(group, head, subheads) {
   return false;
 };
 
-async function getInstance(group, head, subheads, data, colors, path) {
-  let url = '/backoffice/dashboard/' + path + '.json?locale=' + locale
+async function getInstance(group, head, subheads, data, colors, path, admin = false) {
+  let admin_path = admin ? 'admin/' : ''
+  let url = '/backoffice/' + admin_path + 'dashboard/' + path + '.json?locale=' + locale
   try {
     let response = await fetch(url);
     if (response.ok) {

@@ -18,8 +18,9 @@ module Backoffice
       end
 
       def withdrawals_data
-        render json: { data: ''}
+        render json: Dashboards::Admins::WithdrawalsPresenter.new.build
       end
+
     end
   end
 end

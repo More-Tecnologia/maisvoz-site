@@ -313,6 +313,8 @@ pt-BR:
     order_kind: Tipo do Pedido
     voucher_use_date: Data de Uso
     system_taxable: Taxável pelo sistema
+    payment_type: Tipo de Pagamento
+    billed: Faturado
   backoffice:
     orders:
       show:
@@ -348,8 +350,8 @@ pt-BR:
     binary_tree:
       show:
         title: Árvore Binária
-        left_pv: PV Esquerdo
-        right_pv: PV Direito
+        left_pv: Points Qualifications da Perna Esquerda
+        right_pv: Points Qualifications da Perna Direita
         username: Nome de usuário
         sponsor: Patrocinador
         search: Pesquisar
@@ -469,6 +471,9 @@ pt-BR:
       pool_trandings:
         create:
           success: Valor do Pool Tranding salvo com sucesso.
+      expenses:
+        create:
+          success: Despesa lançada com sucesso
     support:
       users:
         index:
@@ -781,6 +786,8 @@ pt-BR:
     voucher_payment: Voucher só paga o produto Advance
     my_vouchers: Meus Vouchers
     pay_with_voucher: Pagar com Voucher
+    expenses: Lançamento de Despesas
+    unauthenticate_master_password: Senha master inválida
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -833,6 +840,7 @@ pt-BR:
       update: Atualizar %{model}
       sim_card_transfer: Transferir CHIP(s)
       checkout: Gerar Pedido
+      send_expense: Lançar Despesa
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De
@@ -1257,3 +1265,39 @@ pt-BR:
   email_reactive_info: 'Reativação de email solicitada'
   make_default: 'Tornar padrão'
   account_code: 'Código da conta'
+  balance: Saldo
+  available_balance: Saldo disponível
+  blocked_balance: Saldo bloqueado
+  binary_affiliates_count: Total de afiliados na rede binária
+  binary_affiliates_left_count: Rede binária esquerda
+  binary_affiliates_right_count: Rede binária direita
+  total_bonus: Bônus Total
+  matching_bonus: Matching
+  pool_trade_bonus: Pool trade
+  residual_bonus: Residual
+  direct_commission_bonus: 'Comissão direta'
+  account_earnings_limit: Teto da conta
+  receivable_amount: Valor possível a receber
+  received_amount: Valor recebido
+  unilevel_affiliates_count: Total de afiliados na rede unilevel
+  unilevel_affiliates_actives_count: Rede unilevel ativa
+  unilevel_affiliates_inactives_count: Rede unilevel inativa
+  refresh: 'Atualizar'
+  chargebacks: 'Estornos'
+  gross_bonus: 'Bônus bruto'
+  binary_scores: 'Points qualifications'
+  left_binary_score: 'Perna esquerda'
+  right_binary_score: 'Perna direita'
+  admin: 'Admin'
+  voucher: 'Voucher'
+  btc: 'BTC'
+  total_payments: 'Pagamentos totais'
+  total_withdrawals: 'Saques totais'
+  binary: 'Binário'
+  orders_history: 'Histórico de Pedidos'
+  users_history: 'Histórico de Usuários'
+  last_orders: 'Últimos Pedidos'
+  user: 'Usuário'
+  order_date: 'Data do pedido'
+  order_number: 'Número do pedido'
+  amount: 'Valor'

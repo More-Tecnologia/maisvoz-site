@@ -8,7 +8,7 @@ module Backoffice
       @unilevel_nodes = @current_node.subtree
                                      .from_depth(@current_node.depth)
                                      .to_depth(unilevel_max_depth)
-                                     .includes(user: [:sponsor])
+                                     .includes(user: [:sponsor, career_trail_users: { career_trail: :career }])
                                      .where.not(username: @current_node.user.username)
     end
 
@@ -19,7 +19,7 @@ module Backoffice
     end
 
     def find_unilevel_node_by_hashid
-      @current_node ||= User.find_by(id: params[:user]).try(:unilevel_node)
+      @current_node ||= User.select(:id, :username, :sponsor_id).find_by(id: params[:user]).try(:unilevel_node)
     end
 
     def ensure_current_node_is_descendant_of_current_user_node

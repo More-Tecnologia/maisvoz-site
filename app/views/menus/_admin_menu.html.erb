@@ -1,5 +1,5 @@
 <li>
-  <%= link_to backoffice_dashboard_index_path, class: 'waves-effect' do %>
+  <%= link_to backoffice_admin_dashboard_index_path, class: 'waves-effect' do %>
     <i class="fas fa-home"></i> <span>Dashboard</span>
   <% end %>
 </li>
@@ -30,6 +30,7 @@
     <li><%= link_to t('defaults.financial_transactions'), backoffice_admin_financial_transactions_path, class: 'admin-link' %></li>
     <li><%= link_to t('defaults.manage_withdrawals'), backoffice_admin_withdrawals_path, class: 'admin-link' %></li>
     <li><%= link_to t('pool_tranding'), new_backoffice_admin_pool_tranding_path, class: 'admin-link' %></li>
+    <li><%= link_to t('defaults.expenses'), new_backoffice_admin_expense_path, class: 'admin-link' %></li>
     <!-- <li><%= link_to t('defaults.cellphone_reloads').pluralize, backoffice_admin_cellphone_reloads_path, class: 'admin-link' %></li> -->
     <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
     <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>

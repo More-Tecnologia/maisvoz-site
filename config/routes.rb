@@ -50,7 +50,14 @@ Rails.application.routes.draw do
       resources :career_histories, only: [:index]
       resources :cellphone_reloads, only: [:index]
       resources :pool_trandings, only: [:new, :create]
-
+      resources :dashboard, only: :index do
+        collection do
+          get :bonus_data
+          get :payment_data
+          get :withdrawals_data
+        end
+      end
+      resources :expenses, only: [:new, :create]
       resources :media_files, only: %i[show new create edit update]
     end
 
@@ -63,7 +70,16 @@ Rails.application.routes.draw do
     end
 
     # Backoffice
-    resources :dashboard, only: :index
+    resources :dashboard, only: :index do
+      collection do
+        get :balances_data
+        get :binary_counts_data
+        get :binary_scores_data
+        get :bonus_data
+        get :earnings_data
+        get :unilevel_counts_data
+      end
+    end
     resource :documents, only: [:edit, :update]
     resources :downloads, only: :index
     resources :binary_scores, only: [:index]

@@ -8,6 +8,7 @@ FactoryBot.define do
     price_cents { Faker::Number.positive.to_i }
     maturity_days { [10, 20] }
     grace_period { (1..10).to_a.sample }
+    code { Faker::Number.positive }
 
     trait :adhesion do
       kind { :adhesion }

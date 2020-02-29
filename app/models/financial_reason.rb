@@ -37,6 +37,10 @@ class FinancialReason < ApplicationRecord
     code == '2900'
   end
 
+  def expense_reason?
+    code == '3800'
+  end
+
   def self.chargeback
     @@chargeback ||= find_by(code: '100')
   end
@@ -127,6 +131,18 @@ class FinancialReason < ApplicationRecord
 
   def self.matching_bonus_chargeback_by_inactivity
     @@matching_bonus_chargeback_by_inactivity ||= find_by(code: '3700')
+  end
+  
+  def self.direct_commission_bonus
+    @@direct_commission_bonus ||= find_by(code: '2000')
+  end
+
+  def self.direct_commission_bonus_chargeback
+    @@direct_commission_bonus_chargeack ||= find_by(code: '2100')
+  end
+  
+  def self.expense
+    @@expense ||= find_by(code: '3800')
   end
 
 end

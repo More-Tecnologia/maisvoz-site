@@ -39,7 +39,11 @@ class Order < ApplicationRecord
   serialize :dr_response, JSON
 
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, expired: 4 }
-  enum payment_type: { boleto: 'boleto', balance: 'balance', admin: 'admin', voucher: 'voucher' }
+  enum payment_type: { boleto: 'boleto',
+                       balance: 'balance',
+                       admin: 'admin',
+                       voucher: 'voucher',
+                       btc: 'btc' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories
@@ -56,7 +60,9 @@ class Order < ApplicationRecord
   monetize :subtotal_cents, :tax_cents, :shipping_cents, :total_cents
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
+  scope :valids, -> { where.not(status: %i[cart expired]) }
   scope :paid, -> { where.not(paid_at: nil) }
+  scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")

@@ -27,6 +27,8 @@ class FinancialTransaction < ApplicationRecord
   scope :company_debit, -> { joins(:financial_reason).merge(FinancialReason.debit) }
   scope :backward_at, ->(date) { where('financial_transactions.created_at <= ?', date) }
   scope :not_bonus, -> { where.not(financial_reason: FinancialReason.bonus) }
+  scope :bonus, -> { includes(:financial_reason).where(financial_reason: FinancialReason.bonus)}
+  scope :with_active_bonus, -> { bonus.where(financial_reasons: { active: true }) }
   scope :to_morenwm, -> { joins(:financial_reason).merge(FinancialReason.to_morenwm) }
   scope :to_customer_admin, -> { joins(:financial_reason).merge(FinancialReason.to_customer_admin) }
   scope :to_empreendedor, -> { joins(:financial_reason).merge(FinancialReason.to_empreendedor) }
@@ -35,12 +37,18 @@ class FinancialTransaction < ApplicationRecord
   scope :at_last_month,
     -> { where(created_at: (1.month.ago.beginning_of_month..1.month.ago.end_of_month)) }
   scope :from_id, ->(id) { id ? where('financial_transactions.id > ?', id).order(:id) : order(:id) }
+  scope :by_bonus, ->(bonus) { where(financial_reason: bonus) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }
 
   validates :financial_reason, presence: true,
                                unless: :is_note_present?
+  validates :note, presence: true, on: :expense
+  validates :user, presence: true, on: :expense
+  validates :financial_reason, presence: true, on: :expense
+  validates :cent_amount, presence: true,
+                          numericality: { greater_than: 0 }, on: :expense
 
   after_create :inactivate_user!, if: :financial_reason_type_bonus?
   after_commit :debits_bonus_of_contract, on: :create,

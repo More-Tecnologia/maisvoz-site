@@ -1,36 +1,36 @@
 module Backoffice
   class DashboardController < EntrepreneurController
 
-    # before_action :redirect_if_consumer
+    def index; end
 
-    def index
-      render(
-        :index,
-        locals: {
-          last_orders: last_orders,
-          last_qualifications: last_qualifications,
-          last_withdrawals: last_withdrawals
-        }
-      )
+    def balances_data
+      render json: Dashboards::Users::BalancesPresenter.new(current_user)
+                                                       .build
     end
 
-    private
-
-    def last_orders
-      return unless current_user.admin?
-      Order.order(created_at: :desc).first(10)
+    def binary_counts_data
+      render json: Dashboards::Users::BinaryCountsPresenter.new(current_user)
+                                                           .build
     end
 
-    def last_qualifications
-      @last_qualifications ||= CareerHistory.where('user_id > 3').order(created_at: :desc).includes(:user).first(10)
+    def binary_scores_data
+      render json: Dashboards::Users::BinaryScoresPresenter.new(current_user)
+                                                           .build
     end
 
-    def last_withdrawals
-      @last_withdrawals ||= current_user.withdrawals.order(created_at: :desc).first(5)
+    def bonus_data
+      render json: Dashboards::Users::BonusPresenter.new(current_user)
+                                                    .build
     end
 
-    def redirect_if_consumer
-      redirect_to backoffice_products_path if current_user.consumidor?
+    def earnings_data
+      render json: Dashboards::Users::EarningsPresenter.new(current_user)
+                                                       .build
+    end
+
+    def unilevel_counts_data
+      render json: Dashboards::Users::UnilevelCountsPresenter.new(current_user)
+                                                             .build
     end
 
   end

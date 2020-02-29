@@ -304,6 +304,8 @@
     voucher_use_date: Use Date
     my_vouchers: Meus Vouchers
     system_taxable: System Taxable
+    payment_type: Payment Type
+    billed: Billed
   backoffice:
     orders:
       show:
@@ -345,8 +347,8 @@
     binary_tree:
       show:
         title: Binary Tree
-        left_pv: PV Left
-        right_pv: PV Right
+        left_pv: Left Leg Points Qualifications
+        right_pv: Right Leg Points Qualifications
         username: Username
         sponsor: Sponsor
         search: Search
@@ -463,6 +465,9 @@
       user_versions:
         index:
           title: User Activity Report
+      expenses:
+        create:
+          success: Created expense
     support:
       users:
         index:
@@ -754,6 +759,7 @@
     score_active: Active
     score_expired: Expired
     pay_with_voucher: Pay with Voucher
+    unauthenticate_master_password: Unauthenticated master password
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -955,6 +961,10 @@
         title: New user
         next: Next
         previous: Previous
+    passwords:
+      new:
+        title: Forgot password?
+        get_password_reset_link: Get password reset link
   view_all: View all
   views:
     backoffice:
@@ -1221,3 +1231,41 @@
   email_reactive_info: 'Email reactivation request'
   make_default: 'Make default'
   account_code: 'Account code'
+  balance: Balance
+  available_balance: Available balance
+  blocked_balance: Blocked Balance
+  binary_affiliates_count: Total affiliates in the binary tree
+  binary_affiliates_left_count: Left binary tree
+  binary_affiliates_right_count: Right binary tree
+  total_bonus: Total Bonus
+  matching_bonus: Matching
+  pool_trade_bonus: Pool trade
+  residual_bonus: Residual
+  direct_commission_bonus: 'Direct commission'
+  account_earnings_limit: Account earnings limit
+  receivable_amount: Receivable amout
+  received_amount: Received amout
+  unilevel_affiliates_count: Total affiliates in the unilevel tree
+  unilevel_affiliates_actives_count: Active unilevel tree
+  unilevel_affiliates_inactives_count: Inactive unilevel tree
+  refresh: 'Refresh'
+  chargebacks: 'Chargebacks'
+  gross_bonus: 'Gross bonus'
+  binary_scores: 'Points qualifications'
+  left_binary_score: 'Left leg'
+  right_binary_score: 'Right leg'
+  admin: 'Admin'
+  voucher: 'Voucher'
+  btc: 'BTC'
+  total_payments: 'Total Payments'
+  total_withdrawals: 'Total Withdrawals'
+  waiting: 'Waiting'
+  canceled: 'Canceled'
+  binary: 'Binary'
+  orders_history: 'Ordes history'
+  users_history: 'Users history'
+  last_orders: 'Last orders'
+  user: 'User'
+  order_date: 'Order date'
+  order_number: 'Order number'
+  amount: 'Amount'

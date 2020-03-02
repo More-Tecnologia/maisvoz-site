@@ -1,9 +1,7 @@
-adhesion_cat = Category.find_or_create_by(name: 'Adesão')
-product_cat = Category.find_or_create_by(name: 'Produtos')
+deposit_cat = Category.find_or_create_by(name: 'Deposit')
 
 products = [
-  { name: 'Business Start', price: 150, binary_score: 0, active: true, virtual: true, kind: :adhesion, category: adhesion_cat },
-  { name: 'Produto 1', price: 2000, binary_score: 666, active: true, virtual: true, kind: :product, category: product_cat },
+  { name: 'Deposit', price: 1, binary_score: 0, active: true, virtual: true, kind: :deposit, category: deposit_cat }
 ]
 
 products.each do |product|

@@ -61,10 +61,10 @@ ActiveRecord::Base.transaction do
 persisted_careers = careers.map do |attributes|
   career = Career.find_by(name: attributes[:name])
   if career
-    career.update_attributes(attributes.except(:qualifying_score, :requalification_score))
+    career.update_attributes(attributes)
     career
   else
-    Career.find_or_create_by!(attributes.except(:qualifying_score, :requalification_score))
+    Career.find_or_create_by!(attributes)
   end
 end
 

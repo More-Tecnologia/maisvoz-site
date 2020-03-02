@@ -84,7 +84,6 @@ Rails.application.routes.draw do
     resources :deposits, only: %i[index new create] do
       collection do
         get :cart
-        post :deposit_create
         post :checkout
       end
     end

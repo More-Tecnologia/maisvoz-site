@@ -2,8 +2,9 @@
 
 module Backoffice
   class DepositsController < EntrepreneurController
-    before_action :validate_min_deposit_quantity, only: :deposit_create
-    before_action :validate_max_deposit_quantity, only: :deposit_create
+
+    before_action :validate_min_deposit_quantity, only: :create
+    before_action :validate_max_deposit_quantity, only: :create
 
     def index
       @deposits = OrderItem.includes(order: :payment_transaction)
@@ -16,7 +17,7 @@ module Backoffice
 
     def cart; end
 
-    def deposit_create
+    def create
       current_deposit.order_items.first.update(valid_params)
       Shopping::UpdateCartTotals.call(current_deposit)
 

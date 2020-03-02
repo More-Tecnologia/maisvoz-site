@@ -7,6 +7,7 @@ class BackofficeController < ApplicationController
   before_action :authenticate_user!
 
   helper_method :current_order
+  helper_method :current_deposit
   helper_method :clean_shopping_cart
 
   protected def current_order
@@ -15,6 +16,19 @@ class BackofficeController < ApplicationController
    else
      @current_order ||= Order.new(user: current_user)
    end
+  end
+
+  def current_deposit
+    @current_deposit ||= OrderItem.includes(:product, :order)
+                                  .where(product: Product.deposit, order: current_user.orders.cart)
+                                  .order(created_at: :desc)
+                                  .last
+                                  .try(:order) || Order.create(user: current_user, status: :cart)
+    if @current_deposit.order_items.none?
+      @current_deposit.order_items.create(product: Product.deposit.first, quantity: 50)
+      Shopping::UpdateCartTotals.call(@current_deposit)
+    end
+    @current_deposit
   end
 
   protected def clean_shopping_cart

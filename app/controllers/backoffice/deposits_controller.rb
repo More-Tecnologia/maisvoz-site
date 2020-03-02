@@ -2,8 +2,8 @@
 
 module Backoffice
   class DepositsController < EntrepreneurController
-    before_action :ensure_min_deposit_quantity, only: :deposit_create
-    before_action :ensure_max_deposit_quantity, only: :deposit_create
+    before_action :validate_min_deposit_quantity, only: :deposit_create
+    before_action :validate_max_deposit_quantity, only: :deposit_create
 
     def index
       @deposits = OrderItem.includes(order: :payment_transaction)
@@ -36,14 +36,14 @@ module Backoffice
 
     private
 
-    def ensure_max_deposit_quantity
+    def validate_max_deposit_quantity
       return if valid_params[:quantity].to_i <= ENV['MAX_DEPOSIT'].to_i
 
       flash[:error] = t(:max_deposit, limit: ENV['MAX_DEPOSIT'])
       redirect_to new_backoffice_deposit_path
     end
 
-    def ensure_min_deposit_quantity
+    def validate_min_deposit_quantity
       return if valid_params[:quantity].to_i >= ENV['MIN_DEPOSIT'].to_i
 
       flash[:error] = t(:min_deposit, limit: ENV['MIN_DEPOSIT'])

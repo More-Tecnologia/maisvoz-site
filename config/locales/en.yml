@@ -1269,3 +1269,13 @@
   order_date: 'Order date'
   order_number: 'Order number'
   amount: 'Amount'
+  make_deposit_order: 'Make deposit solicitation'
+  new_deposit_order: 'New deposit solicitation'
+  value: 'Value'
+  deposit_list: 'Deposit list'
+  new_deposit: 'New deposit'
+  deposits: 'Deposits'
+  edit_deposit: 'Edit deposit solicitation'
+  min_deposit: 'Deposit must be greater than or equal to %{limit}'
+  max_deposit: 'Deposit must be less than or equal to %{limit}'
+  deposit_info: The deposit must be greater than or equal to %{min_limit} %{currency} and less than or equal to %{max_limit} %{currency}

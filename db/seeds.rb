@@ -1,21 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 ActiveRecord::Base.transaction do
-  career2 = Career.find_by(name: 'Member')
-  career2.update_attribute(:qualifying_score, 2)
   careers = [{name: 'Partner',
               qualifying_score: -1,
               bonus: 0,
               binary_limit: 0,
               kind: :adhesion,
               image_path: 'careers/partner.png',
-              requalification_score: -1 },
+              requalification_score: -1},
              {name: 'Member',
               qualifying_score: 0,
               bonus: 0,
@@ -24,88 +14,49 @@ ActiveRecord::Base.transaction do
               image_path: 'careers/member.png',
               requalification_score: 0},
              {name: 'Manager',
-              qualifying_score: 10_000,
+              qualifying_score: 45_000,
               bonus: 0,
               binary_limit: 0,
               kind: :adhesion,
-              image_path: 'careers/manager.png'},
-             {name: 'Manager 25K',
-              qualifying_score: 25_000,
+              image_path: 'careers/manager.png',
+              lineage_score: 15_000,
+              unilevel_qualifying_career_count: 3},
+             {name: 'Executive',
+              qualifying_score: 105_000,
               bonus: 0,
               binary_limit: 0,
               kind: :adhesion,
-              image_path: 'careers/manager-25k.png',
-              requalification_score: 0},
-             {name: 'Manager 50K',
-              qualifying_score: 50_000,
+              image_path: 'careers/executive.png',
+              requalification_score: 0,
+              lineage_score: 35_000,
+              unilevel_qualifying_career_count: 3},
+             {name: 'Director',
+              qualifying_score: 300_000,
               bonus: 0,
               binary_limit: 0,
               kind: :adhesion,
-              image_path: 'careers/manager-50K.png',
-              requalification_score: 0},
-             {name: 'Manager 100K',
-              qualifying_score: 100_000,
+              image_path: 'careers/director.png',
+              requalification_score: 0,
+              lineage_score: 100_000,
+              unilevel_qualifying_career_count: 3},
+             {name: 'President',
+              qualifying_score: 510_000,
               bonus: 0,
               binary_limit: 0,
               kind: :adhesion,
-              image_path: 'careers/manager-100K.png',
-              requalification_score: 0},
-             {name: 'Director 250K',
-              qualifying_score: 250_000,
+              image_path: 'careers/president.png',
+              requalification_score: 0,
+              lineage_score: 170_000,
+              unilevel_qualifying_career_count: 3},
+             {name: 'Chairman',
+              qualifying_score: 900_000,
               bonus: 0,
               binary_limit: 0,
               kind: :adhesion,
-              image_path: 'careers/director-250k.png',
-              requalification_score: 0},
-             {name: 'Director 500K',
-              qualifying_score: 500_000,
-              bonus: 0,
-              binary_limit: 0,
-              kind: :adhesion,
-              image_path: 'careers/director-500.png',
-              requalification_score: 0},
-             {name: 'Milionaire 1M',
-              qualifying_score: 1_000_000,
-              bonus: 0,
-              binary_limit: 0,
-              kind: :adhesion,
-              image_path: 'careers/milionaire-1m.png',
-              requalification_score: 0},
-             {name: 'Milionaire 2.5M',
-              qualifying_score: 2_500_000,
-              bonus: 0,
-              binary_limit: 0,
-              kind: :adhesion,
-              image_path: 'careers/milionaire-25.png',
-              requalification_score: 0},
-             {name: 'Milionaire 5M',
-              qualifying_score: 5_000_000,
-              bonus: 0,
-              binary_limit: 0,
-              kind: :adhesion,
-              image_path: 'careers/milionaire-5m.png',
-              requalification_score: 0},
-             {name: 'Chairman 10M',
-              qualifying_score: 10_000_000,
-              bonus: 0,
-              binary_limit: 0,
-              kind: :adhesion,
-              image_path: 'careers/chairman-10m.png',
-              requalification_score: 0},
-             {name: 'Chairman 25M',
-              qualifying_score: 25_000_000,
-              bonus: 0,
-              binary_limit: 0,
-              kind: :adhesion,
-              image_path: 'careers/chairman-25m.png',
-              requalification_score: 0},
-             {name: 'Chairman 50M',
-              qualifying_score: 50_000_000,
-              bonus: 0,
-              binary_limit: 0,
-              kind: :adhesion,
-              image_path: 'careers/chairman-50m.png',
-              requalification_score: 0}
+              image_path: 'careers/chairman.png',
+              requalification_score: 0,
+              lineage_score: 300_000,
+              unilevel_qualifying_career_count: 3}
             ]
 persisted_careers = careers.map do |attributes|
   career = Career.find_by(name: attributes[:name])
@@ -117,42 +68,30 @@ persisted_careers = careers.map do |attributes|
   end
 end
 
-trail1 = Trail.find_by(name: 'Trilha 1')
-trail1.update_attributes(name: 'Basic', product: Product.find(5)) if trail1
+deposit_cat = Category.find_or_create_by(name: 'Deposit')
+deposit_attributes =
+  { name: 'Deposit', price: 1, binary_score: 0, active: true, virtual: true, kind: :deposit, category: deposit_cat }
+deposit_product = Product.create!(deposit_attributes)
 
-trails  = [{ name: 'Vision', product: Product.find(6) },
-           { name: 'Advance', product: Product.find(7) }]
+trails  = [{ name: 'Partner', product: deposit_product }]
 persisted_trails = trails.map do |trail|
-  trail = Trail.find_or_create_by!(trail)
+  Trail.create!(trail)
 end
-persisted_trails = [trail1] + persisted_trails if trail1
 
 persisted_careers.each do |career|
   persisted_trails.each do |trail|
-    CareerTrail.find_or_create_by!(career: career, trail: trail)
+    maximum_bonus = { 'Partner': 0,
+                      'Member': 0,
+                      'Manager': 2_000,
+                      'Executive': 2_000,
+                      'Director': 3_000,
+                      'President': 5_000,
+                      'Chairman': 10_000 }
+    CareerTrail.find_or_create_by!(career: career,
+                                   trail: trail,
+                                   maximum_bonus: maximum_bonus[career.name])
   end
 end
-
-# Category
-mensalities = Category.create(name: 'Mensalities',
-                              active: false,
-                              active_session: false)
-
-# Product
-product = Product.find_by(code: 30)
-params = {
-  name: 'Mensality',
-  quantity: 1,
-  active: true,
-  virtual: true,
-  category: mensalities,
-  code: 30,
-  binary_score: 0,
-  kind: :activation,
-  price_cents: 10000
-}
-
-product ? product.update(params) : Product.create(params)
 
 # SCORE TYPES
 score_types = [{ name: 'Pontuação de Adesões', code: '100', active: false },
@@ -194,7 +133,7 @@ administrative_reasons.each do |attributes|
 end
 
   bonus_type = FinancialReasonType.find_or_create_by!(name: 'Bonus', code: '200')
-  bonus_reasons = [{ title: 'Estorno de Bonus', code: '100', active: false, company_moneyflow: :credit, active: false },
+  bonus_reasons = [{ title: 'Estorno de Bonus', code: '100', active: false, company_moneyflow: :credit },
                    { title: 'Binary Bonus', code: '500', active: true, company_moneyflow: :debit   },
                    { title: 'Binary Bonus Chargeback for Inactivity', code: '600', active: true, company_moneyflow: :credit  },
                    { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700', active: false, company_moneyflow: :credit  },
@@ -231,26 +170,26 @@ end
   end
 
   # USERS
- #  more_user = User.new(username: ENV['MORENWM_USERNAME'],
- #                       name: ENV['MORENWM_USERNAME'],
- #                       role: 'admin',
- #                       password: '111111',
- #                       email: 'morenwm@morenwm.com')
- # more_user.save(validate: false) unless User.exists?(username: ENV['MORENWM_USERNAME'])
- #
- # admin_user = User.create!(username: ENV['MORENWM_CUSTOMER_ADMIN'],
- #                           name: ENV['MORENWM_CUSTOMER_ADMIN'],
- #                           role: 'admin',
- #                           password: '111111',
- #                           email: 'admin@morenwm.com',
- #                           sponsor: more_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_ADMIN'])
- #
- #  User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
- #               name: ENV['MORENWM_CUSTOMER_USERNAME'],
- #               role: 'empreendedor',
- #               password: '111111',
- #               email: 'customer-morenwm@morenwm.com',
- #               sponsor: admin_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_USERNAME'])
+  more_user = User.new(username: ENV['MORENWM_USERNAME'],
+                       name: ENV['MORENWM_USERNAME'],
+                       role: 'admin',
+                       password: '111111',
+                       email: 'morenwm@morenwm.com')
+ more_user.save(validate: false) unless User.exists?(username: ENV['MORENWM_USERNAME'])
+
+ admin_user = User.create!(username: ENV['MORENWM_CUSTOMER_ADMIN'],
+                           name: ENV['MORENWM_CUSTOMER_ADMIN'],
+                           role: 'admin',
+                           password: '111111',
+                           email: 'admin@morenwm.com',
+                           sponsor: more_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_ADMIN'])
+
+  User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
+               name: ENV['MORENWM_CUSTOMER_USERNAME'],
+               role: 'empreendedor',
+               password: '111111',
+               email: 'customer-morenwm@morenwm.com',
+               sponsor: admin_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_USERNAME'])
 
 end
 
@@ -259,9 +198,3 @@ chargebacks.each do |chargeback|
   chargeback_reason = FinancialReason.find_by(code: chargeback[0])
   chargeback_reason.update(financial_reason: FinancialReason.find_by(code: chargeback[1]))
 end
-
-sistem_fee = FinancialReason.morenwm_fee
-sistem_fee.financial_transactions.update_all(moneyflow: 1)
-
-advance_product = Product.find_by(name: 'Advance')
-advance_product.update!(code: 20)

@@ -80,6 +80,13 @@ Rails.application.routes.draw do
         get :unilevel_counts_data
       end
     end
+
+    resources :deposits, only: %i[index new create] do
+      collection do
+        get :cart
+        post :checkout
+      end
+    end
     resource :documents, only: [:edit, :update]
     resources :downloads, only: :index
     resources :binary_scores, only: [:index]

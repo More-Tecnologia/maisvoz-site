@@ -63,6 +63,7 @@ class Order < ApplicationRecord
   scope :valids, -> { where.not(status: %i[cart expired]) }
   scope :paid, -> { where.not(paid_at: nil) }
   scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
+  scope :not_cart, -> { where.not(status: :cart) }
 
   ransacker :date_paid_at do
     Arel.sql("DATE(#{table_name}.paid_at)")

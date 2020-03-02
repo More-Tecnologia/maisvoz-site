@@ -5,11 +5,15 @@
 </li>
 <!-- Shop menu -->
 <li class="has_sub">
-  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span> eCommerce </span></a>
+  <a href="javascript:void(0);" class="waves-effect"><i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span> <%= t(:deposits) %> </span></a>
   <ul class="list-unstyled">
-    <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
-    <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li>
+    <!-- <li><%= link_to t('defaults.shop'), backoffice_products_path %></li>
+    <li><%= link_to t('defaults.my_orders'), backoffice_orders_path %></li> -->
     <!-- <li><%= link_to t('defaults.cellphone_reloads'), new_backoffice_cellphone_reload_path %></li> -->
+    <li>
+      <%= link_to t(:new_deposit), new_backoffice_deposit_path, class: 'waves-effect' %>
+    </li>
+    <li><%= link_to t(:deposit_list), backoffice_deposits_path %></li>
   </ul>
 </li>
 <!-- <li class="has_sub">

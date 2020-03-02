@@ -1,5 +1,5 @@
 .product-card__name {
-  background: #966108a6;
+  background: #808080;
   color: #FFF;
   border-radius: 50px;
   display: inline-block;
@@ -22,7 +22,7 @@
 
   &:first-child {
     border-radius: 0 0 0 3px;
-    background-color: #966108a6;
+    background-color: #808080;
     &:hover, &:focus {
       color: #FFF;
     }

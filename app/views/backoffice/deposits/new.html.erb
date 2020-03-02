@@ -1,0 +1,31 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title m-b-30"><%= t(:new_deposit_order) %></h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+          <%= simple_form_for(current_deposit.order_items.first, url: deposit_create_backoffice_deposits_path, method: :post, html: { class: 'form-horizontal' }) do |f| %>
+              <div class="col-md-1">
+                <%= f.input_field :quantity, class: "form-control", placeholder: t(:amount) %>
+              </div>
+
+            <%= f.button :button, t("defaults.post"),
+                                    data: { disable_with: t('helpers.save_with_disable') }, class: 'btn' %>
+
+          <% end %>
+          <hr>
+          <span>
+            <%= t(:deposit_info, min_limit: ENV['MIN_DEPOSIT'], max_limit: ENV['MAX_DEPOSIT'], currency: ENV['CURRENT_CURRENCY']) %>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

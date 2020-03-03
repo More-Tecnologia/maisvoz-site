@@ -4,8 +4,13 @@ module Bonification
     def call
       return unless @commission_percent.try(:amount).to_f > 0
       return unless !@active_bonus_contracts.empty? && @user.active?
-      pool_tranding = create_pool_tranding_for_user if amount > 0
-      block_pool_trading_amount(pool_tranding.cent_amount) if pool_tranding
+      ActiveRecord::Base.transaction do
+        pool_trading = create_pool_trading_for_user if amount > 0
+        if pool_trading
+          block_pool_trading_amount(pool_trading.cent_amount)
+          increment_sponsor_children_pool_trading_balance(amount)
+        end
+      end
     end
 
     private
@@ -17,7 +22,7 @@ module Bonification
       @commission_percent = args[:commission_percent]
     end
 
-    def create_pool_tranding_for_user
+    def create_pool_trading_for_user
       @user.financial_transactions.create!(cent_amount: amount,
                                            financial_reason: FinancialReason.pool_tranding,
                                            spreader: User.find_morenwm_customer_admin)
@@ -36,6 +41,11 @@ module Bonification
     def block_pool_trading_amount(pool_tranding_amont)
       blocked_pool_tranding = @user.pool_tranding_blocked_balance + pool_tranding_amont
       @user.update!(pool_tranding_blocked_balance: blocked_pool_tranding)
+    end
+
+    def increment_sponsor_children_pool_trading_balance(amount)
+      @user.sponsor
+           .increment!(children_pool_trading_balance: amount)
     end
 
   end

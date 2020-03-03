@@ -156,7 +156,7 @@ end
                    { title: 'Estorno de Bonus Ativação de Ponto de Apoio por Inatividade', code: '3200', active: false, company_moneyflow: :credit },
                    { title: 'Binary Bonus Chargeback for Daily Excess', code: '3300', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Chargeback for Contract Limit', code: '3400', active: true, company_moneyflow: :credit },
-                   { title: 'Pool Tranding', code: '3500', active: true, company_moneyflow: :debit },
+                   { title: 'Trading Bonus', code: '3500', active: true, company_moneyflow: :debit },
                    { title: 'Matching Bonus', code: '3600', active: true, company_moneyflow: :debit },
                    { title: 'Matching Bonus Chargeback by Inactivity', code: '3700', active: true, company_moneyflow: :credit }]
 

@@ -5,7 +5,7 @@ class PoolTrandingWorker
   def perform
     next_run_date = Date.tomorrow.beginning_of_day + 20.minutes
     PoolTrandingWorker.perform_at(next_run_date)
-    run unless Date.current.saturday? || Date.current.sunday?
+    run
   end
 
   private
@@ -17,7 +17,7 @@ class PoolTrandingWorker
         Bonification::PoolTrandingService.call(commission_percent: PoolTranding.current_pool_tranding,
                                                user: user)
       rescue Exception => error
-        error = { message: "Error while create Pool Tranding for #{user.username}: #{error.message}",
+        error = { message: "Error while create Trading Bonus for #{user.username}: #{error.message}",
                   backtrace: error.backtrace }
         errors <<  error
       end

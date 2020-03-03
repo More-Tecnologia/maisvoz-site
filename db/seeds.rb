@@ -157,8 +157,8 @@ end
                    { title: 'Binary Bonus Chargeback for Daily Excess', code: '3300', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Chargeback for Contract Limit', code: '3400', active: true, company_moneyflow: :credit },
                    { title: 'Pool Tranding', code: '3500', active: true, company_moneyflow: :debit },
-                   { title: 'Matching Bonus', code: '3600', active: true, company_moneyflow: :debit },
-                   { title: 'Matching Bonus Chargeback by Inactivity', code: '3700', active: true, company_moneyflow: :credit }]
+                   { title: 'Equilibrium Bonus', code: '3600', active: true, company_moneyflow: :debit },
+                   { title: 'Equilibrium Bonus Chargeback by Inactivity', code: '3700', active: true, company_moneyflow: :credit }]
 
   bonus_reasons.each do |attributes|
     financial_reason = FinancialReason.find_by(code: attributes[:code])

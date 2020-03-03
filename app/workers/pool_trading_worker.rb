@@ -14,7 +14,7 @@ class PoolTradingWorker
     errors = []
     User.active.find_each do |user|
       begin
-        Bonification::PoolTrandingService.call(commission_percent: PoolTranding.current_pool_tranding,
+        Bonification::PoolTradingService.call(commission_percent: PoolTranding.current_pool_tranding,
                                                user: user)
       rescue Exception => error
         error = { message: "Error while create Trading Bonus for #{user.username}: #{error.message}",

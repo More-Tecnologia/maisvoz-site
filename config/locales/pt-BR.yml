@@ -1314,3 +1314,4 @@ pt-BR:
   min_deposit: 'O depósito deve ser maior ou igual a %{limit}'
   max_deposit: 'O depósito dev ser menor ou igual a %{limit}'
   deposit_info: 'O depósito deverá ser maior ou igual a %{min_limit} %{currency} e menor ou igual a %{max_limit} %{currency}'
+  pool_leadership: 'Pool Leadership'

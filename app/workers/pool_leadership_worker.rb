@@ -14,14 +14,13 @@ class PoolLeadershipWorker
     errors = []
     individual_amount = amount / users_ids.count
     users_ids.each do |user_id|
-      begin
-        Bonification::PoolLeadershipService.call(user_id: user_id, amount: individual_amount)
-      rescue StandarError => e
-        error = {
-          message: "Error while create Pool Leadership for #{user.username}: #{e.message}",
-          backtrace: e.backtrace }
-        errors << error
-      end
+      Bonification::PoolLeadershipService.call(user_id: user_id, amount: individual_amount)
+    rescue StandarError => e
+      error = {
+        message: "Error while create Pool Leadership for #{user.username}: #{e.message}",
+        backtrace: e.backtrace
+      }
+      errors << error
     end
     notify_admin_by_email(errors)
   end

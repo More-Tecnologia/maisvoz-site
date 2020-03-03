@@ -468,6 +468,9 @@ pt-BR:
       user_versions:
         index:
           title: Relatório de Atividade de Usuário
+      pool_leaderships:
+        create:
+          success: Valor do Pool Leadership salvo com sucesso.
       pool_trandings:
         create:
           success: Valor do Pool Tranding salvo com sucesso.
@@ -1311,4 +1314,3 @@ pt-BR:
   min_deposit: 'O depósito deve ser maior ou igual a %{limit}'
   max_deposit: 'O depósito dev ser menor ou igual a %{limit}'
   deposit_info: 'O depósito deverá ser maior ou igual a %{min_limit} %{currency} e menor ou igual a %{max_limit} %{currency}'
-  

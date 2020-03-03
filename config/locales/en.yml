@@ -468,6 +468,9 @@
       expenses:
         create:
           success: Created expense
+      pool_leaderships:
+        create:
+          success: Pool Leadership updated.
     support:
       users:
         index:

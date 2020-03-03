@@ -1287,9 +1287,7 @@ body.fixed-left .side-menu.left {
   padding-bottom: 70px;
   position: fixed;
 }
-.content-page {
-  margin-left: 240px;
-  overflow: hidden;
+
 }
 .content-page > .content {
   margin-bottom: 60px;

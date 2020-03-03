@@ -3,7 +3,8 @@ module Backoffice
     class CareersController < AdminController
 
       def index
-        @careers = Career.order(:qualifying_score)
+        @careers = Career.includes(:unilevel_qualifying_career)
+                         .order(:qualifying_score)
       end
 
       def new

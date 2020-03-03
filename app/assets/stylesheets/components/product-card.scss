@@ -1,12 +1,12 @@
 .product-card__name {
-  background: #966108a6;
+  background: #808080;
   color: #FFF;
   border-radius: 50px;
   display: inline-block;
   padding: 2px 20px;
   font-weight: 400;
   font-size: 14px;
-  border: 1px solid #c8a820;
+  border: 1px solid #808080;
 }
 
 .product-card__btns {
@@ -22,14 +22,14 @@
 
   &:first-child {
     border-radius: 0 0 0 3px;
-    background-color: #966108a6;
+    background-color: #808080;
     &:hover, &:focus {
       color: #FFF;
     }
   }
 
   &:last-child {
-    background-color: #000000;
+    background-color: #001d61;
     border-radius: 0 0 3px 0;
     color: #FFF;
     &:hover, &:focus {

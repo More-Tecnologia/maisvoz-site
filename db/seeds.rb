@@ -86,7 +86,7 @@ persisted_careers.each do |career|
                       'Executive': 2_000,
                       'Director': 3_000,
                       'President': 5_000,
-                      'Chairman': 10_000 }
+                      'Chairman': 10_000 }.stringify_keys
     CareerTrail.find_or_create_by!(career: career,
                                    trail: trail,
                                    maximum_bonus: maximum_bonus[career.name])

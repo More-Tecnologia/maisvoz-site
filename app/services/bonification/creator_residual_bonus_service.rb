@@ -1,4 +1,4 @@
-module Backoffice
+module Bonification
   class CreatorResidualBonusService < ApplicationService
 
     COMMISSIONS = [[0, 7, 7, 7, 7, 7, 7],
@@ -15,7 +15,7 @@ module Backoffice
 
     private
 
-    def initialize(args)
+    def initialize
       @residual_bonus = FinancialReason.residual_bonus
     end
 
@@ -23,11 +23,11 @@ module Backoffice
       sponsors = find_sponsors_by(user)
       sponsors.each_with_index do |sponsor, index|
         generation = index + 1
-        amount = calculate_residual_bonus_commission_for(user, generation)
-        user.financial_transactions.create!(financial_reason: @residual_bonus,
-                                            amount: amount,
-                                            spreader: User.find_morenwm_customer_admin,
-                                            generation: generation)
+        amount = calculate_residual_bonus_commission_by(sponsor, generation)
+        sponsor.financial_transactions.create!(financial_reason: @residual_bonus,
+                                               amount: amount,
+                                               spreader: User.find_morenwm_customer_admin,
+                                               generation: generation)
       end
     end
 
@@ -38,8 +38,8 @@ module Backoffice
           .bonus_receivers(generations_count)
     end
 
-    def calculate_residual_bonus_commission_for(user, generation)
-      commission = find_commission_by(user.current_career, generation)
+    def calculate_residual_bonus_commission_by(sponsor, generation)
+      commission = find_commission_by(sponsor.current_career, generation)
       user.children_pool_trading_balance * commission
     end
 

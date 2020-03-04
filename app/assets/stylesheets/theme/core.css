@@ -28,11 +28,20 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: #797979;
+  position: relative;
+  margin: 0;
+  padding-bottom: 26rem;
+  min-height: 100%;
 }
 html {
-  position: relative;
-  min-height: 100%;
-  /*background: #ebeff2;*/
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 h1,
 h2,

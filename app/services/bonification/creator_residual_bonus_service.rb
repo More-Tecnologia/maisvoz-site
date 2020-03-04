@@ -9,7 +9,7 @@ module Bonification
 
     def call
       User.with_children_pool_point_balance.find_each do |user|
-        create_residual_bonus_for(user)
+        create_residual_bonus_for_user_and_sponsors(user)
       end
     end
 
@@ -19,15 +19,15 @@ module Bonification
       @residual_bonus = FinancialReason.residual_bonus
     end
 
-    def create_residual_bonus_for(user)
-      sponsors = find_sponsors_by(user)
+    def create_residual_bonus_for_user_and_sponsors(user)
+      sponsors = [user] + find_sponsors_by(user)
       sponsors.each_with_index do |sponsor, index|
         generation = index + 1
         amount = calculate_residual_bonus_commission_by(sponsor, generation)
         sponsor.financial_transactions.create!(financial_reason: @residual_bonus,
                                                amount: amount,
                                                spreader: User.find_morenwm_customer_admin,
-                                               generation: generation)
+                                               generation: generation) if amount.positive?
       end
     end
 

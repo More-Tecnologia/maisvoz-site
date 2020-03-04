@@ -640,7 +640,7 @@ textarea.form-control {
   padding: .3em .6em .3em;
 }
 .label-default {
-  background-color: #5fbeaa;
+  background-color: #001d6e;
 }
 .label-primary {
   background-color: #5d9cec;
@@ -2191,5 +2191,21 @@ body.fixed-left .side-menu.left {
   .content-page {
     margin-left: 0px;
     margin-top: 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+  }
+  #sponsor-link {
+    margin-left: -450%!important;
+  }
+}
+@media (max-width: 768px) {
+  .nav.navbar-nav.navbar-center {
+    font-size: 5px!important;;
   }
 }

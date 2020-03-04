@@ -7,17 +7,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="logo">
+      <%= link_to backoffice_admin_dashboard_index_path, class: 'logo' do %>
         <span><%= image_tag('logo.png', height: 35) %></span>
-      </a>
+      <% end %>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
 
-
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-center">
+        <% if current_user.empreendedor? %>
+          <li class="dropdown top-menu-item-xs">
+            <a href="#" sponsor-link="<%= shop_index_url(sponsor: current_user.username) %>" id="sponsor-link"><i  class="fa fa-link"></i> <span class="hidden-xs">Link de indicação</span></a>
+          </li>
+        <% end %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span> <%= t(:deposits) %> </span>
+            <i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span class="hidden-xs"> <%= t(:deposits) %> </span>
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -30,7 +34,7 @@
         </li>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span> <%= t('defaults.financial') %> </span>
+            <i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span class="hidden-xs"> <%= t('defaults.financial') %> </span>
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to t('defaults.orders'), backoffice_admin_orders_path, class: 'admin-link' %></li>
@@ -46,7 +50,7 @@
         </li>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="ti-sharethis"></i><span class="menu-arrow"></span><span> <%= t('defaults.network') %> </span> </span>
+            <i class="ti-sharethis"></i><span class="menu-arrow"></span><span class="hidden-xs"> <%= t('defaults.network') %> </span>
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path if ENV['ENABLED_BINARY'] == 'true' %></li>
@@ -58,7 +62,7 @@
         </li>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span> <%= t('defaults.scores') %> </span>
+            <i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span class="hidden-xs"> <%= t('defaults.scores') %> </span>
           </a>
           <ul class="dropdown-menu">
             <li> <%= link_to t('defaults.unilevel'), backoffice_bonus_contracts_path %> </li>
@@ -71,7 +75,7 @@
         </li>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="fas fa-user-shield"></i><span class="menu-arrow"></span><span> <%= t('defaults.admin') %> </span>
+            <i class="fas fa-user-shield"></i><span class="menu-arrow"></span><span class="hidden-xs"> <%= t('defaults.admin') %> </span>
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to t('defaults.users'), backoffice_support_users_path, class: 'admin-link' %></li>
@@ -80,9 +84,9 @@
             <li><%= link_to t('defaults.careers'), backoffice_admin_careers_path, class: 'admin-link' %></li>
           </ul>
         </li>
-        <li>
+        <li class="dropdown top-menu-item-xs">
           <%= link_to backoffice_downloads_path do %>
-            <i class="md md-cloud-download" tooltip='<%= t(:download_support_material) %>'></i>
+            <i class="md md-cloud-download" tooltip='<%= t(:download_support_material) %>'></i> <span class="hidden-xs"><%= t(:support_material) %></span>
           <% end %>
         </li>
       </ul>
@@ -100,7 +104,7 @@
             <span class="text-warning regressive-timer"> </span>
           <% end %>
         </li>
-        <li>
+        <li class='top-menu-item-xs'>
           <%= link_to backoffice_financial_transactions_path do %>
           <span class="text-success">
             <%= number_to_currency(current_user.available_balance) %>
@@ -108,7 +112,7 @@
           <% end %>
         </li>
         <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
-          <li>
+          <li class='top-menu-item-xs'>
             <%= link_to backoffice_financial_transactions_path do %>
             <span class="text-danger">
               <%= number_to_currency current_user.blocked_balance %>
@@ -121,19 +125,19 @@
             <i class="icon-size-fullscreen"></i>
           </a>
         </li>
-        <li>
+        <li class='top-menu-item-xs'>
           <a href="?locale=pt-BR" class="flag">
             <%= image_tag('countries/br.svg') %>
           </a>
         </li>
-        <li>
+        <li class='top-menu-item-xs'>
           <a href="?locale=en" class="flag">
             <%= image_tag('countries/us.svg') %>
           </a>
         </li>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <%= current_user.username %>&nbsp;&nbsp;<%= current_user.decorate.avatar_image_tag %>
+            <span class="hidden-xs"><%= current_user.username %>&nbsp;&nbsp;</span><%= current_user.decorate.avatar_image_tag %>
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -167,3 +171,4 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

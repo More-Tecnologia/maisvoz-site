@@ -1280,3 +1280,6 @@
   max_deposit: 'Deposit must be less than or equal to %{limit}'
   deposit_info: The deposit must be greater than or equal to %{min_limit} %{currency} and less than or equal to %{max_limit} %{currency}
   support_material: 'Support Material'
+  sponsor_link: 'Sponsor link'
+  copied_sponsor_link: 'Sponsor link copied'
+  copied_sponsor_link_message: 'Your sponsor link was successfully copied'

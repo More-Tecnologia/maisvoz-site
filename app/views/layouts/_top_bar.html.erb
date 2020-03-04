@@ -32,6 +32,7 @@
             </li>
           </ul>
         </li>
+        <% if current_user.admin? || current_user.empreendedor? %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
             <i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span class="hidden-xs">&nbsp; <%= t('defaults.financial') %> </span>
@@ -50,6 +51,7 @@
             <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>
           </ul>
         </li>
+        <% end %>
         <% if current_user.admin? || current_user.empreendedor? %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">

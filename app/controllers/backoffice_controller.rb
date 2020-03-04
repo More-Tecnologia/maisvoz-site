@@ -36,7 +36,7 @@ class BackofficeController < ApplicationController
   end
 
   private def define_layout
-    current_user.consumidor? ? 'consumer' : 'admin'
+    'admin'
   end
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

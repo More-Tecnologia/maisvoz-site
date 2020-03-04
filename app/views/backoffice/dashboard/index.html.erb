@@ -270,37 +270,22 @@
 <div class="row">
   <div class="col-md-12">
     <div class="support-material">
-      <div class="support-material__right-box">
-          <ul class="support-material__download-list">
+      <div class="support-material-div col-md-2 col-md-offset-3">
+        <a href="#" target="blank">
+          <%= image_tag 'download-list/presentation.jpg' %>&nbsp; <%= t(:business_presentation) %>
+        </a>
+      </div>
 
-            <li style="padding-right: 24px;">
-              <a href="#" target="blank">
-                <div>
-                  <%= image_tag 'download-list/presentation.jpg' %>
-                </div>
-                <div><%= t(:business_presentation) %></div>
-              </a>
-            </li>
+      <div class="support-material-div col-md-2">
+        <a href="#" target="blank">
+          <%= image_tag 'download-list/paper.jpg' %>&nbsp; <%= t(:adhesion_contract) %>
+        </a>
+      </div>
 
-            <li style="padding-right: 24px;">
-              <a href="#" target="blank">
-                <div>
-                  <%= image_tag 'download-list/video.jpg' %>
-                </div>
-                <div> <%= ENV['COMPANY_NAME'] %> </div>
-              </a>
-            </li>
-
-            <li style="padding-right: 24px;">
-              <a href="#" target="blank">
-                <div>
-                  <%= image_tag 'download-list/paper.jpg' %>
-                </div>
-                <div><%= t(:adhesion_contract) %></div>
-              </a>
-            </li>
-
-          </ul>
+      <div class="support-material-div col-md-2">
+        <a href="#" target="blank">
+          <%= image_tag 'download-list/video.jpg' %>&nbsp; <%= ENV['COMPANY_NAME'] %>
+        </a>
       </div>
     </div>
   </div>

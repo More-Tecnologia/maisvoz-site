@@ -5,7 +5,7 @@
         <span><%= t(:account_status) %></span>
       </div>
       <% if current_user.active? %>
-        <div class="dashboard-card__value label-dark"><%= t(:active) %></div>
+        <div class="dashboard-card__value label-default"><%= t(:active) %></div>
       <% else %>
         <div class="dashboard-card__value label-inactive"><%= t(:inactive) %></div>
       <% end %>
@@ -17,7 +17,7 @@
       <div class="dashboard-card__label">
         <span><%= t('defaults.point_qualifications') %></span>
       </div>
-      <div class="dashboard-card__value label-dark"><%= number_with_delimiter current_user.binary_node.shortter_leg_accumulated_score.to_i %></div>
+      <div class="dashboard-card__value label-default"><%= number_with_delimiter current_user.binary_node.shortter_leg_accumulated_score.to_i %></div>
     </div>
   </div>
 
@@ -27,7 +27,7 @@
         <span><%= t('binary_qualified') %></span>
       </div>
         <% if current_user.binary_qualified? %>
-          <div class="dashboard-card__value label-dark"> <%= t('qualified') %> </div>
+          <div class="dashboard-card__value label-default"> <%= t('qualified') %> </div>
         <% else %>
           <div class="dashboard-card__value label-inactive"> <%= t('unqualified') %> </div>
         <% end %>
@@ -39,7 +39,7 @@
       <div class="dashboard-card__label">
         <span><%= t(:course) %></span>
       </div>
-      <div class="dashboard-card__value label-dark">
+      <div class="dashboard-card__value label-default">
         <%= current_user.try(:current_trail).try(:name) %>
       </div>
     </div>
@@ -50,7 +50,7 @@
       <div class="dashboard-card__label">
         <span><%= t(:career) %></span>
       </div>
-      <div class="dashboard-card__value label-dark">
+      <div class="dashboard-card__value label-default">
         <%= current_user.try(:current_career).try(:name) %>
       </div>
     </div>
@@ -61,7 +61,7 @@
       <div class="dashboard-card__label">
         <span><%= t(:next) + ' ' + t(:career) %></span>
       </div>
-      <div class="dashboard-card__value label-dark">
+      <div class="dashboard-card__value label-default">
         <%= current_user.next_career_kind.try(:name) %>
       </div>
     </div>
@@ -79,7 +79,7 @@
         <div id="earnings"></div>
         <div id="legend_earnings" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#B49259, #0D0D0D" path="earnings_data"  amount_sign="&#36;">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#001d6e, #FFD878" path="earnings_data"  amount_sign="&#36;">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -98,7 +98,7 @@
         </div>
         <div id="legend_balances" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle" head="balance" group="balances" object="available_balance, blocked_balance" colors="#B49259, #0D0D0D" path="balances_data" amount_sign="&#36;">
+      <span href="#" class="btn btn-white bt-toggle" head="balance" group="balances" object="available_balance, blocked_balance" colors="#FFD878, #001d6e" path="balances_data" amount_sign="&#36;">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -126,7 +126,7 @@
           </div>
         </div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle " head="total_bonus" group="bonus" object="binary, direct_commission, matching, pool_trade, residual, chargebacks" colors="#734A27, #BF8049, #D9AB82, #D9D7D7, #0D0D0D, #d9534f" subheads="gross_bonus, chargebacks" path="bonus_data" amount_sign="&#36;">
+      <span href="#" class="btn btn-white bt-toggle " head="total_bonus" group="bonus" object="binary, direct_commission, matching, pool_trade, residual, chargebacks" colors="#FFD878, #BF8049, #001d6e, #0020CF, #808080, #d9534f" subheads="gross_bonus, chargebacks" path="bonus_data" amount_sign="&#36;">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -144,7 +144,7 @@
         <div id="unilevel_counts"></div>
         <div id="legend_unilevel_counts" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#B49259, #0D0D0D" path="unilevel_counts_data">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#FFD878, #001d6e" path="unilevel_counts_data">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -162,7 +162,7 @@
         </div>
         <div id="legend_binary_count" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#B49259, #0D0D0D" path="binary_counts_data">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#FFD878, #001d6e" path="binary_counts_data">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -178,7 +178,7 @@
         <div id="binary_scores"></div>
         <div id="legend_binary_scores" class="donut-legend"></div>
       </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#B49259, #0D0D0D" path="binary_scores_data">
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#FFD878, #001d6e" path="binary_scores_data">
         <i class="fa fa-refresh"></i>
       </span>
     </div>
@@ -270,10 +270,6 @@
 <div class="row">
   <div class="col-md-12">
     <div class="support-material">
-      <div class="support-material__left-box">
-        <%= link_to t(:download_support_material), backoffice_downloads_path %>
-      </div>
-
       <div class="support-material__right-box">
           <ul class="support-material__download-list">
 

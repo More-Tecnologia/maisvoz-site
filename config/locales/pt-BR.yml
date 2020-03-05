@@ -1314,4 +1314,8 @@ pt-BR:
   min_deposit: 'O depósito deve ser maior ou igual a %{limit}'
   max_deposit: 'O depósito dev ser menor ou igual a %{limit}'
   deposit_info: 'O depósito deverá ser maior ou igual a %{min_limit} %{currency} e menor ou igual a %{max_limit} %{currency}'
+  support_material: 'Material de apoio'
+  sponsor_link: 'Link de indicação'
+  copied_sponsor_link: 'Link de indicação copiado'
+  copied_sponsor_link_message: 'Seu link de patrocinador foi copiado com sucesso'
   pool_leadership: 'Pool Leadership'

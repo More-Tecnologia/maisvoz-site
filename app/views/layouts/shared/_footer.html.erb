@@ -1,23 +1,18 @@
-<!-- Footer -->
-<footer class="footer-cmp">
-  <div class="container">
-    <div class="row m-t-30 m-b-30">
-      <div class="col-md-3 d-flex">
-        <div>
-          <p class="footer-cmp__title"></p>
-          <p class="footer-cmp__info"></p>
-        </div>
-      </div>
-      <div class="col-md-3 d-flex">
-        <i class="fas fa-envelope footer-cmp__icon"></i>
-        <div>
-          <p class="footer-cmp__title"> <%= t('defaults.send_email') %> </p>
-          <p class="footer-cmp__info"> <%= ENV['SANDBOX_EMAIL'] %> </p>
+<div class="new-footer">
+  <footer class="footer-cmp">
+    <div class="container">
+      <div class="row m-t-30 m-b-30">
+        <div class="text-center">
+          <i class="fas fa-envelope footer-cmp__icon"></i>
+          <div>
+            <p class="footer-cmp__title"> <%= t('defaults.send_email') %> </p>
+            <p class="footer-cmp__info"> <%= ENV['SANDBOX_EMAIL'] %> </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="footer-cmp__copyright py-3 text-center">
-    &copy; <%= t('defaults.copyright', company_name: ENV['COMPANY_NAME']) %>
-  </div>
-</footer>
+    <div class="footer-cmp__copyright py-3 text-center">
+      &copy; <%= t('defaults.copyright', company_name: ENV['COMPANY_NAME']) %>
+    </div>
+  </footer>
+</div>

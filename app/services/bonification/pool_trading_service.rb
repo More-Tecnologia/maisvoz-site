@@ -1,5 +1,5 @@
 module Bonification
-  class PoolTrandingService < ApplicationService
+  class PoolTradingService < ApplicationService
 
     def call
       return unless @commission_percent.try(:amount).to_f > 0

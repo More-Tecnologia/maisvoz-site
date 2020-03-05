@@ -468,6 +468,9 @@
       expenses:
         create:
           success: Created expense
+      pool_leaderships:
+        create:
+          success: Pool Leadership updated.
     support:
       users:
         index:
@@ -1283,3 +1286,4 @@
   sponsor_link: 'Sponsor link'
   copied_sponsor_link: 'Sponsor link copied'
   copied_sponsor_link_message: 'Your sponsor link was successfully copied'
+  pool_leadership: 'Pool Leadership'

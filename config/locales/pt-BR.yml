@@ -468,6 +468,9 @@ pt-BR:
       user_versions:
         index:
           title: Relatório de Atividade de Usuário
+      pool_leaderships:
+        create:
+          success: Valor do Pool Leadership salvo com sucesso.
       pool_trandings:
         create:
           success: Valor do Pool Tranding salvo com sucesso.
@@ -1315,3 +1318,4 @@ pt-BR:
   sponsor_link: 'Link de indicação'
   copied_sponsor_link: 'Link de indicação copiado'
   copied_sponsor_link_message: 'Seu link de patrocinador foi copiado com sucesso'
+  pool_leadership: 'Pool Leadership'

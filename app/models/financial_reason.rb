@@ -132,7 +132,7 @@ class FinancialReason < ApplicationRecord
   def self.matching_bonus_chargeback_by_inactivity
     @@matching_bonus_chargeback_by_inactivity ||= find_by(code: '3700')
   end
-  
+
   def self.direct_commission_bonus
     @@direct_commission_bonus ||= find_by(code: '2000')
   end
@@ -140,9 +140,17 @@ class FinancialReason < ApplicationRecord
   def self.direct_commission_bonus_chargeback
     @@direct_commission_bonus_chargeack ||= find_by(code: '2100')
   end
-  
+
   def self.expense
     @@expense ||= find_by(code: '3800')
+  end
+
+  def self.pool_leadership
+    @@pool_leadership ||= find_by(code: '3900')
+  end
+
+  def self.pool_leadership_chargeback_by_inactivity
+    @@pool_leadership_chargeback_by_inactivity ||= find_by(code: '4000')
   end
 
 end

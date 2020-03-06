@@ -160,7 +160,7 @@ end
                    { title: 'Matching Bonus', code: '3600', active: true, company_moneyflow: :debit },
                    { title: 'Matching Bonus Chargeback by Inactivity', code: '3700', active: true, company_moneyflow: :debit },
                    { title: 'Pool Leadership', code: '3900', active: true, company_moneyflow: :credit },
-                   { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: true, company_debit: :credit }]
+                   { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: true, company_moneyflow: :credit }]
 
   bonus_reasons.each do |attributes|
     financial_reason = FinancialReason.find_by(code: attributes[:code])

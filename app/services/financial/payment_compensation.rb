@@ -26,20 +26,19 @@ module Financial
         update_user_purchase_flags
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user if adhesion_product || (voucher_product && user.bought_adhesion)
+        activate_user if deposit_product
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
-        user.empreendedor! if adhesion_product || subscription_product
+        user.empreendedor! if deposit_product
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
         create_pool_point_for_user if enabled_bonification
         propagate_binary_score if enabled_bonification && enabled_binary?
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
-        upgrade_career_from(user) if adhesion_product
+        upgrade_career_from(user) if deposit_product
         propagate_bonuses if enabled_bonification
         create_vouchers if voucher_product
-        create_bonus_contract if adhesion_product || voucher_product
-        create_binary_fest_promotion_score if adhesion_product && adhesion_product.advance?
+        create_bonus_contract if deposit_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         notify_user_by_email_about_paid_order
       end
@@ -144,6 +143,10 @@ module Financial
 
     def activation_product
       @activation_product ||= order.products.detect(&:activation?)
+    end
+
+    def deposit_product
+      @activation_product ||= order.products.detect(&:deposit?)
     end
 
     def new_trail?

@@ -146,7 +146,7 @@ module Financial
     end
 
     def deposit_product
-      @activation_product ||= order.products.detect(&:deposit?)
+      @deposit_product ||= order.products.detect(&:deposit?)
     end
 
     def new_trail?

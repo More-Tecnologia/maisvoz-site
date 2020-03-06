@@ -2,6 +2,7 @@ class FinancialReason < ApplicationRecord
   has_many :financial_transactions
 
   enum company_moneyflow: [:credit, :debit]
+  enum morenwm_moneyflow: [:not_applicable, :credit, :debit], _prefix: true
 
   belongs_to :financial_reason_type
   belongs_to :financial_reason, optional: true
@@ -17,7 +18,7 @@ class FinancialReason < ApplicationRecord
   scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
   scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
   scope :active, -> { where(active: true) }
-  scope :to_morenwm, -> { where(code: ['200', '300', '400', '2800', '2900']) }
+  scope :to_morenwm, -> { where(code: ['200', '300', '2800', '2900']) }
   scope :to_customer_admin, -> { where.not(code: '300') }
   scope :to_empreendedor, -> { where.not(code: ['200', '1200', '400']) }
 

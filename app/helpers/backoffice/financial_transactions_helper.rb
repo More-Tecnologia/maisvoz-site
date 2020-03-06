@@ -42,12 +42,12 @@ module Backoffice
       return 0 unless date
       credit_amount = q.result.by_current_user(current_user)
                               .to_morenwm
-                              .credit
+                              .morenwm_moneyflow_credit
                               .backward_at(date)
                               .sum(:cent_amount)
       debit_amount = q.result.by_current_user(current_user)
                              .to_morenwm
-                             .debit
+                             .morenwm_moneyflow_debit
                              .backward_at(date)
                              .sum(:cent_amount)
       (credit_amount - debit_amount).abs / 1e8.to_f
@@ -100,6 +100,12 @@ module Backoffice
       label = reason.try(:title)
       return "#{label} | #{transaction.note}" if reason.credit_reason? || reason.debit_reason? || reason.expense_reason?
       label
+    end
+
+    def format_financial_transaction_by_morenwm_user(transaction)
+      return number_to_currency(transaction.cent_amount) if transaction.financial_reason.morenwm_moneyflow_credit?
+      return number_to_currency(-transaction.cent_amount) if transaction.financial_reason.morenwm_moneyflow_debit?
+      ''
     end
 
   end

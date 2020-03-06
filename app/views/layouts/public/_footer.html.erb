@@ -1,0 +1,14 @@
+<footer data-image-src="assets/hero-bg.jpg">
+    <div class="row">
+        <div class="col-full ss-copyright">
+            <span>&copy; <%= t('defaults.copyright', company_name: ENV['COMPANY_NAME']) %></span>
+        </div>
+    </div>
+
+    <div class="bottom__button">
+      <%= link_to t('sign_up'), new_user_registration_path(sponsor: params[:sponsor]), class: 'btn btn--primary btn--large' %>
+
+
+      <%= link_to t('login'), new_user_session_path(sponsor: params[:sponsor]), class: 'btn btn--large' %>
+    </div>
+</footer>

@@ -3,7 +3,7 @@ class NodesBinaryBonusVerifierWorker
   include Sidekiq::Worker
 
   def perform
-    next_run_date = Date.tomorrow.beginning_of_day
+    next_run_date = Date.tomorrow.beginning_of_day - 10.minutes
     NodesBinaryBonusVerifierWorker.perform_at(next_run_date)
     run
   end

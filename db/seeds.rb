@@ -86,7 +86,7 @@ persisted_careers.each do |career|
                       'Executive': 2_000,
                       'Director': 3_000,
                       'President': 5_000,
-                      'Chairman': 10_000 }
+                      'Chairman': 10_000 }.stringify_keys
     CareerTrail.find_or_create_by!(career: career,
                                    trail: trail,
                                    maximum_bonus: maximum_bonus[career.name])
@@ -144,8 +144,8 @@ end
                    { title: 'Binary Bonus Chargeback por Desqualificação', code: '1300', active: true, company_moneyflow: :credit },
                    { title: 'Bônus Residual de Ponto de Apoio', code: '1400', active: false, company_moneyflow: :debit },
                    { title: 'Estorno de Bônus Residual de Ponto de Apoio por Inatividade', code: '3000', active: false, company_moneyflow: :credit},
-                   { title: 'Direct Commission Bonus', code: '2000', active: true, company_moneyflow: :debit  },
-                   { title: 'Chargeback Direct Commission Bonus for Inactivity', code: '2100', active: true, company_moneyflow: :credit },
+                   { title: 'Start Fast Bonus', code: '2000', active: true, company_moneyflow: :debit  },
+                   { title: 'Chargeback Start Fast Bonus for Inactivity', code: '2100', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Indicação Indireta', code: '2200', active: false, company_moneyflow: :debit },
                    { title: 'Estorno de Bônus Indicação Indireta por Inatividade', code: '2300', active: false, company_moneyflow: :credit },
                    { title: 'Bonus Ativação', code: '2400', dynamic_compression: true, active: false, company_moneyflow: :debit },
@@ -158,7 +158,9 @@ end
                    { title: 'Bonus Chargeback for Contract Limit', code: '3400', active: true, company_moneyflow: :credit },
                    { title: 'Pool Tranding', code: '3500', active: true, company_moneyflow: :debit },
                    { title: 'Equilibrium Bonus', code: '3600', active: true, company_moneyflow: :debit },
-                   { title: 'Equilibrium Bonus Chargeback by Inactivity', code: '3700', active: true, company_moneyflow: :credit }]
+                   { title: 'Equilibrium Bonus Chargeback by Inactivity', code: '3700', active: true, company_moneyflow: :credit },
+                   { title: 'Pool Leadership', code: '3900', active: true, company_moneyflow: :credit },
+                   { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: true, company_moneyflow: :credit }]
 
   bonus_reasons.each do |attributes|
     financial_reason = FinancialReason.find_by(code: attributes[:code])

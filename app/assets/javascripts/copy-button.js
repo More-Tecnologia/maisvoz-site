@@ -1,12 +1,18 @@
 $(function(){
-  $('.copy-trigger').click(function(){
-    var temp = $('<input>');
-    var copyable_id = $(this).data('copyable');
-    var text = $(copyable_id).text();
+  $('#sponsor-link').click(function(){
+    let temp = $('<input>');
+    let text = $(this).attr('sponsor-link');
+    let title = $(this).attr('title')
+    let message = $(this).attr('message');
 
     $('body').append(temp);
     temp.val(text).select();
     document.execCommand('copy');
     temp.remove();
+    Swal.fire(
+      title,
+      message,
+      'success'
+    )
   });
 });

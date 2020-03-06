@@ -28,11 +28,20 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: #797979;
+  position: relative;
+  margin: 0;
+  padding-bottom: 26rem;
+  min-height: 100%;
 }
 html {
-  position: relative;
-  min-height: 100%;
-  /*background: #ebeff2;*/
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 h1,
 h2,
@@ -631,7 +640,7 @@ textarea.form-control {
   padding: .3em .6em .3em;
 }
 .label-default {
-  background-color: #5fbeaa;
+  background-color: #001d6e;
 }
 .label-primary {
   background-color: #5d9cec;
@@ -1287,9 +1296,7 @@ body.fixed-left .side-menu.left {
   padding-bottom: 70px;
   position: fixed;
 }
-.content-page {
-  margin-left: 240px;
-  overflow: hidden;
+
 }
 .content-page > .content {
   margin-bottom: 60px;
@@ -2184,5 +2191,39 @@ body.fixed-left .side-menu.left {
   .content-page {
     margin-left: 0px;
     margin-top: 0px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .nav.navbar-nav.navbar-center {
+    position: absolute;
+    left: 45%;
+    transform: translatex(-50%);
+  }
+  #sponsor-link {
+    margin-left: -350%!important;
+  }
+}
+
+@media (min-width: 1920px) {
+  .nav.navbar-nav.navbar-center {
+    position: absolute;
+    left: 40%;
+    transform: translatex(-50%);
+  }
+  #sponsor-link {
+    margin-left: -200%!important;
+  }
+}
+@media screen and (max-width: 1920px) and (min-width: 1280px) {
+  .nav.navbar-nav {
+    font-size: 9px!important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .nav.navbar-nav {
+    font-size: 10px!important;;
   }
 }

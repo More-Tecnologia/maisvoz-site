@@ -190,6 +190,8 @@ class User < ApplicationRecord
   scope :without_support_point, -> { where(support_point_user: nil) }
   scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
   scope :with_blocked_mathing_bonus, -> { where('blocked_matching_bonus_balance > 0') }
+  scope :with_blocked_pool_trading, -> { where('pool_tranding_blocked_balance > 0') }
+  scope :with_children_pool_point_balance, -> { where('children_pool_trading_balance > 0') }
 
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail

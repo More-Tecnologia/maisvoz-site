@@ -2,17 +2,22 @@ module Bonification
   class MatchingBonusService < ApplicationService
 
     BONUS_COMMISSIONS =
-      [[0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-       [0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-       [0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-       [0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5]]
+      [[0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+       [0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+       [0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+       [0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+       [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+       [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
     def call
       return unless @binary_bonus.to_f.positive?
       sponsors.each_with_index do |sponsor, index|
         generation = index + 1
         amount = calculate_binary_bonus_commission(sponsor.current_career.id, generation)
-        create_matching_bonus_for(sponsor, generation, amount) if amount.positive? && sponsor.empreendedor?
+        if amount.positive? && sponsor.empreendedor?
+          matching_bonus = create_matching_bonus_for(sponsor, generation, amount)
+          blocks_matching_bonus_amount(sponsor, matching_bonus.cent_amount)
+        end
       end
     end
 
@@ -49,6 +54,10 @@ module Bonification
       row = BONUS_COMMISSIONS[generation - 1]
       commission = row ? row[career_id - 1] : 0
       @binary_bonus * (commission.to_f / 100.0)
+    end
+
+    def blocks_matching_bonus_amount(sponsor, amount)
+      sponsor.increment!(blocked_matching_bonus_balance: amount)
     end
 
   end

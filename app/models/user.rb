@@ -189,6 +189,7 @@ class User < ApplicationRecord
   scope :with_support_point, -> { where.not(support_point_user: nil) }
   scope :without_support_point, -> { where(support_point_user: nil) }
   scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
+  scope :with_blocked_mathing_bonus, -> { where('blocked_matching_bonus_balance > 0') }
   scope :with_blocked_pool_trading, -> { where('pool_tranding_blocked_balance > 0') }
   scope :with_children_pool_point_balance, -> { where('children_pool_trading_balance > 0') }
 
@@ -211,7 +212,8 @@ class User < ApplicationRecord
   end
 
   def blocked_balance
-    blocked_balance_cents + withdrawal_order_amount + pool_tranding_blocked_balance
+    blocked_balance_cents + withdrawal_order_amount + pool_tranding_blocked_balance +
+    blocked_matching_bonus_balance
   end
 
   def available_balance_cents

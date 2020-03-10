@@ -38,6 +38,8 @@ class FinancialTransaction < ApplicationRecord
     -> { where(created_at: (1.month.ago.beginning_of_month..1.month.ago.end_of_month)) }
   scope :from_id, ->(id) { id ? where('financial_transactions.id > ?', id).order(:id) : order(:id) }
   scope :by_bonus, ->(bonus) { where(financial_reason: bonus) }
+  scope :morenwm_moneyflow_credit, -> { where(financial_reason: FinancialReason.morenwm_moneyflow_credit) }
+  scope :morenwm_moneyflow_debit, -> { where(financial_reason: FinancialReason.morenwm_moneyflow_debit) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }

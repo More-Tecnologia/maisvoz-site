@@ -356,6 +356,7 @@ class User < ApplicationRecord
   end
 
   def available_cent_amount
+    return calculate_available_balance_and_update_it_as_morenwm_user if morenwm_user?
     return calculate_available_balance_cents_and_update_it_as_customer_admin_user if customer_admin?
     calculate_available_balance_and_update_it
   end
@@ -541,8 +542,20 @@ class User < ApplicationRecord
     return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
 
     new_balance = transactions.select(&:credit?).sum(&:cent_amount) - transactions.select(&:debit?).sum(&:cent_amount)
-    new_balance = -new_balance if morenwm_user?
     new_balance += financial_transaction_checkpoint_balance.to_f
+
+    update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
+    available_balance_cents
+  end
+
+  def calculate_available_balance_and_update_it_as_morenwm_user
+    transactions = financial_transactions_by_user_role.from_id(financial_transaction_checkpoint_id.to_i).to_a
+    last_transaction_id = transactions.try(:last).try(:id).to_i
+    return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
+
+    credits = transactions.select { |t| t.financial_reason.morenwm_moneyflow_credit? }.sum(&:cent_amount)
+    debits = transactions.select { |t| t.financial_reason.morenwm_moneyflow_debit? }.sum(&:cent_amount)
+    new_balance = (credits - debits) + financial_transaction_checkpoint_balance.to_f
 
     update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
     available_balance_cents

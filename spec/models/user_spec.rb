@@ -26,6 +26,8 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:sim_cards) }
   it { is_expected.to have_many(:sim_cards).class_name('SimCard')
                                            .primary_key(:support_point_user_id) }
+  it { is_expected.to belong_to(:career) }
+  it { is_expected.to belong_to(:trail) }
 
   it 'valid factory' do
     expect(user.valid?).to be_truthy

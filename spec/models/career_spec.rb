@@ -8,6 +8,7 @@ RSpec.describe Career, type: :model do
   it { is_expected.to validate_uniqueness_of(:requalification_score) }
   it { is_expected.to have_many(:career_trails) }
   it { is_expected.to have_many(:trails).through(:career_trails) }
+  it { is_expected.to have_many(:users) }
 
   it 'has valid factory' do
     expect(career.valid?).to be_truthy

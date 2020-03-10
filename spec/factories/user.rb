@@ -16,5 +16,7 @@ FactoryBot.define do
     binary_position { User.binary_positions.values.sample }
     active { true }
     role_type { association(:role_type) }
+    career { association(:career) }
+    trail { association(:trail) }
   end
 end

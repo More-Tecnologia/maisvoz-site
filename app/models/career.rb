@@ -28,6 +28,7 @@ class Career < ApplicationRecord
   has_many :binary_nodes
   has_many :career_trails
   has_many :trails, through: :career_trails
+  has_many :users
   has_one :binary_qualified_career, class_name: 'Career',
                                     foreign_key: 'career_id'
 

@@ -22,7 +22,10 @@ class UpgraderCareerService < ApplicationService
 
   def create_career_trail_user(new_career)
     new_career_trail = find_new_career_trail(new_career)
-    user.career_trail_users.create!(career_trail: new_career_trail)
+    ActiveRecord::Base.transaction do
+      user.career_trail_users.create!(career_trail: new_career_trail)
+      user.update!(career: new_career_trail.career)
+    end
   end
 
   def find_new_career_trail(new_career)

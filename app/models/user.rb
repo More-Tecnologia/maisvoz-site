@@ -151,8 +151,8 @@ class User < ApplicationRecord
                          optional: true
   belongs_to :support_point_user, class_name: 'User',
                                   optional: true
-  belongs_to :career
-  belongs_to :trail
+  belongs_to :career, optional: true
+  belongs_to :trail, optional: true
 
   has_many :credits
   has_many :debits

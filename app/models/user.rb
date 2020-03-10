@@ -151,6 +151,8 @@ class User < ApplicationRecord
                          optional: true
   belongs_to :support_point_user, class_name: 'User',
                                   optional: true
+  belongs_to :career
+  belongs_to :trail
 
   has_many :credits
   has_many :debits
@@ -197,10 +199,9 @@ class User < ApplicationRecord
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
   after_create :insert_into_binary_tree
-
   after_update :ensure_digital_wallet_existence, unless: :active_digital_wallet?
-  after_create :ensure_email_existence
-  after_update :ensure_email_existence, unless: :active_email?
+  #after_create :ensure_email_existence
+  #after_update :ensure_email_existence, unless: :active_email?
 
   def balance
     (available_balance + blocked_balance).to_f / 1e8
@@ -301,11 +302,11 @@ class User < ApplicationRecord
   end
 
   def current_trail
-    current_career_trail.try(:trail)
+    trail
   end
 
   def current_career
-    current_career_trail.try(:career)
+    career
   end
 
   def current_career_trail_user
@@ -506,6 +507,7 @@ class User < ApplicationRecord
   def ensure_initial_career_trail
     first_career_trail = CareerTrail.first
     CareerTrailUser.create!(user: self, career_trail: first_career_trail)
+    update!(career: first_career_trail.career, trail: first_career_trail.trail)
   end
 
   def ensure_ascendant_sponsors_ids

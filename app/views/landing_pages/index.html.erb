@@ -1,4 +1,4 @@
-<section id="home" class="s-home page-hero target-section" data-parallax="scroll" data-image-src="assets/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
+<section id="home" class="s-home page-hero target-section" data-parallax="scroll" data-image-src="<%= image_url('bg.png') %>" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
 
     <div class="grid-overlay">
         <div></div>
@@ -8,7 +8,7 @@
 
         <div class="row home-content__main">
           <div class="logo">
-            <%= image_tag('logo-landing.png') %>
+            <%= image_tag('logo.png') %>
           </div>
             <h1>
             What´s your dream?
@@ -20,7 +20,7 @@
 
             <div class="home-content__video">
                 <a class="video-link" href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
-                    <span class="video-icon" style="background-image: url('assets/icons/icon-play.svg');"></span>
+                    <span class="video-icon" style="background-image: url('<%= image_url('icons/icon-play.svg') %>');"></span>
                     <span class="video-text">Watch Video</span>
                 </a>
             </div>

@@ -50,16 +50,3 @@
 //= require copy-button
 //= require cellphone-reloads/new
 //= require regressive-timer
-
-$(document).ready(function() {
-  $("#sidebar-menu a").each(function() {
-    if (this.href == window.location.href) {
-      $(this).addClass("active");
-      $(this).parent().addClass("active"); // add active to li of the current link
-      $(this).parent().parent().prev().addClass("active"); // add active class to an anchor
-      $(this).parent().parent().prev().addClass("subdrop"); // add active class to an anchor
-      $(this).parent().parent().show();
-      $(this).parent().parent().prev().click(); // click the item to make it drop
-    }
-  });
-});

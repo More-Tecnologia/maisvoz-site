@@ -19,7 +19,7 @@ class BackofficeController < ApplicationController
   end
 
   def current_deposit
-    @current_deposit ||= OrderItem.includes(:product, :order)
+    @current_deposit ||= OrderItem.includes(:order)
                                   .where(product: Product.deposit, order: current_user.orders.cart)
                                   .order(created_at: :desc)
                                   .last

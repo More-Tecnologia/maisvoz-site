@@ -116,13 +116,13 @@ end
 
 # FINANCIAL REASONS
 administrative_type = FinancialReasonType.find_or_create_by!(name: 'Administrativo Financeiro', code: '100')
-administrative_reasons = [{ title: 'Taxa do Sistema', code: '200', company_moneyflow: :debit },
-                          { title: 'Withdrawal', code: '300', company_moneyflow: :debit },
-                          { title: 'Withdrawal Fee', code: '400', company_moneyflow: :credit },
-                          { title: 'Order Payment', code: '1200', company_moneyflow: :credit },
-                          { title: 'Credit', code: '2800', company_moneyflow: :debit },
-                          { title: 'Debit', code: '2900', company_moneyflow: :credit },
-                          { title: 'Despesa', code: '3800', company_moneyflow: :debit }]
+administrative_reasons = [{ title: 'Taxa do Sistema', code: '200', company_moneyflow: :debit, morenwm_moneyflow: :credit },
+                          { title: 'Withdrawal', code: '300', company_moneyflow: :debit, morenwm_moneyflow: :debit },
+                          { title: 'Withdrawal Fee', code: '400', company_moneyflow: :credit, morenwm_moneyflow: :debit },
+                          { title: 'Order Payment', code: '1200', company_moneyflow: :credit, morenwm_moneyflow: :not_applicable },
+                          { title: 'Credit', code: '2800', company_moneyflow: :debit, morenwm_moneyflow: :credit },
+                          { title: 'Debit', code: '2900', company_moneyflow: :credit, morenwm_moneyflow: :debit },
+                          { title: 'Despesa', code: '3800', company_moneyflow: :debit, morenwm_moneyflow: :debit }]
 administrative_reasons.each do |attributes|
   financial_reason = FinancialReason.find_by(code: attributes[:code])
   if financial_reason

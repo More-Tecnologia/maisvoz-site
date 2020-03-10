@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   mount Attachinary::Engine => '/attachinary'
 
-  root 'shop#index'
+  root 'landing_pages#index'
 
   resources :shop, only: [:index, :show]
   resources :bradesco_check_order, only: :index

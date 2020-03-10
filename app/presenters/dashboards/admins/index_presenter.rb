@@ -22,7 +22,7 @@ module Dashboards
       end
 
       def last_orders
-        Order.last(10).reverse
+        Order.includes(:user).last(10).reverse
       end
 
       def last_orders_count

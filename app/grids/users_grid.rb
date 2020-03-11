@@ -1,11 +1,11 @@
 class UsersGrid < BaseGrid
 
   scope do
-    User.includes(:sponsor, :support_point_user, career_trail_users: [career_trail: [:career, :trail]])
+    User.includes(:sponsor, :support_point_user, :career, :trail)
         .order(id: :desc)
   end
 
-  decorate {|user| user.decorate }
+  decorate(&:decorate)
 
   filter(:username, header: I18n.t('attributes.user')) do |value, scope|
     scope.where('users.username ILIKE ?', "%#{value}%")
@@ -38,7 +38,7 @@ class UsersGrid < BaseGrid
   column(:career_name, mandatory: true, header: I18n.t('attributes.career_kind'))
   column(:trail_name, mandatory: true, header: I18n.t('attributes.trail'))
   column(:created_at, html: false, mandatory: true, header: I18n.t('attributes.created_at'))
-  column(:created_at, header: I18n.t('attributes.created_at')) do |user|
+  column(:created_at, header: ' ' + I18n.t('attributes.created_at')) do |user|
     format(user.created_at) do |created_at|
       l(created_at, format: :short)
     end
@@ -72,17 +72,12 @@ class UsersGrid < BaseGrid
     end
   end
 
-  column(:gender)
-  column(:email)
-  column(:phone)
-  column(:registration_type)
-  column(:document_cpf)
-  column(:document_rg)
-  column(:document_pis)
-  column(:document_cnpj)
-  column(:document_ie)
-  column(:document_company_name)
-  column(:document_fantasy_name)
-  column(:birthdate)
+  column(:gender, header: ' ' + I18n.t(:gender))
+  column(:email, header: ' ' + I18n.t(:email))
+  column(:phone, header: ' ' + I18n.t(:phone))
+  column(:registration_type, header: ' ' + I18n.t(:registration_type))
+  column(:document_rg, header: ' ' + I18n.t(:passport))
+  column(:document_cpf, header:' ' + I18n.t(:id))
+  column(:birthdate, header: ' ' + I18n.t(:birthdate))
 
 end

@@ -8,19 +8,19 @@
         <div class="row">
           <div class="col-md-3">
             <%= f.label t('attributes.from') %>
-            <%= f.search_field :created_at_gteq, class: 'form-control input-sm',
+            <%= f.search_field :created_at_gteq, class: 'form-control',
                                                  type: 'date' %>
           </div>
           <div class="col-md-3">
             <%= f.label t('attributes.until') %>
-            <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
+            <%= f.search_field :created_at_lteq, class: 'form-control',
                                                  type: 'date' %>
           </div>
           <div class="col-md-3">
-            <%= t('activerecord.attributes.financial_transaction.financial_reason') %>
+            <%= f.label t('activerecord.attributes.financial_transaction.financial_reason') %>
             <%= f.select :financial_reason_id_in, FinancialReason.active.pluck(:title, :id),
                                                   { include_blank: t('all') },
-                                                  { class: 'form-control input-sm', multiple: true } %>
+                                                  { class: 'form-control', select2: true, multiple: true } %>
           </div>
         </div>
       </div>
@@ -28,3 +28,4 @@
     <% end %>
   </div>
 </div>
+<%= javascript_include_tag('utilities/select2') %>

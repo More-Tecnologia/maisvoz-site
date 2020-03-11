@@ -149,11 +149,6 @@
 
 
       <ul class="nav navbar-nav navbar-right">
-        <% if user_masquerade? %>
-        <li>
-          <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
-        </li>
-        <% end %>
         <li class='text-warning timer-wrapper'>
           <%= link_to backoffice_financial_transactions_path do %>
             <span class='text-warning'> Binary Bonus <%= t('helpers.in') %> </span>
@@ -214,6 +209,12 @@
                 <%= t('views.backoffice.topbar.documents') %>
               <% end %>
             </li>
+            <li class="divider"></li>
+            <% if user_masquerade? %>
+            <li>
+              <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>
+            </li>
+            <% end %>
             <li class="divider"></li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>

@@ -8,7 +8,7 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
-Rails.application.config.assets.precompile += %w( charts.js recaptcha.js amount_cleasing.js )
+Rails.application.config.assets.precompile += %w( charts.js recaptcha.js amount_cleasing.js utilities/select2.js)
 Rails.application.config.assets.precompile += %w( dashboards/user_dashboard.js landing_page/*)
 
 # Precompile additional assets.

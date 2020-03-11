@@ -19,7 +19,7 @@ module Backoffice
     end
 
     def find_unilevel_node_by_hashid
-      @current_node ||= User.select(:id, :username, :sponsor_id).find_by(id: params[:user]).try(:unilevel_node)
+      @current_node ||= User.select(:id, :username, :sponsor_id, :career_id).find_by(id: params[:user]).try(:unilevel_node)
     end
 
     def ensure_current_node_is_descendant_of_current_user_node

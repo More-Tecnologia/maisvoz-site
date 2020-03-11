@@ -151,40 +151,48 @@
       <ul class="nav navbar-nav navbar-right">
         <li class='text-warning timer-wrapper'>
           <%= link_to backoffice_financial_transactions_path do %>
-            <span class='text-warning'> Binary Bonus <%= t('helpers.in') %> </span>
+            <span class='text-warning'> Binary </span>
             <span class="text-warning regressive-timer"> </span>
           <% end %>
         </li>
         <li class='top-menu-item-xs'>
+
+
           <%= link_to backoffice_financial_transactions_path do %>
-          <span class="text-success">
-            <%= number_to_currency(current_user.available_balance) %>
-          </span>
+
+            <%= content_tag(:span, number_to_currency(current_user.available_balance), class: 'text-success') %>
+
+          <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
+
+            <%= content_tag(:span, number_to_currency(current_user.blocked_balance), class: 'text-danger') %>
+
           <% end %>
-        </li>
-        <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
-          <li class='top-menu-item-xs'>
-            <%= link_to backoffice_financial_transactions_path do %>
-            <span class="text-danger">
-              <%= number_to_currency current_user.blocked_balance %>
-            </span>
+
             <% end %>
-          </li>
-        <% end %>
+
+        </li>
+
         <li class="hidden-xs">
           <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
             <i class="icon-size-fullscreen"></i>
           </a>
         </li>
-        <li class='top-menu-item-xs'>
-          <a href="?locale=pt-BR" class="flag">
-            <%= image_tag('countries/br.svg') %>
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown">
+            <span class="hidden-xs"><i class="fa fa-language" aria-hidden="true"></i></span>
           </a>
-        </li>
-        <li class='top-menu-item-xs'>
-          <a href="?locale=en" class="flag">
-            <%= image_tag('countries/us.svg') %>
-          </a>
+          <ul class="dropdown-menu">
+            <li class='top-menu-item-xs text-center'>
+              <a href="?locale=pt-BR" class="flag">
+                <%= image_tag('countries/br.svg') %>
+              </a>
+            </li>
+            <li class='top-menu-item-xs text-center'>
+              <a href="?locale=en" class="flag">
+                <%= image_tag('countries/us.svg') %>
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">

@@ -1320,3 +1320,7 @@ pt-BR:
   copied_sponsor_link_message: 'Seu link de patrocinador foi copiado com sucesso'
   pool_leadership: 'Pool Leadership'
   passport: Passaporte
+  gender: 'Genero'
+  birthdate: 'Aniversário'
+  registration_type: 'Tipo de registro'
+  phone: 'Telefone'

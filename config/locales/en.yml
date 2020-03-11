@@ -1288,3 +1288,7 @@
   copied_sponsor_link_message: 'Your sponsor link was successfully copied'
   pool_leadership: 'Pool Leadership'
   passport: Passport
+  gender: 'Gender'
+  birthdate: 'Birthdate'
+  registration_type: 'Registration Type'
+  phone: 'Phone'

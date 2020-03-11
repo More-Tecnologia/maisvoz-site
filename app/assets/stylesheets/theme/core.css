@@ -2216,13 +2216,33 @@ body.fixed-left .side-menu.left {
 }
 @media screen and (max-width: 1920px) and (min-width: 1280px) {
   .nav.navbar-nav {
-    font-size: 9px!important;
+    font-size: 10.5px!important;
   }
 }
 
+@media (min-width:1200px) and (max-width:1279px) {
+  .top-menu-item-xs {
+    font-size: 11.5px!important;
+  }
+  .top-menu-item-xs a {
+    padding: 0 9px!important;
+  }
+}
 
-@media (max-width: 768px) {
-  .nav.navbar-nav {
-    font-size: 10px!important;;
+@media (min-width:992px) and (max-width:1199px) {
+  .top-menu-item-xs {
+    font-size: 17px!important;
+  }
+  .top-menu-item-xs a {
+    padding: 0 16.5px!important;
+  }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+  .top-menu-item-xs {
+    font-size: 11px!important;
+  }
+  .top-menu-item-xs a {
+    padding: 0 12.5px!important;
   }
 }

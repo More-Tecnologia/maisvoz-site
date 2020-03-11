@@ -16,12 +16,12 @@
       <ul class="nav navbar-nav navbar-center">
         <% if current_user.empreendedor? %>
           <li class="dropdown top-menu-item-xs">
-            <a href="#" sponsor-link="<%= shop_index_url(sponsor: current_user.username) %>" id="sponsor-link" title='<%= t(:copied_sponsor_link) %>' message='<%= t(:copied_sponsor_link_message) %>'><i  class="fa fa-link"></i>&nbsp; <span class="hidden-xs"><%= t(:sponsor_link) %></span></a>
+            <a href="#" sponsor-link="<%= shop_index_url(sponsor: current_user.username) %>" id="sponsor-link" title='<%= t(:copied_sponsor_link) %>' message='<%= t(:copied_sponsor_link_message) %>'><i  class="fa fa-link"></i>&nbsp; <span class="hidden-xs hidden-sm hidden-md"><%= t(:sponsor_link) %></span></a>
           </li>
         <% end %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span class="hidden-xs">&nbsp; <%= t(:deposits) %> </span>
+            <i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t(:deposits) %> </span>
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -35,7 +35,7 @@
         <% if current_user.admin? || current_user.empreendedor? %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span class="hidden-xs">&nbsp; <%= t('defaults.financial') %> </span>
+            <i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.financial') %> </span>
           </a>
           <ul class="dropdown-menu">
             <% if current_user.admin? %>
@@ -79,7 +79,7 @@
         <% if current_user.admin? || current_user.empreendedor? %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="ti-sharethis"></i><span class="menu-arrow"></span><span class="hidden-xs">&nbsp; <%= t('defaults.network') %> </span>
+            <i class="ti-sharethis"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.network') %> </span>
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path if ENV['ENABLED_BINARY'] == 'true' %></li>
@@ -99,7 +99,7 @@
         <% if current_user.admin? || current_user.empreendedor? %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span class="hidden-xs">&nbsp; <%= t('defaults.scores') %> </span>
+            <i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.scores') %> </span>
           </a>
           <ul class="dropdown-menu">
             <li> <%= link_to t('defaults.unilevel'), backoffice_bonus_contracts_path %> </li>
@@ -128,7 +128,7 @@
         <% if current_user.admin? %>
           <li class="dropdown top-menu-item-xs">
             <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-              <i class="fas fa-user-shield"></i><span class="menu-arrow"></span><span class="hidden-xs">&nbsp; <%= t('defaults.admin') %> </span>
+              <i class="fas fa-user-shield"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.admin') %> </span>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to t('defaults.users'), backoffice_support_users_path, class: 'admin-link' %></li>
@@ -141,14 +141,14 @@
         <% if current_user.admin? || current_user.empreendedor? %>
         <li class="top-menu-item-xs">
           <%= link_to backoffice_downloads_path do %>
-            <i class="md md-cloud-download" tooltip='<%= t(:download_support_material) %>'></i> <span class="hidden-xs">&nbsp; <%= t(:support_material) %></span>
+            <i class="md md-cloud-download" tooltip='<%= t(:download_support_material) %>'></i> <span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t(:support_material) %></span>
           <% end %>
         </li>
         <% end %>
       </ul>
 
 
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right top-menu-item-xs">
         <li class='text-warning timer-wrapper'>
           <%= link_to backoffice_financial_transactions_path do %>
             <span class='text-warning'> Binary </span>
@@ -172,14 +172,14 @@
 
         </li>
 
-        <li class="hidden-xs">
+        <li class="hidden-xs hidden-sm">
           <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
             <i class="icon-size-fullscreen"></i>
           </a>
         </li>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown">
-            <span class="hidden-xs"><i class="fa fa-language" aria-hidden="true"></i></span>
+            <span><i class="fa fa-language" aria-hidden="true"></i></span>
           </a>
           <ul class="dropdown-menu">
             <li class='top-menu-item-xs text-center'>
@@ -196,7 +196,7 @@
         </li>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <span class="hidden-xs"><%= current_user.username %>&nbsp;&nbsp;</span><%= current_user.decorate.avatar_image_tag %>
+            <span class="hidden-xs hidden-sm hidden-md"><%= current_user.username %>&nbsp;&nbsp;</span><%= current_user.decorate.avatar_image_tag %>
           </a>
           <ul class="dropdown-menu">
             <li>

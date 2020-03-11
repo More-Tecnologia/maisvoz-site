@@ -499,7 +499,7 @@ pt-BR:
     scores:
       index:
         title:
-          unilevel: Pool Points
+          unilevel: Pool Cash
           binary: Binary Points
           all: Pontuações
     sim_cards:
@@ -728,7 +728,7 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
-    unilevel: Pool Points
+    unilevel: Pool Cash
     binary: Binary Points
     point_qualifications: Points Qualifications
     unilevel_binary: Relatório

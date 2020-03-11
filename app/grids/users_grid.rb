@@ -17,6 +17,8 @@ class UsersGrid < BaseGrid
   filter(:email)
   filter(:role, :enum, select: User.roles, header: I18n.t('attributes.role'))
   filter(:role_type_code, :enum, select: RoleType.order(:name).pluck(:name, :code), header: I18n.t('attributes.role_type'))
+  filter(:career, :enum, select: Career.qualifying.pluck(:name, :id), header: I18n.t('attributes.career_kind'))
+  filter(:trail, :enum, select: Trail.pluck(:name, :id), header: I18n.t('attributes.trail'))
   filter(:active, :xboolean, header: I18n.t('attributes.active')) do |value|
      value == true ? merge(User.active) : merge(User.inactive)
   end

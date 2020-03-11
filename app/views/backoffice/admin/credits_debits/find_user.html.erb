@@ -28,7 +28,7 @@
                 <%= f.input :username %>
               </div>
               <div class="col-md-6">
-                <%= f.input :document_cpf %>
+                <%= f.input :document_cpf, label: t(:id) %>
               </div>
               <div class="col-md-12">
                 <%= f.button(:button, t("defaults.search"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Searching...".html_safe }) %>

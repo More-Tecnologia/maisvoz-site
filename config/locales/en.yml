@@ -493,8 +493,8 @@
     scores:
       index:
         title:
-          unilevel: Pool Points
-          binary: Point Commissions
+          unilevel: Pool Cash
+          binary: Binary Points
           all: Ratings
     sim_cards:
       index:
@@ -708,8 +708,8 @@
     my_vehicles: My Vehicles
     upgrades: Upgrades
     scores: Scores
-    unilevel: Pool Points
-    binary: Point Commissions
+    unilevel: Pool Cash
+    binary: Binary Points
     point_qualifications: Points Qualifications
     unilevel_binary: Report
     financial_transactions: Financial History
@@ -1287,3 +1287,4 @@
   copied_sponsor_link: 'Sponsor link copied'
   copied_sponsor_link_message: 'Your sponsor link was successfully copied'
   pool_leadership: 'Pool Leadership'
+  passport: Passport

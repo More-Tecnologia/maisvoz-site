@@ -15,7 +15,7 @@
 
         <table class="table table-bordered">
           <tr>
-            <td>RG</td>
+            <td><%= t(:passport) %></td>
             <td>
               <% if current_user.document_rg_photo? %>
                 <%= cl_image_tag current_user.document_rg_photo.path, { size: '150x150', class: 'm-b-20' } %>
@@ -24,39 +24,12 @@
             </td>
           </tr>
           <tr>
-            <td>CPF</td>
+            <td><%= t(:id) %></td>
             <td>
               <% if current_user.document_cpf_photo? %>
                 <%= cl_image_tag current_user.document_cpf_photo.path, { size: '150x150', class: 'm-b-20' } %>
               <% end %>
               <%= f.input :document_cpf_photo, as: :file, label: false %>
-            </td>
-          </tr>
-          <tr>
-            <td>PIS</td>
-            <td>
-              <% if current_user.document_pis_photo? %>
-                <%= cl_image_tag current_user.document_pis_photo.path, { size: '150x150', class: 'm-b-20' } %>
-              <% end %>
-              <%= f.input :document_pis_photo, as: :file, label: false %>
-            </td>
-          </tr>
-              <tr>
-            <td>Comprovante de Endereço</td>
-            <td>
-              <% if current_user.document_address_photo? %>
-                <%= cl_image_tag current_user.document_address_photo.path, { size: '150x150', class: 'm-b-20' } %>
-              <% end %>
-              <%= f.input :document_address_photo, as: :file, label: false %>
-            </td>
-              </tr>
-          <tr>
-            <td>Contrato Social</td>
-            <td>
-              <% if current_user.document_scontract_photo? %>
-                <%= cl_image_tag current_user.document_scontract_photo.path, { size: '150x150', class: 'm-b-20' } %>
-              <% end %>
-              <%= f.input :document_scontract_photo, as: :file, label: false %>
             </td>
           </tr>
         </table>

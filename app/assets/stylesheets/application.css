@@ -19,6 +19,7 @@
  *= require 'login-page'
  *= require 'typography'
  *= require 'user-dashboard'
+ *= require 'top_bar'
  *= require 'components/components'
  *= require 'overrides/overrides'
  *= require 'theme/theme'

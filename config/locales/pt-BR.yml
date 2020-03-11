@@ -499,8 +499,8 @@ pt-BR:
     scores:
       index:
         title:
-          unilevel: Pool Points
-          binary: Point Commissions
+          unilevel: Pool Cash
+          binary: Binary Points
           all: Pontuações
     sim_cards:
       index:
@@ -728,8 +728,8 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
-    unilevel: Pool Points
-    binary: Point Commissions
+    unilevel: Pool Cash
+    binary: Binary Points
     point_qualifications: Points Qualifications
     unilevel_binary: Relatório
     financial_transactions: Histórico Financeiro
@@ -783,8 +783,8 @@ pt-BR:
     score_expired: Expirado
     contract_active: Ativo
     contract_expired: Encerrado
-    bonus_contracts: Contrato Pool Point
-    bonus_contract_items: Contrato Pool Point
+    bonus_contracts: Contrato Pool Cash
+    bonus_contract_items: Contrato Pool Cash
     unilevel_tree: Unilevel
     voucher_payment: Voucher só paga o produto Advance
     my_vouchers: Meus Vouchers
@@ -1319,3 +1319,4 @@ pt-BR:
   copied_sponsor_link: 'Link de indicação copiado'
   copied_sponsor_link_message: 'Seu link de patrocinador foi copiado com sucesso'
   pool_leadership: 'Pool Leadership'
+  passport: Passaporte

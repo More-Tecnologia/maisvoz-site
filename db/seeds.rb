@@ -102,7 +102,7 @@ score_types = [{ name: 'Pontuação de Adesões', code: '100', active: false },
                { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500', active: false },
                { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600', active: false },
                { name: 'Points Commissions Debit', tree_type: :binary, code: '700', active: true },
-               { name: 'Pool Point', code: '900', active: true }]
+               { name: 'Pool Cash', code: '900', active: true }]
 score_types.each do |score_type|
   score = ScoreType.find_by(code: score_type[:code])
   if score

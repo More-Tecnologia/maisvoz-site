@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to backoffice_admin_dashboard_index_path, class: 'logo' do %>
+      <%= link_to dashboard_direction(current_user), class: 'logo' do %>
         <span><%= image_tag('logo.png', height: 60) %></span>
       <% end %>
     </div>

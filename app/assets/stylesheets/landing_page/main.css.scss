@@ -3460,7 +3460,6 @@ html.no-csstransitions .home-content__main {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: .9;
   background-color: #111111;
 }
 
@@ -4018,8 +4017,35 @@ footer a {
 
 #landing-page-video {
   position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
+  z-index: -1;
+  /*not work if the screen ratio is below 16/9*/
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  #landing-page-video {
+      width: 100%;
+      height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  #landing-page-video {
+      width: auto;
+      height: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  #landing-page-video {
+      display: none;
+  }
+
+  body {
+      background: url(assets_path('bg.jpg'));
+      background-size: cover;
+  }
 }

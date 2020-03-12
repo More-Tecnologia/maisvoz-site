@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav navbar-center">
         <% if current_user.empreendedor? %>
           <li class="dropdown top-menu-item-xs">
-            <a href="#" sponsor-link="<%= shop_index_url(sponsor: current_user.username) %>" id="sponsor-link" title='<%= t(:copied_sponsor_link) %>' message='<%= t(:copied_sponsor_link_message) %>'><i  class="fa fa-link"></i>&nbsp; <span class="hidden-xs hidden-sm hidden-md"><%= t(:sponsor_link) %></span></a>
+            <a href="#" sponsor-link="<%= root_url(sponsor: current_user.username) %>" id="sponsor-link" title='<%= t(:copied_sponsor_link) %>' message='<%= t(:copied_sponsor_link_message) %>'><i  class="fa fa-link"></i>&nbsp; <span class="hidden-xs hidden-sm hidden-md"><%= t(:sponsor_link) %></span></a>
           </li>
         <% end %>
         <li class="dropdown top-menu-item-xs">

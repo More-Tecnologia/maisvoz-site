@@ -1244,10 +1244,10 @@
   binary_affiliates_left_count: Left binary tree
   binary_affiliates_right_count: Right binary tree
   total_bonus: Total Bonus
-  matching_bonus: Matching
-  pool_trade_bonus: Pool trade
+  matching_bonus: Equilibrium
+  pool_trade_bonus: Pool Cash
   residual_bonus: Residual
-  direct_commission_bonus: 'Direct commission'
+  direct_commission_bonus: 'Start Fast'
   account_earnings_limit: Account earnings limit
   receivable_amount: Receivable amout
   received_amount: Received amout

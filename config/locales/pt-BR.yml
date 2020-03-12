@@ -1275,10 +1275,10 @@ pt-BR:
   binary_affiliates_left_count: Rede binária esquerda
   binary_affiliates_right_count: Rede binária direita
   total_bonus: Bônus Total
-  matching_bonus: Matching
-  pool_trade_bonus: Pool trade
+  matching_bonus: Equilibrium
+  pool_trade_bonus: Pool Cash
   residual_bonus: Residual
-  direct_commission_bonus: 'Comissão direta'
+  direct_commission_bonus: 'Start Fast'
   account_earnings_limit: Teto da conta
   receivable_amount: Valor possível a receber
   received_amount: Valor recebido

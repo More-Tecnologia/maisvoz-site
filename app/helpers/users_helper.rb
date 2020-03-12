@@ -20,5 +20,13 @@ module UsersHelper
     end
   end
 
+  def dashboard_direction(user)
+    if user.admin?
+      backoffice_admin_dashboard_index_path
+    else
+      backoffice_dashboard_index_path
+    end
+  end
+
 
 end

@@ -1,5 +1,5 @@
 <div class="row linhaHome">
-  <div class="col-md-2">
+  <div class="col-md-3">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
         <span><%= t(:account_status) %></span>
@@ -37,17 +37,6 @@
   <div class="col-md-2">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
-        <span><%= t(:course) %></span>
-      </div>
-      <div class="dashboard-card__value label-default">
-        <%= current_user.try(:current_trail).try(:name) %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-2">
-    <div class="dashboard-card">
-      <div class="dashboard-card__label">
         <span><%= t(:career) %></span>
       </div>
       <div class="dashboard-card__value label-default">
@@ -56,7 +45,7 @@
     </div>
   </div>
 
-  <div class="col-md-2">
+  <div class="col-md-3">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
         <span><%= t(:next) + ' ' + t(:career) %></span>
@@ -69,41 +58,7 @@
 </div><br><br>
 
 <div class="row">
-  <div class="col-md-2">
-    <div class="card card-placeholder">
-        <label class="dashboard-card__label">
-          <%= t(:account_earnings_limit) %>
-          <div id="account_earnings_limit"></div>
-        </label>
-      <div class="card-body">
-        <div id="earnings"></div>
-        <div id="legend_earnings" class="donut-legend"></div>
-      </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="account_earnings_limit" group="earnings" object="receivable_amount, received_amount" colors="#001d6e, #FFD878" path="earnings_data"  amount_sign="&#36;">
-        <i class="fa fa-refresh"></i>
-      </span>
-    </div>
-
-
-  </div>
-  <div class="col-md-2">
-    <div class="card card-placeholder">
-      <label class="dashboard-card__label">
-        <%= t(:balance) %>
-        <div id="balance">
-        </div>
-      </label>
-      <div class="card-body">
-        <div id="balances">
-        </div>
-        <div id="legend_balances" class="donut-legend"></div>
-      </div>
-      <span href="#" class="btn btn-white bt-toggle" head="balance" group="balances" object="available_balance, blocked_balance" colors="#FFD878, #001d6e" path="balances_data" amount_sign="&#36;">
-        <i class="fa fa-refresh"></i>
-      </span>
-    </div>
-  </div>
-  <div class="col-md-2">
+  <div class="col-md-4">
     <div class="card card-placeholder">
       <label class="dashboard-card__label">
         <%= t(:total_bonus) %>
@@ -133,57 +88,40 @@
 
 
   </div>
-  <div class="col-md-2">
-    <div class="card card-placeholder">
-      <label class="dashboard-card__label">
-        <%= t(:unilevel_affiliates_count) %>
-        <div id="unilevel_affiliates_count">
-        </div>
-      </label>
-      <div class="card-body">
-        <div id="unilevel_counts"></div>
-        <div id="legend_unilevel_counts" class="donut-legend"></div>
-      </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="unilevel_affiliates_count" group="unilevel_counts" object="unilevel_affiliates_actives_count, unilevel_affiliates_inactives_count" colors="#FFD878, #001d6e" path="unilevel_counts_data">
-        <i class="fa fa-refresh"></i>
-      </span>
-    </div>
-  </div>
+  <div class="col-md-8">
+      <div class="card-box card card-placeholder">
+        <div class="card-body">
+                  <h5 class="mt-0"><%= t(:account_earnings_limit) %><span><span id="account_earnings_limit" style="display: block; float: right;"></span></span></h5>
+                  <div class="progress progress-lg" id='earnings'>
+                  </div>
+                  <div id="legend_earnings" class="progressbar-legend">
 
-  <div class="col-md-2">
-    <div class="card card-placeholder">
-      <label class="dashboard-card__label">
-        <%= t(:binary_affiliates_count) %>
-        <div id="binary_affiliates_count">
-        </div>
-      </label>
-      <div class="card-body">
-        <div id="binary_count">
-        </div>
-        <div id="legend_binary_count" class="donut-legend"></div>
-      </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_affiliates_count" group="binary_count" object="binary_affiliates_left_count, binary_affiliates_right_count" colors="#FFD878, #001d6e" path="binary_counts_data">
-        <i class="fa fa-refresh"></i>
-      </span>
-    </div>
+                  </div>
 
-  </div>
-  <div class="col-md-2">
-    <div class="card card-placeholder">
-      <label class="dashboard-card__label">
-        <%= t(:binary_scores) %>
-        <div id="binary_score"></div>
-      </label>
-      <div class="card-body">
-        <div id="binary_scores"></div>
-        <div id="legend_binary_scores" class="donut-legend"></div>
-      </div>
-      <span href="#" class="btn btn-white bt-toggle card-footer" head="binary_score" group="binary_scores" object="left_binary_score, right_binary_score" colors="#FFD878, #001d6e" path="binary_scores_data">
-        <i class="fa fa-refresh"></i>
-      </span>
-    </div>
-  </div>
+                  <h5 class="mt-3"><%= t(:balance) %><span style="display: block; float: right;"><span id="balance"></span></span></h5>
+                  <div class="progress progress-lg" id="balances"></div>
+                  <div id="legend_balances" class="progressbar-legend"></div>
 
+                  <h5 class="mt-3"><%= t(:unilevel_affiliates_count) %><span style="display: block; float: right;"><span id="unilevel_affiliates_count"></span></span></h5>
+                  <div class="progress progress-lg" id="unilevel_counts">
+                  </div>
+                  <div id="legend_unilevel_counts" class="progressbar-legend"></div>
+
+                  <h5 class="mt-3"><%= t(:binary_affiliates_count) %><span style="display: block; float: right;"><span id="binary_affiliates_count"></span></span></h5>
+                  <div class="progress progress-lg" id="binary_count"></div>
+                  <div id="legend_binary_count" class="progressbar-legend"></div>
+
+                  <h5 class="mt-3"><%= t(:binary_scores) %><span style="display: block; float: right;"><span id="binary_score"></span></span></h5>
+                  <div class="progress progress-lg" id="binary_scores">
+                  </div>
+                  <div id="legend_binary_scores" class="progressbar-legend"></div>
+
+                </div>
+                  <span href="#" class="btn btn-white btn-block bt-bars card-footer">
+                    <i class="fa fa-refresh"></i>
+                  </span>
+      </div>  <!-- end card-box-->
+  </div> <!-- end col -->
 </div><br><br>
 
 <div class="row">
@@ -292,9 +230,13 @@
 </div>
 <div id="locale" value="<%= params[:locale] %>"></div>
 <div id="fb-root"></div>
+
 <script async defer crossorigin="anonymous"
                     src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v6.0&appId=1005612036250425&autoLogAppEvents=1">
 </script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
 
+
 <%= javascript_include_tag 'dashboards/user_dashboard', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'dashboards/progress-bar', 'data-turbolinks-track': 'reload' %>

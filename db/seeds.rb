@@ -80,8 +80,8 @@ end
 
 persisted_careers.each do |career|
   persisted_trails.each do |trail|
-    maximum_bonus = { 'Partner': 0,
-                      'Member': 0,
+    maximum_bonus = { 'Partner': nil,
+                      'Member': 2_000,
                       'Manager': 2_000,
                       'Executive': 2_000,
                       'Director': 3_000,

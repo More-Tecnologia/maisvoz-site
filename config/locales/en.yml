@@ -471,6 +471,9 @@
       pool_leaderships:
         create:
           success: Pool Leadership updated.
+      pool_trandings:
+        create:
+          success: Pool Cash updated.
     support:
       users:
         index:
@@ -1292,3 +1295,4 @@
   birthdate: 'Birthdate'
   registration_type: 'Registration Type'
   phone: 'Phone'
+  pool_tranding: 'Pool Cash'

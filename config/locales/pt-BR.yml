@@ -473,7 +473,7 @@ pt-BR:
           success: Valor do Pool Leadership salvo com sucesso.
       pool_trandings:
         create:
-          success: Valor do Pool Tranding salvo com sucesso.
+          success: Valor do Pool Cash salvo com sucesso.
       expenses:
         create:
           success: Despesa lançada com sucesso
@@ -1324,3 +1324,4 @@ pt-BR:
   birthdate: 'Aniversário'
   registration_type: 'Tipo de registro'
   phone: 'Telefone'
+  pool_tranding: 'Pool Cash'

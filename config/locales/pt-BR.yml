@@ -728,7 +728,7 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
-    unilevel: Pool Cash
+    unilevel: Contratos Pool Cash
     binary: Binary Points
     point_qualifications: Points Qualifications
     unilevel_binary: Relatório
@@ -1318,10 +1318,10 @@ pt-BR:
   sponsor_link: 'Link de indicação'
   copied_sponsor_link: 'Link de indicação copiado'
   copied_sponsor_link_message: 'Seu link de patrocinador foi copiado com sucesso'
-  pool_leadership: 'Pool Leadership'
+  pool_leadership: 'Valor Pool Leadership'
   passport: Passaporte
   gender: 'Genero'
   birthdate: 'Aniversário'
   registration_type: 'Tipo de registro'
   phone: 'Telefone'
-  pool_tranding: 'Pool Cash'
+  pool_tranding: 'Porcentagem Pool Cash'

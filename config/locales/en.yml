@@ -711,7 +711,7 @@
     my_vehicles: My Vehicles
     upgrades: Upgrades
     scores: Scores
-    unilevel: Pool Cash
+    unilevel: Pool Cash Contracts
     binary: Binary Points
     point_qualifications: Points Qualifications
     unilevel_binary: Report
@@ -1289,10 +1289,10 @@
   sponsor_link: 'Sponsor link'
   copied_sponsor_link: 'Sponsor link copied'
   copied_sponsor_link_message: 'Your sponsor link was successfully copied'
-  pool_leadership: 'Pool Leadership'
+  pool_leadership: 'Pool Leadership Amount'
   passport: Passport
   gender: 'Gender'
   birthdate: 'Birthdate'
   registration_type: 'Registration Type'
   phone: 'Phone'
-  pool_tranding: 'Pool Cash'
+  pool_tranding: 'Percentage Pool Cash'

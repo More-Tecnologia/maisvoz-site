@@ -16,12 +16,6 @@
             <%= f.search_field :created_at_lteq, class: 'form-control input-sm',
                                                  type: 'date' %>
           </div>
-          <div class="col-md-4">
-            <%= t('activerecord.attributes.score.score_type') %>
-            <%= f.select :score_type_id_in, ScoreType.unilevel.active.pluck(:name, :id),
-                                            { include_blank: t('all') },
-                                            { class: 'form-control input-sm', multiple: true } %>
-          </div>
         </div>
       </div>
       <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>

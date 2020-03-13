@@ -381,7 +381,7 @@ pt-BR:
         title: PVA Acumulado
     lineage_scores:
       index:
-        title: Pontuação por Linhagem
+        title: Points Qualifications
     financial_transactions:
       index:
         title: Transações Financeiras

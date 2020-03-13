@@ -378,7 +378,7 @@
         title: PVA Accumulated
     lineage_scores:
       index:
-        title: Lineage Score
+        title: Points Qualifications
     financial_transactions:
       index:
         title: Financial transactions

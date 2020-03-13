@@ -72,6 +72,7 @@ module Financial
       Bonification::AdhesionProductScorePropagator.call(order: order) if adhesion_product
       Bonification::DetachedProductScorePropagator.call(order: order)
       Bonification::ActivationProductScorePropagator.call(order: order)
+      Bonification::DepositProductScorePropagator.call(order: order)
     end
 
     def propagate_bonuses

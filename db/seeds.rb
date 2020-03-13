@@ -70,7 +70,7 @@ end
 
 deposit_cat = Category.find_or_create_by(name: 'Deposit')
 deposit_attributes =
-  { name: 'Deposit', price: 1, binary_score: 0, active: true, virtual: true, kind: :deposit, category: deposit_cat }
+  { name: 'Deposit', price: 1, binary_score: 1, active: true, virtual: true, kind: :deposit, category: deposit_cat }
 deposit_product = Product.create!(deposit_attributes)
 
 trails  = [{ name: 'Partner', product: deposit_product }]
@@ -97,6 +97,7 @@ end
 score_types = [{ name: 'Pontuação de Adesões', code: '100', active: false },
                { name: 'Pontuação de Ativação', code: '200', active: false },
                { name: 'Pontuação de Compras', code: '300', active: false },
+               { name: 'Points Qualifications', code: '1000', active: true },
                { name: 'Estorno de Pontuação por Inatividade', code: '800', active: false },
                { name: 'Points Commissions', tree_type: :binary, code: '400', active: true },
                { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500', active: false },

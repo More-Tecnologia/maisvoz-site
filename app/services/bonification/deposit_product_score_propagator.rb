@@ -12,7 +12,7 @@ module Bonification
 
     def initialize(args)
       @order = args[:order]
-      @deposit_product = order.deposit_product
+      @deposit_score = calculate_deposit_score
       @score_type = ScoreType.deposit
     end
 
@@ -25,17 +25,16 @@ module Bonification
     end
 
     def create_deposit_score(sponsor, height)
-      cent_amount = deposit_score
       sponsor.scores.create!(order: order,
                              spreader_user: order.user,
                              score_type: score_type,
-                             cent_amount: cent_amount.to_i,
-                             height: height) if cent_amount > 0
+                             cent_amount: @deposit_score,
+                             height: height) if @deposit_score.positive?
     end
 
-    def deposit_score
+    def calculate_deposit_score
       items = order.order_items.select { |i| i.product.deposit? }
-      items.sum { |i| i.quantity.to_f * i.product.binary_score.to_f }.to_f
+      items.sum { |i| i.quantity.to_f * i.product.binary_score.to_f }.to_i
     end
 
   end

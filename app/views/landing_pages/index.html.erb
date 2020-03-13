@@ -43,9 +43,9 @@
         </div>
 
     </div> <!-- end home-content -->
-    <!-- <video id="landing-page-video" poster="<%= image_url('bg.jpg') %>" autoplay muted loop>
+    <video id="landing-page-video" poster="<%= image_url('bg.jpg') %>" autoplay muted loop>
       <source src="<%= image_url('promotional_video.mp4') %>" type="video/mp4">
-      </video> -->
+      </video>
 
 </section> <!-- end s-home -->
 <br>
@@ -95,7 +95,7 @@
     <div class="row section-header narrow" data-aos="fade-up">
         <div class="col-full">
           <% if @sponsor %>
-            <h3 class="subhead">Você está sendo indicado por</h3>
+            <h3 class="subhead"><%= t(:sponsored_by) %></h3>
             <%= @sponsor.decorate.avatar_image_tag %>
             <h1 class="display-1"><%= @sponsor.name %></h1>
           <% end %>

@@ -80,7 +80,7 @@ end
 
 persisted_careers.each do |career|
   persisted_trails.each do |trail|
-    maximum_binary_score = { 'Partner': 0,
+    maximum_binary_scores = { 'Partner': 0,
                              'Member': 25_000,
                              'Manager': 25_000,
                              'Executive': 25_000,

@@ -116,7 +116,7 @@
           </a>
           <ul class="dropdown-menu">
             <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path if ENV['ENABLED_BINARY'] == 'true' %> </li>
-            <li> <%= link_to t('defaults.point_qualifications'), backoffice_point_qualifications_path %> </li>
+            <li> <%= link_to t('defaults.point_qualifications'), backoffice_lineage_scores_path %> </li>
             <% if current_user.admin? %>
             <li>
               <%= link_to(backoffice_admin_binary_scores_path, class: 'admin-link') do %>
@@ -124,7 +124,7 @@
               <% end if ENV['ENABLED_BINARY'] == 'true' %>
             </li>
             <li>
-              <%= link_to(backoffice_admin_point_qualifications_path, class: 'admin-link') do %>
+              <%= link_to(backoffice_admin_lineage_scores_path, class: 'admin-link') do %>
                 <i class="fas fa-user-shield"></i> <%= t('defaults.point_qualifications') %>
               <% end %>
             </li>

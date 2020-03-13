@@ -3,9 +3,13 @@
     <h3 class="panel-title"><%= t(:filters) %></h3>
   </div>
   <div class="panel-body">
-    <%= search_form_for @q, url: backoffice_lineage_scores_path do |f| %>
+    <%= search_form_for @q, url: backoffice_admin_lineage_scores_path do |f| %>
       <div class="form-group">
         <div class="row">
+          <div class="col-md-4">
+            <%= f.label t('attributes.username') %>
+            <%= f.search_field :user_username_eq, class: 'form-control input-sm' %>
+          </div>
           <div class="col-md-4">
             <%= f.label t('attributes.from') %>
             <%= f.search_field :created_at_gteq, class: 'form-control input-sm',

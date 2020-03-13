@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :unilevel_scores, only: [:index]
       resources :binary_scores, only: [:index]
+      resources :lineage_scores, only: [:index]
       resources :point_qualifications, only: [:index]
       resources :orders, only: [:index, :show] do
         post :approve

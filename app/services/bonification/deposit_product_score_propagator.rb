@@ -2,7 +2,7 @@ module Bonification
   class DepositProductScorePropagator < ApplicationService
 
     def call
-      return unless deposit_product && @score_type.active
+      return unless @deposit_score.positive? && @score_type.active
       propagate_deposit_score(order.user)
     end
 
@@ -29,7 +29,7 @@ module Bonification
                              spreader_user: order.user,
                              score_type: score_type,
                              cent_amount: @deposit_score,
-                             height: height) if @deposit_score.positive?
+                             height: height)
     end
 
     def calculate_deposit_score

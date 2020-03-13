@@ -59,6 +59,7 @@ Rails.application.routes.draw do
         end
       end
       resources :expenses, only: [:new, :create]
+      resources :bonus_contracts, only: :index
       resources :media_files, only: %i[show new create edit update]
     end
 

@@ -8,7 +8,11 @@ module Backoffice
     end
 
     def show
-      @order = order
+      @order = if current_user.admin?
+                 Order.find(params[:id])
+               else
+                 current_user.orders.find_by_hashid(params[:id])
+               end
     end
 
     def generate_boleto
@@ -25,12 +29,6 @@ module Backoffice
         flash[:success] = 'Boleto adicionado a fila de processamento'
       end
       redirect_to backoffice_orders_path
-    end
-
-    private
-
-    def order
-      @order ||= current_user.orders.find_by_hashid(params[:id])
     end
 
   end

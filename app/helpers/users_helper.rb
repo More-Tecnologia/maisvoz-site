@@ -28,5 +28,8 @@ module UsersHelper
     end
   end
 
+  def hide_name(name)
+    name.reverse.sub(/(?<=.).{4}?(?=.)/, '****').reverse
+  end
 
 end

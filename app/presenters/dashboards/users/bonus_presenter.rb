@@ -41,15 +41,16 @@ module Dashboards
           matching: bonus_calculation(MATCHING, MATCHING_CHARGEBACK),
           pool_trade: bonus_calculation(POOL_TRADE, POOL_TRADE_CHARGEBACK),
           residual: bonus_calculation(RESIDUAL, RESIDUAL_CHARGEBACK),
-          chargebacks: @chargeback.sum(&:cent_amount),
-          gross_bonus: @bonus.sum(&:cent_amount)
+          chargebacks: (@chargeback.sum(:cent_amount) / 1e8.to_f).round(2),
+          gross_bonus: (@bonus.sum(:cent_amount) / 1e8.to_f).round(2)
         }
       end
 
       def bonus_calculation(bonus_type, chargeback_type)
-        @bonus.by_bonus(bonus_type)
-              .sum(&:cent_amount) - @chargeback.by_bonus(chargeback_type)
-                                               .sum(&:cent_amount)
+        bonus = @bonus.by_bonus(bonus_type)
+                      .sum(:cent_amount) - @chargeback.by_bonus(chargeback_type)
+                                                      .sum(:cent_amount)
+        (bonus / 1e8.to_f).round(2)
       end
 
       def labels
@@ -65,7 +66,8 @@ module Dashboards
       end
 
       def total_bonus
-        @bonus.sum(&:cent_amount) - @chargeback.sum(&:cent_amount)
+        sum = @bonus.sum(:cent_amount) - @chargeback.sum(:cent_amount)
+        (sum / 1e8.to_f).round(2)
       end
 
     end

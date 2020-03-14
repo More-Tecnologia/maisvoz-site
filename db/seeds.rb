@@ -89,7 +89,7 @@ persisted_careers.each do |career|
                              'Chairman': 125_000 }.stringify_keys
     CareerTrail.find_or_create_by!(career: career,
                                    trail: trail,
-                                   maximum_binary_score: maximum_binary_scores[trail.name])
+                                   maximum_binary_score: maximum_binary_scores[career.name])
   end
 end
 

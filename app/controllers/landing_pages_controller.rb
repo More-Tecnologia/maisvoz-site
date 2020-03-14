@@ -21,7 +21,7 @@ class LandingPagesController < ApplicationController
   end
 
   def last_users
-    @users = User.order(created_at: :desc).last(10)
+    @users = User.where(role: %i[consumidor empreendedor]).order(created_at: :desc).last(10)
   end
 
 end

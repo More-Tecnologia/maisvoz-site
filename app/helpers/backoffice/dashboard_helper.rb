@@ -16,9 +16,8 @@ module Backoffice
     end
 
     def qualification_score_sum
-      current_user.scores
-                  .unilevel
-                  .sum(:cent_amount).to_i
+      current_user.lineage_scores
+                  .sum(&:second).to_i
     end
 
   end

@@ -17,7 +17,7 @@
       <div class="dashboard-card__label">
         <span><%= t('defaults.point_qualifications') %></span>
       </div>
-      <div class="dashboard-card__value label-default"><%= number_with_delimiter(current_user.scores.unilevel.sum(:cent_amount).to_i) %></div>
+      <div class="dashboard-card__value label-default"><%= number_with_delimiter(qualification_score_sum) %></div>
     </div>
   </div>
 

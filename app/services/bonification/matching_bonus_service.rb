@@ -58,7 +58,7 @@ module Bonification
     end
 
     def blocks_matching_bonus_amount(sponsor, amount)
-      sponsor.increment!(blocked_matching_bonus_balance: amount)
+      sponsor.increment!(:blocked_matching_bonus_balance, amount)
     end
 
   end

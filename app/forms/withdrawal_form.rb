@@ -52,10 +52,7 @@ class WithdrawalForm < Form
   end
 
   def fee_cents
-    value = ENV['WITHDRAWAL_FEE'].to_f
-    value += irpf_cents if user.pf?
-    value += inss_cents if user.pf?
-    value
+    amount_cents * (ENV['WITHDRAWAL_FEE'].to_f / 100)
   end
 
   private

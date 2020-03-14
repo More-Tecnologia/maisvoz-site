@@ -35,7 +35,7 @@ module Bonification
     def calculate_pool_tranding_amount
       orders = @active_bonus_contracts.map(&:order)
       pool_points_amount = @user.scores.pool_point_by(orders).sum(&:cent_amount)
-      pool_points_amount * (@commission_percent.amount.to_f / 100.0)
+      @amount = pool_points_amount * (@commission_percent.amount.to_f / 100.0)
     end
 
     def block_pool_trading_amount(pool_tranding_amont)
@@ -45,7 +45,7 @@ module Bonification
 
     def increment_sponsor_children_pool_trading_balance(amount)
       @user.sponsor
-           .increment!(children_pool_trading_balance: amount)
+           .increment!(:children_pool_trading_balance, amount)
     end
 
   end

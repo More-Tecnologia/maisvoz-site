@@ -15,7 +15,7 @@
         <div class="panel-body">
           <ul class="list-unstyled w-list">
             <li><b><%= t('.available_balance') %>:</b> <%= number_to_currency(current_user.available_balance) %> </li>
-            <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_currency(@form.try(:withdrawal_fee).to_f) %></li>
+            <li><b><%= t('defaults.withdrawal_fee') %>:</b> <%= number_to_percentage(@form.try(:withdrawal_fee).to_f, precision: 2) %></li>
           </ul>
         </div>
       </div>

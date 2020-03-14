@@ -1284,7 +1284,7 @@
   edit_deposit: 'Edit deposit solicitation'
   min_deposit: 'Deposit must be greater than or equal to %{limit}'
   max_deposit: 'Deposit must be less than or equal to %{limit}'
-  deposit_info: The deposit must be greater than or equal to %{min_limit} %{currency} and less than or equal to %{max_limit} %{currency}
+  deposit_info: 'Deposits accepted minimum %{min_limit} maximum %{max_limit}'
   support_material: 'Support Material'
   sponsor_link: 'Sponsor link'
   copied_sponsor_link: 'Sponsor link copied'
@@ -1297,3 +1297,11 @@
   phone: 'Phone'
   pool_tranding: 'Percentage Pool Cash'
   username: Username
+  deposit: 'Deposit'
+  landing_page_title: 'WHAT HAVE YOU DONE FOR YOUR FUTURE?'
+  landing_page_subtitle: Uncomplicate. We help you to create it.
+  watch_video: 'Watch Video'
+  register_thanks: THANK YOU FOR SIGNING UP WITH ME
+  jorney_together: I WILL BE AT YOUR DISPOSAL ON THIS JOURNEY
+  welcome_message_landing_page: WELCOME TO XPLOIT CAPITAL
+  sponsored_by: You are being referred by

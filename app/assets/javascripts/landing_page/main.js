@@ -49,11 +49,13 @@
 
         $('.testimonials__slider').slick({
             arrows: false,
+            speed: 750,
             dots: true,
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1,
             pauseOnFocus: false,
+            autoplay: true,
             autoplaySpeed: 1500
         });
     };

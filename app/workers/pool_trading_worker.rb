@@ -12,10 +12,11 @@ class PoolTradingWorker
 
   def run
     errors = []
+    commission = rand(ENV['POOL_TRADING_MINIMUM'].to_f..ENV['POOL_TRADING_MAXIMUM'].to_f).round(4)
     User.active.find_each do |user|
       begin
-        Bonification::PoolTradingService.call(commission_percent: PoolTranding.current_pool_tranding,
-                                               user: user)
+        Bonification::PoolTradingService.call(commission_percent: commission,
+                                              user: user)
       rescue Exception => error
         error = { message: "Error while create Trading Bonus for #{user.username}: #{error.message}",
                   backtrace: error.backtrace }

@@ -1,3 +1,10 @@
+<header class="s-header">
+
+    <a class="logo" href="/">
+        <%= image_tag('logo.png') %>
+    </a>
+
+</header>
 <section id="home" class="s-home page-hero target-section" data-parallax="scroll" data-image-src="<%= image_url('bg.jpg') %>" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
 
     <div class="grid-overlay">
@@ -7,9 +14,6 @@
     <div class="home-content">
 
         <div class="row home-content__main">
-          <div class="logo">
-            <%= image_tag('logo.png') %>
-          </div>
             <h1>
               <%= t(:landing_page_title) %>
             </h1>
@@ -30,7 +34,7 @@
                 <%= link_to t('sign_up'), new_user_registration_path(sponsor: params[:sponsor]), class: 'btn btn--primary btn--large' %>
 
 
-                <%= link_to t('login'), new_user_session_path(sponsor: params[:sponsor]), class: 'btn btn--large' %>
+                <%= link_to t('login'), new_user_session_path(sponsor: params[:sponsor]), class: 'btn btn--large btn--default' %>
 
             </div>
 
@@ -82,7 +86,93 @@
     </div> <!-- end testimonials -->
 
 </section> <!-- end s-testimonials -->
+<!-- about
+      ================================================== -->
+      <section id="about" class="s-about page-hero">
+        <div class="overlay">
 
+
+          <div class="row section-header bit-narrow" data-aos="fade-up">
+              <div class="col-full">
+                  <h1 class="display-1 text-center">
+                  <%= t(:company_in_numbers) %>
+                  </h1>
+              </div>
+          </div> <!-- end section-header -->
+
+          <div class="row bit-narrow">
+
+              <div class="about-process process block-1-3 block-tab-full">
+
+                  <div class="col-block item-process" data-aos="fade-up">
+                      <div class="item-process__text text-center">
+                          <%= image_tag('money-talks.png') %>
+                          <h4 class="item-title">450</h4>
+                          <p>
+                           <%= t(:custody_money) %>
+                          </p>
+                      </div>
+                  </div>
+                  <div class="col-block item-process" data-aos="fade-up">
+                      <div class="item-process__text text-center">
+                          <%= image_tag('group.png') %>
+                          <h4 class="item-title">95%</h4>
+                          <p>
+                            <%= t(:satisfied_customers) %>
+                          </p>
+                      </div>
+                  </div>
+                  <div class="col-block item-process" data-aos="fade-up">
+                      <div class="item-process__text text-center">
+                        <%= image_tag('group.png') %>
+                          <h4 class="item-title">100K</h4>
+                          <p>
+                          TOTAL CUSTOMERS
+                          </p>
+                      </div>
+                  </div>
+
+              </div> <!-- end process -->
+
+              <hr>
+          </div> <!-- end row -->
+          <div class="row add-bottom">
+
+            <div class="col-four">
+
+                <h3><%= t(:latest_registrations) %></h3>
+
+                <div class="table-responsive">
+
+                    <table>
+                            <thead>
+                            <tr>
+                                <th><%= t(:username) %></th>
+                                <th><%= t(:location) %></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                              <% @users.each do |user| %>
+                                <tr>
+                                  <td><%= hide_name(user.username) %></td>
+                                  <td><%= user.country %></td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            <div class="col-six">
+              <div class="mapouter"><div class="gmap_canvas"><iframe width="920" height="533" id="gmap_canvas" src="https://maps.google.com/maps?q=&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://ytify.com"></a></div><style>.mapouter{position:relative;text-align:right;height:533px;width:40rem;}.gmap_canvas {overflow:hidden;background:none!important;height:533px;width:90rem;}</style></div>
+            </div>
+
+
+        </div>
+        </div>
+
+      </section> <!-- end s-about -->
 
 <!-- contact
 ================================================== -->

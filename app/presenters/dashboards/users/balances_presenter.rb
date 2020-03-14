@@ -27,9 +27,9 @@ module Dashboards
 
       def balances
         {
-          balance: balance,
-          available_balance: available_balance,
-          blocked_balance: blocked_balance
+          balance: balance.round(2),
+          available_balance: available_balance.round(2),
+          blocked_balance: blocked_balance.round(2)
         }
       end
 

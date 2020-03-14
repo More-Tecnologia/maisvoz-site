@@ -15,5 +15,11 @@ module Backoffice
                                         .reverse
     end
 
+    def qualification_score_sum
+      current_user.scores
+                  .unilevel
+                  .sum(:cent_amount).to_i
+    end
+
   end
 end

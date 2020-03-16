@@ -33,7 +33,7 @@ module Bonification
 
     def create_bonus
       user.financial_transactions.create!(financial_reason: FinancialReason.binary_bonus,
-                                          cent_amount: @daily_valid_bonus,
+                                          cent_amount: @daily_bonus_total,
                                           spreader: User.find_morenwm_customer_admin)
     end
 

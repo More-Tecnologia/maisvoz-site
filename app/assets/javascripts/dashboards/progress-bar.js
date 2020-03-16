@@ -5,7 +5,8 @@ let groups = [
     data: ["receivable_amount", "received_amount"],
     colors: ["#001d6e", "#FFD878"],
     path: "earnings_data",
-    amount_sign: "&#36;"
+    amount_sign: "&#36;",
+    total_sum: false
   },
   {
     group: "balances",
@@ -13,7 +14,8 @@ let groups = [
     data: [ "blocked_balance", "available_balance"],
     colors: ["#001d6e", "#FFD878"],
     path: "balances_data",
-    amount_sign: "&#36;"
+    amount_sign: "&#36;",
+    total_sum: false
   },
   {
     group: "unilevel_counts",
@@ -21,7 +23,8 @@ let groups = [
     data: ["unilevel_affiliates_inactives_count", "unilevel_affiliates_actives_count"],
     colors: ["#001d6e", "#FFD878"],
     path: "unilevel_counts_data",
-    amount_sign: ""
+    amount_sign: "",
+    total_sum: false
   },
   {
     group: "binary_count",
@@ -29,7 +32,8 @@ let groups = [
     data: ["binary_affiliates_left_count", "binary_affiliates_right_count"],
     colors: ["#001d6e", "#FFD878"],
     path: "binary_counts_data",
-    amount_sign: ""
+    amount_sign: "",
+    total_sum: false
   },
   {
     group: "binary_scores",
@@ -37,7 +41,8 @@ let groups = [
     data: ["left_binary_score", "right_binary_score"],
     colors: ["#001d6e", "#FFD878"],
     path: "binary_scores_data",
-    amount_sign: ""
+    amount_sign: "",
+    total_sum: true
   }
 ];
 
@@ -73,7 +78,8 @@ async function getBarInstance(object) {
       let instances = await response.json();
       let user_data = JSON.parse(JSON.stringify(instances.data))
       let labels = JSON.parse(JSON.stringify(instances.labels))
-      console.log(user_data)
+      let reducer = (accumulator, currentValue) => parseInt((user_data[object['group']][accumulator] || accumulator)) + parseInt(user_data[object['group']][currentValue]);
+      let total = object['total_sum'] ? arr.reduce(reducer) : user_data[object['group']][object['head']];
 
       $('#' + object['head']).append(object['amount_sign'] + user_data[object['group']][object['head']]);
 
@@ -91,12 +97,8 @@ async function getBarInstance(object) {
 
       arr.forEach(function(label, i){
         let legendItem = $('<span class="">' + labels[label] + " ( " + object['amount_sign'] + user_data[object['group']][label] + " )" + '&nbsp;&nbsp;</span>').prepend('<i>&nbsp;</i>');
-        console.log(object['colors'])
-        console.log(object['colors'].reverse())
-        console.log(i)
-        let a = [...object['colors'].reverse()];
-        console.log(a[i])
-        legendItem.find('i').css('backgroundColor', a[i]);
+
+        legendItem.find('i').css('backgroundColor', object['colors'][i]);
         $('#legend_' + object['group']).prepend(legendItem).addClass('text-center');
       });
 

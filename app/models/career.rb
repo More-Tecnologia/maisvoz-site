@@ -41,7 +41,7 @@ class Career < ApplicationRecord
   scope :qualifying, -> { reorder(qualifying_score: :asc) }
 
   def qualify?(user)
-    unilevel_qualify?(user) && binary_qualify?(user)
+    unilevel_qualify?(user)
   end
 
   def higher?(career)

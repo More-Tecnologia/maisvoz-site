@@ -50,10 +50,10 @@ module Bonification
     end
 
     def calculate_daily_excess_score
-      maximum_binary_score = @user.current_career_trail.maximum_binary_score
+      maximum_binary_score = @user.current_career_trail.maximum_binary_score.to_f
       return 0 if maximum_binary_score.nil?
-      return 0 if shortter_leg_score_from_yesterday <= maximum_binary_score.to_f
-      shortter_leg_score_from_yesterday - daily_maximum_bonus.to_f
+      return 0 if shortter_leg_score_from_yesterday <= maximum_binary_score
+      shortter_leg_score_from_yesterday - maximum_binary_score
     end
 
     def create_matching_bonus_for_user

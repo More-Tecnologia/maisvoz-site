@@ -84,7 +84,7 @@ async function getBarInstance(object) {
       $('#' + object['head']).append(object['amount_sign'] + user_data[object['group']][object['head']]);
 
       arr.forEach(function(key, i) {
-        let width = ((user_data[object['group']][key] * 100) / total).toFixed(2);
+        let width = Math.round(((user_data[object['group']][key] * 100) / total)).toFixed(2);
         let right_css = '';
         if([arr].length - 1 === i) {
           right_css = 'display: block; float: right; '

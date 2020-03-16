@@ -46,7 +46,7 @@ module Bonification
                                   .map(&:user)
     end
 
-    def chargeback_by_inactivity(transaction)
+    def chargeback_by_inactivity!(transaction)
       financial_reason = FinancialReason.matching_bonus_chargeback_by_inactivity
       transaction.chargeback_by_inactivity!(financial_reason)
     end

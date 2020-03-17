@@ -1358,3 +1358,6 @@ pt-BR:
   documents_successful_updated: 'Documentos atualizados com sucesso'
   documents_not_updated: 'Não foi possível fazer o upload dos documentos'
   admin_or_entrepreneur_necessary: 'Você precisa ser admin ou empreendedor'
+  change_password: Mudar sua senha
+  change_my_password: "Mudar minha senha"
+  min_password_length: '%{min} caracteres no mínimo'

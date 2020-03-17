@@ -39,7 +39,7 @@
       financial_transaction:
         user: For
         spreader: Of
-        financial_reason: Motive
+        financial_reason: Reason
         order: Order
         financial_transaction: Financial Transaction
         chargeback: Chargeback
@@ -818,6 +818,7 @@
       update: Update %{model}
       sim_card_transfer: Transfer CHIP(s)
       checkout: Generate Order
+      send_expense: Send Expense
     confirm:
       approve_order_without_bonification: Do you want to approve this order without a bonus?
     from: From
@@ -1312,3 +1313,20 @@
   total_customers: TOTAL CUSTOMERS
   latest_registrations: Latest registrations
   back_account: "Back to account"
+  enter_as_user: 'Login as user'
+  edit_user: 'Edit User'
+  see_profile: 'Ver profile'
+  financial_history: Financial History
+  additional_columns: Additional Columns
+  show: Show
+  want_approve_bill: Do you want to approve this invoice?
+  details: Details
+  order_marked_as_billed: 'Order marked as billed'
+  send_documents: 'Send Documents'
+  documents: Documents
+  necessary_documents_list: List of documents required to approve your %{company} account
+  account_situation: Account Situation
+  sending: "Sending..."
+  documents_successful_updated: 'Documents updated successfully'
+  documents_not_updated: 'Unable to upload documents'
+  admin_or_entrepreneur_necessary: 'You need to be an admin or an entrepreneur'

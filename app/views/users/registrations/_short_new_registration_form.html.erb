@@ -18,19 +18,18 @@
           <%= f.hidden_field :registration_type %>
           <%= f.hidden_field :g_recaptcha_response %>
           <% if @form.sponsor_username && params[:sponsor].present? %>
-            <%= f.input :sponsor_username, autofocus: true, readonly: true %>
+            <%= f.input :sponsor_username, autofocus: true, readonly: true, input_html: { style: 'min-width: 100%;'} %>
           <% else %>
-            <%= f.input :sponsor_username, autofocus: true %>
+            <%= f.input :sponsor_username, autofocus: true, input_html: { style: 'min-width: 100%;'} %>
           <% end %>
-          <%= f.input :document_cpf, label: t(:id) %>
-          <%= f.input :name %>
-          <%= f.input :email %>
-          <%= f.input :country %>
-          <%= f.input :username %>
-          <%= f.input :password %>
-          <%= f.input :password_confirmation %>
+          <%= f.input :document_cpf, label: t(:id), input_html: { style: 'min-width: 100%;'} %>
+          <%= f.input :name, input_html: { style: 'min-width: 100%;'} %>
+          <%= f.input :email, input_html: { style: 'min-width: 100%;'} %>
+          <%= f.input :country, input_html: { style: 'min-width: 100%;'} %>
+          <%= f.input :username, input_html: { style: 'min-width: 100%;'} %>
+          <%= f.input :password, input_html: { style: 'min-width: 100%;'} %>
+          <%= f.input :password_confirmation, input_html: { style: 'min-width: 100%;'} %>
         </div>
-
         <div class="form-actions">
           <%= f.button :submit, t('users.registrations.new.sign_up'), class: 'btn btn-primary btn-block text-uppercase' %>
         </div>

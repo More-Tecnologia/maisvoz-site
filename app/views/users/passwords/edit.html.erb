@@ -1,15 +1,15 @@
 <%= content_for :body_class, 'login-page' %>
-
+<br><br><br><br><br>
 <div class="account-pages"></div>
 <div class="clearfix"></div>
-<div class="wrapper-page">
-  <div class="text-center">
+<div class="wrapper-page" id="wrapper-page-login">
+  <div class="text-center register-logo">
     <%= image_tag 'logo.png' %>
   </div>
   <br>
   <div class=" card-box">
     <div class="panel-heading">
-      <h3 class="text-center"><%= title 'Mudar sua senha' %></h3>
+      <h3 class="text-center"><%= title t(:change_password) %></h3>
     </div>
 
     <div class="panel-body">
@@ -20,12 +20,12 @@
         <%= f.full_error :reset_password_token %>
 
         <div class="form-inputs">
-          <%= f.input :password, label: "Nova senha", required: true, autofocus: true, hint: ("#{@minimum_password_length} caracteres no mínimo" if @minimum_password_length) %>
-          <%= f.input :password_confirmation, label: "Confirmar sua nova senha", required: true %>
+          <%= f.input :password, label: t(:new_password), required: true, autofocus: true, hint: (t(:min_password_length, min: @minimum_password_length) if @minimum_password_length) %>
+          <%= f.input :password_confirmation, label: t(:new_password_confirmation), required: true %>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Mudar minha senha" %>
+          <%= f.button :submit, t(:change_my_password) %>
         </div>
       <% end %>
     </div>

@@ -1330,3 +1330,6 @@
   documents_successful_updated: 'Documents updated successfully'
   documents_not_updated: 'Unable to upload documents'
   admin_or_entrepreneur_necessary: 'You need to be an admin or an entrepreneur'
+  change_password: Change your password
+  change_my_password: Change my password
+  min_password_length: '%{min} characters minimum'

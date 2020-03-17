@@ -95,14 +95,14 @@ persisted_careers.each do |career|
 end
 
 # SCORE TYPES
-score_types = [{ name: 'Pontuação de Adesões', code: '100', active: false },
-               { name: 'Pontuação de Ativação', code: '200', active: false },
-               { name: 'Pontuação de Compras', code: '300', active: false },
+score_types = [{ name: 'Membership Score', code: '100', active: false },
+               { name: 'Activation Score', code: '200', active: false },
+               { name: 'Shopping Score', code: '300', active: false },
                { name: 'Points Qualifications', code: '1000', active: true },
-               { name: 'Estorno de Pontuação por Inatividade', code: '800', active: false },
+               { name: 'Inactivity Score Chargeback', code: '800', active: false },
                { name: 'Points Commissions', tree_type: :binary, code: '400', active: true },
-               { name: 'Estorno de Pontuação Binária por Desqualificação', tree_type: :binary, code: '500', active: false },
-               { name: 'Estorno de Pontuação Binária por Inatividade', tree_type: :binary, code: '600', active: false },
+               { name: 'Disqualification Binary Score Chargeback', tree_type: :binary, code: '500', active: false },
+               { name: 'Inactivity Binary Score Chargeback', tree_type: :binary, code: '600', active: false },
                { name: 'Points Commissions Debit', tree_type: :binary, code: '700', active: true },
                { name: 'Pool Cash', code: '900', active: true }]
 score_types.each do |score_type|
@@ -117,14 +117,14 @@ end
 
 
 # FINANCIAL REASONS
-administrative_type = FinancialReasonType.find_or_create_by!(name: 'Administrativo Financeiro', code: '100')
-administrative_reasons = [{ title: 'Taxa do Sistema', code: '200', company_moneyflow: :debit, morenwm_moneyflow: :credit },
+administrative_type = FinancialReasonType.find_or_create_by!(name: 'Financial administration', code: '100')
+administrative_reasons = [{ title: 'System Fee', code: '200', company_moneyflow: :debit, morenwm_moneyflow: :credit },
                           { title: 'Withdrawal', code: '300', company_moneyflow: :debit, morenwm_moneyflow: :debit },
                           { title: 'Withdrawal Fee', code: '400', company_moneyflow: :credit, morenwm_moneyflow: :debit },
                           { title: 'Order Payment', code: '1200', company_moneyflow: :credit, morenwm_moneyflow: :not_applicable },
                           { title: 'Credit', code: '2800', company_moneyflow: :debit, morenwm_moneyflow: :credit },
                           { title: 'Debit', code: '2900', company_moneyflow: :credit, morenwm_moneyflow: :debit },
-                          { title: 'Despesa', code: '3800', company_moneyflow: :debit, morenwm_moneyflow: :debit }]
+                          { title: 'Expense', code: '3800', company_moneyflow: :debit, morenwm_moneyflow: :debit }]
 administrative_reasons.each do |attributes|
   financial_reason = FinancialReason.find_by(code: attributes[:code])
   if financial_reason
@@ -135,27 +135,27 @@ administrative_reasons.each do |attributes|
 end
 
   bonus_type = FinancialReasonType.find_or_create_by!(name: 'Bonus', code: '200')
-  bonus_reasons = [{ title: 'Estorno de Bonus', code: '100', active: false, company_moneyflow: :credit },
+  bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, company_moneyflow: :credit },
                    { title: 'Binary Bonus', code: '500', active: true, company_moneyflow: :debit   },
                    { title: 'Binary Bonus Chargeback for Inactivity', code: '600', active: true, company_moneyflow: :credit  },
-                   { title: 'Estorno de Bonus Binário por Excesso Mensal', code: '700', active: false, company_moneyflow: :credit  },
-                   { title: 'Estorno de Bonus Binário por Excesso Semanal', code: '800', active: false, company_moneyflow: :credit  },
-                   { title: 'Estorno de Bonus por Limite de Carreira', code: '900', active: false, company_moneyflow: :credit  },
-                   { title: 'Bonus Indicacao', code: '1000', active: false, company_moneyflow: :debit },
-                   { title: 'Bonus Rendimento', code: '1100', active: false, company_moneyflow: :debit },
-                   { title: 'Binary Bonus Chargeback por Desqualificação', code: '1300', active: true, company_moneyflow: :credit },
-                   { title: 'Bônus Residual de Ponto de Apoio', code: '1400', active: false, company_moneyflow: :debit },
-                   { title: 'Estorno de Bônus Residual de Ponto de Apoio por Inatividade', code: '3000', active: false, company_moneyflow: :credit},
+                   { title: 'Binary Bonus Chargeback for Monthly Excess', code: '700', active: false, company_moneyflow: :credit  },
+                   { title: 'Weekly Excess Binary Bonus Chargeback', code: '800', active: false, company_moneyflow: :credit  },
+                   { title: 'Career Limit Bonus Chargeback', code: '900', active: false, company_moneyflow: :credit  },
+                   { title: 'Referral Bonus', code: '1000', active: false, company_moneyflow: :debit },
+                   { title: 'Yield Bonus', code: '1100', active: false, company_moneyflow: :debit },
+                   { title: 'Binary Bonus Chargeback by Disqualification', code: '1300', active: true, company_moneyflow: :credit },
+                   { title: 'Residual Support Point Bonus', code: '1400', active: false, company_moneyflow: :debit },
+                   { title: 'Residual Support Point Inactivity Bonus Chargeback', code: '3000', active: false, company_moneyflow: :credit},
                    { title: 'Start Fast Bonus', code: '2000', active: true, company_moneyflow: :debit  },
                    { title: 'Chargeback Start Fast Bonus for Inactivity', code: '2100', active: true, company_moneyflow: :credit },
-                   { title: 'Bonus Indicação Indireta', code: '2200', active: false, company_moneyflow: :debit },
-                   { title: 'Estorno de Bônus Indicação Indireta por Inatividade', code: '2300', active: false, company_moneyflow: :credit },
-                   { title: 'Bonus Ativação', code: '2400', dynamic_compression: true, active: false, company_moneyflow: :debit },
-                   { title: 'Estorno de Bônus Ativação por Inatividade', code: '2500', active: false, company_moneyflow: :credit },
+                   { title: 'Indirect Referral Bonus', code: '2200', active: false, company_moneyflow: :debit },
+                   { title: 'Bonus Chargeback Indirect Inactivity Referral', code: '2300', active: false, company_moneyflow: :credit },
+                   { title: 'Activation Bonus', code: '2400', dynamic_compression: true, active: false, company_moneyflow: :debit },
+                   { title: 'Inactivity Activation Bonus Chargeback', code: '2500', active: false, company_moneyflow: :credit },
                    { title: 'Residual Bonus', code: '2600', dynamic_compression: false, active: false, company_moneyflow: :debit },
                    { title: 'Residual Bonus Chargeback for Inactivity', code: '2700', active: false, company_moneyflow: :credit },
-                   { title: 'Bonus Ativação de Ponto de Apoio', code: '3100', active: false, company_moneyflow: :debit },
-                   { title: 'Estorno de Bonus Ativação de Ponto de Apoio por Inatividade', code: '3200', active: false, company_moneyflow: :credit },
+                   { title: 'Support Point Activation Bonus', code: '3100', active: false, company_moneyflow: :debit },
+                   { title: 'Bonus Chargeback Activation of Inactivity Support Point', code: '3200', active: false, company_moneyflow: :credit },
                    { title: 'Binary Bonus Chargeback for Daily Excess', code: '3300', active: true, company_moneyflow: :credit },
                    { title: 'Bonus Chargeback for Contract Limit', code: '3400', active: true, company_moneyflow: :credit },
                    { title: 'Pool Cash', code: '3500', active: true, company_moneyflow: :debit },

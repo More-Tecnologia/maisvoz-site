@@ -27,7 +27,7 @@ module Bonification
 
     def credit_binary_bonus
       financial_transaction = create_bonus
-      Score.debit_binary_score_from_legs(user, @valid_score)
+      Score.debit_binary_score_from_legs(user, shortter_leg_score_from_yesterday)
       financial_transaction
     end
 

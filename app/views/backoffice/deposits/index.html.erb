@@ -35,8 +35,8 @@
                   <td><%= "#{ENV['CURRENT_DIGITAL_CURRENCY']} #{order.try(:payment_transaction).try(:amount)}"%></td>
                   <% end %>
                   <td><%= t "defaults.#{order.status}" %></td>
-                  <td><%= l(order.expire_at, format: :short) if order.expire_at.present? %></td>
-                  <td><%= l(order.paid_at, format: :short) if order.paid_at.present? %></td>
+                  <td><%= l(order.expire_at, format: '%B %d, %Y' ) if order.expire_at.present? %></td>
+                  <td><%= l(order.paid_at, format: '%B %d, %Y' ) if order.paid_at.present? %></td>
                   <% if order.try(:payment_transaction) && !order.paid_at %>
                   <td> <%= link_to t('defaults.pay'), backoffice_payment_transaction_path(order.try(:payment_transaction)) %> </td>
                   <% end %>

@@ -43,7 +43,7 @@
                       <td class=<%= cent_amount_sum.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(cent_amount_sum) %></td>
                       <% cent_amount_sum -= score.cent_amount %>
                       <td><%= link_to score.try(:order).try(:hashid), backoffice_admin_order_path(score.try(:order)) if score.try(:order)  %></td>
-                      <td><%= l(score.try(:created_at), format: :short) %></td>
+                      <td><%= l(score.try(:created_at), format: '%B %d, %Y' ) %></td>
                       <td><%= score_status(score) %></td>
                       <td><%= l(score.expire_at, format: :long) if score.expire_at %></td>
                     </tr>

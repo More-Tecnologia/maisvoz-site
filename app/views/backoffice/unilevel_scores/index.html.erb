@@ -41,7 +41,7 @@
 
                       <td class=<%= score.cent_amount.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(score.try(:cent_amount)) %></td>
                       <td><%= score.try(:order).try(:hashid) %></td>
-                      <td><%= l(score.try(:created_at), format: :short) %></td>
+                      <td><%= l(score.try(:created_at), format: '%B %d, %Y' ) %></td>
                       <td><%= score_status(score)  %></td>
                       <td><%= l(score.expire_at, format: :long) if score.expire_at %></td>
                     </tr>

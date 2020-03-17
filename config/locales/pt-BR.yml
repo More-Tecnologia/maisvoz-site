@@ -1361,3 +1361,8 @@ pt-BR:
   change_password: Mudar sua senha
   change_my_password: "Mudar minha senha"
   min_password_length: '%{min} caracteres no mínimo'
+  reject_deleting_photos: 'Rejeitar apagando fotos '
+  reject_without_delete_photos: 'Rejeitar sem apagar fotos '
+  reason: 'Razão'
+  approve: 'Aprovar'
+  billed: 'Billed'

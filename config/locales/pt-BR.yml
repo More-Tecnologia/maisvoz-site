@@ -1341,3 +1341,20 @@ pt-BR:
   total_customers: TOTAL DE CLIENTES
   latest_registrations: Últimos cadastros
   back_account: "Voltar para conta"
+  enter_as_user: 'Logar como Usuário'
+  edit_user: 'Editar Usuário'
+  see_profile: 'Ver profile'
+  financial_history: Histórico Financeiro
+  additional_columns: "Colunas Extras"
+  show: Mostrar
+  want_approve_bill: Deseja aprovar esta fatura?
+  details: 'Detalhes'
+  order_marked_as_billed: 'Pedido marcado como faturado'
+  send_documents: 'Enviar Documentos'
+  documents: Documentos
+  necessary_documents_list: Lista de documentos necessários para aprovar sua conta na %{company}
+  account_situation: Situação da conta
+  sending: "Enviado..."
+  documents_successful_updated: 'Documentos atualizados com sucesso'
+  documents_not_updated: 'Não foi possível fazer o upload dos documentos'
+  admin_or_entrepreneur_necessary: 'Você precisa ser admin ou empreendedor'

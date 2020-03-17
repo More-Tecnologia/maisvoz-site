@@ -59,14 +59,13 @@ class OrdersGrid < BaseGrid
     end
   end
   column(:details, html: true) do |order|
-      link_to('Detalhe', backoffice_admin_order_path(order))
-      link_to('Detalhe', backoffice_admin_order_path(order))
+      link_to(t(:details), backoffice_admin_order_path(order))
   end
   column(:approve, html: true) do |order|
     if !order.completed?
       link_to(backoffice_admin_order_approve_path(order),
         method: :post,
-        data: { confirm: 'Deseja aprovar esta fatura?' },
+        data: { confirm: I18n.t(:want_approve_bill) },
         class: 'm-r-10'
       ) do
         '<i class="fa fa-check"></i>'.html_safe

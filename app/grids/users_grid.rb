@@ -13,7 +13,7 @@ class UsersGrid < BaseGrid
   filter(:name, header: I18n.t('attributes.name')) do |value, scope|
     scope.where('users.name ILIKE ?', "%#{value}%")
   end
-  filter(:document_cpf, header: I18n.t('attributes.document_cpf'))
+  filter(:document_cpf, header: I18n.t(:id))
   filter(:email)
   filter(:role, :enum, select: User.roles, header: I18n.t('attributes.role'))
   filter(:role_type_code, :enum, select: RoleType.order(:name).pluck(:name, :code), header: I18n.t('attributes.role_type'))
@@ -25,7 +25,7 @@ class UsersGrid < BaseGrid
   filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
   filter(:binary_qualified, :xboolean, header: I18n.t('attributes.binary_qualify')) if ENV['ENABLED_BINARY'] == 'true'
 
-  column_names_filter(:header => "Colunas Extras", checkboxes: true)
+  column_names_filter(header: I18n.t(:additional_columns), checkboxes: true)
 
   column(:id, mandatory: true)
   column(:pretty_username, mandatory: true, header: I18n.t('attributes.user'))
@@ -58,18 +58,16 @@ class UsersGrid < BaseGrid
   column :actions, mandatory: true, header: I18n.t('backoffice.support.users.index.actions') do |user|
     format(user) do
       [
-        link_to(backoffice_support_user_path(user), title: 'Ver perfil') { content_tag(:i, nil, class: 'fa fa-user m-r-5') },
-        link_to(backoffice_admin_financial_transactions_path('q[user_username_cont]' => user.username), title: 'Histórico Financeiro') { content_tag(:i, nil, class: 'fa fa-dollar m-r-5') },
-        link_to(backoffice_admin_pv_activity_histories_path(username: user.username), title: 'Histórico PV Atividade') { content_tag(:i, nil, class: 'fa fa-plus-square m-r-5') },
-        link_to(backoffice_admin_pv_histories_path(username: user.username), title: 'Histórico PVs') { content_tag(:i, nil, class: 'fa fa-clock-o m-r-5') },
-        link_to(edit_backoffice_support_user_path(user), title: 'Editar Usuário') { content_tag(:i, nil, class: 'fa fa-edit m-r-5') }
+        link_to(backoffice_support_user_path(user), title: I18n.t(:see_profile)) { content_tag(:i, nil, class: 'fa fa-user m-r-5') },
+        link_to(backoffice_admin_financial_transactions_path('q[user_username_cont]' => user.username), title: I18n.t(:financial_history)) { content_tag(:i, nil, class: 'fa fa-dollar m-r-5') },
+        link_to(edit_backoffice_support_user_path(user), title: I18n.t(:edit_user)) { content_tag(:i, nil, class: 'fa fa-edit m-r-5') }
       ].join.html_safe
     end
   end
   column(:sign_in, mandatory: true, header: I18n.t('backoffice.support.users.index.sign_in')) do |user|
     format(user) do |user|
       if current_user.admin?
-        link_to(masquerade_path(user), title: 'Logar como Usuário') { content_tag(:i, nil, class: 'fa fa-user') }
+        link_to(masquerade_path(user), title: I18n.t(:enter_as_user)) { content_tag(:i, nil, class: 'fa fa-user') }
       end
     end
   end

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12 m-b-23">
-        <h4 class="page-title">Aprovação de documentos</h4>
+        <h4 class="page-title"><%= t(:documents_approval) %></h4>
     </div>
 </div>
 
@@ -12,7 +12,7 @@
       <%= select_tag(:document_verification_status, options_for_select(User.document_verification_statuses.keys.map {|k| [t(k), k]}, params[:document_verification_status]), include_blank: t('all'), :onchange => "this.form.submit();", class: 'form-control') %>
     </div>
     <div class="col-md-12 m-b-30">
-      <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
+      <%= submit_tag t('datagrid.form.search'), class: 'btn btn-primary' %>
     </div>
     <% end %>
   </div>
@@ -20,10 +20,10 @@
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>Nome</th>
-        <th>Username</th>
-        <th>Status</th>
-        <th>Última Alteração de Documento</th>
+        <th><%= t(:name) %></th>
+        <th><%= t(:username) %></th>
+        <th><%= t(:status) %></th>
+        <th><%= t(:last_document_change) %></th>
       </tr>
     </thead>
     <tbody>

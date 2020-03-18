@@ -53,7 +53,7 @@ module Backoffice
 
     def detect_stock_in_at_by(user, sim_card)
       date = user.support_point? ? sim_card.support_point_stock_in_at : sim_card.user_stock_in_at
-      l(date, format: :long) if date
+      l(date, format: '%m/%d/%Y') if date
     end
 
     def sim_card_statuses_for_select

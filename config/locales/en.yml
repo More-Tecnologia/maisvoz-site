@@ -487,12 +487,12 @@
           success: User updated to Support Point
     bank_accounts:
       edit:
-        title: Bank account
+        title: Digital Wallet
         subtitle: This account will be used for withdrawals from the platform
-        save: Save bank account
-        ownership_info: We only accept bank accounts in your possession
+        save: Save digital wallet
+        ownership_info: We only accept digital wallets in your possession
       update:
-        success: Bank account updated successfully
+        success: Digital Wallet updated successfully
     scores:
       index:
         title:
@@ -1046,7 +1046,7 @@
           specifications: Specifications
       topbar:
         edit_account: Edit account
-        edit_bank_account: Bank account
+        edit_bank_account: Digital Wallet
         documents: Documents
         subscriptions: Subscriptions
         logout: Logout
@@ -1216,7 +1216,7 @@
   media_file_inactive_tooltip: 'This attachment has been disabled and will be listed only for administrators'
   digital_wallet_change_solicitaion: 'Digital Wallet change solicitation'
   digital_wallet_changed_info: 'Digital Wallet change completed'
-  new_digital_wallet: 'Change digital_wallet address'
+  new_digital_wallet: 'Change Digital Wallet address'
   can_confirm_digital_wallet_change: 'Confirm or cancel your request through our website'
   waiting_digital_wallet_reativation: 'You requested to change your digital_wallet to %{digital_wallet}'
   digital_wallet_activated: 'You have approved changing your account digital_wallet to %{digital_wallet}'
@@ -1237,7 +1237,7 @@
   email_refuse_info: 'Email change rejected'
   email_reactive_info: 'Email reactivation request'
   make_default: 'Make default'
-  account_code: 'Account code'
+  account_code: 'Wallet code'
   balance: Balance
   available_balance: Available balance
   blocked_balance: Blocked Balance
@@ -1338,3 +1338,9 @@
   reason: 'Reason'
   approve: 'Approve'
   billed: 'Billed'
+  position: Position
+  entry_date: Entry date
+  name: Name
+  username: Username
+  documents_approval: Documents Approval
+  status: Status

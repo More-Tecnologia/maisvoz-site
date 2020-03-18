@@ -21,6 +21,6 @@ class CareerHistoriesGrid < BaseGrid
     r.career_trail.trail.name
   end
   column(:created_at, header: I18n.t('attributes.created_at')) do |r|
-    r.created_at.strftime('%d/%m/%Y')
+    r.created_at.strftime('%m/%d/%Y')
   end
 end

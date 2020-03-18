@@ -76,7 +76,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def long_birthdate
-    @long_birthdate ||= h.l(birthdate, format: :long) if birthdate
+    @long_birthdate ||= h.l(birthdate, format: '%m/%d/%Y') if birthdate
   end
 
   def sponsored_count

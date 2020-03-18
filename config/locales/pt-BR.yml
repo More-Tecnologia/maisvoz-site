@@ -1365,4 +1365,11 @@ pt-BR:
   reject_without_delete_photos: 'Rejeitar sem apagar fotos '
   reason: 'Razão'
   approve: 'Aprovar'
-  billed: 'Billed'
+  billed: 'Faturado'
+  position: Posição
+  entry_date: Data de Entrada
+  name: Nome
+  username: Nome de usuário
+  documents_approval: Aprovação de documentos
+  status: Status
+  last_document_change: Last Document Change

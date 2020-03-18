@@ -343,11 +343,11 @@ class User < ApplicationRecord
   end
 
   def insert_into_binary_tree
-   if self.sponsor.present?
-     Multilevel::CreateBinaryNode.new(self).call
-   else
-     BinaryNode.create(user: self)
-   end
+    return if BinaryNode.exists?(user: self)
+
+    return Multilevel::CreateBinaryNode.new(self).call if sponsor.present?
+
+    BinaryNode.create(user: self)
   end
 
   def ascendant_sponsors

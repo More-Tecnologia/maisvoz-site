@@ -1056,7 +1056,9 @@
         subtitle: Subtitle
         title: Title
         today_orders: Today's Orders
+        today_deposits: Today's deposits
         total_orders: Total orders
+        total_deposits: Total deposits
         total_users: Total users
       client:
         subtitle: Subtitle
@@ -1270,10 +1272,13 @@
   canceled: 'Canceled'
   binary: 'Binary'
   orders_history: 'Ordes history'
+  deposits_history: 'Deposits History'
   users_history: 'Users history'
   last_orders: 'Last orders'
+  last_deposits: 'Last deposits'
   user: 'User'
   order_date: 'Order date'
+  deposit_date: 'Deposit date'
   order_number: 'Order number'
   amount: 'Amount'
   make_deposit_order: 'Make deposit solicitation'

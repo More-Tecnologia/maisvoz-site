@@ -10,14 +10,22 @@ module Dashboards
 
       def data_list
         [
-          { label: I18n.t('views.dashboard.admin.today_orders'),
-            value: today_orders_count },
-          { label: I18n.t('views.dashboard.admin.total_orders'),
-            value: orders_count },
+          { label: I18n.t('views.dashboard.admin.today_deposits'),
+            value: today_orders_count,
+            icon: 'md-attach-money'
+          },
+          { label: I18n.t('views.dashboard.admin.total_deposits'),
+            value: orders_count,
+            icon: 'md-add-shopping-cart'
+          },
           { label: I18n.t('views.dashboard.admin.active_products'),
-            value: active_products_count },
+            value: active_products_count,
+            icon: 'md-store-mall-directory'
+          },
           { label: I18n.t('views.dashboard.admin.total_users'),
-            value: users_count }
+            value: users_count,
+            icon: 'md-account-child'
+          }
         ]
       end
 

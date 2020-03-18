@@ -1085,7 +1085,9 @@ pt-BR:
         subtitle: Subtitle
         title: Title
         today_orders: Pedidos de hoje
+        today_deposits: Depositos de hoje
         total_orders: Total de pedidos
+        total_deposits: Total de depósitos
         total_users: Total de usuários
       client:
         subtitle: Subtitle
@@ -1298,10 +1300,13 @@ pt-BR:
   total_withdrawals: 'Saques totais'
   binary: 'Binário'
   orders_history: 'Histórico de Pedidos'
+  deposits_history: 'Histórico de Depósitos'
   users_history: 'Histórico de Usuários'
   last_orders: 'Últimos Pedidos'
+  last_deposits: 'Últimos Depósitos'
   user: 'Usuário'
   order_date: 'Data do pedido'
+  deposit_date: 'Data do depósito'
   order_number: 'Número do pedido'
   amount: 'Valor'
   make_deposit_order: 'Realizar pedido de depósito'

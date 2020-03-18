@@ -522,11 +522,14 @@
   user_mailer:
     welcome:
       subject: Welcome
-      call: Sr(a) %{name}
-      body: Your registration was completed successfully. Thank you for joining our team.
-            Welcome to the future.
-      footer: Graciously, <br>
-              Team %{company_name}
+      call: Dear associate %{name}
+      body: The %{company_name} is very satisfied to welcome and congratulate you for your choice to be included in our select group of winners.
+            We will work hard to offer you the greatest benefits and services seeking always for excellence in quality.
+            We also use this opportunity to renew our wishes of high esteem.
+      footer: Yours sincerely, <br>
+              Krew Montice <br>
+              President, <br>
+              %{company_name}
     upgrade_career:
       subject: Title Advance
       body: It is with great pleasure that we congratulate you for the good performance,
@@ -1320,7 +1323,7 @@
   back_account: "Back to account"
   enter_as_user: 'Login as user'
   edit_user: 'Edit User'
-  see_profile: 'Ver profile'
+  see_profile: 'See profile'
   financial_history: Financial History
   additional_columns: Additional Columns
   show: Show

@@ -27,7 +27,7 @@ module Backoffice
     end
 
     def ensure_admin_or_entrepreneur
-      return if signed_in? && (current_user.admin? || current_user.empreendedor? || current_user.instalador?)
+      return if signed_in? && (current_user.admin? || current_user.empreendedor?)
       flash[:error] = t(:admin_or_entrepreneur_necessary)
       redirect_to root_path
     end

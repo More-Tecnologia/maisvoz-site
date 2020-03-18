@@ -37,7 +37,6 @@
               <tr>
                 <th><%= t(:user) %></th>
                 <th><%= t(:order_date) %></th>
-                <th><%= t(:order_number) %></th>
                 <th><%= t(:amount) %></th>
               </tr>
             </thead>
@@ -45,8 +44,7 @@
               <% @index.last_orders.each do |last_order| %>
               <tr>
                 <td><%= link_to_user last_order.user %></td>
-                <td><%= l last_order.created_at, format: :short %></td>
-                <td><%= link_to "\##{last_order.id}", backoffice_admin_order_path(last_order) %></td>
+                <td><%= l last_order.created_at, format: '%B %d, %Y' %></td>
                 <td><%= number_to_currency last_order.total %></td>
               </tr>
               <% end %>

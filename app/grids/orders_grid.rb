@@ -35,7 +35,7 @@ class OrdersGrid < BaseGrid
   date_column(:created_at)
   date_column(:paid_at, order: 'paid_at is not null desc, paid_at', order_desc: 'paid_at is not null desc, paid_at desc')
   date_column(:expire_at, html: false)
-  column(:faturado, html: true) do |order|
+  column(:faturado, html: true, header: I18n.t(:billed)) do |order|
     if !order.billed?
       link_to(backoffice_admin_order_mark_as_billed_path(order),
         method: :post,
@@ -58,9 +58,7 @@ class OrdersGrid < BaseGrid
       content_tag(:span, t(value), class: ['badge', css_class])
     end
   end
-  column(:details, html: true) do |order|
-      link_to(t(:details), backoffice_admin_order_path(order))
-  end
+
   column(:approve, html: true) do |order|
     if !order.completed?
       link_to(backoffice_admin_order_approve_path(order),

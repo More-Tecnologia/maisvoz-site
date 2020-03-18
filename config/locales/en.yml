@@ -1333,3 +1333,8 @@
   change_password: Change your password
   change_my_password: Change my password
   min_password_length: '%{min} characters minimum'
+  reject_deleting_photos: 'Reject deleting photos'
+  reject_without_delete_photos: 'Reject without deleting photos'
+  reason: 'Reason'
+  approve: 'Approve'
+  billed: 'Billed'

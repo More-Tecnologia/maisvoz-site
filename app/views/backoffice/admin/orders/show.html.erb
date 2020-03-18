@@ -31,7 +31,7 @@
                               </address>
                         </div>
                         <div class="pull-right m-t-30">
-                            <p><strong><%= Product.human_attribute_name(:order_date) %>: </strong> <%= l @order.created_at, format: :short %></p>
+                            <p><strong><%= Product.human_attribute_name(:order_date) %>: </strong> <%= l @order.created_at, format: '%B %d, %Y'  %></p>
                             <p class="m-t-10"><strong><%= Product.human_attribute_name(:order_status) %>: </strong> <span class="label label-default"><%= t "defaults.#{@order.status}" %></span></p>
                             <p class="m-t-10"><strong><%= Product.human_attribute_name(:id) %>: </strong> #<%= @order.hashid %></p>
                         </div>

@@ -41,7 +41,7 @@
                     <% amount = transaction.cent_amount %>
                     <% amount = -amount if transaction.financial_reason.debit? %>
                     <td class='<%= 'text-danger' if amount < 0 %>'> <%= number_to_currency(amount) %></td>
-                    <td><%= l(transaction.created_at, format: :short) %></td>
+                    <td><%= l(transaction.created_at, format: '%B %d, %Y' ) %></td>
                   </tr>
                 <% end %>
               <% else %>

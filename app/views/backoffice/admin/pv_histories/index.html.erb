@@ -56,7 +56,7 @@
                     </td>
                     <td><%= number_with_delimiter pv_history.amount %></td>
                     <td><%= number_with_delimiter pv_history.balance %></td>
-                    <td><%= l(pv_history.created_at, format: :short) %></td>
+                    <td><%= l(pv_history.created_at, format: '%B %d, %Y' ) %></td>
                   </tr>
                 <% end %>
                 <% if pv_histories.empty? %>

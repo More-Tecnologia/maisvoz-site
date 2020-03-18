@@ -12,6 +12,6 @@
     <td class='<%= 'text-danger' if cent_amount_sum.negative? %>'><%= number_to_currency(cent_amount_sum, precision: 2) %></td>
     <% cent_amount_sum += transaction.cent_amount if transaction.financial_reason.morenwm_moneyflow_debit? %>
     <% cent_amount_sum -= transaction.cent_amount if transaction.financial_reason.morenwm_moneyflow_credit? %>
-    <td><%= l(transaction.created_at, format: :short) %></td>
+    <td><%= l(transaction.created_at, format: '%B %d, %Y' ) %></td>
   </tr>
 <% end %>

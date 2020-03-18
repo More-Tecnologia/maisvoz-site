@@ -42,7 +42,7 @@ class UsersGrid < BaseGrid
   column(:created_at, html: false, mandatory: true, header: I18n.t('attributes.created_at'))
   column(:created_at, header: ' ' + I18n.t('attributes.created_at')) do |user|
     format(user.created_at) do |created_at|
-      l(created_at, format: :short)
+      l(created_at, format: '%B %d, %Y')
     end
   end
   column(:block, mandatory: true, header: I18n.t('attributes.blocked'), class: 'text-center') do |user|

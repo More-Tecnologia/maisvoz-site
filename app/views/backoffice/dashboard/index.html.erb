@@ -141,7 +141,7 @@
             </thead>
             <% last_withdrawals.each do |withdraw| %>
               <tr>
-                <td><%= l withdraw.created_at, format: :short %></td>
+                <td><%= l withdraw.created_at, format: '%B %d, %Y'  %></td>
                 <td><%= t withdraw.status %></td>
                 <td><%= number_to_currency withdraw.gross_amount_cents %></td>
               </tr>

@@ -33,11 +33,11 @@
                 <tr>
                   <td> <%= order_item.try(:hashid) %> </td>
                   <td> <%= number_to_currency(order_item.value) %> </td>
-                  <td> <%= l(order_item.created_at, format: :short) if order_item.created_at %> </td>
+                  <td> <%= l(order_item.created_at, format: '%B %d, %Y' ) if order_item.created_at %> </td>
                   <th> <%= number_to_phone(order_item.cellphone_number, pattern: /(\d{2})(\d{5})(\d{4})$/) if order_item.cellphone_number.present? %></th>
                   <td> <%= order_item.try(:order).try(:user).try(:username) %> </td>
                   <td> <%= link_to(order_item.try(:order).try(:hashid), backoffice_admin_order_path(order_item.order)) if order_item.order %> </td>
-                  <td> <%= l(order_item.processed_at, format: :short) if order_item.processed_at %> </td>
+                  <td> <%= l(order_item.processed_at, format: '%B %d, %Y' ) if order_item.processed_at %> </td>
               <% end %>
               <% if @cellphone_reloads.empty? %>
                 <tr>

@@ -34,7 +34,7 @@
                       <td> <%= number_to_currency(bonus_contract_item.cent_amount) %></td>
                       <td> <%= number_to_currency(cent_amount_sum) %></td>
                       <% cent_amount_sum += bonus_contract_item.cent_amount %>
-                      <td> <%= l(bonus_contract_item.try(:created_at), format: :short) %></td>
+                      <td> <%= l(bonus_contract_item.try(:created_at), format: '%B %d, %Y' ) %></td>
                       <td> <%= link_to(@bonus_contract.hashid, backoffice_bonus_contract_path(@bonus_contract)) %></td>
                     </tr>
                   <% end %>

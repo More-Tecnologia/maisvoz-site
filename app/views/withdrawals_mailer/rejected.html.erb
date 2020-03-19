@@ -1,9 +1,13 @@
-<p><%= t('hello')%>, <%= @user.email %></p>
+<p><%= t(:dear_associate) %>, <%= @user.email %></p>
 
 <br>
 
-<p><%= t('rejected_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), wallet: @user.wallet_address) %></p>
+<p><%= t('rejected_withdrawal', support_email: ENV['SUPPORT_EMAIL']) %></p>
 
+<br>
+<span style="color:#808080;">
+  <%= t(:financial_department_footer, company_name: ENV['COMPANY_NAME']).html_safe %>
+</span>
 <br>
 
 <p><%= link_to t('withdrawals_history'), backoffice_withdrawals_url(locale: params[:locale]) %></p>

@@ -1173,13 +1173,17 @@ We will send a new e-mail as soon as the transaction is complete.'
   binary_qualified: 'Binary Qualified'
   invalid_password: 'Invalid Password'
   confirmation_warning: 'we need your current password to confirm your request'
-  success_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was made.'
-  rejected_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} cannot be made.'
-  canceled_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was canceled as you wish.'
+  success_withdrawal: 'Your withdraw request of %{value} was successfully processed.'
+  rejected_withdrawal: 'Your withdraw was denied as we detected inconsistencies on the provided data. Please get in touch immediately with our support team through the e-mail: %{support_email}
+  You can also try this operation again inputing the right data.'
+  canceled_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was canceled as you wish. For further information please get in touch with our support team through the e-mail %{support_email}'
   refuse_withdraw: 'If you do not recognize this request click'
   confirm_withdraw: 'If you did this request click'
   can_confirm_withdraw: 'Confirm or cancel your request through our website'
-  waiting_withdrawal: 'You just made a %{value} withdrawal request to the digital wallet: %{wallet}'
+  waiting_withdrawal: 'Your withdraw request is being processed and will be available up to one work day. <br>
+  Gross amount: %{value} <br>
+  Net amount: %{net_value} <br>
+  Request: %{hashid}'
   withdrawals_history: 'Your withdrawals history'
   here: 'here'
   request_already_processed: 'Request already processed'
@@ -1355,3 +1359,6 @@ We will send a new e-mail as soon as the transaction is complete.'
                            John Spartan <br>
                            Support Director <br>
                            XPLOIT CAPITAL
+  financial_department_footer: 'Yours sincerely, <br>
+                                Financial Department <br>
+                                %{company_name}'

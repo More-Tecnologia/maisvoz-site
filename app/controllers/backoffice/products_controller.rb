@@ -30,7 +30,7 @@ module Backoffice
     end
 
     def ensure_user_consumidor
-      flash[:notice] = 'Você precisa ser um consumidor para comprar o pacote de adesão'
+      flash[:notice] = 'You need to be a consumer to purchase the membership package'
       redirect_back fallback_location: root_path if current_user.empreendedor? && product.adhesion?
     end
 

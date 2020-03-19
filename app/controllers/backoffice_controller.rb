@@ -44,7 +44,7 @@ class BackofficeController < ApplicationController
   private
 
   def user_not_authorized
-    flash[:alert] = 'Você não tem autorização para realizar esta ação.'
+    flash[:alert] = 'Not authorized action.'
     redirect_to(request.referrer || root_path)
   end
 

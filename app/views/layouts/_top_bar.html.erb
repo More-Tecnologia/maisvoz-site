@@ -213,12 +213,14 @@
                 <%= t('views.backoffice.topbar.edit_bank_account') %>
               <% end %>
             </li>
-            <li>
-              <%= link_to edit_backoffice_documents_path do %>
-                <i class="fa fa-cog m-r-10 text-custom"></i>
-                <%= t('views.backoffice.topbar.documents') %>
-              <% end %>
-            </li>
+            <% if current_user.admin? || current_user.empreendedor? %>
+              <li>
+                <%= link_to edit_backoffice_documents_path do %>
+                  <i class="fa fa-cog m-r-10 text-custom"></i>
+                  <%= t('views.backoffice.topbar.documents') %>
+                <% end %>
+              </li>
+            <% end %>
             <li class="divider"></li>
             <% if user_masquerade? %>
             <li>

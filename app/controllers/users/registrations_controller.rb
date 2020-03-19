@@ -135,7 +135,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private def define_layout
-    current_user.consumidor? ? 'consumer' : 'admin'
+    'admin'
   end
 
   private

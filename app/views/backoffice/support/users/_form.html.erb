@@ -20,7 +20,7 @@
     <%= f.input :address_number, wrapper_html: { class: 'col-md-3' } %>
     <%= f.input :city, wrapper_html: { class: 'col-md-3' } %>
     <%= f.input :state, wrapper_html: { class: 'col-md-3' } %>
-    <%= f.input :country, wrapper_html: { class: 'col-md-3' } %>
+    <%= f.input :country, except: ["BR", "US"], wrapper_html: { class: 'col-md-3' } %>
   </div>
   <div class="row">
     <%= f.input :password, wrapper_html: { class: 'col-md-4' } %>

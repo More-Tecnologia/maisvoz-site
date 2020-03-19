@@ -25,7 +25,7 @@
           <%= f.input :document_cpf, label: t(:id), input_html: { style: 'min-width: 100%;'} %>
           <%= f.input :name, input_html: { style: 'min-width: 100%;'} %>
           <%= f.input :email, input_html: { style: 'min-width: 100%;'} %>
-          <%= f.input :country, input_html: { style: 'min-width: 100%;'} %>
+          <%= f.input :country, except: ["BR", "US"], input_html: { style: 'min-width: 100%;'} %>
           <%= f.input :username, input_html: { style: 'min-width: 100%;'} %>
           <%= f.input :password, input_html: { style: 'min-width: 100%;'} %>
           <%= f.input :password_confirmation, input_html: { style: 'min-width: 100%;'} %>
@@ -46,9 +46,9 @@
       <a href="?locale=en" class="flag">
         <%= image_tag('countries/us.svg') %>
       </a>
-      <a href="?locale=pt-BR" class="flag">
+      <!-- <a href="?locale=pt-BR" class="flag">
         <%= image_tag('countries/pt.svg') %>
-      </a>
+      </a> -->
     </div>
   </div>
 </div>

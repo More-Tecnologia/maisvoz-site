@@ -156,7 +156,7 @@
                               <% @users.each do |user| %>
                                 <tr>
                                   <td><%= hide_name(user.username) %></td>
-                                  <td><span class="<%= 'flag-icon flag-icon-' + (user.country.try(:downcase) || 'us') + ' flag-icon-squared' %>" ></span></td>
+                                  <td><span class="<%= 'flag-icon flag-icon-' + (user.country.try(:downcase) || 'uk') + ' flag-icon-squared' %>" ></span></td>
                                 </tr>
                               <% end %>
                             </tbody>

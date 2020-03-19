@@ -522,29 +522,29 @@
   user_mailer:
     welcome:
       subject: Welcome
-      call: Sr(a) %{name}
-      body: Your registration was completed successfully. Thank you for joining our team.
-            Welcome to the future.
-      footer: Graciously, <br>
-              Team %{company_name}
+      call: Dear associate %{name}
+      body: 'The %{company_name} is very satisfied to welcome and congratulate you for your choice to be included in our select group of winners.
+            We will work hard to offer you the greatest benefits and services seeking always for excellence in quality.
+            We also use this opportunity to renew our wishes of high esteem.'
+      footer: 'Yours sincerely, <br>
+              Krew Montice <br>
+              President <br>
+              %{company_name}'
     upgrade_career:
       subject: Title Advance
-      body: It is with great pleasure that we congratulate you for the good performance,
-            commitment, engagement and dedication, when expanding our activities.
-            <b> In order to promote and encourage, even more your participation
-            in our project, we certify you the title of %{career_name}.</b>
+      body: 'Congratulations on this achievement, each new step you achieve in our business plan has an extraordinary meaning for us, it is the certainty that we are doing the right thing. <br>
+      We are delighted to recognize your new leadership title <b>%{career_name}</b>.<br>
+      From now on you will be able to enjoy your new benefits achieved with your new title achieved.'
   shopping_mailer:
     order_paid:
-      body: We inform that your purchase of the product(s) <strong> %{product_names} </strong> was successfully completed!
-            We thank and congratulate you for purchasing our products.
-      adhesion_body: Thank you for becoming our authorized customer.
-                     The payment of <b>%{adhesion_order_value}</b> referring to the product <b>%{adhesion_product_name}</b> was successfully completed!<br><br>
-                     We thank and congratulate you for making a decision for a promising and successful future.
+      body: 'You will receive <b>%{order_value}</b> in your Xploit Capital account.
+After three confirmations from the network the amount will be available for use.
+We will send a new e-mail as soon as the transaction is complete.'
+      footer: 'Yours sincerely, <br>
+              Financial Department <br>
+              %{company_name}'
     order_made:
-      body: Your <b>order</b> worth of <b>%{order_value}</b> was carried out.
-            Complete payment and wait for processing.
-      bank_account: ''
-      payment_receipt: ''
+      body: The amount of <b>%{order_value}</b> is already available in your BackOffice for immediate use. We wish you good deals.
   devise_mailer:
     reset_password_instructions:
       order_link: You requested a link to change your password. You can change it via the link below.
@@ -923,7 +923,7 @@
         success: 'An wallet address change request was made. Check your email to confirm the change'
       edit:
         title: 'Digital Wallet change request'
-        waiting_digital_wallet_confirmation_html: 'You have requested to transfer your current digital wallet (<span class = "text-info">%{current_wallet} </span>) to the wallet address: <span class = "text-danger">%{digital_wallet} </span>'
+        waiting_digital_wallet_confirmation_html: 'You have requested a transfer from your earnings wallet (<span class = "text-info">%{current_wallet} </span>) to the wallet <span class = "text-danger">%{digital_wallet} </span>'
         confirm_digital_wallet_change: 'If you really want to change your wallet address click'
         confirm_digital_wallet_change_question: 'Are you sure you want to change your digital_wallet?'
         refuse_digital_wallet_change: 'If you did not request or do not want to change your wallet address click'
@@ -941,8 +941,8 @@
         success: 'An email change request was made. Check your old/current email to confirm the change'
       edit:
         title: 'Email change request'
-        waiting_email_confirmation_html: 'You have requested to transfer your current email (<span class = "text-info">%{current_email} </span>) to the address: <span class = "text-danger">%{email} </span>'
-        confirm_email_change: 'If you really want to change your email click'
+        waiting_email_confirmation_html: 'You have requested to change your current e-mail from (<span class = "text-info">%{current_email} </span>) to: <span class = "text-danger">%{email} </span>'
+        confirm_email_change: 'Please confirm or cancel this operation by clicking'
         confirm_email_change_question: 'Are you sure you want to change your email?'
         refuse_email_change: 'If you did not request or do not want to change your email click'
         refuse_email_change_question: 'Are you sure you want to decline the email change?'
@@ -1172,13 +1172,17 @@
   binary_qualified: 'Binary Qualified'
   invalid_password: 'Invalid Password'
   confirmation_warning: 'we need your current password to confirm your request'
-  success_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was made.'
-  rejected_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} cannot be made.'
-  canceled_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was canceled as you wish.'
+  success_withdrawal: 'Your withdraw request of %{value} was successfully processed.'
+  rejected_withdrawal: 'Your withdraw was denied as we detected inconsistencies on the provided data. Please get in touch immediately with our support team through the e-mail: %{support_email}
+  You can also try this operation again inputing the right data.'
+  canceled_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was canceled as you wish. For further information please get in touch with our support team through the e-mail %{support_email}'
   refuse_withdraw: 'If you do not recognize this request click'
   confirm_withdraw: 'If you did this request click'
   can_confirm_withdraw: 'Confirm or cancel your request through our website'
-  waiting_withdrawal: 'You just made a %{value} withdrawal request to the digital wallet: %{wallet}'
+  waiting_withdrawal: 'Your withdraw request is being processed and will be available up to one work day. <br>
+  Gross amount: %{value} <br>
+  Net amount: %{net_value} <br>
+  Request: %{hashid}'
   withdrawals_history: 'Your withdrawals history'
   here: 'here'
   request_already_processed: 'Request already processed'
@@ -1186,6 +1190,7 @@
   digital_wallet: 'Digital Wallet'
   id: 'ID'
   hello: 'Hello'
+  dear_associate: 'Dead associate'
   effected: 'effected'
   account_status: 'Account status'
   datae: 'Date'
@@ -1220,8 +1225,8 @@
   digital_wallet_changed_info: 'Digital Wallet change completed'
   new_digital_wallet: 'Change Digital Wallet address'
   can_confirm_digital_wallet_change: 'Confirm or cancel your request through our website'
-  waiting_digital_wallet_reativation: 'You requested to change your digital_wallet to %{digital_wallet}'
-  digital_wallet_activated: 'You have approved changing your account digital_wallet to %{digital_wallet}'
+  waiting_digital_wallet_reativation: 'You requested to change your wallet to %{digital_wallet}'
+  digital_wallet_activated: 'Your earnings wallet change request to %{digital_wallet} was successfully processed. Every wallet already set up is available for use.'
   digital_wallet_refused: 'You declined to change your digital wallet to the account %{digital_wallet}'
   digital_wallet_change_solicitation: 'Digital Wallet change request'
   digital_wallet_changed_info: 'Digital Wallet change completed'
@@ -1232,8 +1237,8 @@
   new_email: 'Change email address'
   can_confirm_email_change: 'Confirm or cancel your request through our website'
   waiting_email_reativation: 'You requested to change your email to %{email}'
-  email_activated: 'You have approved changing your account email to %{email}'
-  email_refused: 'You declined to change your email to the address %{email}'
+  email_activated: 'We’re getting in touch to notify you that your e-mail was altered to %{email}. Which e-mail to use as your standard e-mail is left at your discretion.'
+  email_refused: 'Your request to alter your e-mail to %{email} was refused. Please get in touch with our support team through the e-mail: %{support_email}'
   email_change_solicitation: 'Email change request'
   email_changed_info: 'Email change completed'
   email_refuse_info: 'Email change rejected'
@@ -1349,3 +1354,10 @@
   username: Username
   documents_approval: Documents Approval
   status: Status
+  support_director_footer: Yours sincerely, <br>
+                           John Spartan <br>
+                           Support Director <br>
+                           XPLOIT CAPITAL
+  financial_department_footer: 'Yours sincerely, <br>
+                                Financial Department <br>
+                                %{company_name}'

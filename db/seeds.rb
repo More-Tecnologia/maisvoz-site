@@ -178,22 +178,36 @@ end
                        name: ENV['MORENWM_USERNAME'],
                        role: 'admin',
                        password: '111111',
-                       email: 'morenwm@morenwm.com')
+                       email: 'systemxcapital@xcapital.com')
  more_user.save(validate: false) unless User.exists?(username: ENV['MORENWM_USERNAME'])
 
  admin_user = User.create!(username: ENV['MORENWM_CUSTOMER_ADMIN'],
                            name: ENV['MORENWM_CUSTOMER_ADMIN'],
                            role: 'admin',
                            password: '111111',
-                           email: 'admin@morenwm.com',
+                           email: 'adminxcapital@xcapital.com',
                            sponsor: more_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_ADMIN'])
 
   User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
                name: ENV['MORENWM_CUSTOMER_USERNAME'],
                role: 'empreendedor',
                password: '111111',
-               email: 'customer-morenwm@morenwm.com',
+               email: 'xcapital@xcapital.com',
                sponsor: admin_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_USERNAME'])
+
+ adminfinancial_user = User.create!(username: 'adminfinancial',
+                                    name: 'Admin Financial',
+                                    role: :financeiro,
+                                    password: '111111',
+                                    email: 'adminfinancial@xcapital.com',
+                                    sponsor: admin_user)
+
+support_user = User.create!(username: 'adminsupport',
+                            name: 'Admin Support',
+                            role: :suporte,
+                            password: '111111',
+                            email: 'adminsupport@xcapital.com',
+                            sponsor: admin_user)
 
 end
 

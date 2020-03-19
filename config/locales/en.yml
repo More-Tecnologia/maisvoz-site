@@ -528,7 +528,7 @@
             We also use this opportunity to renew our wishes of high esteem.'
       footer: 'Yours sincerely, <br>
               Krew Montice <br>
-              President, <br>
+              President <br>
               %{company_name}'
     upgrade_career:
       subject: Title Advance

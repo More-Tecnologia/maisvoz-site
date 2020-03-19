@@ -22,7 +22,7 @@
       </h2><br>
       <div style="color:#808080;font-size: 16px;text-indent: 30px;">
         <span>
-          <%= t('.body', company_name: t('defaults.company_name'), career_name: @new_career.try(:name)).html_safe %>
+          <%= t('.body', company_name: ENV['COMPANY_NAME'], career_name: @new_career.try(:name)).html_safe %>
         </span>
       </div><br>
       <span style="color:#808080;">

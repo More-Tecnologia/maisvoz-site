@@ -532,10 +532,9 @@
               %{company_name}'
     upgrade_career:
       subject: Title Advance
-      body: 'It is with great pleasure that we congratulate you for the good performance,
-            commitment, engagement and dedication, when expanding our activities.
-            <b> In order to promote and encourage, even more your participation
-            in our project, we certify you the title of %{career_name}.</b>'
+      body: 'Congratulations on this achievement, each new step you achieve in our business plan has an extraordinary meaning for us, it is the certainty that we are doing the right thing. <br>
+      We are delighted to recognize your new leadership title <b>%{career_name}</b>.<br>
+      From now on you will be able to enjoy your new benefits achieved with your new title achieved.'
   shopping_mailer:
     order_paid:
       body: 'You will receive <b>%{order_value}</b> in your Xploit Capital account.

@@ -39,8 +39,7 @@ class Order < ApplicationRecord
   serialize :dr_response, JSON
 
   enum status: { cart: 0, pending_payment: 1, processing: 2, completed: 3, expired: 4 }
-  enum payment_type: { boleto: 'boleto',
-                       balance: 'balance',
+  enum payment_type: { balance: 'balance',
                        admin: 'admin',
                        voucher: 'voucher',
                        btc: 'btc' }

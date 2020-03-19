@@ -207,7 +207,7 @@ support_user = User.create!(username: 'adminsupport',
                             role: :suporte,
                             password: '111111',
                             email: 'adminsupport@xcapital.com',
-                            sponsor: admin_user)
+                            sponsor: adminfinancial_user)
 
 end
 

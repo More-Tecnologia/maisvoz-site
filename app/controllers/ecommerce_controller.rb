@@ -6,7 +6,7 @@ class EcommerceController < BackofficeController
 
   def ensure_admin_or_ecommerce
     return if signed_in? && (current_user.admin? || current_user.ecommerce?)
-    flash[:error] = 'Você precisa ser admin ou admin lojista'
+    flash[:error] = 'You need to be admin or shopkeeper admin'
     redirect_to root_path
   end
 

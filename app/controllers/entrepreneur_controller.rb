@@ -5,7 +5,7 @@ class EntrepreneurController < BackofficeController
   private
 
   def ensure_admin_or_entrepreneur
-    return if signed_in? && (current_user.admin? || current_user.empreendedor?)
+    return if signed_in? && (current_user.admin? || current_user.empreendedor? || current_user.financeiro? || current_user.suporte?)
     redirect_to new_backoffice_deposit_path
   end
 

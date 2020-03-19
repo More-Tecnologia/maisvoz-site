@@ -20,7 +20,7 @@ module Backoffice
       end
 
       def approve
-        return unless current_user.admin?
+        return unless current_user.admin? || current_user.financeiro?
 
         command = Financial::PaymentCompensation.call(order)
 
@@ -37,6 +37,7 @@ module Backoffice
       end
 
       def mark_as_billed
+        return unless current_user.admin? || current_user.financeiro?
         if order.update_column :billed, true
           flash[:success] = t(:order_marked_as_billed)
         end

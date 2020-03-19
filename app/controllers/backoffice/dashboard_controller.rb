@@ -35,7 +35,7 @@ module Backoffice
     end
 
     def ensure_no_admin_user
-      redirect_to backoffice_admin_dashboard_index_path if user_signed_in? && current_user.admin?
+      redirect_to backoffice_admin_dashboard_index_path if user_signed_in? && (current_user.admin? || current_user.financeiro?)
     end
   end
 end

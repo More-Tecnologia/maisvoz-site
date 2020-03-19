@@ -1,21 +1,12 @@
 class SupportController < BackofficeController
 
   before_action :ensure_admin_or_support
-  before_action :ensure_time_limit
 
   private
 
   def ensure_admin_or_support
-    return if signed_in? && (current_user.admin? || current_user.suporte?)
-    flash[:error] = 'Você precisa ser admin ou suporte'
-    redirect_to '/'
-  end
-
-  def ensure_time_limit
-    hour = Time.zone.now.hour
-    return if current_user.admin? || hour >= 8 && hour <= 19
-
-    flash[:error] = 'Restrição de horário, login liberado entre as 8h e 19h'
+    return if signed_in? && (current_user.admin? || current_user.suporte? || current_user.financeiro?)
+    flash[:error] = 'You must be admin or support'
     redirect_to '/'
   end
 

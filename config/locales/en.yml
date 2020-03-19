@@ -523,31 +523,29 @@
     welcome:
       subject: Welcome
       call: Dear associate %{name}
-      body: The %{company_name} is very satisfied to welcome and congratulate you for your choice to be included in our select group of winners.
+      body: 'The %{company_name} is very satisfied to welcome and congratulate you for your choice to be included in our select group of winners.
             We will work hard to offer you the greatest benefits and services seeking always for excellence in quality.
-            We also use this opportunity to renew our wishes of high esteem.
-      footer: Yours sincerely, <br>
+            We also use this opportunity to renew our wishes of high esteem.'
+      footer: 'Yours sincerely, <br>
               Krew Montice <br>
               President, <br>
-              %{company_name}
+              %{company_name}'
     upgrade_career:
       subject: Title Advance
-      body: It is with great pleasure that we congratulate you for the good performance,
+      body: 'It is with great pleasure that we congratulate you for the good performance,
             commitment, engagement and dedication, when expanding our activities.
             <b> In order to promote and encourage, even more your participation
-            in our project, we certify you the title of %{career_name}.</b>
+            in our project, we certify you the title of %{career_name}.</b>'
   shopping_mailer:
     order_paid:
-      body: We inform that your purchase of the product(s) <strong> %{product_names} </strong> was successfully completed!
-            We thank and congratulate you for purchasing our products.
-      adhesion_body: Thank you for becoming our authorized customer.
-                     The payment of <b>%{adhesion_order_value}</b> referring to the product <b>%{adhesion_product_name}</b> was successfully completed!<br><br>
-                     We thank and congratulate you for making a decision for a promising and successful future.
+      body: 'You will receive <b>%{order_value}</b> in your Xploit Capital account.
+After three confirmations from the network the amount will be available for use.
+We will send a new e-mail as soon as the transaction is complete.'
+      footer: 'Yours sincerely, <br>
+              Financial Department <br>
+              %{company_name}'
     order_made:
-      body: Your <b>order</b> worth of <b>%{order_value}</b> was carried out.
-            Complete payment and wait for processing.
-      bank_account: ''
-      payment_receipt: ''
+      body: The amount of <b>%{order_value}</b> is already available in your BackOffice for immediate use. We wish you good deals.
   devise_mailer:
     reset_password_instructions:
       order_link: You requested a link to change your password. You can change it via the link below.

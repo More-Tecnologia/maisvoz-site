@@ -7,8 +7,8 @@ class AdminController < BackofficeController
   private
 
   def ensure_admin
-    return if signed_in? && current_user.admin?
-    flash[:error] = 'Você precisa ser administrador.'
+    return if signed_in? && (current_user.admin? || current_user.suporte?)
+    flash[:error] = 'You must be an admin.'
     redirect_to backoffice_dashboard_index_path
   end
 

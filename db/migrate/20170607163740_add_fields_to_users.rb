@@ -28,6 +28,6 @@ class AddFieldsToUsers < ActiveRecord::Migration[5.1]
     add_column :users, :blocked_balance_cents, :bigint, default: 0, null: false
 
     add_index :users, :username, unique: true
-    add_index :users, :document_cpf, unique: true
+    add_index :users, :document_cpf
   end
 end

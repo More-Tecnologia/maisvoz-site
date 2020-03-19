@@ -17,7 +17,7 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th><%= Score.human_attribute_name(:order) %></th>
+                  <th><%= t(:deposit) %></th>
                   <th><%= Score.human_attribute_name(:amount) %></th>
                   <th><%= Score.human_attribute_name(:contract_balance) %></th>
                   <th><%= Score.human_attribute_name(:in_date) %></th>
@@ -32,7 +32,7 @@
                     <% order = bonus_contract.try(:order) %>
                     <tr>
                       <td> <%= link_to(bonus_contract.hashid, backoffice_bonus_contract_path(bonus_contract)) %> </td>
-                      <td> <%= link_to(order.try(:hashid), backoffice_order_path(order)) if order %> </td>
+                      <td> <%= order.try(:hashid) if order %> </td>
                       <td> <%= number_to_currency(order.total) %> </td>
                       <td> <%= number_to_currency(bonus_contract.remaining_balance.to_i) %></td>
                       <td> <%= l(bonus_contract.try(:created_at), format: '%B %d, %Y' ) %></td>

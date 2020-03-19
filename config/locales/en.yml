@@ -1362,3 +1362,4 @@ We will send a new e-mail as soon as the transaction is complete.'
                                 Financial Department <br>
                                 %{company_name}'
   user_edit_form: User registration editing
+  must_be_admin_or_financial: 'You need to be admin or financial'

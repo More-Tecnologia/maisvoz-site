@@ -26,7 +26,7 @@
         </span>
       </div><br>
       <span style="color:#808080;">
-        <%= t('user_mailer.welcome.footer', company_name: t('defaults.company_name')).html_safe %>
+        <%= t('user_mailer.welcome.footer', company_name: ENV['COMPANY_NAME']).html_safe %>
       </span>
     </td>
   </tr>

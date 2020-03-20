@@ -23,7 +23,7 @@
       <div style="color:#808080;font-size: 16px;text-indent: 30px;">
 
           <span>
-            <%= t('.body', order_value: format_digital_currency(@order.total)).html_safe %>
+            <%= t('.body', order_value: number_to_currency(@order.total)).html_safe %>
           </span>
 
       </div><br>

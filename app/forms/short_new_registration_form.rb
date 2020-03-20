@@ -32,8 +32,7 @@ class ShortNewRegistrationForm < Form
 
   def sponsor
     @sponsor ||= User.where(
-      'LOWER(username) = ? AND role = ?',
-      sponsor_username.try(:downcase), :empreendedor
+      username: sponsor_username.try(:downcase), role: [:empreendedor, :consumidor]
     ).first
   end
 

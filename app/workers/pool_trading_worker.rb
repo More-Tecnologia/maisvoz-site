@@ -3,9 +3,9 @@ class PoolTradingWorker
   include Sidekiq::Worker
 
   def perform
+    run
     next_run_date = Date.tomorrow.beginning_of_day + 20.minutes
     PoolTradingWorker.perform_at(next_run_date)
-    run
   end
 
   private
@@ -28,7 +28,7 @@ class PoolTradingWorker
 
   def notify_admin_by_email(errors)
     subject = "Pool Tranding Errors: #{errors.size}"
-    ErrorsMailer.notify_admin(subject, errors).deliver_now
+    ErrorsMailer.notify_admin(subject, errors).deliver_later
   end
 
 end

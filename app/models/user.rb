@@ -432,7 +432,6 @@ class User < ApplicationRecord
   def unilevel_ancestors
     unilevel_node.ancestors
                  .includes(:user)
-                 .with_active_users
                  .map(&:user)
   end
 

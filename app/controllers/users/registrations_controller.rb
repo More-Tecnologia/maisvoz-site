@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    if params[:bypass] == 'true' && params[:pass] == 'plus-ultra'
+    if (params[:bypass] == 'true' && params[:pass] == 'plus-ultra') || ENV['UPTIME'] == 'running'
       build_resource({})
       @form = build_registration_form(sponsor_username: params[:sponsor])
     else

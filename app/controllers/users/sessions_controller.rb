@@ -3,7 +3,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    if params[:bypass] == 'true' && params[:pass] == 'plus-ultra'
+    if (params[:bypass] == 'true' && params[:pass] == 'plus-ultra') || ENV['UPTIME'] == 'running'
       super
     else
       redirect_to maintenances_path

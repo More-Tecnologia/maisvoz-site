@@ -2,9 +2,13 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    if (params[:bypass] == 'true' && params[:pass] == 'plus-ultra') || ENV['UPTIME'] == 'running'
+      super
+    else
+      redirect_to maintenances_path
+    end
+  end
 
   # POST /resource/sign_in
   # def create

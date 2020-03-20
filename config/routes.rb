@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :shop, only: [:index, :show]
   resources :bradesco_check_order, only: :index
+  resources :maintenances, only: :index
 
   namespace :backoffice do
     # Admin

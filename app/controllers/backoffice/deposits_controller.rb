@@ -2,7 +2,7 @@
 
 module Backoffice
   class DepositsController < EntrepreneurController
-    skip_before_action :ensure_admin_or_entrepreneur
+    # skip_before_action :ensure_admin_or_entrepreneur
 
     before_action :validate_min_deposit_quantity, only: :create
     before_action :validate_max_deposit_quantity, only: :create

@@ -108,7 +108,7 @@
           </ul>
         </li>
         <% end %>
-        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? %>
+        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? || current_user.consumidor? %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
             <i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.scores') %> </span>

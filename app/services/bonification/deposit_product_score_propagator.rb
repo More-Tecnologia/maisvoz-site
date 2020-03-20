@@ -19,7 +19,7 @@ module Bonification
     def propagate_deposit_score(user)
       sponsors = order.user.unilevel_ancestors.reverse
       sponsors.each_with_index do |sponsor, index|
-        next unless sponsor.empreendedor?
+        next unless (sponsor.empreendedor? || sponsor.consumidor?)
         create_deposit_score(sponsor, index + 1)
       end
     end

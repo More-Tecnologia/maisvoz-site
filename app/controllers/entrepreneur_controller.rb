@@ -1,6 +1,6 @@
 class EntrepreneurController < BackofficeController
 
-  before_action :ensure_admin_or_entrepreneur
+  # before_action :ensure_admin_or_entrepreneur
 
   private
 

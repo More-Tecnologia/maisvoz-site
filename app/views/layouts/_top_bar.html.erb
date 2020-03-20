@@ -14,7 +14,7 @@
     <div id="navbar" class="collapse navbar-collapse">
 
       <ul class="nav navbar-nav navbar-center">
-        <% if current_user.empreendedor? %>
+        <% if current_user.empreendedor? || current_user.consumidor? %>
           <li class="dropdown top-menu-item-xs">
             <a href="#" sponsor-link="<%= root_url(sponsor: current_user.username) %>" id="sponsor-link" title='<%= t(:copied_sponsor_link) %>' message='<%= t(:copied_sponsor_link_message) %>'><i  class="fa fa-link"></i>&nbsp; <span class="hidden-xs hidden-sm hidden-md"><%= t(:sponsor_link) %></span></a>
           </li>
@@ -88,7 +88,7 @@
           </ul>
         </li>
         <% end %>
-        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? %>
+        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? || current_user.consumidor? %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
             <i class="ti-sharethis"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.network') %> </span>
@@ -108,7 +108,7 @@
           </ul>
         </li>
         <% end %>
-        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? %>
+        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? || current_user.consumidor? %>
         <li class="dropdown top-menu-item-xs">
           <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
             <i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.scores') %> </span>
@@ -146,7 +146,7 @@
             </ul>
           </li>
         <% end %>
-        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? %>
+        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? || current_user.consumidor? %>
         <li class="top-menu-item-xs">
           <%= link_to backoffice_downloads_path do %>
             <i class="md md-cloud-download" tooltip='<%= t(:download_support_material) %>'></i> <span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t(:support_material) %></span>
@@ -154,7 +154,6 @@
         </li>
         <% end %>
       </ul>
-
 
       <ul class="nav navbar-nav navbar-right top-menu-item-xs">
         <li class='text-warning timer-wrapper'>

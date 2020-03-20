@@ -23,10 +23,9 @@ class BackofficeController < ApplicationController
                                   .where(product: Product.deposit, order: current_user.orders.cart)
                                   .order(created_at: :desc)
                                   .last
-                                  .try(:order) || Order.create(user: current_user, status: :cart)
+                                  .try(:order) || Order.new(user: current_user, status: :cart)
     if @current_deposit.order_items.none?
-      @current_deposit.order_items.create(product: Product.deposit.first, quantity: 50)
-      Shopping::UpdateCartTotals.call(@current_deposit)
+      @current_deposit.order_items.build(product: Product.deposit.first, quantity: 50)
     end
     @current_deposit
   end

@@ -4,7 +4,7 @@ class PoolLeadershipWorker
 
   def perform
     next_run_date = Date.today.at_beginning_of_month.next_month + 22.hours
-    PoolTrandingWorker.perform_at(next_run_date)
+    PoolLeadershipWorker.perform_at(next_run_date)
     run
   end
 
@@ -15,7 +15,7 @@ class PoolLeadershipWorker
     individual_amount = amount / users_ids.count
     users_ids.each do |user_id|
       Bonification::PoolLeadershipService.call(user_id: user_id, amount: individual_amount)
-    rescue StandarError => e
+    rescue StandardError => e
       error = {
         message: "Error while create Pool Leadership for #{user.username}: #{e.message}",
         backtrace: e.backtrace

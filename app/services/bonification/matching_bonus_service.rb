@@ -2,12 +2,9 @@ module Bonification
   class MatchingBonusService < ApplicationService
 
     BONUS_COMMISSIONS =
-      [[0, 6, 6, 6, 6, 6, 6],
-       [0, 5, 5, 5, 5, 5, 5],
-       [0, 4, 4, 4, 4, 4, 4],
-       [0, 3, 3, 3, 3, 3, 3],
+      [[0, 2, 2, 2, 2, 2, 2],
        [0, 2, 2, 2, 2, 2, 2],
-       [0, 1, 1, 1, 1, 1, 1]]
+       [0, 2, 2, 2, 2, 2, 2]]
 
     def call
       return unless @binary_bonus.to_f.positive?

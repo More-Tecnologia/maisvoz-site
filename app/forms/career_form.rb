@@ -13,6 +13,7 @@ class CareerForm < Form
   attribute :lineage_score
   attribute :requalification_score
   attribute :image_path
+  attribute :maximum_qualifying_score
 
   validates :name, :qualifying_score, :bonus, :binary_limit, :binary_percentage,
             :kind, presence: true

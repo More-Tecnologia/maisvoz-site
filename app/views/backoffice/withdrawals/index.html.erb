@@ -29,7 +29,7 @@
                   <th><%= number_to_currency (withdraw.gross_amount_cents - withdraw.net_amount_cents) %></th>
                   <th><%= number_to_currency withdraw.net_amount_cents %></th>
                   <td><%= withdraw.pretty_status %></td>
-                  <td><%= l withdraw.created_at, format: :short %></td>
+                  <td><%= l withdraw.created_at, format: '%B %d, %Y'  %></td>
                 </tr>
               <% end %>
               <% if @withdrawals.empty? %>

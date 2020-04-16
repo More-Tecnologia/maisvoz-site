@@ -3,9 +3,9 @@ class NodesBinaryBonusVerifierWorker
   include Sidekiq::Worker
 
   def perform
+    run
     next_run_date = Date.tomorrow.beginning_of_day
     NodesBinaryBonusVerifierWorker.perform_at(next_run_date)
-    run
   end
 
   private
@@ -27,7 +27,7 @@ class NodesBinaryBonusVerifierWorker
   end
 
   def notify_admin_by_email(errors)
-    ErrorsMailer.notify_admin("Binary Bonus Errors: #{errors.size}", errors).deliver_now
+    ErrorsMailer.notify_admin("Binary Bonus Errors: #{errors.size}", errors).deliver_later
   end
 
 end

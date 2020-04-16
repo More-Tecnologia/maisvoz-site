@@ -25,6 +25,10 @@ class ScoreType < ApplicationRecord
     find_by(code: '300')
   end
 
+  def self.deposit
+    @@deposit ||= find_by(code: '1000')
+  end
+
   def self.binary_score
     @@binary_score ||= find_by(code: '400')
   end

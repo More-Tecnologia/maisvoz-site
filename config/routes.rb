@@ -10,10 +10,11 @@ Rails.application.routes.draw do
 
   mount Attachinary::Engine => '/attachinary'
 
-  root 'shop#index'
+  root 'landing_pages#index'
 
   resources :shop, only: [:index, :show]
   resources :bradesco_check_order, only: :index
+  resources :maintenances, only: :index
 
   namespace :backoffice do
     # Admin
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :unilevel_scores, only: [:index]
       resources :binary_scores, only: [:index]
+      resources :lineage_scores, only: [:index]
       resources :point_qualifications, only: [:index]
       resources :orders, only: [:index, :show] do
         post :approve
@@ -49,6 +51,7 @@ Rails.application.routes.draw do
       resources :accumulated_pva, only: [:index]
       resources :career_histories, only: [:index]
       resources :cellphone_reloads, only: [:index]
+      resources :pool_leaderships, only: %i[new create]
       resources :pool_trandings, only: [:new, :create]
       resources :dashboard, only: :index do
         collection do
@@ -58,6 +61,7 @@ Rails.application.routes.draw do
         end
       end
       resources :expenses, only: [:new, :create]
+      resources :bonus_contracts, only: :index
       resources :media_files, only: %i[show new create edit update]
     end
 
@@ -78,6 +82,13 @@ Rails.application.routes.draw do
         get :bonus_data
         get :earnings_data
         get :unilevel_counts_data
+      end
+    end
+
+    resources :deposits, only: %i[index new create] do
+      collection do
+        get :cart
+        post :checkout
       end
     end
     resource :documents, only: [:edit, :update]

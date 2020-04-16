@@ -27,13 +27,13 @@ module Bonification
 
     def credit_binary_bonus
       financial_transaction = create_bonus
-      Score.debit_binary_score_from_legs(user, @valid_score)
+      Score.debit_binary_score_from_legs(user, shortter_leg_score_from_yesterday)
       financial_transaction
     end
 
     def create_bonus
       user.financial_transactions.create!(financial_reason: FinancialReason.binary_bonus,
-                                          cent_amount: @daily_valid_bonus,
+                                          cent_amount: @daily_bonus_total,
                                           spreader: User.find_morenwm_customer_admin)
     end
 
@@ -50,8 +50,10 @@ module Bonification
     end
 
     def calculate_daily_excess_score
-      return 0 if shortter_leg_score_from_yesterday <= ENV['DAILY_MAXIMUM_BINARY_SCORE'].to_f
-      shortter_leg_score_from_yesterday - ENV['DAILY_MAXIMUM_BINARY_SCORE'].to_f
+      maximum_binary_score = @user.current_career_trail.maximum_binary_score.to_f
+      return 0 if maximum_binary_score.nil?
+      return 0 if shortter_leg_score_from_yesterday <= maximum_binary_score
+      shortter_leg_score_from_yesterday - maximum_binary_score
     end
 
     def create_matching_bonus_for_user

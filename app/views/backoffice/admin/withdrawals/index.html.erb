@@ -40,7 +40,7 @@
                     <td><%= number_to_currency withdraw.gross_amount_cents %></td>
                     <td><%= number_to_currency withdraw.net_amount_cents %></td>
                     <td><%= withdraw.pretty_status %></td>
-                    <td><%= l withdraw.created_at, format: :short %></td>
+                    <td><%= l withdraw.created_at, format: '%B %d, %Y'  %></td>
                     <td>
                       <% if withdraw.pending? %>
                         <%= link_to(

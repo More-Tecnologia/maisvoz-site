@@ -1,30 +1,17 @@
 .support-material {
   background-color: white;
   text-transform: uppercase;
-  display: flex;
 }
 
-.support-material__left-box {
-  background-color: #966108a6;
-  padding: 27px;
-  color: white;
-  text-align: center;
-}
-
-.support-material__right-box {
-  display: inline-block;
-}
-
-.support-material__download-list {
-  display: flex;
-  list-style: none;
+.support-material-div {
   font-size: 12px;
 
-  li {
+  div {
     text-align: center;
   }
 
   img {
     width: 50px;
+    border-radius: 50%;
   }
 }

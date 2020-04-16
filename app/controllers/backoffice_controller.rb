@@ -7,6 +7,7 @@ class BackofficeController < ApplicationController
   before_action :authenticate_user!
 
   helper_method :current_order
+  helper_method :current_deposit
   helper_method :clean_shopping_cart
 
   protected def current_order
@@ -17,12 +18,24 @@ class BackofficeController < ApplicationController
    end
   end
 
+  def current_deposit
+    @current_deposit ||= OrderItem.includes(:order)
+                                  .where(product: Product.deposit, order: current_user.orders.cart)
+                                  .order(created_at: :desc)
+                                  .last
+                                  .try(:order) || Order.new(user: current_user, status: :cart)
+    if @current_deposit.order_items.none?
+      @current_deposit.order_items.build(product: Product.deposit.first, quantity: 50)
+    end
+    @current_deposit
+  end
+
   protected def clean_shopping_cart
     session.delete(:order_id)
   end
 
   private def define_layout
-    current_user.consumidor? ? 'consumer' : 'admin'
+    'admin'
   end
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -30,7 +43,7 @@ class BackofficeController < ApplicationController
   private
 
   def user_not_authorized
-    flash[:alert] = 'Você não tem autorização para realizar esta ação.'
+    flash[:alert] = 'Not authorized action.'
     redirect_to(request.referrer || root_path)
   end
 

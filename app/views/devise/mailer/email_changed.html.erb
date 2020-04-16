@@ -1,7 +1,4 @@
-<p>Olá <%= @email %>!</p>
+<p><%= t(:dear_associate) %>, <%= @resource.name %>!</p>
 
-<% if @resource.try(:unconfirmed_email?) %>
-  <p>Estamos entrando em contato para notificá-lo de que seu e-mail está sendo alterado para <%= @resource.unconfirmed_email %>.</p>
-<% else %>
-  <p>Estamos entrando em contato para notificá-lo de que seu e-mail foi alterado para <%= @resource.email %>.</p>
-<% end %>
+
+<p><%= t(:email_activated, email: @resource.email) %></p>

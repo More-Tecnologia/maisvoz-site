@@ -1,9 +1,11 @@
-<p><%= t(:hello)%>, <%= @user.name %></p>
+<p><%= t(:dear_associate) %>, <%= @user.name %></p>
 
 <br>
 
 <p><%= t(:digital_wallet_refused, digital_wallet: @digital_wallet.address) %></p>
 
+<br>
+<p><%= t(:support_director_footer).html_safe %></p>
 <br>
 
 <p><%= link_to t('users.digital_wallets.edit.digital_wallets_list'), users_digital_wallets_url(locale: @locale) %></p>

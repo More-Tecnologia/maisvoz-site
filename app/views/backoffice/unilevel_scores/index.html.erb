@@ -19,7 +19,7 @@
                   <th>#</th>
                   <th><%= Score.human_attribute_name(:order) %></th>
                   <th><%= Score.human_attribute_name(:amount) %></th>
-                  <th><%= Score.human_attribute_name(:pool_points) %></th>
+                  <th><%= t('defaults.unilevel') %></th>
                   <th><%= Score.human_attribute_name(:contract_balance) %></th>
 
                   <th><%= Score.human_attribute_name(:created_at) %></th>
@@ -41,9 +41,9 @@
 
                       <td class=<%= score.cent_amount.to_f < 0 ? 'text-danger' : '' %> > <%= number_with_delimiter(score.try(:cent_amount)) %></td>
                       <td><%= score.try(:order).try(:hashid) %></td>
-                      <td><%= l(score.try(:created_at), format: :short) %></td>
+                      <td><%= l(score.try(:created_at), format: '%B %d, %Y' ) %></td>
                       <td><%= score_status(score)  %></td>
-                      <td><%= l(score.expire_at, format: :long) if score.expire_at %></td>
+                      <td><%= l(score.expire_at, format: '%m/%d/%Y') if score.expire_at %></td>
                     </tr>
                   <% end %>
                 <% else %>

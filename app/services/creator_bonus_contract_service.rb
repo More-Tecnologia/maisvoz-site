@@ -16,7 +16,7 @@ class CreatorBonusContractService < ApplicationService
   end
 
   def three_times_order_value
-    @order.total_value * 3
+    @order.total_value * 2
   end
 
 end

@@ -9,7 +9,7 @@
       </div>
       <div class="panel-body">
 
-        <p><%= t('waiting_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), wallet: current_user.wallet_address) %></p>
+        <p><%= t('waiting_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), hashid: @withdrawal.hashid, net_value: number_to_currency(@withdrawal.net_amount_cents)).html_safe %></p>
 
         <hr />
 

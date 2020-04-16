@@ -23,7 +23,8 @@
 }
 
 .card-box-placeholder {
-  min-height: 500px;
+  height: 40rem!important;
+  overflow: auto;
 }
 
 .label-dark {
@@ -32,4 +33,26 @@
 
 .label-inactive {
   background-color: #DCDCDC;
+}
+
+.bg-secondary {
+  background-color: #001d6e;
+}
+
+.progressbar-legend > span {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.progressbar-legend > span:last-child {
+  margin-right: 0;
+}
+.progressbar-legend > span > i {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+  margin-top: -3px;
+  vertical-align: middle;
+  border-radius: 1px;
 }

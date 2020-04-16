@@ -14,14 +14,10 @@ $(document).ready(function() {
     var totalText = new AutoNumeric('[data-total-text]', AutoNumeric.getPredefinedOptions().commaDecimalCharDotSeparator)
     var $this = this;
 
-    if ($this.registrationType == 'pf'){
-      var irpfText = new AutoNumeric('[data-irpf-text]', AutoNumeric.getPredefinedOptions().commaDecimalCharDotSeparator)
-      var inssText = new AutoNumeric('[data-inss-text]', AutoNumeric.getPredefinedOptions().commaDecimalCharDotSeparator)
-    }
-
     $('[data-input]').on('keyup', function() {
       var val = input.get() || 0;
-      var feeTotal = ($this.withdrawalFee).toFixed(2);
+      var fee = ($this.withdrawalFee).toFixed(2) / 100;
+      var feeTotal = val * fee;
       var total = val - feeTotal;
 
       feeText.set(feeTotal)

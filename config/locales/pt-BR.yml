@@ -381,7 +381,7 @@ pt-BR:
         title: PVA Acumulado
     lineage_scores:
       index:
-        title: Pontuação por Linhagem
+        title: Points Qualifications
     financial_transactions:
       index:
         title: Transações Financeiras
@@ -468,9 +468,12 @@ pt-BR:
       user_versions:
         index:
           title: Relatório de Atividade de Usuário
+      pool_leaderships:
+        create:
+          success: Valor do Pool Leadership salvo com sucesso.
       pool_trandings:
         create:
-          success: Valor do Pool Tranding salvo com sucesso.
+          success: Valor do Pool Cash salvo com sucesso.
       expenses:
         create:
           success: Despesa lançada com sucesso
@@ -496,8 +499,8 @@ pt-BR:
     scores:
       index:
         title:
-          unilevel: Pool Points
-          binary: Point Commissions
+          unilevel: Pool Cash
+          binary: Binary Points
           all: Pontuações
     sim_cards:
       index:
@@ -536,29 +539,32 @@ pt-BR:
   user_mailer:
     welcome:
       subject: Bem-vindo
-      call: Sr(a) %{name}
-      body: Seu registro foi concluído com sucesso. Obrigado  por juntar-se à nossa equipe.
-            Bem vindo ao futuro.
-      footer: Atenciosamente, <br>
-              Equipe %{company_name}
+      call: Prezado Senhor(a) %{name}
+      body: 'A %{company_name} tem o prazer de lhe dar as boas vindas e lhe parabenizar pela sua recente escolha de inclusão no nosso seleto grupo de vencedores.
+      Trabalharemos com afinco para lhe oferecer os melhores benefícios e serviços buscando sempre a excelência no atendimento e na qualidade.
+      Aproveitamos a oportunidade para renovar os votos de elevada estima e consideração.'
+      footer: 'Atenciosamente, <br>
+              Krew Montice <br>
+              Presidente <br>
+              %{company_name}'
     upgrade_career:
       subject: Avanço de Título
-      body: É com imenso prazer que lhe parabenizamos pelo bom desempenho,
+      body: 'É com imenso prazer que lhe parabenizamos pelo bom desempenho,
             comprometimento, engajamento e dedicação, ao expandir nossas atividades.
             <b> Tendo em vista promover e incentivar, ainda mais vossa participação
-            em nosso projeto, certificamos-lhe o título de %{career_name}.</b>
+            em nosso projeto, certificamos-lhe o título de %{career_name}.</b>'
   shopping_mailer:
     order_paid:
-      body: Informamos que sua compra dos produto(s) <strong> %{product_names} </strong> foi concluída com sucesso!
-            Agradecemos e parabenizamos você por adquirir nossos produtos.
-      adhesion_body: Obrigado por tornar-se nosso cliente autorizado.
-                     O pagamento de <b>%{adhesion_order_value}</b> referente ao produto <b>%{adhesion_product_name}</b> foi concluído com sucesso!<br><br>
-                     Agradecemos e parabenizamos você por tomar uma decisão para um futuro promissor e de sucesso.
+      body: 'O valor de BTC <b>%{order_value}</b> já está disponível em seu BackOffice para utilização. Bons negócios.'
+      footer: 'Atenciosamente, <br>
+              %{company_name}'
     order_made:
-      body: Seu <b>pedido</b> no valor de <b>%{order_value}</b> foi realizado.
-            Complete o pagamento e aguarde o processamento.
-      bank_account: ''
-      payment_receipt: ''
+      body: 'O(A) senhor(a) receberá <b>BTC %{order_value}</b> em sua conta na %{company_name}.
+            Após 3 confirmações da rede, este valor estará disponível para ser utilizado.
+            Enviaremos um novo e-mail assim que a transação for completada.'
+      footer: 'Atenciosamente, <br>
+              Departamento Financeiro <br>
+              %{company_name}'
   devise_mailer:
     reset_password_instructions:
       order_link: Você solicitou um link para alterar sua senha. Você pode alterá-la através do link abaixo.
@@ -725,8 +731,8 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
-    unilevel: Pool Points
-    binary: Point Commissions
+    unilevel: Contratos Pool Cash
+    binary: Binary Points
     point_qualifications: Points Qualifications
     unilevel_binary: Relatório
     financial_transactions: Histórico Financeiro
@@ -780,8 +786,8 @@ pt-BR:
     score_expired: Expirado
     contract_active: Ativo
     contract_expired: Encerrado
-    bonus_contracts: Contrato Pool Point
-    bonus_contract_items: Contrato Pool Point
+    bonus_contracts: Contrato Pool Cash
+    bonus_contract_items: Contrato Pool Cash
     unilevel_tree: Unilevel
     voucher_payment: Voucher só paga o produto Advance
     my_vouchers: Meus Vouchers
@@ -1082,7 +1088,9 @@ pt-BR:
         subtitle: Subtitle
         title: Title
         today_orders: Pedidos de hoje
+        today_deposits: Depositos de hoje
         total_orders: Total de pedidos
+        total_deposits: Total de depósitos
         total_users: Total de usuários
       client:
         subtitle: Subtitle
@@ -1272,10 +1280,10 @@ pt-BR:
   binary_affiliates_left_count: Rede binária esquerda
   binary_affiliates_right_count: Rede binária direita
   total_bonus: Bônus Total
-  matching_bonus: Matching
-  pool_trade_bonus: Pool trade
+  matching_bonus: Equilibrium
+  pool_trade_bonus: Pool Cash
   residual_bonus: Residual
-  direct_commission_bonus: 'Comissão direta'
+  direct_commission_bonus: 'Start Fast'
   account_earnings_limit: Teto da conta
   receivable_amount: Valor possível a receber
   received_amount: Valor recebido
@@ -1295,9 +1303,81 @@ pt-BR:
   total_withdrawals: 'Saques totais'
   binary: 'Binário'
   orders_history: 'Histórico de Pedidos'
+  deposits_history: 'Histórico de Depósitos'
   users_history: 'Histórico de Usuários'
   last_orders: 'Últimos Pedidos'
+  last_deposits: 'Últimos Depósitos'
   user: 'Usuário'
   order_date: 'Data do pedido'
+  deposit_date: 'Data do depósito'
   order_number: 'Número do pedido'
   amount: 'Valor'
+  make_deposit_order: 'Realizar pedido de depósito'
+  new_deposit_order: 'Novo pedido de depósito'
+  value: 'Valor'
+  deposit_list: 'Lista de depósitos'
+  new_deposit: 'Novo depósito'
+  deposits: 'Depósitos'
+  edit_deposit: 'Editar pedido de depósito'
+  min_deposit: 'O depósito deve ser maior ou igual a %{limit}'
+  max_deposit: 'O depósito dev ser menor ou igual a %{limit}'
+  deposit_info: 'Depósitos aceitos mínimo %{min_limit} máximo %{max_limit}'
+  support_material: 'Material de apoio'
+  sponsor_link: 'Link de indicação'
+  copied_sponsor_link: 'Link de indicação copiado'
+  copied_sponsor_link_message: 'Seu link de patrocinador foi copiado com sucesso'
+  pool_leadership: 'Valor Pool Leadership'
+  passport: Passaporte
+  gender: 'Genero'
+  birthdate: 'Aniversário'
+  registration_type: 'Tipo de registro'
+  phone: 'Telefone'
+  pool_tranding: 'Porcentagem Pool Cash'
+  username: Nome de usuário
+  deposit: 'Depósito'
+  landing_page_title: 'O QUE VOCÊ TEM FEITO PELO SEU FUTURO?'
+  landing_page_subtitle: Descomplique. Nós ajudamos você a criá-lo.
+  watch_video: 'Assista o vídeo'
+  register_thanks: OBRIGADO POR SE CADASTRAR COMIGO
+  jorney_together: EU ESTAREI A SUA DISPOSIÇÃO NESSA JORNADA
+  welcome_message_landing_page: BEM-VINDO a KRYPTOCASHBANK
+  sponsored_by: Você está sendo indicado por
+  location: 'Origem'
+  company_in_numbers: KRYPTOCASHBANK EM NÚMEROS
+  custody_money: MILHÔES USD EM CUSTÓDIA
+  satisfied_customers: CLIENTES SATISFEITOS
+  total_customers: TOTAL DE CLIENTES
+  latest_registrations: Últimos cadastros
+  back_account: "Voltar para conta"
+  enter_as_user: 'Logar como Usuário'
+  edit_user: 'Editar Usuário'
+  see_profile: 'Ver profile'
+  financial_history: Histórico Financeiro
+  additional_columns: "Colunas Extras"
+  show: Mostrar
+  want_approve_bill: Deseja aprovar esta fatura?
+  details: 'Detalhes'
+  order_marked_as_billed: 'Pedido marcado como faturado'
+  send_documents: 'Enviar Documentos'
+  documents: Documentos
+  necessary_documents_list: Lista de documentos necessários para aprovar sua conta na %{company}
+  account_situation: Situação da conta
+  sending: "Enviado..."
+  documents_successful_updated: 'Documentos atualizados com sucesso'
+  documents_not_updated: 'Não foi possível fazer o upload dos documentos'
+  admin_or_entrepreneur_necessary: 'Você precisa ser admin ou empreendedor'
+  change_password: Mudar sua senha
+  change_my_password: "Mudar minha senha"
+  min_password_length: '%{min} caracteres no mínimo'
+  reject_deleting_photos: 'Rejeitar apagando fotos '
+  reject_without_delete_photos: 'Rejeitar sem apagar fotos '
+  reason: 'Razão'
+  approve: 'Aprovar'
+  billed: 'Faturado'
+  position: Posição
+  entry_date: Data de Entrada
+  name: Nome
+  username: Nome de usuário
+  documents_approval: Aprovação de documentos
+  status: Status
+  last_document_change: Last Document Change

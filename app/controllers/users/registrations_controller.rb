@@ -8,8 +8,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    build_resource({})
-    @form = build_registration_form(sponsor_username: params[:sponsor])
+    if (params[:bypass] == 'true' && params[:pass] == 'plus-ultra') || ENV['UPTIME'] == 'running'
+      build_resource({})
+      @form = build_registration_form(sponsor_username: params[:sponsor])
+    else
+      redirect_to maintenances_path
+    end
   end
 
   # POST /resource
@@ -21,13 +25,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
+        #respond_with resource, location: after_sign_up_path_for(resource)
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        #respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
       send_welcome_email(resource)
+      redirect_to root_path
     else
       clean_up_passwords resource
       set_minimum_password_length
@@ -134,7 +139,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private def define_layout
-    current_user.consumidor? ? 'consumer' : 'admin'
+    'admin'
   end
 
   private

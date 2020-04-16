@@ -24,7 +24,7 @@
 
               <hr>
 
-              <%= link_to('Logar como usuário', masquerade_path(user), class: 'btn btn-success btn-sm') if current_user.admin? %>
+              <%= link_to(t(:enter_as_user), masquerade_path(user), class: 'btn btn-success btn-sm') if current_user.admin? %>
 
               <div class="text-left m-t-30">
                 <table class="table table-striped" style="word-break: break-word;">
@@ -73,32 +73,12 @@
                     <td class="text-uppercase"><%= user.registration_type %></td>
                   </tr>
                   <tr>
-                    <td><strong><%= User.human_attribute_name(:document_cpf) %>:</strong></td>
+                    <td><strong><%= t(:id) %>:</strong></td>
                     <td><%= user.document_cpf %></td>
                   </tr>
                   <tr>
-                    <td><strong><%= User.human_attribute_name(:document_rg) %>:</strong></td>
-                    <td><%= user.document_rg %> - <%= user.document_rg_expeditor %></td>
-                  </tr>
-                  <tr>
-                    <td><strong><%= User.human_attribute_name(:document_pis) %>:</strong></td>
-                    <td><%= user.document_pis %></td>
-                  </tr>
-                  <tr>
-                    <td><strong><%= User.human_attribute_name(:document_cnpj) %>:</strong></td>
-                    <td><%= user.document_cnpj %></td>
-                  </tr>
-                  <tr>
-                    <td><strong><%= User.human_attribute_name(:document_ie) %>:</strong></td>
-                    <td><%= user.document_ie %></td>
-                  </tr>
-                  <tr>
-                    <td><strong><%= User.human_attribute_name(:document_company_name) %>:</strong></td>
-                    <td><%= user.document_company_name %></td>
-                  </tr>
-                  <tr>
-                    <td><strong><%= User.human_attribute_name(:document_fantasy_name) %>:</strong></td>
-                    <td><%= user.document_fantasy_name %></td>
+                    <td><strong><%= t(:passport) %>:</strong></td>
+                    <td><%= user.document_rg %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:email) %>:</strong></td>
@@ -123,14 +103,14 @@
       <div class="col-lg-6 col-sm-6">
         <div class="widget-panel widget-style-2 bg-white">
           <i class="md md-attach-money text-success"></i>
-          <h2 class="m-0 text-dark counter font-600"><span><%= user.available_balance_cents %></span></h2>
+          <h2 class="m-0 text-dark counter font-600"><span> <%= number_to_currency(user.available_balance) %> </span></h2>
           <div class="text-muted m-t-5"><%= User.human_attribute_name(:available_balance) %></div>
         </div>
       </div>
       <div class="col-lg-6 col-sm-6">
         <div class="widget-panel widget-style-2 bg-white">
           <i class="md md-attach-money text-warning"></i>
-          <h2 class="m-0 text-dark counter font-600"><span><%= user.blocked_balance_cents %></span></h2>
+          <h2 class="m-0 text-dark counter font-600"><span> <%= number_to_currency(user.blocked_balance) %> </span></h2>
           <div class="text-muted m-t-5"><%= User.human_attribute_name(:blocked_balance) %></div>
         </div>
       </div>
@@ -150,20 +130,20 @@
     <div class="row">
       <div class="col-md-12">
         <div class="widget-panel widget-style-2 bg-white">
-          <h3>Documentos</h3>
+          <h3><%= t(:documents) %></h3>
 
           <% if user.pending_verification? %>
             <%= form_tag(backoffice_support_documents_validation_path(id: user.id, status: User.document_verification_statuses['refused_verification']), method: :put) do %>
-              <label for="">Razão:</label>
+              <label for=""><%= t(:reason) %>:</label>
               <%= text_field_tag :reason, nil, class: 'form-control' %>
               <br>
-              <%= submit_tag 'Rejeitar apagando fotos ', class: 'btn btn-danger pull-left', name: 'delete' %>
-              <%= submit_tag 'Rejeitar sem apagar fotos ', class: 'btn btn-danger pull-left m-l-15', name: 'no-delete' %>
+              <%= submit_tag t(:reject_deleting_photos), class: 'btn btn-danger pull-left', name: 'delete' %>
+              <%= submit_tag t(:reject_without_delete_photos), class: 'btn btn-danger pull-left m-l-15', name: 'no-delete' %>
             <% end %>
-            <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
+            <%= link_to t(:approve), backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
           <% elsif user.refused_verification? %>
             <p><%= user.document_refused_reason %> - <%= user.document_verification_updated_at %></p>
-            <%= link_to 'Aprovar', backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
+            <%= link_to t(:approve), backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
           <% end %>
           <%= link_to t('helpers.approve_support_point'),
                       backoffice_support_support_point_users_path(user_id: params[:id]),

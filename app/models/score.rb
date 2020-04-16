@@ -40,7 +40,7 @@ class Score < ApplicationRecord
   scope :by_current_month,
     -> { where(created_at: (Date.current.beginning_of_month..Date.current.end_of_month)) }
   scope :spreaded_to, ->(user) { where(user: user) }
-  scope :binary_qualification, -> { where(score_type: ScoreType.binary_score) }
+  scope :binary_qualification, -> { where(score_type: ScoreType.binary) }
   scope :backward,-> { where('created_at <= ?', Time.now) }
   scope :pool_point_by, ->(order) { where(order: order, score_type: ScoreType.pool_point) }
 

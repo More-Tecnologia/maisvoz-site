@@ -12,7 +12,17 @@
  *
  *= require 'select2/dist/css/select2.min'
  *= require 'webui-popover/dist/jquery.webui-popover'
- *= require_tree .
+
+ *= require 'binary-tree'
+ *= require 'bootstrap.min'
+ *= require 'helpers'
+ *= require 'login-page'
+ *= require 'typography'
+ *= require 'user-dashboard'
+ *= require 'top_bar'
+ *= require 'components/components'
+ *= require 'overrides/overrides'
+ *= require 'theme/theme'
  *= require_self
  */
 
@@ -36,7 +46,7 @@ h6 {
 }
 
 .navbar-default {
-  background-color: #000000;
+  background-color: #001d6e;
 }
 
 .dropdown-menu {

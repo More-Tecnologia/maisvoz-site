@@ -2,6 +2,7 @@ class FinancialReason < ApplicationRecord
   has_many :financial_transactions
 
   enum company_moneyflow: [:credit, :debit]
+  enum morenwm_moneyflow: [:not_applicable, :credit, :debit], _prefix: true
 
   belongs_to :financial_reason_type
   belongs_to :financial_reason, optional: true
@@ -17,7 +18,7 @@ class FinancialReason < ApplicationRecord
   scope :bonus, -> { FinancialReason.where(financial_reason_type: FinancialReasonType.bonus) }
   scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
   scope :active, -> { where(active: true) }
-  scope :to_morenwm, -> { where(code: ['200', '300', '400', '2800', '2900']) }
+  scope :to_morenwm, -> { where(code: ['200', '300', '2800', '2900']) }
   scope :to_customer_admin, -> { where.not(code: '300') }
   scope :to_empreendedor, -> { where.not(code: ['200', '1200', '400']) }
 
@@ -132,7 +133,7 @@ class FinancialReason < ApplicationRecord
   def self.matching_bonus_chargeback_by_inactivity
     @@matching_bonus_chargeback_by_inactivity ||= find_by(code: '3700')
   end
-  
+
   def self.direct_commission_bonus
     @@direct_commission_bonus ||= find_by(code: '2000')
   end
@@ -140,9 +141,17 @@ class FinancialReason < ApplicationRecord
   def self.direct_commission_bonus_chargeback
     @@direct_commission_bonus_chargeack ||= find_by(code: '2100')
   end
-  
+
   def self.expense
     @@expense ||= find_by(code: '3800')
+  end
+
+  def self.pool_leadership
+    @@pool_leadership ||= find_by(code: '3900')
+  end
+
+  def self.pool_leadership_chargeback_by_inactivity
+    @@pool_leadership_chargeback_by_inactivity ||= find_by(code: '4000')
   end
 
 end

@@ -1,9 +1,11 @@
-<p><%= t(:hello)%>, <%= @user.name %></p>
+<p><%= t(:dear_associate) %>, <%= @user.name %></p>
 
 <br>
 
 <p><%= t(:email_activated, email: @email.body) %></p>
 
+<br>
+<p><%= t(:support_director_footer).html_safe %></p>
 <br>
 
 <p><%= link_to t('users.emails.edit.emails_list'), users_emails_url(locale: @locale) %></p>

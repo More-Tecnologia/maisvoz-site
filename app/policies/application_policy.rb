@@ -35,14 +35,7 @@ class ApplicationPolicy
   end
 
   def suporte?
-    return false unless user.suporte?
-
-    hour = Time.zone.now.hour
-    if hour >= 8 && hour <= 19
-      true
-    else
-      false
-    end
+    user.suporte?
   end
 
   class Scope

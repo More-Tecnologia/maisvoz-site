@@ -49,8 +49,8 @@
                     <% updated_at = version.try(:created_at) || version.try(:update_at) %>
                     <tr>
                       <td> <%= t(active) %></td>
-                      <td> <%= l(active_until, format: :long) if active_until && ENV['ENABLED_ACTIVATION'] == 'true' %> </td>
-                      <td> <%= l(updated_at, format: :long) if updated_at %> </td>
+                      <td> <%= l(active_until, format: '%m/%d/%Y') if active_until && ENV['ENABLED_ACTIVATION'] == 'true' %> </td>
+                      <td> <%= l(updated_at, format: '%m/%d/%Y') if updated_at %> </td>
                     </tr>
                   <% end %>
                   <% if @user_versions.empty? %>

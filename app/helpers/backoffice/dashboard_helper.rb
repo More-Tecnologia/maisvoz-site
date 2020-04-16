@@ -15,5 +15,10 @@ module Backoffice
                                         .reverse
     end
 
+    def qualification_score_sum
+      current_user.lineage_scores
+                  .sum(&:second).to_i
+    end
+
   end
 end

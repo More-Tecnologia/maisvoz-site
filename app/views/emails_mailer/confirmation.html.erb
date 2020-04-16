@@ -1,4 +1,4 @@
-<p><%= t(:hello)%>, <%= @user.name %></p>
+<p><%= t(:dear_associate)%>, <%= @user.name %></p>
 
 <br>
 
@@ -11,6 +11,8 @@
   <%= link_to t('here'), edit_users_email_url(@email, locale: @locale, path: :email) %>
 </p>
 
+<br>
+<p><%= t(:support_director_footer).html_safe %></p>
 <br>
 
 <p><%= link_to t('users.emails.edit.emails_list'), users_emails_url(locale: @locale) %></p>

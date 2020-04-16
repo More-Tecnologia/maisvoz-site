@@ -71,11 +71,11 @@ module Backoffice
     def format_reload_to_csv(reload)
       [reload.try(:hashid),
        reload.value,
-       reload.created_at ? reload.created_at.strftime("%d/%m/%Y") : '',
+       reload.created_at ? reload.created_at.strftime("%m/%d/%Y") : '',
        reload.cellphone_number,
        reload.try(:order).try(:user).try(:username),
        reload.try(:order).try(:hashid),
-       reload.processed_at ? reload.processed_at.strftime("%d/%m/%Y") : ''
+       reload.processed_at ? reload.processed_at.strftime("%m/%d/%Y") : ''
      ]
     end
 

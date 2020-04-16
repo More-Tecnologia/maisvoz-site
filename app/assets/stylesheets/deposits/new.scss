@@ -1,0 +1,32 @@
+body {
+  background-image: image-url('bg-deposit.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  color: black;
+
+  .wrapper-page .card-box {
+    background-color: #ebeff2;
+    opacity: 0.95;
+    border: none;
+  }
+
+  .form-control {
+    border: none;
+  }
+
+  a {
+    color: white;
+  }
+
+  h3 {
+    color: white;
+  }
+}
+
+.register-logo img {
+  max-width: 80%;
+  height: auto;
+  margin-top: -7rem!important;
+}

@@ -1,0 +1,248 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to dashboard_direction(current_user), class: 'logo' do %>
+        <span><%= image_tag('logo.png', height: 60) %></span>
+      <% end %>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+
+      <ul class="nav navbar-nav navbar-center">
+        <% if current_user.empreendedor? || current_user.consumidor? %>
+          <li class="dropdown top-menu-item-xs">
+            <a href="#" sponsor-link="<%= root_url(sponsor: current_user.username) %>" id="sponsor-link" title='<%= t(:copied_sponsor_link) %>' message='<%= t(:copied_sponsor_link_message) %>'><i  class="fa fa-link"></i>&nbsp; <span class="hidden-xs hidden-sm hidden-md"><%= t(:sponsor_link) %></span></a>
+          </li>
+        <% end %>
+        <% unless (current_user.financeiro? || current_user.suporte?) %>
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+            <i class="fas fa-cart-arrow-down"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t(:deposits) %> </span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to t(:new_deposit), new_backoffice_deposit_path, class: 'waves-effect' %>
+            </li>
+            <li>
+              <%= link_to t(:deposit_list), backoffice_deposits_path, class: 'waves-effect' %>
+            </li>
+          </ul>
+        </li>
+        <% end %>
+        <% if current_user.admin? || current_user.empreendedor? || current_user.financeiro? || current_user.suporte? %>
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+            <i class="fas fa-dollar-sign"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.financial') %> </span>
+          </a>
+          <ul class="dropdown-menu">
+            <% if current_user.admin? || current_user.financeiro? || current_user.suporte? %>
+            <li>
+              <%= link_to(backoffice_admin_orders_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.orders') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(backoffice_admin_credits_debit_path(:find_user), class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.credits_debits') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(backoffice_admin_financial_transactions_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.financial_transactions') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(backoffice_admin_withdrawals_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.manage_withdrawals') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(new_backoffice_admin_pool_leadership_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('pool_leadership') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(new_backoffice_admin_expense_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.expenses') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to(backoffice_admin_bonus_contracts_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.unilevel') %>
+              <% end %>
+            </li>
+
+
+            <% end %>
+            <% unless current_user.financeiro? %>
+            <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
+            <li><%= link_to t('defaults.withdrawals'), backoffice_withdrawals_path %></li>
+            <li><%= link_to t('defaults.financial_entries'), backoffice_financial_transactions_path %></li>
+            <li> <%= link_to t('defaults.unilevel'), backoffice_bonus_contracts_path %> </li>
+            <% end %>
+          </ul>
+        </li>
+        <% end %>
+        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? || current_user.consumidor? %>
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+            <i class="ti-sharethis"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.network') %> </span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path if ENV['ENABLED_BINARY'] == 'true' %></li>
+            <li><%= link_to t('defaults.binary_tree'), backoffice_binary_tree_index_path if ENV['ENABLED_BINARY'] == 'true' %></li>
+            <li><%= link_to t('defaults.unilevel_tree'), backoffice_unilevel_index_path(user: current_user) %></li>
+            <li><%= link_to t('defaults.career_histories'), backoffice_career_trail_users_path %></li>
+            <% if current_user.admin? %>
+            <li>
+              <%= link_to(backoffice_admin_career_histories_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.career_histories') %>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </li>
+        <% end %>
+        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? || current_user.consumidor? %>
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+            <i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.scores') %> </span>
+          </a>
+          <ul class="dropdown-menu">
+            <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path if ENV['ENABLED_BINARY'] == 'true' %> </li>
+            <li> <%= link_to t('defaults.point_qualifications'), backoffice_lineage_scores_path %> </li>
+            <% if current_user.admin? %>
+            <li>
+              <%= link_to(backoffice_admin_binary_scores_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.binary') %>
+              <% end if ENV['ENABLED_BINARY'] == 'true' %>
+            </li>
+            <li>
+              <%= link_to(backoffice_admin_lineage_scores_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.point_qualifications') %>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </li>
+        <% end %>
+        <% if current_user.admin? || current_user.financeiro? || current_user.suporte? %>
+          <li class="dropdown top-menu-item-xs">
+            <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+              <i class="fas fa-user-shield"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.admin') %> </span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to t('defaults.users'), backoffice_support_users_path, class: 'admin-link' %></li>
+              <% if current_user.admin? || current_user.suporte? %>
+              <li><%= link_to t('defaults.user_versions'), backoffice_admin_user_versions_path, class: 'admin-link' %> </li>
+              <li><%= link_to t('defaults.documents_validation'), backoffice_support_documents_validation_index_path, class: 'admin-link' %></li>
+              <li><%= link_to t('defaults.careers'), backoffice_admin_careers_path, class: 'admin-link' %></li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? || current_user.consumidor? %>
+        <li class="top-menu-item-xs">
+          <%= link_to backoffice_downloads_path do %>
+            <i class="md md-cloud-download" tooltip='<%= t(:download_support_material) %>'></i> <span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t(:support_material) %></span>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right top-menu-item-xs">
+        <li class='text-warning timer-wrapper'>
+          <%= link_to backoffice_financial_transactions_path do %>
+            <span class='text-warning'> Binary </span>
+            <span class="text-warning regressive-timer"> </span>
+          <% end %>
+        </li>
+        <li class='top-menu-item-xs'>
+
+
+          <%= link_to backoffice_financial_transactions_path do %>
+
+            <%= content_tag(:span, number_to_currency(current_user.available_balance), class: 'text-success') %>
+
+          <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
+
+            <%= content_tag(:span, number_to_currency(current_user.blocked_balance), class: 'text-danger') %>
+
+          <% end %>
+
+            <% end %>
+
+        </li>
+
+        <li class="hidden-xs hidden-sm">
+          <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
+            <i class="icon-size-fullscreen"></i>
+          </a>
+        </li>
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown">
+            <span><i class="fa fa-language" aria-hidden="true"></i></span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- <li class='top-menu-item-xs text-center'>
+              <a href="?locale=pt-BR" class="flag">
+                <%= image_tag('countries/pt.svg') %>
+              </a>
+            </li> -->
+            <li class='top-menu-item-xs text-center'>
+              <a href="?locale=en" class="flag">
+                <%= image_tag('countries/us.svg') %>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown top-menu-item-xs">
+          <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+            <span class="hidden-xs hidden-sm hidden-md"><%= current_user.username %>&nbsp;&nbsp;</span><%= current_user.decorate.avatar_image_tag %>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to edit_user_registration_path do %>
+                <i class="fa fa-user m-r-10 text-custom"></i>
+                <%= t('views.backoffice.topbar.edit_account') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_backoffice_bank_account_path do %>
+                <i class="fa fa-university m-r-10 text-custom"></i>
+                <%= t('views.backoffice.topbar.edit_bank_account') %>
+              <% end %>
+            </li>
+            <% if current_user.admin? || current_user.empreendedor? %>
+              <li>
+                <%= link_to edit_backoffice_documents_path do %>
+                  <i class="fa fa-cog m-r-10 text-custom"></i>
+                  <%= t('views.backoffice.topbar.documents') %>
+                <% end %>
+              </li>
+            <% end %>
+            <li class="divider"></li>
+            <% if user_masquerade? %>
+            <li>
+              <%= link_to t(:back_account), back_masquerade_path(current_user), class: 'btn btn-danger' %>
+            </li>
+            <% end %>
+            <li class="divider"></li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="ti-power-off m-r-10 text-danger"></i>
+              <%= t('views.backoffice.topbar.logout') %>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

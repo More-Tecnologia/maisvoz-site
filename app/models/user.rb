@@ -151,6 +151,8 @@ class User < ApplicationRecord
                          optional: true
   belongs_to :support_point_user, class_name: 'User',
                                   optional: true
+  belongs_to :career, optional: true
+  belongs_to :trail, optional: true
 
   has_many :credits
   has_many :debits
@@ -189,12 +191,14 @@ class User < ApplicationRecord
   scope :with_support_point, -> { where.not(support_point_user: nil) }
   scope :without_support_point, -> { where(support_point_user: nil) }
   scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
+  scope :with_blocked_mathing_bonus, -> { where('blocked_matching_bonus_balance > 0') }
+  scope :with_blocked_pool_trading, -> { where('pool_tranding_blocked_balance > 0') }
+  scope :with_children_pool_point_balance, -> { where('children_pool_trading_balance > 0') }
 
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
   after_create :insert_into_binary_tree
-
   after_update :ensure_digital_wallet_existence, unless: :active_digital_wallet?
   after_create :ensure_email_existence
   after_update :ensure_email_existence, unless: :active_email?
@@ -209,7 +213,8 @@ class User < ApplicationRecord
   end
 
   def blocked_balance
-    blocked_balance_cents + withdrawal_order_amount + pool_tranding_blocked_balance
+    blocked_balance_cents + withdrawal_order_amount + pool_tranding_blocked_balance +
+    blocked_matching_bonus_balance
   end
 
   def available_balance_cents
@@ -297,11 +302,11 @@ class User < ApplicationRecord
   end
 
   def current_trail
-    current_career_trail.try(:trail)
+    trail
   end
 
   def current_career
-    current_career_trail.try(:career)
+    career
   end
 
   def current_career_trail_user
@@ -338,11 +343,11 @@ class User < ApplicationRecord
   end
 
   def insert_into_binary_tree
-   if self.sponsor.present?
-     Multilevel::CreateBinaryNode.new(self).call
-   else
-     BinaryNode.create(user: self)
-   end
+    return if BinaryNode.exists?(user: self)
+
+    return Multilevel::CreateBinaryNode.new(self).call if sponsor.present?
+
+    BinaryNode.create(user: self)
   end
 
   def ascendant_sponsors
@@ -352,6 +357,7 @@ class User < ApplicationRecord
   end
 
   def available_cent_amount
+    return calculate_available_balance_and_update_it_as_morenwm_user if morenwm_user?
     return calculate_available_balance_cents_and_update_it_as_customer_admin_user if customer_admin?
     calculate_available_balance_and_update_it
   end
@@ -426,7 +432,6 @@ class User < ApplicationRecord
   def unilevel_ancestors
     unilevel_node.ancestors
                  .includes(:user)
-                 .with_active_users
                  .map(&:user)
   end
 
@@ -501,6 +506,7 @@ class User < ApplicationRecord
   def ensure_initial_career_trail
     first_career_trail = CareerTrail.first
     CareerTrailUser.create!(user: self, career_trail: first_career_trail)
+    update!(career: first_career_trail.career, trail: first_career_trail.trail)
   end
 
   def ensure_ascendant_sponsors_ids
@@ -537,8 +543,20 @@ class User < ApplicationRecord
     return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
 
     new_balance = transactions.select(&:credit?).sum(&:cent_amount) - transactions.select(&:debit?).sum(&:cent_amount)
-    new_balance = -new_balance if morenwm_user?
     new_balance += financial_transaction_checkpoint_balance.to_f
+
+    update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
+    available_balance_cents
+  end
+
+  def calculate_available_balance_and_update_it_as_morenwm_user
+    transactions = financial_transactions_by_user_role.from_id(financial_transaction_checkpoint_id.to_i).to_a
+    last_transaction_id = transactions.try(:last).try(:id).to_i
+    return available_balance_cents unless last_transaction_id > financial_transaction_checkpoint_id.to_i
+
+    credits = transactions.select { |t| t.financial_reason.morenwm_moneyflow_credit? }.sum(&:cent_amount)
+    debits = transactions.select { |t| t.financial_reason.morenwm_moneyflow_debit? }.sum(&:cent_amount)
+    new_balance = (credits - debits) + financial_transaction_checkpoint_balance.to_f
 
     update_abailable_balance_cents_and_financial_transaction_checkpoint(new_balance, last_transaction_id)
     available_balance_cents

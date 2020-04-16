@@ -14,29 +14,12 @@ def create_product_scores_by_trail(product, reason, product_reason, scores, fix_
   end
 end
 
-# Direct Indication Bonus
-indication_bonus_scores = [[600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600]]
-ActiveRecord::Base.transaction do
-  product_names = ["Basic", "Vision ", "Advance", "1 Voucher Advance 50% off", "5 Voucher Advance 50% off", "10 Voucher Advance 50% off"]
-  reason = FinancialReason.find_by(code: '2000')
-  products = Product.where(name: product_names)
-  products.each do |product|
-    product_reason = ProductReasonScore.create!(product: product, financial_reason: reason)
-    create_product_scores_by_trail(product, reason, product_reason, indication_bonus_scores, fix_value = false, 1)
-    create_product_scores_by_trail(product, reason, product_reason, indication_bonus_scores, fix_value = false, 2)
-    create_product_scores_by_trail(product, reason, product_reason, indication_bonus_scores, fix_value = false, 3)
-  end
-end
-
-residual_bonus_scores = [[000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
-                         [000, 000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
-                         [000, 000, 000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500],
-                         [000, 000, 000, 000, 000, 500, 500, 500, 500, 500, 500, 500, 500, 500]]
-TRAIL_QUANTITY = 3
+star_fast_bonus_scores = [[000, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800]]
+TRAIL_QUANTITY = 1
 fix_value = false
 ActiveRecord::Base.transaction do
-  product_names = ['Mensality']
-  reason = FinancialReason.find_by(code: '2600')
+  product_names = ['Deposit']
+  reason = FinancialReason.direct_commission_bonus
   products = Product.where(name: product_names)
   products.each do |product|
     product_reason_score = ProductReasonScore.create!(product: product, financial_reason: reason)
@@ -45,7 +28,7 @@ ActiveRecord::Base.transaction do
       create_product_scores_by_trail(product,
                                      reason,
                                      product_reason_score,
-                                     residual_bonus_scores,
+                                     star_fast_bonus_scores,
                                      fix_value,
                                      trail_id)
     end

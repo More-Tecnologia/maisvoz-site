@@ -1,5 +1,5 @@
 .login-page {
-  background-image: image-url('bg.png');
+  background-image: image-url('bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,4 +22,10 @@
   h3 {
     color: white;
   }
+}
+
+.register-logo img {
+  max-width: 70%;
+  height: auto;
+  margin-top: -7rem!important;
 }

@@ -22,7 +22,7 @@ module Dashboards
       private
 
       def account_earnings_limit
-        @bonus_contracts.sum(&:cent_amount)
+        (@bonus_contracts.sum(:cent_amount) / 1e2.to_f).round(2)
       end
 
       def earnings
@@ -42,11 +42,11 @@ module Dashboards
       end
 
       def receivable_amount
-        @bonus_contracts.sum(&:remaining_balance)
+        (@bonus_contracts.sum(:remaining_balance) / 1e2.to_f).round(2)
       end
 
       def received_amount
-        @bonus_contracts.sum(&:received_balance)
+        (@bonus_contracts.sum(:received_balance) / 1e2.to_f).round(2)
       end
 
     end

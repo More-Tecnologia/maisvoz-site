@@ -105,6 +105,9 @@ $(document).ready(function() {
   }
 
   function validateInputDocumentCPF(){
+    if($('#document-cpf').attr('ignore')) {
+      return true
+    }
     cpf_input = $('input#user_document_cpf')
     message = $("input[type='hidden']#invalid_error_message").val()
     blank_message = $("input[type='hidden']#blank_error_message").val()

@@ -21,7 +21,7 @@ class CareerTrailFactory
   private
 
   def create_careers(count)
-    subscription_career = create(:career, qualifying_score: 0)
+    subscription_career = create(:career, qualifying_score: -1000)
     career_qualifying_score = -1000
     careers = (1..count).to_a.map { create(:career, qualifying_score: career_qualifying_score += 1000) }
     [subscription_career] + careers

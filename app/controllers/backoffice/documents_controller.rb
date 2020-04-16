@@ -7,9 +7,9 @@ module Backoffice
     def update
       if params.key?(:user) && current_user.update!(documents_params)
         current_user.update!(document_verification_status: 'pending_verification', document_verification_updated_at: Time.now)
-        flash.now[:success] = 'Documentos atualizados com sucesso'
+        flash.now[:success] = t(:documents_successful_updated)
       else
-        flash.now[:notice] = 'Não foi possível fazer o upload dos documentos'
+        flash.now[:notice] = t(:documents_not_updated)
       end
       render :edit
     end
@@ -27,8 +27,8 @@ module Backoffice
     end
 
     def ensure_admin_or_entrepreneur
-      return if signed_in? && (current_user.admin? || current_user.empreendedor? || current_user.instalador?)
-      flash[:error] = 'Você precisa ser admin ou empreendedor'
+      return if signed_in? && (current_user.admin? || current_user.empreendedor?)
+      flash[:error] = t(:admin_or_entrepreneur_necessary)
       redirect_to root_path
     end
 

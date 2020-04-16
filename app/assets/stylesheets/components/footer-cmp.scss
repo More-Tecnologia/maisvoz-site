@@ -1,10 +1,6 @@
 .footer-cmp {
-  background-color: #000000;
+  background-color: #001d6e;
   color: #FFF;
-}
-
-.fixed-left .footer-cmp {
-  margin-left: 240px
 }
 
 .footer-cmp__links {
@@ -16,7 +12,7 @@
 }
 
 .footer-cmp__link {
-  color: #000000;
+  color: #001d6e;
   padding: 4px 25px;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -30,7 +26,7 @@
 }
 
 .footer-cmp__vl {
-  border-right: 1px solid #000000;
+  border-right: 1px solid #001d6e;
   margin: 28px 12px;
 }
 
@@ -57,7 +53,7 @@
 }
 
 .footer-cmp__copyright {
-  background-color: #966108a6;
+  background-color: #808080;
   padding: 24px;
   font-size: 14px;
   color: #fff;
@@ -66,5 +62,12 @@
 .footer-cmp__icon {
   font-size: 40px;
   margin: 0 20px;
-  color: #000000;
+  color: #001d6e;
+}
+.new-footer {
+  position: absolute!important;
+  right: 0!important;
+  bottom: 0!important;
+  left: 0!important;
+  text-align: center!important;
 }

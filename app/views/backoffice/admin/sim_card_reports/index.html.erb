@@ -38,9 +38,9 @@
                   <td> <%= t("attributes.#{sim_card.status}") %> </td>
                   <td> <%= sim_card.try(:support_point_user).try(:username) %> </td>
                   <td> <%= sim_card.try(:user).try(:username) %> </td>
-                  <td> <%= l(sim_card.created_at, format: :long) if sim_card.created_at %> </td>
-                  <td> <%= l(sim_card.support_point_stock_out_at, format: :long) if sim_card.support_point_stock_out_at %> </td>
-                  <td> <%= l(sim_card.stock_out_at, format: :long) if sim_card.stock_out_at %> </td>
+                  <td> <%= l(sim_card.created_at, format: '%m/%d/%Y') if sim_card.created_at %> </td>
+                  <td> <%= l(sim_card.support_point_stock_out_at, format: '%m/%d/%Y') if sim_card.support_point_stock_out_at %> </td>
+                  <td> <%= l(sim_card.stock_out_at, format: '%m/%d/%Y') if sim_card.stock_out_at %> </td>
                 </tr>
               <% end %>
               <% if @sim_cards.empty? %>

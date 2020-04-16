@@ -16,6 +16,7 @@
                include_blank: true %>
  <%= f.input :unilevel_qualifying_career_count, collection: (0..20).to_a %>
  <%= f.input :lineage_score %>
+ <%= f.input :maximum_qualifying_score %>
  <%= f.input :image_path %>
 
   <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>

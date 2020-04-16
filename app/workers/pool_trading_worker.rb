@@ -3,9 +3,10 @@ class PoolTradingWorker
   include Sidekiq::Worker
 
   def perform
-    run
-    next_run_date = Date.tomorrow.beginning_of_day + 20.minutes
-    PoolTradingWorker.perform_at(next_run_date)
+    monday_to_friday = (2..6).to_a
+    run unless Date.current.wday.in?(monday_to_friday)
+    tomorrow_at_end_of_day = Date.tomorrow.end_of_day
+    PoolTradingWorker.perform_at(tomorrow_at_end_of_day)
   end
 
   private

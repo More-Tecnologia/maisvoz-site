@@ -53,7 +53,7 @@ class Career < ApplicationRecord
   end
 
   def unilevel_qualify?(user)
-    unilevel_qualify_lineages?(user)
+    qualify_lineages_by_maximum_score?(user)
   end
 
   def unilevel_qualify_lineages?(user)
@@ -74,6 +74,10 @@ class Career < ApplicationRecord
 
   def binary_qualify?(user)
     user.binary_node.shortter_leg_accumulated_score >= qualifying_score
+  end
+
+  def qualify_lineages_by_maximum_score?(user)
+    lineage_maximum_qualifying_score_sum(user) >= qualifying_score.to_i
   end
 
   def self.detect_requalification_career_trail(user)
@@ -100,6 +104,13 @@ class Career < ApplicationRecord
 
   def higher_id?(career)
     id > career.id
+  end
+
+  def lineage_maximum_qualifying_score_sum(user)
+    scores = user.lineage_scores.values
+    return scores.sum if maximum_qualifying_score.to_i <= 0
+    maximum_qualifying_scores = scores.map { |s| [s, maximum_qualifying_score.to_i].min }
+    maximum_qualifying_scores.sum
   end
 
 end

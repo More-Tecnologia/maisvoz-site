@@ -14,7 +14,7 @@ def create_product_scores_by_trail(product, reason, product_reason, scores, fix_
   end
 end
 
-star_fast_bonus_scores = [[000, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600, 600]]
+star_fast_bonus_scores = [[000, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800]]
 TRAIL_QUANTITY = 1
 fix_value = false
 ActiveRecord::Base.transaction do

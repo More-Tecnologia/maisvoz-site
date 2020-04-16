@@ -82,12 +82,12 @@ end
 persisted_careers.each do |career|
   persisted_trails.each do |trail|
     maximum_binary_scores = { 'Partner': 0,
-                             'Member': 25_000,
-                             'Manager': 25_000,
-                             'Executive': 25_000,
-                             'Director': 37_500,
-                             'President': 62_500,
-                             'Chairman': 125_000 }.stringify_keys
+                             'Member': 10_000,
+                             'Manager': 13_000,
+                             'Executive': 18_000,
+                             'Director': 25_000,
+                             'President': 35_000,
+                             'Chairman': 50_000 }.stringify_keys
     CareerTrail.find_or_create_by!(career: career,
                                    trail: trail,
                                    maximum_binary_score: maximum_binary_scores[career.name])

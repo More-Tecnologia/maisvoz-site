@@ -4,7 +4,7 @@ module Payment
       def call
         payment_transaction = nil
         ActiveRecord::Base.transaction do
-          # checkout = request_block_checkout_transaction
+          checkout = request_block_checkout_transaction
           payment_transaction = create_payment_transaction(checkout = nil)
           order.pending_payment!
         end
@@ -30,8 +30,8 @@ module Payment
       def create_payment_transaction(checkout)
         PaymentTransaction.create!(order: order,
                                    amount: amount,
-                                   transaction_id: SecureRandom.hex,
-                                   wallet_address: SecureRandom.hex)
+                                   transaction_id: checkout['transaction_code'],
+                                   wallet_address: checkout['wallet_address'])
       end
 
       def convert_to_currency_coin(total)

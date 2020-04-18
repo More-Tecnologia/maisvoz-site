@@ -1094,6 +1094,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   direct_captation_bonus: Direct Funding Bonus
   indirect_captation_bonus: Indirect Funding Bonuses
   participation_bonus: Participation Bonus
+  pool_leadership_bonus: Pool Leadership
   bonus_chargeback:
   credit_by_admin: Admin Credit
   debit_by_admin: Admin Debit

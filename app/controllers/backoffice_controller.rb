@@ -25,7 +25,7 @@ class BackofficeController < ApplicationController
                                   .last
                                   .try(:order) || Order.new(user: current_user, status: :cart)
     if @current_deposit.order_items.none?
-      @current_deposit.order_items.build(product: Product.deposit.first, quantity: 50)
+      @current_deposit.order_items.build(product: Product.deposit.first, quantity: ENV['MIN_DEPOSIT'].to_i)
     end
     @current_deposit
   end

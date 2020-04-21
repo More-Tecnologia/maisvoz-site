@@ -5,7 +5,7 @@ module Payment
         payment_transaction = nil
         ActiveRecord::Base.transaction do
           checkout = request_block_checkout_transaction
-          payment_transaction = create_payment_transaction(checkout = nil)
+          payment_transaction = create_payment_transaction(checkout)
           order.pending_payment!
         end
         payment_transaction

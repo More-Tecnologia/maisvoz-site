@@ -1297,6 +1297,7 @@ pt-BR:
   left_binary_score: 'Perna esquerda'
   right_binary_score: 'Perna direita'
   admin: 'Admin'
+  admin_nb: Admin Sem Bonus
   voucher: 'Voucher'
   btc: 'BTC'
   total_payments: 'Pagamentos totais'

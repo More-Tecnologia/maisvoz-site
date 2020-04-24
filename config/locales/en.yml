@@ -1270,6 +1270,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   left_binary_score: 'Left leg'
   right_binary_score: 'Right leg'
   admin: 'Admin'
+  admin_nb: Admin No Bonus
   voucher: 'Voucher'
   btc: 'BTC'
   total_payments: 'Total Payments'

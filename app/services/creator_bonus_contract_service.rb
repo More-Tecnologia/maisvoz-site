@@ -5,17 +5,20 @@ class CreatorBonusContractService < ApplicationService
       expire_at = 30.days.from_now
       contract_value = 10 * @deposit_value
       rentability = 0
+
       debit_contract_value_from_user_balance(contract_value)
       create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
     elsif @deposit_value < 100
       expire_at = 180.days.from_now
       contract_value = 2 * @deposit_value
       rentability = contract_value / 180.0
+
       create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
     else
       expire_at = 1.year.from_now
       contract_value = 2 * @deposit_value
       rentability = contract_value / 365.0
+
       create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
     end
   end

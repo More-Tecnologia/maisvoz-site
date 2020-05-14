@@ -8,7 +8,7 @@ module Backoffice
         command = Financial::PaymentCompensation.call(order, false)
 
         if command.success?
-          order.update!(payment_type: Order.payment_types[:admin],
+          order.update!(payment_type: Order.payment_types[:admin_nb],
                         paid_by: current_user.username)
           flash[:success] = I18n.t('defaults.approved_success')
         else

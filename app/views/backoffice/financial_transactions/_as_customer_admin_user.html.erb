@@ -1,6 +1,6 @@
 <% cent_amount_sum = sum_previous_financial_transactions_by_customer_admin(@q) %>
 <% @financial_transactions.each do |transaction| %>
-  <tr>
+  <tr class="<%= 'text-warning' if transaction.financial_reason.order_sponsored? %>" >
     <td><%= transaction.hashid %></td>
     <td><%= format_financial_reason(transaction) %></td>
     <td><%= transaction.spreader.try(:username) %></td>

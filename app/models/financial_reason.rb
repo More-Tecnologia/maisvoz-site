@@ -42,6 +42,10 @@ class FinancialReason < ApplicationRecord
     code == '3800'
   end
 
+  def order_sponsored?
+    self == FinancialReason.order_sponsored
+  end
+
   def self.chargeback
     @@chargeback ||= find_by(code: '100')
   end
@@ -154,8 +158,12 @@ class FinancialReason < ApplicationRecord
     @@pool_leadership_chargeback_by_inactivity ||= find_by(code: '4000')
   end
 
+  def self.order_sponsored
+    @@order_sponsored ||= find_by(code: '4100')
+  end
+
   def self.deposit_less_than_fifty
-    @@deposit_less_than_fifty ||= find_by(code: '4100')
+    @@deposit_less_than_fifty ||= find_by(code: '4200')
   end
 
 end

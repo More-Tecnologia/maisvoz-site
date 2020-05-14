@@ -42,7 +42,8 @@ class Order < ApplicationRecord
   enum payment_type: { balance: 'balance',
                        admin: 'admin',
                        voucher: 'voucher',
-                       btc: 'btc' }
+                       btc: 'btc',
+                       admin_nb: 'admin_nb' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories

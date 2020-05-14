@@ -166,7 +166,7 @@ end
                    { title: 'Equilibrium Bonus Chargeback by Inactivity', code: '3700', active: true, company_moneyflow: :credit },
                    { title: 'Pool Leadership', code: '3900', active: true, company_moneyflow: :credit },
                    { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: true, company_moneyflow: :credit },
-                   { title: 'Deposit Less Than 50', code: '4100', active: true, company_moneyflow: :credit }]
+                   { title: 'Deposit Less Than 50', code: '4200', active: true, company_moneyflow: :credit }]
 
   bonus_reasons.each do |attributes|
     financial_reason = FinancialReason.find_by(code: attributes[:code])

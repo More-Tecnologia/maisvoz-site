@@ -62,6 +62,9 @@ class Order < ApplicationRecord
   scope :valids, -> { where.not(status: %i[cart expired]) }
   scope :paid, -> { where.not(paid_at: nil) }
   scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
+
+  validate :total_value_multiple_of_five, if: proc { total_value < 50 }
+
   scope :not_cart, -> { where.not(status: :cart) }
 
   ransacker :date_paid_at do
@@ -136,6 +139,13 @@ class Order < ApplicationRecord
 
   def total_value
     total_cents / 100.0
+  end
+
+  private
+
+  def total_value_multiple_of_five
+    return if total_value.to_f % 5 == 0
+    errors.add(:base, :order_total_value_multiple_of_five)
   end
 
 end

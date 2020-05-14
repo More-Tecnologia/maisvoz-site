@@ -99,6 +99,7 @@
           has_one: You cannot delete the record because there is a %{record} dependent
         invalid: Invalid
         bank_account_presence: Fill in your bank details before requesting a withdrawal.
+        order_total_value_multiple_of_five: Order value must be multipe of 5
   activemodel:
     errors:
       models:

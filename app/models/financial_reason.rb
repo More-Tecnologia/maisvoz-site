@@ -154,4 +154,8 @@ class FinancialReason < ApplicationRecord
     @@pool_leadership_chargeback_by_inactivity ||= find_by(code: '4000')
   end
 
+  def self.deposit_less_than_fifty
+    @@deposit_less_than_fifty ||= find_by(code: '4100')
+  end
+
 end

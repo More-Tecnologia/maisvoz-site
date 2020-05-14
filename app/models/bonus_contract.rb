@@ -13,7 +13,7 @@ class BonusContract < ApplicationRecord
                                 numericality: { greater_than_or_equal_to: 0 }
   validates :received_balance, presence: true,
                                numericality: { greater_than_or_equal_to: 0 }
-  scope :active, -> { where('expire_at > ? AND paid_at IS NULL', Date.current) }
+  scope :active, -> { where('expire_at > ? AND paid_at IS NULL', DateTime.current) }
 
   def active?
     return false if paid_at || expire_at < Date.current

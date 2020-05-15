@@ -14,7 +14,7 @@ def create_product_scores_by_trail(product, reason, product_reason, scores, fix_
   end
 end
 
-star_fast_bonus_scores = [[000, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800]]
+direct_referral_bonus = [[000, 700]]
 TRAIL_QUANTITY = 1
 fix_value = false
 ActiveRecord::Base.transaction do
@@ -28,7 +28,42 @@ ActiveRecord::Base.transaction do
       create_product_scores_by_trail(product,
                                      reason,
                                      product_reason_score,
-                                     star_fast_bonus_scores,
+                                     direct_referral_bonus,
+                                     fix_value,
+                                     trail_id)
+    end
+  end
+end
+
+indirect_referral_bonus = [ [000, 000],
+                            [000, 500],
+                            [000, 300],
+                            [000, 200],
+                            [000, 100],
+                            [000, 50],
+                            [000, 50],
+                            [000, 50],
+                            [000, 50],
+                            [000, 50],
+                            [000, 50],
+                            [000, 50],
+                            [000, 50],
+                            [000, 50],
+                            [000, 50] ]
+TRAIL_QUANTITY = 1
+fix_value = false
+ActiveRecord::Base.transaction do
+  product_names = ['Deposit']
+  reason = FinancialReason.indirect_referral_bonus
+  products = Product.where(name: product_names)
+  products.each do |product|
+    product_reason_score = ProductReasonScore.create!(product: product, financial_reason: reason)
+    TRAIL_QUANTITY.times do |i|
+      trail_id = i + 1
+      create_product_scores_by_trail(product,
+                                     reason,
+                                     product_reason_score,
+                                     indirect_referral_bonus,
                                      fix_value,
                                      trail_id)
     end

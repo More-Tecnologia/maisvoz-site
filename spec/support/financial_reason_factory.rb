@@ -2,9 +2,15 @@ module FinancialReasonFactory
 
   def self.create
     administrative_type = FinancialReasonType.find_or_create_by!(name: 'Administrativo Financeiro', code: '100')
-    administrative_reasons = [{ title: 'Taxa do Sistema', code: '200' },
-                              { title: 'Saque', code: '300' },
-                              { title: 'Taxa de Saque', code: '400' }]
+    administrative_reasons = [{ title: 'System Fee', code: '200', company_moneyflow: :debit, morenwm_moneyflow: :credit },
+                              { title: 'Withdrawal', code: '300', company_moneyflow: :debit, morenwm_moneyflow: :debit },
+                              { title: 'Withdrawal Fee', code: '400', company_moneyflow: :credit, morenwm_moneyflow: :debit },
+                              { title: 'Order Payment', code: '1200', company_moneyflow: :credit, morenwm_moneyflow: :not_applicable },
+                              { title: 'Credit', code: '2800', company_moneyflow: :debit, morenwm_moneyflow: :credit },
+                              { title: 'Debit', code: '2900', company_moneyflow: :credit, morenwm_moneyflow: :debit },
+                              { title: 'Expense', code: '3800', company_moneyflow: :debit, morenwm_moneyflow: :debit },
+                              { title: 'Order Sponsored', code: '4100', company_moneyflow: :credit, morenwm_moneyflow: :not_applicable },
+                              { title: 'Deposit Less Than 50', code: '4200', active: true, company_moneyflow: :credit, morenwm_moneyflow: :not_applicable }]
     administrative_reasons.each do |r|
       FinancialReason.find_or_create_by!(r.merge({financial_reason_type: administrative_type}))
     end
@@ -36,8 +42,7 @@ module FinancialReasonFactory
                      { title: 'Equilibrium Bonus', code: '3600', active: true, company_moneyflow: :debit },
                      { title: 'Equilibrium Bonus Chargeback by Inactivity', code: '3700', active: true, company_moneyflow: :credit },
                      { title: 'Pool Leadership', code: '3900', active: true, company_moneyflow: :credit },
-                     { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: true, company_moneyflow: :credit },
-                     { title: 'Deposit Less Than 50', code: '4200', active: true, company_moneyflow: :credit }]
+                     { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: true, company_moneyflow: :credit }]
     bonus_reasons.each do |r|
       FinancialReason.find_or_create_by!(r.merge({financial_reason_type: bonus_type}))
     end

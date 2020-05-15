@@ -2,6 +2,7 @@ module Bonification
   class BonusPropagatorService < ApplicationService
 
     def call
+      return if @order.total_value <= 50
       products.each do |product|
         ActiveRecord::Base.transaction do
           create_bonus_by(product)

@@ -146,6 +146,10 @@ class FinancialReason < ApplicationRecord
     @@direct_commission_bonus_chargeack ||= find_by(code: '2100')
   end
 
+  def self.indirect_referral_bonus
+    @@indirect_referral_bonus ||= find_by(code: '2200')
+  end
+
   def self.expense
     @@expense ||= find_by(code: '3800')
   end

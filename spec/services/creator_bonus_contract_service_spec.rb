@@ -22,31 +22,36 @@ RSpec.describe CreatorBonusContractService, type: :service do
     context 'with order value multiple of 5' do
       let(:order) { create(:order, :with_order_value_multiple_of_five) }
 
-      before { @bonus_contract = service.call(order: order) }
+      subject { service.call(order: order) }
 
       it 'create bonus contract' do
-        expect(@bonus_contract.persisted?).to be_truthy
+        expect(subject.persisted?).to be_truthy
       end
 
       it 'bonus contract expire_at in 30 days' do
-        expect(@bonus_contract.expire_at).to be_within(1.second).of(30.days.from_now)
+        expect(subject.expire_at).to be_within(1.second).of(30.days.from_now)
       end
 
       it 'contract value 10x order value' do
-        expect(@bonus_contract.cent_amount).to eq(10*order.total_value)
+        expect(subject.cent_amount).to eq(10*order.total_value)
       end
 
       it 'rentability be 0' do
-        expect(@bonus_contract.rentability).to be_zero
+        expect(subject.rentability).to be_zero
+      end
+
+      it 'loan contract be true' do
+        expect(subject.loan).to be_truthy
       end
 
       it 'debit contract value from user balance' do
+        bonus_contract = subject
         debit_value = order.user
                            .financial_transactions
                            .where(financial_reason: FinancialReason.deposit_less_than_fifty)
                            .last
                            .cent_amount
-        expect(debit_value).to eq(@bonus_contract.cent_amount)
+        expect(debit_value).to eq(bonus_contract.cent_amount)
       end
     end
   end

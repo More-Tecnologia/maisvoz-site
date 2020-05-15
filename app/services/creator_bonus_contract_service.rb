@@ -5,9 +5,10 @@ class CreatorBonusContractService < ApplicationService
       expire_at = 30.days.from_now
       contract_value = 10 * @deposit_value
       rentability = 0
+      loan = true
 
       debit_contract_value_from_user_balance(contract_value)
-      create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
+      create_bonus_contract_for_order_user(contract_value, expire_at, rentability, loan)
     elsif @deposit_value < 100
       expire_at = 180.days.from_now
       contract_value = 2 * @deposit_value
@@ -31,14 +32,15 @@ class CreatorBonusContractService < ApplicationService
     @deposit_value = @order.total_value
   end
 
-  def create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
+  def create_bonus_contract_for_order_user(contract_value, expire_at, rentability, loan = false)
     @user.bonus_contracts
          .create!(order: @order,
                   cent_amount: contract_value.round(2),
                   remaining_balance: contract_value.round(2),
                   received_balance: 0,
                   expire_at: expire_at,
-                  rentability: rentability.round(2))
+                  rentability: rentability.round(2),
+                  loan: loan)
   end
 
   def debit_contract_value_from_user_balance(contract_value)

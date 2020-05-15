@@ -6,6 +6,7 @@ module Backoffice
 
     before_action :validate_min_deposit_quantity, only: :create
     before_action :validate_max_deposit_quantity, only: :create
+    before_action :validate_user_active_loan_contract, only: :create
 
     def index
       @deposits = OrderItem.includes(order: :payment_transaction)
@@ -54,6 +55,16 @@ module Backoffice
 
     def valid_params
       params.require(:order_item).permit(:quantity)
+    end
+
+    def validate_user_active_loan_contract
+      return unless current_user.bonus_contracts
+                                .active
+                                .with_active_loan
+                                .any?
+
+      flash[:error] = t('there_are_loan_contract_active')
+      redirect_to new_backoffice_deposit_path
     end
 
   end

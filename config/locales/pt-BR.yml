@@ -102,6 +102,7 @@ pt-BR:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
         invalid: Inválido
         bank_account_presence: Preencha os dados bancários antes de solicitar saque.
+        order_total_value_multiple_of_five: Valor do pedido deve ser multiplo de 5
   activemodel:
     errors:
       models:

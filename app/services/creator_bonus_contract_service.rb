@@ -1,11 +1,26 @@
 class CreatorBonusContractService < ApplicationService
 
   def call
-    @user.bonus_contracts.create!(order: @order,
-                                  cent_amount: three_times_order_value,
-                                  remaining_balance: three_times_order_value,
-                                  received_balance: 0,
-                                  expire_at: 1.year.from_now)
+    if @deposit_value < 50
+      expire_at = 30.days.from_now
+      contract_value = 10 * @deposit_value
+      rentability = 0
+
+      debit_contract_value_from_user_balance(contract_value)
+      create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
+    elsif @deposit_value < 100
+      expire_at = 180.days.from_now
+      contract_value = 2 * @deposit_value
+      rentability = contract_value / 180.0
+
+      create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
+    else
+      expire_at = 1.year.from_now
+      contract_value = 2 * @deposit_value
+      rentability = contract_value / 365.0
+
+      create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
+    end
   end
 
   private
@@ -13,10 +28,26 @@ class CreatorBonusContractService < ApplicationService
   def initialize(args)
     @order = args[:order]
     @user = @order.user
+    @deposit_value = @order.total_value
   end
 
-  def three_times_order_value
-    @order.total_value * 2
+  def create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
+    @user.bonus_contracts
+         .create!(order: @order,
+                  cent_amount: contract_value.round(2),
+                  remaining_balance: contract_value.round(2),
+                  received_balance: 0,
+                  expire_at: expire_at,
+                  rentability: rentability.round(2))
+  end
+
+  def debit_contract_value_from_user_balance(contract_value)
+    @user.financial_transactions
+         .create!(spreader: User.find_morenwm_customer_admin,
+                  financial_reason: FinancialReason.deposit_less_than_fifty,
+                  cent_amount: contract_value,
+                  order: @order,
+                  moneyflow: :debit)
   end
 
 end

@@ -162,4 +162,8 @@ class FinancialReason < ApplicationRecord
     @@order_sponsored ||= find_by(code: '4100')
   end
 
+  def self.deposit_less_than_fifty
+    @@deposit_less_than_fifty ||= find_by(code: '4200')
+  end
+
 end

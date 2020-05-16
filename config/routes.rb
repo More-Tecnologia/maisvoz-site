@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   mount Attachinary::Engine => '/attachinary'
 
-  root 'landing_pages#index'
+  devise_scope :user do
+    root to: "users/sessions#new"
+  end
 
   resources :shop, only: [:index, :show]
   resources :bradesco_check_order, only: :index

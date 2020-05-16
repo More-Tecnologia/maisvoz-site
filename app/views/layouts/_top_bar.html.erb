@@ -62,11 +62,6 @@
               <% end %>
             </li>
             <li>
-              <%= link_to(new_backoffice_admin_pool_leadership_path, class: 'admin-link') do %>
-                <i class="fas fa-user-shield"></i> <%= t('pool_leadership') %>
-              <% end %>
-            </li>
-            <li>
               <%= link_to(new_backoffice_admin_expense_path, class: 'admin-link') do %>
                 <i class="fas fa-user-shield"></i> <%= t('defaults.expenses') %>
               <% end %>
@@ -97,37 +92,6 @@
             <li><%= link_to t('defaults.binary_strategy'), backoffice_binary_strategies_path if ENV['ENABLED_BINARY'] == 'true' %></li>
             <li><%= link_to t('defaults.binary_tree'), backoffice_binary_tree_index_path if ENV['ENABLED_BINARY'] == 'true' %></li>
             <li><%= link_to t('defaults.unilevel_tree'), backoffice_unilevel_index_path(user: current_user) %></li>
-            <li><%= link_to t('defaults.career_histories'), backoffice_career_trail_users_path %></li>
-            <% if current_user.admin? %>
-            <li>
-              <%= link_to(backoffice_admin_career_histories_path, class: 'admin-link') do %>
-                <i class="fas fa-user-shield"></i> <%= t('defaults.career_histories') %>
-              <% end %>
-            </li>
-            <% end %>
-          </ul>
-        </li>
-        <% end %>
-        <% if current_user.admin? || current_user.empreendedor? || current_user.suporte? || current_user.consumidor? %>
-        <li class="dropdown top-menu-item-xs">
-          <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-            <i class="fas fa-star-half-alt"></i><span class="menu-arrow"></span><span class="hidden-xs hidden-sm hidden-md">&nbsp; <%= t('defaults.scores') %> </span>
-          </a>
-          <ul class="dropdown-menu">
-            <li> <%= link_to t('defaults.binary'), backoffice_binary_scores_path if ENV['ENABLED_BINARY'] == 'true' %> </li>
-            <li> <%= link_to t('defaults.point_qualifications'), backoffice_lineage_scores_path %> </li>
-            <% if current_user.admin? %>
-            <li>
-              <%= link_to(backoffice_admin_binary_scores_path, class: 'admin-link') do %>
-                <i class="fas fa-user-shield"></i> <%= t('defaults.binary') %>
-              <% end if ENV['ENABLED_BINARY'] == 'true' %>
-            </li>
-            <li>
-              <%= link_to(backoffice_admin_lineage_scores_path, class: 'admin-link') do %>
-                <i class="fas fa-user-shield"></i> <%= t('defaults.point_qualifications') %>
-              <% end %>
-            </li>
-            <% end %>
           </ul>
         </li>
         <% end %>
@@ -138,11 +102,6 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to t('defaults.users'), backoffice_support_users_path, class: 'admin-link' %></li>
-              <% if current_user.admin? || current_user.suporte? %>
-              <li><%= link_to t('defaults.user_versions'), backoffice_admin_user_versions_path, class: 'admin-link' %> </li>
-              <li><%= link_to t('defaults.documents_validation'), backoffice_support_documents_validation_index_path, class: 'admin-link' %></li>
-              <li><%= link_to t('defaults.careers'), backoffice_admin_careers_path, class: 'admin-link' %></li>
-              <% end %>
             </ul>
           </li>
         <% end %>
@@ -156,12 +115,6 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right top-menu-item-xs">
-        <li class='text-warning timer-wrapper'>
-          <%= link_to backoffice_financial_transactions_path do %>
-            <span class='text-warning'> Binary </span>
-            <span class="text-warning regressive-timer"> </span>
-          <% end %>
-        </li>
         <li class='top-menu-item-xs'>
 
 

@@ -62,12 +62,6 @@
                 <%= t('views.backoffice.topbar.edit_account') %>
               <% end %>
               </li>
-              <li class='text-warning timer-wrapper'>
-                <%= link_to backoffice_financial_transactions_path do %>
-                  <span class='text-warning'> Binary Bonus <%= t('helpers.in') %> </span>
-                  <span class="text-warning regressive-timer"> </span>
-                <% end %>
-              </li>
               <li class="divider"></li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
@@ -95,12 +89,6 @@
               </a>
             </li>
             <% end %>
-            <li class='text-warning timer-wrapper'>
-              <%= link_to backoffice_financial_transactions_path do %>
-                <span class='text-warning'> Binary Bonus <%= t('helpers.in') %> </span>
-                <span class="text-warning regressive-timer"> </span>
-              <% end %>
-            </li>
             <li>
               <% if user_masquerade? %>
                 <%= link_to "Voltar para conta", back_masquerade_path(current_user), class: 'btn btn-danger' %>

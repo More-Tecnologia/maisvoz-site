@@ -130,50 +130,27 @@ end
                        name: ENV['MORENWM_USERNAME'],
                        role: 'admin',
                        password: '111111',
-<<<<<<< HEAD
-                       email: 'systemovernightbit@overnightbit.com')
-=======
                        email: 'systemzigbit@zigbit.net')
->>>>>>> 3b08bd92d3fc1320b65b235b743748d18a9cc9c2
  more_user.save(validate: false) unless User.exists?(username: ENV['MORENWM_USERNAME'])
 
  admin_user = User.create!(username: ENV['MORENWM_CUSTOMER_ADMIN'],
                            name: ENV['MORENWM_CUSTOMER_ADMIN'],
                            role: 'admin',
                            password: '111111',
-<<<<<<< HEAD
-                           email: 'adminovernightbit@overnightbit.com',
-=======
                            email: 'adminzigbit@zigbit.net',
->>>>>>> 3b08bd92d3fc1320b65b235b743748d18a9cc9c2
                            sponsor: more_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_ADMIN'])
 
   User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
                name: ENV['MORENWM_CUSTOMER_USERNAME'],
                role: 'empreendedor',
                password: '111111',
-<<<<<<< HEAD
-               email: 'overnightbit@overnightbit.com',
-=======
                email: 'zigbit@zigbit.net',
->>>>>>> 3b08bd92d3fc1320b65b235b743748d18a9cc9c2
                sponsor: admin_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_USERNAME'])
 
  adminfinancial_user = User.create!(username: 'adminfinancial',
                                     name: 'Admin Financial',
                                     role: :financeiro,
                                     password: '111111',
-<<<<<<< HEAD
-                                    email: 'adminfinancial@overnightbit.com',
-                                    sponsor: admin_user)
-
-support_user = User.create!(username: 'adminsupport',
-                            name: 'Admin Support',
-                            role: :suporte,
-                            password: '111111',
-                            email: 'adminsupport@overnightbit.com',
-                            sponsor: adminfinancial_user)
-=======
                                     email: 'adminfinancial@zigbit.net',
                                     sponsor: admin_user)
 
@@ -187,7 +164,6 @@ support_user = User.create!(username: 'adminsupport',
   adminfinancial_user.binary_node.delete
   support_user.binary_node.delete
   admin_user.binary_node.update!(left_child_id: nil)
->>>>>>> 3b08bd92d3fc1320b65b235b743748d18a9cc9c2
 
 end
 

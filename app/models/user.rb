@@ -501,6 +501,10 @@ class User < ApplicationRecord
     update!(blocked_balance_cents: blocked_balance)
   end
 
+  def current_loan_contract
+    bonus_contracts.loans.last
+  end
+
   private
 
   def ensure_initial_career_trail

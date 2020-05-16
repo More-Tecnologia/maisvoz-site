@@ -10,10 +10,6 @@ Rails.application.routes.draw do
 
   mount Attachinary::Engine => '/attachinary'
 
-  devise_scope :user do
-    get "/" => "users/sessions#new"
-  end
-
   resources :shop, only: [:index, :show]
   resources :bradesco_check_order, only: :index
   resources :maintenances, only: :index
@@ -162,15 +158,22 @@ Rails.application.routes.draw do
     resources :emails, except: %i[show destroy]
   end
 
-  devise_for(
-    :users,
-    controllers: {
-      sessions: 'users/sessions',
-      registrations: 'users/registrations',
-      passwords: 'users/passwords',
-      unlocks: 'users/unlocks',
-      confirmations: 'users/confirmations',
-      masquerades: 'masquerades'
-    }
-  )
+  devise_for(:users,
+             controllers: {
+              sessions: 'users/sessions',
+              registrations: 'users/registrations',
+              passwords: 'users/passwords',
+              unlocks: 'users/unlocks',
+              confirmations: 'users/confirmations',
+              masquerades: 'masquerades' })
+
+  devise_scope :user do
+    authenticated :user do
+      root 'backoffice/dashboard#index'
+    end
+
+    unauthenticated do
+      root 'users/sessions#new'
+    end
+  end
 end

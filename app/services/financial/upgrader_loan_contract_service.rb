@@ -14,7 +14,11 @@ module Financial
     end
 
     def user_paid_loan_contract?
-      @user.available_balance >= @loan_bonus_contract.cent_amount
+      user_yield_bonus = @user.financial_transactions
+                              .to_empreendedor
+                              .yield_bonus
+                              .sum(:cent_amount) / 1e8.0
+      @user.available_balance - user_yield_bonus >= @loan_bonus_contract.cent_amount
     end
 
     def upgrade_loan_contract_to_rentability_contract

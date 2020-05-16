@@ -41,6 +41,7 @@ class FinancialTransaction < ApplicationRecord
   scope :by_bonus, ->(bonus) { where(financial_reason: bonus) }
   scope :morenwm_moneyflow_credit, -> { where(financial_reason: FinancialReason.morenwm_moneyflow_credit) }
   scope :morenwm_moneyflow_debit, -> { where(financial_reason: FinancialReason.morenwm_moneyflow_debit) }
+  scope :yield_bonus, -> { where(financial_reason: FinancialReason.yield_bonus) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }

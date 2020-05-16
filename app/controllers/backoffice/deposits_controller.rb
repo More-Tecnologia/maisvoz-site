@@ -58,10 +58,7 @@ module Backoffice
     end
 
     def validate_user_active_loan_contract
-      return unless current_user.bonus_contracts
-                                .active
-                                .with_active_loan
-                                .any?
+      return unless current_user.current_loan_contract
 
       flash[:error] = t('there_are_loan_contract_active')
       redirect_to new_backoffice_deposit_path

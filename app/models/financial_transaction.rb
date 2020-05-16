@@ -55,7 +55,7 @@ class FinancialTransaction < ApplicationRecord
                           numericality: { greater_than: 0 }, on: :expense
 
   after_commit :debits_bonus_of_contract, on: :create,
-                                          if: :financial_reason_type_bonus?,
+                                          if: :financial_reason_yield_bonus?,
                                           unless: :chargeback?
   after_commit :upgrade_loan_contract_to_rentability_contract, on: :create,
                                                                if: :direct_or_indirect_bonus?,
@@ -129,6 +129,10 @@ class FinancialTransaction < ApplicationRecord
     direct_and_indirect_bonus = [ FinancialReason.direct_commission_bonus,
                                   FinancialReason.indirect_referral_bonus ]
     financial_reason && financial_reason.in?(direct_and_indirect_bonus)
+  end
+
+  def financial_reason_yield_bonus?
+    financial_reason == FinancialReason.yield_bonus
   end
 
   private

@@ -159,7 +159,8 @@ class FinancialTransaction < ApplicationRecord
   end
 
   def upgrade_loan_contract_to_rentability_contract
-    Financial::UpgraderLoanContractService.call(user: user)
+    Financial::UpgraderLoanContractService.call(user: user,
+                                                financial_transaction_bonus: self)
   end
 
 end

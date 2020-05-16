@@ -4,16 +4,12 @@ module Dashboards
   module Users
     class BonusPresenter
 
-      BINARY = FinancialReason.binary_bonus
-      BINARY_CHARGEBACK = FinancialReason.binary_bonus
       DIRECT = FinancialReason.direct_commission_bonus
       DIRECT_CHARGEBACK = FinancialReason.direct_commission_bonus_chargeback
-      MATCHING = FinancialReason.matching_bonus
-      MATCHING_CHARGEBACK = FinancialReason.matching_bonus
-      POOL_TRADE = FinancialReason.pool_tranding
-      POOL_TRADE_CHARGEBACK = FinancialReason.pool_tranding
-      RESIDUAL = FinancialReason.residual_bonus
-      RESIDUAL_CHARGEBACK = FinancialReason.residual_bonus
+      INDIRECT = FinancialReason.indirect_referral_bonus
+      INDIRECT_CHARGEBACK = FinancialReason.indirect_referral_bonus_chargeback_by_inactivity
+      YIELD = FinancialReason.yield_bonus
+      YIELD_CHARGEBACK = nil
 
       def initialize(user)
         @user = user
@@ -35,12 +31,10 @@ module Dashboards
 
       def bonus
         {
-          binary: bonus_calculation(BINARY, BINARY_CHARGEBACK),
+          direct_referral: bonus_calculation(DIRECT, DIRECT_CHARGEBACK),
+          indirect_referral: bonus_calculation(INDIRECT, INDIRECT_CHARGEBACK),
+          yield: bonus_calculation(YIELD, YIELD_CHARGEBACK),
           total_bonus: total_bonus,
-          direct_commission: bonus_calculation(DIRECT, DIRECT_CHARGEBACK),
-          matching: bonus_calculation(MATCHING, MATCHING_CHARGEBACK),
-          pool_trade: bonus_calculation(POOL_TRADE, POOL_TRADE_CHARGEBACK),
-          residual: bonus_calculation(RESIDUAL, RESIDUAL_CHARGEBACK),
           chargebacks: (@chargeback.sum(:cent_amount) / 1e8.to_f).round(2),
           gross_bonus: (@bonus.sum(:cent_amount) / 1e8.to_f).round(2)
         }
@@ -55,12 +49,10 @@ module Dashboards
 
       def labels
         {
-          binary: I18n.t(:binary_bonus),
           chargebacks: I18n.t(:chargebacks),
-          direct_commission: I18n.t(:direct_commission_bonus),
-          matching: I18n.t(:matching_bonus),
-          pool_trade: I18n.t(:pool_trade_bonus),
-          residual: I18n.t(:residual_bonus),
+          direct_referral: I18n.t(:direct_referral),
+          indirect_referral: I18n.t(:indirect_referral),
+          yield: I18n.t(:yield),
           total_bonus: I18n.t(:total_bonus)
         }
       end

@@ -2,6 +2,8 @@ class BonusContract < ApplicationRecord
 
   include Hashid::Rails
 
+  RENTABILITY_DAYS_COUNT = 365
+
   belongs_to :order
   belongs_to :user
 
@@ -14,7 +16,8 @@ class BonusContract < ApplicationRecord
   validates :received_balance, presence: true,
                                numericality: { greater_than_or_equal_to: 0 }
   scope :active, -> { where('expire_at > ? AND paid_at IS NULL', DateTime.current) }
-  scope :with_active_loan, -> { where(inactived_loan_at: nil) }
+  scope :with_active_loan, -> { where(loan: true, inactived_loan_at: nil) }
+  scope :loans, -> { active.with_active_loan }
 
   def active?
     return false if paid_at || expire_at < DateTime.current

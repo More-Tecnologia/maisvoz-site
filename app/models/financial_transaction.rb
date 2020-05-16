@@ -52,10 +52,12 @@ class FinancialTransaction < ApplicationRecord
   validates :cent_amount, presence: true,
                           numericality: { greater_than: 0 }, on: :expense
 
-  after_create :inactivate_user!, if: :financial_reason_type_bonus?
   after_commit :debits_bonus_of_contract, on: :create,
                                           if: :financial_reason_type_bonus?,
                                           unless: :chargeback?
+  after_commit :upgrade_loan_contract_to_rentability_contract, on: :create,
+                                                               if: :direct_or_indirect_bonus?,
+                                                               unless: :chargeback?
 
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_admin,
@@ -121,6 +123,12 @@ class FinancialTransaction < ApplicationRecord
     chargeback_binary_score!(reason, amount)
   end
 
+  def direct_or_indirect_bonus?
+    direct_and_indirect_bonus = [ FinancialReason.direct_commission_bonus,
+                                  FinancialReason.indirect_referral_bonus ]
+    financial_reason && financial_reason.in?(direct_and_indirect_bonus)
+  end
+
   private
 
   def invert_money_flow
@@ -129,10 +137,6 @@ class FinancialTransaction < ApplicationRecord
 
   def is_note_present?
     note.present?
-  end
-
-  def inactivate_user!
-    user.inactivate! if !chargeback? && user.empreendedor? && user.reached_career_trail_maximum_bonus?
   end
 
   def chargeback_to_admin
@@ -146,6 +150,10 @@ class FinancialTransaction < ApplicationRecord
 
   def debits_bonus_of_contract
     Financial::BonusContractDistributorService.call(financial_transaction: self)
+  end
+
+  def upgrade_loan_contract_to_rentability_contract
+    Financial::UpgraderLoanContractService.call(user: user)
   end
 
 end

@@ -17,7 +17,7 @@ module Financial
       user_yield_bonus = @user.financial_transactions
                               .to_empreendedor
                               .yield_bonus
-                              .sum(:cent_amount) / 1e8.0
+                              .sum(:cent_amount) / 1e8.to_f
       @user.available_balance - user_yield_bonus >= @loan_bonus_contract.cent_amount
     end
 

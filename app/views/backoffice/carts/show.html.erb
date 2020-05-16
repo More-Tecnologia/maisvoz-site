@@ -77,7 +77,6 @@
 
       <div class="row m-t-30">
         <div class="col-md-12">
-          <%= link_to t('views.backoffice.cart.show.continue_shopping'), backoffice_products_path, class: 'btn btn-default text-uppercase' %>
           <% if current_order.order_items.present? %>
             <%= link_to new_backoffice_payment_block_checkout_path,
                         class: 'btn btn-default pull-right text-uppercase',

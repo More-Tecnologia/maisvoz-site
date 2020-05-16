@@ -8,6 +8,7 @@ class FinancialTransaction < ApplicationRecord
   belongs_to :order, optional: true
   belongs_to :financial_transaction, optional: true
   belongs_to :withdrawal, optional: true
+  belongs_to :bonus_contract, optional: true
 
   has_one :chargeback, class_name: 'FinancialTransaction',
                        foreign_key: 'financial_transaction_id'

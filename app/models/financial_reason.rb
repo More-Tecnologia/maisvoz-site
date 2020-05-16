@@ -19,8 +19,8 @@ class FinancialReason < ApplicationRecord
   scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
   scope :active, -> { where(active: true) }
   scope :to_morenwm, -> { where(code: ['200', '300', '2800', '2900']) }
-  scope :to_customer_admin, -> { where.not(code: '300') }
-  scope :to_empreendedor, -> { where.not(code: ['200', '1200', '400']) }
+  scope :to_customer_admin, -> { where.not(code: ['300', '4200']) }
+  scope :to_empreendedor, -> { where.not(code: ['200', '1200', '400', '4300']) }
 
   def is_bonus?
     financial_reason_type.code == '200'
@@ -168,6 +168,10 @@ class FinancialReason < ApplicationRecord
 
   def self.deposit_less_than_fifty
     @@deposit_less_than_fifty ||= find_by(code: '4200')
+  end
+
+  def self.loan_payment
+    @@deposit_less_than_fifty_payment ||= find_by(code: '4300')
   end
 
 end

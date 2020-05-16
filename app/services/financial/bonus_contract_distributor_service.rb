@@ -19,7 +19,7 @@ module Financial
       @financial_transaction = args[:financial_transaction]
       @chargeback = @financial_transaction.chargeback
       @user = @financial_transaction.user
-      @active_bonus_contracts = @user.bonus_contracts.active.order(:created_at)
+      @active_bonus_contracts = @user.bonus_contracts.active.yield_contracts.order(:created_at)
       @first_active_bonus_contract = @active_bonus_contracts.try(:first)
       @contract_count = @active_bonus_contracts.length
     end

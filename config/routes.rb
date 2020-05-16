@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   mount Attachinary::Engine => '/attachinary'
 
   devise_scope :user do
-    root to: "users/sessions#new"
+    get "/" => "users/sessions#new"
   end
 
   resources :shop, only: [:index, :show]

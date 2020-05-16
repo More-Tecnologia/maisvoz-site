@@ -8,7 +8,7 @@ module Backoffice
       @unilevel_nodes = @current_node.subtree
                                      .from_depth(@current_node.depth)
                                      .to_depth(unilevel_max_depth)
-                                     .includes(user: [:sponsor, career_trail_users: { career_trail: :career }])
+                                     .includes(user: [:sponsor, :career])
                                      .where.not(username: @current_node.user.username)
     end
 

@@ -27,7 +27,6 @@ module Financial
     end
 
     def resgister_loan_contract_payment_to_company_financial
-      byebug
       user = User.find_morenwm_customer_admin
       user.financial_transactions
           .create!(spreader: @loan_bonus_contract.user,
@@ -42,12 +41,15 @@ module Financial
     end
 
     def paid_bonus_to_contract_user_sponsors
-      #Bonification::BonusPropagatorService.call(order: build_temp_order)
+      deposit_product = Product.deposit.first
+      temp_order = build_loan_payment_order_with(deposit_product)
+      Bonification::BonusPropagatorService.call(order: temp_order,
+                                                products: [deposit_product])
     end
 
-    def build_temp_order
-      order = Order.new(user: @loan_bonus_contract.user)
-      order.order_items.build(product: Product.deposit.first,
+    def build_loan_payment_order_with(product)
+      order = Order.new(user: @loan_bonus_contract.user, loan_payment: true)
+      order.order_items.build(product: product,
                               quantity: @financial_transaction_bonus.cent_amount.to_i)
       order
     end

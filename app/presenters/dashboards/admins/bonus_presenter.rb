@@ -32,7 +32,8 @@ module Dashboards
           indirect_referral: bonus_calculation(INDIRECT, INDIRECT_CHARGEBACK),
           yield: bonus_calculation(YIELD, YIELD_CHARGEBACK),
           chargebacks: (@chargeback.sum(:cent_amount) / 1e8.to_f).round(2),
-          gross_bonus: (@bonus.sum(:cent_amount) / 1e8.to_f).round(2)
+          gross_bonus: (@bonus.sum(:cent_amount) / 1e8.to_f).round(2),
+          total_bonus: total_bonus
         }
       end
 

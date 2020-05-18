@@ -2,6 +2,16 @@
   <div class="col-md-3">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
+        <span><%= t(:register_date) %></span>
+      </div>
+      <div class="dashboard-card__value label-default">
+        <%= l(current_user.created_at, format: :long) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="dashboard-card">
+      <div class="dashboard-card__label">
         <span><%= t(:account_status) %></span>
       </div>
       <% if current_user.active? %>
@@ -11,47 +21,23 @@
       <% end %>
     </div>
   </div>
-
-  <div class="col-md-2">
+  <div class="col-md-3">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
-        <span><%= t('defaults.point_qualifications') %></span>
+        <span><%= t('sponsor') %></span>
       </div>
-      <div class="dashboard-card__value label-default"><%= number_with_delimiter(qualification_score_sum) %></div>
+        <div class="dashboard-card__value label-default">
+          <%= current_user.try(:sponsor).try(:username) %>
+        </div>
     </div>
   </div>
-
-  <div class="col-md-2">
-    <div class="dashboard-card">
-      <div class="dashboard-card__label">
-        <span><%= t('binary_qualified') %></span>
-      </div>
-        <% if current_user.binary_qualified? %>
-          <div class="dashboard-card__value label-default"> <%= t('qualified') %> </div>
-        <% else %>
-          <div class="dashboard-card__value label-inactive"> <%= t('unqualified') %> </div>
-        <% end %>
-    </div>
-  </div>
-
-  <div class="col-md-2">
+  <div class="col-md-3">
     <div class="dashboard-card">
       <div class="dashboard-card__label">
         <span><%= t(:career) %></span>
       </div>
       <div class="dashboard-card__value label-default">
         <%= current_user.try(:current_career).try(:name) %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-3">
-    <div class="dashboard-card">
-      <div class="dashboard-card__label">
-        <span><%= t(:next) + ' ' + t(:career) %></span>
-      </div>
-      <div class="dashboard-card__value label-default">
-        <%= current_user.next_career_kind.try(:name) %>
       </div>
     </div>
   </div>
@@ -89,37 +75,33 @@
 
   </div>
   <div class="col-md-8">
-      <div class="card-box card card-placeholder">
-        <div class="card-body">
-                  <h5 class="mt-0"><%= t(:account_earnings_limit) %><span><span id="account_earnings_limit" style="display: block; float: right;"></span></span></h5>
-                  <div class="progress progress-lg" id='earnings'>
-                  </div>
-                  <div id="legend_earnings" class="progressbar-legend">
-
-                  </div>
-
-                  <h5 class="mt-3"><%= t(:balance) %><span style="display: block; float: right;"><span id="balance"></span></span></h5>
-                  <div class="progress progress-lg" id="balances"></div>
-                  <div id="legend_balances" class="progressbar-legend"></div>
-
-                  <h5 class="mt-3"><%= t(:unilevel_affiliates_count) %><span style="display: block; float: right;"><span id="unilevel_affiliates_count"></span></span></h5>
-                  <div class="progress progress-lg" id="unilevel_counts">
-                  </div>
-                  <div id="legend_unilevel_counts" class="progressbar-legend"></div>
-
-                  <h5 class="mt-3"><%= t(:binary_affiliates_count) %><span style="display: block; float: right;"><span id="binary_affiliates_count"></span></span></h5>
-                  <div class="progress progress-lg" id="binary_count"></div>
-                  <div id="legend_binary_count" class="progressbar-legend"></div>
-
-                  <!-- <h5 class="mt-3"><%= t(:binary_scores) %><span style="display: block; float: right;"><span id="binary_score"></span></span></h5>
-                  <div class="progress progress-lg" id="binary_scores">
-                  </div>
-                  <div id="legend_binary_scores" class="progressbar-legend"></div> -->
-
-                </div>
-                  <span href="#" class="btn btn-white btn-block bt-bars card-footer">
-                    <i class="fa fa-refresh"></i>
-                  </span>
+      <div class="card-box card card-placeholder progress-card">
+        <div class="card-body progress-card-content">
+          <div class="progress-wrapper">
+            <h5 class="mt-0"><%= t(:account_earnings_limit) %>
+              <span id="account_earnings_limit" style="display: block; float: right;"></span>
+            </h5>
+            <div class="progress progress-lg" id='earnings'></div>
+            <div id="legend_earnings" class="progressbar-legend"></div>
+          </div>
+          <div class="progress-wrapper">
+            <h5 class="mt-3"><%= t(:balance) %>
+              <span style="display: block; float: right;"><span id="balance"></span></span>
+            </h5>
+            <div class="progress progress-lg" id="balances"></div>
+            <div id="legend_balances" class="progressbar-legend"></div>
+          </div>
+          <div class="progress-wrapper">
+            <h5 class="mt-3"><%= t(:unilevel_affiliates_count) %>
+              <span style="display: block; float: right;"><span id="unilevel_affiliates_count"></span></span>
+            </h5>
+            <div class="progress progress-lg" id="unilevel_counts"></div>
+            <div id="legend_unilevel_counts" class="progressbar-legend"></div>
+          </div>
+        </div>
+        <span href="#" class="btn btn-white btn-block bt-bars card-footer hide">
+          <i class="fa fa-refresh"></i>
+        </span>
       </div>  <!-- end card-box-->
   </div> <!-- end col -->
 </div><br><br>

@@ -44,9 +44,11 @@
   margin-bottom: 10px;
   font-size: 13px;
 }
+
 .progressbar-legend > span:last-child {
   margin-right: 0;
 }
+
 .progressbar-legend > span > i {
   display: inline-block;
   width: 15px;
@@ -55,4 +57,18 @@
   margin-top: -3px;
   vertical-align: middle;
   border-radius: 1px;
+}
+
+.progress-card {
+  display: table !important;
+  width: 100%;
+}
+
+.progress-card-content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.progress-wrapper {
+  margin: 60px 0px;
 }

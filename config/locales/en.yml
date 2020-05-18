@@ -1370,3 +1370,5 @@ We will send a new e-mail as soon as the transaction is complete.'
   direct_referral: Direct Referral
   indirect_referral: Indirect Referral
   yield: Yield
+  register_date: Register Date
+  sponsor: Sponsor

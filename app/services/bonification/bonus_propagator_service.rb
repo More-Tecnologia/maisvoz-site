@@ -18,7 +18,7 @@ module Bonification
     def initialize(args)
       @order = args[:order]
       @user = order.user
-      @products = order.products
+      @products = args[:products] || order.products
       @product_reason_scores = find_product_reason_scores_by(products)
       @order_items = order.order_items.index_by(&:product_id)
       @customer_admin = User.find_morenwm_customer_admin
@@ -86,7 +86,7 @@ module Bonification
                                                financial_reason: financial_reason,
                                                generation: generation,
                                                cent_amount: bonus,
-                                               order: order) if bonus > 0
+                                               order: order.loan_payment ? nil : order) if bonus > 0
       chargeback_by_inactivity!(transaction, financial_reason) if sponsor.inactive?
       transaction
     end

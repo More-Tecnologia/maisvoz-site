@@ -39,7 +39,7 @@ let groups = [
     group: "binary_scores",
     head: "binary_score",
     data: ["left_binary_score", "right_binary_score"],
-    colors: ["#05F26c !important", "#FFD878"],
+    colors: ["#05F26c", "#FFD878"],
     path: "binary_scores_data",
     amount_sign: "",
     total_sum: true

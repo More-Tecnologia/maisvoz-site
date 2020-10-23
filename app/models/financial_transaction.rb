@@ -1,5 +1,4 @@
 class FinancialTransaction < ApplicationRecord
-
   include Hashid::Rails
 
   belongs_to :user
@@ -57,9 +56,6 @@ class FinancialTransaction < ApplicationRecord
   after_commit :debits_bonus_of_contract, on: :create,
                                           if: :financial_reason_yield_bonus?,
                                           unless: :chargeback?
-  after_commit :upgrade_loan_contract_to_rentability_contract, on: :create,
-                                                               if: :direct_or_indirect_bonus?,
-                                                               unless: :chargeback?
 
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_admin,
@@ -157,10 +153,4 @@ class FinancialTransaction < ApplicationRecord
   def debits_bonus_of_contract
     Financial::BonusContractDistributorService.call(financial_transaction: self)
   end
-
-  def upgrade_loan_contract_to_rentability_contract
-    Financial::UpgraderLoanContractService.call(user: user,
-                                                financial_transaction_bonus: self)
-  end
-
 end

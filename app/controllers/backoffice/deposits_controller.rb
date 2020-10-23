@@ -2,11 +2,9 @@
 
 module Backoffice
   class DepositsController < EntrepreneurController
-    # skip_before_action :ensure_admin_or_entrepreneur
+    include Backoffice::OrdersHelper
 
-    before_action :validate_min_deposit_quantity, only: :create
-    before_action :validate_max_deposit_quantity, only: :create
-    before_action :validate_user_active_loan_contract, only: :create
+    before_action :validate_deposit_value, only: :create
 
     def index
       @deposits = OrderItem.includes(order: :payment_transaction)
@@ -39,6 +37,13 @@ module Backoffice
 
     private
 
+    def validate_deposit_value
+      return if current_deposit.total_value >= minimum_deposit_value
+
+      flash[:alert] = t('defaults.errors.invalid_deposit_value')
+      redirect_to new_backoffice_deposit_path
+    end
+
     def validate_max_deposit_quantity
       return if valid_params[:quantity].to_i <= ENV['MAX_DEPOSIT'].to_i
 
@@ -63,6 +68,5 @@ module Backoffice
       flash[:error] = t('there_are_loan_contract_active')
       redirect_to new_backoffice_deposit_path
     end
-
   end
 end

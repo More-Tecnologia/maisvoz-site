@@ -13,8 +13,14 @@
                           method: :post,
                           html: { class: 'form-horizontal m-t-20'} ) do |f| %>
         <div class="form-group">
-          <%= content_tag(:h2, t(:deposit), class: 'text-center text-uppercase', style: 'margin-top: -3.5rem!important; font-weight: bolder!important;') %>
-          <%= f.input_field :quantity, class: "form-control", placeholder: t(:amount), style: 'min-width: 100%;' %>
+          <%= content_tag(:h2, t(:deposit),
+                               class: 'text-center text-uppercase',
+                               style: 'margin-top: -3.5rem!important; font-weight: bolder!important;') %>
+          <%= f.input_field :quantity,
+                            collection: valid_deposit_options,
+                            class: "form-control",
+                            prompt: "t('helpers.select.prompt')",
+                            style: 'min-width: 100%;' %>
         </div>
         <div class="form-actions">
           <%= f.button :button,
@@ -23,12 +29,6 @@
                        class: 'btn-lg btn-block text-uppercase' %>
         </div>
         <% end %>
-      <hr>
-      <div class='text-center text-uppercase'>
-        <%= t(:deposit_info,
-              min_limit: number_to_currency(ENV['MIN_DEPOSIT']),
-              max_limit: number_to_currency(ENV['MAX_DEPOSIT'])) %>
-      </div>
     </div>
   </div>
 </div>

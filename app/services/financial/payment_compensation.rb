@@ -1,6 +1,5 @@
 module Financial
   class PaymentCompensation
-
     prepend SimpleCommand
 
     def initialize(order, enabled_bonification = true)
@@ -36,7 +35,7 @@ module Financial
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if deposit_product
-        propagate_bonuses if enabled_bonification && order.total_value > 50
+        propagate_bonuses if enabled_bonification
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product && enabled_bonification
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
@@ -199,6 +198,5 @@ module Financial
     def create_bonus_contract
       CreatorBonusContractService.call(order: order)
     end
-
   end
 end

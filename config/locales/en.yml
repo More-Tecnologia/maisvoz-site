@@ -671,6 +671,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       different_sponsor: Different sponsor
       no_funds: You don't have enough funds in your balance
       not_unique: It is not unique
+      invalid_deposit_value: Deposit value must be more than or equal to last
     financial: Financial
     financial_entries: Financial History
     manage_withdrawals: Manage Withdrawals
@@ -1298,7 +1299,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   edit_deposit: 'Edit deposit solicitation'
   min_deposit: 'Deposit must be greater than or equal to %{limit}'
   max_deposit: 'Deposit must be less than or equal to %{limit}'
-  deposit_info: 'Deposits accepted minimum %{min_limit} maximum %{max_limit}'
+  deposit_info: 'Deposits minimum %{min_limit}'
   support_material: 'Support Material'
   sponsor_link: 'Sponsor link'
   copied_sponsor_link: 'Sponsor link copied'

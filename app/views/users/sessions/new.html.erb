@@ -27,18 +27,11 @@
 
       <% end %>
       <%= render "users/shared/links" %>
-      <%= render "users/shared/flags" %>
-
     </div>
   </div>
   <div class="row">
     <div class="col-sm-12 text-center">
-      <a href="?locale=en" class="flag">
-        <%= image_tag('countries/us.svg') %>
-      </a>
-      <!-- <a href="?locale=pt-BR" class="flag">
-        <%= image_tag('countries/pt.svg') %>
-      </a> -->
+      <%= render "users/shared/flags" %>
     </div>
   </div>
 </div>

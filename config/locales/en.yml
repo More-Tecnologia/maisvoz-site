@@ -672,6 +672,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       no_funds: You don't have enough funds in your balance
       not_unique: It is not unique
       invalid_deposit_value: Deposit value must be more than or equal to last
+      withdrawal_pending: There is already a pending withdrawal request
     financial: Financial
     financial_entries: Financial History
     manage_withdrawals: Manage Withdrawals

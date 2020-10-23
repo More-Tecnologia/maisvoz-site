@@ -1,7 +1,4 @@
-
-
 <%= stylesheet_link_tag 'deposits/new' %>
-
 
 <div class="wrapper-page" id="wrapper-page-login">
   <div class="text-center register-logo">
@@ -10,23 +7,21 @@
   <br>
   <div class=" card-box">
     <div class="panel-body">
-        <%= simple_form_for(current_deposit.order_items.first, url: backoffice_deposits_path,
-                                                               action: :create,
-                                                               method: :post,
-                                                               html: {
-                                                                 class: 'form-horizontal m-t-20'
-                                                               }) do |f| %>
-            <div class="form-group">
-              <%= content_tag(:h2, t(:deposit), class: 'text-center text-uppercase', style: 'margin-top: -3.5rem!important; font-weight: bolder!important;') %>
-              <%= f.input_field :quantity, class: "form-control", placeholder: t(:amount), style: 'min-width: 100%;' %>
-            </div>
-            <div class="form-actions">
-              <%= f.button :button,
+      <%= simple_form_for(current_deposit.order_items.first,
+                          url: backoffice_deposits_path,
+                          action: :create,
+                          method: :post,
+                          html: { class: 'form-horizontal m-t-20'} ) do |f| %>
+        <div class="form-group">
+          <%= content_tag(:h2, t(:deposit), class: 'text-center text-uppercase', style: 'margin-top: -3.5rem!important; font-weight: bolder!important;') %>
+          <%= f.input_field :quantity, class: "form-control", placeholder: t(:amount), style: 'min-width: 100%;' %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :button,
                        t("defaults.post"),
                        data: { disable_with: t('helpers.save_with_disable') },
                        class: 'btn-lg btn-block text-uppercase' %>
-            </div>
-
+        </div>
         <% end %>
       <hr>
       <div class='text-center text-uppercase'>
@@ -36,5 +31,4 @@
       </div>
     </div>
   </div>
-
 </div>

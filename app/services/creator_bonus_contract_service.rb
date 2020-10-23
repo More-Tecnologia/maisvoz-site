@@ -1,21 +1,24 @@
 class CreatorBonusContractService < ApplicationService
   def call
-    if @deposit_value < 100
-      expire_at = 180.days.from_now
+    if @deposit_value <= 10.0
+      expire_at = 100.years.from_now
       contract_value = 2 * @deposit_value
-      rentability = contract_value / 180.0
+      rentability = CONTRACT_RETABILITY
 
       create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
     else
-      expire_at = 1.year.from_now
-      contract_value = 2 * @deposit_value
-      rentability = contract_value / 365.0
+      expire_at = 100.years.from_now
+      contract_value = 2 * (@deposit_value - CONTRACT_FEE)
+      rentability = CONTRACT_RETABILITY
 
-      create_bonus_contract_for_order_user(contract_value, expire_at, rentability)
+      create_bonus_contract_for_order_user(contract_value, expire_at, CONTRACT_RETABILITY)
     end
   end
 
   private
+
+  CONTRACT_FEE = 5.0.freeze
+  CONTRACT_RETABILITY = 0.05.freeze
 
   def initialize(args)
     @order = args[:order]

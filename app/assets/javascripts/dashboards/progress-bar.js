@@ -3,7 +3,7 @@ let groups = [
     group: "earnings",
     head: "account_earnings_limit",
     data: ["receivable_amount", "received_amount"],
-    colors: ["#001d6e", "#FFD878"],
+    colors: ["#3EBFC4", "#FFD878"],
     path: "earnings_data",
     amount_sign: "&#36;",
     total_sum: false
@@ -12,7 +12,7 @@ let groups = [
     group: "balances",
     head: "balance",
     data: [ "blocked_balance", "available_balance"],
-    colors: ["#001d6e", "#FFD878"],
+    colors: ["#3EBFC4", "#FFD878"],
     path: "balances_data",
     amount_sign: "&#36;",
     total_sum: false
@@ -21,7 +21,7 @@ let groups = [
     group: "unilevel_counts",
     head: "unilevel_affiliates_count",
     data: ["unilevel_affiliates_inactives_count", "unilevel_affiliates_actives_count"],
-    colors: ["#001d6e", "#FFD878"],
+    colors: ["#3EBFC4", "#FFD878"],
     path: "unilevel_counts_data",
     amount_sign: "",
     total_sum: false
@@ -30,7 +30,7 @@ let groups = [
     group: "binary_count",
     head: "binary_affiliates_count",
     data: ["binary_affiliates_left_count", "binary_affiliates_right_count"],
-    colors: ["#001d6e", "#FFD878"],
+    colors: ["#3EBFC4", "#FFD878"],
     path: "binary_counts_data",
     amount_sign: "",
     total_sum: false
@@ -39,7 +39,7 @@ let groups = [
     group: "binary_scores",
     head: "binary_score",
     data: ["left_binary_score", "right_binary_score"],
-    colors: ["#001d6e", "#FFD878"],
+    colors: ["#3EBFC4", "#FFD878"],
     path: "binary_scores_data",
     amount_sign: "",
     total_sum: true

@@ -2274,7 +2274,7 @@ body.menu-is-open {
 }
 
 .bottom__button .btn--primary {
-  background-color: #001d6e;
+  background-color: #3EBFC4 !important;
   border-color: #0020CF;
   color: #FFFFFF;
 }
@@ -2282,7 +2282,7 @@ body.menu-is-open {
 .bottom__button .btn--primary:hover,
 .bottom__button .btn--primary:focus {
   background-color: #0020CF;
-  border-color: #001d6e;
+  border-color: #3EBFC4 !important;
 }
 
 /* -------------------------------------------------------------------
@@ -3669,19 +3669,19 @@ html.no-csstransitions .home-content__main {
   padding-top: 16.2rem;
   padding-bottom: 21rem;
   background-color: #ffffff;
-  color: #001d6e;
+  color: #3EBFC4 !important;
   text-align: center;
   position: relative;
 }
 
 .s-contact a {
-  color: #001d6e!important;
+  color: #3EBFC4 !important;
 }
 .s-contact h1 {
-  color: #001d6e;
+  color: #3EBFC4 !important;
 }
 .s-contact p {
-  color: #001d6e;
+  color: #3EBFC4 !important;
 }
 
 .s-contact .grid-overlay {
@@ -3697,7 +3697,7 @@ html.no-csstransitions .home-content__main {
 }
 
 .s-contact .subhead {
-  color: #001d6e;
+  color: #3EBFC4 !important;
 }
 
 .s-contact .section-header,
@@ -4028,7 +4028,7 @@ footer a {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  border: 15px solid #001d6e;
+  border: 15px solid #3EBFC4 !important;
 }
 
 #landing-page-video {

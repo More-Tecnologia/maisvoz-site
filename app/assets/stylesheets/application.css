@@ -46,5 +46,9 @@ h6 {
 }
 
 .navbar-default {
-  background-color: #001d6e;
+  background-color: #3EBFC4 !important;
+}
+
+.dropdown-menu li {
+  margin: 0 5px;
 }

@@ -1,12 +1,9 @@
-<!-- Page-Title -->
 <div class="row">
   <div class="col-sm-12 m-b-23">
     <h4 class="page-title"><%= t('defaults.bonus_contracts') %></h4>
   </div>
 </div>
-
 <%= render 'filters' %>
-
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
@@ -24,8 +21,6 @@
                   <th><%= Score.human_attribute_name(:expire_at) %></th>
                   <th><%= Score.human_attribute_name(:status) %></th>
                   <th><%= Score.human_attribute_name(:processed_at) %></th>
-                  <th><%= Score.human_attribute_name(:loan) %></th>
-                  <th><%= Score.human_attribute_name(:inactived_loan_at) %></th>
                 </tr>
               </thead>
               <tbody>
@@ -41,8 +36,6 @@
                       <td> <%= l(bonus_contract.expire_at, format: '%m/%d/%Y') if bonus_contract.expire_at %></td>
                       <td> <%= bonus_contract_status(bonus_contract) %></td>
                       <td> <%= l(bonus_contract.paid_at, format: '%m/%d/%Y') if bonus_contract.paid_at %></td>
-                      <td> <%= t(bonus_contract.loan) %></td>
-                      <td> <%= l(bonus_contract.inactived_loan_at, format: :long) if bonus_contract.inactived_loan_at %></td>
                     </tr>
                   <% end %>
                 <% else %>

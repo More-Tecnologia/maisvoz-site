@@ -24,7 +24,7 @@ module Bonification
           .create!(spreader: User.find_morenwm_customer_admin,
                    financial_reason: FinancialReason.yield_bonus,
                    moneyflow: :credit,
-                   cent_amount: contract.rentability,
+                   cent_amount: contract.cent_amount * contract.rentability,
                    bonus_contract: contract)
     end
 

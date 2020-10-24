@@ -48,8 +48,8 @@ File: Components
 .btn-default:focus,
 .btn-default:hover,
 .open > .dropdown-toggle.btn-default {
-  background-color: #2b1f9b !important;
-  border: 1px solid #2b1f9b !important;
+  background-color: #3EBFC4 !important;
+  border: 1px solid #3EBFC4 !important;
 }
 .btn-white,
 .btn-white:hover,
@@ -111,8 +111,8 @@ File: Components
 .btn-primary:focus,
 .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary {
-  background-color: #2b1f9b !important;
-  border: 1px solid #2b1f9b !important;
+  background-color: #3EBFC4 !important;
+  border: 1px solid #3EBFC4 !important;
 }
 .btn-success,
 .btn-success:hover,
@@ -955,7 +955,7 @@ File: Components
   background-color: #5d9cec;
 }
 .progress-bar-success {
-  background-color: #001d6e;
+  background-color: #3EBFC4 !important;
 }
 .progress-bar-info {
   background-color: #34d3eb;

@@ -640,7 +640,7 @@ textarea.form-control {
   padding: .3em .6em .3em;
 }
 .label-default {
-  background-color: #001d6e;
+  background-color: #3EBFC4 !important;
 }
 .label-primary {
   background-color: #5d9cec;
@@ -749,8 +749,8 @@ textarea.form-control {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-  background-color: #001d6e;
-  border-color: #001d6e;
+  background-color: #3EBFC4 !important;
+  border-color: #3EBFC4 !important;
 }
 .pager li > a,
 .pager li > span {
@@ -804,13 +804,13 @@ textarea.form-control {
   line-height: 36px !important;
 }
 .nav-pills li.active a {
-  background-color: #001d6e !important;
+  background-color: #3EBFC4 !important;
 }
 .nav-pills li.active a:hover {
-  background-color: #001d6e !important;
+  background-color: #3EBFC4 !important;
 }
 .nav-pills li.active a:focus {
-  background-color: #001d6e !important;
+  background-color: #3EBFC4 !important;
 }
 .nav.nav-tabs + .tab-content {
   background: #ffffff;

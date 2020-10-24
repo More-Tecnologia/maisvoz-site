@@ -95,7 +95,7 @@ end
                    { title: 'Weekly Excess Binary Bonus Chargeback', code: '800', active: false, company_moneyflow: :credit  },
                    { title: 'Career Limit Bonus Chargeback', code: '900', active: false, company_moneyflow: :credit  },
                    { title: 'Referral Bonus', code: '1000', active: false, company_moneyflow: :debit },
-                   { title: 'Yield Bonus', code: '1100', active: true, company_moneyflow: :debit },
+                   { title: 'Bônus Publicidade', code: '1100', active: true, company_moneyflow: :debit },
                    { title: 'Binary Bonus Chargeback by Disqualification', code: '1300', active: false, company_moneyflow: :credit },
                    { title: 'Residual Support Point Bonus', code: '1400', active: false, company_moneyflow: :debit },
                    { title: 'Residual Support Point Inactivity Bonus Chargeback', code: '3000', active: false, company_moneyflow: :credit},

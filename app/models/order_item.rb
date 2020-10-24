@@ -18,8 +18,9 @@
 #
 
 class OrderItem < ApplicationRecord
-
   include Hashid::Rails
+
+  QUANTITIES = [10, 35, 105, 255, 505, 1005, 2505, 5005]
 
   delegate :name, :adhesion?, to: :product
 
@@ -35,6 +36,8 @@ class OrderItem < ApplicationRecord
   scope :sim_card, -> { where(product: Product.sim_card) }
   scope :paid, -> { where.not('orders.paid_at': nil) }
   scope :cellphone_reloads, ->() { where(product: Product.cellphone_reloads) }
+
+  validates :quantity, inclusion: { in: QUANTITIES }
 
   def total
     total_cents / 100.0

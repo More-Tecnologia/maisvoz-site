@@ -161,7 +161,6 @@ class User < ApplicationRecord
   has_many :vouchers
   has_many :bonus_contracts
 
-  validates :username, format: { with: /\A[a-z0-9\_]+\z/ }
   validates :bank_account_type, presence: true, on: :withdrawal
   validates :bank_account, presence: true, on: :withdrawal
   validates :bank_agency, presence: true, on: :withdrawal

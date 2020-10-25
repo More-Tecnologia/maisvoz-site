@@ -20,7 +20,7 @@
 class OrderItem < ApplicationRecord
   include Hashid::Rails
 
-  QUANTITIES = [10, 35, 105, 255, 505, 1005, 2505, 5005]
+  QUANTITIES = [10, 35, 55, 105, 255, 505, 1005, 2505, 5005]
 
   delegate :name, :adhesion?, to: :product
 

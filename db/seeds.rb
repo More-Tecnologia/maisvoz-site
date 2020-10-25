@@ -27,9 +27,15 @@ persisted_careers = careers.map do |attributes|
 end
 
 deposit_cat = Category.find_or_create_by(name: 'Deposit')
-deposit_attributes =
-  { name: 'Deposit', price: 1, binary_score: 1, active: true, virtual: true, kind: :deposit,
-    category: deposit_cat, system_taxable: true, generate_pool_points: false }
+deposit_attributes = { name: 'Deposit',
+                       price: 1,
+                       binary_score: 1,
+                       active: true,
+                       virtual: true,
+                       kind: :deposit,
+                       category: deposit_cat,
+                       system_taxable: false,
+                       generate_pool_points: false }
 deposit_product = Product.create!(deposit_attributes)
 
 trails  = [{ name: 'Partner', product: deposit_product }]

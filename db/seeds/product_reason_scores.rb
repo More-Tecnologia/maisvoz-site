@@ -14,8 +14,8 @@ def create_product_scores_by_trail(product, reason, product_reason, scores, fix_
   end
 end
 
-direct_referral_bonus = [[000, 700]]
-TRAIL_QUANTITY = 1
+direct_referral_bonus = [[000, 1000]]
+TRAIL_QUANTITY = Trail.count
 fix_value = false
 ActiveRecord::Base.transaction do
   product_names = ['Deposit']
@@ -36,21 +36,16 @@ ActiveRecord::Base.transaction do
 end
 
 indirect_referral_bonus = [ [000, 000],
-                            [000, 500],
-                            [000, 300],
+                            [000, 400],
+                            [000, 400],
                             [000, 200],
-                            [000, 100],
-                            [000, 50],
-                            [000, 50],
-                            [000, 50],
-                            [000, 50],
-                            [000, 50],
-                            [000, 50],
-                            [000, 50],
-                            [000, 50],
-                            [000, 50],
-                            [000, 50] ]
-TRAIL_QUANTITY = 1
+                            [000, 200],
+                            [000, 10],
+                            [000, 10],
+                            [000, 10],
+                            [000, 10],
+                            [000, 10]]
+TRAIL_QUANTITY = Trail.count
 fix_value = false
 ActiveRecord::Base.transaction do
   product_names = ['Deposit']

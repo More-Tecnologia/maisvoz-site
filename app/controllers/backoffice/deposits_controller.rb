@@ -38,7 +38,10 @@ module Backoffice
     private
 
     def validate_deposit_value
-      return if current_deposit.total_value >= minimum_deposit_value
+      item_quantity = params[:order_item][:quantity].to_f if params[:order_item]
+      deposit_value = [item_quantity, current_deposit.total_value].max
+
+      return if deposit_value >= minimum_deposit_value
 
       flash[:alert] = t('defaults.errors.invalid_deposit_value')
       redirect_to new_backoffice_deposit_path

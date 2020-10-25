@@ -19,8 +19,9 @@
           <%= f.input_field :quantity,
                             collection: valid_deposit_options,
                             class: "form-control",
-                            prompt: "t('helpers.select.prompt')",
-                            style: 'min-width: 100%;' %>
+                            prompt: t('helpers.select.prompt'),
+                            style: 'min-width: 100%;',
+                            required: true %>
         </div>
         <div class="form-actions">
           <%= f.button :button,

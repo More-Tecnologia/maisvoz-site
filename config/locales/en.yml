@@ -536,7 +536,7 @@
       From now on you will be able to enjoy your new benefits achieved with your new title achieved.'
   shopping_mailer:
     order_paid:
-      body: 'You will receive <b>%{order_value}</b> in your OVERNIGHTBIT account.
+      body: 'You will receive <b>%{order_value}</b> in your PUBLIMONEY account.
 After three confirmations from the network the amount will be available for use.
 We will send a new e-mail as soon as the transaction is complete.'
       footer: 'Yours sincerely, <br>
@@ -1317,10 +1317,10 @@ We will send a new e-mail as soon as the transaction is complete.'
   watch_video: 'Watch Video'
   register_thanks: THANK YOU FOR SIGNING UP WITH ME
   jorney_together: I WILL BE AT YOUR DISPOSAL ON THIS JOURNEY
-  welcome_message_landing_page: WELCOME TO OVERNIGHTBIT
+  welcome_message_landing_page: WELCOME TO PUBLIMONEY
   sponsored_by: You are being referred by
   location: 'Location'
-  company_in_numbers: OVERNIGHTBIT IN NUMBERS
+  company_in_numbers: PUBLIMONEY IN NUMBERS
   custody_money: MILLIONS USD ON CUSTODY
   satisfied_customers: SATISFIED CUSTOMERS
   total_customers: TOTAL CUSTOMERS
@@ -1360,7 +1360,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   support_director_footer: Yours sincerely, <br>
                            John Spartan <br>
                            Support Director <br>
-                           OVERNIGHTBIT
+                           PUBLIMONEY
   financial_department_footer: 'Yours sincerely, <br>
                                 Financial Department <br>
                                 %{company_name}'
@@ -1369,6 +1369,6 @@ We will send a new e-mail as soon as the transaction is complete.'
   there_are_loan_contract_active: There are active loan contract for user
   direct_referral: Direct Referral
   indirect_referral: Indirect Referral
-  yield: Yield
+  yield: Publicity
   register_date: Register Date
   sponsor: Sponsor

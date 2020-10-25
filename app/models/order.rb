@@ -34,6 +34,8 @@ class Order < ApplicationRecord
 
   include Hashid::Rails
 
+  FEE = 5.freeze
+
   self.inheritance_column = nil
 
   serialize :dr_response, JSON

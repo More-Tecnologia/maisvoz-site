@@ -79,6 +79,7 @@ module Bonification
 
     def create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
+      order_item_quantity -= Order::FEE if order_item_quantity > 10
       bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
       transaction =
         sponsor.financial_transactions.create!(spreader: user,

@@ -54,7 +54,7 @@ class FinancialTransaction < ApplicationRecord
                           numericality: { greater_than: 0 }, on: :expense
 
   after_commit :debits_bonus_of_contract, on: :create,
-                                          if: :financial_reason_yield_bonus?,
+                                          if: :payment_bonus?,
                                           unless: :chargeback?
 
   def chargeback!

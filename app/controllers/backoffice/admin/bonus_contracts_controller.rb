@@ -5,7 +5,7 @@ module Backoffice
       def index
         @q = BonusContract.ransack(query_params)
         @bonus_contracts = @q.result
-                             .includes(:order)
+                             .includes(:order, :user)
                              .order(created_at: :desc)
                              .page(params[:page])
       end

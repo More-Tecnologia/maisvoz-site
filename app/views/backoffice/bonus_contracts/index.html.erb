@@ -18,7 +18,6 @@
                   <th><%= Score.human_attribute_name(:amount) %></th>
                   <th><%= Score.human_attribute_name(:contract_balance) %></th>
                   <th><%= Score.human_attribute_name(:in_date) %></th>
-                  <th><%= Score.human_attribute_name(:expire_at) %></th>
                   <th><%= Score.human_attribute_name(:status) %></th>
                   <th><%= Score.human_attribute_name(:processed_at) %></th>
                 </tr>
@@ -31,9 +30,8 @@
                       <td> <%= link_to(bonus_contract.hashid, backoffice_bonus_contract_path(bonus_contract)) %> </td>
                       <td> <%= order.try(:hashid) if order %> </td>
                       <td> <%= number_to_currency(bonus_contract.cent_amount) %> </td>
-                      <td> <%= number_to_currency(bonus_contract.remaining_balance.to_i) %></td>
+                      <td> <%= number_to_currency(bonus_contract.remaining_balance) %></td>
                       <td> <%= l(bonus_contract.try(:created_at), format: '%B %d, %Y' ) %></td>
-                      <td> <%= l(bonus_contract.expire_at, format: '%m/%d/%Y') if bonus_contract.expire_at %></td>
                       <td> <%= bonus_contract_status(bonus_contract) %></td>
                       <td> <%= l(bonus_contract.paid_at, format: '%m/%d/%Y') if bonus_contract.paid_at %></td>
                     </tr>

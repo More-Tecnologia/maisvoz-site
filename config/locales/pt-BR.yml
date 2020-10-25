@@ -545,9 +545,7 @@ pt-BR:
       Trabalharemos com afinco para lhe oferecer os melhores benefícios e serviços buscando sempre a excelência no atendimento e na qualidade.
       Aproveitamos a oportunidade para renovar os votos de elevada estima e consideração.'
       footer: 'Atenciosamente, <br>
-              Krew Montice <br>
-              Presidente <br>
-              %{company_name}'
+               %{company_name}'
     upgrade_career:
       subject: Avanço de Título
       body: 'É com imenso prazer que lhe parabenizamos pelo bom desempenho,

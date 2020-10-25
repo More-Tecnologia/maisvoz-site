@@ -1,5 +1,4 @@
 class ShortNewRegistrationForm < Form
-
   attribute :role
   attribute :sponsor_username
   attribute :sponsor
@@ -16,32 +15,27 @@ class ShortNewRegistrationForm < Form
   validates :username, :name, :email, :sponsor, presence: true
   validates :email, email: true
   validates :sponsor_username, presence: true
-  validates :username, format: {
-    with: /\A[a-z0-9\_]+\z/,
-    message: I18n.t('activemodel.errors.models.new_registration_form.attributes.username.format')
-  }
-  validate :sponsor_exists
-  validate :username_is_unique
-  validate :email_is_unique
   validates :password,  presence: true,
                         length: { minimum: 6 },
                         confirmation: true
+
+  validate :sponsor_exists
+  validate :username_is_unique
+  validate :email_is_unique
   validate :recaptcha
 
-  before_validation :normalize_username
+  before_validation :normalize_usernames
 
   def sponsor
-    @sponsor ||= User.where(
-      username: sponsor_username.try(:downcase), role: [:empreendedor, :consumidor]
-    ).first
+    @sponsor ||= User.where(username: sponsor_username,
+                            role: [:empreendedor, :consumidor]).first
   end
 
   private
 
-  def normalize_username
-    if username.present?
-      self.username = username.gsub(/\s+/, '').downcase
-    end
+  def normalize_usernames
+    @sponsor_username = I18n.transliterate(sponsor_username.to_s.gsub(/\s+/, '').downcase)
+    @username = I18n.transliterate(username.to_s.gsub(/\s+/, '').downcase)
   end
 
   def sponsor_exists
@@ -80,5 +74,4 @@ class ShortNewRegistrationForm < Form
     validate_recaptcha = RecaptchaValidatorService.call(token: g_recaptcha_response)
     errors.add(:g_recaptcha_response, :invalid) unless validate_recaptcha
   end
-
 end

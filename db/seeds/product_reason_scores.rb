@@ -40,11 +40,11 @@ indirect_referral_bonus = [ [000, 000],
                             [000, 400],
                             [000, 200],
                             [000, 200],
-                            [000, 10],
-                            [000, 10],
-                            [000, 10],
-                            [000, 10],
-                            [000, 10]]
+                            [000, 100],
+                            [000, 100],
+                            [000, 100],
+                            [000, 100],
+                            [000, 100]]
 TRAIL_QUANTITY = Trail.count
 fix_value = false
 ActiveRecord::Base.transaction do

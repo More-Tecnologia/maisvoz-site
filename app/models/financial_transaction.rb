@@ -11,6 +11,7 @@ class FinancialTransaction < ApplicationRecord
 
   has_one :chargeback, class_name: 'FinancialTransaction',
                        foreign_key: 'financial_transaction_id'
+  has_one :bonus_contract_item, dependent: :delete
 
   enum moneyflow: [:credit, :debit]
 
@@ -54,7 +55,7 @@ class FinancialTransaction < ApplicationRecord
                           numericality: { greater_than: 0 }, on: :expense
 
   after_commit :debits_bonus_of_contract, on: :create,
-                                          if: :financial_reason_yield_bonus?,
+                                          if: :payment_bonus?,
                                           unless: :chargeback?
 
   def chargeback!

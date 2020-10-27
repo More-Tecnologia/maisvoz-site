@@ -1,8 +1,7 @@
 class BonusContractItem < ApplicationRecord
-
   include Hashid::Rails
 
-  belongs_to :financial_transaction
+  belongs_to :financial_transaction, optional: true
   belongs_to :bonus_contract
 
   def cent_amount
@@ -12,5 +11,4 @@ class BonusContractItem < ApplicationRecord
   def cent_amount=(amount)
     self[:cent_amount] = (amount * 1e2).to_i
   end
-
 end

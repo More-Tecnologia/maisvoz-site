@@ -197,7 +197,7 @@ class User < ApplicationRecord
   before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
-  after_create :insert_into_binary_tree
+  #after_create :insert_into_binary_tree
   after_update :ensure_digital_wallet_existence, unless: :active_digital_wallet?
   after_create :ensure_email_existence
   after_update :ensure_email_existence, unless: :active_email?

@@ -27,6 +27,7 @@ namespace :users do
                           password: SecureRandom.hex }
 
           form_params[:username] = I18n.transliterate(form_params[:username].to_s.downcase)
+          form_params[:username] = form_params[:username] + '2' if User.exists?(username: form_params[:username])
 
           form = ShortNewRegistrationForm.new(form_params)
 

@@ -16,6 +16,7 @@ module Bonification
       BonusContract.includes(:user, :order)
                    .active
                    .yield_contracts
+                   .where(created_at: (1.week.ago.beginning_of_day..Date.yesterday.end_of_day))
     end
 
     def create_yield_bonus_for(contract)

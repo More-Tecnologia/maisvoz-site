@@ -13,6 +13,8 @@ module Backoffice
     end
 
     def new
+      flash[:alert] = 'Withdrawal temporaly unavailable'
+      redirect_to root_path
       @form = WithdrawalForm.new(user: current_user)
     end
 

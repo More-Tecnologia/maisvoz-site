@@ -1,5 +1,4 @@
 class BonusContract < ApplicationRecord
-
   include Hashid::Rails
 
   RENTABILITY_DAYS_COUNT = 365
@@ -54,4 +53,11 @@ class BonusContract < ApplicationRecord
     cent_amount.round == received_balance.round && remaining_balance.round == 0
   end
 
+  def normalize_balances_from_items!
+    received = bonus_contract_items.sum(&:cent_amount)
+    remaining = cent_amount - received
+
+    update!(received_balance: received,
+            remaining_balance: remaining)
+  end
 end

@@ -13,7 +13,7 @@ module Bonification
     private
 
     def yield_contracts
-      BonusContract.includes(:user)
+      BonusContract.includes(:user, :order)
                    .active
                    .yield_contracts
     end
@@ -24,8 +24,9 @@ module Bonification
           .create!(spreader: User.find_morenwm_customer_admin,
                    financial_reason: FinancialReason.yield_bonus,
                    moneyflow: :credit,
-                   cent_amount: contract.cent_amount * contract.rentability,
-                   bonus_contract: contract)
+                   cent_amount: (contract.cent_amount / 2.0)  * contract.rentability,
+                   bonus_contract: contract,
+                   order: contract.order)
     end
 
     def notify_admin_by_email(errors)

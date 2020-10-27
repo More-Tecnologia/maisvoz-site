@@ -1,12 +1,9 @@
-<!-- Page-Title -->
 <div class="row">
   <div class="col-sm-12">
     <h4 class="page-title m-b-30"><%= t('.title') %></h4>
   </div>
 </div>
-
 <%= render 'filters', q: @q %>
-
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
@@ -14,7 +11,6 @@
         <div class="col-lg-12">
           <div class="table-responsive">
             <table class="table table-striped table-bordered toggle-circle m-b-0">
-
               <thead>
                 <tr>
                   <th>#</th>
@@ -40,31 +36,38 @@
                     <td><%= number_to_currency withdraw.gross_amount_cents %></td>
                     <td><%= number_to_currency withdraw.net_amount_cents %></td>
                     <td><%= withdraw.pretty_status %></td>
-                    <td><%= l withdraw.created_at, format: '%B %d, %Y'  %></td>
+                    <td><%= l withdraw.created_at, format: '%B %d, %Y' %></td>
                     <td>
-                      <% if withdraw.pending? %>
-                        <%= link_to(
-                          backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:approved]),
-                          method: :put,
-                          data: { confirm: t('.approve_withdraw') },
-                          class: 'm-r-10'
-                          ) do %>
+                      <%= link_to backoffice_admin_withdrawals_mailer_send_email_confirmation_path(withdraw, locale: params[:locale]),
+                                  method: :put,
+                                  data: { confirm: t('.resend_withdrawal_confirmation_text') },
+                                          class: 'btn btn-info m-r-10',
+                                          toggle: 'tooltip',
+                                          placement: 'top',
+                                          title: t('.resend_withdrawal_confirmation') do %>
+                        <i class="fas fa-paper-plane"></i>
+                      <% end if withdraw.waiting? %>
+                      <% if withdraw.pending? || withdraw.approved_balance? || withdraw.waiting?  %>
+                        <%= link_to backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:approved]),
+                                    method: :put,
+                                    data: { confirm: t('.approve_withdraw'),
+                                            toggle: 'tooltip',
+                                            placement: 'top',
+                                            title: t(:approve) },
+                                    class: 'm-r-10' do %>
                           <i class="icon-like"></i>
                         <% end %>
-                        <%= link_to(
-                          backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:refused]),
-                          method: :put,
-                          data: { confirm: t('.refuse_withdraw') }
-                          ) do %>
+                        <%= link_to backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:refused]),
+                                    method: :put,
+                                    data: { confirm: t('.refuse_withdraw'),
+                                            toggle: 'tooltip',
+                                            placement: 'top',
+                                            title: t('.refuse') } do %>
                           <i class="icon-dislike"></i>
                         <% end %>
-                      <% elsif withdraw.waiting? %>
-                        <%= link_to t('.resend_withdrawal_confirmation'),
-                          backoffice_admin_withdrawals_mailer_send_email_confirmation_path(withdraw, locale: params[:locale]),
-                          method: :put,
-                          data: { confirm: t('.resend_withdrawal_confirmation_text') }, class: 'btn btn-info' %>
                       <% end %>
                     </td>
+
                   </tr>
                   <%= content_tag(:div, id: "modal-" + withdraw.hashid, class: 'modal fade', tabindex: '-1', role: 'dialog', aria: { labelledby: "modal-" + withdraw.hashid, hidden: true }) do %>
                     <div class="modal-dialog modal-sm">
@@ -92,7 +95,6 @@
             </table>
           </div>
           <%= paginate @withdrawals %>
-
         </div>
       </div>
     </div>

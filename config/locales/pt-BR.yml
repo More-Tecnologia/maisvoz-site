@@ -442,6 +442,7 @@ pt-BR:
           refuse_withdraw: Deseja realmente rejeitar este saque?
           resend_withdrawal_confirmation_text: Deseja realmente reenviar um email de confirmação para este cliente?
           resend_withdrawal_confirmation: 'Reenviar confirmação de saque'
+          refuse: Rejeitar
         filters:
           status: Status
           created_from: Criado a partir de

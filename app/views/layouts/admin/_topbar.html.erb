@@ -145,7 +145,7 @@
       <% if current_user.pj? %>
         <li>
           <%= link_to backoffice_financial_transactions_path do %>
-          <span class="text-success">
+          <span class="text-info">
             <%= number_to_currency(current_user.available_balance) %>
           </span>
           <% end %>

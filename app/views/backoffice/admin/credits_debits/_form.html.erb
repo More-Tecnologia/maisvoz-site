@@ -1,6 +1,6 @@
 <%= simple_form_for(form, url: url, as: :credit_debit_form, method: method, validate: true, html: { class: 'form-horizontal' }) do |f| %>
   <%= f.input :username, as: :hidden %>
-  <%= f.input :document_cpf, as: :hidden %>
+  <%= f.input :email, as: :hidden %>
   <div class="checkbox">
     <%= f.collection_radio_buttons(
       :credit,

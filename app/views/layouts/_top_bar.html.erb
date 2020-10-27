@@ -125,11 +125,11 @@
 
           <%= link_to backoffice_financial_transactions_path do %>
 
-            <%= content_tag(:span, number_to_currency(current_user.available_balance), class: 'text-success') %>
+            <%= content_tag(:span, number_to_currency(current_user.available_balance), class: 'm-r-10 font-16', style: 'color: #0000e6;') %>
 
           <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
 
-            <%= content_tag(:span, number_to_currency(current_user.blocked_balance), class: 'text-danger') %>
+            <%= content_tag(:span, number_to_currency(current_user.blocked_balance), class: 'font-16', style: 'color: #990000;') %>
 
           <% end %>
 

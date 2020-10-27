@@ -2,14 +2,14 @@ module CreditDebitWizard
   class FindUserForm < Form
 
     attribute :username, String
-    attribute :document_cpf, String
+    attribute :email, String
 
-    validates :username, :document_cpf, presence: true
+    validates :username, :email, presence: true
 
     validate :user_exists
 
     def user
-      @user ||= User.find_by(username: username, document_cpf: document_cpf)
+      @user ||= User.find_by(username: username, email: email)
     end
 
     private
@@ -53,7 +53,7 @@ module CreditDebitWizard
     end
 
     def cleasing_amount
-      @amount = amount.to_s.gsub('.','').gsub(',','.').to_f
+      @amount = amount.to_s.gsub('.','').gsub(',','.').to_f / 100.0
     end
   end
 end

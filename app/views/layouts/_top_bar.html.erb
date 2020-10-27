@@ -11,7 +11,7 @@
         <span><%= image_tag('logo-white.png', height: 60) %></span>
       <% end %>
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
+    <div id="navbar" class="collapse navbar-collapse" style="overflow: visible;">
 
       <ul class="nav navbar-nav navbar-center">
         <% if current_user.empreendedor? || current_user.consumidor? %>
@@ -163,7 +163,7 @@
           <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
             <span class="hidden-xs hidden-sm hidden-md"><%= current_user.username %>&nbsp;&nbsp;</span><%= current_user.decorate.avatar_image_tag %>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style='position: absolute;'>
             <li>
               <%= link_to edit_user_registration_path do %>
                 <i class="fa fa-user m-r-10 text-custom"></i>

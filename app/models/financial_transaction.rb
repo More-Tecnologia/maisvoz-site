@@ -11,7 +11,7 @@ class FinancialTransaction < ApplicationRecord
 
   has_one :chargeback, class_name: 'FinancialTransaction',
                        foreign_key: 'financial_transaction_id'
-  has_one :bonus_contract_item
+  has_one :bonus_contract_item, dependent: :destroy
 
   enum moneyflow: [:credit, :debit]
 

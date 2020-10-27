@@ -20,6 +20,7 @@ fix_value = false
 ActiveRecord::Base.transaction do
   product_names = ['Deposit']
   reason = FinancialReason.direct_commission_bonus
+  reason.product_reason_scores.destroy_all
   products = Product.where(name: product_names)
   products.each do |product|
     product_reason_score = ProductReasonScore.create!(product: product, financial_reason: reason)
@@ -50,6 +51,7 @@ fix_value = false
 ActiveRecord::Base.transaction do
   product_names = ['Deposit']
   reason = FinancialReason.indirect_referral_bonus
+  reason.product_reason_scores.destroy_all
   products = Product.where(name: product_names)
   products.each do |product|
     product_reason_score = ProductReasonScore.create!(product: product, financial_reason: reason)

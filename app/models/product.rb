@@ -60,6 +60,7 @@ class Product < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :trail, optional: true
   has_many :product_reason_scores
+  has_many :product_scores, through: :product_reason_scores
   has_many :career_trails
 
   monetize :price_cents

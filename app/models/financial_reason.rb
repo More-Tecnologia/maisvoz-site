@@ -1,5 +1,7 @@
 class FinancialReason < ApplicationRecord
   has_many :financial_transactions
+  has_many :product_reason_scores
+  has_many :product_scores, through: :product_reason_scores
 
   enum company_moneyflow: [:credit, :debit]
   enum morenwm_moneyflow: [:not_applicable, :credit, :debit], _prefix: true

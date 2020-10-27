@@ -1214,7 +1214,11 @@ pt-BR:
   refuse_withdraw: 'Se você não reconhece essa solicitação clique'
   confirm_withdraw: 'Se você fez e confirma essa solicitação clique'
   can_confirm_withdraw: 'Confirme ou cancele essa solicitação através do nosso site clicando'
-  waiting_withdrawal: 'Você acabou de fazer uma solicitação de saque no valor de %{value} na carteira digital: %{wallet}'
+  waiting_withdrawal: 'Your withdraw request is being processed and will be available up to one work day. <br>
+  Gross amount: %{value} <br>
+  Net amount: %{net_value} <br>
+  Request: %{hashid}'
+  waiting_withdrawal_request: 'Você acabou de fazer uma solicitação de saque no valor de %{value} na carteira digital: %{wallet}.'
   withdrawals_history: 'Seu histórico de saques'
   here: 'aqui'
   request_already_processed: 'Solicitação já processada'

@@ -12,8 +12,7 @@
       <% end %>
     </div>
     <div id="navbar" class="collapse navbar-collapse" style="overflow: visible;">
-
-      <ul class="nav navbar-nav navbar-center">
+      <ul class="nav navbar-nav navbar-center" >
         <% if current_user.empreendedor? || current_user.consumidor? %>
           <li class="dropdown top-menu-item-xs">
             <a href="#"
@@ -76,8 +75,6 @@
                 <i class="fas fa-user-shield"></i> <%= t('defaults.unilevel') %>
               <% end %>
             </li>
-
-
             <% end %>
             <% unless current_user.financeiro? %>
             <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>
@@ -118,25 +115,15 @@
         </li>
         <% end %>
       </ul>
-
       <ul class="nav navbar-nav navbar-right top-menu-item-xs">
         <li class='top-menu-item-xs'>
-
-
           <%= link_to backoffice_financial_transactions_path do %>
-
             <%= content_tag(:span, number_to_currency(current_user.available_balance), class: 'm-r-10 font-16', style: 'color: #0000e6;') %>
-
-          <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
-
-            <%= content_tag(:span, number_to_currency(current_user.blocked_balance), class: 'font-16', style: 'color: #990000;') %>
-
-          <% end %>
-
+            <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
+              <%= content_tag(:span, number_to_currency(current_user.blocked_balance), class: 'font-16', style: 'color: #990000;') %>
             <% end %>
-
+          <% end %>
         </li>
-
         <li class="hidden-xs hidden-sm">
           <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
             <i class="icon-size-fullscreen"></i>
@@ -163,7 +150,7 @@
           <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
             <span class="hidden-xs hidden-sm hidden-md"><%= current_user.username %>&nbsp;&nbsp;</span><%= current_user.decorate.avatar_image_tag %>
           </a>
-          <ul class="dropdown-menu" style='position: absolute;'>
+          <ul class="dropdown-menu" style="left: auto;">
             <li>
               <%= link_to edit_user_registration_path do %>
                 <i class="fa fa-user m-r-10 text-custom"></i>

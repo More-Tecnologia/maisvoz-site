@@ -15,6 +15,7 @@
                 <tr>
                   <th>#</th>
                   <th><%= User.human_attribute_name(:username) %></th>
+                  <th><%= User.human_attribute_name(:email) %></th>
                   <th><%= t('digital_wallet') %></th>
                   <th><%= t('id') %></th>
                   <th><%= sort_link(@q, :gross_amount_cents, Withdrawal.human_attribute_name(:gross_amount)) %></th>
@@ -29,6 +30,7 @@
                   <tr>
                     <th><%= withdraw.hashid %></th>
                     <th><%= link_to withdraw.user.username, backoffice_support_user_path(withdraw.user) %></th>
+                    <th><%= link_to withdraw.user.email, backoffice_support_user_path(withdraw.user) %></th>
                     <th>
                       <%= link_to withdraw.user.wallet_address, '#', data: { toggle: "modal", target: "#modal-#{withdraw.hashid}" } %>
                     </th>

@@ -18,5 +18,15 @@ module Backoffice
                                        .pluck(:total_cents)
                                        .max.to_f / 100.0
     end
+
+    def payment_status_tag(order)
+      css_class = 'badge-danger'
+      if order.completed?
+        css_class = 'badge-success'
+      elsif order.expired?
+        css_class = 'badge-warning'
+      end
+      content_tag(:span, t(order.status), class: ['badge', css_class])
+    end
   end
 end

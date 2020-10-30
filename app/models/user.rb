@@ -160,6 +160,8 @@ class User < ApplicationRecord
   has_many :bonus, class_name: 'Bonus'
   has_many :vouchers
   has_many :bonus_contracts
+  has_many :payer_orders, class_name: 'Order',
+                          foreign_key: 'payer_id'
 
   validates :bank_account_type, presence: true, on: :withdrawal
   validates :bank_account, presence: true, on: :withdrawal

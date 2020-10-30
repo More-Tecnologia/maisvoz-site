@@ -307,6 +307,8 @@
     system_taxable: System Taxable
     payment_type: Payment Type
     billed: Billed
+    order_code: Order Code
+    email_user: User email
   backoffice:
     orders:
       show:
@@ -393,6 +395,14 @@
         cart_updated: Cart updated
       destroy:
         cart_updated: Cart updated
+    order_payments:
+      index:
+        title: Order Payments
+        paid_orders: Paid Orders
+      create:
+        success: Order payment is being processed
+      new:
+        title: Order Payment
     admin:
       media_files:
         form:
@@ -795,6 +805,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       present: must be blank
       required: is required
       taken: is already being used
+      order_not_found: Order not found
       too_long:
         one: "it's too long (maximum: 1 character)"
         other: "it's too long (maximum: %{count} characters)"
@@ -820,6 +831,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       sim_card_transfer: Transfer CHIP(s)
       checkout: Generate Order
       send_expense: Send Expense
+      pay: Pay
     confirm:
       approve_order_without_bonification: Do you want to approve this order without a bonus?
     from: From

@@ -1,7 +1,7 @@
 class FinancialReason < ApplicationRecord
   has_many :financial_transactions
 
-  enum company_moneyflow: [:credit, :debit]
+  enum company_moneyflow: [:credit, :debit, :not_applicable]
   enum morenwm_moneyflow: [:not_applicable, :credit, :debit], _prefix: true
 
   belongs_to :financial_reason_type
@@ -178,4 +178,7 @@ class FinancialReason < ApplicationRecord
     @@deposit_less_than_fifty_payment ||= find_by(code: '4300')
   end
 
+  def self.thirty_party_order_payment
+    @@thirty_party_order_payment ||= find_by(code: '4400')
+  end
 end

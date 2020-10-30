@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     resources :bonus_contracts, only: [:index, :show]
     resources :financial_transactions, only: [:index]
     resource :bank_account, only: [:edit, :update]
+    resources :order_payments, except: %i[destroy]
 
     # Shopping
     resources :products, only: [:index, :show]

@@ -54,7 +54,7 @@ class BonusContract < ApplicationRecord
   end
 
   def normalize_balances_from_items!
-    received = bonus_contract_items.sum(&:received_balance)
+    received = bonus_contract_items.sum(&:cent_amount)
     remaining = cent_amount - received
 
     update!(received_balance: received,

@@ -316,6 +316,10 @@ pt-BR:
     system_taxable: Taxável pelo sistema
     payment_type: Tipo de Pagamento
     billed: Faturado
+    order_code: Código do Pedido
+    email_user: Email do Usuário
+    code: Código
+    payer: Pagador
   backoffice:
     orders:
       show:
@@ -396,6 +400,14 @@ pt-BR:
         cart_updated: Carrinho atualizado
       destroy:
         cart_updated: Carrinho atualizado
+    order_payments:
+      index:
+        title: Pagamento de Pedidos
+        paid_orders: Pedidos Pagos
+      create:
+        success: O pagamento do pedido está sendo processado
+      new:
+        title: Pagamento de Pedido
     admin:
       media_files:
         form:
@@ -824,6 +836,7 @@ pt-BR:
       present: deve ficar em branco
       required: é obrigatório(a)
       taken: já está em uso
+      order_not_found: Pedido não encontrado
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
@@ -849,6 +862,7 @@ pt-BR:
       sim_card_transfer: Transferir CHIP(s)
       checkout: Gerar Pedido
       send_expense: Lançar Despesa
+      pay: Pagar
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De

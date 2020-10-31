@@ -1,7 +1,7 @@
 class OrdersGrid < BaseGrid
 
   scope do
-    Order.includes(:user).order(id: :desc)
+    Order.includes(:user, :payer).order(id: :desc)
   end
 
   filter(:id, :integer)
@@ -14,7 +14,7 @@ class OrdersGrid < BaseGrid
   filter(:payment_type, :enum, select: Order.payment_types, header: I18n.t('attributes.payment_type'))
 
   column(:id)
-  column(:hashid)
+  column(:hashid, header: "Hashid #{I18n.t('attributes.code')}")
   column(:username, html: true) do |record|
     link_to_user(record.user)
   end
@@ -31,9 +31,16 @@ class OrdersGrid < BaseGrid
     ActiveSupport::NumberHelper.number_to_currency record.total
   end
   column(:payment_type)
+  column(:payer, header: I18n.t('attributes.payer')) do |record|
+    record.try(:payer).try(:username)
+  end
   column(:paid_by)
-  date_column(:created_at)
-  date_column(:paid_at, order: 'paid_at is not null desc, paid_at', order_desc: 'paid_at is not null desc, paid_at desc')
+  column(:created_at) do |record|
+    record.created_at ? I18n.l(record.created_at, format: :long) : ''
+  end
+  column(:paid_at, order: 'paid_at is not null desc, paid_at', order_desc: 'paid_at is not null desc, paid_at desc') do |record|
+    record.paid_at ? I18n.l(record.paid_at, format: :long) : ''
+  end
   date_column(:expire_at, html: false)
   column(:faturado, html: true, header: I18n.t(:billed)) do |order|
     if !order.billed?

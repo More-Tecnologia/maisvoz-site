@@ -35,8 +35,12 @@ class OrdersGrid < BaseGrid
     record.try(:payer).try(:username)
   end
   column(:paid_by)
-  date_column(:created_at)
-  date_column(:paid_at, order: 'paid_at is not null desc, paid_at', order_desc: 'paid_at is not null desc, paid_at desc')
+  column(:created_at) do |record|
+    record.created_at ? I18n.l(record.created_at, format: :long) : ''
+  end
+  column(:paid_at, order: 'paid_at is not null desc, paid_at', order_desc: 'paid_at is not null desc, paid_at desc') do |record|
+    record.paid_at ? I18n.l(record.paid_at, format: :long) : ''
+  end
   date_column(:expire_at, html: false)
   column(:faturado, html: true, header: I18n.t(:billed)) do |order|
     if !order.billed?

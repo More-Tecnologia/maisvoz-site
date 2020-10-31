@@ -4,6 +4,7 @@ module Backoffice
 
     before_action :validate_order, only: %i[new create]
     before_action :validate_user_password, only: :create
+    before_action :validate_payer_user_balance, only: :create
 
     def index
       @q = Order.ransack(params[:q])

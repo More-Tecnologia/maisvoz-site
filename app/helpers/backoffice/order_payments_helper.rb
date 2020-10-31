@@ -27,5 +27,12 @@ module Backoffice
       flash[:alert] = I18n.t('activemodel.errors.messages.wrong_password')
       redirect_back(fallback_location: root_path)
     end
+
+    def validate_payer_user_balance(payer_user, order)
+      return if payer_user.available_balance_cents >= order.total_cents
+
+      flash[:error] = t('errors.messages.not_enough_balance')
+      redirect_back(fallback_location: root_path)
+    end
   end
 end

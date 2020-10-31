@@ -318,6 +318,8 @@ pt-BR:
     billed: Faturado
     order_code: Código do Pedido
     email_user: Email do Usuário
+    code: Código
+    payer: Pagador
   backoffice:
     orders:
       show:

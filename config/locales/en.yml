@@ -309,6 +309,8 @@
     billed: Billed
     order_code: Order Code
     email_user: User email
+    code: code
+    payer: Payer
   backoffice:
     orders:
       show:

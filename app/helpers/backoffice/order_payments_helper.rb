@@ -28,8 +28,8 @@ module Backoffice
       redirect_back(fallback_location: root_path)
     end
 
-    def validate_payer_user_balance(payer_user, order)
-      return if payer_user.available_balance_cents >= order.total_cents
+    def validate_payer_user_balance
+      return if current_user.available_balance >= @order.total_cents / 100.0
 
       flash[:error] = t('errors.messages.not_enough_balance')
       redirect_back(fallback_location: root_path)

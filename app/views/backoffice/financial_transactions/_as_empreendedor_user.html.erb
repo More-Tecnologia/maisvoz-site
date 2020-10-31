@@ -13,6 +13,6 @@
     <td class='<%= 'text-danger' if transaction.debit? %>'><%= format_cent_amount_value(transaction) %></td>
     <td class='<%= 'text-danger' if cent_amount_sum < 0 %>'><%= number_to_currency(cent_amount_sum) %></td>
     <% cent_amount_sum -= transaction.debit? ? -transaction.cent_amount : transaction.cent_amount %>
-    <td><%= l transaction.created_at, format: '%B %d, %Y'  %></td>
+    <td><%= l(transaction.created_at, format: :long) %></td>
   </tr>
 <% end %>

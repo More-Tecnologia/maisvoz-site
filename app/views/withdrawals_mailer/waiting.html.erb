@@ -2,8 +2,8 @@
 
 <br>
 
-<p><%= t('waiting_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), hashid: @withdrawal.hashid, net_value: number_to_currency(@withdrawal.net_amount_cents)).html_safe %></p>
-
+<p><%= t('waiting_withdrawal_request', value: number_to_currency(@withdrawal.gross_amount_cents),
+                                       wallet: @withdrawal.hashid).html_safe %></p>
 <br>
 
 <p>

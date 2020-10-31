@@ -1,6 +1,5 @@
 module Payment
     class BlockCheckoutService < ApplicationService
-
       def call
         payment_transaction = nil
         ActiveRecord::Base.transaction do
@@ -62,10 +61,10 @@ module Payment
 
       def notify_payment_block
         uri = URI(ENV['PAYMENT_BLOCK_CHECKOUT_URL'])
-        params = { amount: calculate_amount }.to_json
+        params = "amount=#{calculate_amount}"
         headers = { Authorization: ENV['PAYMENT_BLOCK_AUTHORIZATION_KEY'] }
+
         Net::HTTP.post(uri, params, headers)
       end
-
     end
   end

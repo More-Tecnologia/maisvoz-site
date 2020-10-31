@@ -449,6 +449,7 @@
           refuse_withdraw: Do you really want to reject this withdrawal?
           resend_withdrawal_confirmation_text: Do you really want to resend an email confirmation to this customer?
           resend_withdrawal_confirmation: 'Resend withdrawal confirmation'
+          refuse: Refuse
         filters:
           status: Status
           created_from: Created from
@@ -1193,6 +1194,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   refuse_withdraw: 'If you do not recognize this request click'
   confirm_withdraw: 'If you did this request click'
   can_confirm_withdraw: 'Confirm or cancel your request through our website'
+  waiting_withdrawal_request: 'You have just made a withdrawal request for %{value} in the digital wallet: %{wallet}.'
   waiting_withdrawal: 'Your withdraw request is being processed and will be available up to one work day. <br>
   Gross amount: %{value} <br>
   Net amount: %{net_value} <br>

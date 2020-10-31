@@ -22,7 +22,7 @@ module Backoffice
       PaymentCompensationWorker.perform_async(@order.id)
 
       flash[:notice] = t('.success')
-      redirect_to backoffice_order_payments_path
+      redirect_to backoffice_financial_transactions_path
     end
   end
 end

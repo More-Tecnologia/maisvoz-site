@@ -2,7 +2,7 @@ module Backoffice
   module OrderPaymentsHelper
     def debit_order_value_from_current_user(user, order)
       ActiveRecord::Base.transaction do
-        order.update!(payer: user)
+        order.update!(payer: user,  payment_type: :balance)
         user.financial_transactions
             .create!(financial_reason: FinancialReason.thirty_party_order_payment,
                      cent_amount: order.total_cents / 100.0,

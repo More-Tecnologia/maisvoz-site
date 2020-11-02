@@ -26,7 +26,7 @@ module Financial
       @status = args[:status]
       @withdrawal = args[:withdrawal]
       @user = @withdrawal.user
-      @withdrawal_fee = ENV['WITHDRAWAL_FEE'].to_f
+      @withdrawal_fee = @withdrawal.gross_amount_cents - @withdrawal.net_amount_cents
       @locale = locale
     end
 
@@ -47,8 +47,7 @@ module Financial
     end
 
     def debit_withdrawal_gross_amount_from_user
-      user.financial_transactions.create!(spreader: User.find_morenwm_customer_user,
-                                          financial_reason: FinancialReason.withdrawal,
+      user.financial_transactions.create!(financial_reason: FinancialReason.withdrawal,
                                           cent_amount: withdrawal.gross_amount_cents,
                                           moneyflow: :debit) if withdrawal.gross_amount_cents > 0
       new_withdrawal_order_amount = user.withdrawal_order_amount - withdrawal.gross_amount_cents

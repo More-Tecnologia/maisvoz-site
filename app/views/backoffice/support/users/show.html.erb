@@ -34,7 +34,7 @@
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:sponsor) %>:</strong></td>
-                    <td><%= user.sponsor_username %></td>
+                    <td><%= link_to user.sponsor_username, backoffice_support_user_path(user.sponsor) %></td>
                   </tr>
                   <tr>
                     <td><strong><%= User.human_attribute_name(:active) %>:</strong></td>

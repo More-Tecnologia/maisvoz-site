@@ -299,7 +299,7 @@ class User < ApplicationRecord
   end
 
   def current_career_trail
-    career_trail_users.try(:last).try(:career_trail)
+    career_trail_users.includes(:career_trail).try(:sort).try(:last).try(:career_trail)
   end
 
   def current_trail

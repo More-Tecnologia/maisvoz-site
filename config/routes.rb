@@ -106,6 +106,7 @@ Rails.application.routes.draw do
     resources :payment_transactions, only: [:show]
     resource :payment_block_checkout, only: [:new]
     resource :payment_block_notification, only: [:create]
+    resources :coinbase_charge, only: [:new]
     resources :orders, only: [:index, :show] do
       post :generate_boleto
     end

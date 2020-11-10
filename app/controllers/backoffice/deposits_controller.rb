@@ -25,12 +25,9 @@ module Backoffice
     end
 
     def checkout
-      raise Exception unless current_deposit.persisted?
-
-      @payment_transaction = Payment::BlockCheckoutService.call(order: current_deposit)
-
+      @payment_transaction = Payment::Coinbase::ChargesService.call(order: current_deposit)
       render 'backoffice/payment_transactions/show'
-    rescue Exception => error
+    rescue StandardError => error
       flash[:error] = error.message
       redirect_to backoffice_cart_path
     end

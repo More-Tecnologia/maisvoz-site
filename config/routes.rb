@@ -138,6 +138,8 @@ Rails.application.routes.draw do
       resources :sim_card_reports, only: [:index]
       resources :sim_card_transfers, only: :index
     end
+
+    resources :banners, only: :index
   end
 
   namespace :api do

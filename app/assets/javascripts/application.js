@@ -19,6 +19,9 @@
 //= require twitter-bootstrap-wizard/jquery.bootstrap.wizard
 //= require jquery-mask-plugin/dist/jquery.mask
 //= require jquery-slimscroll/jquery.slimscroll
+//= require owl.carousel.min
+//= require theme
+//= require wow
 //= require print-this/printThis
 //= require notifyjs
 //= require raphael
@@ -50,3 +53,4 @@
 //= require copy-button
 //= require cellphone-reloads/new
 //= require regressive-timer
+//= require banners/index

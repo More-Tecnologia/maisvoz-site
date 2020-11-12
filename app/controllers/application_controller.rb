@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def after_sign_in_path_for(resource)
-    return backoffice_banners_path if !current_user_seen_banners_today? and current_user.empreendedor?
+    return backoffice_banners_path if !current_user_seen_banners_today?
 
     request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_dashboard_index_path
   end

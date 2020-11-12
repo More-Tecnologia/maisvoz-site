@@ -23,6 +23,10 @@
  *= require 'components/components'
  *= require 'overrides/overrides'
  *= require 'theme/theme'
+ *= require 'banners/index'
+ *= require 'owl.carousel.min'
+ *= require 'owl.theme.default.min'
+ *= require 'animate.min'
  *= require_self
  */
 

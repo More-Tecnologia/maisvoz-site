@@ -808,6 +808,8 @@ pt-BR:
     pay_with_voucher: Pagar com Voucher
     expenses: Lançamento de Despesas
     unauthenticate_master_password: Senha master inválida
+    congratulations: Parabéns!
+    daily_task_successfull: Sua tarefa diária foi concluída com sucesso.
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

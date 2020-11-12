@@ -780,6 +780,8 @@ We will send a new e-mail as soon as the transaction is complete.'
     score_expired: Expired
     pay_with_voucher: Pay with Voucher
     unauthenticate_master_password: Unauthenticated master password
+    congratulations: Congratulations!
+    daily_task_successfull: Your daily task completed successfully.
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:

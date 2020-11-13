@@ -42,6 +42,9 @@ class FinancialTransaction < ApplicationRecord
   scope :morenwm_moneyflow_credit, -> { where(financial_reason: FinancialReason.morenwm_moneyflow_credit) }
   scope :morenwm_moneyflow_debit, -> { where(financial_reason: FinancialReason.morenwm_moneyflow_debit) }
   scope :yield_bonus, -> { where(financial_reason: FinancialReason.yield_bonus) }
+  scope :order_payments, -> { where(financial_reason: [FinancialReason.order_payment, FinancialReason.order_sponsored]) }
+  scope :created_at, ->(begin_datetime, end_datetime) { where(created_at: begin_datetime..end_datetime) }
+  scope :withdrawals, -> { where(financial_reason: FinancialReason.withdrawal) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }

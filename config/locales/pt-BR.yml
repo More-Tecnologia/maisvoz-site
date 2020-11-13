@@ -320,6 +320,14 @@ pt-BR:
     email_user: Email do Usuário
     code: Código
     payer: Pagador
+    order_payment_amount_cents: Total de Pedidos Pagos
+    pool_amount_cents: Total da Pscicina
+    withdrawal_amount_cents: Total de Saques
+    pool_balance_amount_cents: Saldo da Piscina
+    profit_amount_cents: Lucro Total
+    profit_per_partner_amount_cents: Lucro por Parceiro
+    begin_datetime: Data de Início
+    end_datetime: Data Fim
   backoffice:
     orders:
       show:
@@ -810,6 +818,7 @@ pt-BR:
     unauthenticate_master_password: Senha master inválida
     congratulations: Parabéns!
     daily_task_successfull: Sua tarefa diária foi concluída com sucesso.
+    financial_reports: Relatório Financeiro
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

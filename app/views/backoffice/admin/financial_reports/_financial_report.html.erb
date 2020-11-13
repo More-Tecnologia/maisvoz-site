@@ -1,0 +1,11 @@
+<tr>
+  <td><%= financial_report.id %></td>
+  <td><%= number_to_currency(financial_report.order_payment_amount_cents / 100.0) %></td>
+  <td><%= number_to_currency(financial_report.pool_amount_cents / 100.0) %></td>
+  <td><%= number_to_currency(financial_report.withdrawal_amount_cents / 100.0) %></td>
+  <td><%= number_to_currency(financial_report.pool_balance_amount_cents / 100.0) %></td>
+  <td><%= number_to_currency(financial_report.profit_amount_cents / 100.0) %></td>
+  <td><%= number_to_currency(financial_report.profit_per_partner_amount_cents / 100.0) %></td>
+  <td><%= l(financial_report.begin_datetime, format: :long) %></td>
+  <td><%= l(financial_report.end_datetime, format: :long) %></td>
+</tr>

@@ -311,6 +311,14 @@
     email_user: User email
     code: code
     payer: Payer
+    order_payment_amount_cents: Paid Orders Total
+    pool_amount_cents: Pool Total
+    withdrawal_amount_cents: Withdrawals Total
+    pool_balance_amount_cents: Pool Balance
+    profit_amount_cents: Total Profit
+    profit_per_partner_amount_cents: Partner Profit
+    begin_datetime: Begin Date
+    end_datetime: End Date
   backoffice:
     orders:
       show:
@@ -782,6 +790,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     unauthenticate_master_password: Unauthenticated master password
     congratulations: Congratulations!
     daily_task_successfull: Your daily task completed successfully.
+    financial_reports: Financial Reports
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:

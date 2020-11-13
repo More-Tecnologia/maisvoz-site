@@ -714,7 +714,8 @@ pt-BR:
       no_funds: Você não possui saldo suficiente
       not_unique: Não é único
       invalid_deposit_value: O valor do depósito deve ser maior ou igual ao anterior
-      withdrawal_pending: Já há um pedido de saque pendente
+      withdrawal_pending: Já há um pedido de saque pendente ou aguardando
+      withdrawal_invalid_time: Os saques sao bloqueados após as 20h das sextas feiras e antes das 20 de domingo, horário de Brasília-BR. 
     financial: Financeiro
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques

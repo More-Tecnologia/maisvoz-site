@@ -4,7 +4,8 @@ module Backoffice
     before_action :validate_password, only: :create
     before_action :ensure_withdrawal, only: %i[edit update]
     before_action :ensure_waiting_status, only: %i[edit update]
-    before_action :validate_none_withdrawal_pending, only: %i[new create]
+    before_action :validate_current_time, only: %i[new create]
+    before_action :validate_none_withdrawal_pending_or_waiting, only: %i[new create]
 
     def index
       @withdrawals = current_user.withdrawals
@@ -66,8 +67,20 @@ module Backoffice
       redirect_to [:new, :backoffice, :withdrawal]
     end
 
-    def validate_none_withdrawal_pending
-      return if current_user.withdrawals.pending.none?
+    def validate_current_time
+      current_time = DateTime.current.in_time_zone('Brasilia')
+      friday_after_20_hours = current_time.friday? && current_time.hour >= 20
+      saturday = current_time.saturday?
+      sunday_before_20_hours = current_time.sunday? && current_time.hour <= 20
+
+      if friday_after_20_hours || saturday || sunday_before_20_hours
+        flash[:alert] = t('defaults.errors.withdrawal_invalid_time')
+        redirect_back(fallback_location: root_path)
+      end
+    end
+
+    def validate_none_withdrawal_pending_or_waiting
+      return if current_user.withdrawals.where(status: [:pending , :waiting]).none?
 
       flash[:alert] = t('defaults.errors.withdrawal_pending')
       redirect_to backoffice_withdrawals_path

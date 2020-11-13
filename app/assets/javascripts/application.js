@@ -21,7 +21,6 @@
 //= require jquery-slimscroll/jquery.slimscroll
 //= require owl.carousel.min
 //= require theme
-//= require wow
 //= require print-this/printThis
 //= require notifyjs
 //= require raphael

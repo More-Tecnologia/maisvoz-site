@@ -15,8 +15,8 @@ class FinancialReport < ApplicationRecord
   after_initialize :assign_pool_and_profit_amount_cents
 
   def self.current_week
-    FinancialReport.new(order_payment_amount_cents: current_week_order_payment_amount,
-                        withdrawal_amount_cents: current_week_withdrawal_amount)
+    FinancialReport.new(order_payment_amount_cents: current_week_order_payment_amount * 100,
+                        withdrawal_amount_cents: current_week_withdrawal_amount * 100)
   end
 
   private
@@ -36,9 +36,8 @@ class FinancialReport < ApplicationRecord
   end
 
   def self.current_week_withdrawal_amount
-    FinancialTransaction.to_customer_admin
-                         .withdrawals
-                         .created_at(Date.current.beginning_of_week, Date.current.end_of_week)
-                         .sum(:cent_amount) / 1e8
+    FinancialTransaction.withdrawals
+                        .created_at(Date.current.beginning_of_week, Date.current.end_of_week)
+                        .sum(:cent_amount) / 1e8
   end
 end

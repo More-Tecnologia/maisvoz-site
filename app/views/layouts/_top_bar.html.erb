@@ -75,6 +75,11 @@
                 <i class="fas fa-user-shield"></i> <%= t('defaults.unilevel') %>
               <% end %>
             </li>
+            <li>
+              <%= link_to(backoffice_admin_financial_reports_path, class: 'admin-link') do %>
+                <i class="fas fa-user-shield"></i> <%= t('defaults.financial_reports') %>
+              <% end %>
+            </li>
             <% end %>
             <% unless current_user.financeiro? %>
             <li><%= link_to t('defaults.new_withdraw'), new_backoffice_withdrawal_path %></li>

@@ -7,5 +7,7 @@ module Backoffice::Admin
                              .page(params[:page])
 
     end
+
+    def update; end
   end
 end

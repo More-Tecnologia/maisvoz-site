@@ -132,8 +132,11 @@
   </div>
 </div>
 
-<div id="locale" value="<%= params[:locale] %>">
+<div id="locale" value="<%= params[:locale] %>"></div>
 
+<div id="current-week-financial-report">
+  <%= render partial: 'backoffice/admin/financial_reports/show',
+             locals: { financial_report: FinancialReport.current_week } %>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>

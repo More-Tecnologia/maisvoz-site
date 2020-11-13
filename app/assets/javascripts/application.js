@@ -23,6 +23,7 @@
 //= require theme
 //= require print-this/printThis
 //= require notifyjs
+//= require morris
 //= require raphael
 //= require product-form-kind
 //= require withdraw-simulator

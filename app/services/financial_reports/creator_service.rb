@@ -28,8 +28,7 @@ module FinancialReports
     end
 
     def withdrawal_amount
-      @withdrawal_amount ||= FinancialTransaction.to_customer_admin
-                                                 .withdrawals
+      @withdrawal_amount ||= FinancialTransaction.withdrawals
                                                  .created_at(@begin_datetime, @end_datetime)
                                                  .sum(:cent_amount) / 1e8
     end

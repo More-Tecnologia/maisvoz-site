@@ -1,0 +1,4 @@
+var financial_report =
+  "<%= j render(partial: 'backoffice/admin/financial_reports/show',
+                locals: { financial_report: FinancialReport.current_week }) %>"
+$('#current-week-financial-report').html(financial_report)

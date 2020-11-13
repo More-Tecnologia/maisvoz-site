@@ -499,6 +499,9 @@ pt-BR:
       expenses:
         create:
           success: Despesa lançada com sucesso
+      dashboard:
+        index:
+          current_week_report: Relatório Financeiro da Semana
     support:
       users:
         index:

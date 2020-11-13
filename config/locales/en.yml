@@ -496,6 +496,9 @@
       pool_trandings:
         create:
           success: Pool Cash updated.
+      dashboard:
+        index:
+          current_week_report: Current Week Financial Report
     support:
       users:
         index:

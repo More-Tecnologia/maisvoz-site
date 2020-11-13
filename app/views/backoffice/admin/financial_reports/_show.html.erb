@@ -1,0 +1,81 @@
+<div class="row m-t-30">
+  <div class="col-lg-11">
+    <h2> <%= t('backoffice.admin.dashboard.index.current_week_report') %> </h2>
+  </div>
+  <div class="col-lg-1">
+    <%= link_to backoffice_admin_financial_report_path(id: 1),
+                class: 'btn btn-white pull-right',
+                remote: true,
+                method: :patch do %>
+        <i class="fa fa-refresh"></i>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4 col-sm-2">
+    <div class="widget-panel widget-style-2 bg-white">
+      <i class="md md-attach-money text-primary"></i>
+      <h2 class="m-0 text-dark counter font-600">
+        <%= number_to_currency(financial_report.order_payment_amount_cents / 100.0) %>
+      </h2>
+      <div class="text-muted m-t-5">
+        <%= FinancialReport.human_attribute_name(:order_payment_amount_cents) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-2">
+    <div class="widget-panel widget-style-2 bg-white">
+      <i class="md md-attach-money text-primary"></i>
+      <h2 class="m-0 text-dark counter font-600">
+        <%= number_to_currency(financial_report.pool_amount_cents / 100.0) %>
+      </h2>
+      <div class="text-muted m-t-5">
+        <%= FinancialReport.human_attribute_name(:pool_amount_cents) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-2">
+    <div class="widget-panel widget-style-2 bg-white">
+      <i class="md md-attach-money text-primary"></i>
+      <h2 class="m-0 text-dark counter font-600">
+        <%= number_to_currency(financial_report.withdrawal_amount_cents / 100.0) %>
+      </h2>
+      <div class="text-muted m-t-5">
+        <%= FinancialReport.human_attribute_name(:withdrawal_amount_cents) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-2">
+    <div class="widget-panel widget-style-2 bg-white">
+      <i class="md md-attach-money text-primary"></i>
+      <h2 class="m-0 text-dark counter font-600">
+        <%= number_to_currency(financial_report.pool_balance_amount_cents / 100.0) %>
+      </h2>
+      <div class="text-muted m-t-5">
+        <%= FinancialReport.human_attribute_name(:pool_balance_amount_cents) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-2">
+    <div class="widget-panel widget-style-2 bg-white">
+      <i class="md md-attach-money text-primary"></i>
+      <h2 class="m-0 text-dark counter font-600">
+        <%= number_to_currency(financial_report.profit_amount_cents / 100.0) %>
+      </h2>
+      <div class="text-muted m-t-5">
+        <%= FinancialReport.human_attribute_name(:profit_amount_cents) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-2">
+    <div class="widget-panel widget-style-2 bg-white">
+      <i class="md md-attach-money text-primary"></i>
+      <h2 class="m-0 text-dark counter font-600">
+        <%= number_to_currency(financial_report.profit_per_partner_amount_cents / 100.0) %>
+      </h2>
+      <div class="text-muted m-t-5">
+        <%= FinancialReport.human_attribute_name(:profit_per_partner_amount_cents) %>
+      </div>
+    </div>
+  </div>
+</div>

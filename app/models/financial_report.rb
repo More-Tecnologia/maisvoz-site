@@ -1,6 +1,6 @@
 class FinancialReport < ApplicationRecord
-  POOL_PERCENTAGE = 75
-  PROFIT_PERCENTAGE = 25
+  POOL_PERCENTAGE = 60
+  PROFIT_PERCENTAGE = 40
   PARTNER_COUNT = 5.0
 
   validates_presence_of :order_payment_amount_cents, :pool_amount_cents,
@@ -22,9 +22,9 @@ class FinancialReport < ApplicationRecord
   private
 
   def assign_pool_and_profit_amount_cents
-    self.pool_amount_cents = order_payment_amount_cents * POOL_PERCENTAGE / 100.0
-    self.pool_balance_amount_cents = pool_amount_cents - withdrawal_amount_cents
-    self.profit_amount_cents = order_payment_amount_cents * PROFIT_PERCENTAGE / 100.0
+    self.pool_amount_cents = order_payment_amount_cents - withdrawal_amount_cents
+    self.pool_balance_amount_cents = pool_amount_cents * POOL_PERCENTAGE / 100.0
+    self.profit_amount_cents = pool_amount_cents * PROFIT_PERCENTAGE / 100.0
     self.profit_per_partner_amount_cents = profit_amount_cents / PARTNER_COUNT
   end
 

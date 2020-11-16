@@ -173,6 +173,8 @@ class User < ApplicationRecord
   validates :document_address_photo, presence: true, on: :document_verification
   validates :document_scontract_photo, presence: true, on: :document_verification, if: :pj?
   validates :wallet_address, presence: true, on: :withdrawal_with_digital_coin
+  validates :withdrawal_order_amount, numericality: { greater_than_or_equal_to: 0 },
+                                      allow_blank: true
 
   validate :support_point_requisits, on: :update, if: :support_point?
 

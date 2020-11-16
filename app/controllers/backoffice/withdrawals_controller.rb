@@ -37,7 +37,7 @@ module Backoffice
                                                        withdrawal: @withdrawal }, params[:locale])
       flash[:success] = t('.success')
       redirect_to backoffice_withdrawals_path
-    rescue Exception => error
+    rescue Standard::Error => error
       flash[:error] = error
       render :edit
     end

@@ -22,7 +22,7 @@ module Backoffice
           flash[:error] = t('.rejected')
         end
         redirect_to backoffice_admin_withdrawals_path
-      rescue Exception => error
+      rescue StandardError => error
         flash[:error] = error
         redirect_to backoffice_admin_withdrawals_path
       end

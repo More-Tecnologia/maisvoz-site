@@ -38,7 +38,7 @@
                     <td><%= number_to_currency withdraw.gross_amount_cents %></td>
                     <td><%= number_to_currency withdraw.net_amount_cents %></td>
                     <td><%= withdraw.pretty_status %></td>
-                    <td><%= l withdraw.created_at, format: '%B %d, %Y' %></td>
+                    <td><%= l withdraw.created_at, format: :long %></td>
                     <td>
                       <%= link_to backoffice_admin_withdrawals_mailer_send_email_confirmation_path(withdraw, locale: params[:locale]),
                                   method: :put,

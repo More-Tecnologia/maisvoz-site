@@ -319,6 +319,7 @@
     profit_per_partner_amount_cents: Partner Profit
     begin_datetime: Begin Date
     end_datetime: End Date
+    transfer_at: Date
   backoffice:
     orders:
       show:
@@ -413,6 +414,14 @@
         success: Order payment is being processed
       new:
         title: Order Payment
+    balance_transferences:
+      index:
+        title: Balance Transferences
+        transferences: Transferences
+      create:
+        success: Balance transfered successfull
+      new:
+        title: Balance Transference
     admin:
       media_files:
         form:
@@ -696,6 +705,8 @@ We will send a new e-mail as soon as the transaction is complete.'
       invalid_deposit_value: Deposit value must be more than or equal to last
       withdrawal_pending: There is already a pending or waiting withdrawal request
       withdrawal_invalid_time: Withdrawals are blocked after 8pm on Fridays and before 8pm on Sunday, Brasilia-BR time.
+      user_not_found: User not found
+      user_not_found_or_inactive: User not found or inactive
     financial: Financial
     financial_entries: Financial History
     manage_withdrawals: Manage Withdrawals
@@ -795,6 +806,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     congratulations: Congratulations!
     daily_task_successfull: Your daily task completed successfully.
     financial_reports: Financial Reports
+    balance_transferences: Balance Transferences
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -851,6 +863,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       checkout: Generate Order
       send_expense: Send Expense
       pay: Pay
+      transfer: Transfer
     confirm:
       approve_order_without_bonification: Do you want to approve this order without a bonus?
     from: From

@@ -216,8 +216,11 @@ class User < ApplicationRecord
   end
 
   def blocked_balance
-    blocked_balance_cents + withdrawal_order_amount + pool_tranding_blocked_balance +
-    blocked_matching_bonus_balance
+    blocked_balance_cents +
+    withdrawal_order_amount +
+    pool_tranding_blocked_balance +
+    blocked_matching_bonus_balance +
+    transference_balance
   end
 
   def available_balance_cents

@@ -328,6 +328,7 @@ pt-BR:
     profit_per_partner_amount_cents: Lucro por Parceiro
     begin_datetime: Data de Início
     end_datetime: Data Fim
+    transfer_at: Data
   backoffice:
     orders:
       show:
@@ -414,6 +415,14 @@ pt-BR:
         paid_orders: Pedidos Pagos
       create:
         success: O pagamento do pedido está sendo processado
+      new:
+        title: Pagamento de Pedido
+    balance_transferences:
+      index:
+        title: Transferencia de Saldo
+        transferences: Transferencias de Saldo
+      create:
+        success: Saldo transferido com sucesso
       new:
         title: Pagamento de Pedido
     admin:
@@ -716,6 +725,8 @@ pt-BR:
       invalid_deposit_value: O valor do depósito deve ser maior ou igual ao anterior
       withdrawal_pending: Já há um pedido de saque pendente ou aguardando
       withdrawal_invalid_time: Os saques sao bloqueados após as 20h das sextas feiras e antes das 20 de domingo, horário de Brasília-BR.
+      user_not_found: Usuario nao encontrado
+      user_not_found_or_inactive: Usuario nao encontrado ou inativo
     financial: Financeiro
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques
@@ -823,6 +834,7 @@ pt-BR:
     congratulations: Parabéns!
     daily_task_successfull: Sua tarefa diária foi concluída com sucesso.
     financial_reports: Relatório Financeiro
+    balance_transferences: Transferencias de Saldo
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -879,6 +891,7 @@ pt-BR:
       checkout: Gerar Pedido
       send_expense: Lançar Despesa
       pay: Pagar
+      transfer: Transferir
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De

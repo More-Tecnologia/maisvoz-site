@@ -21,7 +21,7 @@ class FinancialReason < ApplicationRecord
   scope :unilevel, -> { FinancialReason.where(code: ['100', '200', '300', '400']) }
   scope :active, -> { where(active: true) }
   scope :to_morenwm, -> { where(code: ['200', '300', '2800', '2900']) }
-  scope :to_customer_admin, -> { where.not(code: ['300', '4200']) }
+  scope :to_customer_admin, -> { where.not(code: ['300', '4200', '4500']) }
   scope :to_empreendedor, -> { where.not(code: ['200', '1200', '400', '4100', '4300']) }
 
   def is_bonus?
@@ -182,5 +182,9 @@ class FinancialReason < ApplicationRecord
 
   def self.thirty_party_order_payment
     @@thirty_party_order_payment ||= find_by(code: '4400')
+  end
+
+  def self.balance_transference
+    @@balance_transference ||= find_by(code: '4500')
   end
 end

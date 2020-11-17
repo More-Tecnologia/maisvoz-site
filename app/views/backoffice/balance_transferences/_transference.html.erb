@@ -1,0 +1,9 @@
+<tr>
+  <td><%= transaction.hashid %></td>
+  <td><%= transaction.user.username %></td>
+  <td><%= transaction.user.email %></td>
+  <td class='<%= 'text-danger' if transaction.debit? %>'>
+    <%= format_cent_amount_value(transaction) %>
+  </td>
+  <td><%= l(transaction.created_at, format: :long) %></td>
+</tr>

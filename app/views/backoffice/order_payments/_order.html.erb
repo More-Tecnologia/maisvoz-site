@@ -1,7 +1,7 @@
 <tr>
   <td><%= order.hashid %></td>
   <td><%= order.try(:user).try(:username) %></td>
-  <td><%= order.try(:user).try(:username) %></td>
+  <td><%= order.try(:user).try(:email) %></td>
   <td><%= number_to_currency(order.total, unit: ENV['CURRENT_CURRENCY']) %></td>
   <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
   <td><%= "#{ENV['CURRENT_DIGITAL_CURRENCY']} #{order.try(:payment_transaction).try(:amount)}"%></td>

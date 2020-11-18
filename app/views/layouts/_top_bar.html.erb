@@ -125,10 +125,9 @@
       <ul class="nav navbar-nav navbar-right top-menu-item-xs">
         <li class='top-menu-item-xs'>
           <%= link_to backoffice_financial_transactions_path do %>
-            <%= content_tag(:span, number_to_currency(current_user.available_balance), class: 'm-r-10 font-16', style: 'color: #0000e6;') %>
-            <% if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
-              <%= content_tag(:span, number_to_currency(current_user.blocked_balance), class: 'font-16', style: 'color: #990000;') %>
-            <% end %>
+            <%= available_balane(current_user) %>
+            <%= blocked_balance(current_user) if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
+            <%= order_payment_balance(current_user) %>
           <% end %>
         </li>
         <li class="hidden-xs hidden-sm">
@@ -198,3 +197,8 @@
   </div>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script type="text/javascript">
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

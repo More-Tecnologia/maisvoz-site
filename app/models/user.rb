@@ -212,15 +212,14 @@ class User < ApplicationRecord
 
   def available_balance
     amount = available_cent_amount
-    amount > 0 ? amount - blocked_balance : amount
+    amount > 0 ? amount - blocked_balance - transference_balance : amount
   end
 
   def blocked_balance
     blocked_balance_cents +
     withdrawal_order_amount +
     pool_tranding_blocked_balance +
-    blocked_matching_bonus_balance +
-    transference_balance
+    blocked_matching_bonus_balance
   end
 
   def available_balance_cents

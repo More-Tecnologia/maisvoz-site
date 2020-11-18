@@ -29,10 +29,10 @@ class FinancialReport < ApplicationRecord
   end
 
   def self.current_week_order_payment_amount
-    FinancialTransaction.to_customer_admin
-                        .order_payments
-                        .created_at(Date.current.beginning_of_week, Date.current.end_of_week)
-                        .sum(:cent_amount) / 1e8
+    Order.paid
+         .where(payment_type: %i[admin admin_nb btc])
+         .created_at(Date.current.beginning_of_week, Date.current.end_of_week)
+         .sum(:total_cents) / 100.0
   end
 
   def self.current_week_withdrawal_amount

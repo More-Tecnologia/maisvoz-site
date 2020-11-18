@@ -21,10 +21,10 @@ module FinancialReports
     end
 
     def order_payment_amount
-      @order_payments ||= FinancialTransaction.to_customer_admin
-                                              .order_payments
-                                              .created_at(@begin_datetime, @end_datetime)
-                                              .sum(:cent_amount) / 1e8
+      @order_payments ||= Order.paid
+                               .where(payment_type: %i[admin admin_nb btc])
+                               .created_at(@begin_datetime, @end_datetime)
+                               .sum(:total_cents) / 100.0
     end
 
     def withdrawal_amount

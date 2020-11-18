@@ -1,5 +1,4 @@
 module UsersHelper
-
   def render_blocked_user_attribute_link(user)
     html_class = user.blocked ? 'fa fa-thumbs-up text-danger' : 'fa fa-thumbs-down'
     link_to( backoffice_support_blocked_user_path(user, blocked: !user.blocked),
@@ -32,4 +31,27 @@ module UsersHelper
     name.reverse.sub(/(?<=.).{4}?(?=.)/, '****').reverse
   end
 
+  def available_balane(user)
+    content_tag(:span, number_to_currency(user.available_balance),
+                       class: 'm-r-10 font-16',
+                       style: 'color: #0000e6;',
+                       data: {toogle: :tooltip, placement: :top},
+                       title: 'available balance' )
+  end
+
+  def blocked_balance(user)
+    content_tag(:span, number_to_currency(user.blocked_balance),
+                       class: 'm-r-10 font-16',
+                       style: 'color: #990000;',
+                       data: { toogle: :tooltip, placement: :top },
+                       title: 'blocked balance')
+  end
+
+  def order_payment_balance(user)
+    content_tag(:span, number_to_currency(current_user.transference_balance),
+                       class: 'font-16',
+                       style: 'color: #CC7000;',
+                       data: { toogle: :tooltip, placement: :top },
+                       title: 'order payment balance')
+  end
 end

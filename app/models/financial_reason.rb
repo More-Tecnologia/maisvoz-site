@@ -187,4 +187,8 @@ class FinancialReason < ApplicationRecord
   def self.balance_transference
     @@balance_transference ||= find_by(code: '4500')
   end
+
+  def self.balance_transference_fee
+    @@balance_transference_fee ||= find_by(code: '4600')
+  end
 end

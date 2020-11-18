@@ -865,6 +865,7 @@ pt-BR:
       taken: já está em uso
       order_not_found: Pedido não encontrado
       user_insufficient_balance: Saldo do usuário insuficiente
+      transfer_value_minimum: "Valor minimo de tranferencia: %{value}."
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'

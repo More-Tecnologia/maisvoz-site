@@ -8,10 +8,14 @@ class FinancialTransaction < ApplicationRecord
   belongs_to :financial_transaction, optional: true
   belongs_to :withdrawal, optional: true
   belongs_to :bonus_contract, optional: true
+  belongs_to :source_financial_transaction, optional: true,
+                                            class_name: 'FinancialTransaction'
 
   has_one :chargeback, class_name: 'FinancialTransaction',
                        foreign_key: 'financial_transaction_id'
   has_one :bonus_contract_item, dependent: :delete
+  has_many :children_financial_transactions, class_name: 'FinancialTransaction',
+                                             foreign_key: 'source_financial_transaction_id'
 
   enum moneyflow: [:credit, :debit]
 

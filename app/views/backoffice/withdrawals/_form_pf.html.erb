@@ -13,6 +13,8 @@
             <span class="input-group-addon"> <%= number_to_currency(1, format: '%u') %> </span>
             <%= f.input_field :amount, class: "form-control autonumber",
                                        value: @initial_amount,
+                                       min: ENV['WITHDRAWAL_MINIMUM_VALUE'],
+                                       max: ENV['WITHDRAWAL_MAXIMUM_VALUE'],
                                        data: { input: true,
                                                autonumeric: { aSep: '.', aDec: ',' } } %>
           </div>

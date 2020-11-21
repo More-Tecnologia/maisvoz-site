@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def flash_class(level)
     case level
     when 'notice' then 'info'
@@ -35,5 +34,13 @@ module ApplicationHelper
 
   def link_to_contract
     link_to t('defaults.contract_link_html'), ENV.fetch('CONTRACT_URL'), target: "_blank"
+  end
+
+  def batch_action_checkbox_parent
+    check_box_tag :select, '', false, class: 'parent'
+  end
+
+  def batch_action_checkbox_child(withdrawal)
+    check_box_tag :select, withdrawal.id, false, class: 'child'
   end
 end

@@ -54,3 +54,4 @@
 //= require cellphone-reloads/new
 //= require regressive-timer
 //= require banners/index
+//= require batch-checkbox

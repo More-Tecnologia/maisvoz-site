@@ -13,6 +13,7 @@
             <table class="table table-striped table-bordered toggle-circle m-b-0">
               <thead>
                 <tr>
+                  <th><%= batch_action_checkbox_parent %></th>
                   <th>#</th>
                   <th><%= User.human_attribute_name(:username) %></th>
                   <th><%= User.human_attribute_name(:email) %></th>
@@ -26,8 +27,29 @@
                 </tr>
               </thead>
               <tbody>
+                <div class="dropdown m-5">
+                  <button class="btn dropdown-toggle batch-actions disabled"
+                          type="button"
+                          id="dropdownMenu1"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="true">
+                    <%= t('helpers.batch_actions') %>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li>
+                      <%= link_to t('helpers.submit.approve'),
+                                  new_backoffice_admin_withdrawal_approval_path,
+                                  class: 'batch-action',
+                                  id: 'approve-withdrawals',
+                                  data: { url: new_backoffice_admin_withdrawal_approval_path } %>
+                    </li>
+                  </ul>
+                </div>
                 <% @withdrawals.each do |withdraw| %>
                   <tr>
+                    <th> <%= batch_action_checkbox_child(withdraw) if withdraw.pending? %></th>
                     <th><%= withdraw.hashid %></th>
                     <th><%= link_to withdraw.user.username, backoffice_support_user_path(withdraw.user) %></th>
                     <th><%= link_to withdraw.user.email, backoffice_support_user_path(withdraw.user) %></th>
@@ -69,7 +91,6 @@
                         <% end %>
                       <% end %>
                     </td>
-
                   </tr>
                   <%= content_tag(:div, id: "modal-" + withdraw.hashid, class: 'modal fade', tabindex: '-1', role: 'dialog', aria: { labelledby: "modal-" + withdraw.hashid, hidden: true }) do %>
                     <div class="modal-dialog modal-sm">

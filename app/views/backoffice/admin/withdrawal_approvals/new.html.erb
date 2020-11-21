@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('.title') %></h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered toggle-circle m-b-30">
+            <thead>
+              <tr>
+                <th><%= t('attributes.username') %></th>
+                <th><%= t('attributes.email') %></th>
+                <th><%= t('attributes.wallet') %></th>
+                <th><%= t('attributes.net_amount') %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @withdrawals.each do |withdrawal| %>
+                <tr>
+                  <td><%= withdrawal.user.try(:username) %></td>
+                  <td><%= withdrawal.user.try(:email) %></td>
+                  <td><%= withdrawal.user.try(:wallet_address) %></td>
+                  <td><%= number_to_currency withdrawal.net_amount_cents %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="font-18 text-warning">
+            <strong><%= t('attributes.total') %>:</strong>
+            <% amount = @withdrawals.sum(&:net_amount_cents) %>
+            <%= number_to_currency(amount) %>&nbsp;
+            (<%= number_to_currency(current_digital_currency(amount),
+                                    unit: ENV['CURRENT_DIGITAL_CURRENCY'],
+                                    precision: 8) %>)
+          </p>
+        </div>
+        <div class="col-lg-12">
+          <%= form_tag backoffice_admin_withdrawal_approvals_path do %>
+          <%= hidden_field_tag :ids, params[:ids] %>
+            <div class="form-group font-16">
+              <%= label_tag :access_key %>
+              <%= password_field_tag :guid, '', required: true, class: 'form-control' %>
+            </div>
+            <div class="form-group font-16">
+              <%= label_tag :main_password %>
+              <%= password_field_tag :main_password, '', required: true, class: 'form-control' %>
+            </div>
+            <div class="form-group font-16">
+              <%= label_tag :second_password %>
+              <%= password_field_tag :second_password, '', class: 'form-control' %>
+            </div>
+            <br>
+            <div class="form-group font-16">
+              <%= label_tag t('attributes.master_password') %>
+              <%= password_field_tag :master_password, '', required: true, class: 'form-control' %>
+            </div>
+            <div class="form-group font-16">
+              <%= submit_tag t('helpers.submit.approve') %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

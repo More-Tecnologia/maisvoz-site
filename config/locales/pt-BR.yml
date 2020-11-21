@@ -511,6 +511,11 @@ pt-BR:
       dashboard:
         index:
           current_week_report: Relatório Financeiro da Semana
+      withdrawal_approvals:
+        new:
+          title: Aprovação de Saques
+        create:
+          success: Saques aprovados com sucesso.
     support:
       users:
         index:
@@ -893,6 +898,7 @@ pt-BR:
       send_expense: Lançar Despesa
       pay: Pagar
       transfer: Transferir
+      approve: Aprovar
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De
@@ -905,6 +911,7 @@ pt-BR:
     no_data: sem registros
     use_voucher: Utilizar Voucher
     in: em
+    batch_actions: Ações em lote
   left: Esquerda
   left_strategy: Sempre para Esquerda
   number:

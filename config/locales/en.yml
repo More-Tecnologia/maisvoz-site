@@ -508,6 +508,11 @@
       dashboard:
         index:
           current_week_report: Current Week Financial Report
+      withdrawal_approvals:
+        new:
+          title: Withdrawals Approval
+        create:
+          success: Withdrawals approved successfull
     support:
       users:
         index:
@@ -865,6 +870,8 @@ We will send a new e-mail as soon as the transaction is complete.'
       send_expense: Send Expense
       pay: Pay
       transfer: Transfer
+      batch_actions: Batch actions
+      approve: Approve
     confirm:
       approve_order_without_bonification: Do you want to approve this order without a bonus?
     from: From

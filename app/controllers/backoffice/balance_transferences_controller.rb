@@ -1,5 +1,6 @@
 module Backoffice
   class BalanceTransferencesController < BackofficeController
+    before_action :disable_balance_transference, only: %i[create]
     before_action :validate_destination_user, only: %i[new create]
     before_action :validate_current_user_password, only: :create
 
@@ -41,6 +42,11 @@ module Backoffice
       return if current_user.valid_password?(params[:password])
 
       flash[:alert] = I18n.t('errors.messages.invalid_password')
+      redirect_back(fallback_location: root_path)
+    end
+
+    def disable_balance_transference
+      flash[:error] = 'Transaction unauthorized'
       redirect_back(fallback_location: root_path)
     end
   end

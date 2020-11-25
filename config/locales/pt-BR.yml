@@ -872,6 +872,7 @@ pt-BR:
       order_not_found: Pedido não encontrado
       user_insufficient_balance: Saldo do usuário insuficiente
       transfer_value_minimum: "Valor minimo de tranferencia: %{value}."
+      invalid_order_quantity: O pagamento com saldo só pode ser feito para o primeiro e segundo pedido do usuário.
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'

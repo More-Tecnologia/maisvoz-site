@@ -18,11 +18,18 @@ module Backoffice
 
     private
 
-    def validate_order
+    def validate_order_status
       @order = Order.find_by_hashid(params[:order_id])
       return if @order && @order.user.email == params[:email] && @order.pending_payment?
 
       flash[:alert] = t('errors.messages.order_not_found')
+      redirect_back(fallback_location: root_path)
+    end
+
+    def validates_user_orders_quantity
+      return if @order.user.orders.completed.count <= 2
+
+      flash[:alert] = t('errors.messages.invalid_order_quantity')
       redirect_back(fallback_location: root_path)
     end
 

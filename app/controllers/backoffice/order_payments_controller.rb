@@ -2,7 +2,8 @@ module Backoffice
   class OrderPaymentsController < BackofficeController
     include Backoffice::OrderPaymentsHelper
 
-    before_action :validate_order, only: %i[new create]
+    before_action :validate_order_status, only: %i[new create]
+    before_action :validates_user_orders_quantity, only: %i[new create]
     before_action :validate_user_password, only: :create
     before_action :validate_payer_user_balance, only: :create
 

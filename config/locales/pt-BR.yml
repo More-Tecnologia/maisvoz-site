@@ -840,6 +840,7 @@ pt-BR:
     daily_task_successfull: Sua tarefa diária foi concluída com sucesso.
     financial_reports: Relatório Financeiro
     balance_transferences: Transferencias de Saldo
+    financial_transactions_csv: Transações financeiras - %{datetime}
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

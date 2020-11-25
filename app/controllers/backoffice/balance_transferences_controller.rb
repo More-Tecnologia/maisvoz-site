@@ -1,6 +1,5 @@
 module Backoffice
   class BalanceTransferencesController < BackofficeController
-    before_action :disable_balance_transference, only: %i[create]
     before_action :validate_destination_user, only: %i[new create]
     before_action :validate_current_user_password, only: :create
 

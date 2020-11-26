@@ -12,8 +12,7 @@ module Financial
 
     private
 
-    TRANSFER_VALUE_MINIMUM = 5
-    TRANSFER_FEE = 0.04
+    TRANSFER_FEE = 0.05
 
     def initialize(args)
       @destination_user = args[:destination_user]
@@ -25,8 +24,18 @@ module Financial
     end
 
     def validate_tranfer_value!
+      transfer_value_minimum = greater_order_value_from_the_source_user
+      return if @transfer_value >= transfer_value_minimum
+
       raise I18n.t('errors.messages.transfer_value_minimum',
-                    value: TRANSFER_VALUE_MINIMUM) if @transfer_value < TRANSFER_VALUE_MINIMUM
+                   value: transfer_value_minimum)
+    end
+
+    def greater_order_value_from_the_source_user
+      order_values = @source_user.orders
+                                 .completed
+                                 .pluck(:total_cents)
+      order_values.max.to_f / 100.0
     end
 
     def validate_source_user_balance!

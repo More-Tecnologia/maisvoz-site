@@ -26,8 +26,15 @@ module Backoffice
       redirect_back(fallback_location: root_path)
     end
 
+    def validate_order_user_is_direct_referral_from_current_user
+      return if @order.user.sponsor == current_user
+
+      flash[:alert] = t('errors.messages.user_not_direct_referral')
+      redirect_back(fallback_location: root_path)
+    end
+
     def validates_user_orders_quantity
-      return if @order.user.orders.completed.count <= 2
+      return if @order.user.orders.completed.none?
 
       flash[:alert] = t('errors.messages.invalid_order_quantity')
       redirect_back(fallback_location: root_path)

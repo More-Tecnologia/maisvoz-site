@@ -844,7 +844,8 @@ We will send a new e-mail as soon as the transaction is complete.'
       order_not_found: Order not found
       user_insufficient_balance: User balance insufficient
       transfer_value_minimum: "Transfer value minimum: %{value}."
-      invalid_order_quantity: Payment with balance can only be made for the first and second  user's order.
+      invalid_order_quantity: Payment with balance can only be made for the first user's order.
+      user_not_direct_referral: Order user is not your direct referral
       too_long:
         one: "it's too long (maximum: 1 character)"
         other: "it's too long (maximum: %{count} characters)"

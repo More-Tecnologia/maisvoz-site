@@ -813,6 +813,8 @@ We will send a new e-mail as soon as the transaction is complete.'
     financial_reports: Financial Reports
     balance_transferences: Balance Transferences
     financial_transactions_csv: Financial Transactions - %{datetime}
+    withdrawal_fee_greater: to withdrawal greater than %{amount}
+    withdrawal_fee_less: to withdrawal less than or equal to %{amount}
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:

@@ -1,6 +1,5 @@
 module Backoffice
   module BonusContractsHelper
-
     def bonus_contract_status(contract)
       return content_tag(:span, t('defaults.contract_active'), class: 'label label-success') if contract.active?
       content_tag(:span, t('defaults.contract_expired'), class: 'label label-danger')
@@ -20,5 +19,9 @@ module Backoffice
       ScoreType.pool_point.scores.where(order: order).first.try(:cent_amount).try(:to_i)
     end
 
+    def active_package_sum_threshold
+      @active_package_sum_threshold ||=
+        current_user.bonus_contracts.active.sum(&:cent_amount) * WithdrawalForm::WITHDRAWAL_THRESHOLD_PERCENT
+    end
   end
 end

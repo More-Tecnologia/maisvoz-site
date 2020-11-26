@@ -841,6 +841,9 @@ pt-BR:
     financial_reports: Relatório Financeiro
     balance_transferences: Transferencias de Saldo
     financial_transactions_csv: Transações financeiras - %{datetime}
+    withdrawal_fee_greater: para saque maior que %{amount}
+    withdrawal_fee_less: para saque menor ou igual a %{amount}
+    withdrawal_fee_orders_less_fifty_percent:
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

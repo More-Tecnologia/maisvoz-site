@@ -1,5 +1,8 @@
 class WithdrawalForm < Form
 
+  WITHDRAWAL_FEE_ABOVE = 4
+  WITHDRAWAL_THRESHOLD_PERCENT = 0.5
+
   attribute :amount
   attribute :user, User
   attribute :fiscal_document_link
@@ -33,7 +36,13 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_fee
+    return WITHDRAWAL_FEE_ABOVE if amount > withdrawal_threshold
+
     ENV['WITHDRAWAL_FEE'].to_d
+  end
+
+  def withdrawal_threshold
+    user.bonus_contracts.active.sum(&:cent_amount) * WITHDRAWAL_THRESHOLD_PERCENT
   end
 
   def irpf
@@ -53,7 +62,7 @@ class WithdrawalForm < Form
   end
 
   def fee_cents
-    amount_cents * (ENV['WITHDRAWAL_FEE'].to_f / 100)
+    amount_cents * (withdrawal_fee.to_f / 100)
   end
 
   private

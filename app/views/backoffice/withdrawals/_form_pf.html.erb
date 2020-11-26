@@ -2,9 +2,11 @@
                            method: :post,
                            html: { class: 'form-horizontal' }) do |f| %>
   <div data-withdraw-simulator="true" data-fee="<%= ENV['WITHDRAWAL_FEE'].to_f %>"
+                                      data-fee-above="<%= WithdrawalForm::WITHDRAWAL_FEE_ABOVE %>"
                                       data-irpf="<%= @form.irpf %>"
                                       data-inss="<%= @form.inss %>"
-                                      data-registration-type="<%= @form.user.registration_type %>">
+                                      data-registration-type="<%= @form.user.registration_type %>"
+                                      data-withdrawal-threshold="<%= @form.withdrawal_threshold %>">
 
     <div>
       <div class="col-md-4">

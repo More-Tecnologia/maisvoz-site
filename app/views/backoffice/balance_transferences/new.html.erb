@@ -27,7 +27,7 @@
                                  class: 'form-control',
                                  required: true,
                                  placeholder: '',
-                                 min: Financial::BalanceTransferenceService::TRANSFER_VALUE_MINIMUM.to_s,
+                                 min: (greater_order_value_from_the_source_user + 1).to_s,
                                  max: [current_user.available_balance.to_i, 0].max.to_s %>
           </div>
         </div>

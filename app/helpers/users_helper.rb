@@ -54,4 +54,13 @@ module UsersHelper
                        data: { toogle: :tooltip, placement: :top },
                        title: 'order payment balance')
   end
+
+  def greater_order_value_from_the_source_user
+    contract_values = current_user.bonus_contracts
+                                  .active
+                                  .yield_contracts
+                                  .pluck(:cent_amount)
+
+    contract_values.max.to_f / 100.0
+  end
 end

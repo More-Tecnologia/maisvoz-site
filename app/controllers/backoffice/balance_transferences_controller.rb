@@ -20,10 +20,10 @@ module Backoffice
                                                  transfer_value: params[:cent_amount],
                                                  destination_user: @destination_user)
       flash[:notice] = t('.success')
-      redirect_to backoffice_balance_transferences_path
+        redirect_to backoffice_balance_transferences_path
     rescue StandardError => error
-      flash[:error] = errors.message
-      redirect_back(fallback_location: root_path)
+        flash[:error] = error.message
+        redirect_back(fallback_location: root_path)
     end
 
     private

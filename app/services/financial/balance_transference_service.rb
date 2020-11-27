@@ -25,17 +25,19 @@ module Financial
 
     def validate_tranfer_value!
       transfer_value_minimum = greater_order_value_from_the_source_user
-      return if @transfer_value >= transfer_value_minimum
+      return if @transfer_value > transfer_value_minimum
 
       raise I18n.t('errors.messages.transfer_value_minimum',
                    value: transfer_value_minimum)
     end
 
     def greater_order_value_from_the_source_user
-      order_values = @source_user.orders
-                                 .completed
-                                 .pluck(:total_cents)
-      order_values.max.to_f / 100.0
+      contract_values = @source_user.bonus_contracts
+                                    .active
+                                    .yield_contracts
+                                    .pluck(:cent_amount)
+
+      contract_values.max.to_f / 100.0
     end
 
     def validate_source_user_balance!

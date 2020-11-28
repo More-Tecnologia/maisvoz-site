@@ -43,4 +43,9 @@ module ApplicationHelper
   def batch_action_checkbox_child(withdrawal)
     check_box_tag :select, withdrawal.id, false, class: 'child'
   end
+
+  def boolean_select_options
+    [[t('true'), true],
+     [t('false'), false]]
+  end
 end

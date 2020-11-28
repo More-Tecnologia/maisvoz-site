@@ -1248,8 +1248,8 @@ pt-BR:
   tracker: FutureSAT
   credit: Credito
   debit: Débito
-  "true": Sim
-  "false": Não
+  "true": 'Sim'
+  "false": 'Não'
   there_are_adhesion_product: Carrinho já tem um produto do tipo adesão
   cant_add_produt_to_cart: Não foi possível add produto ao carrinho
   product_is_not_active: Produto Inativo

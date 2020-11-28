@@ -22,6 +22,12 @@
                 <%= f.label t(:username) %>
                 <%= f.search_field :user_username_cont, class: 'form-control' %>
               </div>
+              <div class="col-md-2">
+                <%= f.label t(:active) %>
+                <%= select_tag :active, options_for_select(boolean_select_options),
+                                        class: 'form-control',
+                                        include_blank: true %>
+              </div>
             </div>
           </div>
           <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>

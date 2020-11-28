@@ -1,19 +1,22 @@
 module Backoffice
   module Admin
     class BonusContractsController < BackofficeController
-
       def index
-        @q = BonusContract.ransack(query_params)
-        @bonus_contracts = @q.result
-                             .includes(:order, :user)
-                             .order(created_at: :desc)
-                             .page(params[:page])
+        respond_to do |format|
+          format.html { @bonus_contracts = bonus_contracts.page(params[:page]) }
+          format.csv {  }
+        end
       end
 
-      def query_params
-        query = params[:q] ? params[:q].to_hash.symbolize_keys : {}
+      def bonus_contracts
+        @q = BonusContract.ransack(params[:q])
+        query = @q.result
+                  .includes(:order, :user)
+                  .order(created_at: :desc)
+        query.merge!(BonusContract.active) if params['active'] == 'true'
+        query.merge!(BonusContract.inactive) if params['active'] == 'false'
+        query
       end
-
     end
   end
 end

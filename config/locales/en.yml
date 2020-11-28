@@ -1214,8 +1214,8 @@ We will send a new e-mail as soon as the transaction is complete.'
   tracker: FutureSAT
   credit: Credit
   debit: Debit
-  "true": Yes
-  "false": No
+  "true": 'Yes'
+  "false": 'No'
   there_are_adhesion_product: Cart already has a membership type product
   cant_add_produt_to_cart: Unable to add product to cart
   product_is_not_active: Inactive Product

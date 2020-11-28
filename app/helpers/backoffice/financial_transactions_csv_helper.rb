@@ -29,13 +29,13 @@ module Backoffice
        transaction.user.try(:username),
        transaction.try(:order).try(:hashid),
        transaction.credit? ? transaction.cent_amount : -transaction.cent_amount,
-       l(transaction.created_at, format: '%B %d, %Y' )]
+       l(transaction.created_at, format: :long)]
     end
 
     def send_transactions_to_csv_file(text)
       send_data text, type: 'text/csv',
                       disposition: 'inline',
-                      filename: t('defaults.financial_transactions_csv', datetime: Date.current.to_s)
+                      filename: t('defaults.bonus_contracts_csv', datetime: Date.current.to_s)
     end
   end
 end

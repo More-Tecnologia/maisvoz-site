@@ -1,10 +1,12 @@
 module Backoffice
   module Admin
     class BonusContractsController < BackofficeController
+      include Backoffice::BonusContractsCsvHelper
+
       def index
         respond_to do |format|
           format.html { @bonus_contracts = bonus_contracts.page(params[:page]) }
-          format.csv {  }
+          format.csv { render_bonus_contracts_as_csv(bonus_contracts) }
         end
       end
 

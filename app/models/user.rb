@@ -153,6 +153,7 @@ class User < ApplicationRecord
                                   optional: true
   belongs_to :career, optional: true
   belongs_to :trail, optional: true
+  belongs_to :type
 
   has_many :credits
   has_many :debits
@@ -198,12 +199,9 @@ class User < ApplicationRecord
   scope :with_blocked_pool_trading, -> { where('pool_tranding_blocked_balance > 0') }
   scope :with_children_pool_point_balance, -> { where('children_pool_trading_balance > 0') }
 
-  before_save :ensure_ascendant_sponsors_ids
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
-  #after_create :insert_into_binary_tree
   after_update :ensure_digital_wallet_existence, unless: :active_digital_wallet?
-  after_create :ensure_email_existence
   after_update :ensure_email_existence, unless: :active_email?
 
   def balance
@@ -319,7 +317,8 @@ class User < ApplicationRecord
   end
 
   def activate!(active_until = 1.month.from_now)
-    update!(active: true, active_until: active_until )
+    update!(active: true, active_until: active_until)
+    update_sponsor_type
     update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
   end
 
@@ -416,6 +415,7 @@ class User < ApplicationRecord
 
   def inactivate!
     update_attribute(:active, false)
+    update_sponsor_type
     update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
   end
 
@@ -475,6 +475,10 @@ class User < ApplicationRecord
   def update_sponsor_binary_qualified
     sponsor_node = sponsor.try(:binary_node)
     sponsor.update_attributes!(binary_qualified: sponsor_node.qualified?) if sponsor_node
+  end
+
+  def update_sponsor_type
+    Types::QualifierService.call(user: user.sponsor)
   end
 
   def support_point?

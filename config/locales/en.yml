@@ -320,6 +320,7 @@
     begin_datetime: Begin Date
     end_datetime: End Date
     transfer_at: Date
+    user_type: Account type
   backoffice:
     orders:
       show:

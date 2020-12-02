@@ -329,6 +329,7 @@ pt-BR:
     begin_datetime: Data de Início
     end_datetime: Data Fim
     transfer_at: Data
+    user_type: Tipo de conta
   backoffice:
     orders:
       show:

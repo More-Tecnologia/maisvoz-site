@@ -34,7 +34,7 @@ class Order < ApplicationRecord
 
   include Hashid::Rails
 
-  FEE = 5.freeze
+  FEE = 0.freeze
 
   self.inheritance_column = nil
 

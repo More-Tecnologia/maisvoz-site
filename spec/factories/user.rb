@@ -18,5 +18,6 @@ FactoryBot.define do
     role_type { association(:role_type) }
     career { association(:career) }
     trail { association(:trail) }
+    type { association(:type) }
   end
 end

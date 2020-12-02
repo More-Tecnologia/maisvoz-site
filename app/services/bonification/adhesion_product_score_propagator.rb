@@ -1,6 +1,5 @@
 module Bonification
   class AdhesionProductScorePropagator < ApplicationService
-
     def call
       return unless adhesion_product && @score_type.active
       propagate_adhesion_score(order.user)
@@ -34,9 +33,7 @@ module Bonification
     end
 
     def adhesion_score
-      items = order.order_items.select { |i| i.product.adhesion? }
-      items.sum { |i| i.quantity.to_f * i.product.binary_score.to_f }.to_f
+      @order.total_value
     end
-
   end
 end

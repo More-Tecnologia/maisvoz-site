@@ -50,6 +50,12 @@ persisted_careers.each do |career|
   end
 end
 
+type_attributes = [{ name: 'Member', indications_quantity: 0, bonus_percentage: 0, qualify_by_user_activity: false },
+                   { name: 'Click', indications_quantity: 0, bonus_percentage: 1.5, qualify_by_user_activity: true },
+                   { name: 'Basic', indications_quantity: 2, bonus_percentage: 2, qualify_by_user_activity: true },
+                   { name: 'Executive', indications_quantity: 5, bonus_percentage: 3, qualify_by_user_activity: true }]
+Type.create!(type_attributes)
+
 # SCORE TYPES
 score_types = [{ name: 'Membership Score', code: '100', active: false },
                { name: 'Activation Score', code: '200', active: false },

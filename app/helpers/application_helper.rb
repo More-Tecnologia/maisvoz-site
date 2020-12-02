@@ -48,4 +48,8 @@ module ApplicationHelper
     [[t('true'), true],
      [t('false'), false]]
   end
+
+  def account_type_label(user)
+    content_tag :span, user.type.try(:name), class: 'label label-success'
+  end
 end

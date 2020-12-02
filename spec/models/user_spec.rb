@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:sim_cards).class_name('SimCard') }
   it { is_expected.to belong_to(:career).optional }
   it { is_expected.to belong_to(:trail).optional }
-  it { is_expected.to belong_to(:type) }
+  it { is_expected.to belong_to(:type).optional }
 
   it 'valid factory' do
     expect(user).to be_persisted

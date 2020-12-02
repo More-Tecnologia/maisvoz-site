@@ -84,7 +84,6 @@
 #
 
 class User < ApplicationRecord
-
   has_paper_trail
 
   attr_accessor :login
@@ -153,7 +152,7 @@ class User < ApplicationRecord
                                   optional: true
   belongs_to :career, optional: true
   belongs_to :trail, optional: true
-  belongs_to :type
+  belongs_to :type, optional: true
 
   has_many :credits
   has_many :debits
@@ -199,8 +198,11 @@ class User < ApplicationRecord
   scope :with_blocked_pool_trading, -> { where('pool_tranding_blocked_balance > 0') }
   scope :with_children_pool_point_balance, -> { where('children_pool_trading_balance > 0') }
 
+  before_create :assign_initial_type
+
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
+  after_create :insert_into_binary_tree
   after_update :ensure_digital_wallet_existence, unless: :active_digital_wallet?
   after_update :ensure_email_existence, unless: :active_email?
 
@@ -581,4 +583,7 @@ class User < ApplicationRecord
                       financial_transaction_checkpoint_id: last_transaction_id)
   end
 
+  def assign_initial_type
+    self.type = Type.first
+  end
 end

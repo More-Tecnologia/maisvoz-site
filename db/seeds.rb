@@ -50,11 +50,35 @@ persisted_careers.each do |career|
   end
 end
 
-type_attributes = [{ name: 'Member', indications_quantity: 0, bonus_percentage: 0, qualify_by_user_activity: false },
-                   { name: 'Click', indications_quantity: 0, bonus_percentage: 1.5, qualify_by_user_activity: true },
-                   { name: 'Basic', indications_quantity: 2, bonus_percentage: 2, qualify_by_user_activity: true },
-                   { name: 'Executive', indications_quantity: 5, bonus_percentage: 3, qualify_by_user_activity: true }]
-Type.create!(type_attributes)
+type_attributes = [{ name: 'Member',
+                     indications_quantity: 0,
+                     bonus_percentage: 0,
+                     qualify_by_user_activity: false,
+                     withdrawal_minimum: 0,
+                     withdrawal_in_percent: false },
+                   { name: 'Click',
+                     indications_quantity: 0,
+                     bonus_percentage: 1.5,
+                     qualify_by_user_activity: true,
+                     withdrawal_minimum: 33,
+                     withdrawal_in_percent: true },
+                   { name: 'Basic',
+                     indications_quantity: 2,
+                     bonus_percentage: 2,
+                     qualify_by_user_activity: true,
+                     withdrawal_minimum: 20,
+                     withdrawal_in_percent: true },
+                   { name: 'Executive',
+                     indications_quantity: 5,
+                     bonus_percentage: 3,
+                     qualify_by_user_activity: true,
+                     withdrawal_minimum: 10,
+                     withdrawal_in_percent: false }]
+type_attributes.each do |attributes|
+  type = Type.find_by(attributes.slice(:name))
+  type ? type.update!(attributes) : Type.create!(type_attributes)
+end
+
 
 # SCORE TYPES
 score_types = [{ name: 'Membership Score', code: '100', active: false },

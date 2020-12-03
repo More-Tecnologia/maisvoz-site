@@ -1,5 +1,6 @@
 module Backoffice
   class BalanceTransferencesController < BackofficeController
+    before_action :validate_user_type_permit_balance_transference, only: %i[new create]
     before_action :validate_destination_user, only: %i[new create]
     before_action :validate_current_user_password, only: :create
 
@@ -27,6 +28,15 @@ module Backoffice
     end
 
     private
+
+    def validate_user_type_permit_balance_transference
+      return if current_user.type.balance_transference
+
+      types = Type.where(balance_transference: true).pluck(:name).join(', ')
+      flash[:alert] =
+        I18n.t('errors.messages.invalid_type_to_balance_transference', user_types: types)
+      redirect_back(fallback_location: root_path)
+    end
 
     def validate_destination_user
       @destination_user ||= User.find_by(params.slice(:username, :email))

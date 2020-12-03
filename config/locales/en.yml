@@ -852,6 +852,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       invalid_order_quantity: Payment with balance can only be made for the first user's order.
       user_not_direct_referral: Order user is not your direct referral
       order_amount_invalid: Order amount is less than or equal to current bonus contract's order
+      invalid_type_to_balance_transference: Only users %{user_types} can transfer balance.
       too_long:
         one: "it's too long (maximum: 1 character)"
         other: "it's too long (maximum: %{count} characters)"

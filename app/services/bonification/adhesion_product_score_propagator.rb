@@ -1,6 +1,5 @@
 module Bonification
   class AdhesionProductScorePropagator < ApplicationService
-
     def call
       return unless adhesion_product && @score_type.active
       propagate_adhesion_score(order.user)

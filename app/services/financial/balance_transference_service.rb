@@ -2,7 +2,7 @@ module Financial
   class BalanceTransferenceService < ApplicationService
     def call
       validate_source_user_balance!
-      validate_tranfer_value!
+      validate_user_contract_bonus_amount!
       ActiveRecord::Base.transaction do
         source_transaction = debit_transfer_value_from_source_user
         credit_transfer_value_to_destination_user(source_transaction)
@@ -12,7 +12,8 @@ module Financial
 
     private
 
-    TRANSFER_FEE = 0.05
+    TRANSFER_FEE = 0.04
+    MINIMUM_TRANSFER_BALANCE_PERCENT = 0.5
 
     def initialize(args)
       @destination_user = args[:destination_user]
@@ -23,21 +24,19 @@ module Financial
       @balance_transference = FinancialReason.balance_transference
     end
 
-    def validate_tranfer_value!
-      transfer_value_minimum = greater_order_value_from_the_source_user
-      return if @transfer_value > transfer_value_minimum
+    def validate_user_contract_bonus_amount!
+      return if @source_user.available_balance >= minimum_available_balance
 
       raise I18n.t('errors.messages.transfer_value_minimum',
                    value: transfer_value_minimum)
     end
 
-    def greater_order_value_from_the_source_user
-      contract_values = @source_user.bonus_contracts
-                                    .active
-                                    .yield_contracts
-                                    .pluck(:cent_amount)
-
-      contract_values.max.to_f / 100.0
+    def minimum_available_balance
+      bonus_contracts_balance = @source_user.bonus_contracts
+                                            .active
+                                            .yield_contracts
+                                            .sum(:cent_amount) / 100.0
+      bonus_contract_balance * MINIMUM_TRANSFER_BALANCE_PERCENT
     end
 
     def validate_source_user_balance!

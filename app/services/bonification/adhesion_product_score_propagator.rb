@@ -33,7 +33,9 @@ module Bonification
     end
 
     def adhesion_score
-      @order.total_value
+      items = order.order_items.select { |i| i.product.adhesion? }
+      items.sum { |i| i.quantity.to_f * i.product.binary_score.to_f }.to_f
     end
+
   end
 end

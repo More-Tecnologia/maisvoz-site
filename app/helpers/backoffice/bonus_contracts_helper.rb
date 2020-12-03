@@ -18,10 +18,5 @@ module Backoffice
     def find_pool_point(order)
       ScoreType.pool_point.scores.where(order: order).first.try(:cent_amount).try(:to_i)
     end
-
-    def active_package_sum_threshold
-      @active_package_sum_threshold ||=
-        current_user.bonus_contracts.active.sum(&:cent_amount) * WithdrawalForm::WITHDRAWAL_THRESHOLD_PERCENT
-    end
   end
 end

@@ -1,16 +1,12 @@
 class WithdrawalForm < Form
-
-  WITHDRAWAL_FEE_ABOVE = 4
-  WITHDRAWAL_THRESHOLD_PERCENT = 0.5
-
   attribute :amount
   attribute :user, User
   attribute :fiscal_document_link
   attribute :fiscal_document_photo
 
   validates :amount, presence: true
-  validates :amount, numericality: { greater_than_or_equal_to: ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f,
-                                     less_than_or_equal_to: ENV['WITHDRAWAL_MAXIMUM_VALUE'].to_f }
+  validates :amount, numericality: { greater_than_or_equal_to: proc { |f| f.withdrawal_minimum },
+                                     less_than_or_equal_to: proc { |f| f.withdrawal_maximum } }
 
   validate :user_has_balance
   validate :fiscal_document_presence, if: -> { user.pj? }
@@ -36,13 +32,7 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_fee
-    return WITHDRAWAL_FEE_ABOVE if amount > withdrawal_threshold
-
     ENV['WITHDRAWAL_FEE'].to_d
-  end
-
-  def withdrawal_threshold
-    user.bonus_contracts.active.sum(&:cent_amount) * WITHDRAWAL_THRESHOLD_PERCENT
   end
 
   def irpf
@@ -65,6 +55,18 @@ class WithdrawalForm < Form
     amount_cents * (withdrawal_fee.to_f / 100)
   end
 
+  def withdrawal_minimum
+    @withdrawal_minimum ||= user.type.withdrawal_minimum_amount(contracts_amount)
+  end
+
+  def withdrawal_maximum
+    user.available_balance
+  end
+
+  def contracts_amount
+    @contracts_amount ||= user.bonus_contracts.active.sum(&:cent_amount)
+  end
+
   private
 
   def user_has_balance
@@ -76,5 +78,4 @@ class WithdrawalForm < Form
     return if fiscal_document_link.present? || fiscal_document_photo.present?
     errors.add(:fiscal_document_link, :blank)
   end
-
 end

@@ -1,0 +1,143 @@
+<%= javascript_include_tag 'charts' %>
+
+ <div class="row">
+   <% @index.data_list.each do |hash| %>
+    <div class="col-lg-3 col-sm-6">
+      <div class="widget-panel widget-style-2 bg-white">
+        <i class="md <%= hash[:icon] %> text-primary"></i>
+        <h2 class="m-0 text-dark counter font-600"><%= hash[:value] %></h2>
+        <div class="text-muted m-t-5"><%= hash[:label] %></div>
+      </div>
+    </div> 
+  <% end %>
+ </div>
+
+ <div class="row">
+   <div class="col-lg-4">
+     <div class="card-box card-box-placeholder">
+       <h4><%= t(:deposits_history) %></h4>
+       <%= column_chart @index.last_orders_count %>
+     </div>
+   </div>
+   <div class="col-lg-4">
+     <div class="card-box card-box-placeholder">
+       <h4><%= t(:users_history) %></h4>
+       <%= area_chart @index.last_users_count %>
+     </div>
+   </div>
+
+	<div class="col-lg-4">
+		<div class="card-box card-box-placeholder">
+      <%= link_to t(:see_all), backoffice_admin_orders_path, class: 'pull-right btn btn-default btn-sm waves-effect waves-light', style: 'display: auto;' %>
+			<h4 class="text-dark header-title m-t-0"><%= t(:last_deposits) %></h4>
+      <div class="clearfix"></div>
+			<div class="table-responsive">
+        <table class="table table-actions-bar">
+            <thead>
+              <tr>
+                <th><%= t(:user) %></th>
+                <th><%= t(:deposit_date) %></th>
+                <th><%= t(:amount) %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @index.last_orders.each do |last_order| %>
+              <tr>
+                <td><%= link_to_user last_order.user %></td>
+                <td><%= l last_order.created_at, format: '%B %d, %Y' %></td>
+                <td><%= number_to_currency last_order.total %></td>
+              </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="card card-placeholder">
+      <label class="dashboard-card__label">
+        <%= t(:total_bonus) %>
+        <div id="total_bonus"></div>
+      </label>
+      <div class="card-body">
+        <div id="bonus"></div>
+        <div id="legend_bonus" class="donut-legend"></div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-6">
+          <%= t(:gross_bonus) %>
+          <div id="gross_bonus">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <%= t(:chargebacks) %>
+          <div id="chargebacks">
+          </div>
+        </div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer"
+                     head="total_bonus"
+                     group="bonus"
+                     object="direct_referral, indirect_referral, yield, chargebacks"
+                     colors="#FFD878, #BF8049, #3EBFC4, #0020CF, #81bef7, #d9534f"
+                     subheads="gross_bonus, chargebacks"
+                     path="bonus_data"
+                     admin='true'
+                     amount_sign="&#36;">
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card card-placeholder">
+      <label class="dashboard-card__label">
+        <%= t(:total_payments) %>
+        <div id="total_payments"></div>
+      </label>
+      <div class="card-body">
+        <div id="payment"></div>
+        <div id="legend_payment" class="donut-legend"></div>
+      </div>
+      <span href="#"
+            class="btn btn-white bt-toggle card-footer"
+            head="total_payments"
+            group="payment"
+            object="balance, admin, admin_nb, voucher, btc"
+            colors="#FFD878, #BF8049, #3EBFC4, #0020CF, #808080, #d9534"
+            path="payment_data"
+            admin='true'>
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card card-placeholder">
+      <label class="dashboard-card__label">
+      teste
+        <%= t(:total_withdrawals) %>
+        <div id="total_withdrawals"></div>
+      </label>
+      <div class="card-body">
+        <div id="withdrawals"></div>
+        <div id="legend_withdrawals" class="donut-legend"></div>
+      </div>
+      <span href="#" class="btn btn-white bt-toggle card-footer" head="total_withdrawals" group="withdrawals" object="pending, approved, refused, waiting, canceled" colors="#FFD878, #BF8049, #3EBFC4, #0020CF, #808080, #d9534f" path="withdrawals_data" admin='true'>
+        <i class="fa fa-refresh"></i>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div id="locale" value="<%= params[:locale] %>"></div>
+
+<div id="current-week-financial-report">
+  <%= render partial: 'backoffice/admin/financial_reports/show',
+             locals: { financial_report: FinancialReport.current_week } %>
+</div>
+
+<%= javascript_include_tag 'dashboards/user_dashboard', 'data-turbolinks-track': 'reload' %>

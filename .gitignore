@@ -20,7 +20,6 @@
 
 .keep
 .DS_Store
-.env
 
 dump.rdb
 

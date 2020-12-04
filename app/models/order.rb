@@ -63,6 +63,8 @@ class Order < ApplicationRecord
   belongs_to :payable, polymorphic: true, optional: true
   belongs_to :payer, class_name: 'User', optional: true
 
+  accepts_nested_attributes_for: :order_items
+
   monetize :subtotal_cents, :tax_cents, :shipping_cents, :total_cents
 
   scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }

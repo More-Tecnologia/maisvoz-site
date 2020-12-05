@@ -1,234 +1,131 @@
-<div class="row linhaHome">
-  <div class="col-md-3">
-    <div class="dashboard-card">
-      <div class="dashboard-card__label">
-        <span><%= t(:register_date) %></span>
-      </div>
-      <div class="dashboard-card__value label-default">
-        <%= l(current_user.created_at, format: :long) %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="dashboard-card">
-      <div class="dashboard-card__label">
-        <span><%= t(:account_status) %></span>
-      </div>
-      <% if current_user.active? %>
-        <div class="dashboard-card__value label-default"><%= t(:active) %></div>
-      <% else %>
-        <div class="dashboard-card__value label-inactive"><%= t(:inactive) %></div>
+<%= javascript_include_tag 'charts' %>
+
+<div class="container">
+<div class="row"  id="dashboard">
+    <div class="left-panel">
+      <%=  link_to shop_index_path, class: 'item1'  do%>
+        <%= image_tag 'icons/loja1.png', class: 'img img-responsive' %>
+        <%= t(:shop) %>
+      <% end %>
+
+      <a href="#"
+         class="item2"
+         sponsor-link="<%= new_user_registration_url(sponsor: current_user.username) %>"
+         id="sponsor-link"
+         title='<%= t(:copied_sponsor_link) %>'
+         message='<%= t(:copied_sponsor_link_message) %>'>
+      <%= image_tag 'icons/link1.png', class: 'img img-responsive' %>
+        <%= t(:sponsor_link) %>
+      </a>
+
+      <%= link_to '#', class: 'item3'  do%>
+        <%= image_tag 'icons/clicks1.png', class: 'img img-responsive' %>
+        Pack Click Cash
+      <% end %>
+
+      <%= link_to backoffice_banners_path, class: 'item4'  do%>
+        <%= image_tag 'icons/publicidade1.png', class: 'img img-responsive' %>
+        <%= t('defaults.view_publicity') %>
+      <% end %>
+
+      <%= link_to '#', class: 'item5'  do%>
+        <%= image_tag 'icons/CHARMAIN1.png', class: 'img img-responsive' %>
+        <%= t('defaults.leadership_career') %>
+      <% end %>
+
+      <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'item6'  do%>
+        <%= image_tag 'icons/rede1.png', class: 'img img-responsive' %>
+        <%= t('defaults.net') %>
+      <% end %>
+
+      <%= link_to '#', class: 'item7'  do%>
+        <%= image_tag 'icons/indicados1.png', class: 'img img-responsive' %>
+        <%= t('defaults.my_indications') %>
+      <% end %>
+
+      <% Type.order(:indications_quantity).each_with_index do |type, index| %>
+        <%= link_to '#', class: "item#{8 + index}"  do %>
+            <%= image_tag current_user.type == type ? 'icons/ativo1.png' : 'icons/inativo1.png',
+                          class: 'img img-responsive' %>
+            <%= type.name %>
+        <% end %>
+      <% end %>
+
+      <%= link_to '#', class: 'item12'  do%>
+        <%= image_tag current_user.active? ? 'icons/ativo11.png': 'icons/ativo21.png',
+                      class: 'img img-responsive' %>
+        <%= t(:account_status) %>
       <% end %>
     </div>
-  </div>
-  <div class="col-md-3">
-    <div class="dashboard-card">
-      <div class="dashboard-card__label">
-        <span><%= t('sponsor') %></span>
-      </div>
-        <div class="dashboard-card__value label-default">
-          <%= current_user.try(:sponsor).try(:username) %>
-        </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="dashboard-card">
-      <div class="dashboard-card__label">
-        <span><%= t(:career) %></span>
-      </div>
-      <div class="dashboard-card__value label-default">
-        <%= current_user.try(:current_career).try(:name) %>
-      </div>
-    </div>
-  </div>
-</div><br><br>
 
-<div class="row">
-  <div class="col-md-4">
-    <div class="card card-placeholder">
-      <label class="dashboard-card__label">
-        <%= t(:total_bonus) %>
-        <div id="total_bonus"></div>
-      </label>
-      <div class="card-body">
-        <div id="bonus">
-        </div>
-        <div id="legend_bonus" class="donut-legend"></div>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-6">
-          <%= t(:gross_bonus) %>
-          <div id="gross_bonus">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <%= t(:chargebacks) %>
-          <div id="chargebacks">
-          </div>
-        </div>
-      </div>
-      <span href="#"
-            class="btn btn-white bt-toggle "
-            head="total_bonus"
-            group="bonus"
-            object="direct_referral, indirect_referral, yield, chargebacks"
-            colors="#FFD878, #BF8049, #3EBFC4, #0020CF"
-            subheads="gross_bonus, chargebacks"
-            path="bonus_data"
-            amount_sign="&#36;">
-        <i class="fa fa-refresh"></i>
-      </span>
-    </div>
+    <div class="right-panel">
+      <%= link_to new_backoffice_withdrawal_path, class: 'item1'  do%>
+        <%= image_tag 'icons/retirada1.png', class: 'img img-responsive' %>
+        <%= t('defaults.new_withdraw') %>
+      <% end %>
 
+      <%= link_to backoffice_balance_transferences_path, class: 'item2'  do%>
+        <%= image_tag 'icons/troca1.png', class: 'img img-responsive' %>
+        <%= t('defaults.balance_transferences') %>
+      <% end %>
 
-  </div>
-  <div class="col-md-8">
-      <div class="card-box card card-placeholder progress-card">
-        <div class="card-body progress-card-content">
-          <div class="progress-wrapper">
-            <h5 class="mt-0"><%= t(:account_earnings_limit) %>
-              <span id="account_earnings_limit" style="display: block; float: right;"></span>
-            </h5>
-            <div class="progress progress-lg" id='earnings'></div>
-            <div id="legend_earnings" class="progressbar-legend"></div>
-          </div>
-          <div class="progress-wrapper">
-            <h5 class="mt-3"><%= t(:balance) %>
-              <span style="display: block; float: right;"><span id="balance"></span></span>
-            </h5>
-            <div class="progress progress-lg" id="balances"></div>
-            <div id="legend_balances" class="progressbar-legend"></div>
-          </div>
-          <div class="progress-wrapper">
-            <h5 class="mt-3"><%= t(:unilevel_affiliates_count) %>
-              <span style="display: block; float: right;"><span id="unilevel_affiliates_count"></span></span>
-            </h5>
-            <div class="progress progress-lg" id="unilevel_counts"></div>
-            <div id="legend_unilevel_counts" class="progressbar-legend"></div>
-          </div>
-        </div>
-        <span href="#" class="btn btn-white btn-block bt-bars card-footer hide">
-          <i class="fa fa-refresh"></i>
-        </span>
-      </div>  <!-- end card-box-->
-  </div> <!-- end col -->
-</div><br><br>
+      <%= link_to backoffice_bonus_contracts_path, class: 'item3'  do%>
+        <%= image_tag 'icons/relatorio1.png', class: 'img img-responsive' %>
+        <%= t('defaults.unilevel') %>
+      <% end %>
 
-<div class="row">
-  <div class="col-md-5">
-    <div class="dashboard-card-box">
-      <div class="dashboard-card-box__title">
-      <span class="text-white"><%= t(:withdrawal) %></span>
-      </div>
-        <div class="inbox-widget mx-box" tabindex="5000" style="overflow: hidden; outline: none;">
-          <table class="table table-bordered table-highlight">
-            <thead class="table-highlight__head">
-              <tr>
-                <th><%= t(:data) %></th>
-                <th><%= t(:status) %></th>
-                <th><%= t('attributes.amount') %></th>
-              </tr>
-            </thead>
-            <% last_withdrawals.each do |withdraw| %>
-              <tr>
-                <td><%= l withdraw.created_at, format: '%B %d, %Y'  %></td>
-                <td><%= t withdraw.status %></td>
-                <td><%= number_to_currency withdraw.gross_amount_cents %></td>
+      <%= link_to backoffice_financial_transactions_path, class: 'item4'  do%>
+        <%= image_tag 'icons/saldo1.png', class: 'img img-responsive' %>
+        <%= available_balane(current_user) %>
+        <%= t('attributes.available_balance') %>
+      <% end %>
+
+      <%= link_to backoffice_financial_transactions_path, class: 'item5'  do%>
+        <%= image_tag 'icons/saldo11.png', class: 'img img-responsive' %>
+        <%= blocked_balance(current_user) if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
+        <%= t('attributes.blocked_balance') %>
+      <% end %>
+
+      <%=  link_to backoffice_balance_transferences_path, class: 'item6'  do%>
+        <%= image_tag 'icons/troca11.png', class: 'img img-responsive' %>
+        <%= order_payment_balance(current_user) %>
+        <%= t('defaults.balance_transference') %>
+      <% end %>
+
+      <%= link_to backoffice_financial_transactions_path, class: 'item7'  do %>
+        <%= image_tag 'icons/relatorio_11.png', class: 'img img-responsive' %>
+        <%= t('defaults.financial_histories') %>
+      <% end %>
+
+      <%= link_to '#', class: 'item8' do %>
+        <%= t('defaults.withdrawal_report') %>
+        <table>
+          <tbody>
+            <% last_withdrawals.each do |w| %>
+              <tr class="text-white font-16">
+                <td class="text-success"> <%= l(w.created_at, format: :small) %> </td>
+                <td> <%= number_to_currency(w.gross_amount_cents) %> </td>
+                <td> <%= withdrawal_status_text_class(w) %> </td>
               </tr>
             <% end %>
-            <% if last_withdrawals.blank? %>
-              <tr>
-                <td colspan="3" class="text-center"><%= t('no_data') %></td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
+          </tbody>
+        </table
+      <% end %>
+
+      <%= link_to backoffice_order_payments_path, class: 'item9'  do%>
+        <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
+        <%= t('defaults.order_payments') %>
+      <% end %>
+
+      <%= link_to '#', class: 'item10'  do%>
+        <%= image_tag 'icons/suporte1.png', class: 'img img-responsive' %>
+        <%= t('defaults.support') %>
+      <% end %>
+
+      <%= link_to backoffice_downloads_path, class: 'item11'  do%>
+        <%= image_tag 'icons/apoio1.png', class: 'img img-responsive' %>
+        <%= t(:download_support_material) %>
+      <% end %>
     </div>
-  </div>
-  <% if ENV['SHOW_LAST_QUALIFICATIONS'] %>
-  <div class="col-md-5">
-    <div class="dashboard-card-box">
-      <div class="dashboard-card-box__title">
-        <span class="text-white"><%= t(:last_qualifications) %></span>
-      </div>
-      <div class="inbox-widget mx-box" tabindex="5000" style="overflow: auto; outline: none;">
-        <table class="table table-bordered table-highlight">
-          <thead class="table-highlight__head">
-            <tr>
-              <th><%= t('attributes.user') %></th>
-              <th><%= t('attributes.career') %></th>
-            </tr>
-          </thead>
-          <% last_qualifications.each do |qualification| %>
-            <tr>
-              <td><%= qualification.try(:user).try(:username) %></td>
-              <td><%= image_tag(qualification.try(:career_trail).try(:career).image_path, size: 30) %> &nbsp <%= qualification.try(:career_trail).try(:career).try(:name) %></td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-  </div>
-  <% end %>
-  <div class="col-md-2">
-    <div class="dashboard-card-box">
-      <div class="dashboard-card-box__title">
-        <span class="text-white"><%= t(:last_posts) %></span>
-      </div>
-      <div class="dashboard-card-box__containe">
-        <div class="inbox-widget mx-box text-center" tabindex="5000">
-          <div class="fb-page"
-               data-href="<%= ENV['FACEBOOK_URL'] %>"
-               data-tabs="timeline"
-               data-width="500"
-               data-height="430"
-               data-small-header="true"
-               data-adapt-container-width="true"
-               data-hide-cover="false"
-               data-show-facepile="true">
-            <blockquote cite="<%= ENV['FACEBOOK_BLOCKOUT_URL'] %>"
-                        class="fb-xfbml-parse-ignore">
-              <a href="<%= ENV['FACEBOOK_URL'] %>"><%= ENV['COMPANY_NAME'] %></a>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="support-material">
-      <div class="support-material-div col-md-2 col-md-offset-3">
-        <a href="#" target="blank">
-          <%= image_tag 'download-list/presentation.jpg' %>&nbsp; <%= t(:business_presentation) %>
-        </a>
-      </div>
-
-      <div class="support-material-div col-md-2">
-        <a href="#" target="blank">
-          <%= image_tag 'download-list/paper.jpg' %>&nbsp; <%= t(:adhesion_contract) %>
-        </a>
-      </div>
-
-      <div class="support-material-div col-md-2">
-        <a href="#" target="blank">
-          <%= image_tag 'download-list/video.jpg' %>&nbsp; <%= ENV['COMPANY_NAME'] %>
-        </a>
-      </div>
-    </div>
-  </div>
 </div>
-<div id="locale" value="<%= params[:locale] %>"></div>
-<div id="fb-root"></div>
-
-<script async defer crossorigin="anonymous"
-                    src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v6.0&appId=1005612036250425&autoLogAppEvents=1">
-</script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
-
-
-<%= javascript_include_tag 'dashboards/user_dashboard', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'dashboards/progress-bar', 'data-turbolinks-track': 'reload' %>

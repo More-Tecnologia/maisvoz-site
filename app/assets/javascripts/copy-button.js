@@ -1,5 +1,5 @@
 $(function(){
-  $('#sponsor-link').click(function(){
+  $('a#sponsor-link').click(function(){
     let temp = $('<input>');
     let text = $(this).attr('sponsor-link');
     let title = $(this).attr('title')

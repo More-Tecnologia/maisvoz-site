@@ -818,6 +818,16 @@ We will send a new e-mail as soon as the transaction is complete.'
     withdrawal_fee_less: to withdrawal less than or equal to %{amount}
     contract_active: Active
     contract_expired: Expired
+    view_publicity: View Publicity
+    leadership_career: Leadership Title
+    net: Net
+    my_indications: My Indications
+    balance_transference: Balance Transference
+    financial_histories: Financial History
+    withdrawal_report: Withdrawal Report
+    support: Support
+    order_payments: Order payment
+    bonus_contracts: Bonus Contracts
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -976,6 +986,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       default: "%a, %d de %B de %Y, %H:%M:%S %z"
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
+      small: "%Y/%m/%d"
     pm: ''
   translateX: Translatex
   translateY: Translatey

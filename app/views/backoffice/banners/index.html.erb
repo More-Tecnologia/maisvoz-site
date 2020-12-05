@@ -1,30 +1,70 @@
 <section class="container" >
   <div class="row">
-    <div class="numbers text-center">
-      <% sample_advertisement.count.times do |i| %>
-        <div class="number-solitary active">
-          <h2> <%= i + 1 %> </h2>
-        </div>
-        <%= content_tag :hr unless i == sample_advertisement.count - 1 %>
-      <% end %>
+    <div class="banner-principal">
+      <%= image_tag 'logo-white.png', class: 'img img-responsive' %>
+      
+      <div class="banner-buttons">
+        <%=  link_to '#', class: 'banner-buttons-link' do%>
+         <i class="fas fa-share-alt"></i>    
+        <% end%>
+        <a href="" class="banner-button">Comprar</a>
+      </div> 
     </div>
   </div>
-  <div class="row">
-    <section class="testimonials-three">
-      <div class="container">
-        <div class="testimonials-three__carousel owl-carousel owl-theme">
-          <% sample_advertisement.each do |advertisement| %>
-            <div class="item">
-              <%= advertisement_image_link(advertisement) %>
-            </div>
-          <% end %>
+
+  <div class="row" id="carousels">
+    <div class="owl-carousel carousel" >
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Launch demo modal
+      </button>
+      <% sample_advertisement.each do |advertisement| %>
+        <div class="item">
+          <%= advertisement_image_link(advertisement) %>
+          <div class="banner-buttons2">
+            <%=  link_to '#', class: 'banner-buttons-link' do%>
+              <i class="fas fa-share-alt"></i>    
+            <% end%>
+            <a href="" class="banner-button">Comprar</a>
+          </div>
         </div>
-        <div class="testimonials-three__slide-progress">
-          <span></span>
+      <% end %>
+    </div>
+
+    <div class="owl-carousel carousel" >
+      <% sample_advertisement.each do |advertisement| %>
+        <div class="item">
+          <%= advertisement_image_link(advertisement) %>
         </div>
-      </div>
-    </section>
+      <% end %>
+    </div>
+
+    <div class="owl-carousel carousel" >
+      <% sample_advertisement.each do |advertisement| %>
+        <div class="item">
+          <%= advertisement_image_link(advertisement) %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="owl-carousel carousel" >
+      <% sample_advertisement.each do |advertisement| %>
+        <div class="item">
+          <%= advertisement_image_link(advertisement) %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="owl-carousel carousel" >
+      <% sample_advertisement.each do |advertisement| %>
+        <div class="item">
+          <%= advertisement_image_link(advertisement) %>
+        </div>
+      <% end %>
+    </div>
+
   </div>
+
+
   <div class="row">
     <div class="modal fade bd-example-modal-lg"
          tabindex="-1"
@@ -44,4 +84,8 @@
       </div>
     </div>
   </div>
+
 </section>
+
+
+

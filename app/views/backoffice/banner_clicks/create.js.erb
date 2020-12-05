@@ -1,0 +1,6 @@
+$('img#clicked-banner').attr('href', "<%= @banner_click.banner.link %>")
+$('span#banners-clicked-today-quantity').html("<%= current_user.banners_clicked_today_quantity %>")
+
+<% if current_user.banner_seen_today? %>
+  $('#daily-task-completed-modal').modal()
+<% end %>

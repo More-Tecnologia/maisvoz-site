@@ -818,6 +818,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     withdrawal_fee_less: to withdrawal less than or equal to %{amount}
     contract_active: Active
     contract_expired: Expired
+    banners_clicked_today: Quantidade de banners clicados hoje
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -853,6 +854,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       user_not_direct_referral: Order user is not your direct referral
       order_amount_invalid: Order amount is less than or equal to current bonus contract's order
       invalid_type_to_balance_transference: Only users %{user_types} can transfer balance.
+      daily_task: 'Click at least %{quantity} banners to unlock the backoffice'
       too_long:
         one: "it's too long (maximum: 1 character)"
         other: "it's too long (maximum: %{count} characters)"

@@ -1,29 +1,24 @@
-<section class="container" >
+<section class="container">
   <div class="row">
-    <div class="numbers text-center">
-      <% sample_advertisement.count.times do |i| %>
-        <div class="number-solitary active">
-          <h2> <%= i + 1 %> </h2>
-        </div>
-        <%= content_tag :hr unless i == sample_advertisement.count - 1 %>
-      <% end %>
+    <div class="col-sm-12">
+      <img src='#' id=''> </img>
     </div>
   </div>
   <div class="row">
-    <section class="testimonials-three">
-      <div class="container">
-        <div class="testimonials-three__carousel owl-carousel owl-theme">
-          <% sample_advertisement.each do |advertisement| %>
-            <div class="item">
-              <%= advertisement_image_link(advertisement) %>
-            </div>
-          <% end %>
-        </div>
-        <div class="testimonials-three__slide-progress">
-          <span></span>
-        </div>
+    <div class="col-sm-12">
+      <p> <%= t('defaults.banners_clicked_today') %>:
+    <span id="banners-clicked-today-quantity">
+      <%= current_user.banners_clicked_today_quantity %>
+    </span>
+    </p>
+    </div>
+  </div>
+  <div class="row">
+    <% @banners.each do |banner| %>
+      <div class="col-sm-3 m-t-10 m-b-10">
+        <%= banner_image_link(banner) %>
       </div>
-    </section>
+    <% end %>
   </div>
   <div class="row">
     <div class="modal fade bd-example-modal-lg"
@@ -31,7 +26,7 @@
          role="dialog"
          aria-labelledby="myLargeModalLabel"
          aria-hidden="true"
-         id="myModal">
+         id="daily-task-completed-modal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">

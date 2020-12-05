@@ -1,6 +1,5 @@
 module Backoffice
   module DashboardHelper
-
     def last_qualifications
       @last_qualifications ||= CareerTrailUser.includes(:user, career_trail: [:career])
                                               .joins(career_trail: [:career])
@@ -20,5 +19,14 @@ module Backoffice
                   .sum(&:second).to_i
     end
 
+    def withdrawal_status_text_class(withdrawal)
+      text_class = { pending: 'text-info',
+                     approved: 'text-success',
+                     approved_balance: 'text-success',
+                     refused: 'text-danger',
+                     canceled: 'text-warning' }[withdrawal.status.to_s.to_sym]
+
+      content_tag :span, t(withdrawal.status), class: text_class
+    end
   end
 end

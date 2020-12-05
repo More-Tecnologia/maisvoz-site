@@ -878,6 +878,8 @@ pt-BR:
       transfer_value_minimum: "Valor minimo de tranferencia: %{value}."
       invalid_order_quantity: O pagamento com saldo só pode ser feito para o primeiro pedido do usuário.
       user_not_direct_referral: Usuário do pedido não é seu indicado direto
+      order_amount_invalid: Valor do pedido é menor ou igual ao pedido do contrato atual
+      invalid_type_to_balance_transference: Somente usuários %{user_types} podem transferir saldo.
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'

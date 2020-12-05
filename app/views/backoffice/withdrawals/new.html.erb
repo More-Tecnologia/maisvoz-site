@@ -17,15 +17,8 @@
               <%= number_to_currency(current_user.available_balance) %>
             </li>
             <li>
-              <b><%= t('defaults.withdrawal_fee') %>:</b><br>
-              <span class='p-l-5'>
-                <%= number_to_percentage(WithdrawalForm::WITHDRAWAL_FEE_ABOVE, precision: 2) %>
-                <%= t('defaults.withdrawal_fee_greater', amount: number_to_currency(active_package_sum_threshold)) %>
-              </span><br>
-              <span class='p-l-5'>
-                <%= number_to_percentage(ENV['WITHDRAWAL_FEE'].to_f, precision: 2) %>
-                <%= t('defaults.withdrawal_fee_less', amount: number_to_currency(active_package_sum_threshold)) %>
-              </span>
+              <b><%= t('defaults.withdrawal_fee') %>:</b>
+              <%= number_to_percentage(ENV['WITHDRAWAL_FEE'].to_f, precision: 2) %>
             </li>
           </ul>
         </div>

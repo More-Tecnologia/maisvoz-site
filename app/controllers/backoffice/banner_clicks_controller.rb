@@ -1,0 +1,13 @@
+module Backoffice
+  class BannerClicksController < BackofficeController
+    skip_before_action :redirect_to_banners
+
+    def create
+      ActiveRecord::Base.transaction do
+        @banner_click = current_user.banner_clicks
+                                    .create!(params.slice(:banner_id))
+        current_user.banner_seen_today! if current_user.viewed_minimum_banner_quantity_today?
+      end
+    end
+  end
+end

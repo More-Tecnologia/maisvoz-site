@@ -854,6 +854,7 @@ pt-BR:
     withdrawal_report: Relatório de Saques
     support: Suporte
     order_payments: Pagamento de Pedido
+    banners_clicked_today: Clicked banners today quantity
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -889,6 +890,7 @@ pt-BR:
       user_not_direct_referral: Usuário do pedido não é seu indicado direto
       order_amount_invalid: Valor do pedido é menor ou igual ao pedido do contrato atual
       invalid_type_to_balance_transference: Somente usuários %{user_types} podem transferir saldo.
+      daily_task: 'Click em ao menos %{quantity} banners to desbloquear o backoffice'
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
@@ -917,6 +919,7 @@ pt-BR:
       pay: Pagar
       transfer: Transferir
       approve: Aprovar
+      buy: Comprar
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De

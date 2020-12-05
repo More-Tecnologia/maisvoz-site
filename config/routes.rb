@@ -143,6 +143,7 @@ Rails.application.routes.draw do
     end
 
     resources :banners, only: :index
+    resources :banner_clicks, only: :create
   end
 
   namespace :api do

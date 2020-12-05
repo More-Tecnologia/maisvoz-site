@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true, with: :reset_session
+
   before_action :masquerade_user!
   before_action :set_locale
+  before_action :redirect_to_banners,
+                if: proc { current_user &&
+                           !current_user.banner_seen_today? &&
+                           current_user.empreendedor? }
 
   def after_sign_in_path_for(resource)
-    return backoffice_banners_path if !current_user_seen_banners_today?
-
     request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_dashboard_index_path
   end
 
@@ -32,9 +35,13 @@ class ApplicationController < ActionController::Base
     number.to_s.gsub('.','').gsub(',','.').to_f
   end
 
-  def current_user_seen_banners_today?
-    seen_at = current_user.banners_seen_at
+  def show_daily_task_alert
+    quantity = BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
+    flash[:alert] = t('errors.messages.daily_task', quantity: quantity)
+  end
 
-    seen_at and seen_at == Date.today
+  def redirect_to_banners
+    show_daily_task_alert
+    redirect_to backoffice_banners_path
   end
 end

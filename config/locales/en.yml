@@ -884,6 +884,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       transfer: Transfer
       batch_actions: Batch actions
       approve: Approve
+      buy: Buy
     confirm:
       approve_order_without_bonification: Do you want to approve this order without a bonus?
     from: From

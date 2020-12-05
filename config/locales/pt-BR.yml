@@ -910,6 +910,7 @@ pt-BR:
       pay: Pagar
       transfer: Transferir
       approve: Aprovar
+      buy: Comprar
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De

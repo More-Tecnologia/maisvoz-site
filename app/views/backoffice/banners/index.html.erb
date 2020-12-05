@@ -1,42 +1,27 @@
 <section class="container">
-  <div class="row">
+  <div class="row" style="display: none;">
     <div class="col-sm-12">
-      <img src='#' id=''> </img>
+      <div> <%= t('defaults.banners_clicked_today') %>:
+        <span id="banners-clicked-today-quantity">
+          <%= current_user.banners_clicked_today_quantity %>
+        </span>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12">
-      <p> <%= t('defaults.banners_clicked_today') %>:
-    <span id="banners-clicked-today-quantity">
-      <%= current_user.banners_clicked_today_quantity %>
-    </span>
-    </p>
+    <div class="col-sm-12 text-center">
+      <%= render partial: 'banner_main',
+                 locals: { banner: @banners.first } %>
     </div>
   </div>
-  <div class="row">
-    <% @banners.each do |banner| %>
-      <div class="col-sm-3 m-t-10 m-b-10">
-        <%= banner_image_link(banner) %>
+  <div class="row" id="carousels">
+    <% @banners.each_slice(8) do |banners| %>
+      <div class="owl-carousel carousel" >
+        <%= render @banners %>
       </div>
     <% end %>
   </div>
   <div class="row">
-    <div class="modal fade bd-example-modal-lg"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="myLargeModalLabel"
-         aria-hidden="true"
-         id="daily-task-completed-modal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h1> <%= t('defaults.congratulations') %> </h1>
-          <p> <%= t('defaults.daily_task_successfull') %> </p>
-          <%= image_tag 'logo-white.png' %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'congratulations_modal' %>
   </div>
 </section>

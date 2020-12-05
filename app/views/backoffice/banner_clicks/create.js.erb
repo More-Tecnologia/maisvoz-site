@@ -1,6 +1,10 @@
-$('img#clicked-banner').attr('href', "<%= @banner_click.banner.link %>")
-$('span#banners-clicked-today-quantity').html("<%= current_user.banners_clicked_today_quantity %>")
+var clicked_banner = "<%= j render(partial: 'backoffice/banners/banner_main',
+                                   locals: { banner: @banner_click.banner }) %>"
+$('div#banner-main').replaceWith(clicked_banner)
+
+var banners_clicked_quantity = "<%= current_user.banners_clicked_today_quantity %>"
+$('span#banners-clicked-today-quantity').html(banners_clicked_quantity)
 
 <% if current_user.banner_seen_today? %>
-  $('#daily-task-completed-modal').modal()
+  $('#myModal').modal()
 <% end %>

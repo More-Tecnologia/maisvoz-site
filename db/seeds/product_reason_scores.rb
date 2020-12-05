@@ -14,14 +14,13 @@ def create_product_scores_by_trail(product, reason, product_reason, scores, fix_
   end
 end
 
-direct_referral_bonus = [[000, 1000]]
+direct_referral_bonus = [[000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]]
 TRAIL_QUANTITY = Trail.count
 fix_value = false
 ActiveRecord::Base.transaction do
-  product_names = ['Deposit']
   reason = FinancialReason.direct_commission_bonus
   reason.product_reason_scores.destroy_all
-  products = Product.where(name: product_names)
+  products = Product.all
   products.each do |product|
     product_reason_score = ProductReasonScore.create!(product: product, financial_reason: reason)
     TRAIL_QUANTITY.times do |i|
@@ -36,23 +35,22 @@ ActiveRecord::Base.transaction do
   end
 end
 
-indirect_referral_bonus = [ [000, 000],
-                            [000, 400],
-                            [000, 400],
-                            [000, 200],
-                            [000, 200],
-                            [000, 100],
-                            [000, 100],
-                            [000, 100],
-                            [000, 100],
-                            [000, 100]]
+indirect_referral_bonus = [ [000, 000, 000, 000, 000, 000, 000, 000, 000],
+                            [000, 400, 400, 400, 400, 400, 400, 400, 400],
+                            [000, 200, 200, 200, 200, 200, 200, 200, 200],
+                            [000, 100, 100, 100, 100, 100, 100, 100, 100],
+                            [000, 100, 100, 100, 100, 100, 100, 100, 100],
+                            [000, 100, 100, 100, 100, 100, 100, 100, 100],
+                            [000, 100, 100, 100, 100, 100, 100, 100, 100],
+                            [000, 100, 100, 100, 100, 100, 100, 100, 100],
+                            [000, 100, 100, 100, 100, 100, 100, 100, 100],
+                            [000, 100, 100, 100, 100, 100, 100, 100, 100]]
 TRAIL_QUANTITY = Trail.count
 fix_value = false
 ActiveRecord::Base.transaction do
-  product_names = ['Deposit']
   reason = FinancialReason.indirect_referral_bonus
   reason.product_reason_scores.destroy_all
-  products = Product.where(name: product_names)
+  products = Product.all
   products.each do |product|
     product_reason_score = ProductReasonScore.create!(product: product, financial_reason: reason)
     TRAIL_QUANTITY.times do |i|

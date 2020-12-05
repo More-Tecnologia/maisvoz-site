@@ -3,8 +3,7 @@ module Backoffice
     include Backoffice::OrderPaymentsHelper
 
     before_action :validate_order_status, only: %i[new create]
-    before_action :validate_order_user_is_direct_referral_from_current_user, only: %i[new create]
-    before_action :validates_user_orders_quantity, only: %i[new create]
+    before_action :validate_order_amount_greater_than_current_order_amount, only: %i[new create]
     before_action :validate_user_password, only: :create
     before_action :validate_payer_user_balance, only: :create
 

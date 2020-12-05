@@ -79,6 +79,24 @@
 
         <% end%>
 
+        <%=  link_to backoffice_admin_orders_path, class: 'item13'  do%>
+            <i class="fas fa-user-shield"></i> <%= t('defaults.orders') %>
+        <% end%>
+
+        <%=  link_to backoffice_admin_credits_debit_path(:find_user), class: 'item14'  do%>
+            <i class="fas fa-user-shield"></i> <%= t('defaults.credits_debits') %>
+            
+        <% end%>
+
+        <%=  link_to backoffice_admin_financial_transactions_path, class: 'item15'  do%>
+            <i class="fas fa-user-shield"></i> <%= t('defaults.financial_transactions') %>
+            
+        <% end%>
+        <%=  link_to backoffice_admin_withdrawals_path, class: 'item16'  do%>
+            <i class="fas fa-user-shield"></i> <%= t('defaults.manage_withdrawals') %>
+            
+        <% end%>
+
     </div>
 
     <div class="right-panel">
@@ -145,28 +163,6 @@
             <%= t(:download_support_material) %>
         <% end%>
 
-        
-
-
-
-        <%=  link_to backoffice_admin_orders_path, class: 'item12'  do%>
-           
-            <i class="fas fa-user-shield"></i> <%= t('defaults.orders') %>
-        <% end%>
-
-        <%=  link_to backoffice_admin_credits_debit_path(:find_user), class: 'item13'  do%>
-            <i class="fas fa-user-shield"></i> <%= t('defaults.credits_debits') %>
-            
-        <% end%>
-
-        <%=  link_to backoffice_admin_financial_transactions_path, class: 'item14'  do%>
-            <i class="fas fa-user-shield"></i> <%= t('defaults.financial_transactions') %>
-            
-        <% end%>
-        <%=  link_to backoffice_admin_withdrawals_path, class: 'item15'  do%>
-            <i class="fas fa-user-shield"></i> <%= t('defaults.manage_withdrawals') %>
-            
-        <% end%>
         <%=  link_to new_backoffice_admin_expense_path, class: 'item16'  do%>
             <i class="fas fa-user-shield"></i> <%= t('defaults.expenses') %>
             

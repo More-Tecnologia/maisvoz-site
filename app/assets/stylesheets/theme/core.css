@@ -1301,6 +1301,7 @@ body.fixed-left .side-menu.left {
   margin-bottom: 60px;
   margin-top: 60px;
   padding: 20px 5px 15px 5px;
+  object-fit: cover;
 }
 .button-menu-mobile {
   background: transparent;
@@ -2209,9 +2210,6 @@ body.fixed-left .side-menu.left {
     position: absolute;
     left: 40%;
     transform: translatex(-50%);
-  }
-  #sponsor-link {
-    margin-left: -200%!important;
   }
 }
 @media screen and (max-width: 1920px) and (min-width: 1280px) {

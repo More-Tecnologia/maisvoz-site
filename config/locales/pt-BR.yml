@@ -773,7 +773,7 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
-    unilevel: Contratos Pool Cash
+    unilevel: Contratos de Bônus
     binary: Binary Points
     point_qualifications: Points Qualifications
     unilevel_binary: Relatório
@@ -828,7 +828,7 @@ pt-BR:
     score_expired: Expirado
     contract_active: Ativo
     contract_expired: Encerrado
-    bonus_contracts: Contrato Pool Cash
+    bonus_contracts: Contratos de Bônus
     bonus_contract_items: Contrato Pool Cash
     unilevel_tree: Unilevel
     voucher_payment: Voucher só paga o produto Advance
@@ -844,7 +844,16 @@ pt-BR:
     bonus_contracts_csv: Contratos de Bonus - %{datetime}
     withdrawal_fee_greater: para saque maior que %{amount}
     withdrawal_fee_less: para saque menor ou igual a %{amount}
-    withdrawal_fee_orders_less_fifty_percent: ''
+    withdrawal_fee_orders_less_fifty_percent:
+    view_publicity: Ver Publicidade
+    leadership_career: Título de Liderança
+    net: Rede
+    my_indications: Meus Indicados
+    balance_transference: Saldo Transferência
+    financial_histories: Histórico Financeiro
+    withdrawal_report: Relatório de Saques
+    support: Suporte
+    order_payments: Pagamento de Pedido
     banners_clicked_today: Clicked banners today quantity
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
@@ -1006,6 +1015,7 @@ pt-BR:
       default: "%a, %d de %B de %Y, %H:%M:%S %z"
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
+      small: "%d/%m/%Y"
     pm: ''
   translateX: Translatex
   translateY: Translatey

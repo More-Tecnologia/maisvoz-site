@@ -253,7 +253,7 @@ end
                    { title: 'Residual Support Point Inactivity Bonus Chargeback', code: '3000', active: false, company_moneyflow: :credit},
                    { title: 'Direct Referral Bonus', code: '2000', active: true, company_moneyflow: :debit  },
                    { title: 'Chargeback Direct Referral Bonus By Inactivity', code: '2100', active: true, company_moneyflow: :credit },
-                   { title: 'Indirect Referral Bonus', code: '2200', active: true, company_moneyflow: :debit },
+                   { title: 'Indirect Referral Bonus', code: '2200', dynamic_compression: true, active: true, company_moneyflow: :debit },
                    { title: 'Chargeback Indirect Referral Bonus By Inactivity', code: '2300', active: true, company_moneyflow: :credit },
                    { title: 'Activation Bonus', code: '2400', dynamic_compression: true, active: false, company_moneyflow: :debit },
                    { title: 'Inactivity Activation Bonus Chargeback', code: '2500', active: false, company_moneyflow: :credit },

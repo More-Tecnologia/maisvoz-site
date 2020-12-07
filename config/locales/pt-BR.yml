@@ -329,6 +329,7 @@ pt-BR:
     begin_datetime: Data de Início
     end_datetime: Data Fim
     transfer_at: Data
+    value: Valor
   backoffice:
     orders:
       show:
@@ -428,6 +429,10 @@ pt-BR:
     carts:
       show:
         purchase_resume: Resumo da Compra
+        total: Total
+    product_checkouts:
+      new:
+        purchase_resume: Resumo de Compra
         total: Total
     admin:
       media_files:

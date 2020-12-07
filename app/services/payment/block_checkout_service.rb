@@ -20,7 +20,6 @@ module Payment
       end
 
       def request_block_checkout_transaction
-        return {}
         response = notify_payment_block
         raise_error(response) unless success?(response.code)
         body = JSON.parse(response.body)
@@ -30,8 +29,8 @@ module Payment
       def create_payment_transaction(checkout)
         PaymentTransaction.create!(order: order,
                                    amount: amount,
-                                   transaction_id: SecureRandom.hex,
-                                   wallet_address: SecureRandom.hex)
+                                   transaction_id: checkout['transaction_code'],
+                                   wallet_address: checkout['wallet_address'])
       end
 
       def convert_to_currency_coin(total)
@@ -62,9 +61,8 @@ module Payment
 
       def notify_payment_block
         uri = URI(ENV['PAYMENT_BLOCK_CHECKOUT_URL'])
-        params = "amount=#{calculate_amount}"
+        params = { amount: calculate_amount }.to_json
         headers = { Authorization: ENV['PAYMENT_BLOCK_AUTHORIZATION_KEY'] }
-
         Net::HTTP.post(uri, params, headers)
       end
     end

@@ -98,6 +98,7 @@ Rails.application.routes.draw do
     resource :bank_account, only: [:edit, :update]
     resources :order_payments, except: %i[destroy]
     resources :balance_transferences, except: %i[destroy]
+    resources :adhesion_products, only: :index
 
     # Shopping
     resources :products, only: [:index, :show]

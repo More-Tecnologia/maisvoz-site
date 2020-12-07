@@ -320,6 +320,7 @@
     begin_datetime: Begin Date
     end_datetime: End Date
     transfer_at: Date
+    value: Value
   backoffice:
     orders:
       show:
@@ -424,6 +425,10 @@
         title: Balance Transference
     carts:
       show:
+        purchase_resume: Purchase Resume
+        total: Total
+    product_checkouts:
+      new:
         purchase_resume: Purchase Resume
         total: Total
     admin:

@@ -1,93 +1,95 @@
-<!-- Page-Title -->
 <div class="row">
-  <div class="col-sm-12">
-    <h4 class="page-title m-b-30"><%= t('views.backoffice.cart.show.title') %></h4>
+  <div class="col-xs-12">
+    <h3 class="black m-b-0 font-bold">
+      <%= t('.purchase_resume') %>
+    </h3>
+    <hr style='height: 3px; background: #505458;' class="m-t-0">
+    <div class="table-responsive">
+    <table class="table black font-18">
+      <thead style="font-weight: bold; border-bottom: 3px solid #505458;">
+        <th class="text-left black"> <%= OrderItem.human_attribute_name(:imagem) %> </th>
+        <th class="text-left black"> <%= OrderItem.human_attribute_name(:product) %> </th>
+        <th class="text-left black"> <%= OrderItem.human_attribute_name(:quantity) %> </th>
+        <th class="text-right black"> <%= OrderItem.human_attribute_name(:value) %> </th>
+        <th class="text-right black"></th>
+      </thead>
+      <tbody>
+        <% @order.order_items.includes(:product).each do |order_item| %>
+          <tr>
+            <td class="text-left black">
+              <%= ensure_cloudinary_image(order_item.product.main_photo,
+                                          class: 'thumb-sm',
+                                          style: 'margin-left: 10px; border-radius: 50%;') %>
+            </td>
+            <td class="text-left black" > <%= order_item.product.name %> </td>
+            <td class="text-left black" >
+              <%= simple_form_for order_item, url: backoffice_order_item_path(order_item) do |f| %>
+                <%= f.input :id, as: :hidden %>
+                <div class="col-xs-3 hidden-xs">
+                  <%= f.input :quantity, input_html: { class: 'form-control input-sm' }, label: false %>
+                </div>
+                <div class="col-xs-8 visible-xs">
+                  <%= f.input :quantity, input_html: { class: 'form-control input-sm' }, label: false %>
+                </div>
+                <button type="submit" class="btn btn-default btn-sm">
+                  <i class="icon-refresh"></i>
+                </button>
+              <% end %>
+            </td>
+            <td class="text-right black" id="total_item_price">
+              <%= number_to_currency(order_item.total_cents / 100.0) %>
+            </td>
+            <td>
+              <%= link_to backoffice_order_item_path(order_item), method: :delete do %>
+                <i class="icon-trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
   </div>
 </div>
-
-<div class="row">
+<div class="row m-b-23">
+  <div class="col-xs-12">
+    <h2 class="black m-b-0 pull-left">
+      <strong> <%= t('.total') %> </strong>
+    </h2>
+    <h2 class="black m-b-0 pull-right">
+      <strong id="checkout_form_total">
+        <%= number_to_currency(@order.total_cents / 100.0) %>
+      </strong>
+    </h2>
+  </div>
+</div>
+<div class="row text-center hidden-xs">
+  <div class="col-xs-12">
+    <%= link_to shop_index_path,
+                class: 'btn btn-default pull-left text-uppercase' do %>
+      <i class="icon-arrow-left"></i>
+      <%= t('views.backoffice.cart.show.continue_shopping') %>
+    <% end %>
+    <%= link_to new_backoffice_payment_block_checkout_path,
+                class: 'btn btn-success pull-right text-uppercase',
+                data: { disable_with: disable_spinner } do %>
+      <%= t('views.backoffice.cart.show.place_order') %>
+      <i class="icon-arrow-right"></i>
+    <% end %>
+  </div>
+</div>
+<div class="row text-center visible-xs">
+  <div class="col-sm-12 m-b-10">
+    <%= link_to shop_index_path,
+                class: 'btn btn-default text-uppercase' do %>
+      <%= t('views.backoffice.cart.show.continue_shopping') %>
+    <% end %>
+  </div>
   <div class="col-sm-12">
-    <div class="card-box">
-      <div class="row">
-        <div class="col-lg-12">
-
-          <table class="table table-bordered cart-table">
-
-            <thead class="cart-table__title">
-              <tr>
-                <th></th>
-                <th><%= Product.human_attribute_name(:name) %></th>
-                <th><%= OrderItem.human_attribute_name(:quantity) %></th>
-                <th><%= OrderItem.human_attribute_name(:unit_price) %></th>
-                <th><%= OrderItem.human_attribute_name(:total) %></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody class="cart-table__body">
-              <% current_order.order_items.each do |order_item| %>
-                <tr>
-                  <td><%= cl_image_tag(order_item.product.main_photo_id, { size: '150x150', class: 'thumb-md' }) %></td>
-                  <td><%= link_to order_item.name, backoffice_product_path(order_item.product) %></td>
-                  <td>
-                    <%= simple_form_for order_item, url: backoffice_order_item_path(order_item) do |f| %>
-                      <%= f.input :id, as: :hidden %>
-                      <div class="col-xs-4">
-                        <%= f.input :quantity, input_html: { class: 'form-control input-sm' }, label: false %>
-                      </div>
-                      <button type="submit" class="btn btn-default btn-sm">
-                        <i class="icon-refresh"></i>
-                      </button>
-                    <% end %>
-                  </td>
-                  <td><%= number_to_currency(order_item.unit_price, unit: ENV['CURRENT_CURRENCY']) %></td>
-                  <td><%= number_to_currency(order_item.total, unit: ENV['CURRENT_CURRENCY']) %></td>
-                  <td>
-                    <%= link_to backoffice_order_item_path(order_item), method: :delete do %>
-                      <i class="icon-trash"></i>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
-              <% if current_order.order_items.empty? %>
-                <tr>
-                  <td colspan="6" class="text-center"><%= t('views.backoffice.cart.show.no_data') %></td>
-                </tr>
-              <% end %>
-
-              <tr>
-                <th colspan="5"><span class="pull-right"><%= t('attributes.score') %></span></th>
-                <th><%= number_with_delimiter current_order.total_score %></th>
-              </tr>
-              <tr>
-                  <th colspan="5"><span class="pull-right"><%= t('attributes.subtotal') %></span></th>
-                  <th><%= number_to_currency(current_order.subtotal, unit: ENV['CURRENT_CURRENCY']) %></th>
-              </tr>
-              <tr>
-                  <th colspan="5"><span class="pull-right"><%= t('attributes.shipping') %></span></th>
-                  <th><%= number_to_currency(current_order.shipping, unit: ENV['CURRENT_CURRENCY']) %></th>
-              </tr>
-              <tr>
-                  <th colspan="5"><span class="pull-right"><%= t('attributes.total') %></span></th>
-                  <th><%= number_to_currency(current_order.total, unit: ENV['CURRENT_CURRENCY']) %></th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="row m-t-30">
-        <div class="col-md-12">
-          <% if current_order.order_items.present? %>
-            <%= link_to new_backoffice_payment_block_checkout_path,
-                        class: 'btn btn-default pull-right text-uppercase',
-                        data: { disable_with: "<i class='fa fa-spinner fa-spin'></i>...".html_safe } do %>
-              <%= t('views.backoffice.cart.show.place_order') %>
-              <i class="icon-arrow-right"></i>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-
-    </div>
+    <%= link_to new_backoffice_payment_block_checkout_path,
+                class: 'btn btn-success text-uppercase',
+                data: { disable_with: disable_spinner } do %>
+      <%= t('views.backoffice.cart.show.place_order') %>
+    <% end %>
   </div>
 </div>

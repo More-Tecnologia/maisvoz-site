@@ -137,6 +137,7 @@ class User < ApplicationRecord
   has_many :career_trails, through: :career_trail_users
   has_many :financial_transactions
   has_many :sim_cards
+  has_many :banner_clicks
   has_many :supported_sim_cards, class_name: 'SimCard',
                                  foreign_key: 'support_point_user_id'
   has_many :supported_point_users, class_name: 'User',
@@ -512,6 +513,22 @@ class User < ApplicationRecord
 
   def current_loan_contract
     bonus_contracts.loans.last
+  end
+
+  def banner_seen_today!
+    update!(banners_seen_at: Date.today)
+  end
+
+  def banner_seen_today?
+    banners_seen_at && banners_seen_at.to_date == Date.today
+  end
+
+  def banners_clicked_today_quantity
+    banner_clicks.today.count
+  end
+
+  def viewed_minimum_banner_quantity_today?
+    banners_clicked_today_quantity >= BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
   end
 
   private

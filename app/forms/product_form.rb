@@ -51,6 +51,10 @@ class ProductForm < Form
       .order('careers.qualifying_score ASC')
   end
 
+  def kind
+    :detached
+  end
+
   private
 
   def sku_is_unique

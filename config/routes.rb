@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   resources :maintenances, only: :index
 
   namespace :backoffice do
-    # Admin
     namespace :admin do
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -73,7 +72,6 @@ Rails.application.routes.draw do
       resource :support_point_users, only: :create
     end
 
-    # Backoffice
     resources :dashboard, only: :index do
       collection do
         get :balances_data
@@ -100,6 +98,7 @@ Rails.application.routes.draw do
     resource :bank_account, only: [:edit, :update]
     resources :order_payments, except: %i[destroy]
     resources :balance_transferences, except: %i[destroy]
+    resources :adhesion_products, only: :index
 
     # Shopping
     resources :products, only: [:index, :show]
@@ -113,6 +112,7 @@ Rails.application.routes.draw do
       post :generate_boleto
     end
     resources :cellphone_reloads, only: [:new, :create]
+    resources :product_checkouts, only: %i[new create]
 
     # Financial
     resources :withdrawals, only: [:index, :new, :create, :edit, :update]

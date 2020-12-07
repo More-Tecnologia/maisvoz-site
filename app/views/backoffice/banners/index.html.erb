@@ -9,10 +9,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 text-center">
-      <%= render partial: 'banner_main',
-                 locals: { banner: @banners.first } %>
-    </div>
+    <%= render partial: 'banner_main',
+               locals: { banner: @banners.first } %>
   </div>
   <div class="row" id="carousels">
     <% @banners.each_slice(8) do |banners| %>

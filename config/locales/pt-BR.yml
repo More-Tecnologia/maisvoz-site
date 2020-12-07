@@ -425,6 +425,10 @@ pt-BR:
         success: Saldo transferido com sucesso
       new:
         title: Pagamento de Pedido
+    carts:
+      show:
+        purchase_resume: Resumo da Compra
+        total: Total
     admin:
       media_files:
         form:

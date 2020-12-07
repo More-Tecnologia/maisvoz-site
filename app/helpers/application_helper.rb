@@ -48,4 +48,14 @@ module ApplicationHelper
     [[t('true'), true],
      [t('false'), false]]
   end
+
+  def disable_spinner
+    content_tag :i, '', class: 'fa fa-spinner fa-spin'
+  end
+
+  def ensure_cloudinary_image(path, options)
+    return cl_image_tag(path, options) if path
+
+    image_tag('fallback/default_product.png', options)
+  end
 end

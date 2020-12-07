@@ -20,6 +20,7 @@ class BonusContract < ApplicationRecord
   scope :inactive, -> { where('expire_at <= ? OR paid_at IS NOT NULL', DateTime.current) }
   scope :loans, -> { active.with_active_loan }
   scope :yield_contracts, -> { where(loan: false) }
+  scope :enabled_bonification, -> { where(enabled_bonification: true) }
 
   def active?
     return false if paid_at || expire_at < DateTime.current

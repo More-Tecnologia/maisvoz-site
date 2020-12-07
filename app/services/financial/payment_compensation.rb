@@ -196,7 +196,7 @@ module Financial
     end
 
     def create_bonus_contract
-      CreatorBonusContractService.call(order: order)
+      CreatorBonusContractService.call(order: order, enabled_bonification: enabled_bonification)
     end
   end
 end

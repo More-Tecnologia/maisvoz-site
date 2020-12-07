@@ -16,6 +16,7 @@ module Bonification
       BonusContract.includes(:order, user: [sponsored: [:bonus_contracts]])
                    .active
                    .yield_contracts
+                   .enabled_bonification
     end
 
     def create_yield_bonus_for(contract)

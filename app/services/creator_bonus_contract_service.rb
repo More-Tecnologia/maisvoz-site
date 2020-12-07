@@ -1,7 +1,8 @@
 class CreatorBonusContractService < ApplicationService
   def call
     expire_at = 100.years.from_now
-    contract_value = 2 * (@deposit_value - CONTRACT_FEE)
+    contract_value = @deposit_value
+    contract_value = 2 * (@deposit_value - CONTRACT_FEE) if @enabled_bonification
     rentability = CONTRACT_RETABILITY
 
     create_bonus_contract_for_order_user(contract_value, expire_at, CONTRACT_RETABILITY)
@@ -16,6 +17,7 @@ class CreatorBonusContractService < ApplicationService
     @order = args[:order]
     @user = @order.user
     @deposit_value = @order.total_value
+    @enabled_bonification = args[:enabled_bonification]
   end
 
   def create_bonus_contract_for_order_user(contract_value, expire_at, rentability, loan = false)

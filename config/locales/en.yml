@@ -422,6 +422,10 @@
         success: Balance transfered successfull
       new:
         title: Balance Transference
+    carts:
+      show:
+        purchase_resume: Purchase Resume
+        total: Total
     admin:
       media_files:
         form:

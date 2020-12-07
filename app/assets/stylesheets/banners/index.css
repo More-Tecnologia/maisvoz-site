@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  max-width: 1160px;
+  max-width: 1170px;
   max-height: 350px;
   height: 350px;
   object-fit: cover;
@@ -30,26 +30,15 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #444444;
 }
 
 #carousels .carousel{
   height: 175px;
-  margin-top: 60px;
-
+  margin-top: 40px;
 }
-
-#carousels .carousel .owl-stage-outer{
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background-color: #222222;
-}
-
-
 
 #carousels .carousel .item{
-  padding: 10px;
-
+  padding: 5px;
 }
 
 #carousels .carousel .item img{
@@ -76,6 +65,7 @@
 .banner-buttons .banner-buttons-link{
   font-size: 45px;
   color: #69b646;
+  text-shadow: 2px 2px 0px #000000;
 }
 
 .banner-buttons .banner-button{
@@ -88,6 +78,7 @@
   color: #FFF;
   background: #69b646;
   border-radius: 10px;
+  box-shadow: 2px 2px 0px #000000;
 }
 
 .banner-buttons2{
@@ -104,7 +95,7 @@
 .banner-buttons2 .banner-buttons-link{
   font-size: 20px;
   color: #69b646;
-  text-shadow: #d9d9d9;
+  text-shadow: 2px 2px 0px #000000;
 }
 
 .banner-buttons2 .banner-button{
@@ -117,9 +108,39 @@
   color: #FFF;
   background: #69b646;
   border-radius: 10px;
+  box-shadow: 2px 2px 0px #000000;
 }
 
+.product-buttons2{
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  top: 85%;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.product-buttons2 .banner-buttons-link{
+  font-size: 20px;
+  color: #69b646;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.product-buttons2 .banner-button{
+  width: 120px;
+  height: 25px;
+  font-size: 12px;
+  padding: 3px;
+  margin-left: 10px;
+  text-align: center;
+  color: #FFF;
+  background: #69b646;
+  border-radius: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 0px #000000;
+}
 
 #myModal{
   height: 400px;
@@ -166,6 +187,22 @@
   padding-bottom: 40px;
 }
 
+.product-item {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.product-item img{
+  width: 270px;
+  max-width: 270px;
+  height: 270px;
+  max-height: 270px;
+  object-fit: contain;
+}
+
 @media (max-width: 420px){
   .banner-principal{
     width: 326px;
@@ -196,5 +233,11 @@
 
   #myModal .modal-dialog .modal-content p{
     font-size: 25px;
+  }
+
+
+  .product-item a img{
+    margin-left: 8%;
+
   }
 }

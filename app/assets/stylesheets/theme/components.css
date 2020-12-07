@@ -5,7 +5,7 @@ Email: coderthemes@gmail.com
 File: Components
 */
 /* =============
-  == Components List== 
+  == Components List==
 
    - Buttons
    - Checkbox and radio
@@ -48,8 +48,8 @@ File: Components
 .btn-default:focus,
 .btn-default:hover,
 .open > .dropdown-toggle.btn-default {
-  background-color: #3EBFC4 !important;
-  border: 1px solid #3EBFC4 !important;
+  background-color: #4D4D4D !important;
+  border: 1px solid #4D4D4D !important;
 }
 .btn-white,
 .btn-white:hover,
@@ -111,8 +111,8 @@ File: Components
 .btn-primary:focus,
 .btn-primary:hover,
 .open > .dropdown-toggle.btn-primary {
-  background-color: #3EBFC4 !important;
-  border: 1px solid #3EBFC4 !important;
+  background-color: #4D4D4D !important;
+  border: 1px solid #4D4D4D !important;
 }
 .btn-success,
 .btn-success:hover,
@@ -955,7 +955,7 @@ File: Components
   background-color: #5d9cec;
 }
 .progress-bar-success {
-  background-color: #3EBFC4 !important;
+  background-color: #4D4D4D !important;
 }
 .progress-bar-info {
   background-color: #34d3eb;
@@ -2375,7 +2375,7 @@ a.editable-click:hover {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  
+
 }
 
 
@@ -2421,10 +2421,10 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .left-panel .item2 { 
+#dashboard .left-panel .item2 {
   grid-column: 6 / span 5;
   grid-row: 1 / span 2;
-  
+
   background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
   display: flex;
   justify-content: center;
@@ -2443,7 +2443,7 @@ a.editable-click:hover {
 
 
 #dashboard .left-panel .item3 {
-  grid-column: 1 / span 5 ; 
+  grid-column: 1 / span 5 ;
   grid-row: 3 / span 2;
   background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
   display: flex;
@@ -2460,9 +2460,9 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .left-panel .item4 { 
+#dashboard .left-panel .item4 {
   grid-column: 6 / span 5;
-  grid-row: 3 / span 4; 
+  grid-row: 3 / span 4;
   background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
   display: flex;
   justify-content: center;
@@ -2487,7 +2487,7 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 #dashboard .left-panel .item5 img{
@@ -2496,7 +2496,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .left-panel .item6 { 
+#dashboard .left-panel .item6 {
   grid-column: 1 / span 3;
   grid-row: 7 / span 2;
   background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
@@ -2514,7 +2514,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .left-panel .item7 { 
+#dashboard .left-panel .item7 {
   grid-column: 4 / span 2;
   grid-row: 7 / span 2;
   background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
@@ -2532,9 +2532,9 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .left-panel .item8 { 
+#dashboard .left-panel .item8 {
   grid-column: 6;
-  grid-row: 7; 
+  grid-row: 7;
   background: #444444;
   display: flex;
   justify-content: center;
@@ -2547,10 +2547,10 @@ a.editable-click:hover {
 #dashboard .left-panel .item8 img{
   width: 15px;
   height: 15px;
-  
+
 }
 
-#dashboard .left-panel .item9 { 
+#dashboard .left-panel .item9 {
   grid-column: 7;
   grid-row: 7;
   background: #444444;
@@ -2567,7 +2567,7 @@ a.editable-click:hover {
   height: 15px;
 }
 
-#dashboard .left-panel .item10 { 
+#dashboard .left-panel .item10 {
   grid-column: 6;
   grid-row: 8;
   background: #444444;
@@ -2584,9 +2584,9 @@ a.editable-click:hover {
   height: 15px;
 }
 
-#dashboard .left-panel .item11 { 
+#dashboard .left-panel .item11 {
   grid-column: 7;
-  grid-row: 8; 
+  grid-row: 8;
   background: #444444;
   display: flex;
   justify-content: center;
@@ -2601,16 +2601,16 @@ a.editable-click:hover {
   height: 15px;
 }
 
-#dashboard .left-panel .item12 { 
+#dashboard .left-panel .item12 {
   grid-column: 8 / span 3;
-  grid-row: 7 / span 2; 
+  grid-row: 7 / span 2;
   background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 #dashboard .left-panel .item12 img{
@@ -2619,7 +2619,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .left-panel .item13 { 
+#dashboard .left-panel .item13 {
   grid-column: 1 / span 3;
   grid-row: 9 / span 2;
   background: #444444;
@@ -2628,12 +2628,12 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 
 
-#dashboard .left-panel .item14 { 
+#dashboard .left-panel .item14 {
   grid-column: 4 / span 3;
   grid-row: 9 / span 2;
   background: #444444;
@@ -2642,10 +2642,10 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 12px; 
+  font-size: 12px;
 }
 
-#dashboard .left-panel .item15 { 
+#dashboard .left-panel .item15 {
   grid-column: 7 / span 3;
   grid-row: 9 / span 2;
   background: #444444;
@@ -2654,12 +2654,12 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 12px; 
+  font-size: 12px;
 }
 
 
 
-#dashboard .left-panel .item16 { 
+#dashboard .left-panel .item16 {
   grid-column: 10 ;
   grid-row: 9 / span 2;
   background: #444444;
@@ -2668,7 +2668,7 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 12px;  
+  font-size: 12px;
 }
 
 
@@ -2717,7 +2717,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .right-panel .item2 { 
+#dashboard .right-panel .item2 {
   grid-column: 3 ;
   grid-row: 1 / span 2;
   background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
@@ -2753,7 +2753,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .right-panel .item4 { 
+#dashboard .right-panel .item4 {
   grid-column: 1;
   grid-row: 3 / span 2;
   background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
@@ -2762,7 +2762,7 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 10px; 
+  font-size: 10px;
 }
 
 #dashboard .right-panel .item4 img{
@@ -2773,7 +2773,7 @@ a.editable-click:hover {
 
 #dashboard .right-panel .item5 {
   grid-column: 2;
-  grid-row: 3 / span 2; 
+  grid-row: 3 / span 2;
   background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
   display: flex;
   justify-content: center;
@@ -2789,7 +2789,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .right-panel .item6 { 
+#dashboard .right-panel .item6 {
   grid-column: 3;
   grid-row: 3 / span 2;
   background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
@@ -2807,7 +2807,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .right-panel .item7 { 
+#dashboard .right-panel .item7 {
   grid-column: 4;
   grid-row: 3 / span 2;
   background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
@@ -2825,18 +2825,18 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .right-panel .item8 { 
+#dashboard .right-panel .item8 {
   grid-column: 1 / span 2 ;
   grid-row: 5 / span 4;
   background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
   display: flex;
   flex-direction: column;
   color: #FFF;
-  font-size: 20px; 
+  font-size: 20px;
 }
 
 
-#dashboard .right-panel .item9 { 
+#dashboard .right-panel .item9 {
   grid-column: 3;
   grid-row: 5 / span 2;
   background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
@@ -2844,7 +2844,7 @@ a.editable-click:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+
 
 }
 
@@ -2859,7 +2859,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .right-panel .item10 { 
+#dashboard .right-panel .item10 {
   grid-column: 4;
   grid-row: 5 / span 2;
   background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
@@ -2877,7 +2877,7 @@ a.editable-click:hover {
   margin-bottom: 10px;
 }
 
-#dashboard .right-panel .item11 { 
+#dashboard .right-panel .item11 {
   grid-column: 3 / span 2;
   grid-row: 7 / span 2;
   background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
@@ -2886,7 +2886,7 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 #dashboard .right-panel .item11 img{
@@ -2896,7 +2896,7 @@ a.editable-click:hover {
 }
 
 
-#dashboard .right-panel .item16 { 
+#dashboard .right-panel .item16 {
   grid-column: 1;
   grid-row: 10;
   background: #444444;
@@ -2910,12 +2910,12 @@ a.editable-click:hover {
 
 #dashboard .right-panel .item16 span{
   color: #FFF;
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 
 
-#dashboard .right-panel .item17 { 
+#dashboard .right-panel .item17 {
   grid-column: 2;
   grid-row:10;
   background: #444444;
@@ -2924,13 +2924,13 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 12px;  
+  font-size: 12px;
 }
 
 
 
 
-#dashboard .right-panel .item18 { 
+#dashboard .right-panel .item18 {
   grid-column: 3;
   grid-row: 10;
   background: #444444;
@@ -2939,10 +2939,10 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 12px; 
+  font-size: 12px;
 }
 
-#dashboard .right-panel .item19 { 
+#dashboard .right-panel .item19 {
   grid-column: 4;
   grid-row: 10;
   background: #444444;
@@ -2951,7 +2951,7 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 14px; 
+  font-size: 14px;
 }
 
 #navbar2 #dashboard{
@@ -2963,39 +2963,39 @@ a.editable-click:hover {
   #dashboard{
     flex-direction: column;
     padding: 0;
-  
+
   }
 
   #dashboard  .left-panel {
     grid-gap: 5px;
-    margin-top: 20px;  
+    margin-top: 20px;
   }
 
-  #dashboard .left-panel .item6, 
-  #dashboard .left-panel .item7, 
-  #dashboard .left-panel .item8, 
-  #dashboard .left-panel .item9, 
-  #dashboard .left-panel .item10, 
-  #dashboard .left-panel .item11, 
+  #dashboard .left-panel .item6,
+  #dashboard .left-panel .item7,
+  #dashboard .left-panel .item8,
+  #dashboard .left-panel .item9,
+  #dashboard .left-panel .item10,
+  #dashboard .left-panel .item11,
   #dashboard .left-panel .item12 {
     padding: 5px;
     font-size: 12px;
   }
 
-  #dashboard .left-panel .item1 img, 
-  #dashboard .left-panel .item2 img, 
-  #dashboard .left-panel .item3 img, 
-  #dashboard .left-panel .item4 img, 
-  #dashboard .left-panel .item5 img, 
-  #dashboard .left-panel .item6 img, 
-  #dashboard .left-panel .item7 img, 
+  #dashboard .left-panel .item1 img,
+  #dashboard .left-panel .item2 img,
+  #dashboard .left-panel .item3 img,
+  #dashboard .left-panel .item4 img,
+  #dashboard .left-panel .item5 img,
+  #dashboard .left-panel .item6 img,
+  #dashboard .left-panel .item7 img,
   #dashboard .left-panel .item12 img{
     width: 30px;
     height: 30px;
   }
 
-  #dashboard .left-panel .item8 img, 
-  #dashboard .left-panel .item9 img, 
+  #dashboard .left-panel .item8 img,
+  #dashboard .left-panel .item9 img,
   #dashboard .left-panel .item10 img,
   #dashboard .left-panel .item11 img,
   #dashboard .left-panel .item13 img,
@@ -3013,25 +3013,25 @@ a.editable-click:hover {
 
   #dashboard  .right-panel {
     grid-gap: 10px;
-    margin-top: 20px;  
+    margin-top: 20px;
   }
 
-  #dashboard .right-panel .item4, 
-  #dashboard .right-panel .item5, 
-  #dashboard .right-panel .item6, 
+  #dashboard .right-panel .item4,
+  #dashboard .right-panel .item5,
+  #dashboard .right-panel .item6,
   #dashboard .right-panel .item7 {
     padding: 5px;
   }
 
-  #dashboard .right-panel .item1 img, 
-  #dashboard .right-panel .item2 img, 
-  #dashboard .right-panel .item3 img, 
-  #dashboard .right-panel .item4 img, 
-  #dashboard .right-panel .item5 img, 
-  #dashboard .right-panel .item6 img, 
-  #dashboard .right-panel .item7 img, 
-  #dashboard .right-panel .item8 img, 
-  #dashboard .right-panel .item9 img, 
+  #dashboard .right-panel .item1 img,
+  #dashboard .right-panel .item2 img,
+  #dashboard .right-panel .item3 img,
+  #dashboard .right-panel .item4 img,
+  #dashboard .right-panel .item5 img,
+  #dashboard .right-panel .item6 img,
+  #dashboard .right-panel .item7 img,
+  #dashboard .right-panel .item8 img,
+  #dashboard .right-panel .item9 img,
   #dashboard .right-panel .item10 img,
   #dashboard .right-panel .item11 img,
   #dashboard .right-panel .item16 img,
@@ -3044,5 +3044,3 @@ a.editable-click:hover {
 
 
 }
-
-

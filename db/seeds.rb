@@ -68,7 +68,7 @@ ActiveRecord::Base.transaction do
               bonus: 0,
               binary_limit: 0,
               kind: :adhesion,
-              image_path: 'careers/chairmain.png',
+              image_path: 'careers/chairman.png',
               requalification_score: 0,
               maximum_qualifying_score: 255_000 }]
 persisted_careers = careers.map do |attributes|

@@ -5,6 +5,8 @@ $('div#main-banner').replaceWith(clicked_banner)
 var banners_clicked_quantity = "<%= current_user.banners_clicked_today_quantity %>"
 $('span#banners-clicked-today-quantity').html(banners_clicked_quantity)
 
+window.open("<%= @banner_click.banner.link %>")
+
 <% if current_user.banner_seen_today? %>
   $('#myModal').modal()
 <% end %>

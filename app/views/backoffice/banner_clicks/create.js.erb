@@ -1,6 +1,6 @@
 var clicked_banner = "<%= j render(partial: 'backoffice/banners/banner_main',
                                    locals: { banner: @banner_click.banner }) %>"
-$('div#banner-main').replaceWith(clicked_banner)
+$('div#main-banner').replaceWith(clicked_banner)
 
 var banners_clicked_quantity = "<%= current_user.banners_clicked_today_quantity %>"
 $('span#banners-clicked-today-quantity').html(banners_clicked_quantity)

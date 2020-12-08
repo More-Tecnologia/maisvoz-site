@@ -603,7 +603,7 @@ class User < ApplicationRecord
   end
 
   def update_sponsor_type
-    Types::QualifierService.call(user: user.sponsor)
+    Types::QualifierService.call(user: sponsor)
   end
 
   def update_user_type

@@ -16,6 +16,7 @@
   margin-right: 5%;
 }
 
+
 .banner-principal img {
   max-width: 1160px;
   max-height: 350px;
@@ -205,8 +206,8 @@
 
 @media (max-width: 420px){
   .banner-principal{
-    width: 326px;
-    margin-left: -1px;
+    display: none;
+    height: 0;
   }
 
   .banner-buttons {
@@ -240,4 +241,14 @@
     margin-left: 8%;
 
   }
+
+  #carousels{
+    margin-top: 0px;
+    padding-top: 10px
+  }
+
+  #carousels .carousel {
+    margin-top: 0px;
+  }
+
 }

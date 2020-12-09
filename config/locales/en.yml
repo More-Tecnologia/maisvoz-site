@@ -565,6 +565,8 @@
     see_cart: View Cart
     title: Cart
   mailer:
+    no-reply: Por favor, não responda.
+    doubt: 'If in doubt contact us by email: %{contact_email}.'
     automatic: This email was sent automatically. Please don't answer.
                In case of doubt, contact %{contact_mail}
   user_mailer:

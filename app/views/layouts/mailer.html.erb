@@ -4,25 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" /><!--[if !mso]><!-->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" /><!--<![endif]-->
-    <!--[if (gte mso 9)|(IE)]>
-    <xml>
-    <o:OfficeDocumentSettings>
-    <o:AllowPNG/>
-    <o:PixelsPerInch>96</o:PixelsPerInch>
-    </o:OfficeDocumentSettings>
-    </xml>
-    <![endif]-->
-    <!--[if (gte mso 9)|(IE)]>
-    <style type="text/css">
-      body {width: 600px;margin: 0 auto;}
-      table {border-collapse: collapse;}
-      table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
-      img {-ms-interpolation-mode: bicubic;}
-    </style>
-    <![endif]-->
 
     <style type="text/css">
-      span, h2{
+      span, h2 {
         text-align: justify;
         font-size: 1.2em;
         color: #FFF !important;
@@ -122,7 +106,7 @@
         justify-content: center;
 
 
-      } 
+      }
 
       .container  .rodape .rodape-link a img{
         width: 100%;
@@ -147,7 +131,6 @@
         margin-bottom: 0;
         margin-bottom: 5px;
       }
-      
     </style>
   </head>
   <body>
@@ -161,7 +144,6 @@
         <div class="conteudo-item">
           <%= yield %>
         </div>
-        
       </div>
       <div class="rodape">
         <div class="rodape-link">
@@ -176,19 +158,13 @@
           </a>
         </div>
         <h2>
-          MONETIZZECASH.COM
+          <%= ENV['COMPANY_DOMAIN_SITE'] %>
         </h2>
-        
         <hr>
-
         <p>
-          <strong>
-            Por favor, não responda.
-          </strong>
+          <strong> <%= t('mailer.no-reply') %></strong>
         </p>
-        <p>
-          Em caso de dúvida entre em contato pelo email: contato@monetizzecash.com
-        </p>
+        <p> <%= t('mailer.doubt', contact_email: ENV['CONTACT_EMAIL']) %> </p>
       </div>
     </div>
   </body>

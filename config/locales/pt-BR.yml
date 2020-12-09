@@ -582,6 +582,8 @@ pt-BR:
     see_cart: Ver carrinho
     title: Carrinho
   mailer:
+    no-reply: Por favor, não responda.
+    doubt: 'Em caso de dúvida entre em contato pelo email: %{contact_email}.'
     automatic: Este Email foi enviado automaticamente. Por favor não responder.
                Em caso de dúvidas, entre em contato com %{contact_mail}
   user_mailer:

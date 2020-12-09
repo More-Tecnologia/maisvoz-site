@@ -21,5 +21,17 @@ FactoryBot.define do
     trait :activation do
       kind { :activation }
     end
+
+    trait :voucher do
+      kind { :voucher }
+    end
+
+    trait :deposit do
+      kind { :deposit }
+    end
+
+    trait :subscription do
+      kind { :subscription }
+    end
   end
 end

@@ -32,7 +32,7 @@
         <%= image_tag 'icons/CHARMAIN1.png', class: 'img img-responsive' %>
         <%= t('defaults.leadership_career') %>
       <% end %>
-
+ 
       <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'item6'  do%>
         <%= image_tag 'icons/rede1.png', class: 'img img-responsive' %>
         <%= t('defaults.net') %>
@@ -117,9 +117,11 @@
         <%= t('defaults.order_payments') %>
       <% end %>
 
-      <%= link_to '#', class: 'item10'  do%>
-        <%= image_tag 'icons/suporte1.png', class: 'img img-responsive' %>
-        <%= t('defaults.support') %>
+      <%= link_to backoffice_orders_path, class: 'item10'  do%>
+        <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
+        
+          <%= t('defaults.orders') %>
+      
       <% end %>
 
       <%= link_to backoffice_downloads_path, class: 'item11'  do%>

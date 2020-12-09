@@ -1444,8 +1444,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   documents_approval: Documents Approval
   status: Status
   support_director_footer: 'Yours sincerely, <br>
-                           John Spartan <br>
-                           Support Director <br>
+                           Support Department <br>
                            %{company_name}'
   financial_department_footer: 'Yours sincerely, <br>
                                 Financial Department <br>

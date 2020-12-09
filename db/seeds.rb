@@ -283,42 +283,42 @@ end
                        name: ENV['MORENWM_USERNAME'],
                        role: 'admin',
                        password: '111111',
-                       email: 'systempublimoney@publimoney.net')
+                       email: 'systemmonetizecash@monetizecash.com')
  more_user.save(validate: false) unless User.exists?(username: ENV['MORENWM_USERNAME'])
 
  admin_user = User.create!(username: ENV['MORENWM_CUSTOMER_ADMIN'],
                            name: ENV['MORENWM_CUSTOMER_ADMIN'],
                            role: 'admin',
                            password: '111111',
-                           email: 'adminpublimoney@publimoney.net',
+                           email: 'adminmonetizecash@monetizecash.com',
                            sponsor: more_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_ADMIN'])
 
   User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
                name: ENV['MORENWM_CUSTOMER_USERNAME'],
                role: 'empreendedor',
                password: '111111',
-               email: 'publimoney@publimoney.net',
+               email: 'monetizecash@monetizecash.com',
                sponsor: admin_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_USERNAME'])
 
  adminfinancial_user = User.create!(username: 'adminfinancial',
                                     name: 'Admin Financial',
                                     role: :financeiro,
                                     password: '111111',
-                                    email: 'financiero@publimoney.net',
+                                    email: 'financiero@monetizecash.com',
                                     sponsor: admin_user)
 
  support_user = User.create!(username: 'adminsupport',
                              name: 'Admin Support',
                              role: :suporte,
                              password: '111111',
-                             email: 'soporte@publimoney.net',
+                             email: 'soporte@monetizecash.com',
                              sponsor: adminfinancial_user)
 
  contact_user = User.create!(username: 'admincontacto',
                              name: 'Admin Contacto',
                              role: :suporte,
                              password: '111111',
-                             email: 'contacto@publimoney.net',
+                             email: 'contacto@monetizecash.com',
                              sponsor: support_user)
 
   adminfinancial_user.binary_node.delete

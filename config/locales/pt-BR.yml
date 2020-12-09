@@ -434,6 +434,9 @@ pt-BR:
       new:
         purchase_resume: Resumo de Compra
         total: Total
+    adhesion_products:
+      index:
+        title: Loja Pack Click Cash
     admin:
       media_files:
         form:

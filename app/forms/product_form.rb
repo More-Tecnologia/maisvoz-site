@@ -52,7 +52,13 @@ class ProductForm < Form
   end
 
   def kind
+    return product.kind if product
+
     :detached
+  end
+
+  def product
+    product ||= Product.find(id)
   end
 
   private

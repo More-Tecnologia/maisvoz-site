@@ -431,6 +431,9 @@
       new:
         purchase_resume: Purchase Resume
         total: Total
+    adhesion_products:
+      index:
+        title: Store Pack Click Cash
     admin:
       media_files:
         form:

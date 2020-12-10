@@ -2,13 +2,50 @@
 
 <div class="container">
   <div class="row"  id="dashboard">
-    <div class="left-panel">
-      <%=  link_to shop_index_path, class: 'item1'  do%>
-        <%= image_tag 'icons/loja1.png', class: 'img img-responsive' %>
-        <%= t(:shop) %>
+    <div class="painel">
+
+      <%= link_to backoffice_admin_orders_path, class: 'item1'  do%>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.orders') %>
       <% end %>
+
+      <%= link_to backoffice_admin_credits_debit_path(:find_user), class: 'item2'  do%>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.credits_debits') %>
+        
+      <% end %>
+
+      <%= link_to backoffice_admin_financial_transactions_path, class: 'item3'  do%>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.financial_transactions') %>
+      <% end %>
+
+      <%=  link_to backoffice_admin_withdrawals_path, class: 'item4'  do%>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.manage_withdrawals') %>
+      <% end %>
+
+      <%=  link_to new_backoffice_admin_expense_path, class: 'item5'  do%>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.expenses') %>
+      <% end %>
+
+      <%= link_to backoffice_admin_bonus_contracts_path, class: 'item6'  do%>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.unilevel') %>
+      <% end %>
+
+      <%=  link_to backoffice_admin_financial_reports_path, class: 'item7'  do%>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.financial_reports') %>
+      <% end %>
+
+      <%= link_to backoffice_support_users_path, class: 'item8'  do%>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.users') %>
+        
+      <% end %>
+
+      <%=  link_to shop_index_path, class: 'item9'  do%>
+
+        <%= image_tag 'icons/apoio1.png', class: 'img img-responsive' %>
+        <%= t(:download_support_material) %>
+      <% end %>
+
       <a href="#"
-         class="item2"
+         class="item10"
          sponsor-link="<%= new_user_registration_url(sponsor: current_user.username) %>"
          id="sponsor-link"
          title='<%= t(:copied_sponsor_link) %>'
@@ -16,86 +53,99 @@
          <%= image_tag 'icons/link1.png', class: 'img img-responsive' %>
         <%= t(:sponsor_link) %>
       </a>
-      <%=  link_to backoffice_adhesion_products_path, class: 'item3'  do%>
-        <%= image_tag 'icons/clicks1.png', class: 'img img-responsive' %>
-        Pack Click Cash
-      <% end %>
 
-      <%=  link_to backoffice_banners_path, class: 'item4'  do%>
-        <%= image_tag 'icons/publicidade1.png', class: 'img img-responsive' %>
-        <%= t('defaults.view_publicity') %>
-      <% end %>
+  
 
-      <%= link_to '#', class: 'item5'  do%>
+      <%=  link_to '#', class: 'item11'  do%>
         <%= image_tag 'icons/CHARMAIN1.png', class: 'img img-responsive' %>
         <%= t('defaults.leadership_career') %>
       <% end %>
 
-      <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'item6'  do%>
-        <%= image_tag 'icons/rede1.png', class: 'img img-responsive' %>
-        <%= t('defaults.net') %>
+      <%= link_to backoffice_banners_path, class: 'item12'  do%>
+        <%= image_tag 'icons/publicidade1.png', class: 'img img-responsive' %>
+        <%= t('defaults.view_publicity') %>
       <% end %>
 
-      <%= link_to '#', class: 'item7'  do%>
-        <%= image_tag 'icons/indicados1.png', class: 'img img-responsive' %>
-        <%= t('defaults.my_indications') %>
+      <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'item13'  do%>
+        <%= image_tag 'icons/saldo1.png', class: 'img img-responsive' %>
+        <%= available_balane(current_user) %>
+        <%= t('defaults.financial_histories') %>
+      <% end %>
+
+      <%= link_to '#', class: 'item14'  do%>
+        <%= image_tag 'icons/saldo11.png', class: 'img img-responsive' %>
+        <%= blocked_balance(current_user) if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
+        <%= t('attributes.blocked_balance') %>
+      <% end %>
+
+      <%= link_to '#', class: 'item15'  do%>
+        <%= image_tag 'icons/troca11.png', class: 'img img-responsive' %>
+        <%= order_payment_balance(current_user) %>
+        <%= t('defaults.balance_transference') %>
       <% end %>
 
       <% Type.order(:indications_quantity).each_with_index do |type, index| %>
-        <%= link_to '#', class: "item#{8 + index}"  do %>
+        <%= link_to '#', class: "item#{16 + index}"  do %>
           <%= image_tag current_user.type == type ? 'icons/ativo1.png' : 'icons/inativo1.png',
                         class: 'img img-responsive' %>
           <%= type.name %>
         <% end %>
       <% end %>
 
-      <%= link_to '#', class: 'item12'  do%>
-        <%= image_tag current_user.active? ? 'icons/ativo11.png': 'icons/ativo21.png',
-                      class: 'img img-responsive' %>
-        <%= t(:account_status) %>
-      <% end %>
-    </div>
-
-    <div class="right-panel">
-      <%= link_to new_backoffice_withdrawal_path, class: 'item1'  do%>
+ 
+      <%= link_to new_backoffice_withdrawal_path, class: 'item20'  do%>
         <%= image_tag 'icons/retirada1.png', class: 'img img-responsive' %>
         <%= t('defaults.new_withdraw') %>
       <% end %>
 
-      <%= link_to backoffice_balance_transferences_path, class: 'item2'  do%>
+      <%= link_to backoffice_balance_transferences_path, class: 'item21'  do%>
         <%= image_tag 'icons/troca1.png', class: 'img img-responsive' %>
         <%= t('defaults.balance_transferences') %>
       <% end %>
 
-      <%= link_to backoffice_bonus_contracts_path, class: 'item3'  do%>
+      <%= link_to backoffice_bonus_contracts_path, class: 'item22'  do%>
         <%= image_tag 'icons/relatorio1.png', class: 'img img-responsive' %>
         <%= t('defaults.unilevel') %>
       <% end %>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item4'  do%>
-        <%= image_tag 'icons/saldo1.png', class: 'img img-responsive' %>
-        <%= available_balane(current_user) %>
-        <%= t('defaults.financial_histories') %>
+      <%= link_to backoffice_financial_transactions_path, class: 'item23'  do%>
+        <%= image_tag 'icons/rede1.png', class: 'img img-responsive' %>
+        <%= t('defaults.net') %>
       <% end %>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item5'  do%>
-        <%= image_tag 'icons/saldo11.png', class: 'img img-responsive' %>
-        <%= blocked_balance(current_user) if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
-        <%= t('attributes.blocked_balance') %>
+      <%= link_to backoffice_financial_transactions_path, class: 'item24'  do%>
+        <%= image_tag 'icons/indicados1.png', class: 'img img-responsive' %>
+        <%= t('defaults.my_indications') %>
       <% end %>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item6'  do%>
-        <%= image_tag 'icons/troca11.png', class: 'img img-responsive' %>
-        <%= order_payment_balance(current_user) %>
-        <%= t('defaults.balance_transference') %>
+      <%= link_to backoffice_financial_transactions_path, class: 'item25'  do%>
+        <%= image_tag current_user.active? ? 'icons/ativo11.png': 'icons/ativo21.png',
+                      class: 'img img-responsive' %>
+        <%= t(:account_status) %>
       <% end %>
 
-      <%= link_to '#', class: 'item7'  do%>
+      <%= link_to '#', class: 'item26'  do%>
         <%= image_tag 'icons/relatorio_11.png', class: 'img img-responsive' %>
         <%= t('defaults.financial_histories') %>
       <% end %>
 
-      <%= link_to '#', class: 'item8' do %>
+      <%= link_to '#', class: 'item27' do %>
+        <%= image_tag 'icons/loja1.png', class: 'img img-responsive' %>
+        <%= t(:shop) %>
+      <% end %>
+
+      <%= link_to backoffice_order_payments_path, class: 'item28'  do%>
+        <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
+        <%= t('defaults.order_payment') %>
+      <% end %>
+
+      <%=  link_to backoffice_adhesion_products_path, class: 'item29'  do%>
+        <%= image_tag 'icons/clicks1.png', class: 'img img-responsive' %>
+        Pack Click Cash
+      <% end %>
+
+      <%= link_to backoffice_downloads_path, class: 'item30'  do%>
+
         <%= t('defaults.withdrawal_report') %>
         <table>
           <tbody>
@@ -110,52 +160,7 @@
         </table
       <% end %>
 
-      <%= link_to backoffice_order_payments_path, class: 'item9'  do%>
-        <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
-        <%= t('defaults.order_payment') %>
-      <% end %>
 
-      <%= link_to '#', class: 'item10'  do%>
-        <%= image_tag 'icons/suporte1.png', class: 'img img-responsive' %>
-        Suporte
-      <% end %>
-
-      <%= link_to backoffice_downloads_path, class: 'item11'  do%>
-        <%= image_tag 'icons/apoio1.png', class: 'img img-responsive' %>
-        <%= t(:download_support_material) %>
-      <% end %>
-
-      <%= link_to backoffice_admin_orders_path, class: 'item12'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.orders') %>
-      <% end %>
-
-      <%= link_to backoffice_admin_credits_debit_path(:find_user), class: 'item13'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.credits_debits') %>
-      <% end %>
-
-      <%= link_to backoffice_admin_financial_transactions_path, class: 'item14'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.financial_transactions') %>
-      <% end %>
-
-      <%=  link_to backoffice_admin_withdrawals_path, class: 'item15'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.manage_withdrawals') %>
-      <% end %>
-
-      <%=  link_to new_backoffice_admin_expense_path, class: 'item16'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.expenses') %>
-      <% end %>
-
-      <%= link_to backoffice_admin_bonus_contracts_path, class: 'item17'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.unilevel') %>
-      <% end %>
-
-      <%=  link_to backoffice_admin_financial_reports_path, class: 'item18'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.financial_reports') %>
-      <% end %>
-
-      <%= link_to backoffice_support_users_path, class: 'item19'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.users') %>
-      <% end %>
     </div>
   </div>
 </div>

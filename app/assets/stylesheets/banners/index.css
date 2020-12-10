@@ -35,7 +35,11 @@
 
 #carousels .carousel{
   height: 175px;
-  margin-top: 40px;
+  margin-top: 20px;
+}
+
+#carousels .carousel:first-child {
+  margin-top: 60px;
 }
 
 #carousels .carousel .item{
@@ -236,10 +240,8 @@
     font-size: 25px;
   }
 
-
   .product-item a img{
     margin-left: 8%;
-
   }
 
   #carousels{

@@ -11,23 +11,11 @@
     <%= render 'layouts/shared/favicons' %>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggle();
-            });
-            $('form input[type=submit]').addClass('btn btn-primary');
-            $('form input[type=file]').addClass('form-control');
-
-        });
-    </script>
-
   </head>
 
   <body class="fixed-left">
     <div id="wrapper">
       <%= render 'layouts/top_bar' %>
-
       <div class="content-page">
         <div class="content">
           <div class="container">

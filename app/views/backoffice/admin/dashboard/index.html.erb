@@ -38,7 +38,7 @@
         
       <% end %>
 
-      <%=  link_to shop_index_path, class: 'item9'  do%>
+      <%=  link_to backoffice_downloads_path, class: 'item9'  do%>
 
         <%= image_tag 'icons/apoio1.png', class: 'img img-responsive' %>
         <%= t(:download_support_material) %>
@@ -66,7 +66,7 @@
         <%= t('defaults.view_publicity') %>
       <% end %>
 
-      <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'item13'  do%>
+      <%= link_to '#', class: 'item13'  do%>
         <%= image_tag 'icons/saldo1.png', class: 'img img-responsive' %>
         <%= available_balane(current_user) %>
         <%= t('defaults.financial_histories') %>
@@ -93,7 +93,7 @@
       <% end %>
 
  
-      <%= link_to new_backoffice_withdrawal_path, class: 'item20'  do%>
+      <%= link_to backoffice_admin_withdrawals_path, class: 'item20'  do%>
         <%= image_tag 'icons/retirada1.png', class: 'img img-responsive' %>
         <%= t('defaults.new_withdraw') %>
       <% end %>
@@ -108,28 +108,28 @@
         <%= t('defaults.unilevel') %>
       <% end %>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item23'  do%>
+      <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'item23'  do%>
         <%= image_tag 'icons/rede1.png', class: 'img img-responsive' %>
         <%= t('defaults.net') %>
       <% end %>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item24'  do%>
+      <%= link_to '#', class: 'item24'  do%>
         <%= image_tag 'icons/indicados1.png', class: 'img img-responsive' %>
         <%= t('defaults.my_indications') %>
       <% end %>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item25'  do%>
+      <%= link_to '#', class: 'item25'  do%>
         <%= image_tag current_user.active? ? 'icons/ativo11.png': 'icons/ativo21.png',
                       class: 'img img-responsive' %>
         <%= t(:account_status) %>
       <% end %>
 
-      <%= link_to '#', class: 'item26'  do%>
+      <%= link_to  backoffice_financial_transactions_path, class: 'item26'  do%>
         <%= image_tag 'icons/relatorio_11.png', class: 'img img-responsive' %>
         <%= t('defaults.financial_histories') %>
       <% end %>
 
-      <%= link_to '#', class: 'item27' do %>
+      <%= link_to shop_index_path, class: 'item27' do %>
         <%= image_tag 'icons/loja1.png', class: 'img img-responsive' %>
         <%= t(:shop) %>
       <% end %>
@@ -144,7 +144,7 @@
         Pack Click Cash
       <% end %>
 
-      <%= link_to backoffice_downloads_path, class: 'item30'  do%>
+      <%= link_to '#', class: 'item30'  do%>
 
         <%= t('defaults.withdrawal_report') %>
         <table>

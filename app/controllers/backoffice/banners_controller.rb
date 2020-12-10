@@ -6,6 +6,7 @@ module Backoffice
 
     def index
       @banners = Banner.page(params[:page])
+                       .shuffle
     end
   end
 end

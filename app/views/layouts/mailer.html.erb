@@ -12,159 +12,176 @@
         color: #FFF !important;
       }
 
-      .container{
-        margin-left: 10%;
-        margin-right: 10%;
-        margin-bottom: 5%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
-      }
-      .container .topo{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        height: 200px;
-      }
-
-      .container .topo img{
-        height: auto;
-        max-height: 100px;
-        width: 350px;
-        max-width: 350px;
-        margin-bottom: 20px;
-      }
-
-      .container .topo hr{
-        height: 2px;
-        width: 100%;
-        background: #6FFF00;
-        border: 0;
-        margin-bottom: 5px;
-      }
-
-      .container .topo hr:last-child{
-        height: 5px;
-      }
-
-      .container .conteudo{
-        background: url('https://monetizzecash.com/assets/images/base-email.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        width: 100%;
-        height: 705px;
-      }
-
-      .container .conteudo .conteudo-item{
-        width: 450px;
-        height: auto;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 13%;
-
-      }
-
-      .container .conteudo .rodape{
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-      }
-
-      .container  .rodape {
-        width: 100%;
-        height: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      .container  .rodape .rodape-link {
-        width: 150px;
-        height: auto;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-      }
 
 
-      .container  .rodape .rodape-link > a{
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-        background: #6FFF00;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-
-      }
-
-      .container  .rodape .rodape-link a img{
-        width: 100%;
-        height: 30px;
-        object-fit: cover;
-      }
-
-      .container  .rodape h2{
-        color: #222222 !important;
-        font-weight: 100;
-      }
-
-      .container .rodape hr{
-        height: 2px;
-        width: 100%;
-        background: #6FFF00;
-        border: 0;
-        margin-bottom: 5px;
-      }
-
-      .container .rodape p{
-        margin-bottom: 0;
-        margin-bottom: 5px;
-      }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="topo">
-        <img src="https://monetizzecash.com/assets/images/logo-2-1.png"  alt="">
-        <hr>
-        <hr>
+    <div class="container" 
+        style=" margin-left: 10%;
+                margin-right: 10%;
+                margin-bottom: 5%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;"
+    >
+      <div class="topo" style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                height: 200px;
+      ">
+        <img src="https://monetizzecash.com/assets/images/logo-2-1.png"  alt="" 
+          style="
+            height: auto;
+            max-height: 100px;
+            width: 350px;
+            max-width: 350px;
+            margin-bottom: 20px;
+          ">
+        <hr style="
+            height: 2px;
+            width: 100%;
+            background: #6FFF00;
+            border: 0;
+            margin-bottom: 5px;
+        ">
+        <hr style="
+            height: 2px;
+            width: 100%;
+            background: #6FFF00;
+            border: 0;
+            margin-bottom: 5px;
+        ">
       </div>
-      <div class="conteudo">
-        <div class="conteudo-item">
+      <div class="conteudo" 
+            style="
+            background: url('https://monetizzecash.com/assets/images/base-email.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 100%;
+            height: 705px;">
+        <div class="conteudo-item" 
+              style="
+              width: 450px;
+              height: auto;
+              margin-left: auto;
+              margin-right: auto;
+              margin-top: 13%;
+              " 
+        >
           <%= yield %>
         </div>
       </div>
-      <div class="rodape">
-        <div class="rodape-link">
-          <a href="https://facebook.com" target="_blank" alt="Facebook"  title="Facebook" >
-            <img alt="Facebook" title="Facebook " src="https://marketing-image-production.s3.amazonaws.com/social/white/facebook.png" />
+      <div class="rodape"
+           style="
+           width: 100%;
+           height: auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          "
+      
+      >
+        <div class="rodape-link"
+              style="
+              width: 150px;
+              height: auto;
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              "
+        >
+          <a href="https://facebook.com" target="_blank" alt="Facebook"  title="Facebook" 
+              style="
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                background: #6FFF00;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+          >
+            <img alt="Facebook" title="Facebook " src="https://marketing-image-production.s3.amazonaws.com/social/white/facebook.png"
+              style="
+                width: 100%;
+                height: 30px;
+                object-fit: cover;
+              "
+            />
           </a>
-          <a   href="https://instagram.com" target="_blank" alt="Instagram"  title="Instagram " >
-            <img alt="Instagram" title="Instagram "  src="https://marketing-image-production.s3.amazonaws.com/social/white/instagram.png" />
+          <a   href="https://instagram.com" target="_blank" alt="Instagram"  title="Instagram "
+            style="
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            background: #6FFF00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+          >
+            <img alt="Instagram" title="Instagram "  src="https://marketing-image-production.s3.amazonaws.com/social/white/instagram.png" 
+                style="
+                  width: 100%;
+                  height: 30px;
+                  object-fit: cover;
+                "
+            />
           </a>
-          <a href="https://google.com" target="_blank" alt="Google" title="Google " >
-            <img  alt="Google" title="Google " src="https://marketing-image-production.s3.amazonaws.com/social/white/google-plus.png" />
+          <a href="https://google.com" target="_blank" alt="Google" title="Google " 
+              style="
+              width: 30px;
+              height: 30px;
+              margin-right: 10px;
+              background: #6FFF00;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <img  alt="Google" title="Google " src="https://marketing-image-production.s3.amazonaws.com/social/white/google-plus.png" 
+                  style="
+                    width: 100%;
+                    height: 30px;
+                    object-fit: cover;
+                  "
+            />
           </a>
         </div>
-        <h2>
+        <h2 style="
+            color: #222222 !important;
+            font-weight: 100;
+        ">
           <%= ENV['COMPANY_DOMAIN_SITE'] %>
         </h2>
-        <hr>
-        <p>
+        <hr style="
+              height: 2px;
+              width: 100%;
+              background: #6FFF00;
+              border: 0;
+              margin-bottom: 5px;
+            " 
+        />
+        <p style="
+            margin-bottom: 0;
+            margin-bottom: 5px;
+        "
+        >
           <strong> <%= t('mailer.no-reply') %></strong>
         </p>
-        <p> <%= t('mailer.doubt', contact_email: ENV['CONTACT_EMAIL']) %> </p>
+        <p style="
+              margin-bottom: 0;
+              margin-bottom: 5px;
+            "
+        
+        > <%= t('mailer.doubt', contact_email: ENV['CONTACT_EMAIL']) %> </p>
       </div>
     </div>
   </body>

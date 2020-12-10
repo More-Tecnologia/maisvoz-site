@@ -8,5 +8,6 @@ $('span#banners-clicked-today-quantity').html(banners_clicked_quantity)
 window.open("<%= @banner_click.banner.link %>")
 
 <% if current_user.banner_seen_today? %>
+  $('.alert').remove()
   $('#myModal').modal()
 <% end %>

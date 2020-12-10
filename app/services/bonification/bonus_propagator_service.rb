@@ -54,7 +54,7 @@ module Bonification
         next unless product_score.try(:amount_cents).to_f > 0
         financial_transaction =
           create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
-        chargeback_by_inactivity!(transaction, financial_reason) if financial_transaction && sponsor.inactive?
+        chargeback_by_inactivity!(financial_transaction, financial_reason) if financial_transaction && sponsor.inactive?
         financial_transaction
       end
     end

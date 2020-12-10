@@ -6,6 +6,9 @@
         <div class="product-item">
           <%= cl_image_tag(product.main_photo_id) %>
           <div class="product-buttons2">
+            <span class="font-bold" style="margin-right: 30px; padding-top: 6px;">
+              <%= number_to_currency(product.product_value) %>
+            </span>
             <%= link_to t('helpers.submit.buy'),
                         new_backoffice_product_checkout_path(product_id: product.hashid),
                         class: 'banner-button' %>

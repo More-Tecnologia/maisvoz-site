@@ -10,7 +10,7 @@
 
       <%= link_to backoffice_admin_credits_debit_path(:find_user), class: 'item2'  do%>
         <i class="fas fa-user-shield"></i> <%= t('defaults.credits_debits') %>
-        
+
       <% end %>
 
       <%= link_to backoffice_admin_financial_transactions_path, class: 'item3'  do%>
@@ -35,7 +35,7 @@
 
       <%= link_to backoffice_support_users_path, class: 'item8'  do%>
         <i class="fas fa-user-shield"></i> <%= t('defaults.users') %>
-        
+
       <% end %>
 
       <%=  link_to backoffice_downloads_path, class: 'item9'  do%>
@@ -54,31 +54,31 @@
         <%= t(:sponsor_link) %>
       </a>
 
-  
+
 
       <%=  link_to '#', class: 'item11'  do%>
         <%= image_tag 'icons/CHARMAIN1.png', class: 'img img-responsive' %>
         <%= t('defaults.leadership_career') %>
       <% end %>
 
-      <%= link_to backoffice_banners_path, class: 'item12'  do%>
+      <%= link_to backoffice_banners_path, class: 'item12' do %>
         <%= image_tag 'icons/publicidade1.png', class: 'img img-responsive' %>
         <%= t('defaults.view_publicity') %>
       <% end %>
 
-      <%= link_to '#', class: 'item13'  do%>
+      <%= link_to backoffice_financial_transactions_path, class: 'item13' do %>
         <%= image_tag 'icons/saldo1.png', class: 'img img-responsive' %>
         <%= available_balane(current_user) %>
         <%= t('defaults.financial_histories') %>
       <% end %>
 
-      <%= link_to '#', class: 'item14'  do%>
+      <%= link_to backoffice_financial_transactions_path, class: 'item14'  do%>
         <%= image_tag 'icons/saldo11.png', class: 'img img-responsive' %>
         <%= blocked_balance(current_user) if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
         <%= t('attributes.blocked_balance') %>
       <% end %>
 
-      <%= link_to '#', class: 'item15'  do%>
+      <%= link_to backoffice_balance_transferences_path, class: 'item15'  do%>
         <%= image_tag 'icons/troca11.png', class: 'img img-responsive' %>
         <%= order_payment_balance(current_user) %>
         <%= t('defaults.balance_transference') %>
@@ -92,7 +92,7 @@
         <% end %>
       <% end %>
 
- 
+
       <%= link_to backoffice_admin_withdrawals_path, class: 'item20'  do%>
         <%= image_tag 'icons/retirada1.png', class: 'img img-responsive' %>
         <%= t('defaults.new_withdraw') %>
@@ -144,8 +144,7 @@
         Pack Click Cash
       <% end %>
 
-      <%= link_to '#', class: 'item30'  do%>
-
+      <%= link_to backoffice_withdrawals_path, class: 'item30'  do%>
         <%= t('defaults.withdrawal_report') %>
         <table>
           <tbody>

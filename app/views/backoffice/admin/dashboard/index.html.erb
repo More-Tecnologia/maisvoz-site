@@ -54,7 +54,7 @@
         <%= t(:sponsor_link) %>
       </a>
 
-      <%=  link_to '#', class: 'item11'  do%>
+      <%= link_to backoffice_career_trail_users_path, class: 'item11' do %>
         <%= image_tag 'icons/CHARMAIN1.png', class: 'img img-responsive' %>
         <%= t('defaults.leadership_career') %>
       <% end %>
@@ -111,7 +111,7 @@
         <%= t('defaults.net') %>
       <% end %>
 
-      <%= link_to '#', class: 'item24'  do%>
+      <%= link_to backoffice_admin_lineage_scores_path, class: 'item24' do %>
         <%= image_tag 'icons/indicados1.png', class: 'img img-responsive' %>
         <%= t('defaults.my_indications') %>
       <% end %>

@@ -44,10 +44,15 @@
         <%= t('defaults.new_withdraw') %>
       <% end %>
 
-      <%= link_to backoffice_balance_transferences_path, class: 'item21'  do%>
-        <%= image_tag 'icons/troca1.png', class: 'img img-responsive' %>
-        <%= t('defaults.balance_transferences') %>
-      <% end %>
+      <a href="#"
+         class="item21"
+         sponsor-link="<%= new_user_registration_url(sponsor: current_user.username) %>"
+         id="sponsor-link"
+         title='<%= t(:copied_sponsor_link) %>'
+         message='<%= t(:copied_sponsor_link_message) %>'>
+         <%= image_tag 'icons/link1.png', class: 'img img-responsive' %>
+        <%= t(:sponsor_link) %>
+      </a>
 
       <%= link_to backoffice_bonus_contracts_path, class: 'item22'  do%>
         <%= image_tag 'icons/relatorio1.png', class: 'img img-responsive' %>
@@ -70,9 +75,9 @@
         <%= t(:account_status) %>
       <% end %>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item26'  do %>
-        <%= image_tag 'icons/relatorio_11.png', class: 'img img-responsive' %>
-        <%= t('defaults.financial_histories') %>
+      <%= link_to backoffice_orders_path, class: 'item26'  do %>
+        <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
+        <%= t('defaults.my_orders') %>
       <% end %>
 
       <%= link_to shop_index_path, class: 'item27' do %>
@@ -82,7 +87,7 @@
 
       <%= link_to backoffice_order_payments_path, class: 'item28'  do%>
         <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
-        <%= t('defaults.order_payment') %>
+        <%= t('defaults.order_payments') %>
       <% end %>
 
       <%=  link_to backoffice_adhesion_products_path, class: 'item29'  do%>

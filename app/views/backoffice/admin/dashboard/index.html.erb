@@ -54,8 +54,6 @@
         <%= t(:sponsor_link) %>
       </a>
 
-
-
       <%=  link_to '#', class: 'item11'  do%>
         <%= image_tag 'icons/CHARMAIN1.png', class: 'img img-responsive' %>
         <%= t('defaults.leadership_career') %>
@@ -124,9 +122,9 @@
         <%= t(:account_status) %>
       <% end %>
 
-      <%= link_to  backoffice_financial_transactions_path, class: 'item26'  do%>
-        <%= image_tag 'icons/relatorio_11.png', class: 'img img-responsive' %>
-        <%= t('defaults.financial_histories') %>
+      <%= link_to backoffice_orders_path, class: 'item26'  do %>
+        <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
+        <%= t('defaults.my_orders') %>
       <% end %>
 
       <%= link_to shop_index_path, class: 'item27' do %>

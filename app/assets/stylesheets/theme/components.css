@@ -2492,7 +2492,7 @@ a.editable-click:hover {
 #dashboard .painel .item5 span{
   color: #FFF;
   font-size: 14px;
-  
+
 }
 
 #dashboard .painel .item5 i{
@@ -2929,11 +2929,10 @@ a.editable-click:hover {
 
 #dashboard .painel .item30 {
   grid-column: 6 / span 5;
-  grid-row: 6;
+  grid-row: 6/ span 2;
   background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
   flex-direction: column;
   color: #FFF;
   font-size: 12px;
@@ -2943,6 +2942,24 @@ a.editable-click:hover {
   width: 30px;
   height: 30px;
   margin-bottom: 10px;
+}
+
+#dashboard .painel .item31 img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+#dashboard .painel .item31 {
+  grid-column: 1 / span 5;
+  grid-row: 7;
+  background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #FFF;
+  font-size: 12px;
 }
 
 @media (max-width: 420px){
@@ -2957,7 +2974,7 @@ a.editable-click:hover {
     justify-content: space-between;
     padding: 0;
   }
-  
+
   #dashboard  .painel{
     width: 100%;
     height: 100%;
@@ -2965,7 +2982,7 @@ a.editable-click:hover {
     grid-gap: 10px;
     padding: 0;
   }
-  
+
   #dashboard  .painel > a {
     background-color: rgb(255, 255, 255);
     text-align: center;
@@ -2973,13 +2990,13 @@ a.editable-click:hover {
     font-size: 10px;
     transition: 0.2s ease-in-out;
   }
-  
+
   #dashboard  .painel > a:hover{
     box-shadow: 5px 5px 10px #333333;
     margin-top: -5px;
     margin-left: -5px;
   }
-  
+
   #dashboard .painel .item1 {
     grid-column: 1 /span 2 ;
     grid-row:  1 ;
@@ -2991,17 +3008,17 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 16px;
   }
-  
+
   #dashboard .painel .item1 i{
     font-size: 20px;
   }
-  
+
   #dashboard .painel .item1 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item2 {
     grid-column: 3 /span 2;
     grid-row: 1 ;
@@ -3013,11 +3030,11 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 14px;
   }
-  
+
   #dashboard .painel .item2 i{
     font-size: 20px;
   }
-  
+
   #dashboard .painel .item3 {
     grid-column:  1 /span 2;
     grid-row: 2;
@@ -3029,11 +3046,11 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 14px;
   }
-  
+
   #dashboard .painel .item3 i{
     font-size: 20px;
   }
-  
+
   #dashboard .painel .item4 {
     grid-column: 3 /span 2;
     grid-row: 2;
@@ -3045,11 +3062,11 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item4 i{
     font-size: 20px;
   }
-  
+
   #dashboard .painel .item5 {
     grid-column: 1 /span 2;
     grid-row: 3;
@@ -3059,19 +3076,19 @@ a.editable-click:hover {
     align-items: center;
     flex-direction: column;
     color: #FFF;
-  
+
   }
-  
+
   #dashboard .painel .item5 span{
     color: #FFF;
     font-size: 14px;
-    
+
   }
-  
+
   #dashboard .painel .item5 i{
     font-size: 20px;
   }
- 
+
   #dashboard .painel .item6 {
     grid-column: 3 /span 2;
     grid-row: 3;
@@ -3083,11 +3100,11 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item6 i{
     font-size: 20px;
   }
-  
+
   #dashboard .painel .item7 {
     grid-column: 1 /span 2;
     grid-row: 4;
@@ -3099,11 +3116,11 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item7 i{
     font-size: 20px;
   }
-  
+
   #dashboard .painel .item8 {
     grid-column: 3 /span 2;
     grid-row: 4;
@@ -3115,11 +3132,11 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 14px;
   }
-  
+
   #dashboard .painel .item8 i{
     font-size: 20px;
   }
-  
+
   #dashboard .painel .item9 {
     grid-column: 1 /span 2;
     grid-row: 5;
@@ -3131,12 +3148,12 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item9 img{
     width: 30px;
     height: 30px;
   }
-  
+
   #dashboard .painel .item10 {
     grid-column: 3 /span 2;
     grid-row: 5;
@@ -3148,12 +3165,12 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item10 img{
     width: 30px;
     height: 30px;
   }
-  
+
   #dashboard .painel .item11 {
     grid-column: 1 /span 2;
     grid-row: 6;
@@ -3165,12 +3182,12 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 14px;
   }
-  
+
   #dashboard .painel .item11 img{
     width: 50px;
     height: 50px;
   }
-  
+
   #dashboard .painel .item12 {
     grid-column: 3 /span 2;
     grid-row: 6 /span 2;
@@ -3182,13 +3199,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 16px;
   }
-  
+
   #dashboard .painel .item12 img{
     width: 50px;
     height: 50px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item13 {
     grid-column: 1 /span 2;
     grid-row: 7 ;
@@ -3200,13 +3217,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item13 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item14 {
     grid-column: 1 /span 2;
     grid-row: 8;
@@ -3218,13 +3235,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item14 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item15 {
     grid-column: 3 /span 2;
     grid-row: 8;
@@ -3236,13 +3253,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item15 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item16 {
     grid-column: 1;
     grid-row: 9;
@@ -3254,13 +3271,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item16 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item17 {
     grid-column: 2;
     grid-row: 9;
@@ -3272,13 +3289,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item17 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item18 {
     grid-column: 3;
     grid-row: 9;
@@ -3290,13 +3307,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item18 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item19 {
     grid-column: 4;
     grid-row: 9;
@@ -3308,13 +3325,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item19 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item20 {
     grid-column: 1 / span 2;
     grid-row: 10;
@@ -3326,13 +3343,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 14px;
   }
-  
+
   #dashboard .painel .item20 img{
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item21 {
     grid-column: 3 /span 2;
     grid-row: 10;
@@ -3344,13 +3361,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 14px;
   }
-  
+
   #dashboard .painel .item21 img{
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item22 {
     grid-column: 1 /span 2;
     grid-row: 11;
@@ -3362,13 +3379,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 14px;
   }
-  
+
   #dashboard .painel .item22 img{
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item23 {
     grid-column: 3;
     grid-row: 11;
@@ -3380,13 +3397,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 16px;
   }
-  
+
   #dashboard .painel .item23 img{
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item24 {
     grid-column: 4;
     grid-row: 11;
@@ -3398,13 +3415,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item24 img{
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item25 {
     grid-column: 1 ;
     grid-row: 12;
@@ -3416,13 +3433,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item25 img{
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item26 {
     grid-column:  2 /span 3;
     grid-row: 12;
@@ -3434,13 +3451,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 14px;
   }
-  
+
   #dashboard .painel .item26 img{
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item27 {
     grid-column: 1 ;
     grid-row: 13;
@@ -3452,13 +3469,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item27 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item28 {
     grid-column: 2;
     grid-row: 13;
@@ -3468,20 +3485,20 @@ a.editable-click:hover {
     align-items: center;
     flex-direction: column;
     color: #FFF;
-  
+
   }
-  
+
   #dashboard .painel .item28 span{
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item28 img{
     width: 30px;
     height: 30px;
     margin-bottom: 10px;
   }
-  
+
   #dashboard .painel .item29 {
     grid-column: 1 /span 5;
     grid-row: 15;
@@ -3493,13 +3510,13 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item29 img{
     width: 40px;
     height: 40px;
-  
+
   }
-  
+
   #dashboard .painel .item30 {
     grid-column: 1 / span 5;
     grid-row: 14;
@@ -3511,7 +3528,7 @@ a.editable-click:hover {
     color: #FFF;
     font-size: 12px;
   }
-  
+
   #dashboard .painel .item30 img{
     width: 30px;
     height: 30px;

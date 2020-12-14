@@ -2973,6 +2973,12 @@ a.editable-click:hover {
   background: #c3c3c3;
 }
 
+#dashboard .painel .item32 .progress .progress-bar {
+  font-size: 14px;
+  text-align: center;
+  padding-top: 4px;
+}
+
 #dashboard .painel .item32  p{
   text-align: center;
   font-size: 12px;

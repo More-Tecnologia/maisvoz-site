@@ -2962,16 +2962,18 @@ a.editable-click:hover {
   font-size: 12px;
 }
 
-#dashboard .painel .item32 {
+#dashboard .painel .item32{
   grid-column: 1 / span 10;
   grid-row: 9;
-  height: 20px;
-  background: #c3c3c3;
 
 }
 
+#dashboard .painel .item32 .progress{
+  height: 20px;
+  background: #c3c3c3;
+}
 
-#dashboard .painel .item32 .progress-bar p{
+#dashboard .painel .item32  p{
   text-align: center;
   font-size: 12px;
 }
@@ -3560,6 +3562,22 @@ a.editable-click:hover {
   grid-column: 3 / span 2;
   grid-row: 13;
 
+}
+
+#dashboard .painel .item32{
+  grid-column: 1 / span 5;
+  grid-row: 16;
+
+}
+
+#dashboard .painel .item32 .progress{
+  height: 20px;
+  background: #c3c3c3;
+}
+
+#dashboard .painel .item32  p{
+  text-align: center;
+  font-size: 12px;
 }
 
 

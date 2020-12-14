@@ -147,7 +147,7 @@
     gross_amount: Gross amount
     name: Name
     net_amount: Net value
-    paid_at: Paid in
+    paid_at: Payment Date
     password: Password
     password_confirmation: Password confirmation
     phone: Telephone
@@ -1226,9 +1226,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   right_count: Right Quantity
   invoice: Invoice
   cart: Cart
-  pending_payment: Pending Payment
+  pending_payment: Pending
   processing: Processing
-  completed: Paid complete
+  completed: Completed
   expired: Expired
   past_due: Expired
   upgrade: Upgrade
@@ -1462,3 +1462,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   yield: Publicity
   register_date: Register Date
   sponsor: Sponsor
+  bill: Bill
+  checkout: Checkout
+  approve_without_bonification: Approve without bonification
+  payment_type: Payment Method
+  actions: Actions
+  hashid: Code

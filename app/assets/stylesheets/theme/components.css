@@ -2532,7 +2532,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item8 {
-  grid-column: 5 /span 2;
+  grid-column: 5 /span 4;
   grid-row: 2;
   background: #444444;
   display: flex;
@@ -2959,6 +2959,20 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #FFF;
+  font-size: 12px;
+}
+
+#dashboard .painel .item32 {
+  grid-column: 1 / span 10;
+  grid-row: 9;
+  height: 20px;
+  background: #c3c3c3;
+
+}
+
+
+#dashboard .painel .item32 .progress-bar p{
+  text-align: center;
   font-size: 12px;
 }
 
@@ -3534,4 +3548,20 @@ a.editable-click:hover {
     height: 30px;
     margin-bottom: 10px;
   }
+
+
+#dashboard .painel .item31 img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+#dashboard .painel .item31 {
+  grid-column: 3 / span 2;
+  grid-row: 13;
+
+}
+
+
+
 }

@@ -38,10 +38,7 @@
 
       <% end %>
 
-      <%=  link_to backoffice_downloads_path, class: 'item9'  do%>
-        <%= image_tag 'icons/apoio1.png', class: 'img img-responsive' %>
-        <%= t(:download_support_material) %>
-      <% end %>
+
 
       <a href="#"
          class="item10"
@@ -141,6 +138,23 @@
         Pack Click Cash
       <% end %>
 
+      <%=  link_to backoffice_downloads_path, class: 'item31' do %>
+        <%= image_tag 'icons/apoio1.png', class: 'img img-responsive' %>
+        <%= t(:download_support_material) %>
+      <% end %>
+
+      <% if bonus_contracts_balance != 0 %>
+      <div class="progress item32" >
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: <%= bonus_contracts_received_percent %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+          <p>
+            <%= t('defaults.unilevel')%>&nbsp;&nbsp; &nbsp; 
+            <%=bonus_contracts_received_balance%> / 
+            <%=bonus_contracts_balance %>
+          </p>          
+        </div>
+      </div>
+      <% end %>
+
       <%= link_to backoffice_withdrawals_path, class: 'item30'  do%>
         <%= t('defaults.withdrawal_report') %>
         <table>
@@ -157,6 +171,10 @@
       <% end %>
 
 
+        
+
+
     </div>
+
   </div>
 </div>

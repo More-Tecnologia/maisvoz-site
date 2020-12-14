@@ -144,13 +144,13 @@ pt-BR:
     order: Ordem
     accept_terms: Aceitar termos
     amount: Valor
-    created_at: Data de criação
+    created_at: Data de Criação
     expire_at: Data de Vencimento
     description: Descrição
     gross_amount: Valor bruto
     name: Nome
     net_amount: Valor líquido
-    paid_at: Pago em
+    paid_at: Data de Pagamento
     password: Senha
     password_confirmation: Confirmação de Senha
     phone: Telefone
@@ -758,7 +758,7 @@ pt-BR:
     post: Enviar
     put: Atualizar
     processing: Processando
-    pending_payment: Pagamento Pendente
+    pending_payment: Pendente
     products: Produtos
     pv_activity_history: PV Geral
     pv_history: Histórico PV
@@ -1257,7 +1257,7 @@ pt-BR:
   right_count: Quantidade Direita
   invoice: Fatura
   cart: Carrinho
-  pending_payment: Pagamento Pendente
+  pending_payment: Pendente
   processing: Processando
   completed: Pago
   expired: Expirado
@@ -1481,3 +1481,9 @@ pt-BR:
   yield: Publicidade
   register_date: Data de Registro
   sponsor: Patrocinador
+  bill: Faturar
+  checkout: Checkout
+  approve_without_bonification: Aprovar sem bonificação
+  payment_type: Método de Pagamento
+  actions: Ações
+  hashid: Código

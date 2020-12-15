@@ -528,7 +528,7 @@ class User < ApplicationRecord
   end
 
   def viewed_minimum_banner_quantity_today?
-    banners_clicked_today_quantity >= BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
+    banners_clicked_today_quantity == BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
   end
 
   private

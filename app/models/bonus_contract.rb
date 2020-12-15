@@ -52,7 +52,8 @@ class BonusContract < ApplicationRecord
   end
 
   def received?
-    cent_amount.round == received_balance.round && remaining_balance.round == 0
+    cent_amount.round(2) == received_balance.round(2) &&
+    remaining_balance.round(2) == 0
   end
 
   def normalize_balances_from_items!

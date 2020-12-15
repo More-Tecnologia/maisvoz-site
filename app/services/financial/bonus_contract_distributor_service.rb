@@ -50,7 +50,7 @@ module Financial
     def credit_bonus_to(contract, bonus_amount)
       contract.received_balance = contract.received_balance.to_f + bonus_amount
       contract.remaining_balance = contract.cent_amount - contract.received_balance.to_f
-      contract.paid_at = Date.current if contract.remaining_balance.to_f.round == 0
+      contract.paid_at = Date.current if contract.remaining_balance.to_f.round(2) == 0
       contract.save!
       contract
     end

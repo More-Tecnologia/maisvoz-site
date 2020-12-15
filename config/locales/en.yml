@@ -89,6 +89,7 @@
             document_verification_status:
               not_verified: Not verified
       messages:
+        too_short: "min %{count} characters"
         blank: cannot be blank
         record_invalid: 'Validation failed: %{errors}'
         wrong_length: Wrong size

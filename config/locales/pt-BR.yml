@@ -92,6 +92,7 @@ pt-BR:
             document_verification_status:
               not_verified: não verificados
       messages:
+        too_short: "mínimo de %{count} caracteres"
         blank: não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
         wrong_length: Tamanho errado

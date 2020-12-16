@@ -100,7 +100,6 @@
         <%= t(:download_support_material) %>
       <% end %>
 
-       <% if bonus_contracts_balance != 0 %>
       <div class="item32">
         <p>
           <%= t('defaults.unilevel')%>&nbsp;&nbsp; &nbsp;
@@ -118,7 +117,6 @@
           </div>
         </div>
       </div>
-      <% end %>
 
       <%= link_to backoffice_withdrawals_path, class: 'item30' do %>
         <%= t('defaults.withdrawal_report') %>

@@ -56,7 +56,7 @@
                                   <% @order.order_items.each do |oi| %>
                                   <tr>
                                     <td><%= oi.product.id %></td>
-                                    <td><%= link_to oi.product.name, backoffice_product_path(oi.product) %></td>
+                                    <td><%= oi.product.name %></td>
                                     <td><%= oi.quantity %></td>
                                     <td><%= number_to_currency oi.unit_price, unit: ENV['CURRENT_CURRENCY'] %></td>
                                     <td><%= number_to_currency oi.total, unit: ENV['CURRENT_CURRENCY'] %></td>

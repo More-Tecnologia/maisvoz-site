@@ -143,24 +143,6 @@
         <%= t(:download_support_material) %>
       <% end %>
 
-      <div class="item32">
-        <p>
-          <%= t('defaults.unilevel')%>&nbsp;&nbsp; &nbsp;
-          <%= number_to_currency(bonus_contracts_received_balance)%> /
-          <%= number_to_currency(bonus_contracts_balance) %>
-        </p>
-        <div class="progress" >
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-               role="progressbar"
-               style="width: <%= bonus_contracts_received_percent %>%"
-               aria-valuenow="25"
-               aria-valuemin="0"
-               aria-valuemax="100">
-               <%= number_to_percentage(bonus_contracts_received_percent, precision: 2) %>
-          </div>
-        </div>
-      </div>
-
       <%= link_to backoffice_withdrawals_path, class: 'item30'  do%>
         <%= t('defaults.withdrawal_report') %>
         <table>

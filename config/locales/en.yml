@@ -322,6 +322,7 @@
     end_datetime: End Date
     transfer_at: Date
     value: Value
+    bonus_contract: Bonus Contract
   backoffice:
     orders:
       show:

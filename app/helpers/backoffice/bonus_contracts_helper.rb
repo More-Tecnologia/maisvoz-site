@@ -20,15 +20,15 @@ module Backoffice
     end
 
     def current_user_bonus_contracts
-      @current_user_bonus_contracts ||= current_user.bonus_contracts
+      @current_user_bonus_contracts ||= current_user.bonus_contracts.active.first
     end
 
     def bonus_contracts_balance
-      current_user_bonus_contracts.sum(&:cent_amount)
+      current_user_bonus_contracts.try(:cent_amount).to_f
     end
 
     def bonus_contracts_received_balance
-      current_user_bonus_contracts.sum(&:received_balance)
+      current_user_bonus_contracts.try(:received_balance).to_f
     end
 
     def bonus_contracts_received_percent

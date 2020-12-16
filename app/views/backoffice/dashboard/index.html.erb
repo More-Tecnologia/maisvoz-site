@@ -100,13 +100,15 @@
         <%= t(:download_support_material) %>
       <% end %>
 
+      <% if current_user_bonus_contracts %>
       <div class="item32">
         <p>
-          <%= t('defaults.unilevel')%>&nbsp;&nbsp; &nbsp;
+          <%= t('attributes.bonus_contract')%>:
+          <%= current_user_bonus_contracts.try(:hashid) %>&nbsp;&nbsp; &nbsp;
           <%= number_to_currency(bonus_contracts_received_balance)%> /
           <%= number_to_currency(bonus_contracts_balance) %>
         </p>
-        <div class="progress" >
+        <div class="progress">
           <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
                role="progressbar"
                style="width: <%= bonus_contracts_received_percent %>%"
@@ -117,6 +119,7 @@
           </div>
         </div>
       </div>
+      <% end %>
 
       <%= link_to backoffice_withdrawals_path, class: 'item30' do %>
         <%= t('defaults.withdrawal_report') %>

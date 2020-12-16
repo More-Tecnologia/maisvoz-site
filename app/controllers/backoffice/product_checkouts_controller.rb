@@ -5,9 +5,11 @@ module Backoffice
     end
 
     def create
-      @payment_transaction = Payment::BlockCheckoutService.call(order: order)
-      render 'backoffice/payment_transactions/show'
-    rescue 'StandardError' => error
+      ActiveRecord::Base.transaction do
+        @payment_transaction = Payment::BlockCheckoutService.call(order: order)
+        render 'backoffice/payment_transactions/show'
+      end
+    rescue StandardError => error
       flash[:error] = error.message
       redirect_back(fallback_location: root_path)
     end

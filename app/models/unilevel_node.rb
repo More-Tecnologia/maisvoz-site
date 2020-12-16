@@ -27,6 +27,7 @@ class UnilevelNode < ApplicationRecord
   scope :binary_position_right, -> { joins(:user).merge(User.right) }
   scope :includes_users, -> { includes(user: [career_trail_users: [career_trail: [trail: [:product]]]]) }
   scope :bonus_receivers, ->(count) { includes_users.last(count) }
+  scope :bonus_receivers_until, ->(user) { includes_users.where('unilevel_nodes.user_id >= ?', user) }
   scope :dynamic_compression, ->(count) { includes_users.joins(:user)
                                                         .merge(User.active)
                                                         .last(count) }

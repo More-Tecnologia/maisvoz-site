@@ -16,6 +16,7 @@
   margin-right: 5%;
 }
 
+
 .banner-principal img {
   max-width: 1160px;
   max-height: 350px;
@@ -34,7 +35,11 @@
 
 #carousels .carousel{
   height: 175px;
-  margin-top: 40px;
+  margin-top: 20px;
+}
+
+#carousels .carousel:first-child {
+  margin-top: 60px;
 }
 
 #carousels .carousel .item{
@@ -205,8 +210,8 @@
 
 @media (max-width: 420px){
   .banner-principal{
-    width: 326px;
-    margin-left: -1px;
+    display: none;
+    height: 0;
   }
 
   .banner-buttons {
@@ -235,9 +240,17 @@
     font-size: 25px;
   }
 
-
   .product-item a img{
     margin-left: 8%;
-
   }
+
+  #carousels{
+    margin-top: 0px;
+    padding-top: 10px
+  }
+
+  #carousels .carousel {
+    margin-top: 0px;
+  }
+
 }

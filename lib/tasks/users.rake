@@ -45,4 +45,54 @@ namespace :users do
       end
     end
   end
+
+  task populate_admins: :environment do
+    customer_admin = User.find_morenwm_customer_admin
+    admins_attributes = [{ username: 'jsonbourne',
+                           name: 'Json Bourne',
+                           role: :admin,
+                           password: '111111',
+                           email: 'json.bourne@monetizzecash.com',
+                           sponsor: customer_admin },
+                         { username: 'brucewayne',
+                           name: 'Bruce Wayne',
+                           role: :admin,
+                           password: '111111',
+                           email: 'bruce.wayne@monetizzecash.com',
+                           sponsor: customer_admin },
+                         { username: 'jeffbezos',
+                           name: 'Jeff Bezos',
+                           role: :admin,
+                           password: '111111',
+                           email: 'jeff.bezos@monetizzecash.com',
+                           sponsor: customer_admin },
+                         { username: 'warrenbuffert',
+                           name: 'Warren Buffert',
+                           role: :admin,
+                           password: '111111',
+                           email: 'warren.buffer@monetizecash.com',
+                           sponsor: customer_admin },
+                         { username: 'markzuckerberg',
+                           name: 'Mark Zuckerberg',
+                           role: :admin,
+                           password: '111111',
+                           email: 'mark.zuckerberg@monetizecash.com',
+                           sponsor: customer_admin } ]
+   ActiveRecord::Base.transaction do
+     admins_attributes.each do |attr|
+       admin = User.find_by(attr.slice(:email, :username))
+       admin = if admin
+                 admin.update!(attr)
+                 admin
+               else
+                 User.create!(attr)
+               end
+     end
+
+     admins_attributes.each do |attr|
+       admin = User.find_by(attr.slice(:email, :username))
+       admin.try(:binary_node).try(:delete)
+     end
+   end
+  end
 end

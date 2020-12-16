@@ -516,11 +516,11 @@ class User < ApplicationRecord
   end
 
   def banner_seen_today!
-    update!(banners_seen_at: Date.today)
+    update!(banners_seen_at: Date.current)
   end
 
   def banner_seen_today?
-    banners_seen_at && banners_seen_at.to_date == Date.today
+    banners_seen_at && banners_seen_at.to_date == Date.current
   end
 
   def banners_clicked_today_quantity
@@ -528,7 +528,7 @@ class User < ApplicationRecord
   end
 
   def viewed_minimum_banner_quantity_today?
-    banners_clicked_today_quantity >= BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
+    banners_clicked_today_quantity == BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
   end
 
   private

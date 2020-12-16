@@ -1,7 +1,7 @@
 class TreeFactory
   include FactoryBot::Syntax::Methods
 
-  HEIGHT = 6
+  HEIGHT = 4
 
   def create_unilevel(height = HEIGHT)
     parents = [create(:user, username: ENV['MORENWM_CUSTOMER_USERNAME'], active: true)]

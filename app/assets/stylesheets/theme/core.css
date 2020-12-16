@@ -30,7 +30,7 @@ body {
   color: #797979;
   position: relative;
   margin: 0;
-  padding-bottom: 26rem;
+  padding-bottom: 5rem;
   min-height: 100%;
 }
 html {
@@ -130,10 +130,9 @@ a:focus {
 }
 /* Page titles */
 .page-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 0px;
-  margin-top: 7px;
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
+  line-height: 35px;
 }
 .page-title-alt {
   margin-bottom: 23px;
@@ -1150,7 +1149,7 @@ pre {
     justify-content: center;
     margin-top: 5px;
   }
-  
+
   .logo img{
     width: 200px;
     height: auto;
@@ -2379,7 +2378,7 @@ body.fixed-left .side-menu.left {
 
 .nav.navbar-nav #menu-location li{
   padding-right: 15px;
-  
+
 }
 
 .nav.navbar-nav #menu-location li a{
@@ -2395,5 +2394,3 @@ body.fixed-left .side-menu.left {
     align-items: center;
     text-align: center;
 }
-
-

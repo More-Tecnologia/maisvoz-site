@@ -123,4 +123,8 @@ class CheckoutForm < Form
   def backoffice_shipping_address_state
     @backoffice_shipping_address_state.present? ? @backoffice_shipping_address_state : user.try(:state)
   end
+
+  def shipping?
+    order.products.any?(&:shipping)
+  end
 end

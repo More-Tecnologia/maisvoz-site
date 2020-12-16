@@ -54,16 +54,18 @@
     </h2>
   </div>
 </div>
-<div class="row m-b-60">
-  <div class="col-xs-12">
-    <h3 class="black m-b-0 font-bold">
-      <i class="fas fa-map-marker-alt"></i>
-      <%= t('backoffice.carts.show.shipping_address') %>
-    </h3>
-    <hr style='height: 3px; background: #505458;' class="m-t-0">
-    <%= render partial: 'shipping_form', locals: { form: f } %>
+<% if @checkout_form.shipping? %>
+  <div class="row m-b-60">
+    <div class="col-xs-12">
+      <h3 class="black m-b-0 font-bold">
+        <i class="fas fa-map-marker-alt"></i>
+        <%= t('backoffice.carts.show.shipping_address') %>
+      </h3>
+      <hr style='height: 3px; background: #505458;' class="m-t-0">
+      <%= render partial: 'shipping_form', locals: { form: f } %>
+    </div>
   </div>
-</div>
+<% end %>
 <div class="row text-center hidden-xs">
   <div class="col-xs-12">
     <%= link_to shop_index_path,

@@ -1,19 +1,20 @@
-<!-- Page-Title -->
 <div class="row">
   <div class="col-sm-12">
     <h4 class="page-title m-b-30"><%= t('backoffice.payment_transactions.show.title') %></h4>
   </div>
 </div>
-
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
+      <div class="row">
+        <div class="col-sm-12">
+          <span class="pull-right"> <%= @payment_transaction.order.hashid %> </span>
+        </div>
+      </div>
       <% unless @payment_transaction.order.order_items.first.product.deposit? %>
       <div class="row">
         <div class="col-lg-12">
-
           <table class="table table-bordered cart-table">
-
             <thead class="cart-table__title">
               <tr>
                 <th></th>

@@ -28,5 +28,58 @@ module Backoffice
       end
       content_tag(:span, t(order.status), class: ['badge', css_class])
     end
+
+    def billet_link(order)
+      link_to backoffice_admin_order_mark_as_billed_path(order),
+              class: 'm-r-10',
+              method: :post,
+              data: { toggle: :tooltip,
+                      title: t(:bill) } do
+        content_tag :i, '', class: 'fas fa-stamp'
+      end
+    end
+
+    def payment_transaction_link(order)
+      return order.created_at.strftime('%d/%m/%Y %H:%M') if order.payment_transaction.blank?
+
+      link_to order.created_at.strftime('%d/%m/%Y %H:%M'),
+              backoffice_payment_transaction_path(order.payment_transaction),
+              class: 'm-r-10',
+              data: { toggle: :tooltip,
+                      title: t(:checkout) }
+    end
+
+    def approver_order_link(order)
+      link_to backoffice_admin_order_approve_path(order),
+              class: 'm-r-10',
+              method: :post,
+              data: { toggle: :tooltip,
+                      title: t(:approve),
+                      confirm: t(:want_approve_bill) } do
+        content_tag :i, '', class: 'fas fa-thumbs-up text-success'
+      end
+    end
+
+    def approval_withdrawal_bonification_link(order)
+      link_to backoffice_admin_order_approver_without_bonification_path(order),
+              method: :patch,
+              data: { confirm: t('helpers.confirm.approve_order_without_bonification'),
+                      toggle: :tooltip,
+                      title: t(:approve_without_bonification) } do
+        content_tag :i, '', class: 'fas fa-thumbs-up text-warning'
+      end
+    end
+
+    def payment_type_badge_class(order)
+     { balance: 'badge badge-info',
+       admin: 'badge badge-success',
+       voucher: 'badge badge-muted',
+       btc: 'badge badge-primary',
+       admin_nb: 'badge badge-warning' }[order.payment_type.to_s.to_sym]
+    end
+
+    def payment_type_badge(order)
+      content_tag :span, order.payment_type, class: payment_type_badge_class(order)
+    end
   end
 end

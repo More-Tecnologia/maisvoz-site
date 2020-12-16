@@ -5,5 +5,5 @@ class BannerClick < ApplicationRecord
   belongs_to :banner
 
   scope :today,
-    -> { where(created_at: (Date.today.beginning_of_day..Date.today.end_of_day)) }
+    -> { where(created_at: (Date.current.beginning_of_day..Date.current.end_of_day)) }
 end

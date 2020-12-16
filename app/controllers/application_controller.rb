@@ -1,12 +1,13 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery prepend: true, with: :reset_session
+  protect_from_forgery prepend: true, with: :exception
 
   before_action :masquerade_user!
   before_action :set_locale
   before_action :redirect_to_banners,
                 if: proc { current_user &&
                            !current_user.banner_seen_today? &&
-                           current_user.empreendedor? }
+                           current_user.empreendedor? &&
+                           current_user.bonus_contracts.active.any? }
 
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_dashboard_index_path

@@ -12,7 +12,7 @@
 </p>
 
 <br>
-<p><%= t(:support_director_footer).html_safe %></p>
+<p><%= t(:support_director_footer, company_name: ENV['COMPANY_NAME']).html_safe %></p>
 <br>
 
 <p><%= link_to t('users.digital_wallets.edit.digital_wallets_list'), users_digital_wallets_url(locale: @locale) %></p>

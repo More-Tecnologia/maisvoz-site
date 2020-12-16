@@ -92,6 +92,7 @@ pt-BR:
             document_verification_status:
               not_verified: não verificados
       messages:
+        too_short: "mínimo de %{count} caracteres"
         blank: não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
         wrong_length: Tamanho errado
@@ -144,13 +145,13 @@ pt-BR:
     order: Ordem
     accept_terms: Aceitar termos
     amount: Valor
-    created_at: Data de criação
+    created_at: Data de Criação
     expire_at: Data de Vencimento
     description: Descrição
     gross_amount: Valor bruto
     name: Nome
     net_amount: Valor líquido
-    paid_at: Pago em
+    paid_at: Data de Pagamento
     password: Senha
     password_confirmation: Confirmação de Senha
     phone: Telefone
@@ -414,7 +415,7 @@ pt-BR:
         title: PVA Acumulado
     lineage_scores:
       index:
-        title: Points Qualifications
+        title: Pontos de Qualificação
     financial_transactions:
       index:
         title: Transações Financeiras
@@ -453,6 +454,9 @@ pt-BR:
       new:
         purchase_resume: Resumo de Compra
         total: Total
+    adhesion_products:
+      index:
+        title: Loja Pack Click Cash
     admin:
       media_files:
         form:
@@ -601,6 +605,8 @@ pt-BR:
     see_cart: Ver carrinho
     title: Carrinho
   mailer:
+    no-reply: Por favor, não responda.
+    doubt: 'Em caso de dúvida entre em contato pelo email: %{contact_email}.'
     automatic: Este Email foi enviado automaticamente. Por favor não responder.
                Em caso de dúvidas, entre em contato com %{contact_mail}
   user_mailer:
@@ -772,7 +778,7 @@ pt-BR:
     post: Enviar
     put: Atualizar
     processing: Processando
-    pending_payment: Pagamento Pendente
+    pending_payment: Pendente
     products: Produtos
     pv_activity_history: PV Geral
     pv_history: Histórico PV
@@ -1271,7 +1277,7 @@ pt-BR:
   right_count: Quantidade Direita
   invoice: Fatura
   cart: Carrinho
-  pending_payment: Pagamento Pendente
+  pending_payment: Pendente
   processing: Processando
   completed: Pago
   expired: Expirado
@@ -1448,10 +1454,10 @@ pt-BR:
   watch_video: 'Assista o vídeo'
   register_thanks: OBRIGADO POR SE CADASTRAR COMIGO
   jorney_together: EU ESTAREI A SUA DISPOSIÇÃO NESSA JORNADA
-  welcome_message_landing_page: BEM-VINDO a PUBLIMONEY
+  welcome_message_landing_page: BEM-VINDO a %{company_name}
   sponsored_by: Você está sendo indicado por
   location: 'Origem'
-  company_in_numbers: PUBLIMONEY EM NÚMEROS
+  company_in_numbers: '%{company_name} EM NÚMEROS'
   custody_money: MILHÔES USD EM CUSTÓDIA
   satisfied_customers: CLIENTES SATISFEITOS
   total_customers: TOTAL DE CLIENTES
@@ -1495,3 +1501,9 @@ pt-BR:
   yield: Publicidade
   register_date: Data de Registro
   sponsor: Patrocinador
+  bill: Faturar
+  checkout: Checkout
+  approve_without_bonification: Aprovar sem bonificação
+  payment_type: Método de Pagamento
+  actions: Ações
+  hashid: Código

@@ -1,6 +1,5 @@
 module Backoffice
   class DownloadsController < BackofficeController
-
     def index
       q = current_user.admin? ? MediaFile : MediaFile.actives
       @media_files = q.order(created_at: :desc)

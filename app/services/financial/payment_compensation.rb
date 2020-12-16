@@ -35,10 +35,11 @@ module Financial
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if deposit_product
-        propagate_bonuses if enabled_bonification && user.bonus_contracts.active.yield_contracts.any?
+        propagate_bonuses if enabled_bonification
         create_vouchers if voucher_product
-        create_bonus_contract if deposit_product && enabled_bonification
+        create_bonus_contract if deposit_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
+        update_user_and_sponsor_types
         notify_user_by_email_about_paid_order
       end
     end
@@ -197,6 +198,11 @@ module Financial
 
     def create_bonus_contract
       CreatorBonusContractService.call(order: order, enabled_bonification: enabled_bonification)
+    end
+
+    def update_user_and_sponsor_types
+      Types::QualifierService.call(user: user)
+      Types::QualifierService.call(user: user.sponsor)
     end
   end
 end

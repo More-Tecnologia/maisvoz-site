@@ -10,12 +10,12 @@
   </div>
   <div class="row">
     <%= render partial: 'banner_main',
-               locals: { banner: @banners.first } %>
+               locals: { banner: @banners.first } if @banners.first %>
   </div>
   <div class="row" id="carousels">
-    <% @banners.each_slice(8) do |banners| %>
-      <div class="owl-carousel carousel" >
-        <%= render @banners %>
+    <% @banners.each_slice(7) do |banners| %>
+      <div class="owl-carousel carousel">
+        <%= render banners %>
       </div>
     <% end %>
   </div>

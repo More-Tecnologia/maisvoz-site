@@ -68,7 +68,7 @@ class ProductReasonScoreFactory
       ProductScore.create!(product_reason_score: product_reason_score,
                            career_trail: career_trail,
                            generation: generation,
-                           cent_amount: CENT_AMOUNT,
+                           amount_cents: CENT_AMOUNT,
                            fix_value: FIX_VALUE)
     end
   end

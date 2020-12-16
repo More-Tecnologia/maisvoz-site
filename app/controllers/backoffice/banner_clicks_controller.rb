@@ -6,7 +6,10 @@ module Backoffice
       ActiveRecord::Base.transaction do
         @banner_click = current_user.banner_clicks
                                     .create!(params.slice(:banner_id))
-        current_user.banner_seen_today! if current_user.viewed_minimum_banner_quantity_today?
+        if current_user.viewed_minimum_banner_quantity_today?
+          current_user.banner_seen_today!
+          Bonification::ClickcashCreatorService.call(user: current_user)
+        end
       end
     end
   end

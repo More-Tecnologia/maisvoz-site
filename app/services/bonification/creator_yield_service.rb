@@ -17,7 +17,7 @@ module Bonification
                    .active
                    .yield_contracts
                    .enabled_bonification
-                   .where('users.banners_seen_at': Date.today)
+                   .where('users.banners_seen_at': Date.current)
     end
 
     def create_yield_bonus_for(contract)

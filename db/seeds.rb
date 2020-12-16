@@ -204,7 +204,7 @@ end
 score_types = [{ name: 'Membership Score', code: '100', active: false },
                { name: 'Activation Score', code: '200', active: false },
                { name: 'Shopping Score', code: '300', active: false },
-               { name: 'Points Qualifications', code: '1000', active: false },
+               { name: 'Points Qualifications', code: '1000', active: true },
                { name: 'Inactivity Score Chargeback', code: '800', active: false },
                { name: 'Points Commissions', tree_type: :binary, code: '400', active: false },
                { name: 'Disqualification Binary Score Chargeback', tree_type: :binary, code: '500', active: false },

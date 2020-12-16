@@ -27,6 +27,7 @@
  *= require 'owl.carousel.min'
  *= require 'owl.theme.default.min'
  *= require 'animate.min'
+ *= require 'carts/show'
  *= require_self
  */
 
@@ -56,7 +57,25 @@ h6 {
   box-shadow: 1px 1px 10px #c3c3c3;
 }
 
-
 .dropdown-menu li {
   margin: 0 5px;
+}
+
+.field_with_errors .form-control {
+  border-color: #d9534f;
+}
+
+.field_with_errors label,
+.field_with_errors .form-control-feedback,
+.field_with_errors .form-control-label,
+.field_with_errors .col-form-label,
+.field_with_errors .form-check-label,
+.field_with_errors .custom-control,
+.field_with_errors .error-messages {
+  color: #d9534f;
+}
+
+.field-error-messages {
+  font-size: 11px;
+  color: #d9534f;
 }

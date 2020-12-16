@@ -1,3 +1,5 @@
+<%= form_with model: @checkout_form, url: backoffice_cart_path, method: :post do |f| %>
+<div class="card-box">
 <div class="row">
   <div class="col-xs-12">
     <h3 class="black m-b-0 font-bold">
@@ -14,7 +16,7 @@
         <th class="text-right black"></th>
       </thead>
       <tbody>
-        <% @order.order_items.includes(:product).each do |order_item| %>
+        <% current_order.order_items.includes(:product).each do |order_item| %>
           <tr>
             <td class="text-left black">
               <%= ensure_cloudinary_image(order_item.product.main_photo,
@@ -23,18 +25,7 @@
             </td>
             <td class="text-left black" > <%= order_item.product.name %> </td>
             <td class="text-left black" >
-              <%= simple_form_for order_item, url: backoffice_order_item_path(order_item) do |f| %>
-                <%= f.input :id, as: :hidden %>
-                <div class="col-xs-3 hidden-xs">
-                  <%= f.input :quantity, input_html: { class: 'form-control input-sm' }, label: false %>
-                </div>
-                <div class="col-xs-8 visible-xs">
-                  <%= f.input :quantity, input_html: { class: 'form-control input-sm' }, label: false %>
-                </div>
-                <button type="submit" class="btn btn-default btn-sm">
-                  <i class="icon-refresh"></i>
-                </button>
-              <% end %>
+              <%= order_item.quantity %>
             </td>
             <td class="text-right black" id="total_item_price">
               <%= number_to_currency(order_item.total_cents / 100.0) %>
@@ -58,9 +49,19 @@
     </h2>
     <h2 class="black m-b-0 pull-right">
       <strong id="checkout_form_total">
-        <%= number_to_currency(@order.total_cents / 100.0) %>
+        <%= number_to_currency(current_order.total_cents / 100.0) %>
       </strong>
     </h2>
+  </div>
+</div>
+<div class="row m-b-60">
+  <div class="col-xs-12">
+    <h3 class="black m-b-0 font-bold">
+      <i class="fas fa-map-marker-alt"></i>
+      <%= t('backoffice.carts.show.shipping_address') %>
+    </h3>
+    <hr style='height: 3px; background: #505458;' class="m-t-0">
+    <%= render partial: 'shipping_form', locals: { form: f } %>
   </div>
 </div>
 <div class="row text-center hidden-xs">
@@ -70,12 +71,9 @@
       <i class="icon-arrow-left"></i>
       <%= t('views.backoffice.cart.show.continue_shopping') %>
     <% end %>
-    <%= link_to new_backoffice_payment_block_checkout_path,
-                class: 'btn btn-success pull-right text-uppercase',
-                data: { disable_with: disable_spinner } do %>
-      <%= t('views.backoffice.cart.show.place_order') %>
-      <i class="icon-arrow-right"></i>
-    <% end %>
+    <%= f.submit t('views.backoffice.cart.show.place_order'),
+                 class: 'btn btn-success pull-right text-uppercase',
+                 data: { disable_with: disable_spinner } %>
   </div>
 </div>
 <div class="row text-center visible-xs">
@@ -86,10 +84,10 @@
     <% end %>
   </div>
   <div class="col-sm-12">
-    <%= link_to new_backoffice_payment_block_checkout_path,
-                class: 'btn btn-success text-uppercase',
-                data: { disable_with: disable_spinner } do %>
-      <%= t('views.backoffice.cart.show.place_order') %>
-    <% end %>
+    <%= f.submit t('views.backoffice.cart.show.place_order'),
+                 class: 'btn btn-success text-uppercase',
+                 data: { disable_with: disable_spinner.html_safe } %>
   </div>
 </div>
+</div>
+<% end %>

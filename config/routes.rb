@@ -102,7 +102,7 @@ Rails.application.routes.draw do
 
     # Shopping
     resources :products, only: [:index, :show]
-    resource :cart, only: :show
+    resource :cart, only: %i[show create]
     resource :checkout, only: :update
     resources :order_items, only: [:create, :update, :destroy]
     resources :payment_transactions, only: [:show]

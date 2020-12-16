@@ -58,6 +58,7 @@ class Order < ApplicationRecord
 
   has_one :payment_transaction
   has_one :bonus_contract
+  has_one :address
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true

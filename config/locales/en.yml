@@ -321,6 +321,24 @@
     end_datetime: End Date
     transfer_at: Date
     value: Value
+    backoffice_address: Backoffice
+    custom_address: Change shipping address
+    backoffice_shipping_address_country: Country
+    backoffice_shipping_address_postal_code: Zip Code
+    backoffice_shipping_address_street: Street
+    backoffice_shipping_address_number: Number
+    backoffice_shipping_address_complement: Complement
+    backoffice_shipping_address_neighborhood: Neighborhood
+    backoffice_shipping_address_city: City
+    backoffice_shipping_address_state: State
+    custom_shipping_address_country: Country
+    custom_shipping_address_postal_code: Zip Code
+    custom_shipping_address_street: Street
+    custom_shipping_address_number: Number
+    custom_shipping_address_complement: Complement
+    custom_shipping_address_neighborhood: Neighborhood
+    custom_shipping_address_city: City
+    custom_shipping_address_state: State
   backoffice:
     orders:
       show:
@@ -427,6 +445,7 @@
       show:
         purchase_resume: Purchase Resume
         total: Total
+        shipping_address: Shipping Address
     product_checkouts:
       new:
         purchase_resume: Purchase Resume

@@ -341,6 +341,13 @@
     custom_shipping_address_city: City
     custom_shipping_address_state: State
     bonus_contract: Bonus Contract
+    main_photo: Main Photo
+    photos: Photos
+    short_description: Short Description
+    length: Length
+    width: Width
+    weight: Weight
+    product_height: Height
   backoffice:
     orders:
       show:
@@ -1096,6 +1103,7 @@ We will send a new e-mail as soon as the transaction is complete.'
           basic_info: Basic Information
           bonus: Bonus
           dimensions: Dimensions
+          parametrization: Parametrization
           edit:
             subtitle: Edit product details
             title: Edit

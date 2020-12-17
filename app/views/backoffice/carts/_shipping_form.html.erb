@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-sm-12 m-t-10 m-b-30">
+    <div class="form-group">
+      <%= form.label :whatsapp,
+                     class: 'col-sm-2 control-label checkout-control-label' %>
+      <div class="col-sm-4">
+        <%= form.text_field :whatsapp,
+                            class: 'form-control checkout-form-control' %>
+        <%= error_messages(form.object, :phone) %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-6">
+    <label class="custom-radio" for='shipping-address-backoffice'>
+      <%= form.radio_button :shipping_address,
+                            :backoffice,
+                            id: 'shipping-address-backoffice',
+                            class: 'custom-radio',
+                            checked: true %>
+      <span class="checkmark"></span>
+      <span class="label"> <%= t('attributes.backoffice_address') %> </span>
+    </label>
+  </div>
+  <div class="col-sm-6">
+    <label class="custom-radio" for='shipping-address-custom'>
+      <%= form.radio_button :shipping_address,
+                            :custom,
+                            id: 'shipping-address-custom',
+                            class: 'custom-radio',
+                            checked: false %>
+      <span class="checkmark"></span>
+      <span class="label">
+        <i class="fas fa-map-marker-alt"></i>
+        <%= t('attributes.custom_address') %>
+      </span>
+    </label>
+  </div>
+</div>
+<div class="m-t-30 m-b-30" id="shipping-address-backoffice-form">
+  <%= render partial: 'backoffice_shipping_address_form', locals: { form: form } %>
+</div>
+<div class="m-t-30 m-b-30" style="display: none;" id="shipping-address-custom-form">
+  <%= render partial: 'custom_shipping_address_form', locals: { form: form } %>
+</div>

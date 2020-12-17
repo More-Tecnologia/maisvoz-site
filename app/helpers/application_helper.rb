@@ -58,4 +58,12 @@ module ApplicationHelper
 
     image_tag('fallback/default_product.png', options)
   end
+
+  def error_messages(object, attribute)
+    errors = object.errors[attribute]
+    return unless errors&.any?
+
+    errors = errors.join(', ')
+    content_tag :span, errors, class: 'field-error-messages'
+  end
 end

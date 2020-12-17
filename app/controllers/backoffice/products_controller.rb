@@ -29,7 +29,7 @@ module Backoffice
     end
 
     def redirect_back_if_deposit_product
-      redirect_back(fallback_location: root_path) if prodduct.try(:deposit?)
+      redirect_back(fallback_location: root_path) if product.try(:deposit?)
     end
   end
 end

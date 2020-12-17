@@ -77,6 +77,7 @@ class Product < ApplicationRecord
   validates :grace_period, numericality: { only_integer: true,
                                            greater_than_or_equal_to: 0 }
   validates :code, presence: true, if: :activation?
+  validates :sku, uniqueness: true, allow_blank: true
 
   def main_photo_id
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?

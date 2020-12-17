@@ -349,6 +349,10 @@ pt-BR:
     custom_shipping_address_neighborhood: Bairro
     custom_shipping_address_city: Cidade
     custom_shipping_address_state: Estado
+    main_photo: Foto Principal
+    photos: Fotos
+    short_description: Descrição Curta
+    product_height: Altura
   backoffice:
     orders:
       show:
@@ -1125,6 +1129,7 @@ pt-BR:
           basic_info: Informações Básicas
           bonus: Bônus
           dimensions: Dimensões
+          parametrization: Parametrização
           edit:
             subtitle: Editar detalhes do produto
             title: Editar

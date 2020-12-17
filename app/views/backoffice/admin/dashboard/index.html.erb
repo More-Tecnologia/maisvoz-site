@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'charts' %>
 
 <div class="container">
-  <div class="row"  id="dashboard">
+  <div class="row" id="dashboard">
     <div class="painel">
 
       <%= link_to backoffice_admin_orders_path, class: 'item1'  do%>
@@ -10,7 +10,6 @@
 
       <%= link_to backoffice_admin_credits_debit_path(:find_user), class: 'item2'  do%>
         <i class="fas fa-user-shield"></i> <%= t('defaults.credits_debits') %>
-
       <% end %>
 
       <%= link_to backoffice_admin_financial_transactions_path, class: 'item3'  do%>
@@ -35,20 +34,11 @@
 
       <%= link_to backoffice_support_users_path, class: 'item8'  do%>
         <i class="fas fa-user-shield"></i> <%= t('defaults.users') %>
-
       <% end %>
 
-
-
-      <a href="#"
-         class="item10"
-         sponsor-link="<%= new_user_registration_url(sponsor: current_user.username) %>"
-         id="sponsor-link"
-         title='<%= t(:copied_sponsor_link) %>'
-         message='<%= t(:copied_sponsor_link_message) %>'>
-         <%= image_tag 'icons/link1.png', class: 'img img-responsive' %>
-        <%= t(:sponsor_link) %>
-      </a>
+      <%= link_to backoffice_admin_products_path, class: 'item10' do %>
+        <i class="fas fa-user-shield"></i> <%= t('defaults.products') %>
+      <% end %>
 
       <%= link_to backoffice_career_trail_users_path, class: 'item11' do %>
         <%= image_tag 'icons/CHARMAIN1.png', class: 'img img-responsive' %>

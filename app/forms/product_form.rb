@@ -1,5 +1,4 @@
 class ProductForm < Form
-
   attribute :id
   attribute :name
   attribute :description
@@ -27,6 +26,9 @@ class ProductForm < Form
   attribute :product_scores_fix
   attribute :financial_reason
   attribute :system_taxable
+  attribute :shipping
+
+  before_validation :assign_default_kind, if: proc { |f| f.product.blank? }
 
   validates :name, :quantity, :price, :kind, :binary_score, :category_id, presence: true
 
@@ -36,37 +38,13 @@ class ProductForm < Form
   validates :length, :width, :height, :weight, :price,
             numericality: { greater_than_or_equal_to: 0.0, allow_blank: true }
 
-  validate :sku_is_unique
-
-  def scores(product_reason_score_id)
-    ProductScore.joins(career_trail: :career, product_reason_score: :product)
-      .where('products.id': id, 'career_trails.trail_id': trail_id, product_reason_score_id: product_reason_score_id)
-      .order('generation ASC, careers.qualifying_score ASC')
-      .distinct.select('product_scores.*, careers.qualifying_score')
-  end
-
-  def careers
-    CareerTrail.joins(:career)
-      .where(trail_id: trail_id)
-      .order('careers.qualifying_score ASC')
-  end
-
-  def kind
-    return product.kind if product
-
-    :detached
-  end
-
   def product
-    product ||= Product.find(id)
+    @product ||= Product.find_by(id: id)
   end
 
   private
 
-  def sku_is_unique
-    return if sku.blank?
-    return unless Product.where(sku: sku).where.not(id: id).any?
-    errors.add(:sku, I18n.t('defaults.errors.not_unique'))
+  def assign_default_kind
+    @kind = :detached
   end
-
 end

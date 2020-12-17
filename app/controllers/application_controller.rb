@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
                 if: proc { current_user &&
                            !current_user.banner_seen_today? &&
                            current_user.empreendedor? &&
-                           current_user.bonus_contracts.active.any? }
+                           current_user.bonus_contracts.active.any? },
+                unless: proc { user_masquerade? }
 
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_dashboard_index_path

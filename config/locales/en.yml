@@ -348,6 +348,7 @@
     width: Width
     weight: Weight
     product_height: Height
+    price_cents: Price (cents)
   backoffice:
     orders:
       show:

@@ -1,17 +1,13 @@
-<!-- Page-Title -->
 <div class="row">
   <div class="col-sm-12">
     <h4 class="page-title"><%= t('views.backoffice.admin.products.new.title') %></h4>
     <p class="text-muted page-title-alt"><%= t('views.backoffice.admin.products.new.subtitle') %></p>
   </div>
 </div>
-
 <div class="row">
   <div class="col-sm-12">
     <div class="card-box">
-      
-            <%= render partial: 'form', locals: { form: form, product: nil, url: backoffice_admin_products_path, method: :post } %>
-      
+      <%= render partial: 'form' %>
     </div>
   </div>
 </div>

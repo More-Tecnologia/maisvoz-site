@@ -1,4 +1,7 @@
-<%= simple_form_for(form, url: url, method: method, validate: true, html: { class: 'form-horizontal', multipart: true }) do |f| %>
+<%= simple_form_for([:backoffice, :admin, @product],
+                    validate: true,
+                    html: { class: 'form-horizontal',
+                            multipart: true }) do |f| %>
   <ul class="nav nav-tabs tabs">
     <li class="active tab">
       <a href="#info" data-toggle="tab" aria-expanded="false">
@@ -18,7 +21,6 @@
     </li>
   </ul>
   <div class="tab-content">
-    <%= f.error_notification %>
     <div class="tab-pane active" id="info">
       <div class="row">
         <div class="col-md-5">
@@ -26,19 +28,19 @@
           <%= f.input :description, as: :text %>
           <%= f.input :short_description %>
           <%= f.input :category_id, collection: Category.all %>
-          <%= ensure_cloudinary_image(product.main_photo.path,
-                                      class: 'thumb-lg') if product&.main_photo %>
+          <%= ensure_cloudinary_image(@product.main_photo.path,
+                                      class: 'thumb-lg') if @product&.main_photo %>
           <%= f.input :main_photo, as: :file %>
-          <% product.photos.each do |p| %>
+          <% @product.photos.each do |p| %>
             <%= ensure_cloudinary_image(p.path, class: 'thumb-lg') %>
-          <% end if product %>
+          <% end if @product %>
           <%= f.input :photos, as: :file,  input_html: { multiple: true } %>
         </div>
         <div class="col-md-5 col-md-offset-2">
-          <%= f.input :price do %>
+          <%= f.input :price_cents do %>
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-              <%= f.input_field :price, class: "form-control", value: form.price.to_f %>
+              <%= f.input_field :price_cents, class: "form-control" %>
             </div>
           <% end %>
           <%= f.input :quantity %>
@@ -86,6 +88,6 @@
       </div>
     </div>
   </div>
-  <%= f.button :button, t("defaults.#{method}"),
+  <%= f.submit class: 'btn btn-default',
                data: { disable_with: disable_spinner.html_safe } %>
 <% end %>

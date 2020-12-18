@@ -554,6 +554,10 @@
           title: Withdrawals Approval
         create:
           success: Withdrawals approved successfull
+      shippings:
+        new:
+          title: New Shipping
+          shippings: Shippings
     support:
       users:
         index:
@@ -930,6 +934,8 @@ We will send a new e-mail as soon as the transaction is complete.'
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+      new: New %{model}
+      add: Add %{model}
       sim_card_transfer: Transfer CHIP(s)
       checkout: Generate Order
       send_expense: Send Expense
@@ -1105,6 +1111,7 @@ We will send a new e-mail as soon as the transaction is complete.'
           bonus: Bonus
           dimensions: Dimensions
           parametrization: Parametrization
+          shippings: Shippings
           edit:
             subtitle: Edit product details
             title: Edit

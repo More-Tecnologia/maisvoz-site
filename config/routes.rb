@@ -19,7 +19,9 @@ Rails.application.routes.draw do
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
-      resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :products, only: [:index, :new, :create, :edit, :update, :destroy] do
+        resources :shippings
+      end
       resources :unilevel_scores, only: [:index]
       resources :binary_scores, only: [:index]
       resources :lineage_scores, only: [:index]

@@ -1,6 +1,7 @@
 module Backoffice
   class BannerClicksController < BackofficeController
     skip_before_action :redirect_to_banners
+    before_action :return_if_on_weekend, only: :create
 
     def index; end
 
@@ -13,6 +14,12 @@ module Backoffice
           Bonification::ClickcashCreatorService.call(user: current_user)
         end
       end
+    end
+
+    private
+
+    def return_if_on_weekend
+      head 204 if Date.current.on_weekend?
     end
   end
 end

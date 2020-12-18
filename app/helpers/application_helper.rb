@@ -66,4 +66,11 @@ module ApplicationHelper
     errors = errors.join(', ')
     content_tag :span, errors, class: 'field-error-messages'
   end
+
+  def country_name(country_code)
+    country = ISO3166::Country[country_code]
+    return if country.blank?
+
+    country.translations[I18n.locale.to_s] || country.name
+  end
 end

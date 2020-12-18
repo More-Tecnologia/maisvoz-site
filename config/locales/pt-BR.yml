@@ -553,6 +553,10 @@ pt-BR:
           title: Aprovação de Saques
         create:
           success: Saques aprovados com sucesso.
+      shippings:
+        new:
+          title: Novo Frete
+          shippings: Fretes
     support:
       users:
         index:
@@ -952,6 +956,8 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+      new: Novo %{model}
+      add: Adicionar %{model}
       sim_card_transfer: Transferir CHIP(s)
       checkout: Gerar Pedido
       send_expense: Lançar Despesa
@@ -1131,6 +1137,7 @@ pt-BR:
           bonus: Bônus
           dimensions: Dimensões
           parametrization: Parametrização
+          shippings: Fretes
           edit:
             subtitle: Editar detalhes do produto
             title: Editar

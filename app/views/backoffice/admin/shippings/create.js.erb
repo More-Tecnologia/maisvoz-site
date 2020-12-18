@@ -1,0 +1,5 @@
+<% if @shipping.save %>
+  $('tbody#shippings').prepend("<%= j render(@shipping) %>")
+<% else %>
+  alert("<%= @shipping.errors.full_messages.join(', ') %>")
+<% end %>

@@ -1,0 +1,6 @@
+<% if @shipping.update(params[:shipping].slice(:amount)) %>
+  $("tr#shipping-form-<%= @shipping.id %>").hide()
+  $("tr#<%= @shipping.id %>").replaceWith("<%= j render @shipping %>")
+<% else %>
+  alert("<%= @shipping.errors.full_messages.join(', ') %>")
+<% end %>

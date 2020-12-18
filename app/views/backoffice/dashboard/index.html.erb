@@ -69,7 +69,7 @@
         <%= t('defaults.my_indications') %>
       <% end %>
 
-      <%= link_to '#', class: 'item25'  do%>
+      <%= link_to backoffice_banner_clicks_path, class: 'item25' do %>
         <%= image_tag current_user.active? ? 'icons/ativo11.png': 'icons/ativo21.png',
                       class: 'img img-responsive' %>
         <%= t(:account_status) %>
@@ -90,9 +90,14 @@
         <%= t('defaults.order_payments') %>
       <% end %>
 
-      <%=  link_to backoffice_adhesion_products_path, class: 'item29'  do%>
+      <%= link_to backoffice_adhesion_products_path, class: 'item29'  do%>
         <%= image_tag 'icons/clicks1.png', class: 'img img-responsive' %>
         Pack Click Cash
+      <% end %>
+
+      <%= link_to backoffice_banner_clicks_path, class: 'item33' do %>
+        <i class="fas fa-mouse-pointer fa-3x"></i>
+        <%= t('defaults.daily_tasks') %>
       <% end %>
 
       <%=  link_to backoffice_downloads_path, class: 'item31' do %>

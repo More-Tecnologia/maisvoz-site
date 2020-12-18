@@ -2,6 +2,8 @@ module Backoffice
   class BannerClicksController < BackofficeController
     skip_before_action :redirect_to_banners
 
+    def index; end
+
     def create
       ActiveRecord::Base.transaction do
         @banner_click = current_user.banner_clicks

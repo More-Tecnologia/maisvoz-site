@@ -1,204 +1,56 @@
-<style>
-.grid-container{
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
-    background: #FFF;
-    box-shadow: 5px 2px 10px #c3c3c3;
-    margin-top: 30px;
-}
-
-.grid-item-menu{
-    color: #666666;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-    border: 1px #c3c3c3 solid;
-    background: #ddddFF;
-    height: 40px;
-}
-
-.grid-item{
-    color: #555555;
-    width: auto;
-    height: 100px;
-    font-weight: bold;
-    border: 1px #c3c3c3 solid;
-    padding: 5px;
-    text-align: end;
-}
-
-.grid-item-off{
-    color: #555555;
-    width: auto;
-    height: 100px;
-    font-weight: bold;
-    border: 1px #c3c3c3 solid;
-    padding: 5px;
-    text-align: end;
-    background: #e5e5e5;
-}
-
-.grid-active{
-    background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
-    color: #FFF;
-}
-
-.grid-desactive{
-    background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
-    color: #FFF;
-    
-}
-@media (max-width: 420px){
-    .container{
-        padding-left: 0;
-    }
-    .grid-item-menu{
-        font-size: 12px;
-        height: 40px;
-    }
-    .grid-item{
-        height: 60px;
-    }
-    .grid-item-off{
-        height: 60px;
-    }
-}
-</style>
-
 <section class="container">
-    <div class="row">
-        <div class="grid-container">
-            
-            <div class="grid-item-menu">
-                Segunda
-            </div>
-            <div class="grid-item-menu">
-                Terça
-            </div>
-            <div class="grid-item-menu">
-                Quarta
-            </div>
-            <div class="grid-item-menu">
-                Quinta
-            </div>
-            <div class="grid-item-menu">
-                Sexta
-            </div>
-            <div class="grid-item-menu">
-                Sabado
-            </div>
-            <div class="grid-item-menu">
-                Domingo
-            </div>
-
-
-            <div class="grid-item-off">
-                30
-            </div>
-            <div class="grid-item-off">
-                31
-            </div>
-            <div class="grid-item ">
-                1
-            </div>
-            <div class="grid-item ">
-                2
-            </div>
-            <div class="grid-item">
-                3
-            </div>
-            <div class="grid-item">
-                4
-            </div>
-            <div class="grid-item">
-                5
-            </div>
-            <div class="grid-item">
-                6
-            </div>
-            <div class="grid-item">
-                7
-            </div>
-            <div class="grid-item">
-                8
-            </div>
-            <div class="grid-item">
-                9
-            </div>
-            <div class="grid-item">
-                10
-            </div>
-            <div class="grid-item">
-                11
-            </div>
-            <div class="grid-item">
-                12
-            </div>
-            <div class="grid-item">
-                13
-            </div>
-            <div class="grid-item">
-                14
-            </div>
-            <div class="grid-item grid-active">
-                1
-            </div>
-            <div class="grid-item grid-desactive">
-                2
-            </div>
-            <div class="grid-item">
-                3
-            </div>
-            <div class="grid-item">
-                4
-            </div>
-            <div class="grid-item">
-                5
-            </div>
-            <div class="grid-item">
-                6
-            </div>
-            <div class="grid-item">
-                7
-            </div>
-            <div class="grid-item">
-                8
-            </div>
-            <div class="grid-item">
-                9
-            </div>
-            <div class="grid-item">
-                10
-            </div>
-            <div class="grid-item">
-                11
-            </div>
-            <div class="grid-item">
-                12
-            </div>
-            <div class="grid-item">
-                13
-            </div>
-            <div class="grid-item">
-                14
-            </div>
-            <div class="grid-item-off">
-                9
-            </div>
-            <div class="grid-item-off">
-                10
-            </div>
-            <div class="grid-item-off">
-                11
-            </div>
-            <div class="grid-item-off">
-                12
-            </div>
-            <div class="grid-item-off">
-                13
-            </div>
-
-
-        </div>
+  <div class="row">
+    <div class="col-sm-12 m-b-23">
+      <h4 class="page-title">
+        <%= t('.title') %>:&nbsp;<%= l(month, format: '%B/%Y') %>
+      </h4>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="grid-container">
+        <% t('date.day_names').each do |day_name| %>
+          <div class="grid-item-menu"> <%= day_name %> </div>
+        <% end %>
+        <% t('date.abbr_day_names').each do |day_name| %>
+          <div class="grid-item-menu visible-xs"> <%= day_name %> </div>
+        <% end %>
+        <% weekdays_of_last_month.each do |d| %>
+          <div class="grid-item-off">
+            <%= d.strftime('%d') %>
+          </div>
+        <% end %>
+        <% month_days.to_a.each do |date| %>
+          <div class="grid-item <%= grid_class_by_dayly_task(date) %>">
+            <%= date.strftime("%d") %>
+          </div>
+        <% end %>
+        <% weekdays_of_next_month.each do |d| %>
+          <div class="grid-item-off">
+            <%= d.strftime('%d') %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row m-t-20">
+    <div class="col-sm-12 text-center">
+      <%= link_to backoffice_banner_clicks_path(month: min_date.strftime('%Y-%m-%d')),
+                  class: 'btn btn-primary' do %>
+        <i class="fas fa-angle-double-left"></i>
+      <% end if month > valid_months.begin %>
+      <%= link_to backoffice_banner_clicks_path(month: previous_date.strftime('%Y-%m-%d')),
+                  class: 'btn btn-primary' do %>
+        <i class="fas fa-angle-left"></i>
+      <% end if valid_months.cover?(previous_date) %>
+      <%= link_to backoffice_banner_clicks_path(month: next_date.strftime('%Y-%m-%d')),
+                  class: 'btn btn-primary' do %>
+        <i class="fas fa-angle-right"></i>
+      <% end if valid_months.cover?(next_date) %>
+      <%= link_to backoffice_banner_clicks_path(month: max_date.strftime('%Y-%m-%d')),
+                  class: 'btn btn-primary' do %>
+        <i class="fas fa-angle-double-right"></i>
+      <% end if month < valid_months.end %>
+    </div>
+  </div>
 </section>

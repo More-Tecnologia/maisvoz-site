@@ -2910,7 +2910,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item29 {
-  grid-column: 1 /span 5;
+  grid-column: 1 /span 3;
   grid-row: 6;
   background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
   display: flex;
@@ -2922,6 +2922,24 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item29 img{
+  width: 40px;
+  height: 40px;
+
+}
+
+#dashboard .painel .item33 {
+  grid-column: 4 /span 2;
+  grid-row: 6;
+  background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #FFF;
+  font-size: 12px;
+}
+
+#dashboard .painel .item33 img{
   width: 40px;
   height: 40px;
 
@@ -3567,13 +3585,11 @@ a.editable-click:hover {
 #dashboard .painel .item31 {
   grid-column: 3 / span 2;
   grid-row: 13;
-
 }
 
 #dashboard .painel .item32{
   grid-column: 1 / span 5;
   grid-row: 16;
-
 }
 
 #dashboard .painel .item32 .progress{
@@ -3585,7 +3601,4 @@ a.editable-click:hover {
   text-align: center;
   font-size: 12px;
 }
-
-
-
 }

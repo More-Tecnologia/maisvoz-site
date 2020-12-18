@@ -461,6 +461,9 @@ pt-BR:
     adhesion_products:
       index:
         title: Loja Pack Click Cash
+    banner_clicks:
+      index:
+        title: Tarefas Diárias
     admin:
       media_files:
         form:
@@ -893,6 +896,7 @@ pt-BR:
     support: Suporte
     order_payments: Pagamento de Pedido
     banners_clicked_today: Clicked banners today quantity
+    daily_tasks: Daily Tasks
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

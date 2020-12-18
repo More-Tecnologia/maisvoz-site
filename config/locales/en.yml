@@ -462,6 +462,9 @@
     adhesion_products:
       index:
         title: Store Pack Click Cash
+    banner_clicks:
+      index:
+        title: Daily Tasks
     admin:
       media_files:
         form:
@@ -871,6 +874,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     order_payments: Order payment
     bonus_contracts: Bonus Contracts
     banners_clicked_today: Quantidade de banners clicados hoje
+    daily_tasks: Tarefas Diárias
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:

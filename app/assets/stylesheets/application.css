@@ -28,6 +28,7 @@
  *= require 'owl.theme.default.min'
  *= require 'animate.min'
  *= require 'carts/show'
+ *= require 'banner_clicks/index'
  *= require_self
  */
 

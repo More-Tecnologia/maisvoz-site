@@ -1,7 +1,9 @@
 FactoryBot.define do
   factory :product do
+    name { Faker::Name.name }
     quantity { rand(1..5) }
-    binary_score { Faker::Number.positive }
+    category { association(:category) }
+    binary_score { Faker::Number.positive.to_i }
     active { true }
     binary_bonus { rand(1..100) }
     kind { Product.kinds.keys.sample }

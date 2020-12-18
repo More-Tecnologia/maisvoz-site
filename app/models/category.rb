@@ -16,6 +16,8 @@ class Category < ApplicationRecord
 
   has_many :products
 
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+
   scope :active, -> { where(active: true).order(:order) }
   scope :sim_card, -> { where(code: 10) }
   scope :cellphone_reload, -> { where(code: 11) }

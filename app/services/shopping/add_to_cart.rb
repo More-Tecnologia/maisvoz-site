@@ -3,9 +3,10 @@ module Shopping
 
     prepend SimpleCommand
 
-    def initialize(order, product_id)
+    def initialize(order, product_id, country)
       @order = order
       @product_id = product_id
+      @country = country
     end
 
     def call
@@ -17,7 +18,6 @@ module Shopping
         elsif product.adhesion? && already_another_adhesion_product?
           errors.add(:product, I18n.t('there_are_adhesion_product'))
         elsif add_to_order
-          add_membership_item_to_order if user_first_buy? && !detect_membership_added?
           update_order_total
           update_order_pv_total
           return order
@@ -29,7 +29,7 @@ module Shopping
 
     private
 
-    attr_reader :order, :product_id
+    attr_reader :order, :product_id, :country
 
     def add_to_order
       if find_order_item.present?
@@ -66,7 +66,7 @@ module Shopping
     end
 
     def update_order_total
-      Shopping::UpdateCartTotals.call(order)
+      Shopping::UpdateCartTotals.call(order, country)
     end
 
     def apply_discount

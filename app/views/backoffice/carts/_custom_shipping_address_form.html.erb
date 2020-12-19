@@ -3,9 +3,8 @@
                  class: 'col-sm-2 control-label checkout-control-label' %>
   <div class="col-sm-4">
     <%= form.country_select :custom_shipping_address_country,
-                            {},
-                            class: 'form-control checkout-form-control',
-                            id: 'custom-shipping-address-postal-code' %>
+                            { include_blank: true, only: current_order_shipping_countries },
+                            class: 'form-control checkout-form-control country-shipping' %>
     <%= error_messages(form.object, :custom_shipping_address_country) %>
   </div>
   <%= form.label :custom_shipping_address_postal_code,

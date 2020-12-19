@@ -28,7 +28,7 @@ module Backoffice
                     :backoffice_shipping_address_number, :backoffice_shipping_address_neighborhood,
                     :backoffice_shipping_address_street, :backoffice_shipping_address_city,
                     :backoffice_shipping_address_state, :custom_shipping_address_country,
-                    :whatsapp)
+                    :backoffice_shipping_address_country, :whatsapp)
             .merge(order: current_order, user: current_user)
     end
   end

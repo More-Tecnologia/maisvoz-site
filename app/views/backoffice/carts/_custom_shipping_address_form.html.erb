@@ -22,7 +22,7 @@
   <div class="col-sm-4">
     <%= form.text_field :custom_shipping_address_city,
                         class: 'form-control checkout-form-control' %>
-    <%= form.hidden_field :custom_shipping_address_city %>
+    <%= error_messages(form.object, :custom_shipping_address_city) %>
   </div>
   <%= form.label :custom_shipping_address_street,
                  class: 'col-sm-2 control-label checkout-control-label' %>

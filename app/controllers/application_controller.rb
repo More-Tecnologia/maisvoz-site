@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   def show_daily_task_alert
     quantity = BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
-    flash[:alert] = t('errors.messages.daily_task', quantity: quantity)
+    flash[:alert] = t('errors.messages.daily_task', quantity: quantity) if !DateTime.current.on_weekend?
   end
 
   def redirect_to_banners

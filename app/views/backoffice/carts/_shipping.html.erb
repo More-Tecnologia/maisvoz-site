@@ -1,0 +1,12 @@
+<tr id="shipping-item">
+  <td> <i class="fas fa-shipping-fast fa-2x"></i> </td>
+  <td class="text-left black">
+    <%= t('attributes.shipping') %>
+  </td>
+  <td class="text-right black" colspan="2">
+    <span id="shipping-cents">
+      <%= number_to_currency(order.shipping_cents / 100.0) %>
+    </span>
+  </td>
+  <td></td>
+</tr>

@@ -113,6 +113,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show] do
       post :generate_boleto
     end
+    resources :shipping_calculations, only: :new
     resources :cellphone_reloads, only: [:new, :create]
     resources :product_checkouts, only: %i[new create]
 

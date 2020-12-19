@@ -27,7 +27,7 @@
             <td class="text-left black" >
               <%= order_item.quantity %>
             </td>
-            <td class="text-right black" id="total_item_price">
+            <td class="text-right black">
               <%= number_to_currency(order_item.total_cents / 100.0) %>
             </td>
             <td>
@@ -37,6 +37,10 @@
             </td>
           </tr>
         <% end %>
+        <div id="shipping-wrapper">
+          <%= render partial: 'shipping',
+                     locals: { order: current_order } if current_order.products.any?(&:shipping) %>
+        </div>
       </tbody>
     </table>
     </div>

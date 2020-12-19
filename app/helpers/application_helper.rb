@@ -73,4 +73,9 @@ module ApplicationHelper
 
     country.translations[I18n.locale.to_s] || country.name
   end
+
+  def current_order_shipping_countries
+    @current_order_shipping_countries =
+      current_order.products.map(&:shippings).flatten.map(&:country).uniq
+  end
 end

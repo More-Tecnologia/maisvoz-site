@@ -18,36 +18,42 @@ class OrdersGrid < BaseGrid
   filter(:payment_type, :enum, select: Order.payment_types, header: I18n.t('attributes.payment_type'))
 
   column(:hashid, header: I18n.t(:hashid))
-  column(:created_at, header: I18n.t('attributes.created_at'), html: true) do |order|
-    payment_transaction_link(order)
+  column(:created_at, header: I18n.t('attributes.created_at')) do |order|
+    format(order.created_at) do |value|
+      payment_transaction_link(order)
+    end
   end
-  column(:username, html: true, header: I18n.t('attributes.user')) do |record|
-    link_to_user(record.user)
+  column(:username, header: I18n.t('attributes.user')) do |record|
+    format(record.user.try(:username)) do |value|
+      link_to_user(record.user)
+    end
   end
   column(:main_document, html: false) do |record|
     record.user.decorate.main_document
   end
-  column(:email, html: false) do |record|
-    record.user.email
+  column(:total, header: I18n.t('attributes.value')) do |record|
+    format((record.total_cents / 100.0).to_f.to_s) do |value|
+      number_to_currency(value.to_f)
+    end
   end
-  column(:total, header: I18n.t('attributes.value'), html: true) do |record|
-    number_to_currency(record.total)
-  end
-  column(:status, html: true) do |record|
-    css_class = { completed: 'badge badge-success',
-                  expired: 'badge badge-warning' }[record.status.to_s.to_sym]
-    css_class = css_class || 'badge badge-danger'
+  column(:status) do |record|
+    format(record.status) do |format|
+      css_class = { completed: 'badge badge-success',
+                    expired: 'badge badge-warning' }[record.status.to_s.to_sym]
+      css_class = css_class || 'badge badge-danger'
 
-    content_tag(:span, t(record.status), class: css_class)
+      content_tag(:span, t(record.status), class: css_class)
+    end
   end
   column(:paid_at, order: 'paid_at is not null desc, paid_at',
                    order_desc: 'paid_at is not null desc, paid_at desc',
-                   html: true,
                    header: I18n.t('attributes.paid_at')) do |order|
     order.paid_at.try(:strftime, '%d/%m/%Y %H:%M')
   end
-  column(:payment_type, header: I18n.t('payment_type'), html: true) do |order|
-    payment_type_badge(order)
+  column(:payment_type, header: I18n.t('payment_type')) do |order|
+    format(order.payment_type) do |value|
+      payment_type_badge(order)
+    end
   end
   column(:payer, header: I18n.t('attributes.payer')) do |record|
     record.paid_by || record.try(:payer).try(:username)

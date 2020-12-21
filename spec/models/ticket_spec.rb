@@ -18,6 +18,7 @@ RSpec.describe Ticket, type: :model do
   it { should validate_length_of(:title).is_at_most(255) }
   it { should validate_presence_of(:body) }
   it { should validate_length_of(:body).is_at_most(30000)}
+  it { should have_many(:interactions) }
   it { should define_enum_for(:status).with_values(Ticket::STATUSES) }
   it { should validate_presence_of(:active) }
 end

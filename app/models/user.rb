@@ -143,6 +143,7 @@ class User < ApplicationRecord
   has_many :supported_point_users, class_name: 'User',
                                    foreign_key: 'support_point_user_id'
   has_many :tickets
+  has_many :interactions
 
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true

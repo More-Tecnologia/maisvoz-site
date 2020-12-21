@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery prepend: true, with: :exception
+  protect_from_forgery prepend: true, with: :reset_session
 
   before_action :masquerade_user!
   before_action :set_locale
@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
                            !current_user.banner_seen_today? &&
                            current_user.empreendedor? &&
                            current_user.bonus_contracts.active.any? },
-                unless: proc { user_masquerade? }
+                unless: proc { user_masquerade? || Date.current.on_weekend? }
 
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_dashboard_index_path
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   def show_daily_task_alert
     quantity = BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
-    flash[:alert] = t('errors.messages.daily_task', quantity: quantity)
+    flash[:alert] = t('errors.messages.daily_task', quantity: quantity) if !DateTime.current.on_weekend?
   end
 
   def redirect_to_banners

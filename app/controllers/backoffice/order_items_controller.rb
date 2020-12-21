@@ -1,8 +1,6 @@
 module Backoffice
   class OrderItemsController < BackofficeController
 
-    before_action :ensure_valid_product, except: [:destroy, :update]
-
     def create
       command = Shopping::AddToCart.call(current_order, product_params[:id], params[:country])
       if command.success?

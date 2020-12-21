@@ -88,6 +88,10 @@
               not_pj: Must be a legal entity
             document_verification_status:
               not_verified: Not verified
+        tickets:
+          attributes:
+            user:
+              current_user: Choose another user
       messages:
         too_short: "min %{count} characters"
         blank: cannot be blank
@@ -349,6 +353,8 @@
     weight: Weight
     product_height: Height
     price_cents: Price (cents)
+    subject: Subject
+    title: Title
   backoffice:
     orders:
       show:
@@ -596,6 +602,13 @@
     pay_with_voucher:
       create:
         success: Voucher used!
+    tickets:
+      index:
+        status: Status
+        created_at: Created at
+        finished_at: Finished at
+        action: Action
+        view: View
   balanced_strategy: Balanced
   buy_cart:
     updated: Cart updated
@@ -880,6 +893,8 @@ We will send a new e-mail as soon as the transaction is complete.'
     bonus_contracts: Bonus Contracts
     banners_clicked_today: Quantidade de banners clicados hoje
     daily_tasks: Tarefas Diárias
+    tickets: Tickets
+    ticket: Ticket
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -1129,6 +1144,13 @@ We will send a new e-mail as soon as the transaction is complete.'
         credits_debits:
           index:
             transfer_to: Transfer to
+        tickets:
+          index:
+            new_ticket: New Ticket
+            return_to_tickets: Return to Tickets
+            no_data: No Data
+          new:
+            title: New Ticket
       careers:
         edit:
           subtitle: Edit Career

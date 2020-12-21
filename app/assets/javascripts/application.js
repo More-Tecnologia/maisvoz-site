@@ -56,3 +56,6 @@
 //= require banners/index
 //= require batch-checkbox
 //= require carts/show
+
+require("trix")
+require("@rails/actiontext")

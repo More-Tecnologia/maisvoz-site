@@ -91,6 +91,10 @@ pt-BR:
               not_pj: deve ser Pessoa Jurídica
             document_verification_status:
               not_verified: não verificados
+        tickets:
+          attributes:
+            user:
+              current_user: Escolha outro usuário
       messages:
         too_short: "mínimo de %{count} caracteres"
         blank: não pode ficar em branco
@@ -354,6 +358,8 @@ pt-BR:
     short_description: Descrição Curta
     product_height: Altura
     price_cents: Preço (centavos)
+    subject: Assunto
+    title: Título
   backoffice:
     orders:
       show:
@@ -560,6 +566,9 @@ pt-BR:
         new:
           title: Novo Frete
           shippings: Fretes
+      tickets:
+        index:
+          title: Tickets
     support:
       users:
         index:
@@ -609,6 +618,13 @@ pt-BR:
         cancel_withdraw: 'Você tem certeza que deseja cancelar o saque?'
       update:
         success: 'Sua solicitação foi atendida com sucesso'
+    tickets:
+      index:
+        status: Status
+        created_at: Criado em
+        finished_at: Finalizado em
+        action: Ação
+        view: Visualizar
   balanced_strategy: Balanceado
   buy_cart:
     updated: Carrinho atualizado
@@ -902,6 +918,9 @@ pt-BR:
     order_payments: Pagamento de Pedido
     banners_clicked_today: Clicked banners today quantity
     daily_tasks: Daily Tasks
+    support: Suporte
+    tickets: Tickets
+    ticket: Ticket
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -1155,6 +1174,13 @@ pt-BR:
         credits_debits:
           index:
             transfer_to: Transferir para
+        tickets:
+          index:
+            new_ticket: Novo Ticket
+            return_to_tickets: Voltar para Tickets
+            no_data: Nenhum Resultado
+          new:
+            title: Novo Ticket
       careers:
         edit:
           subtitle: Editar Carreira
@@ -1230,6 +1256,7 @@ pt-BR:
   approved: Aprovado
   refused: Rejeitado
   waiting: 'Aguardando'
+  answered: 'Respondido'
   canceled: 'Cancelado'
   in_analysis: Em Análise
   finished: Finalizado

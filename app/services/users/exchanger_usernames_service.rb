@@ -11,7 +11,7 @@ module Users
     private
 
     attr_accessor :source_username, :destination_username, :temp_username,
-                  :source_user, :destination_username
+                  :source_user, :destination_user
 
     def initialize(args)
       @source_username = args[:source_username]

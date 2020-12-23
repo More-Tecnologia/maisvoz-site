@@ -2969,9 +2969,28 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item31 {
-  grid-column: 1 / span 5;
+  grid-column: 1 / span 3;
   grid-row: 7;
   background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #FFF;
+  font-size: 12px;
+}
+
+#dashboard .painel .item34 img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+
+#dashboard .painel .item34 {
+  grid-column: 4 / span 2;
+  grid-row: 7;
+  background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3013,6 +3032,8 @@ a.editable-click:hover {
     display: flex;
     justify-content: space-between;
     padding: 0;
+    margin: 0;
+
   }
 
   #dashboard  .painel{
@@ -3481,7 +3502,7 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item26 {
-    grid-column:  2 /span 3;
+    grid-column:  2 /span 2;
     grid-row: 12;
     background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
     display: flex;
@@ -3493,6 +3514,24 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item26 img{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  #dashboard .painel .item34 {
+    grid-column:  4 /span 1;
+    grid-row: 12;
+    background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #FFF;
+    font-size: 14px;
+  }
+
+  #dashboard .painel .item34 img{
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
@@ -3540,8 +3579,8 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item29 {
-    grid-column: 1 /span 5;
-    grid-row: 15;
+    grid-column: 1 /span 4;
+    grid-row: 14;
     background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
     display: flex;
     justify-content: center;
@@ -3558,8 +3597,8 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item30 {
-    grid-column: 1 / span 5;
-    grid-row: 14;
+    grid-column: 1 / span 4;
+    grid-row: 15;
     background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
     display: flex;
     justify-content: center;
@@ -3601,4 +3640,24 @@ a.editable-click:hover {
   text-align: center;
   font-size: 12px;
 }
+
+
+#dashboard .painel .item33 {
+  grid-column: 4 ;
+  grid-row: 12;
+  background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #FFF;
+  font-size: 12px;
+}
+
+#dashboard .painel .item33 img{
+  width: 40px;
+  height: 40px;
+
+}
+
 }

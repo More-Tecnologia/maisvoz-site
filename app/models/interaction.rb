@@ -4,6 +4,8 @@ class Interaction < ApplicationRecord
 	belongs_to :user
 	belongs_to :ticket
 
+	has_many_attached :files
+
 	validates :body, presence: true, length: { maximum: 30000 }
-	validates :active, presence: true
+	validates :status, presence: true
 end

@@ -2559,6 +2559,18 @@ a.editable-click:hover {
   font-size: 14px;
 }
 
+#dashboard .painel .item9alert{
+  grid-column: 7 /span 2;
+  grid-row: 2;
+  background: #F00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #FFF;
+  font-size: 14px;
+}
+
 #dashboard .painel .item9 i{
   font-size: 20px;
 }
@@ -3726,7 +3738,7 @@ a.editable-click:hover {
 
 
 
-.support-report .support-report-status-aguar span{
+.support-report-status-aguar span{
     background: #3333FF;
     padding: 2px 20px 2px 20px;
     border-radius: 10px;
@@ -3734,8 +3746,8 @@ a.editable-click:hover {
     font-size: 10px;
 }
 
-.support-report .support-report-status-resp span{
-    background: #DDDD00;
+.support-report-status-resp span{
+    background: #FA8900;
     padding: 2px 25px 2px 25px;
     border-radius: 10px;
     color: #FFF;
@@ -3743,7 +3755,7 @@ a.editable-click:hover {
     
 }
 
-.support-report .support-report-status-fin span{
+.support-report-status-fin span{
     background: #CC0000;
     padding: 2px 27px 2px 27px;
     border-radius: 10px;

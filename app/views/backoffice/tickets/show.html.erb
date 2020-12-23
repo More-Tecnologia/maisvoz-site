@@ -4,18 +4,18 @@
 
 <div class="row">
   <div class="col-sm-12 m-b-23">
-    <%= link_to backoffice_admin_tickets_path, class: 'btn btn-primary waves-effect waves-light' do %>
-      <%= t('views.backoffice.admin.tickets.index.return_to_tickets') %>
+    <%= link_to backoffice_tickets_path, class: 'btn btn-primary waves-effect waves-light' do %>
+      <%= t('views.backoffice.tickets.index.return_to_tickets') %>
     <% end %><br><br>
     <p>
-      <%= "#{t('views.backoffice.admin.tickets.show.ticket_id')}:" %>&nbsp
+      <%= "#{t('views.backoffice.tickets.show.ticket_id')}:" %>&nbsp
       <%= "#{@ticket.id}" %>
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <%= "#{t('views.backoffice.admin.tickets.show.subject')}:" %>&nbsp
+      <%= "#{t('views.backoffice.tickets.show.subject')}:" %>&nbsp
       <%= "#{t("defaults.#{@ticket.subject.name.downcase.gsub(/\s/, '_')}")}" %>
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <%= "#{t('backoffice.tickets.index.status')}:" %>&nbsp
-      <%= "#{t(@ticket.status)}" %>
+      <%= t(@ticket.status) %>
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <%= "#{t('defaults.user')}:" %>&nbsp
       <%= "#{@ticket.user.username}" %>

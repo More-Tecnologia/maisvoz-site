@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
                 unless: proc { user_masquerade? || Date.current.on_weekend? }
 
   def after_sign_in_path_for(resource)
+    show_ticket_alert if current_user && !current_user.admin?
     request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_dashboard_index_path
   end
 
@@ -40,6 +41,15 @@ class ApplicationController < ActionController::Base
   def show_daily_task_alert
     quantity = BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
     flash[:alert] = t('errors.messages.daily_task', quantity: quantity) if !DateTime.current.on_weekend?
+  end
+
+  def show_ticket_alert
+    return if current_user && current_user.admin?
+
+    quantity = Ticket.where(user: current_user).where(status: 1).count
+    quantity += Ticket.where(user: current_user).where(status: 2).count
+
+    flash[:alert] = t('errors.messages.your_tickets_were_answered', quantity: quantity) if quantity > 0
   end
 
   def redirect_to_banners

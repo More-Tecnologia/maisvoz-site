@@ -8,28 +8,36 @@
         <%= search_form_for @q, url: backoffice_admin_tickets_path do |f| %>
           <div class="form-group">
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <%= f.label t('attributes.subject') %>
                 <%= f.select :subject_id_in,
-                             Subject.where(active: true).map { |subject| [subject.name, subject.id] },
+                             Subject.where(active: true).map { |subject| [t("defaults.#{subject.name.downcase.gsub(/\s/, '_')}"), subject.id] },
                                                              { include_blank: t('all') },
                                                              { class: 'form-control input-sm' } %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <%= f.label t('backoffice.tickets.index.status') %>
                 <%= f.select :status_eq, Ticket.statuses.map { |status| [t(status.first), status.last] },
                                          { :include_blank => t('all') },
                                          { class: 'form-control input-sm' } %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
+                <%= f.label t('attributes.user') %>
+                <%= f.select :user_id_in,
+                             User.where(active: true).map { |user| [user.username, user.id] },
+                                                             { include_blank: t('all') },
+                                                             { class: 'form-control input-sm' } %>
+              </div> 
+              <div class="col-md-2">
                 <%= f.label t('attributes.from') %>
                 <%= f.search_field :created_at_gteq, class: 'form-control',
                                                      type: 'date' %>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <%= f.label t('attributes.until') %>
                 <%= f.search_field :created_at_lteq, class: 'form-control',
                                                      type: 'date' %>
+              </div>
             </div>
           </div>
           <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>

@@ -1,13 +1,12 @@
 class Ticket < ApplicationRecord
-	include Hashid::Rails
-	
+
 	STATUSES = { waiting: 0, answered: 1, finished: 2 }
 	
 	enum status: STATUSES
 
 	belongs_to :subject
 	belongs_to :user
-	belongs_to :attendant_user, class_name: 'User'
+	belongs_to :attendant_user, class_name: 'User', optional: true
 
 	has_many :interactions
 
@@ -15,6 +14,6 @@ class Ticket < ApplicationRecord
 	
 	validates :title, presence: true, length: { maximum: 255 }
 	validates :body, presence: true, length: { maximum: 30000 }
-	validates :active, presence: true
 	validates :status, presence: true
+	
 end

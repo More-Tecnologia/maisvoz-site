@@ -66,7 +66,9 @@ Rails.application.routes.draw do
       resources :financial_reports, only: %i[index update]
 
       # Tickets Admin
-      resources :tickets, except: :destroy
+      resources :tickets, except: [:new, :create] do
+        resources :interactions, only: [:show, :new, :create]
+      end
       resources :subjects, only: [:show, :new]
     end
 
@@ -150,9 +152,11 @@ Rails.application.routes.draw do
     end
 
     # Tickets
-    resources :tickets, except: :destroy
+    resources :tickets, except: :destroy do
+      resources :interactions, only: [:show, :new, :create]
+    end
     resources :subjects, only: [:show, :new]
-
+    
     resources :banners, only: :index
     resources :banner_clicks, only: [:index, :create]
   end

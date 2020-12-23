@@ -7,7 +7,7 @@ class CreateTickets < ActiveRecord::Migration[5.2]
     	t.string :title
     	t.text :body
     	t.integer :status, index: true, default: 0
-    	t.boolean :active, default: false
+    	t.boolean :active, default: true
     	t.datetime :finished_at
 
     	t.timestamps

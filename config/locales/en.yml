@@ -349,6 +349,8 @@
     weight: Weight
     product_height: Height
     price_cents: Price (cents)
+    subject: Subject
+    title: Title
   backoffice:
     orders:
       show:
@@ -596,6 +598,13 @@
     pay_with_voucher:
       create:
         success: Voucher used!
+    tickets:
+      index:
+        status: Status
+        created_at: Created at
+        finished_at: Finished at
+        action: Action
+        view: View
   balanced_strategy: Balanced
   buy_cart:
     updated: Cart updated
@@ -880,6 +889,16 @@ We will send a new e-mail as soon as the transaction is complete.'
     bonus_contracts: Bonus Contracts
     banners_clicked_today: Quantidade de banners clicados hoje
     daily_tasks: Tarefas Diárias
+    tickets: Tickets
+    ticket: Ticket
+    user: User
+    by: by
+    financial: Financial
+    network: Network
+    bonus_withdrawal: Bonus withdrawal
+    others: Others
+    attendant: Attendant
+    no_data: No Data
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -916,6 +935,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       order_amount_invalid: Order amount is less than or equal to current bonus contract's order
       invalid_type_to_balance_transference: Only users %{user_types} can transfer balance.
       daily_task: 'Click at least %{quantity} banners to unlock the backoffice'
+      your_tickets_were_answered: Your tickets were answered.
       too_long:
         one: "it's too long (maximum: 1 character)"
         other: "it's too long (maximum: %{count} characters)"
@@ -1040,8 +1060,8 @@ We will send a new e-mail as soon as the transaction is complete.'
     am: ''
     formats:
       default: "%a, %d de %B de %Y, %H:%M:%S %z"
-      long: "%d de %B de %Y, %H:%M"
-      short: "%d de %B, %H:%M"
+      long: "%B %d of %Y, %H:%M"
+      short: "%B %d, %H:%M"
       small: "%Y/%m/%d"
     pm: ''
   translateX: Translatex
@@ -1129,6 +1149,22 @@ We will send a new e-mail as soon as the transaction is complete.'
         credits_debits:
           index:
             transfer_to: Transfer to
+        tickets:
+          index:
+            new_ticket: New Ticket
+            return_to_tickets: Return to Tickets
+            no_data: No Data
+            status:
+              waiting: WAITING
+              answered: ANSWERED
+              finished: FINISHED
+          new:
+            title: New Ticket
+          show:
+            ticket_id: Ticket ID
+            subject: Subject
+            interaction:
+              new: Send Interaction
       careers:
         edit:
           subtitle: Edit Career
@@ -1182,6 +1218,22 @@ We will send a new e-mail as soon as the transaction is complete.'
         documents: Documents
         subscriptions: Subscriptions
         logout: Logout
+      tickets:
+        index:
+          new_ticket: New Ticket
+          return_to_tickets: Return to Tickets
+          no_data: No Data
+          status:
+            waiting: WAITING
+            answered: ANSWERED
+            finished: FINISHED
+        new:
+          title: New Ticket
+        show:
+          ticket_id: Ticket ID
+          subject: Subject
+          interaction:
+            new: Send Interaction
     dashboard:
       admin:
         active_products: Active products
@@ -1202,6 +1254,8 @@ We will send a new e-mail as soon as the transaction is complete.'
       previous: Previous
   pending: Pending
   approved: Approved
+  waiting: Waiting
+  answered: Answered
   refused: Rejected
   in_analysis: In Review
   finished: Finished

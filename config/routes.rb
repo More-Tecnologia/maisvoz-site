@@ -64,6 +64,12 @@ Rails.application.routes.draw do
       resources :bonus_contracts, only: :index
       resources :media_files, only: %i[show new create edit update]
       resources :financial_reports, only: %i[index update]
+
+      # Tickets Admin
+      resources :tickets, except: [:new, :create] do
+        resources :interactions, only: [:show, :new, :create]
+      end
+      resources :subjects, only: [:show, :new]
     end
 
     namespace :support do
@@ -145,6 +151,12 @@ Rails.application.routes.draw do
       resources :sim_card_transfers, only: :index
     end
 
+    # Tickets
+    resources :tickets, except: :destroy do
+      resources :interactions, only: [:show, :new, :create]
+    end
+    resources :subjects, only: [:show, :new]
+    
     resources :banners, only: :index
     resources :banner_clicks, only: [:index, :create]
   end

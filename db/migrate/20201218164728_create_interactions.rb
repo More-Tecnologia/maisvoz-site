@@ -6,6 +6,8 @@ class CreateInteractions < ActiveRecord::Migration[5.2]
     	t.text :body
     	t.boolean :active, default: true
     	t.integer :status
+
+    	t.timestamps
     end
   end
 end

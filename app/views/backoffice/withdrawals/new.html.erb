@@ -31,7 +31,10 @@
         </div>
         <div class="panel-body">
           <ul class="list-unstyled w-list">
-            <li><b><%= User.human_attribute_name(:wallet_address) %>:</b> <%= current_user.wallet_address %> </li>
+            <li>
+              <b><%= User.human_attribute_name(:wallet_address) %>:</b>
+              <%= link_to current_user.wallet_address, edit_backoffice_bank_account_path(current_user) %>
+            </li>
             <p class="text-muted page-title-alt"><%= t('backoffice.bank_accounts.edit.subtitle') %></p>
           </ul>
         </div>

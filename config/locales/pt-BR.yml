@@ -621,6 +621,7 @@ pt-BR:
         finished_at: Finalizado em
         action: Ação
         view: Visualizar
+        no_data: Nenhum Resultado
   balanced_strategy: Balanceado
   buy_cart:
     updated: Carrinho atualizado
@@ -924,6 +925,7 @@ pt-BR:
     bonus_withdrawal: Saque de Bônus
     others: Outros
     attendant: Atendente
+    no_data: Sem Registros
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

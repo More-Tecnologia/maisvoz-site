@@ -3,12 +3,11 @@
                     html: { class: 'form-horizontal',
                             multipart: true }) do |f| %>
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-2">
       <div class="m-b-20">
   	  	<%= f.label t('attributes.subject') %><br>
-  	  	 <%= f.select :subject_id,
-                      Subject.where(active:  true).map { |subject| [t("defaults.#{subject.name.downcase.gsub(/\s/, '_')}"), subject.id] },
-                            				  								 { class: 'form-control input-sm' } %>
+  	  	 <%= f.select :subject_id, active_subject_options,
+                                   { class: 'form-control input-sm' } %>
 	  	</div>
   	</div>
   </div>
@@ -28,7 +27,7 @@
       <%= f.file_field :files, multiple: true %>
 		</div>
 	</div>
-	<br><br>	
+	<br><br>
   <%= f.submit class: 'btn btn-success',
                data: { disable_with: disable_spinner.html_safe } %>
   <%= link_to backoffice_tickets_path, class: 'btn btn-primary waves-effect waves-light' do %>

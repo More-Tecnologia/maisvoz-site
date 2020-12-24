@@ -898,6 +898,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     bonus_withdrawal: Bonus withdrawal
     others: Others
     attendant: Attendant
+    no_data: No Data
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:

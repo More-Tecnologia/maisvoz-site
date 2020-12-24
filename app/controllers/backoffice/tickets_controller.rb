@@ -1,5 +1,6 @@
 module Backoffice
   class TicketsController < BackofficeController
+    include Backoffice::TicketsHelper
 
     def index
       @tickets = tickets.page(params[:page])
@@ -11,13 +12,9 @@ module Backoffice
 
     def create
       @ticket = Ticket.new(valid_params)
-      @ticket[:status]  = 0
-      @ticket[:user_id] = current_user.id
-      @ticket[:active]  = true
-
       if @ticket.save
         flash[:success] = t('defaults.saving_success')
-        redirect_to backoffice_tickets_path(@ticket)
+        redirect_to backoffice_tickets_path
       else
         flash[:error] = @ticket.errors.full_messages.join(', ')
         render :new
@@ -27,25 +24,29 @@ module Backoffice
     def show
       @ticket = Ticket.find(params[:id])
       @interaction = Interaction.new
+      @interactions = @ticket.interactions.with_attached_files
+                                          .includes(:user)
+                                          .order(created_at: :desc)
     end
 
     private
 
     def tickets
       @q = Ticket.ransack(params[:q])
+
       @q.result
         .includes(:subject)
-        .where(user_id: current_user.id)
+        .where(user: current_user)
         .or(@q.result.includes(:subject)
-                     .where(attendant_user_id: current_user.id))
+                     .where(attendant_user: current_user))
         .where(active: true)
         .order(created_at: :desc)
     end
 
     def valid_params
       params.require(:ticket)
-            .permit(:title, :body, :subject_id, files: [])
+            .permit(:title, :body, :subject_id, :attendant_user_id, files: [])
+            .merge(user: current_user, status: :waiting)
     end
-
   end
 end

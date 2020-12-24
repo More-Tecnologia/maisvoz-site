@@ -8,21 +8,20 @@
       <%= t('views.backoffice.tickets.index.return_to_tickets') %>
     <% end %><br><br>
     <p>
-      <%= "#{t('views.backoffice.tickets.show.ticket_id')}:" %>&nbsp
-      <%= "#{@ticket.id}" %>
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <%= "#{t('views.backoffice.tickets.show.subject')}:" %>&nbsp
-      <%= "#{t("defaults.#{@ticket.subject.name.downcase.gsub(/\s/, '_')}")}" %>
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <%= "#{t('backoffice.tickets.index.status')}:" %>&nbsp
-      <%= t(@ticket.status) %>
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <%= "#{t('defaults.user')}:" %>&nbsp
-      <%= "#{@ticket.user.username}" %>
-      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <%= "#{t('defaults.attendant')}:" %>&nbsp
-      <%= "#{@ticket.attendant_user.username}" if @ticket.attendant_user %>
-      <% "-" if @ticket.attendant_user.nil? %>
+      <span class="p-2"><%= "#{t('views.backoffice.tickets.show.ticket_id')}:" %></span>
+      <span class="p-r-20"><%= "#{@ticket.id}" %></span>
+      <span class="p-2"><%= "#{t('views.backoffice.tickets.show.subject')}:" %></span>
+      <span class="p-r-20"><%= "#{t("defaults.#{@ticket.subject.name.downcase.gsub(/\s/, '_')}")}" %></span>
+      <span class="p-2"><%= "#{t('backoffice.tickets.index.status')}:" %></span>
+      <span class="p-r-20"><%= "#{t(@ticket.status)}" %></span>
+      <span class="p-2"><%= "#{t('defaults.user')}:" %></span>
+      <span class="p-r-20"><%= "#{@ticket.user.username}" %></span>
+      <span class="p-2"><%= "#{t('defaults.attendant')}:" %></span>
+      <% if @ticket.attendant_user %>
+        <span class="p-2"><%= "#{@ticket.attendant_user.username}"  %></span>
+      <% else %>
+        <span class="p-2">-</span>
+      <% end %>
     </p>
   </div>
 </div>
@@ -36,7 +35,7 @@
   </div>
 <% end %>
 
-<% @ticket.interactions.with_attached_files.includes(:user).order(created_at: :desc).each do |interaction| %>
+<% @interactions.each do |interaction| %>
   <p>
     <%= "#{l(interaction.created_at, format: :long)}," if interaction.created_at %>&nbsp
     <%= "#{t('defaults.by')} #{interaction.user.username}" %>&nbsp
@@ -53,10 +52,12 @@
               </div>
               <% if interaction.files.count > 0 %>
                 <% interaction.files.each do |file| %>
-                  <a target="_blank" href=<%= url_for(file) %>>
-                    <i class="fas fa-image"></i>
-                    &nbsp<%= file.filename.to_s %>&nbsp
-                  </a>&nbsp&nbsp&nbsp&nbsp
+                  <span class="p-r-20">
+                    <a target="_blank" href=<%= url_for(file) %>>
+                      <i class="fas fa-image"></i>
+                      <%= file.filename.to_s %></span>
+                    </a>
+                  </span>
                 <% end %>
                 <br>
               <% end %>

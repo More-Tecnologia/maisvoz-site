@@ -354,6 +354,8 @@ pt-BR:
     short_description: Descrição Curta
     product_height: Altura
     price_cents: Preço (centavos)
+    subject: Assunto
+    title: Título
   backoffice:
     orders:
       show:
@@ -560,6 +562,9 @@ pt-BR:
         new:
           title: Novo Frete
           shippings: Fretes
+      tickets:
+        index:
+          title: Tickets
     support:
       users:
         index:
@@ -609,6 +614,14 @@ pt-BR:
         cancel_withdraw: 'Você tem certeza que deseja cancelar o saque?'
       update:
         success: 'Sua solicitação foi atendida com sucesso'
+    tickets:
+      index:
+        status: Status
+        created_at: Criado em
+        finished_at: Finalizado em
+        action: Ação
+        view: Visualizar
+        no_data: Nenhum Resultado
   balanced_strategy: Balanceado
   buy_cart:
     updated: Carrinho atualizado
@@ -806,7 +819,7 @@ pt-BR:
     withdrawal_fee: Taxa de Saque
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
-    admin_accumulated_pva: PVs Avanço de Título
+    admin_accumuladefaultsted_pva: PVs Avanço de Título
     pv_activity_histories: Geral PVG
     pv_admin_histories: PVs Binário
     generation_scores: Gerações
@@ -902,6 +915,17 @@ pt-BR:
     order_payments: Pagamento de Pedido
     banners_clicked_today: Clicked banners today quantity
     daily_tasks: Daily Tasks
+    support: Suporte
+    tickets: Tickets
+    ticket: Ticket
+    user: Usuário
+    by: por
+    financial: Financeiro
+    network: Rede
+    bonus_withdrawal: Saque de Bônus
+    others: Outros
+    attendant: Atendente
+    no_data: Sem Registros
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -938,6 +962,7 @@ pt-BR:
       order_amount_invalid: Valor do pedido é menor ou igual ao pedido do contrato atual
       invalid_type_to_balance_transference: Somente usuários %{user_types} podem transferir saldo.
       daily_task: 'Click em ao menos %{quantity} banners to desbloquear o backoffice'
+      your_tickets_were_answered: Você tem ticket(s) respondido(s).
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
@@ -1155,6 +1180,23 @@ pt-BR:
         credits_debits:
           index:
             transfer_to: Transferir para
+        tickets:
+          index:
+            new_ticket: Novo Ticket
+            return_to_tickets: Voltar para Tickets
+            no_data: Nenhum Resultado
+            status:
+              waiting: AGUARDANDO
+              answered: RESPONDIDO
+              finished: FINALIZADO
+          new:
+            title: Novo Ticket
+          show:
+            ticket_id: Ticket ID
+            subject: Assunto
+            interaction:
+              new: Enviar Interação
+              created_at: Data de Interação
       careers:
         edit:
           subtitle: Editar Carreira
@@ -1208,6 +1250,23 @@ pt-BR:
         documents: Documentos
         subscriptions: Assinaturas
         logout: Sair
+      tickets:
+        index:
+          new_ticket: Novo Ticket
+          return_to_tickets: Voltar para Tickets
+          no_data: Nenhum Resultado
+          status:
+            waiting: AGUARDANDO
+            answered: RESPONDIDO
+            finished: FINALIZADO
+        new:
+          title: Novo Ticket
+        show:
+          ticket_id: Ticket ID
+          subject: Assunto
+          interaction:
+            new: Enviar Interação
+            created_at: Data de Interação
     dashboard:
       admin:
         active_products: Produtos ativos
@@ -1229,7 +1288,8 @@ pt-BR:
   pending: Pendente
   approved: Aprovado
   refused: Rejeitado
-  waiting: 'Aguardando'
+  waiting: Aguardando
+  answered: Respondido
   canceled: 'Cancelado'
   in_analysis: Em Análise
   finished: Finalizado

@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-sm-12 m-b-23"></div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <%= link_to backoffice_tickets_path, class: 'btn btn-primary waves-effect waves-light' do %>
+      <%= t('views.backoffice.tickets.index.return_to_tickets') %>
+    <% end %><br><br>
+    <p>
+      <span class="p-2"><%= "#{t('views.backoffice.tickets.show.ticket_id')}:" %></span>
+      <span class="p-r-20"><%= "#{@ticket.id}" %></span>
+      <span class="p-2"><%= "#{t('views.backoffice.tickets.show.subject')}:" %></span>
+      <span class="p-r-20"><%= "#{t("defaults.#{@ticket.subject.name.downcase.gsub(/\s/, '_')}")}" %></span>
+      <span class="p-2"><%= "#{t('backoffice.tickets.index.status')}:" %></span>
+      <span class="p-r-20"><%= "#{t(@ticket.status)}" %></span>
+      <span class="p-2"><%= "#{t('defaults.user')}:" %></span>
+      <span class="p-r-20"><%= "#{@ticket.user.username}" %></span>
+      <span class="p-2"><%= "#{t('defaults.attendant')}:" %></span>
+      <% if @ticket.attendant_user %>
+        <span class="p-2"><%= "#{@ticket.attendant_user.username}"  %></span>
+      <% else %>
+        <span class="p-2">-</span>
+      <% end %>
+    </p>
+  </div>
+</div>
+<% if @ticket.status != 'finished' %>
+  <div class="row">
+    <div class="col-sm-12 m-b-23">
+      <div class="card-box">
+        <%= render partial: 'interaction_form' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% @interactions.each do |interaction| %>
+  <p>
+    <%= "#{l(interaction.created_at, format: :long)}," if interaction.created_at %>&nbsp
+    <%= "#{t('defaults.by')} #{interaction.user.username}" %>&nbsp
+  </p>
+  <div class="row">
+    <div class="col-sm-12 m-b-23">
+      <div class="card-box">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-20">
+                 <text readonly>
+                    <%= interaction.body %>
+                  </text>
+              </div>
+              <% if interaction.files.count > 0 %>
+                <% interaction.files.each do |file| %>
+                  <span class="p-r-20">
+                    <a target="_blank" href=<%= url_for(file) %>>
+                      <i class="fas fa-image"></i>
+                      <%= file.filename.to_s %></span>
+                    </a>
+                  </span>
+                <% end %>
+                <br>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<p>
+  <%= "#{l(@ticket.created_at, format: :long)}," if @ticket.created_at %>&nbsp
+  <%= "#{t('defaults.by')} #{@ticket.user.username}" %>
+</p>
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <div class="card-box">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="m-b-20">
+               <text readonly>
+                  <%= @ticket.body %>
+                </text>
+            </div>
+            <% if @ticket.files.count > 0 %>
+              <% @ticket.files.each do |file| %>
+                <a target="_blank" href=<%= url_for(file) %>>
+                  <i class="fas fa-image"></i>
+                  &nbsp<%= file.filename.to_s %>&nbsp
+                </a>&nbsp&nbsp&nbsp&nbsp
+              <% end %>
+              <br>
+            <% end %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -3001,7 +3001,7 @@ a.editable-click:hover {
 #dashboard .painel .item34 {
   grid-column: 4 / span 2;
   grid-row: 7;
-  background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
+  background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3722,7 +3722,7 @@ a.editable-click:hover {
     display: flex;
     list-style: none;
     padding: 0;
-    
+
 }
 
 .support-filter ul li{
@@ -3782,7 +3782,7 @@ a.editable-click:hover {
    font-size: 12px;
    font-weight: bold;
    padding: 3px;
-   
+
 }
 .support-report .support-report-table table{
     width: 100%;
@@ -3792,7 +3792,7 @@ a.editable-click:hover {
 
 .support-report table tbody{
     overflow-y: scroll;
-    background: #EEF;     
+    background: #EEF;
 }
 
 
@@ -3811,7 +3811,7 @@ a.editable-click:hover {
     border-radius: 10px;
     color: #FFF;
     font-size: 10px;
-    
+
 }
 
 .support-report-status-fin span{
@@ -3851,7 +3851,7 @@ a.editable-click:hover {
 
 .support-create-ticket .support-admin .support-admin-info{
     width: 50%;
-    
+
 }
 
 

@@ -6,17 +6,12 @@ module Backoffice
     end
 
     def create
-      @ticket                = Ticket.find(params[:ticket_id])
-      @interaction           = Interaction.new(valid_params)
-      @interaction.ticket_id = @ticket.id
-      @interaction.user_id   = current_user.id
-      @interaction.active    = true
+      @ticket = Ticket.find(params[:ticket_id])
+      @interaction = @ticket.interactions.build(valid_params)
 
       if @interaction.save
-        if @ticket.attendant_user.nil?
-          @ticket.update!(attendant_user: current_user)
-        end
-        @ticket.update!(status: @interaction.status, finished_at: @interaction.created_at)
+        @ticket.update!(status: @interaction.status)
+
         flash[:success] = t('defaults.saving_success')
         redirect_to backoffice_tickets_path
       else
@@ -42,6 +37,7 @@ module Backoffice
     def valid_params
       params.require(:interaction)
             .permit(:body, :status, files: [])
+            .merge(user: current_user)
     end
 
   end

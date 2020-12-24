@@ -34,7 +34,7 @@ module UsersHelper
   def available_balane(user)
     content_tag(:span, number_to_currency(user.available_balance),
                        class: 'm-r-10 font-16',
-                       style: 'color: #0000e6;',
+                       style: 'color: #FFF;',
                        data: {toogle: :tooltip, placement: :top},
                        title: 'available balance' )
   end
@@ -42,7 +42,7 @@ module UsersHelper
   def blocked_balance(user)
     content_tag(:span, number_to_currency(user.blocked_balance),
                        class: 'm-r-10 font-16',
-                       style: 'color: #990000;',
+                       style: 'color: #FFF;',
                        data: { toogle: :tooltip, placement: :top },
                        title: 'blocked balance')
   end
@@ -50,7 +50,7 @@ module UsersHelper
   def order_payment_balance(user)
     content_tag(:span, number_to_currency(current_user.transference_balance),
                        class: 'font-16',
-                       style: 'color: #CC7000;',
+                       style: 'color: #FFF;',
                        data: { toogle: :tooltip, placement: :top },
                        title: 'order payment balance')
   end

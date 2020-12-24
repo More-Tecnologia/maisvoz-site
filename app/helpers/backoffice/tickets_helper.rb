@@ -11,5 +11,11 @@ module Backoffice
     def active_users_options
       User.where(active: true).map { |user| [user.username, user.id] }
     end
+
+    def any_active_waiting_tickets?
+      Ticket.active
+            .waiting
+            .any?
+    end
   end
 end

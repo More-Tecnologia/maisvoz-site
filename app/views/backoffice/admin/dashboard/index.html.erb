@@ -36,15 +36,12 @@
         <i class="fas fa-user-shield"></i> <%= t('defaults.users') %>
       <% end %>
 
-      <% if Ticket.where(attendant_user: current_user)
-                  .where(status: 0)
-                  .where(active: true).count > 0 ||
-            Ticket.where(attendant_user: nil)
-                  .where(active: true).count > 0 %>
+      <% if any_active_waiting_tickets? %>
         <%= link_to backoffice_admin_tickets_path, class: 'item9alert'  do%>
           <i class="fas fa-user-shield"></i> <%= t('defaults.support') %>
         <% end %>
       <% else %>
+
         <%= link_to backoffice_admin_tickets_path, class: 'item9'  do%>
           <i class="fas fa-user-shield"></i> <%= t('defaults.support') %>
         <% end %>

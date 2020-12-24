@@ -1,6 +1,7 @@
 <tr>
   <td><%= ticket.id %></td>
   <td><%= t("defaults.#{ticket.subject.name.downcase.gsub(/\s/, '_')}") %></td>
+  <td><%= ticket.user.username %></td>
   <% if ticket.status == 'waiting' %>
     <td class="support-report-status-aguar">
   <% elsif ticket.status == 'answered' %>

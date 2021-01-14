@@ -1138,9 +1138,7 @@ pre {
   text-transform: uppercase;
 }
 
-#navbar-header-footer{
-  display: none;
-}
+
 
 @media (max-width: 400px){
   .logo{

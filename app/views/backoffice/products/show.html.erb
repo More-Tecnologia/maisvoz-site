@@ -11,7 +11,7 @@
      <div class="product-detail" style="display: flex;">
        <div class="sp-loading">
           <%= image_tag 'sp-loading.gif' %>
-          <br>CARREGANDO
+          <br><%= t('defaults.loading') %>
        </div>
 
          <div class="sp-wrap">
@@ -19,14 +19,14 @@
            <div class="carousel">
               <div class="carousel-inner" role="listbox">
                 <div class="item">
-                  <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-                    <%= cl_image_tag(product.main_photo_id, { size: '150x150' }) %>
+                  <a href="<%= product.main_photo_path %>">
+                    <%= cl_image_tag(product.main_photo_path, { size: '150x150' }) %>
                   </a>
                 </div>
                 <% product.photos.each do |cl| %>
                   <div class="item">
-                    <a href="<%= cloudinary_url(cl.path) %>">
-                      <%= cl_image_tag(cl.public_id, { size: '150x150' }) %>
+                    <a href="<%= url_for(cl) %>">
+                      <%= cl_image_tag(url_for(cl), { size: '150x150' }) %>
                     </a>
                   </div>
                 <% end %>
@@ -62,24 +62,8 @@
                 <table class="table">
                   <tbody>
                     <tr>
-                      <td width="400">Quantidade</td>
+                      <td width="400"><%= t('attributes.quantity') %></td>
                       <td><%= product.quantity %></td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('weight') %></td>
-                      <td><%= product.weight %> grams</td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('height') %></td>
-                      <td><%= product.height %> cm</td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('width') %></td>
-                      <td><%= product.width %> cm</td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('length') %></td>
-                      <td><%= product.length %> cm</td>
                     </tr>
                     <tr>
                       <td><%= Product.human_attribute_name('binary_score') %></td>

@@ -55,8 +55,10 @@ module Backoffice
               .permit(:name, :description, :short_description, :sku, :quantity,
                       :kind, :low_stock_alert, :weight, :length, :width, :height,
                       :price_cents, :binary_score, :advance_score, :active, :virtual,
-                      :paid_by, :binary_bonus, :main_photo, :photos, :category_id,
-                      :system_taxable, :shipping)
+                      :paid_by, :binary_bonus, :main_photo, :category_id,
+                      :system_taxable, :shipping, :dropship_link, :details,
+                      product_descriptions_attributes: [:id, :photo, :description, :position],
+                      photos: [])
       end
     end
   end

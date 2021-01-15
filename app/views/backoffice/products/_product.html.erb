@@ -1,7 +1,7 @@
 <div class="col-md-3 m-t-10">
   <div class="product-item">
     <%= link_to backoffice_product_path(product) do %>
-      <%= cl_image_tag(product.main_photo_id) %>
+      <%= cl_image_tag(product.main_photo_path) %>
     <% end %>
     <div class="product-buttons2">
       <%= link_to t('helpers.submit.buy'),

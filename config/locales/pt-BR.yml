@@ -356,6 +356,7 @@ pt-BR:
     price_cents: Preço (centavos)
     subject: Assunto
     title: Título
+    user_type: Tipo de conta
   backoffice:
     orders:
       show:

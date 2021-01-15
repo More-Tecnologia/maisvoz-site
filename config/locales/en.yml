@@ -351,6 +351,7 @@
     price_cents: Price (cents)
     subject: Subject
     title: Title
+    user_type: Account type
   backoffice:
     orders:
       show:

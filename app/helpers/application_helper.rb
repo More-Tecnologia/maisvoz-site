@@ -78,4 +78,8 @@ module ApplicationHelper
     @current_order_shipping_countries =
       current_order.products.map(&:shippings).flatten.map(&:country).uniq
   end
+      
+  def account_type_label(user)
+    content_tag :span, user.type.try(:name), class: 'label label-success'
+  end
 end

@@ -1,41 +1,54 @@
-<div class="col-sm-12 m-b-23">
-  <h4 class="page-title">Downloads</h4>
-  <%= link_to t('new'), [:new, :backoffice, :admin, :media_file], class: 'btn btn-primary pull-right', style: 'margin-right: 2%;' if current_user.admin? %>
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title">Downloads</h4>
+    <%= link_to t('new'),
+                [:new, :backoffice, :admin, :media_file],
+                class: 'btn btn-primary pull-right',
+                style: 'margin-right: 2%;' if current_user.admin? %>
+  </div>
 </div>
-<div class="masonry-container col-md-12">
-
+<div class="row">
   <% @media_files.each do |media_file| %>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="panel panel-default">
-          <h4 class="panel-heading">
-            <% if current_user.admin? %>
-              <%= link_to media_file.title,  [:backoffice, :admin, media_file] %>
-            <% else %>
-              <%= media_file.title.truncate(22, omission: '...') %>
-            <% end %>
-            <div class="pull-right">
-              <%= l(media_file.created_at.to_date) %>
-            </div>
-          </h4>
-          <div class="panel-body">
-            <% if media_file.file_content? %>
-                <a type="button" class="btn btn-success waves-effect waves-light" href="<%= media_file.path %>" target="_blank">
-                  <span class="btn-label"><i class="md md-cloud-download"></i></span><%= t('download') %>
-                </a>
-              <% else %>
-                <div class="btn btn-danger" disabled="disabled">
-                  <%= content_tag(:div, t(:corrupted_attachment),  title: t(:media_file_corrupted_tooltip)) %>
-                </div>
-              <% end %>
-            <%= link_to t('edit'), [:edit, :backoffice, :admin, media_file], class: 'btn btn-primary pull-right' if current_user.admin? %>
-          <% unless media_file.active %>
+        <h4 class="panel-heading">
+          <% if current_user.admin? %>
+            <%= link_to media_file.title,  [:backoffice, :admin, media_file] %>
+          <% else %>
+            <%= media_file.title.truncate(22, omission: '...') %>
+          <% end %>
+          <div class="pull-right">
+            <%= l(media_file.created_at.to_date) %>
+          </div>
+        </h4>
+        <div class="panel-body">
+        <% if media_file.file_content? %>
+          <a type="button"
+             class="btn btn-success waves-effect waves-light"
+             href="<%= media_file.path %>"
+             target="_blank">
+            <span class="btn-label">
+              <i class="md md-cloud-download"></i>
+            </span><%= t('download') %>
+          </a>
+        <% else %>
+          <div class="btn btn-danger" disabled="disabled">
+            <%= content_tag(:div, t(:corrupted_attachment),  title: t(:media_file_corrupted_tooltip)) %>
+          </div>
+        <% end %>
+        <%= link_to t('edit'), [:edit, :backoffice, :admin, media_file], class: 'btn btn-primary pull-right' if current_user.admin? %>
+        <% unless media_file.active %>
           <div class="btn btn-warning" disabled="disabled">
             <%= content_tag(:div, t('inactive'), title: t(:media_file_inactive_tooltip)) %>
-          <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
+  </div>
   <% end %>
 </div>
-<%= paginate @media_files %>
+<div class="row">
+  <div class="col-sm-12">
+    <%= paginate @media_files %>
+  </div>
+</div>

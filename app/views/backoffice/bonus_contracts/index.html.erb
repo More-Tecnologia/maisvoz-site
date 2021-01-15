@@ -31,9 +31,9 @@
                       <td> <%= order.try(:hashid) if order %> </td>
                       <td> <%= number_to_currency(bonus_contract.cent_amount) %> </td>
                       <td> <%= number_to_currency(bonus_contract.remaining_balance) %></td>
-                      <td> <%= l(bonus_contract.try(:created_at), format: '%B %d, %Y' ) %></td>
+                      <td> <%= l(bonus_contract.try(:created_at), format: :long) %></td>
                       <td> <%= bonus_contract_status(bonus_contract) %></td>
-                      <td> <%= l(bonus_contract.paid_at, format: '%m/%d/%Y') if bonus_contract.paid_at %></td>
+                      <td> <%= l(bonus_contract.paid_at, format: :long) if bonus_contract.paid_at %></td>
                     </tr>
                   <% end %>
                 <% else %>

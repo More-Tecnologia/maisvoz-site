@@ -1,0 +1,33 @@
+<tr id="<%= shipping.id %>">
+  <td class="col-xs-5 col-sm-7">
+    <%= country_name(shipping.country) %>
+  </td>
+  <td class="col-xs-5 col-sm-3">
+    <%= number_to_currency(shipping.amount) %>
+  </td>
+  <td class="col-xs-2 col-sm-2">
+    <%= link_to edit_backoffice_admin_product_shipping_path(@product, shipping),
+                 remote: true do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+    <%= link_to backoffice_admin_product_shipping_path(@product, shipping),
+                class: 'text-danger m-l-10',
+                remote: true,
+                method: :delete do %>
+      <i class="fas fa-trash"></i>
+    <% end %>
+  </td>
+</tr>
+<tr></tr>
+<tr id="shipping-form-<%= shipping.id %>" style="display: none;">
+<%= simple_form_for shipping, url: backoffice_admin_product_shipping_path(@product, shipping),
+                              validate: true,
+                              remote: true do |f| %>
+  <td> <%= f.input :country, label: false %> </td>
+  <td> <%= f.input :amount, label: false %> </td>
+  <td>
+    <%= f.submit t('helpers.submit.update', model: ''),
+                 class: 'btn btn-primary btn-sm form-control font-16' %>
+  </td>
+</tr>
+<% end %>

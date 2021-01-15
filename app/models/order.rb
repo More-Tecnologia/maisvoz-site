@@ -34,7 +34,7 @@ class Order < ApplicationRecord
 
   include Hashid::Rails
 
-  FEE = 5.freeze
+  FEE = 0.freeze
 
   self.inheritance_column = nil
 
@@ -58,10 +58,13 @@ class Order < ApplicationRecord
 
   has_one :payment_transaction
   has_one :bonus_contract
+  has_one :address
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true
   belongs_to :payer, class_name: 'User', optional: true
+
+  accepts_nested_attributes_for :order_items
 
   monetize :subtotal_cents, :tax_cents, :shipping_cents, :total_cents
 

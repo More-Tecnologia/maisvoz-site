@@ -1,6 +1,5 @@
 .login-page {
   background-image: image-url('bg.jpg');
-  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
@@ -8,10 +7,7 @@
   color: white;
   padding-bottom: 0px;
 
-  .wrapper-page .card-box {
-    background-color: rgba(193, 193, 193, 0.5);
-    border: none;
-  }
+
 
   .form-control {
     border: none;
@@ -26,7 +22,80 @@
   }
 }
 
-.register-logo img {
+.register-logo img { 
   max-width: 70%;
-  height: auto;
+  height: auto; 
 }
+
+#wrapper-page-login {
+  width: 450px;
+  background-image: image-url('bg-wrapper.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 70px 70px 80px 70px;   
+}
+
+
+@media (max-width:440px){
+  #wrapper-page-login {
+    background-size: cover;
+    width: 250px;
+    padding: 0;
+  }
+
+  #wrapper-page-login .register-logo{
+    padding-top: 40px;
+  }
+
+  #wrapper-page-login .card-box .panel-body{
+    padding: 35px;
+  }
+
+  #new_user label {
+    font-size: 12px;
+  }
+  #new_user .form-group input{
+    padding: 0;
+    height: 25px;
+  }
+
+
+}
+
+
+#wrapper-page-login .card-box {
+  background-color: transparent;
+  border: none;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#wrapper-page-login2 {
+  width: 350px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 0;
+  margin-top: 0;
+
+  
+}
+
+
+#wrapper-page-login2 .card-box2 {
+  background-color: #444444;
+  border: none;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#new_user .form-actions input{
+  height: 25px;
+  font-size: 12px;
+  padding: 0;
+  background-color: #599e33 !important;
+  border: 1px solid #599e33 !important;
+}
+

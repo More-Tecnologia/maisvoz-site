@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title"><%= t('.title') %></h4>
+  </div>
+</div>
+<div class="card-box">
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-4 m-t-20">
+        <div class="product-item">
+          <%= cl_image_tag(product.main_photo_id) %>
+          <div class="product-buttons2">
+            <span class="font-bold" style="margin-right: 30px; padding-top: 6px;">
+              <%= number_to_currency(product.product_value) %>
+            </span>
+            <%= link_to t('helpers.submit.buy'),
+                        new_backoffice_product_checkout_path(product_id: product.hashid),
+                        class: 'banner-button' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

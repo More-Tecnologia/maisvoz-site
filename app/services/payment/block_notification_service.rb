@@ -5,9 +5,9 @@ module Payment
       payment_transaction.paid!
       payment_transaction.order.btc!
       PaymentCompensationWorker.perform_async(payment_transaction.order.id)
-    rescue Exception => error
+    rescue StandardError => error
       register_notification_error(error.message)
-      raise Exception, error.message
+      raise error.message
     end
 
     private

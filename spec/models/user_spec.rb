@@ -15,6 +15,8 @@ RSpec.describe User, type: :model do
   it { is_expected.to belong_to(:role_type).optional }
   it { is_expected.to have_many(:sim_cards) }
   it { is_expected.to have_many(:sim_cards).class_name('SimCard') }
+  it { is_expected.to have_many(:interactions) }
+  it { is_expected.to have_many(:tickets) }
   it { is_expected.to belong_to(:career).optional }
   it { is_expected.to belong_to(:trail).optional }
   it { is_expected.to belong_to(:type).optional }

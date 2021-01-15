@@ -89,6 +89,7 @@
             document_verification_status:
               not_verified: Not verified
       messages:
+        too_short: "min %{count} characters"
         blank: cannot be blank
         record_invalid: 'Validation failed: %{errors}'
         wrong_length: Wrong size
@@ -147,7 +148,7 @@
     gross_amount: Gross amount
     name: Name
     net_amount: Net value
-    paid_at: Paid in
+    paid_at: Payment Date
     password: Password
     password_confirmation: Password confirmation
     phone: Telephone
@@ -320,6 +321,36 @@
     begin_datetime: Begin Date
     end_datetime: End Date
     transfer_at: Date
+    value: Value
+    backoffice_address: Backoffice
+    custom_address: Change shipping address
+    backoffice_shipping_address_country: Country
+    backoffice_shipping_address_postal_code: Zip Code
+    backoffice_shipping_address_street: Street
+    backoffice_shipping_address_number: Number
+    backoffice_shipping_address_complement: Complement
+    backoffice_shipping_address_neighborhood: Neighborhood
+    backoffice_shipping_address_city: City
+    backoffice_shipping_address_state: State
+    custom_shipping_address_country: Country
+    custom_shipping_address_postal_code: Zip Code
+    custom_shipping_address_street: Street
+    custom_shipping_address_number: Number
+    custom_shipping_address_complement: Complement
+    custom_shipping_address_neighborhood: Neighborhood
+    custom_shipping_address_city: City
+    custom_shipping_address_state: State
+    bonus_contract: Bonus Contract
+    main_photo: Main Photo
+    photos: Photos
+    short_description: Short Description
+    length: Length
+    width: Width
+    weight: Weight
+    product_height: Height
+    price_cents: Price (cents)
+    subject: Subject
+    title: Title
     user_type: Account type
   backoffice:
     orders:
@@ -423,6 +454,21 @@
         success: Balance transfered successfull
       new:
         title: Balance Transference
+    carts:
+      show:
+        purchase_resume: Purchase Resume
+        total: Total
+        shipping_address: Shipping Address
+    product_checkouts:
+      new:
+        purchase_resume: Purchase Resume
+        total: Total
+    adhesion_products:
+      index:
+        title: Store Pack Click Cash
+    banner_clicks:
+      index:
+        title: Daily Tasks
     admin:
       media_files:
         form:
@@ -514,6 +560,10 @@
           title: Withdrawals Approval
         create:
           success: Withdrawals approved successfull
+      shippings:
+        new:
+          title: New Shipping
+          shippings: Shippings
     support:
       users:
         index:
@@ -549,6 +599,13 @@
     pay_with_voucher:
       create:
         success: Voucher used!
+    tickets:
+      index:
+        status: Status
+        created_at: Created at
+        finished_at: Finished at
+        action: Action
+        view: View
   balanced_strategy: Balanced
   buy_cart:
     updated: Cart updated
@@ -557,6 +614,8 @@
     see_cart: View Cart
     title: Cart
   mailer:
+    no-reply: Por favor, não responda.
+    doubt: 'If in doubt contact us by email: %{contact_email}.'
     automatic: This email was sent automatically. Please don't answer.
                In case of doubt, contact %{contact_mail}
   user_mailer:
@@ -575,7 +634,7 @@
       From now on you will be able to enjoy your new benefits achieved with your new title achieved.'
   shopping_mailer:
     order_paid:
-      body: 'You will receive <b>%{order_value}</b> in your PUBLIMONEY account.
+      body: 'You will receive <b>%{order_value}</b> in your %{company_name} account.
 After three confirmations from the network the amount will be available for use.
 We will send a new e-mail as soon as the transaction is complete.'
       footer: 'Yours sincerely, <br>
@@ -804,7 +863,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     filters: Filters
     my_orders: My orders
     send_email: Send us an email
-    copyright: All rights reserved %{company_name}
+    copyright: 'All rights reserved %{company_name}'
     score_active: Active
     score_expired: Expired
     pay_with_voucher: Pay with Voucher
@@ -819,6 +878,28 @@ We will send a new e-mail as soon as the transaction is complete.'
     withdrawal_fee_less: to withdrawal less than or equal to %{amount}
     contract_active: Active
     contract_expired: Expired
+    view_publicity: View Publicity
+    leadership_career: Leadership Title
+    net: Net
+    my_indications: My Indications
+    balance_transference: Balance Transference
+    financial_histories: Financial History
+    withdrawal_report: Withdrawal Report
+    support: Support
+    order_payments: Order payment
+    bonus_contracts: Bonus Contracts
+    banners_clicked_today: Quantidade de banners clicados hoje
+    daily_tasks: Tarefas Diárias
+    tickets: Tickets
+    ticket: Ticket
+    user: User
+    by: by
+    financial: Financial
+    network: Network
+    bonus_withdrawal: Bonus withdrawal
+    others: Others
+    attendant: Attendant
+    no_data: No Data
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -852,6 +933,10 @@ We will send a new e-mail as soon as the transaction is complete.'
       transfer_value_minimum: "Transfer value minimum: %{value}."
       invalid_order_quantity: Payment with balance can only be made for the first user's order.
       user_not_direct_referral: Order user is not your direct referral
+      order_amount_invalid: Order amount is less than or equal to current bonus contract's order
+      invalid_type_to_balance_transference: Only users %{user_types} can transfer balance.
+      daily_task: 'Click at least %{quantity} banners to unlock the backoffice'
+      your_tickets_were_answered: Your tickets were answered.
       too_long:
         one: "it's too long (maximum: 1 character)"
         other: "it's too long (maximum: %{count} characters)"
@@ -874,6 +959,8 @@ We will send a new e-mail as soon as the transaction is complete.'
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+      new: New %{model}
+      add: Add %{model}
       sim_card_transfer: Transfer CHIP(s)
       checkout: Generate Order
       send_expense: Send Expense
@@ -881,6 +968,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       transfer: Transfer
       batch_actions: Batch actions
       approve: Approve
+      buy: Buy
     confirm:
       approve_order_without_bonification: Do you want to approve this order without a bonus?
     from: From
@@ -973,8 +1061,9 @@ We will send a new e-mail as soon as the transaction is complete.'
     am: ''
     formats:
       default: "%a, %d de %B de %Y, %H:%M:%S %z"
-      long: "%d de %B de %Y, %H:%M"
-      short: "%d de %B, %H:%M"
+      long: "%B %d of %Y, %H:%M"
+      short: "%B %d, %H:%M"
+      small: "%Y/%m/%d"
     pm: ''
   translateX: Translatex
   translateY: Translatey
@@ -1046,6 +1135,8 @@ We will send a new e-mail as soon as the transaction is complete.'
           basic_info: Basic Information
           bonus: Bonus
           dimensions: Dimensions
+          parametrization: Parametrization
+          shippings: Shippings
           edit:
             subtitle: Edit product details
             title: Edit
@@ -1059,6 +1150,22 @@ We will send a new e-mail as soon as the transaction is complete.'
         credits_debits:
           index:
             transfer_to: Transfer to
+        tickets:
+          index:
+            new_ticket: New Ticket
+            return_to_tickets: Return to Tickets
+            no_data: No Data
+            status:
+              waiting: WAITING
+              answered: ANSWERED
+              finished: FINISHED
+          new:
+            title: New Ticket
+          show:
+            ticket_id: Ticket ID
+            subject: Subject
+            interaction:
+              new: Send Interaction
       careers:
         edit:
           subtitle: Edit Career
@@ -1101,7 +1208,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       products:
         index:
           details: Details
-          title: Store %{company_name}
+          title: 'Store %{company_name}'
         show:
           buy: Buy
           description: Description
@@ -1112,6 +1219,22 @@ We will send a new e-mail as soon as the transaction is complete.'
         documents: Documents
         subscriptions: Subscriptions
         logout: Logout
+      tickets:
+        index:
+          new_ticket: New Ticket
+          return_to_tickets: Return to Tickets
+          no_data: No Data
+          status:
+            waiting: WAITING
+            answered: ANSWERED
+            finished: FINISHED
+        new:
+          title: New Ticket
+        show:
+          ticket_id: Ticket ID
+          subject: Subject
+          interaction:
+            new: Send Interaction
     dashboard:
       admin:
         active_products: Active products
@@ -1132,6 +1255,8 @@ We will send a new e-mail as soon as the transaction is complete.'
       previous: Previous
   pending: Pending
   approved: Approved
+  waiting: Waiting
+  answered: Answered
   refused: Rejected
   in_analysis: In Review
   finished: Finished
@@ -1197,9 +1322,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   right_count: Right Quantity
   invoice: Invoice
   cart: Cart
-  pending_payment: Pending Payment
+  pending_payment: Pending
   processing: Processing
-  completed: Paid complete
+  completed: Completed
   expired: Expired
   past_due: Expired
   upgrade: Upgrade
@@ -1379,10 +1504,10 @@ We will send a new e-mail as soon as the transaction is complete.'
   watch_video: 'Watch Video'
   register_thanks: THANK YOU FOR SIGNING UP WITH ME
   jorney_together: I WILL BE AT YOUR DISPOSAL ON THIS JOURNEY
-  welcome_message_landing_page: WELCOME TO PUBLIMONEY
+  welcome_message_landing_page: 'WELCOME TO %{company_name}'
   sponsored_by: You are being referred by
   location: 'Location'
-  company_in_numbers: PUBLIMONEY IN NUMBERS
+  company_in_numbers: '%{company_name} IN NUMBERS'
   custody_money: MILLIONS USD ON CUSTODY
   satisfied_customers: SATISFIED CUSTOMERS
   total_customers: TOTAL CUSTOMERS
@@ -1419,10 +1544,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   username: Username
   documents_approval: Documents Approval
   status: Status
-  support_director_footer: Yours sincerely, <br>
-                           John Spartan <br>
-                           Support Director <br>
-                           PUBLIMONEY
+  support_director_footer: 'Yours sincerely, <br>
+                           Support Department <br>
+                           %{company_name}'
   financial_department_footer: 'Yours sincerely, <br>
                                 Financial Department <br>
                                 %{company_name}'
@@ -1434,3 +1558,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   yield: Publicity
   register_date: Register Date
   sponsor: Sponsor
+  bill: Bill
+  checkout: Checkout
+  approve_without_bonification: Approve without bonification
+  payment_type: Payment Method
+  actions: Actions
+  hashid: Code

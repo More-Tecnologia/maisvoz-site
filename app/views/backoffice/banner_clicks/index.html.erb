@@ -1,0 +1,56 @@
+<section class="container">
+  <div class="row">
+    <div class="col-sm-12 m-b-23">
+      <h4 class="page-title">
+        <%= t('.title') %>:&nbsp;<%= l(month, format: '%B/%Y') %>
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="grid-container">
+        <% t('date.day_names').each do |day_name| %>
+          <div class="grid-item-menu"> <%= day_name %> </div>
+        <% end %>
+        <% t('date.abbr_day_names').each do |day_name| %>
+          <div class="grid-item-menu visible-xs"> <%= day_name %> </div>
+        <% end %>
+        <% weekdays_of_last_month.each do |d| %>
+          <div class="grid-item-off">
+            <%= d.strftime('%d') %>
+          </div>
+        <% end %>
+        <% month_days.to_a.each do |date| %>
+          <div class="grid-item <%= grid_class_by_dayly_task(date) %>">
+            <%= date.strftime("%d") %>
+          </div>
+        <% end %>
+        <% weekdays_of_next_month.each do |d| %>
+          <div class="grid-item-off">
+            <%= d.strftime('%d') %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row m-t-20">
+    <div class="col-sm-12 text-center">
+      <%= link_to backoffice_banner_clicks_path(month: min_date.strftime('%Y-%m-%d')),
+                  class: 'btn btn-primary' do %>
+        <i class="fas fa-angle-double-left"></i>
+      <% end if month > valid_months.begin %>
+      <%= link_to backoffice_banner_clicks_path(month: previous_date.strftime('%Y-%m-%d')),
+                  class: 'btn btn-primary' do %>
+        <i class="fas fa-angle-left"></i>
+      <% end if valid_months.cover?(previous_date) %>
+      <%= link_to backoffice_banner_clicks_path(month: next_date.strftime('%Y-%m-%d')),
+                  class: 'btn btn-primary' do %>
+        <i class="fas fa-angle-right"></i>
+      <% end if valid_months.cover?(next_date) %>
+      <%= link_to backoffice_banner_clicks_path(month: max_date.strftime('%Y-%m-%d')),
+                  class: 'btn btn-primary' do %>
+        <i class="fas fa-angle-double-right"></i>
+      <% end if month < valid_months.end %>
+    </div>
+  </div>
+</section>

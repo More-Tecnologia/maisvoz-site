@@ -92,6 +92,7 @@ pt-BR:
             document_verification_status:
               not_verified: não verificados
       messages:
+        too_short: "mínimo de %{count} caracteres"
         blank: não pode ficar em branco
         record_invalid: 'A validação falhou: %{errors}'
         wrong_length: Tamanho errado
@@ -144,13 +145,13 @@ pt-BR:
     order: Ordem
     accept_terms: Aceitar termos
     amount: Valor
-    created_at: Data de criação
+    created_at: Data de Criação
     expire_at: Data de Vencimento
     description: Descrição
     gross_amount: Valor bruto
     name: Nome
     net_amount: Valor líquido
-    paid_at: Pago em
+    paid_at: Data de Pagamento
     password: Senha
     password_confirmation: Confirmação de Senha
     phone: Telefone
@@ -329,6 +330,32 @@ pt-BR:
     begin_datetime: Data de Início
     end_datetime: Data Fim
     transfer_at: Data
+    value: Valor
+    backoffice_address: Backoffice
+    custom_address: Alterar endereço de entrega
+    backoffice_shipping_address_country: País
+    backoffice_shipping_address_postal_code: CEP
+    backoffice_shipping_address_street: Logradouro
+    backoffice_shipping_address_number: Número
+    backoffice_shipping_address_complement: Complemento
+    backoffice_shipping_address_neighborhood: Bairro
+    backoffice_shipping_address_city: Cidade
+    backoffice_shipping_address_state: Estado
+    custom_shipping_address_country: País
+    custom_shipping_address_postal_code: CEP
+    custom_shipping_address_street: Logradouro
+    custom_shipping_address_number: Número
+    custom_shipping_address_complement: Complemento
+    custom_shipping_address_neighborhood: Bairro
+    custom_shipping_address_city: Cidade
+    custom_shipping_address_state: Estado
+    main_photo: Foto Principal
+    photos: Fotos
+    short_description: Descrição Curta
+    product_height: Altura
+    price_cents: Preço (centavos)
+    subject: Assunto
+    title: Título
     user_type: Tipo de conta
   backoffice:
     orders:
@@ -396,7 +423,7 @@ pt-BR:
         title: PVA Acumulado
     lineage_scores:
       index:
-        title: Points Qualifications
+        title: Pontos de Qualificação
     financial_transactions:
       index:
         title: Transações Financeiras
@@ -426,6 +453,21 @@ pt-BR:
         success: Saldo transferido com sucesso
       new:
         title: Pagamento de Pedido
+    carts:
+      show:
+        purchase_resume: Resumo da Compra
+        total: Total
+        shipping_address: Endereço de Entrega
+    product_checkouts:
+      new:
+        purchase_resume: Resumo de Compra
+        total: Total
+    adhesion_products:
+      index:
+        title: Loja Pack Click Cash
+    banner_clicks:
+      index:
+        title: Tarefas Diárias
     admin:
       media_files:
         form:
@@ -517,6 +559,13 @@ pt-BR:
           title: Aprovação de Saques
         create:
           success: Saques aprovados com sucesso.
+      shippings:
+        new:
+          title: Novo Frete
+          shippings: Fretes
+      tickets:
+        index:
+          title: Tickets
     support:
       users:
         index:
@@ -566,6 +615,14 @@ pt-BR:
         cancel_withdraw: 'Você tem certeza que deseja cancelar o saque?'
       update:
         success: 'Sua solicitação foi atendida com sucesso'
+    tickets:
+      index:
+        status: Status
+        created_at: Criado em
+        finished_at: Finalizado em
+        action: Ação
+        view: Visualizar
+        no_data: Nenhum Resultado
   balanced_strategy: Balanceado
   buy_cart:
     updated: Carrinho atualizado
@@ -574,6 +631,8 @@ pt-BR:
     see_cart: Ver carrinho
     title: Carrinho
   mailer:
+    no-reply: Por favor, não responda.
+    doubt: 'Em caso de dúvida entre em contato pelo email: %{contact_email}.'
     automatic: Este Email foi enviado automaticamente. Por favor não responder.
                Em caso de dúvidas, entre em contato com %{contact_mail}
   user_mailer:
@@ -745,7 +804,7 @@ pt-BR:
     post: Enviar
     put: Atualizar
     processing: Processando
-    pending_payment: Pagamento Pendente
+    pending_payment: Pendente
     products: Produtos
     pv_activity_history: PV Geral
     pv_history: Histórico PV
@@ -761,7 +820,7 @@ pt-BR:
     withdrawal_fee: Taxa de Saque
     withdrawals: Histórico de Saque
     accumulated_pva: PV Avanço de Título
-    admin_accumulated_pva: PVs Avanço de Título
+    admin_accumuladefaultsted_pva: PVs Avanço de Título
     pv_activity_histories: Geral PVG
     pv_admin_histories: PVs Binário
     generation_scores: Gerações
@@ -774,7 +833,7 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
-    unilevel: Contratos Pool Cash
+    unilevel: Contratos de Bônus
     binary: Binary Points
     point_qualifications: Points Qualifications
     unilevel_binary: Relatório
@@ -829,7 +888,7 @@ pt-BR:
     score_expired: Expirado
     contract_active: Ativo
     contract_expired: Encerrado
-    bonus_contracts: Contrato Pool Cash
+    bonus_contracts: Contratos de Bônus
     bonus_contract_items: Contrato Pool Cash
     unilevel_tree: Unilevel
     voucher_payment: Voucher só paga o produto Advance
@@ -846,6 +905,28 @@ pt-BR:
     withdrawal_fee_greater: para saque maior que %{amount}
     withdrawal_fee_less: para saque menor ou igual a %{amount}
     withdrawal_fee_orders_less_fifty_percent:
+    view_publicity: Ver Publicidade
+    leadership_career: Título de Liderança
+    net: Rede
+    my_indications: Meus Indicados
+    balance_transference: Saldo Transferência
+    financial_histories: Histórico Financeiro
+    withdrawal_report: Relatório de Saques
+    support: Suporte
+    order_payments: Pagamento de Pedido
+    banners_clicked_today: Clicked banners today quantity
+    daily_tasks: Daily Tasks
+    support: Suporte
+    tickets: Tickets
+    ticket: Ticket
+    user: Usuário
+    by: por
+    financial: Financeiro
+    network: Rede
+    bonus_withdrawal: Saque de Bônus
+    others: Outros
+    attendant: Atendente
+    no_data: Sem Registros
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -879,6 +960,10 @@ pt-BR:
       transfer_value_minimum: "Valor minimo de tranferencia: %{value}."
       invalid_order_quantity: O pagamento com saldo só pode ser feito para o primeiro pedido do usuário.
       user_not_direct_referral: Usuário do pedido não é seu indicado direto
+      order_amount_invalid: Valor do pedido é menor ou igual ao pedido do contrato atual
+      invalid_type_to_balance_transference: Somente usuários %{user_types} podem transferir saldo.
+      daily_task: 'Click em ao menos %{quantity} banners to desbloquear o backoffice'
+      your_tickets_were_answered: Você tem ticket(s) respondido(s).
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
@@ -901,12 +986,15 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+      new: Novo %{model}
+      add: Adicionar %{model}
       sim_card_transfer: Transferir CHIP(s)
       checkout: Gerar Pedido
       send_expense: Lançar Despesa
       pay: Pagar
       transfer: Transferir
       approve: Aprovar
+      buy: Comprar
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De
@@ -1002,6 +1090,7 @@ pt-BR:
       default: "%a, %d de %B de %Y, %H:%M:%S %z"
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
+      small: "%d/%m/%Y"
     pm: ''
   translateX: Translatex
   translateY: Translatey
@@ -1077,6 +1166,8 @@ pt-BR:
           basic_info: Informações Básicas
           bonus: Bônus
           dimensions: Dimensões
+          parametrization: Parametrização
+          shippings: Fretes
           edit:
             subtitle: Editar detalhes do produto
             title: Editar
@@ -1090,6 +1181,23 @@ pt-BR:
         credits_debits:
           index:
             transfer_to: Transferir para
+        tickets:
+          index:
+            new_ticket: Novo Ticket
+            return_to_tickets: Voltar para Tickets
+            no_data: Nenhum Resultado
+            status:
+              waiting: AGUARDANDO
+              answered: RESPONDIDO
+              finished: FINALIZADO
+          new:
+            title: Novo Ticket
+          show:
+            ticket_id: Ticket ID
+            subject: Assunto
+            interaction:
+              new: Enviar Interação
+              created_at: Data de Interação
       careers:
         edit:
           subtitle: Editar Carreira
@@ -1143,6 +1251,23 @@ pt-BR:
         documents: Documentos
         subscriptions: Assinaturas
         logout: Sair
+      tickets:
+        index:
+          new_ticket: Novo Ticket
+          return_to_tickets: Voltar para Tickets
+          no_data: Nenhum Resultado
+          status:
+            waiting: AGUARDANDO
+            answered: RESPONDIDO
+            finished: FINALIZADO
+        new:
+          title: Novo Ticket
+        show:
+          ticket_id: Ticket ID
+          subject: Assunto
+          interaction:
+            new: Enviar Interação
+            created_at: Data de Interação
     dashboard:
       admin:
         active_products: Produtos ativos
@@ -1164,7 +1289,8 @@ pt-BR:
   pending: Pendente
   approved: Aprovado
   refused: Rejeitado
-  waiting: 'Aguardando'
+  waiting: Aguardando
+  answered: Respondido
   canceled: 'Cancelado'
   in_analysis: Em Análise
   finished: Finalizado
@@ -1229,7 +1355,7 @@ pt-BR:
   right_count: Quantidade Direita
   invoice: Fatura
   cart: Carrinho
-  pending_payment: Pagamento Pendente
+  pending_payment: Pendente
   processing: Processando
   completed: Pago
   expired: Expirado
@@ -1406,10 +1532,10 @@ pt-BR:
   watch_video: 'Assista o vídeo'
   register_thanks: OBRIGADO POR SE CADASTRAR COMIGO
   jorney_together: EU ESTAREI A SUA DISPOSIÇÃO NESSA JORNADA
-  welcome_message_landing_page: BEM-VINDO a PUBLIMONEY
+  welcome_message_landing_page: BEM-VINDO a %{company_name}
   sponsored_by: Você está sendo indicado por
   location: 'Origem'
-  company_in_numbers: PUBLIMONEY EM NÚMEROS
+  company_in_numbers: '%{company_name} EM NÚMEROS'
   custody_money: MILHÔES USD EM CUSTÓDIA
   satisfied_customers: CLIENTES SATISFEITOS
   total_customers: TOTAL DE CLIENTES
@@ -1453,3 +1579,9 @@ pt-BR:
   yield: Publicidade
   register_date: Data de Registro
   sponsor: Patrocinador
+  bill: Faturar
+  checkout: Checkout
+  approve_without_bonification: Aprovar sem bonificação
+  payment_type: Método de Pagamento
+  actions: Ações
+  hashid: Código

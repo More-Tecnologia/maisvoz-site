@@ -1,10 +1,16 @@
 module Backoffice
   class ProductsController < BackofficeController
-
     before_action :ensure_user_consumidor, only: :show
+    before_action :redirect_back_if_deposit_product, only: :show
 
     def index
-      render(:index, locals: { products: products, q: q })
+      @q = Product.ransack(params[:q])
+      @products = @q.result
+                    .includes(:main_photo_files)
+                    .active
+                    .detached
+                    .order(:price_cents)
+                    .page(params[:page])
     end
 
     def show
@@ -12,18 +18,6 @@ module Backoffice
     end
 
     private
-
-    def products
-      @products ||= q.result.page(params[:page])
-    end
-
-    def q
-      if current_user.consumidor?
-        @q ||= Product.regular.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
-      else
-        @q ||= Product.active.order(:price_cents).includes(:main_photo_files).ransack(params[:q])
-      end
-    end
 
     def product
       @product ||= Product.find(params[:id])
@@ -34,5 +28,8 @@ module Backoffice
       redirect_back fallback_location: root_path if current_user.empreendedor? && product.adhesion?
     end
 
+    def redirect_back_if_deposit_product
+      redirect_back(fallback_location: root_path) if product.try(:deposit?)
+    end
   end
 end

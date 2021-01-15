@@ -37,8 +37,6 @@ class OrderItem < ApplicationRecord
   scope :paid, -> { where.not('orders.paid_at': nil) }
   scope :cellphone_reloads, ->() { where(product: Product.cellphone_reloads) }
 
-  validates :quantity, inclusion: { in: QUANTITIES }
-
   def total
     total_cents / 100.0
   end

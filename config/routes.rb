@@ -15,12 +15,13 @@ Rails.application.routes.draw do
   resources :maintenances, only: :index
 
   namespace :backoffice do
-    # Admin
     namespace :admin do
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
-      resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :products, only: [:index, :new, :create, :edit, :update, :destroy] do
+        resources :shippings
+      end
       resources :unilevel_scores, only: [:index]
       resources :binary_scores, only: [:index]
       resources :lineage_scores, only: [:index]
@@ -63,6 +64,12 @@ Rails.application.routes.draw do
       resources :bonus_contracts, only: :index
       resources :media_files, only: %i[show new create edit update]
       resources :financial_reports, only: %i[index update]
+
+      # Tickets Admin
+      resources :tickets, except: [:new, :create] do
+        resources :interactions, only: [:show, :new, :create]
+      end
+      resources :subjects, only: [:show, :new]
     end
 
     namespace :support do
@@ -73,7 +80,6 @@ Rails.application.routes.draw do
       resource :support_point_users, only: :create
     end
 
-    # Backoffice
     resources :dashboard, only: :index do
       collection do
         get :balances_data
@@ -100,10 +106,11 @@ Rails.application.routes.draw do
     resource :bank_account, only: [:edit, :update]
     resources :order_payments, except: %i[destroy]
     resources :balance_transferences, except: %i[destroy]
+    resources :adhesion_products, only: :index
 
     # Shopping
     resources :products, only: [:index, :show]
-    resource :cart, only: :show
+    resource :cart, only: %i[show create]
     resource :checkout, only: :update
     resources :order_items, only: [:create, :update, :destroy]
     resources :payment_transactions, only: [:show]
@@ -112,7 +119,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show] do
       post :generate_boleto
     end
+    resources :shipping_calculations, only: :new
     resources :cellphone_reloads, only: [:new, :create]
+    resources :product_checkouts, only: %i[new create]
 
     # Financial
     resources :withdrawals, only: [:index, :new, :create, :edit, :update]
@@ -142,7 +151,14 @@ Rails.application.routes.draw do
       resources :sim_card_transfers, only: :index
     end
 
+    # Tickets
+    resources :tickets, except: :destroy do
+      resources :interactions, only: [:show, :new, :create]
+    end
+    resources :subjects, only: [:show, :new]
+    
     resources :banners, only: :index
+    resources :banner_clicks, only: [:index, :create]
   end
 
   namespace :api do

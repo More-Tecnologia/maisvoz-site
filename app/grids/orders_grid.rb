@@ -1,10 +1,14 @@
 class OrdersGrid < BaseGrid
 
   scope do
-    Order.includes(:user, :payer).order(id: :desc)
+    Order.includes(:user, :payer, :payment_transaction)
+         .order(id: :desc)
   end
 
-  filter(:id, :integer)
+  filter(:id, header: I18n.t(:hashid)) do |value, scope|
+    order = Order.find(value)
+    scope.where(id: order.try(:id))
+  end
   filter(:status, :enum, header: I18n.t('attributes.status'), select: Order.statuses.map {|k,v| [I18n.t(k), v]})
   filter(:username, header: I18n.t('attributes.username')) do |value, scope|
     scope.joins(:user).where('users.username ILIKE ?', "%#{value}%")
@@ -13,78 +17,53 @@ class OrdersGrid < BaseGrid
   filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
   filter(:payment_type, :enum, select: Order.payment_types, header: I18n.t('attributes.payment_type'))
 
-  column(:id)
-  column(:hashid, header: "Hashid #{I18n.t('attributes.code')}")
-  column(:username, html: true) do |record|
-    link_to_user(record.user)
+  column(:hashid, header: I18n.t(:hashid))
+  column(:created_at, header: I18n.t('attributes.created_at')) do |order|
+    format(order.created_at) do |value|
+      payment_transaction_link(order)
+    end
   end
-  column(:name) do |record|
-    record.user.decorate.name_or_company_name
+  column(:username, header: I18n.t('attributes.user')) do |record|
+    format(record.user.try(:username)) do |value|
+      link_to_user(record.user)
+    end
   end
   column(:main_document, html: false) do |record|
     record.user.decorate.main_document
   end
-  column(:email, html: false) do |record|
-    record.user.email
-  end
-  column(:total) do |record|
-    ActiveSupport::NumberHelper.number_to_currency record.total
-  end
-  column(:payment_type)
-  column(:payer, header: I18n.t('attributes.payer')) do |record|
-    record.try(:payer).try(:username)
-  end
-  column(:paid_by)
-  column(:created_at) do |record|
-    record.created_at ? I18n.l(record.created_at, format: :long) : ''
-  end
-  column(:paid_at, order: 'paid_at is not null desc, paid_at', order_desc: 'paid_at is not null desc, paid_at desc') do |record|
-    record.paid_at ? I18n.l(record.paid_at, format: :long) : ''
-  end
-  date_column(:expire_at, html: false)
-  column(:faturado, html: true, header: I18n.t(:billed)) do |order|
-    if !order.billed?
-      link_to(backoffice_admin_order_mark_as_billed_path(order),
-        method: :post,
-        class: 'm-r-10'
-      ) do
-        '<i class="fa fa-check"></i>'.html_safe
-      end
-    else
-      '<i class="fa fa-check-circle text-success"></i>'.html_safe
+  column(:total, header: I18n.t('attributes.value')) do |record|
+    format((record.total_cents / 100.0).to_f.to_s) do |value|
+      number_to_currency(value.to_f)
     end
   end
   column(:status) do |record|
-    format(record.status) do |value|
-      css_class = 'badge-danger'
-      if record.completed?
-        css_class = 'badge-success'
-      elsif record.expired?
-        css_class = 'badge-warning'
-      end
-      content_tag(:span, t(value), class: ['badge', css_class])
-    end
-  end
+    format(record.status) do |format|
+      css_class = { completed: 'badge badge-success',
+                    expired: 'badge badge-warning' }[record.status.to_s.to_sym]
+      css_class = css_class || 'badge badge-danger'
 
-  column(:approve, html: true) do |order|
-    if !order.completed?
-      link_to(backoffice_admin_order_approve_path(order),
-        method: :post,
-        data: { confirm: I18n.t(:want_approve_bill) },
-        class: 'm-r-10'
-      ) do
-        '<i class="fa fa-check"></i>'.html_safe
-      end
+      content_tag(:span, t(record.status), class: css_class)
     end
   end
-  column(:approve_without_bonification, html: true, header: I18n.t('defaults.approve_order_without_bonification')) do |order|
-    if !order.completed?
-      link_to(backoffice_admin_order_approver_without_bonification_path(order),
-              method: :patch,
-              data: { confirm: I18n.t('helpers.confirm.approve_order_without_bonification') },
-              class: 'm-r-10') do
-        '<i class="fa fa-check"></i>'.html_safe
-      end
+  column(:paid_at, order: 'paid_at is not null desc, paid_at',
+                   order_desc: 'paid_at is not null desc, paid_at desc',
+                   header: I18n.t('attributes.paid_at')) do |order|
+    order.paid_at.try(:strftime, '%d/%m/%Y %H:%M')
+  end
+  column(:payment_type, header: I18n.t('payment_type')) do |order|
+    format(order.payment_type) do |value|
+      payment_type_badge(order)
     end
+  end
+  column(:payer, header: I18n.t('attributes.payer')) do |record|
+    record.paid_by || record.try(:payer).try(:username)
+  end
+  date_column(:expire_at, html: false)
+  column(:actions, html: true, header: I18n.t(:actions)) do |order|
+    actions = ''
+    actions.concat(billet_link(order)) if !order.billed?
+    actions.concat(approver_order_link(order)) if !order.completed?
+    actions.concat(approval_withdrawal_bonification_link(order)) if !order.completed?
+    actions.html_safe
   end
 end

@@ -1,0 +1,12 @@
+<div class="banner-principal" id="main-banner">
+  <%= image_tag banner.image_path, class: 'img img-responsive' %>
+  <div class="banner-buttons">
+    <%= link_to '#', class: 'banner-buttons-link' do%>
+     <i class="fas fa-share-alt"></i>
+    <% end %>
+    <%= link_to t('helpers.submit.buy'),
+                banner.link,
+                class: 'banner-button',
+                target: '_blank' %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title">
+      <%= t('.title') %>
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-sm-12">
+          <%= render partial: 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h4 class="page-title">
+      <%= t('.shippings') %>
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tbody id="shippings">
+            <%= render @product.shippings.order(:country) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -137,10 +137,13 @@ class User < ApplicationRecord
   has_many :career_trails, through: :career_trail_users
   has_many :financial_transactions
   has_many :sim_cards
+  has_many :banner_clicks
   has_many :supported_sim_cards, class_name: 'SimCard',
                                  foreign_key: 'support_point_user_id'
   has_many :supported_point_users, class_name: 'User',
                                    foreign_key: 'support_point_user_id'
+  has_many :tickets
+  has_many :interactions
 
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true
@@ -514,6 +517,22 @@ class User < ApplicationRecord
     bonus_contracts.loans.last
   end
 
+  def banner_seen_today!
+    update!(banners_seen_at: Date.current)
+  end
+
+  def banner_seen_today?
+    banners_seen_at && banners_seen_at.to_date == Date.current
+  end
+
+  def banners_clicked_today_quantity
+    banner_clicks.today.count
+  end
+
+  def viewed_minimum_banner_quantity_today?
+    banners_clicked_today_quantity == BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
+  end
+
   private
 
   def ensure_initial_career_trail
@@ -586,7 +605,7 @@ class User < ApplicationRecord
   end
 
   def update_sponsor_type
-    Types::QualifierService.call(user: user.sponsor)
+    Types::QualifierService.call(user: sponsor)
   end
 
   def update_user_type

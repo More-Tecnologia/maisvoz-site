@@ -19,24 +19,18 @@ module Backoffice
     private
 
     def validate_order_status
-      @order = Order.find_by_hashid(params[:order_id])
-      return if @order && @order.user.email == params[:email] && @order.pending_payment?
+      @order = current_user.orders.find_by_hashid(params[:order_id])
+      return if @order && @order.pending_payment?
 
       flash[:alert] = t('errors.messages.order_not_found')
       redirect_back(fallback_location: root_path)
     end
 
-    def validate_order_user_is_direct_referral_from_current_user
-      return if @order.user.sponsor == current_user
+    def validate_order_amount_greater_than_current_order_amount
+      current_contract = current_user.bonus_contracts.active.yield_contracts.first
+      return if @order.total_cents > current_contract.try(:order).try(:total_cents).to_f
 
-      flash[:alert] = t('errors.messages.user_not_direct_referral')
-      redirect_back(fallback_location: root_path)
-    end
-
-    def validates_user_orders_quantity
-      return if @order.user.orders.completed.none?
-
-      flash[:alert] = t('errors.messages.invalid_order_quantity')
+      flash[:alert] = t('errors.messages.order_amount_invalid')
       redirect_back(fallback_location: root_path)
     end
 

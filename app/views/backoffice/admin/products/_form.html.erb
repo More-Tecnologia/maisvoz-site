@@ -1,112 +1,114 @@
-<%= simple_form_for(form, url: url, method: method, validate: true, html: { class: 'form-horizontal', multipart: true }) do |f| %>
-
+<%= simple_form_for([:backoffice, :admin, @product],
+                    validate: true,
+                    html: { class: 'form-horizontal',
+                            multipart: true }) do |f| %>
   <ul class="nav nav-tabs tabs">
-      <li class="active tab">
-          <a href="#info" data-toggle="tab" aria-expanded="false">
-              <span class="visible-xs"><i class="fa fa-home"></i></span>
-              <span class="hidden-xs"><%= t('views.backoffice.admin.products.basic_info') %></span>
-          </a>
-      </li>
-      <li class="tab">
-          <a href="#dimensions" data-toggle="tab" aria-expanded="false">
-              <span class="visible-xs"><i class="fa fa-user"></i></span>
-              <span class="hidden-xs"><%= t('views.backoffice.admin.products.dimensions') %></span>
-          </a>
-      </li>
-      <li class="tab">
-          <a href="#bonus" data-toggle="tab" aria-expanded="false">
-              <span class="visible-xs"><i class="fa fa-cog"></i></span>
-              <span class="hidden-xs"><%= t('views.backoffice.admin.products.bonus') %></span>
-          </a>
-      </li>
+    <li class="active tab">
+      <a href="#info" data-toggle="tab" aria-expanded="false">
+        <span class="visible-xs"><i class="fa fa-home"></i></span>
+        <span class="hidden-xs">
+          <%= t('views.backoffice.admin.products.basic_info') %>
+        </span>
+      </a>
+    </li>
+    <li class="tab">
+      <a href="#dimensions" data-toggle="tab" aria-expanded="false">
+        <span class="visible-xs"><i class="fa fa-user"></i></span>
+        <span class="hidden-xs">
+          <%= t('views.backoffice.admin.products.parametrization') %>
+        </span>
+      </a>
+    </li>
   </ul>
-
   <div class="tab-content">
-    <%= f.error_notification %>
     <div class="tab-pane active" id="info">
       <div class="row">
-
-        <div class="col-md-6">
-            <% if product && product.main_photo %>
-              <%= cl_image_tag(product.main_photo.public_id, class: 'thumb-lg') %>
-            <% end %>
-            <label for="">Foto Principal</label>
-            <%= f.input :main_photo, as: :file %>
-
-            <% product && product.photos.each do |cl| %>
-              <%= cl_image_tag(cl.public_id, class: 'thumb-lg') %>
-            <% end %>
-            <label for="">Galeria de fotos</label>
-            <%= f.input :photos, as: :file,  input_html: { multiple: true } %>
-
-            <%= f.input :name %>
-            <%= f.input :price do %>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                <%= f.input_field :price, class: "form-control", value: form.price.to_f %>
-              </div>
-            <% end %>
-            <%= f.input :description, as: :text %>
-            <%= f.input :short_description %>
-            <%= f.input :sku %>
-            <%= f.input :quantity %>
-
+        <div class="col-md-5">
+          <%= f.input :name %>
+          <%= f.input :description, as: :text %>
+          <%= f.input :short_description %>
+          <%= f.input :category_id, collection: Category.all %>
+          <%= ensure_cloudinary_image(@product.main_photo.path,
+                                      class: 'thumb-lg') if @product&.main_photo %>
+          <%= f.input :main_photo, as: :file %>
+          <% @product.photos.each do |p| %>
+            <%= ensure_cloudinary_image(p.path, class: 'thumb-lg') %>
+          <% end if @product %>
+          <%= f.input :photos, as: :file,  input_html: { multiple: true } %>
         </div>
-        <div class="col-md-6">
-            <%= f.input :low_stock_alert %>
-            <%= f.input :category_id, collection: Category.all %>
-            <%= f.input :kind, collection: Product.kinds.map { |k,v| [t(k), k] } %>
-            <%= f.input :paid_by, collection: Product.paid_bies.map { |k,v| [t(k), k] } %>
-            <%= f.input :trail_id, collection: Trail.all, selected: (product.trail_id unless product.blank?),
-                                                          include_blank: true %>
-            <%= f.hidden_field :trail_id, value: Trail.first.id if Trail.count == 1 %>
-            <%= f.input :active, as: :boolean %>
-            <%= f.input :virtual, as: :boolean %>
-            <%= f.input :system_taxable, as: :boolean %>
+        <div class="col-md-5 col-md-offset-2">
+          <%= f.input :price_cents do %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+              <%= f.input_field :price_cents, class: "form-control" %>
+            </div>
+          <% end %>
+          <%= f.input :quantity %>
+          <%= f.input :sku %>
+          <h3 class="m-t-20 m-b-10 text-center">
+            <%= t('views.backoffice.admin.products.dimensions') %>
+          </h3>
+          <%= f.input :length do %>
+            <div class="input-group">
+              <%= f.input_field :length, class: "form-control" %>
+              <span class="input-group-addon">cm</span>
+            </div>
+          <% end %>
+          <%= f.input :width do %>
+            <div class="input-group">
+              <%= f.input_field :width, class: "form-control" %>
+              <span class="input-group-addon">cm</span>
+            </div>
+          <% end %>
+          <%= f.input :height, label: t('attributes.product_height') do %>
+            <div class="input-group">
+              <%= f.input_field :height, class: "form-control" %>
+              <span class="input-group-addon">cm</span>
+            </div>
+          <% end %>
+          <%= f.input :weight do %>
+            <div class="input-group">
+              <%= f.input_field :weight, class: "form-control" %>
+              <span class="input-group-addon">kg</span>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
     <div class="tab-pane" id="dimensions">
-      <%= f.input :length do %>
-        <div class="input-group">
-          <%= f.input_field :length, class: "form-control" %>
-          <span class="input-group-addon">cm</span>
-        </div>
-      <% end %>
-      <%= f.input :width do %>
-        <div class="input-group">
-          <%= f.input_field :width, class: "form-control" %>
-          <span class="input-group-addon">cm</span>
-        </div>
-      <% end %>
-      <%= f.input :height do %>
-        <div class="input-group">
-          <%= f.input_field :height, class: "form-control" %>
-          <span class="input-group-addon">cm</span>
-        </div>
-      <% end %>
-      <%= f.input :weight do %>
-        <div class="input-group">
-          <%= f.input_field :weight, class: "form-control" %>
-          <span class="input-group-addon">kg</span>
-        </div>
-      <% end %>
-    </div>
-    <div class="tab-pane" id="bonus">
       <div class="row">
-        <div class="col-md-4">
-          <%= f.input :binary_score, wrapper_html: { class: 'm-0' } %>
+        <div class="col-md-5">
+          <%= f.input :binary_score, label: t('attributes.score') %>
+          <%= f.input :low_stock_alert %>
+          <%= f.input :active, as: :boolean %>
+          <%= f.input :virtual, as: :boolean %>
+          <%= f.input :shipping, as: :boolean %>
+          <%= f.input :system_taxable, as: :boolean %>
         </div>
-        <div class="col-md-4">
-          <%= f.input :advance_score, wrapper_html: { class: 'm-0' } %>
-        </div>
-        <div class="col-md-4">
-          <%= f.input :binary_bonus, wrapper_html: { class: 'm-0' } %>
+        <div class="col-md-5 col-md-offset-2">
+          <% if @product.persisted? %>
+            <div class="row">
+              <h3 class="m-t-20 m-b-10 text-center">
+                <%= t('views.backoffice.admin.products.shippings') %>
+              </h3>
+              <%= link_to t('helpers.submit.new', model: ''),
+                          new_backoffice_admin_product_shipping_path(@product),
+                          class: 'btn btn-link btn-default btn-sm m-b-10' %>
+            </div>
+            <div class="row">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <tbody id="shippings">
+                    <%= render collection: @product.shippings, partial: 'shipping' %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-
-  <%= f.button :button, t("defaults.#{method}"), data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Saving...".html_safe } %>
-
+  <%= f.submit class: 'btn btn-default',
+               data: { disable_with: disable_spinner.html_safe } %>
 <% end %>

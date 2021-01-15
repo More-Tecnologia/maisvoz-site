@@ -1,0 +1,94 @@
+.custom-radio {
+  display: inline-block;
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.custom-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.custom-radio input ~ .checkmark {
+  background-color: #ccc;
+  border: solid 2px black;
+}
+
+.custom-radio input:checked ~ .checkmark {
+  background-color: black;
+}
+
+.custom-radio input:checked ~ .label {
+  background-color: #6FFF00;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-radio input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-radio .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.custom-radio .label {
+  border-radius: 0.5rem;
+  color: black;
+}
+
+.checkout-control-label {
+  font-weight: normal;
+  text-align: left;
+}
+
+.checkout-form-control {
+  border: solid 1px #4D4D4D;
+  height: 33px;
+  margin-top: 2px;
+}
+
+.custom-radio i {
+  color: black;
+}
+
+.payment-methods .custom-radio {
+  margin: 0 20px;
+}
+
+.payment-methods .custom-radio > i {
+  padding: 10px;
+}
+
+::placeholder {
+  font-weight: normal;
+}

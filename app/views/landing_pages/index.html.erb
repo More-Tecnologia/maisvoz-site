@@ -56,7 +56,7 @@
           <div class="row section-header bit-narrow" data-aos="fade-up">
               <div class="col-full">
                   <h1 class="display-1 text-center">
-                  <%= t(:company_in_numbers) %>
+                  <%= t(:company_in_numbers, company_name: ENV['COMPANY_NAME'].to_s.upcase) %>
                   </h1>
               </div>
           </div> <!-- end section-header -->
@@ -164,7 +164,7 @@
                 <%= t(:register_thanks) %><br>
                 <%= t(:jorney_together) %>
               <% else %>
-                <%= t(:welcome_message_landing_page) %>
+                <%= t(:welcome_message_landing_page, company_name: ENV['COMPANY_NAME'].to_s.upcase) %>
               <% end %>
             </p>
         </div>

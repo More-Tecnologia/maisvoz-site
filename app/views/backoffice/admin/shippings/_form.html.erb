@@ -1,0 +1,15 @@
+<%= simple_form_for @shipping, url: backoffice_admin_product_shippings_path,
+                               validate: true,
+                               remote: true do |f| %>
+  <div class="col-xs-12 col-sm-7">
+    <%= f.input :country %>
+  </div>
+  <div class="col-xs-12 col-sm-3">
+    <%= f.input :amount %>
+  </div>
+  <div class="col-xs-12 col-sm-2">
+    <label class="control-label hidden-xs">&nbsp;</label><br>
+    <%= f.submit t('helpers.submit.add', model: ''),
+                 class: 'btn btn-primary btn-sm form-control font-16' %>
+  </div>
+<% end %>

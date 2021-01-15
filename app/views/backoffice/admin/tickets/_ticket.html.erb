@@ -1,0 +1,28 @@
+<tr>
+  <td><%= ticket.id %></td>
+  <td><%= t("defaults.#{ticket.subject.name.downcase.gsub(/\s/, '_')}") %></td>
+  <td><%= ticket.user.username %></td>
+  <% if ticket.status == 'waiting' %>
+    <td class="support-report-status-aguar">
+  <% elsif ticket.status == 'answered' %>
+    <td class="support-report-status-resp">
+  <% else %>
+    <td class="support-report-status-fin">
+  <% end %>
+    <span><%= t("views.backoffice.tickets.index.status.#{ticket.status}") %></span>
+  </td>
+  <td><%= l(ticket.created_at, format: '%B %d, %Y' ) %></td>
+  <td><%= l(ticket.finished_at, format: '%B %d, %Y' ) if ticket.finished_at%></td>
+  <td>
+    <%= link_to backoffice_admin_ticket_path(ticket), class: 'action-edit' do %>
+      <i class="fa fa-eye"></i>
+    <% end %>
+    <%= link_to(backoffice_admin_ticket_path(ticket),
+                class: 'action-remove',
+                method: :delete,
+                data: { confirm: t('defaults.confirm_removal') }
+                ) do %>
+      <i class="fa fa-trash-alt"></i>
+    <% end %>
+  </td>
+</tr>

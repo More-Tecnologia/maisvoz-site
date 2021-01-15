@@ -19,6 +19,12 @@ class ShortNewRegistrationForm < Form
                         length: { minimum: 6 },
                         confirmation: true
 
+  validates :username, format: { with: /\A[a-z0-9\_]+\z/,
+                                 message: I18n.t('activemodel.errors.models.new_registration_form.attributes.username.format') },
+                      length: { minimum: 5, message: I18n.t('activerecord.errors.messages.too_short', count: 5) }
+
+
+
   validate :sponsor_exists
   validate :username_is_unique
   validate :email_is_unique

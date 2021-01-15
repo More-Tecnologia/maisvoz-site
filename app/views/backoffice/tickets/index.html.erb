@@ -1,0 +1,28 @@
+<!-- Page-Title -->
+<div class="row">
+  <div class="col-sm-12 m-b-23">
+    <h4 class="page-title">
+      <%= title t('defaults.tickets') %>
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <%= render 'backoffice/tickets/filters' %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+            <div class="m-b-20">
+                <%= link_to new_backoffice_ticket_path, class: 'btn btn-success ' do %>
+                  <i class="md md-add"></i> <%= t('views.backoffice.tickets.index.new_ticket') %>
+                <% end %>
+            </div>
+            <%= render 'tickets_table' %>
+        </div>
+    </div>
+  </div>
+</div>

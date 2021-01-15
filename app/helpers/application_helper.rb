@@ -49,6 +49,36 @@ module ApplicationHelper
      [t('false'), false]]
   end
 
+  def disable_spinner
+    content_tag :i, '', class: 'fa fa-spinner fa-spin'
+  end
+
+  def ensure_cloudinary_image(path, options)
+    return cl_image_tag(path, options) if path
+
+    image_tag('fallback/default_product.png', options)
+  end
+
+  def error_messages(object, attribute)
+    errors = object.errors[attribute]
+    return unless errors&.any?
+
+    errors = errors.join(', ')
+    content_tag :span, errors, class: 'field-error-messages'
+  end
+
+  def country_name(country_code)
+    country = ISO3166::Country[country_code]
+    return if country.blank?
+
+    country.translations[I18n.locale.to_s] || country.name
+  end
+
+  def current_order_shipping_countries
+    @current_order_shipping_countries =
+      current_order.products.map(&:shippings).flatten.map(&:country).uniq
+  end
+      
   def account_type_label(user)
     content_tag :span, user.type.try(:name), class: 'label label-success'
   end

@@ -1,47 +1,25 @@
-<section class="container" >
-  <div class="row">
-    <div class="numbers text-center">
-      <% sample_advertisement.count.times do |i| %>
-        <div class="number-solitary active">
-          <h2> <%= i + 1 %> </h2>
-        </div>
-        <%= content_tag :hr unless i == sample_advertisement.count - 1 %>
-      <% end %>
+<section class="container">
+  <div class="row" style="display: none;">
+    <div class="col-sm-12">
+      <div> <%= t('defaults.banners_clicked_today') %>:
+        <span id="banners-clicked-today-quantity">
+          <%= current_user.banners_clicked_today_quantity %>
+        </span>
+      </div>
     </div>
   </div>
   <div class="row">
-    <section class="testimonials-three">
-      <div class="container">
-        <div class="testimonials-three__carousel owl-carousel owl-theme">
-          <% sample_advertisement.each do |advertisement| %>
-            <div class="item">
-              <%= advertisement_image_link(advertisement) %>
-            </div>
-          <% end %>
-        </div>
-        <div class="testimonials-three__slide-progress">
-          <span></span>
-        </div>
+    <%= render partial: 'banner_main',
+               locals: { banner: @banners.first } if @banners.first %>
+  </div>
+  <div class="row" id="carousels">
+    <% @banners.each_slice(7) do |banners| %>
+      <div class="owl-carousel carousel">
+        <%= render banners %>
       </div>
-    </section>
+    <% end %>
   </div>
   <div class="row">
-    <div class="modal fade bd-example-modal-lg"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="myLargeModalLabel"
-         aria-hidden="true"
-         id="myModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h1> <%= t('defaults.congratulations') %> </h1>
-          <p> <%= t('defaults.daily_task_successfull') %> </p>
-          <%= image_tag 'logo-white.png' %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'congratulations_modal' %>
   </div>
 </section>

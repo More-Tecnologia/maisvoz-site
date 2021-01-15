@@ -1,8 +1,31 @@
 <div class="row">
-  <div class="col-sm-12 m-b-23">
-    <h4 class="page-title">
-      <%= title t('views.backoffice.products.index.title', company_name: ENV['COMPANY_NAME']) %>
-    </h4>
+  <div class="col-sm-12" id="top-bar">
+    <div class="col-sm-6">
+      <ul class="top-bar-list">
+        <li class="nav-item dropdown">
+          
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Categoria>
+            Categorias
+          </a>
+          <i class="balloon-arrow"></i>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li>
+          <a href="">Oferta do dia</a>
+          
+        </li>
+        <li>
+          <a href="">Melhores avaliados</a>
+          
+        </li>
+      </ul>
+    </div>
+
   </div>
 </div>
 <section class="container">

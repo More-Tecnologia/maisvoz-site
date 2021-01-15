@@ -1,117 +1,241 @@
 <!-- Page-Title -->
-<div class="row">
-  <div class="col-sm-12">
-    <h4 class="page-title m-b-30"><%= title @product.name %></h4>
-  </div>
-</div>
+<div class="row col-sm-12 product-detail">
+    <div class="col-md-6">
+        <div class="product-detail-main-image">
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id, class: 'img img-responsive') %>
+          </a>
+        </div>
+        <div class="product-detail-image">
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id) %>
+          </a>
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id) %>
+          </a>
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id) %>
+          </a>
+          
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id, { size: '120x110' }) %>
+          </a>
+        
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id) %>
+          </a>
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id) %>
+          </a>
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id) %>
+          </a>
+          
+          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_id) %>
+          </a>
 
-<div class="row">
+        </div>
 
-   <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12">
-     <div class="product-detail" style="display: flex;">
-       <div class="sp-loading">
-          <%= image_tag 'sp-loading.gif' %>
-          <br>CARREGANDO
-       </div>
+    </div>
 
-         <div class="sp-wrap">
+    <div class="col-md-6">
+      <div class="product-detail-text">
+        <fieldset>
+          <h3><b><%= product.name %></b></h3>
+        </fieldset>
 
-           <div class="carousel">
-              <div class="carousel-inner" role="listbox">
-                <div class="item">
-                  <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-                    <%= cl_image_tag(product.main_photo_id, { size: '150x150' }) %>
-                  </a>
-                </div>
-                <% product.photos.each do |cl| %>
-                  <div class="item">
-                    <a href="<%= cloudinary_url(cl.path) %>">
-                      <%= cl_image_tag(cl.public_id, { size: '150x150' }) %>
-                    </a>
-                  </div>
-                <% end %>
-              </div>
-           </div>
+        <fieldset>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and .
+          </p>
+        </fieldset>
 
-         </div>
+        <div class="product-detail-price">
+          <fieldset>
+            <p><%= number_to_currency product.price %></p>
+          </fieldset>
+          <fieldset>
+            <p>PONTUAÇÃO: <%= product.binary_score %></p>
+          </fieldset>
+          <div class="product-detail-btn">
+            <button type="submit" class="btn  ">
+              <%= t('views.backoffice.products.show.buy') %>
+              <span class="btn-label"><i class="fa fa-shopping-cart"></i></span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="product-detail-payment">
+          <p> Opção de Pagamento</p>
+          <%= image_tag 'icons/cartão-credito-e-debito.png'%>
+          <%= image_tag 'icons/boleto.png'%>
+          <%= image_tag 'icons/pix.png'%>
+          <%= image_tag 'icons/btc.png'%>
+        </div>
+
+        <div class="product-detail-sercure">
+          <p>Compra Segura</p>
+          <%= image_tag 'icons/protegido-site-seguro.png'%>
+          <%= image_tag 'icons/compra-segura.png'%>
+        </div>
       </div>
-   </div>
 
-   <div class="col-md-7 col-sm-7 col-xs-12 col-lg-7">
-      <div class="product-detail">
-         <h3><b><%= product.name %></b></h3>
+      
+   
+  </div>
 
-         <h2><b><%= number_to_currency product.price %></b></h2>
-         <h4>PONTUAÇÃO: <%= product.binary_score %></h4>
+  <div class="row col-sm-12">
+    <ul  id="myTab" role="tablist">
+      <li class="product-detail-btn">
+        
+        <button class="btn  " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+          Descrição
+        </button>
+  
+      </li>
+      <li class="product-detail-btn">
+        <button class="btn  " id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+          Detalhes
+        </button>
+      </li>
 
-         <div class="m-t-30">
-           <%= simple_form_for @product, url: backoffice_order_items_path, method: :post do |f| %>
-             <%= f.input :id, as: :hidden %>
-             <button type="submit" class="btn btn-primary waves-effect waves-light">
-               <span class="btn-label"><i class="fa fa-shopping-cart"></i></span><%= t('views.backoffice.products.show.buy') %>
-             </button>
-            <% end %>
-         </div>
+      <li class="product-detail-btn"> 
+       
+        <button type="submit" class="btn  ">
+          <%= t('views.backoffice.products.show.buy') %>
+          <span class="btn-label"><i class="fa fa-shopping-cart"></i></span>
+        </button>
+    
+      </li>
+      <li class="product-detail-btn">   
+        <button type="submit" class="btn  ">
+          Voltar a loja
+          <span class="btn-label"><i class="fas fa-store"></i></span>
+        </button>
+      </li>
+      <li class="product-detail-btn">
+        <button type="submit" class="btn  ">  
+          Compartilhar
+          <span class="btn-label"><i class="fas fa-share-alt"></i></span>
+        </button>
+      </li>
 
-         <hr>
+        
+    </ul>
 
-          <div class="row">
-            <div class="col-md-6">
-              <h4><b><%= t('views.backoffice.products.show.specifications') %></b></h4>
-              <div class="table-responsive m-t-20">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td width="400">Quantidade</td>
-                      <td><%= product.quantity %></td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('weight') %></td>
-                      <td><%= product.weight %> grams</td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('height') %></td>
-                      <td><%= product.height %> cm</td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('width') %></td>
-                      <td><%= product.width %> cm</td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('length') %></td>
-                      <td><%= product.length %> cm</td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('binary_score') %></td>
-                      <td><%= product.binary_score %></td>
-                    </tr>
-                    <tr>
-                      <td><%= Product.human_attribute_name('advance_score') %></td>
-                      <td><%= product.advance_score %></td>
-                    </tr>
-                    <tr>
-                      <td width="400">Sku</td>
-                      <td><%= product.sku %></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <h4><b><%= t('views.backoffice.products.show.description') %></b></h4>
-              <p class="text-muted"><%= simple_format(product.description) %></p>
-              <% description(product.short_description || product.description) %>
+    <div id="myTabContent">
+      
+      <div id="myTabContent1">
+        <p>Mais vendidos</p>
+        <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+          <%= cl_image_tag(product.main_photo_id) %>
+          R$ 200,00
+        </a>
+        <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+          <%= cl_image_tag(product.main_photo_id) %>
+          R$ 200,00
+        </a>
+        <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+          <%= cl_image_tag(product.main_photo_id) %>
+          R$ 200,00
+        </a>
+        <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+          <%= cl_image_tag(product.main_photo_id) %>
+          R$ 200,00
+        </a>
+        <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+          <%= cl_image_tag(product.main_photo_id) %>
+          R$ 200,00
+        </a>
+        <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
+          <%= cl_image_tag(product.main_photo_id) %>
+          R$ 200,00
+        </a>
+      </div>
+  
+      <div class="tab-content" id="myTabContent2">
+  
+  
+        <div class="tab-pane fade active in" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="description1">
+            <%= cl_image_tag(product.main_photo_id) %>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
+            </p>
+          </div>
+  
+          <div class="description2">
+            <%= cl_image_tag(product.main_photo_id) %>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
+            </p>
+          </div>
+  
+          <div class="description3">
+            <%= cl_image_tag(product.main_photo_id) %>
+            <%= cl_image_tag(product.main_photo_id) %>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
+            </p>
+          </div>
+  
+        </div>
+  
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div class="col-md-6">
+            <h4><b><%= t('views.backoffice.products.show.specifications') %></b></h4>
+            <div class="table-responsive m-t-20">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td width="400">Quantidade</td>
+                    <td><%= product.quantity %></td>
+                  </tr>
+                  <tr>
+                    <td><%= Product.human_attribute_name('weight') %></td>
+                    <td><%= product.weight %> grams</td>
+                  </tr>
+                  <tr>
+                    <td><%= Product.human_attribute_name('height') %></td>
+                    <td><%= product.height %> cm</td>
+                  </tr>
+                  <tr>
+                    <td><%= Product.human_attribute_name('width') %></td>
+                    <td><%= product.width %> cm</td>
+                  </tr>
+                  <tr>
+                    <td><%= Product.human_attribute_name('length') %></td>
+                    <td><%= product.length %> cm</td>
+                  </tr>
+                  <tr>
+                    <td><%= Product.human_attribute_name('binary_score') %></td>
+                    <td><%= product.binary_score %></td>
+                  </tr>
+                  <tr>
+                    <td><%= Product.human_attribute_name('advance_score') %></td>
+                    <td><%= product.advance_score %></td>
+                  </tr>
+                  <tr>
+                    <td width="400">Sku</td>
+                    <td><%= product.sku %></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-       </div>
-   </div>
+        </div>
+
+  
+      </div>
+    </div>
+
+
+
+  </div>
 
 </div>
 <!-- end row -->
 
-<script type="text/javascript">
-    // wait for images to load
-    window.onload = function() {
-      $('.sp-wrap').smoothproducts();
-    };
-</script>
+

@@ -1,13 +1,19 @@
+
 <div class="col-md-3 m-t-10">
   <div class="product-item">
     <%= link_to backoffice_product_path(product) do %>
       <%= cl_image_tag(product.main_photo_id) %>
     <% end %>
-    <div class="product-buttons2">
-      <%= link_to t('helpers.submit.buy'),
-                  backoffice_order_items_path(product: {id: product.hashid}),
+  </div>
+  <div class="product-buttons2">
+  
+      <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
+                  
                   method: :post,
-                  class: 'banner-button' %>&nbsp;&nbsp;
+                  class: 'product-btn2' do %>
+        <%= number_to_currency product.price %><span><%= t('helpers.submit.buy') %></span>
+      <% end %>
+
       <%= link_to backoffice_product_path(product),
                   class: 'banner-buttons-link' do %>
         <i class="fas fa-search-plus"></i>
@@ -17,11 +23,6 @@
                    method: :post do %>
         <i class="fas fa-cart-plus"></i>
       <% end %>&nbsp;&nbsp;
-      <%= link_to '#',
-                  class: 'banner-buttons-link',
-                  style: 'shadow' do %>
-        <i class="fas fa-share-alt"></i>
-      <% end %>
+
     </div>
-  </div>
 </div>

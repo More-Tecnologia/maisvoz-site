@@ -1138,9 +1138,7 @@ pre {
   text-transform: uppercase;
 }
 
-#navbar-header-footer{
-  display: none;
-}
+
 
 @media (max-width: 400px){
   .logo{
@@ -1338,7 +1336,7 @@ body.fixed-left .side-menu.left {
 
 .content-page > .content {
   margin-bottom: 30px;
-  margin-top: 50px;
+  margin-top: 100px;
   padding: 20px 5px 15px 5px;
   object-fit: cover;
 }

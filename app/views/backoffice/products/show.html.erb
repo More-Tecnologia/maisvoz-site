@@ -2,37 +2,37 @@
 <div class="row col-sm-12 product-detail">
     <div class="col-md-6">
         <div class="product-detail-main-image">
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id, class: 'img img-responsive') %>
+          <a href="<%= url_for(product.main_photo.try(:path)) %>">
+            <%= cl_image_tag(product.main_photo_path, class: 'img img-responsive') %>
           </a>
         </div>
         <div class="product-detail-image">
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id) %>
+          <a href="<%= url_for(product.main_photo) %>">
+            <%= cl_image_tag(product.main_photo_path) %>
           </a>
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id) %>
+          <a href="<%= url_for(product.main_photo) %>">
+            <%= cl_image_tag(product.main_photo_path) %>
           </a>
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id) %>
+          <a href="<%= url_for(product.main_photo) %>">
+            <%= cl_image_tag(product.main_photo_path) %>
           </a>
           
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id, { size: '120x110' }) %>
+          <a href="<%= url_for(product.main_photo) %>">
+            <%= cl_image_tag(product.main_photo_path, { size: '120x110' }) %>
           </a>
         
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id) %>
+          <a href="<%= url_for(product.main_photo) %>">
+            <%= cl_image_tag(product.main_photo_path) %>
           </a>
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id) %>
+          <a href="<%= url_for(product.main_photo) %>">
+            <%= cl_image_tag(product.main_photo_path) %>
           </a>
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id) %>
+          <a href="<%= url_for(product.main_photo) %>">
+            <%= cl_image_tag(product.main_photo_path) %>
           </a>
           
-          <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-            <%= cl_image_tag(product.main_photo_id) %>
+          <a href="<%= url_for(product.main_photo) %>">
+            <%= cl_image_tag(product.main_photo_path) %>
           </a>
 
         </div>
@@ -237,5 +237,3 @@
 
 </div>
 <!-- end row -->
-
-

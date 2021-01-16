@@ -1,11 +1,16 @@
 class Product < ApplicationRecord
   include Hashid::Rails
 
+  MAXIMUM_NUMBER_OF_PHOTOS = 6
+  MAXIMUM_NUMBER_OF_PRODUCT_DESCRIPTIONS = 4
+  PHOTO_WIDTH = '500'
+  PHOTO_HEIGHT = '300'
+
   enum kind: [:detached, :adhesion, :activation, :voucher, :subscription, :deposit]
   enum paid_by: [:paid_by_user, :paid_by_company]
 
-  has_attachment :main_photo
-  has_attachments :photos
+  has_one_attached :main_photo
+  has_many_attached :photos
 
   belongs_to :category
   belongs_to :trail, optional: true
@@ -13,10 +18,12 @@ class Product < ApplicationRecord
   has_many :product_scores, through: :product_reason_scores
   has_many :career_trails
   has_many :shippings
+  has_many :product_descriptions
 
   serialize :maturity_days, Array
 
   accepts_nested_attributes_for :shippings, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :product_descriptions, reject_if: :all_blank, allow_destroy: true
 
   scope :regular, -> { where.not(kind: :activation) }
   scope :active, -> { where(active: true) }
@@ -42,18 +49,12 @@ class Product < ApplicationRecord
                                              greater_than_or_equal_to: 0,
                                              allow_blank: true }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :length, numericality: { greater_than_or_equal_to: 0,
-                                     allow_blank: true }
-  validates :width, numericality: { greater_than_or_equal_to: 0,
-                                     allow_blank: true }
-  validates :height, numericality: { greater_than_or_equal_to: 0,
-                                     allow_blank: true }
-  validates :weight, numericality: { greater_than_or_equal_to: 0,
-                                     allow_blank: true }
 
-  def main_photo_id
-    return ActionController::Base.helpers.asset_path('fallback/default_product.png') if main_photo.blank?
-    main_photo.public_id
+  validate :photos_quantity_limit
+
+  def main_photo_path
+    return ActionController::Base.helpers.asset_path('fallback/default_product.png') if !main_photo.attached?
+    Rails.application.routes.url_helpers.rails_blob_path(main_photo, only_path: true)
   end
 
   def regular?
@@ -78,5 +79,9 @@ class Product < ApplicationRecord
 
   def self.advance_product_code
     20
+  end
+
+  def photos_quantity_limit
+    errors.add(:photos, :maximum_number, maximum_number: MAXIMUM_NUMBER_OF_PHOTOS) if photos.length > MAXIMUM_NUMBER_OF_PHOTOS
   end
 end

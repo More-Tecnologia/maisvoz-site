@@ -36,7 +36,7 @@
                 <% @products.each do |product| %>
                   <tr>
                     <th><%= product.id %></th>
-                    <td><%= cl_image_tag(product.main_photo_id, { class: 'thumb-sm' }) %></td>
+                    <td><%= cl_image_tag(product.main_photo_path, { class: 'thumb-sm' }) %></td>
                     <td><%= product.name %></td>
                     <td><%= product.quantity %></td>
                     <td><%= number_to_currency product.price %></td>
@@ -64,8 +64,10 @@
                 <% end %>
               </tbody>
             </table>
+            <div class="col-lg-12">
+              <%= paginate @products %>
+            </div>
           </div>
-
         </div>
       </div>
     </div>

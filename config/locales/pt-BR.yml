@@ -91,6 +91,10 @@ pt-BR:
               not_pj: deve ser Pessoa Jurídica
             document_verification_status:
               not_verified: não verificados
+        product:
+          attributes:
+            photos:
+              maximum_number: "Você pode selecionar no máximo %{maximum_number} fotos."
       messages:
         too_short: "mínimo de %{count} caracteres"
         blank: não pode ficar em branco
@@ -356,6 +360,14 @@ pt-BR:
     price_cents: Preço (centavos)
     subject: Assunto
     title: Título
+    product_details: Detalhes do produto
+    product_description: Informações gerais do produto
+    dropship_link: Link do dropship
+    dropship_links: Links do dropship
+    category: Categoria
+    photo: Foto
+    yes: Sim
+    no: Não
     user_type: Tipo de conta
   backoffice:
     orders:
@@ -472,6 +484,7 @@ pt-BR:
       media_files:
         form:
           title: 'Título'
+          maximum_number_of_photos: 'Máx. de %{maximum_number} photos'
         new:
           title: 'Novo anexo'
         create:
@@ -927,6 +940,7 @@ pt-BR:
     others: Outros
     attendant: Atendente
     no_data: Sem Registros
+    loading: CARREGANDO
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

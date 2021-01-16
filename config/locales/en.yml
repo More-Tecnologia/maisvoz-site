@@ -88,6 +88,10 @@
               not_pj: Must be a legal entity
             document_verification_status:
               not_verified: Not verified
+        product:
+          attributes:
+            photos:
+              maximum_number: "You can select at maximum %{maximum_number} photos."
       messages:
         too_short: "min %{count} characters"
         blank: cannot be blank
@@ -351,6 +355,14 @@
     price_cents: Price (cents)
     subject: Subject
     title: Title
+    product_details: Product details
+    product_description: Product general information
+    dropship_link: Dropship link
+    dropship_links: Dropship Links
+    category: Category
+    photo: Photo
+    yes: Yes
+    no: No
     user_type: Account type
   backoffice:
     orders:
@@ -473,6 +485,7 @@
       media_files:
         form:
           title: 'Title'
+          maximum_number_of_photos: '%{maximum_number} photos at max.'
         new:
           title: 'New attachment'
         create:
@@ -900,6 +913,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     others: Others
     attendant: Attendant
     no_data: No Data
+    loading: LOADING
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:

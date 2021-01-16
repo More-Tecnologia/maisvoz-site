@@ -363,6 +363,7 @@
     photo: Photo
     yes: Yes
     no: No
+    user_type: Account type
   backoffice:
     orders:
       show:
@@ -1577,5 +1578,3 @@ We will send a new e-mail as soon as the transaction is complete.'
   payment_type: Payment Method
   actions: Actions
   hashid: Code
-  yes: Yes
-  no: No

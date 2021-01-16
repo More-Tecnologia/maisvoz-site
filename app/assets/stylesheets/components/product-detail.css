@@ -1,0 +1,339 @@
+.product-detail {
+    width: 100%;
+    padding: 15px;
+    background-color: white;
+}
+
+.product-detail-main-image{
+
+}
+
+.product-detail-main-image a img{
+  width: 500px;
+  height: 300px;
+  max-width: 500px;
+  max-height: 300px;
+}
+
+.product-detail-image a img{
+  width: 120px;
+  height: 110px;
+  max-width: 120px;
+  max-height: 110px;
+  margin-top: 5px;
+  margin-right: 4px;
+}
+
+
+
+.product-detail-text fieldset,
+.product-detail-price fieldset{
+  border: 1px #4D4D4D solid;
+  padding: 6px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.product-detail-price{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-detail-price fieldset{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-detail-price fieldset p{
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.product-detail-btn button{
+  width: 140px;
+  height: 25px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 0;
+  color: #FFF !important;
+  background: #81c868;
+  font-weight: 600;
+}
+
+.product-detail-btn button:hover{
+  background: #4D4D4D !important;
+  border-color: #4D4D4D !important;
+  color: #81c868 !important;
+}
+
+.product-detail-btn button span{
+  width: 50%;
+  height: 25px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  background: #4D4D4D !important;
+  border-color: #4D4D4D !important;
+  border-radius: 10px;
+  color: #81c868 !important;
+}
+
+.product-detail-btn button:hover span{
+  background: #81c868 !important;
+  border-color: #81c868 !important;
+  color: #4D4D4D !important;
+}
+
+.product-detail-btn button span i{
+  font-size: 20px;
+}
+
+.product-detail-payment img{
+  width: 55px;
+  height: 35px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+.product-detail-sercure img{
+  width: 60px;
+  height: 30px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+.product-detail-sercure img:last-child{
+  width: 50px;
+  height: 50px;
+}
+
+
+#myTab{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  padding-left: 10px;
+  justify-content: center;
+  
+}
+
+#myTab li{
+  width: auto;
+  height: 50px;
+  font-size: 15px;
+  margin-right: 35px;
+}
+
+
+#myTabContent{
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+#myTabContent1{
+  width: 20%;
+  height: auto;
+  padding-left: 10px;
+  box-shadow: 2px 2px 5px #c3c3c3;
+}
+
+#myTabContent1 p{
+  text-align: center;
+  margin-top: 10px;
+}
+
+#myTabContent1 a{
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+#myTabContent1 a img{
+  width: 200px;
+  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+#myTabContent2{
+  width: 80%;
+  height: auto;
+  padding-left: 20px;
+}
+
+#myTabContent2 .description1{
+  display: flex;
+  text-align: justify;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+#myTabContent2 .description1 img{
+  max-width: 100%;
+  max-height: 400px;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+#myTabContent2 .description2{
+  display: flex;
+  text-align: justify;
+  flex-direction: row;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+#myTabContent2 .description2 img{
+  max-width: 50%;
+  max-height: 400px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  object-fit: contain;
+}
+
+#myTabContent2 .description3{
+  display: flex;
+  text-align: justify;
+  flex-direction: row;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#myTabContent2 .description3 img{
+  max-width: 50%;
+  max-height: 400px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  object-fit: contain;
+}
+
+@media (max-width: 420px){
+  .row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .product-detail-main-image a img{
+    width: 325px ;
+    height: 325px;
+    max-width: 325px;
+    max-height: 325px;
+  }
+
+  .product-detail-image {
+    margin-bottom: 20px;
+  }
+
+  .product-detail-image a img{
+    width: 100px;
+    height: 90px;
+    max-width: 100px;
+    max-height: 90px;
+    margin-top: 5px;
+    margin-right: 6px;
+  }
+
+
+  .product-detail-price fieldset p{
+    font-size: 10px;
+  }
+
+  .product-detail-price fieldset:first-child p{
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .product-detail-btn button{
+    width: auto;
+  }
+
+  .product-detail-btn button span i{
+    font-size: 14px;
+  }
+
+  .product-detail-payment img{
+    width: 45px;
+    height: 35px;
+  }
+
+  #myTab li{
+    margin-right: 0;
+    font-size: 10px;
+  }
+
+  #myTab .product-detail-btn button{
+    font-size: 10px;
+    width: auto;
+    padding-left: 0;
+    padding: 5px 8px 5px 8px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #myTabContent{
+    flex-direction: column-reverse;
+  }
+
+  #myTabContent1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #myTabContent1 a{
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  #myTabContent2{
+    width: 100%;
+    padding-left: 0;
+  }
+  #myTabContent2 .description2{
+    flex-direction: column;
+  }
+  #myTabContent2 .description2 img{
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  #myTabContent2 .description3{
+    flex-direction: column;
+  }
+  #myTabContent2 .description3 img{
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+
+
+  
+  
+}

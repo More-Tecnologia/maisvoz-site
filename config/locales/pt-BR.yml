@@ -368,6 +368,7 @@ pt-BR:
     photo: Foto
     yes: Sim
     no: Não
+    user_type: Tipo de conta
   backoffice:
     orders:
       show:

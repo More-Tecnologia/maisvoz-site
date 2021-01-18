@@ -16,8 +16,13 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-
                         <div class="pull-left m-t-30">
+                            <% if !@order.billed %>
+                              <%= link_to t('bill_order'), backoffice_admin_order_mark_as_billed_path(@order),
+                                                           method: :post,
+                                                           class: 'btn btn-primary btn-sm m-t-10',
+                                                           data: { confirm: t('backoffice.orders.show.confirm_bill')} %><br><br>
+                            <% end %>
                             <address>
                               <strong><%= @order.user.name %></strong><br>
                               <strong><%= @order.user.username %></strong><br>
@@ -27,8 +32,12 @@
                               <strong><%= @order.user.zipcode %></strong><br>
                               <%= @order.user.address %><br>
                               <%= @order.user.address_2 %>, <%= @order.user.city %>, <%= @order.user.state %> <%= @order.user.country %><br>
-                              <abbr title="Phone">P:</abbr> <%= @order.user.phone %>
-                              </address>
+                              <abbr title="Phone">P:</abbr> <%= @order.user.phone %><br><br>
+                              <strong><%= t('attributes.dropship_links') %>:</strong><br>
+                              <% @order.products.each do |product| %>
+                                <a href=<%= product.dropship_link %> target="_blank"><%= product.dropship_link %></a><br>
+                              <% end %>
+                            </address>
                         </div>
                         <div class="pull-right m-t-30">
                             <p><strong><%= Product.human_attribute_name(:order_date) %>: </strong> <%= l @order.created_at, format: '%B %d, %Y'  %></p>

@@ -323,7 +323,7 @@ pt-BR:
     billed: Faturado
     order_code: Código do Pedido
     email_user: Email do Usuário
-    code: Código
+    code: 'Código'
     payer: Pagador
     order_payment_amount_cents: Total de Pedidos Pagos
     pool_amount_cents: Total da Pscicina
@@ -366,8 +366,6 @@ pt-BR:
     dropship_links: Links do dropship
     category: Categoria
     photo: Foto
-    yes: Sim
-    no: Não
     user_type: Tipo de conta
   backoffice:
     orders:
@@ -378,6 +376,7 @@ pt-BR:
         subtotal: Subtotal
         taxes: Impostos
         title: Fatura
+        confirm_bill: Tem certeza que deseja faturar este pedido?
     withdrawals:
       index:
         no_data: Nenhum saque realizado
@@ -1594,8 +1593,9 @@ pt-BR:
   register_date: Data de Registro
   sponsor: Patrocinador
   bill: Faturar
+  bill_order: Faturar Pedido
   checkout: Checkout
   approve_without_bonification: Aprovar sem bonificação
   payment_type: Método de Pagamento
   actions: Ações
-  hashid: Código
+  hashid: 'Código'

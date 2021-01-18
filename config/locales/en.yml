@@ -314,7 +314,7 @@
     billed: Billed
     order_code: Order Code
     email_user: User email
-    code: code
+    code: 'Code'
     payer: Payer
     order_payment_amount_cents: Paid Orders Total
     pool_amount_cents: Pool Total
@@ -361,8 +361,6 @@
     dropship_links: Dropship Links
     category: Category
     photo: Photo
-    yes: Yes
-    no: No
     user_type: Account type
   backoffice:
     orders:
@@ -373,6 +371,7 @@
         subtotal: Subtotal
         taxes: Taxes
         title: Invoice
+        confirm_bill: Are you sure you want to bill this order?
     withdrawals:
       index:
         no_data: No withdrawals made
@@ -1573,8 +1572,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   register_date: Register Date
   sponsor: Sponsor
   bill: Bill
+  bill_order: Bill Order
   checkout: Checkout
   approve_without_bonification: Approve without bonification
   payment_type: Payment Method
   actions: Actions
-  hashid: Code
+  hashid: 'Code'

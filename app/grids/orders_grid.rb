@@ -17,8 +17,12 @@ class OrdersGrid < BaseGrid
   filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
   filter(:payment_type, :enum, select: Order.payment_types, header: I18n.t('attributes.payment_type'))
 
-  column(:hashid, header: I18n.t(:hashid))
-  column(:created_at, header: I18n.t('attributes.created_at')) do |order|
+  column(:hashid, header: I18n.t(:hashid)) do |order|
+    format(order) do |value|
+      link_to order.hashid, backoffice_admin_order_path(value)
+    end
+  end
+  column(:created_at, header: I18n.t('attributes.created_at'), order: false) do |order|
     format(order.created_at) do |value|
       payment_transaction_link(order)
     end
@@ -36,7 +40,7 @@ class OrdersGrid < BaseGrid
       number_to_currency(value.to_f)
     end
   end
-  column(:status) do |record|
+  column(:status, order: false) do |record|
     format(record.status) do |format|
       css_class = { completed: 'badge badge-success',
                     expired: 'badge badge-warning' }[record.status.to_s.to_sym]
@@ -47,10 +51,11 @@ class OrdersGrid < BaseGrid
   end
   column(:paid_at, order: 'paid_at is not null desc, paid_at',
                    order_desc: 'paid_at is not null desc, paid_at desc',
-                   header: I18n.t('attributes.paid_at')) do |order|
+                   header: I18n.t('attributes.paid_at'),
+                   order: false) do |order|
     order.paid_at.try(:strftime, '%d/%m/%Y %H:%M')
   end
-  column(:payment_type, header: I18n.t('payment_type')) do |order|
+  column(:payment_type, header: I18n.t('payment_type'), order: false) do |order|
     format(order.payment_type) do |value|
       payment_type_badge(order)
     end
@@ -58,10 +63,17 @@ class OrdersGrid < BaseGrid
   column(:payer, header: I18n.t('attributes.payer')) do |record|
     record.paid_by || record.try(:payer).try(:username)
   end
+  column(:billed, header: I18n.t('attributes.billed'), order: false) do |order|
+    format(order.billed) do |value|
+      css_class = { true: 'fas fa-thumbs-up text-success',
+                    false: 'fas fa-thumbs-down text-danger' }[value.to_s.to_sym]
+
+      content_tag :i, '', class: css_class
+    end
+  end
   date_column(:expire_at, html: false)
   column(:actions, html: true, header: I18n.t(:actions)) do |order|
     actions = ''
-    actions.concat(billet_link(order)) if !order.billed?
     actions.concat(approver_order_link(order)) if !order.completed?
     actions.concat(approval_withdrawal_bonification_link(order)) if !order.completed?
     actions.html_safe

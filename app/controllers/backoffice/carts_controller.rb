@@ -19,8 +19,7 @@ module Backoffice
     private
 
     def valid_params
-      params.require(:checkout_form)
-            .permit(:order, :shipping_address, :custom_shipping_address_postal_code,
+      params.permit(:order, :shipping_address, :custom_shipping_address_postal_code,
                     :custom_shipping_address_complement, :custom_shipping_address_number,
                     :custom_shipping_address_neighborhood, :custom_shipping_address_street,
                     :custom_shipping_address_city, :custom_shipping_address_state,

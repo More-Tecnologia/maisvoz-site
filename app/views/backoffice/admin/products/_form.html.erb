@@ -25,16 +25,28 @@
       <div class="row">
         <div class="col-md-5">
           <%= f.input :name %>
-          <%= f.input :description, as: :text %>
+          <%= f.input :description, as: :text, label: t('attributes.product_description') %>
           <%= f.input :short_description %>
-          <%= f.input :category_id, collection: Category.all %>
-          <%= ensure_cloudinary_image(@product.main_photo.path,
-                                      class: 'thumb-lg') if @product&.main_photo %>
-          <%= f.input :main_photo, as: :file %>
-          <% @product.photos.each do |p| %>
-            <%= ensure_cloudinary_image(p.path, class: 'thumb-lg') %>
-          <% end if @product %>
-          <%= f.input :photos, as: :file,  input_html: { multiple: true } %>
+          <%= cl_image_tag(@product.main_photo_path, { class: 'thumb-lg' }) if @product.main_photo.attached? %>
+          <%= f.input :main_photo, as: :file, hint: main_photo_hint %>
+          <% @product.photos.each do |photo| %>
+            <%= cl_image_tag(url_for(photo), { class: 'thumb-lg' }) %>
+          <% end %>
+          <%= f.input :photos, input_html: { multiple: true },
+                               as: :file,
+                               hint: photos_hint %>
+          <% product_descriptions(@product).each do |description| %>
+            <%= f.fields_for :product_descriptions, description do |form| %>
+              <br>
+              <%= cl_image_tag(url_for(description.photo), { class: 'thumb-lg' }) if description.photo.attached? %>
+              <%= form.input :photo, as: :file,
+                                     label: "#{t('attributes.photo')} #{description.position}",
+                                     hint: description_photo_hint(description.position) %>
+              <%= form.input :description, label: "#{t('attributes.description')} #{description.position}" %>
+              <%= form.hidden_field :position %>
+            <% end %>
+          <% end %>
+          <%= f.input :category_id, collection: Category.all, label: t('attributes.category') %>
         </div>
         <div class="col-md-5 col-md-offset-2">
           <%= f.input :price_cents do %>
@@ -44,34 +56,10 @@
             </div>
           <% end %>
           <%= f.input :quantity %>
+          <%= f.input :dropship_link, label: t('attributes.dropship_link'),
+                                      input_html: { style: "height: 38px !important; max-height: 38px !important; min-height: 38px !important" }  %>
           <%= f.input :sku %>
-          <h3 class="m-t-20 m-b-10 text-center">
-            <%= t('views.backoffice.admin.products.dimensions') %>
-          </h3>
-          <%= f.input :length do %>
-            <div class="input-group">
-              <%= f.input_field :length, class: "form-control" %>
-              <span class="input-group-addon">cm</span>
-            </div>
-          <% end %>
-          <%= f.input :width do %>
-            <div class="input-group">
-              <%= f.input_field :width, class: "form-control" %>
-              <span class="input-group-addon">cm</span>
-            </div>
-          <% end %>
-          <%= f.input :height, label: t('attributes.product_height') do %>
-            <div class="input-group">
-              <%= f.input_field :height, class: "form-control" %>
-              <span class="input-group-addon">cm</span>
-            </div>
-          <% end %>
-          <%= f.input :weight do %>
-            <div class="input-group">
-              <%= f.input_field :weight, class: "form-control" %>
-              <span class="input-group-addon">kg</span>
-            </div>
-          <% end %>
+          <%= f.input :details, label: t('attributes.product_details'), as: :text %>
         </div>
       </div>
     </div>

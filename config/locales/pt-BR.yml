@@ -91,6 +91,10 @@ pt-BR:
               not_pj: deve ser Pessoa Jurídica
             document_verification_status:
               not_verified: não verificados
+        product:
+          attributes:
+            photos:
+              maximum_number: "Você pode selecionar no máximo %{maximum_number} fotos."
       messages:
         too_short: "mínimo de %{count} caracteres"
         blank: não pode ficar em branco
@@ -319,7 +323,7 @@ pt-BR:
     billed: Faturado
     order_code: Código do Pedido
     email_user: Email do Usuário
-    code: Código
+    code: 'Código'
     payer: Pagador
     order_payment_amount_cents: Total de Pedidos Pagos
     pool_amount_cents: Total da Pscicina
@@ -356,6 +360,12 @@ pt-BR:
     price_cents: Preço (centavos)
     subject: Assunto
     title: Título
+    product_details: Detalhes do produto
+    product_description: Informações gerais do produto
+    dropship_link: Link do dropship
+    dropship_links: Links do dropship
+    category: Categoria
+    photo: Foto
     user_type: Tipo de conta
   backoffice:
     orders:
@@ -366,6 +376,7 @@ pt-BR:
         subtotal: Subtotal
         taxes: Impostos
         title: Fatura
+        confirm_bill: Tem certeza que deseja faturar este pedido?
     withdrawals:
       index:
         no_data: Nenhum saque realizado
@@ -472,6 +483,7 @@ pt-BR:
       media_files:
         form:
           title: 'Título'
+          maximum_number_of_photos: 'Máx. de %{maximum_number} photos'
         new:
           title: 'Novo anexo'
         create:
@@ -927,6 +939,7 @@ pt-BR:
     others: Outros
     attendant: Atendente
     no_data: Sem Registros
+    loading: CARREGANDO
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -1580,8 +1593,9 @@ pt-BR:
   register_date: Data de Registro
   sponsor: Patrocinador
   bill: Faturar
+  bill_order: Faturar Pedido
   checkout: Checkout
   approve_without_bonification: Aprovar sem bonificação
   payment_type: Método de Pagamento
   actions: Ações
-  hashid: Código
+  hashid: 'Código'

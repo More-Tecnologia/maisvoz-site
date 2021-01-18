@@ -8,7 +8,7 @@
     <% @products.each do |product| %>
       <div class="col-md-4 m-t-20">
         <div class="product-item">
-          <%= cl_image_tag(product.main_photo_id) %>
+          <%= cl_image_tag(product.main_photo_path) %>
           <div class="product-buttons2">
             <span class="font-bold" style="margin-right: 30px; padding-top: 6px;">
               <%= number_to_currency(product.product_value) %>

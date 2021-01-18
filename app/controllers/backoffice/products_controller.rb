@@ -6,7 +6,7 @@ module Backoffice
     def index
       @q = Product.ransack(params[:q])
       @products = @q.result
-                    .includes(:main_photo_files)
+                    .with_attached_main_photo
                     .active
                     .detached
                     .order(:price_cents)

@@ -22,7 +22,7 @@
               <div class="carousel-inner" role="listbox">
                 <div class="item">
                   <a href="<%= cloudinary_url(product.main_photo.try(:path)) %>">
-                    <%= cl_image_tag(product.main_photo_id, { size: '150x150' }) %>
+                    <%= cl_image_tag(product.main_photo_path, { size: '150x150' }) %>
                   </a>
                 </div>
                 <% product.photos.each do |cl| %>

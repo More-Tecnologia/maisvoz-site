@@ -88,6 +88,10 @@
               not_pj: Must be a legal entity
             document_verification_status:
               not_verified: Not verified
+        product:
+          attributes:
+            photos:
+              maximum_number: "You can select at maximum %{maximum_number} photos."
       messages:
         too_short: "min %{count} characters"
         blank: cannot be blank
@@ -310,7 +314,7 @@
     billed: Billed
     order_code: Order Code
     email_user: User email
-    code: code
+    code: 'Code'
     payer: Payer
     order_payment_amount_cents: Paid Orders Total
     pool_amount_cents: Pool Total
@@ -351,6 +355,12 @@
     price_cents: Price (cents)
     subject: Subject
     title: Title
+    product_details: Product details
+    product_description: Product general information
+    dropship_link: Dropship link
+    dropship_links: Dropship Links
+    category: Category
+    photo: Photo
     user_type: Account type
   backoffice:
     orders:
@@ -361,6 +371,7 @@
         subtotal: Subtotal
         taxes: Taxes
         title: Invoice
+        confirm_bill: Are you sure you want to bill this order?
     withdrawals:
       index:
         no_data: No withdrawals made
@@ -473,6 +484,7 @@
       media_files:
         form:
           title: 'Title'
+          maximum_number_of_photos: '%{maximum_number} photos at max.'
         new:
           title: 'New attachment'
         create:
@@ -900,6 +912,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     others: Others
     attendant: Attendant
     no_data: No Data
+    loading: LOADING
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:
@@ -1559,8 +1572,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   register_date: Register Date
   sponsor: Sponsor
   bill: Bill
+  bill_order: Bill Order
   checkout: Checkout
   approve_without_bonification: Approve without bonification
   payment_type: Payment Method
   actions: Actions
-  hashid: Code
+  hashid: 'Code'

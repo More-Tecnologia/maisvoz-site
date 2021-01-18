@@ -19,9 +19,9 @@
         <% current_order.order_items.includes(:product).each do |order_item| %>
           <tr>
             <td class="text-left black">
-              <%= ensure_cloudinary_image(order_item.product.main_photo,
-                                          class: 'thumb-sm',
-                                          style: 'margin-left: 10px; border-radius: 50%;') %>
+              <%= cl_image_tag(url_for(order_item.product.main_photo_path),
+                              { class: 'thumb-sm',
+                                style: 'margin-left: 10px; border-radius: 50%;' }) %>
             </td>
             <td class="text-left black" > <%= order_item.product.name %> </td>
             <td class="text-left black" >

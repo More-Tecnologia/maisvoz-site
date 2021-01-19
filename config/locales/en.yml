@@ -825,6 +825,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     my_vehicles: My Vehicles
     upgrades: Upgrades
     scores: Scores
+    score: Score
     unilevel: Bonus Contracts
     binary: Binary Points
     point_qualifications: Points Qualifications
@@ -999,10 +1000,10 @@ We will send a new e-mail as soon as the transaction is complete.'
   number:
     currency:
       format:
-        delimiter: "."
+        delimiter: ","
         format: "%u %n"
         precision: 2
-        separator: ","
+        separator: "."
         significant: false
         strip_insignificant_zeros: false
         unit: USD
@@ -1526,6 +1527,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   total_customers: TOTAL CUSTOMERS
   latest_registrations: Latest registrations
   back_account: "Back to account"
+  back_to_store: 'Back to store'
   enter_as_user: 'Login as user'
   edit_user: 'Edit User'
   see_profile: 'See profile'
@@ -1576,5 +1578,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   checkout: Checkout
   approve_without_bonification: Approve without bonification
   payment_type: Payment Method
+  payment_types: Payment Methods
+  buy_safe: Buy Safe
   actions: Actions
   hashid: 'Code'
+  share: Share
+  most_sold: Most sold

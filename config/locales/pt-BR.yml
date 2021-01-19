@@ -804,6 +804,7 @@ pt-BR:
       withdrawal_invalid_time: Os saques sao bloqueados após as 20h das sextas feiras e antes das 20 de domingo, horário de Brasília-BR.
       user_not_found: Usuario nao encontrado
       user_not_found_or_inactive: Usuario nao encontrado ou inativo
+      coinpayments: 'Erro ao criar transação: %{error}.'
     financial: Financeiro
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques

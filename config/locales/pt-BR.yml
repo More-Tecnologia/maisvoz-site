@@ -979,6 +979,7 @@ pt-BR:
       invalid_type_to_balance_transference: Somente usuários %{user_types} podem transferir saldo.
       daily_task: 'Click em ao menos %{quantity} banners to desbloquear o backoffice'
       your_tickets_were_answered: Você tem ticket(s) respondido(s).
+      not_enough_balance: Saldo insuficiente
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'

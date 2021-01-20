@@ -784,6 +784,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       withdrawal_invalid_time: Withdrawals are blocked after 8pm on Fridays and before 8pm on Sunday, Brasilia-BR time.
       user_not_found: User not found
       user_not_found_or_inactive: User not found or inactive
+      coinpayments: 'Error on create transaction: %{error}.'
     financial: Financial
     financial_entries: Financial History
     manage_withdrawals: Manage Withdrawals

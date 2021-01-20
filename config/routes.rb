@@ -156,7 +156,7 @@ Rails.application.routes.draw do
       resources :interactions, only: [:show, :new, :create]
     end
     resources :subjects, only: [:show, :new]
-    
+
     resources :banners, only: :index
     resources :banner_clicks, only: [:index, :create]
   end
@@ -172,6 +172,7 @@ Rails.application.routes.draw do
           post :remember_password
         end
       end
+      resources :coinpayments_notifications, only: :create
     end
   end
 

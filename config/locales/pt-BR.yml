@@ -811,6 +811,7 @@ pt-BR:
       withdrawal_invalid_time: Os saques sao bloqueados após as 20h das sextas feiras e antes das 20 de domingo, horário de Brasília-BR.
       user_not_found: Usuario nao encontrado
       user_not_found_or_inactive: Usuario nao encontrado ou inativo
+      coinpayments: 'Erro ao criar transação: %{error}.'
     financial: Financeiro
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques
@@ -852,6 +853,7 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
+    score: Pontuação
     unilevel: Contratos de Bônus
     binary: Binary Points
     point_qualifications: Points Qualifications
@@ -984,6 +986,7 @@ pt-BR:
       invalid_type_to_balance_transference: Somente usuários %{user_types} podem transferir saldo.
       daily_task: 'Click em ao menos %{quantity} banners to desbloquear o backoffice'
       your_tickets_were_answered: Você tem ticket(s) respondido(s).
+      not_enough_balance: Saldo insuficiente
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
@@ -1561,6 +1564,7 @@ pt-BR:
   total_customers: TOTAL DE CLIENTES
   latest_registrations: Últimos cadastros
   back_account: "Voltar para conta"
+  back_to_store: 'Voltar à loja'
   enter_as_user: 'Logar como Usuário'
   edit_user: 'Editar Usuário'
   see_profile: 'Ver profile'
@@ -1604,6 +1608,8 @@ pt-BR:
   checkout: Checkout
   approve_without_bonification: Aprovar sem bonificação
   payment_type: Método de Pagamento
+  payment_types: Métodos de Pagamento
+  buy_safe: Compra Segura
   actions: Ações
   hashid: 'Código'
   update_product: 'Atualizar Produto'
@@ -1611,3 +1617,5 @@ pt-BR:
   obligatory_main_photo: '* Foto Principal'
   confirm_delete_photo: 'Tem certeza que deseja deletar esta foto?'
   confirm_delete_description: 'Tem certeza que deseja deletar esta descrição?'
+  share: 'Compartilhar'
+  most_sold: 'Mais vendidos'

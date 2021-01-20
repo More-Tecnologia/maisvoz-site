@@ -15,5 +15,21 @@ FactoryBot.define do
     trait :activation do
       product { association(:product, :activation) }
     end
+
+    trait :voucher do
+      product { association(:product, :voucher) }
+    end
+
+    trait :subscription do
+      product { association(:product, :subscription) }
+    end
+
+    trait :deposit do
+      product { association(:product, :deposit) }
+    end
+
+    trait :recharge do
+      product { association(:product, :recharge) }
+    end
   end
 end

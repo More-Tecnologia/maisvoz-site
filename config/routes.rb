@@ -176,6 +176,7 @@ Rails.application.routes.draw do
           post :remember_password
         end
       end
+      resources :coinpayments_notifications, only: :create
     end
   end
 

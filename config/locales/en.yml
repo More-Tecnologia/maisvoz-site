@@ -791,6 +791,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       withdrawal_invalid_time: Withdrawals are blocked after 8pm on Fridays and before 8pm on Sunday, Brasilia-BR time.
       user_not_found: User not found
       user_not_found_or_inactive: User not found or inactive
+      coinpayments: 'Error on create transaction: %{error}.'
     financial: Financial
     financial_entries: Financial History
     manage_withdrawals: Manage Withdrawals
@@ -832,6 +833,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     my_vehicles: My Vehicles
     upgrades: Upgrades
     scores: Scores
+    score: Score
     unilevel: Bonus Contracts
     binary: Binary Points
     point_qualifications: Points Qualifications
@@ -957,6 +959,7 @@ We will send a new e-mail as soon as the transaction is complete.'
       invalid_type_to_balance_transference: Only users %{user_types} can transfer balance.
       daily_task: 'Click at least %{quantity} banners to unlock the backoffice'
       your_tickets_were_answered: Your tickets were answered.
+      not_enough_balance: Insuficient Balance
       too_long:
         one: "it's too long (maximum: 1 character)"
         other: "it's too long (maximum: %{count} characters)"
@@ -1006,10 +1009,10 @@ We will send a new e-mail as soon as the transaction is complete.'
   number:
     currency:
       format:
-        delimiter: "."
+        delimiter: ","
         format: "%u %n"
         precision: 2
-        separator: ","
+        separator: "."
         significant: false
         strip_insignificant_zeros: false
         unit: USD
@@ -1533,6 +1536,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   total_customers: TOTAL CUSTOMERS
   latest_registrations: Latest registrations
   back_account: "Back to account"
+  back_to_store: 'Back to store'
   enter_as_user: 'Login as user'
   edit_user: 'Edit User'
   see_profile: 'See profile'
@@ -1583,6 +1587,8 @@ We will send a new e-mail as soon as the transaction is complete.'
   checkout: Checkout
   approve_without_bonification: Approve without bonification
   payment_type: Payment Method
+  payment_types: Payment Methods
+  buy_safe: Buy Safe
   actions: Actions
   hashid: 'Code'
   update_product: 'Update Product'
@@ -1590,3 +1596,5 @@ We will send a new e-mail as soon as the transaction is complete.'
   obligatory_main_photo: '* Main Photo'
   confirm_delete_photo: 'Are you sure you want to delete this photo?'
   confirm_delete_description: 'Are you sure you want to delete this description?'
+  share: Share
+  most_sold: Most sold

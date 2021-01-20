@@ -5,6 +5,7 @@ module Backoffice
 
       def index
         @products = Product.order(:id)
+                           .includes([:main_photo_attachment])   
                            .page(params[:page])
       end
 

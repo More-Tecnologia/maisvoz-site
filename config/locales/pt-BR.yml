@@ -845,6 +845,7 @@ pt-BR:
     my_vehicles: Meus Veículos
     upgrades: Upgrades
     scores: Pontuações
+    score: Pontuação
     unilevel: Contratos de Bônus
     binary: Binary Points
     point_qualifications: Points Qualifications
@@ -1554,6 +1555,7 @@ pt-BR:
   total_customers: TOTAL DE CLIENTES
   latest_registrations: Últimos cadastros
   back_account: "Voltar para conta"
+  back_to_store: 'Voltar à loja'
   enter_as_user: 'Logar como Usuário'
   edit_user: 'Editar Usuário'
   see_profile: 'Ver profile'
@@ -1597,5 +1599,9 @@ pt-BR:
   checkout: Checkout
   approve_without_bonification: Aprovar sem bonificação
   payment_type: Método de Pagamento
+  payment_types: Métodos de Pagamento
+  buy_safe: Compra Segura
   actions: Ações
   hashid: 'Código'
+  share: 'Compartilhar'
+  most_sold: 'Mais vendidos'

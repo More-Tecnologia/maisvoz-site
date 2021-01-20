@@ -21,5 +21,15 @@ module Backoffice
 
       "#{ProductDescription::PHOTO_WIDTH} x #{ProductDescription::PHOTO_HEIGHT}"
     end
+
+    def most_sold_products limit
+      sql = "SELECT product_id, SUM(quantity) AS total_quantity "
+      sql += "FROM order_items GROUP BY product_id ORDER BY SUM(quantity) DESC "
+      sql += "LIMIT #{limit};"
+
+      records_array = ActiveRecord::Base.connection.execute(sql)
+
+      Product.where(id: records_array.map{ |product| product["product_id"] })
+    end
   end
 end

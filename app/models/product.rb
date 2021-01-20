@@ -23,7 +23,7 @@ class Product < ApplicationRecord
   serialize :maturity_days, Array
 
   accepts_nested_attributes_for :shippings, reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :product_descriptions, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :product_descriptions, allow_destroy: true, reject_if: proc{ |attributes| attributes['photo'].nil? && attributes['description'].blank? }
 
   scope :regular, -> { where.not(kind: :activation) }
   scope :active, -> { where(active: true) }
@@ -49,8 +49,10 @@ class Product < ApplicationRecord
                                              greater_than_or_equal_to: 0,
                                              allow_blank: true }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :main_photo, attached: true
 
   validate :photos_quantity_limit
+  validate :photos_types
 
   def main_photo_path
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if !main_photo.attached?
@@ -83,5 +85,13 @@ class Product < ApplicationRecord
 
   def photos_quantity_limit
     errors.add(:photos, :maximum_number, maximum_number: MAXIMUM_NUMBER_OF_PHOTOS) if photos.length > MAXIMUM_NUMBER_OF_PHOTOS
+  end
+
+  def photos_types
+    photos.each do |photo|
+      if !photo.content_type.in?(%('image/jpeg image/png'))
+        errors.add(:photos, I18n.t('activerecord.errors.models.product.attributes.photos.types'))
+      end
+    end
   end
 end

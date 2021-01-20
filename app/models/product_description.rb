@@ -8,5 +8,7 @@ class ProductDescription < ApplicationRecord
 
   belongs_to :product
 
+  validates :photo, attached: true
+  validates :description, presence: true
   validates :position, presence: true
 end

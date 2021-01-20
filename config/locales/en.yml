@@ -90,8 +90,15 @@
               not_verified: Not verified
         product:
           attributes:
+            main_photo:
+              attached: "Product must have a main photo."
             photos:
               maximum_number: "You can select at maximum %{maximum_number} photos."
+              types: "The photos need to be jpeg or png."
+        product_description:
+          attributes:
+            photo:
+              attached: "A description must have a photo."
       messages:
         too_short: "min %{count} characters"
         blank: cannot be blank
@@ -1578,3 +1585,8 @@ We will send a new e-mail as soon as the transaction is complete.'
   payment_type: Payment Method
   actions: Actions
   hashid: 'Code'
+  update_product: 'Update Product'
+  are_you_sure: 'Are you sure?'
+  obligatory_main_photo: '* Main Photo'
+  confirm_delete_photo: 'Are you sure you want to delete this photo?'
+  confirm_delete_description: 'Are you sure you want to delete this description?'

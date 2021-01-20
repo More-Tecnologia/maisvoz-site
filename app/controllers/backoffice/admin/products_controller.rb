@@ -44,6 +44,17 @@ module Backoffice
         redirect_to backoffice_admin_products_path
       end
 
+      def delete_photo_attachment
+        photo = ActiveStorage::Attachment.find(params[:id])
+        photo.purge
+        redirect_back(fallback_location: request.referer)
+      end
+
+      def delete_product_description
+        ProductDescription.find(params[:id]).delete
+        redirect_back(fallback_location: request.referer)
+      end
+
       private
 
       def find_product

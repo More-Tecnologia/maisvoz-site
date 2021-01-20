@@ -93,8 +93,15 @@ pt-BR:
               not_verified: não verificados
         product:
           attributes:
+            main_photo:
+              attached: "O produto deve ter uma foto principal."
             photos:
               maximum_number: "Você pode selecionar no máximo %{maximum_number} fotos."
+              types: "As fotos devem ser jpeg ou png."
+        product_description:
+          attributes:
+            photo:
+              attached: "Uma descrição deve ter uma foto."
       messages:
         too_short: "mínimo de %{count} caracteres"
         blank: não pode ficar em branco
@@ -1599,3 +1606,8 @@ pt-BR:
   payment_type: Método de Pagamento
   actions: Ações
   hashid: 'Código'
+  update_product: 'Atualizar Produto'
+  are_you_sure: 'Você tem certeza?'
+  obligatory_main_photo: '* Foto Principal'
+  confirm_delete_photo: 'Tem certeza que deseja deletar esta foto?'
+  confirm_delete_description: 'Tem certeza que deseja deletar esta descrição?'

@@ -5,7 +5,6 @@ module Backoffice
 
       def index
         @products = Product.order(:id)
-                           .includes([:main_photo_attachment])   
                            .page(params[:page])
       end
 
@@ -69,6 +68,7 @@ module Backoffice
                       :price_cents, :binary_score, :advance_score, :active, :virtual,
                       :paid_by, :binary_bonus, :main_photo, :category_id,
                       :system_taxable, :shipping, :dropship_link, :details,
+                      :direct_indication_bonus, :direct_indication_bonus_in_percentage,
                       product_descriptions_attributes: [:id, :photo, :description, :position],
                       photos: [])
       end

@@ -1,4 +1,4 @@
-﻿en:
+en:
   '':
     success: Success
   active_admin:
@@ -1294,6 +1294,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   widowed: Widower
   divorced: Divorced
   direct_indication_bonus: Direct Referral Bonus
+  direct_indication_bonus_in_percentage: Direct Referral Bonus in Percentage
   indirect_bonus: Indirect Referral Bonus
   executive_sale_bonus: Direct Selling Bonus
   binary_bonus: Binary Bonus

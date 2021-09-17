@@ -1,7 +1,30 @@
-<div class="new-footer">
-  <footer class="footer-cmp">
-    <div class="footer-cmp__copyright py-3 text-center">
-      &copy;<%= Date.current.year %> <%= t('defaults.copyright', company_name: ENV['COMPANY_NAME']) %>
+<%= stylesheet_link_tag 'click-tok-theme/footer' %>
+
+<div class="bottom-menu">
+  <nav class="nav">
+    <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
+      <%= image_tag('icons/tasks.svg', class: 'icons') %>
+      <%= t(:tasks)%>
+    <% end %>
+    <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'nav__link'  do %>
+      <%= image_tag('icons/team.svg', class: 'icons') %>
+      <%= t(:my_team) %>
+    <% end %>
+    <div class="nav__link shop">
+      <div class="shops">
+        <%= link_to shop_index_path do %>
+          <%= image_tag 'icons/store.svg', class: 'icons' %>
+          <%= t(:shop) %>
+        <% end %>
+      </div>
     </div>
-  </footer>
+    <%= link_to backoffice_financial_transactions_path, class: 'nav__link' do %>
+      <%= image_tag 'icons/financial.svg', class: 'icons' %>
+      <%= t('defaults.financial') %>
+    <% end %>
+    <%= link_to edit_user_registration_path, class: 'nav__link' do %>
+      <%= image_tag 'icons/user.svg', class: 'icons' %>
+      <%= t(:my_account) %>
+    <% end %>
+  </nav>
 </div>

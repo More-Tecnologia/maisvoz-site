@@ -1,76 +1,47 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container" id="top-bar">
+<%= stylesheet_link_tag 'click-tok-theme/header' %>
 
-    <div class="navbar-header">
-      <%= link_to dashboard_direction(current_user), class: 'logo' do %>
-        <span><%= image_tag('logo-white.png', height: 40) %></span>
-      <% end %>
-    </div>
-
-    <div id="navbar-header-footer">
-      <input type="text" placeholder="Buscar">
-    </div>
-
-    <div id="navbar" class="collapse navbar-collapse" style="overflow: visible;">
-      <div class="nav navbar-nav navbar-right top-menu-item-xs" id="navbar-list">
-        <%= link_to 'Dashboard', dashboard_direction(current_user), class: 'btn btn-success' %>
-
-        <% if user_masquerade? %>
-          <%= link_to t(:back_account), back_masquerade_path(current_user), class: 'btn btn-danger' %>
-        <% end %>
-
-        <%= current_user.decorate.avatar_image_tag %>
-
-        <span >
-          <%= current_user.username %> 
-        </span>
-
-        <div class="dropdown top-menu-item-xs">
-          <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-angle-down"></i>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<header>
+  <div class="header-container">
+    <div class="align-items">
+      <div class="nav-link align-right">
+        <div class="dropdown">
+          <%= image_tag("countries/#{locale || 'en'}.svg", size: 20) %>
+          <div class="dropdown-content">
+            <% I18n.available_locales.each do |locale| %>
+              <a href="?locale=<%= locale %>" class="flag">
+                <%= image_tag("countries/#{locale}.svg", size: 20) %>
               </a>
-
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-                <li class="dropdown-item">
-                <%= link_to edit_user_registration_path do %>
-                  <%= t('views.backoffice.topbar.edit_account') %>
-                <% end %>
-                </li>
-
-                <li class="dropdown-item idioma" >
-                  <a href="?locale=pt-BR" class="flag">
-                    <%= image_tag('countries/pt.svg') %>
-                  </a>
-
-                  <a href="?locale=en" class="flag">
-                    <%= image_tag('countries/us.svg') %>
-                  </a>
-                </li>
-
-                <li class="dropdown-item">
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <i class="fas fa-sign-out-alt"></i>
-                  <%= t('views.backoffice.topbar.logout') %>
-                <% end %>
-                </li>
-
-              </ul>
-
-            </div>
+              <br>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div><!--/.nav-collapse -->
-
-
+      <div class="logo">
+        <%= image_tag('logo-white.png') %>
+      </div>
+    </div>
   </div>
-</nav>
 
+  <div class="header-container align-center">
+    <div class="user-details">
+      <div class="user-avatar">
+        <%= current_user.decorate.avatar_image_tag %>
+        <span class="welcome-text">
+          <%= t(:hello) %>, <%= current_user.name %>
+        </span>
+      </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script type="text/javascript">
-  $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-</script>
+      <div class="link-share">
+        <a href="#"
+           sponsor-link="<%= new_user_registration_url(sponsor: current_user.username) %>"
+           id="sponsor-link"
+           title='<%= t(:copied_sponsor_link) %>'
+           message='<%= t(:copied_sponsor_link_message) %>'>
+          <%= image_tag('indicated.svg') %>
+          <%= t(:sponsor_link) %>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

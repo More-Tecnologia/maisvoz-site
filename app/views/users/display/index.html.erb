@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag 'click-tok-theme/display' %>
+
+<div class="pagegiatrion">
+  <div class="ma-list">
+    <ul class="ma-list-ul">
+      <li class="ma-list-li">
+        <%= image_tag 'icons/report.svg', size: 18 %>
+        <%= link_to edit_user_registration_path, class: "hyperlink" do %>
+          <%= t(:update_profile) %>
+        <% end %>
+      </li>
+
+      <li class="ma-list-li">
+        <%= image_tag 'icons/logout.svg', size: 18 %>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'hyperlink' do %>
+          <%= t(:logout) %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <div class="t">
+
+  </div>
+</div>

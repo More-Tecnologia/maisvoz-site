@@ -1582,3 +1582,5 @@ We will send a new e-mail as soon as the transaction is complete.'
   tasks: Tasks
   my_team: My Team
   my_account: My Account
+  logout: Exit my account
+  update_profile: Update my account data

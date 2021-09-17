@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile += %w( charts.js recaptcha.js amount_cleasing.js utilities/select2.js flag-icon.css)
-Rails.application.config.assets.precompile += %w( dashboards/* landing_page/* deposits/*)
+Rails.application.config.assets.precompile += %w( dashboards/* landing_page/* deposits/* click-tok-theme/*)
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

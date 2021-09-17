@@ -4,31 +4,32 @@
     <%= display_meta_tags site: ENV['COMPANY_NAME'] %>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#643D8F" />
     <%= render 'layouts/shared/favicons' %>
-
+    <%= stylesheet_link_tag 'click-tok-theme/app' %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   </head>
+  <body>
+    <div id="root">
+      <div class="disable-of">
+        <div class="container align">
+          <div class="main-app">
+            <%= render 'layouts/top_bar' %>
 
-  <body class="fixed-left">
-    <div id="wrapper">
-      <%= render 'layouts/top_bar' %>
-      <div class="content-page">
-        <div class="content">
-          <div class="container">
-            <% if current_user.refused_verification? %>
-              <div class="alert alert-danger"><%= current_user.document_refused_reason %></div>
-            <% end %>
-            <%= render 'layouts/flash-messages' %>
-            <%= render 'layouts/notification' %>
-            <%= yield %>
+            <div class="main-app-content">
+              <% if current_user.refused_verification? %>
+                <div class="alert alert-danger"><%= current_user.document_refused_reason %></div>
+              <% end %>
+              <%= render 'layouts/flash-messages' %>
+              <%= render 'layouts/notification' %>
+              <%= yield %>
+            </div>
+            <%= render 'layouts/shared/footer' %>
+
           </div>
         </div>
       </div>
-      <%= render 'layouts/shared/footer' %>
     </div>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render 'layouts/gtag' %>

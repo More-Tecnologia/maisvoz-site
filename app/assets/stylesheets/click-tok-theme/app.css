@@ -221,3 +221,23 @@ select:-webkit-autofill:focus {
   width: 80%;
   -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  display: none;
+  left: auto;
+  min-width: 160px;
+  position: absolute;
+  right: 4px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

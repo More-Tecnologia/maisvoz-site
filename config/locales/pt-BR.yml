@@ -1605,3 +1605,5 @@ pt-BR:
   my_account: Minha Conta
   logout: Sair da minha conta
   update_profile: Alterar meus dados
+  password: 'Senha'
+  remember_me: Salvar acesso

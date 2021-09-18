@@ -1607,3 +1607,4 @@ pt-BR:
   update_profile: Alterar meus dados
   password: 'Senha'
   remember_me: Salvar acesso
+  password_confirmation: Confirme a senha

@@ -156,7 +156,7 @@ Rails.application.routes.draw do
       resources :interactions, only: [:show, :new, :create]
     end
     resources :subjects, only: [:show, :new]
-    
+
     resources :banners, only: :index
     resources :banner_clicks, only: [:index, :create]
   end
@@ -178,7 +178,11 @@ Rails.application.routes.draw do
   namespace :users do
     resources :digital_wallets, except: %i[show destroy]
     resources :emails, except: %i[show destroy]
-    resources :display, only: :index
+    resources :display, only: [:index, :edit] do
+      collection do
+        put :update_profile
+      end
+    end
   end
 
   devise_for(:users,

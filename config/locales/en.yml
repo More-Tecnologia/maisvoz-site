@@ -1587,3 +1587,4 @@ We will send a new e-mail as soon as the transaction is complete.'
   password: Password
   remember_me: Remember me
   password_confirmation: Password Confirmation
+  profile_picture: Profile picture

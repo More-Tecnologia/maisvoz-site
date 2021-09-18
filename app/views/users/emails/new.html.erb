@@ -1,17 +1,13 @@
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card-box">
-      <%= content_tag(:h4, t(:new_email)) %>
-      <hr />
-      <%= simple_form_for([:users, @email], html: { class: 'form-horizontal' }) do |f| %>
-      <div class="col-md-9">
-        <%= f.input_field :body, class: "form-control", placeholder: t(:email) %>
-      </div>
+<h4 class="page-title"><%= title t(:new_email) %></h4>
 
-        <%= f.button :button, t("defaults.post"),
-                                data: { disable_with: t('helpers.save_with_disable') }, class: 'btn' %>
-
-      <% end %>
+<%= simple_form_for([:users, @email], html: { class: 'form-horizontal' }) do |f| %>
+  <div class="credentials-box">
+    <div class="login-fields">
+      <%= f.input_field :body, class: "input-description", placeholder: t(:email) %>
+    </div>
+    <div class="login-fields remove-padding">
+      <%= f.button :button, t("defaults.post"),
+                            data: { disable_with: t('helpers.save_with_disable') }, class: 'login' %>
     </div>
   </div>
-</div>
+<% end %>

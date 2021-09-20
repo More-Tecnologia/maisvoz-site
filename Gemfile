@@ -59,6 +59,7 @@ gem 'virtus', '~> 1.0.5'
 gem 'paper_trail', '~> 10.3', '>= 10.3.1'
 gem 'rqrcode', '~> 1.1', '>= 1.1.1'
 gem 'httparty', '~> 0.17.1'
+gem 'social-share-button'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

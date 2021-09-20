@@ -21,6 +21,10 @@ Rails.application.routes.draw do
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy] do
         resources :shippings
+        member do
+          delete :delete_photo_attachment
+          delete :delete_product_description
+        end
       end
       resources :unilevel_scores, only: [:index]
       resources :binary_scores, only: [:index]
@@ -172,6 +176,7 @@ Rails.application.routes.draw do
           post :remember_password
         end
       end
+      resources :coinpayments_notifications, only: :create
     end
   end
 

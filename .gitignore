@@ -27,3 +27,8 @@ dump.rdb
 /config/master.key
 db/schema.rb
 public/assets
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+/public/uploads

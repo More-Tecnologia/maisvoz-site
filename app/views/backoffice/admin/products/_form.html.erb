@@ -1,5 +1,4 @@
 <%= simple_form_for([:backoffice, :admin, @product],
-                    validate: true,
                     html: { class: 'form-horizontal',
                             multipart: true }) do |f| %>
   <ul class="nav nav-tabs tabs">
@@ -27,10 +26,18 @@
           <%= f.input :name %>
           <%= f.input :description, as: :text, label: t('attributes.product_description') %>
           <%= f.input :short_description %>
-          <%= cl_image_tag(@product.main_photo_path, { class: 'thumb-lg' }) if @product.main_photo.attached? %>
-          <%= f.input :main_photo, as: :file, hint: main_photo_hint %>
+          <%= f.input :category_id, collection: Category.all, label: t('attributes.category') %><br>
+          <%= image_tag(@product.main_photo_path, class: 'thumb-lg') if @product.main_photo.attached? && @product.main_photo.id %>
+          <%= f.input :main_photo, as: :file, label: t('obligatory_main_photo'), hint: main_photo_hint %>
           <% @product.photos.each do |photo| %>
-            <%= cl_image_tag(url_for(photo), { class: 'thumb-lg' }) %>
+            <%= image_tag(url_for(photo), class: 'thumb-lg') if photo.content_type.in?(%('image/jpeg image/png')) %>
+            <span>
+              <%= link_to delete_photo_attachment_backoffice_admin_product_path(photo.id),
+                      method: :delete,
+                      data: { confirm: t('confirm_delete_photo') } do %>
+                      <i class="fas fa-trash" style="color:gray"></i>
+              <% end if photo.id %>
+            </span>
           <% end %>
           <%= f.input :photos, input_html: { multiple: true },
                                as: :file,
@@ -38,15 +45,23 @@
           <% product_descriptions(@product).each do |description| %>
             <%= f.fields_for :product_descriptions, description do |form| %>
               <br>
-              <%= cl_image_tag(url_for(description.photo), { class: 'thumb-lg' }) if description.photo.attached? %>
+              <%= image_tag(url_for(description.photo), class: 'thumb-lg') if description.photo.attached? && description.photo.id%>
               <%= form.input :photo, as: :file,
                                      label: "#{t('attributes.photo')} #{description.position}",
                                      hint: description_photo_hint(description.position) %>
               <%= form.input :description, label: "#{t('attributes.description')} #{description.position}" %>
+              <% if description.photo.attached? %>
+                <span>
+                  <%= link_to delete_product_description_backoffice_admin_product_path(description.id),
+                          method: :delete,
+                          data: { confirm: t('confirm_delete_description') } do %>
+                          <i class="fas fa-trash" style="color:gray"></i>
+                  <% end if description.photo.id %>
+                </span>
+              <% end %>
               <%= form.hidden_field :position %>
             <% end %>
           <% end %>
-          <%= f.input :category_id, collection: Category.all, label: t('attributes.category') %>
         </div>
         <div class="col-md-5 col-md-offset-2">
           <%= f.input :price_cents do %>
@@ -56,6 +71,13 @@
             </div>
           <% end %>
           <%= f.input :quantity %>
+          <%= f.input :direct_indication_bonus, label: t('direct_indication_bonus') do %>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+              <%= f.input_field :direct_indication_bonus, class: "form-control" %>
+            </div>
+          <% end %>
+          <%= f.input :direct_indication_bonus_in_percentage, label: t('direct_indication_bonus_in_percentage') %>
           <%= f.input :dropship_link, label: t('attributes.dropship_link'),
                                       input_html: { style: "height: 38px !important; max-height: 38px !important; min-height: 38px !important" }  %>
           <%= f.input :sku %>

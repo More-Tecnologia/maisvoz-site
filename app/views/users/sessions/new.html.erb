@@ -7,13 +7,13 @@
       <div class="field-icon">
         <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>
       </div>
-      <%= f.input_field :country, selected: 'BR', only: ['BR', 'US', 'ES'], class: "input-description" %>
+      <%= f.input_field :country, only: ['BR', 'US', 'ES'], class: "input-description", prompt: t('attributes.country') %>
     </div>
     <div class="login-fields">
       <div class="field-icon">
         <%= image_tag('icons/phone.svg', alt: t(:phone) ) %>
       </div>
-      <%= f.input_field :login, autofocus: true , class: "input-description", placeholder: t(:phone) %>
+      <%= f.input_field :login, autofocus: true , class: 'input-description', placeholder: t(:phone) %>
     </div>
     <div class="login-fields">
       <div class="field-icon">

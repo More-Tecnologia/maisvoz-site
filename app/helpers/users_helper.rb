@@ -31,7 +31,7 @@ module UsersHelper
     name.reverse.sub(/(?<=.).{4}?(?=.)/, '****').reverse
   end
 
-  def available_balane(user)
+  def available_balance(user)
     content_tag(:span, number_to_currency(user.available_balance),
                        class: 'm-r-10 font-16',
                        style: 'color: #FFF;',

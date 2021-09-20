@@ -5,17 +5,7 @@
   <div class="header-container">
     <div class="align-items">
       <div class="nav-link align-right">
-        <div class="dropdown">
-          <%= image_tag("countries/#{locale || 'en'}.svg", size: 20) %>
-          <div class="dropdown-content">
-            <% I18n.available_locales.each do |locale| %>
-              <a href="?locale=<%= locale %>" class="flag">
-                <%= image_tag("countries/#{locale}.svg", size: 20) %>
-              </a>
-              <br>
-            <% end %>
-          </div>
-        </div>
+        <%= render 'layouts/shared/language_select' %>
       </div>
       <div class="logo">
         <%= image_tag('logo-white.png') %>

@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag 'click-tok-theme/language_select' %>
+
+<div class="language-box">
+  <div class="dropdown language-content">
+    <div class='selected-language'>
+      <%= image_tag("countries/#{locale || 'en'}.svg", size: 20) %>
+    </div>
+    <div class="dropdown-content change-language">
+      <% I18n.available_locales.each do |locale| %>
+        <a href="?locale=<%= locale %>" class="flag">
+          <%= image_tag("countries/#{locale}.svg", size: 20) %>
+        </a>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>

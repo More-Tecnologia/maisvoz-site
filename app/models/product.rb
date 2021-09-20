@@ -49,7 +49,7 @@ class Product < ApplicationRecord
                                              greater_than_or_equal_to: 0,
                                              allow_blank: true }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :main_photo, attached: true
+  # validates :main_photo, attached: true
 
   validate :photos_quantity_limit
   validate :photos_types

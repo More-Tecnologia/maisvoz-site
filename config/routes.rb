@@ -148,6 +148,7 @@ Rails.application.routes.draw do
     resources :lineage_scores, only: [:index]
     resources :career_trail_users, only: [:index]
     resources :point_qualifications, only: [:index]
+    resources :team_dashboard, only: :index
 
     # Sim Cards
     resources :users, only: [] do

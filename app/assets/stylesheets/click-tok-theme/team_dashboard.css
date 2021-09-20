@@ -1,0 +1,68 @@
+.t-break-line {
+    display: flex;
+    flex-direction: column;
+}
+
+.t-fw {
+    width: 100% !important;
+}
+
+.t-team-owner-avatar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.t-team-owner-avatar div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #EF539F;
+}
+
+.t-team-owner-avatar img {
+    width: 70px;
+}
+
+.t-team-network-avatar {
+    display: flex;
+    height: 80px;
+    margin-top: 25px;
+}
+
+.t-align{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #EF539F;
+    margin-left: 10px;
+}
+
+.t-align img{
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.t-teste {
+    font-size: 12px;
+    color: #373737;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.t-margin-bottom {
+  margin-bottom: 8rem;
+}

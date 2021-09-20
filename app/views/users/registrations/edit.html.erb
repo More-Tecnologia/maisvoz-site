@@ -1,107 +1,24 @@
-      <!-- Page-Title -->
-      <div class="row">
-        <div class="col-sm-12 m-b-23">
-          <h4 class="page-title"><%= title t('registrations.user.edit.title') %></h4>
-        </div>
-      </div>
+<h4 class="page-title"><%= title t(:update_profile) %></h4>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="card-box">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="p-20">
-                  <%= simple_form_for(form, as: resource_name, url: registration_path(resource_name), validate: true, html: { method: :put }) do |f| %>
-                    <%= f.error_notification %>
+<%= form_for(current_user, url: update_profile_users_display_index_path, validate: true, html: { method: :put }) do |f| %>
+  <div class="credentials-box">
+    <% if current_user.avatar? %>
+      <%= cl_image_tag current_user.avatar.path, { size: '150x150', class: 'thumb-lg' } %>
+    <% end %>
+    <label><%= t(:profile_picture) %></label>
+    <div class="login-fields">
+    <%= f.file_field :avatar, as: :file, label: false, input_html: { accept: 'image/*' }, class: "input-description" %>
+    </div>
 
-                    <div class="form-inputs">
+    <div class="login-fields">
+      <%= f.text_field :name, autofocus: true, placeholder: t(:name), class: "input-description" %>
+    </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
 
-                      <h4><%= t('attributes.sponsor_username') %>: <%= current_user.sponsor.try(:username) %></h4>
-                      <hr />
-                      <div class="row">
-
-                        <div class="col-lg-6">
-                          <h4><%= t('.basic_info') %></h4>
-                          <hr />
-                          <% if current_user.avatar? %>
-                            <%= cl_image_tag current_user.avatar.path, { size: '150x150', class: 'thumb-lg' } %>
-                          <% end %>
-                          <label>Imagem de perfil</label>
-                          <%= f.input :avatar, as: :file, label: false, input_html: { accept: 'image/*'} %>
-
-                          <%= f.input :registration_type, as: :hidden %>
-                          <%= f.input :name, autofocus: true %>
-                          <div class="form-group">
-                            <label class="control-label">
-                              <%= t(:email) %> -
-                              <%= link_to t(:new_email), new_users_email_path, target: '_blank' %>
-                            </label>
-
-                            <input class="form-control" disabled type="email" value="<%= current_user.email %>">
-                          </div>
-                          <%= f.input :birthdate, start_year: Time.now.year - 90, end_year: Time.now.year - 18, as: :date, html5: true %>
-                          <%= f.input :phone, label: t(:phone) %>
-                          <%= f.input :skype %>
-                          <%= f.input :document_cpf, label: t(:id) %>
-                        </div>
-
-                        <div class="col-lg-6">
-                          <h4><%= t('.address') %></h4>
-                          <hr />
-
-                          <%= f.input :zipcode %>
-                          <%= f.input :address_ibge, as: :hidden %>
-                          <%= f.input :district %>
-                          <%= f.input :address %>
-                          <%= f.input :address_2 %>
-
-                          <%= f.input :city %>
-
-                          <%= f.input :state %>
-                          <%= f.input :country, except: ["BR", "US"] %>
-
-                          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-                          <% end %>
-                        </div>
-
-                      </div>
-
-                      <hr />
-                      <h4><%= t('.password') %></h4>
-                      <hr />
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <%= f.input :password, label: t(:new_password), autocomplete: "off", hint: t('.leave_blank'), required: false %>
-                        </div>
-                        <div class="col-lg-6">
-                          <%= f.input :password_confirmation, label: t(:new_password_confirmation), required: false %>
-                        </div>
-                      </div>
-
-                      <hr />
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <label class="control-label password optional" for="current_password"><%= t(:current_password) %></label>
-                          <input class="form-control password" required type="password" name="current_password" id="current_password" placeholder="<%= t(:password_confirmation_text) %>">
-                        </div>
-                        <div class="col-lg-6 form-actions">
-                          <br>
-                          <%= f.button :submit, t('.update'), class: 'btn btn-lg pull-right' %>
-                        </div>
-                      </div>
-
-                      <hr />
-
-
-                    </div>
-
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<div id="document-cpf" ignore="true" hidden></div>
+    <div class="login-fields remove-padding">
+      <%= f.submit t(:save), class: 'login' %>
+    </div>
+  </div>
+<% end %>

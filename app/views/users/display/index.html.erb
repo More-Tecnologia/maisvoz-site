@@ -4,10 +4,18 @@
   <div class="ma-list">
     <ul class="ma-list-ul">
       <li class="ma-list-li">
-        <%= image_tag 'icons/report.svg', size: 18 %>
+        <%= image_tag 'icons/sponsor.svg', size: 18 %>
         <%= link_to edit_user_registration_path, class: "hyperlink" do %>
           <%= t(:update_profile) %>
         <% end %>
+      </li>
+      <li class="ma-list-li">
+        <%= image_tag 'icons/report.svg', size: 18 %>
+        <%= link_to t(:new_email), new_users_email_path, class: "hyperlink" %>
+      </li>
+      <li class="ma-list-li">
+        <%= image_tag 'icons/locker.svg', size: 18 %>
+        <%= link_to t(:change_password), edit_user_password_path, class: "hyperlink" %>
       </li>
 
       <li class="ma-list-li">

@@ -241,3 +241,11 @@ select:-webkit-autofill:focus {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.page-title {
+    color: #373737;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 5vh;
+    padding-left: 8vw;
+}

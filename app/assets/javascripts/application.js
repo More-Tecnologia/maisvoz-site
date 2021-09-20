@@ -57,6 +57,4 @@
 //= require batch-checkbox
 //= require carts/show
 //= require social-share-button
-
-require("trix")
-require("@rails/actiontext")
+//= require sessions/new

@@ -1609,3 +1609,6 @@ pt-BR:
   remember_me: Salvar acesso
   password_confirmation: Confirme a senha
   profile_picture: Imagem de perfil
+  select_country: Selecione um país
+  update_login: Alterar login
+  change_login: Alterar seu login

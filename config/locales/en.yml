@@ -1588,3 +1588,6 @@ We will send a new e-mail as soon as the transaction is complete.'
   remember_me: Remember me
   password_confirmation: Password Confirmation
   profile_picture: Profile picture
+  select_country: Select a country
+  update_login: Update login
+  change_login: Change your login

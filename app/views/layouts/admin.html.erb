@@ -8,15 +8,12 @@
     <meta name="theme-color" content="#643D8F" />
     <%= render 'layouts/shared/favicons' %>
     <%= stylesheet_link_tag 'click-tok-theme/app' %>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  </head>
   <body>
     <div id="root">
       <div class="disable-of">
         <div class="container align">
           <div class="main-app">
             <%= render 'layouts/top_bar' %>
-
             <div class="main-app-content">
               <% if current_user.refused_verification? %>
                 <div class="alert alert-danger"><%= current_user.document_refused_reason %></div>
@@ -26,7 +23,6 @@
               <%= yield %>
             </div>
             <%= render 'layouts/shared/footer' %>
-
           </div>
         </div>
       </div>

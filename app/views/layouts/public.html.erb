@@ -1,51 +1,27 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
-
-      <!--- basic page needs
-      ================================================== -->
       <%= display_meta_tags site: ENV['COMPANY_NAME'] %>
       <meta charset="utf-8">
-
-
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile specific metas
-      ================================================== -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- CSS
-      ================================================== -->
       <%= stylesheet_link_tag 'landing_page/base', media: 'all' %>
       <%= stylesheet_link_tag 'landing_page/vendor', media: 'all' %>
       <%= stylesheet_link_tag 'landing_page/main', media: 'all' %>
 
-      <!-- script
-      ================================================== -->
       <%= javascript_include_tag "landing_page/modernizr" %>
 
-      <!-- favicons
-      ================================================== -->
       <%= render 'layouts/shared/favicons' %>
-
   </head>
-
-
   <body id="top">
-
-      <!-- preloader
-      ================================================== -->
-      <div id="preloader">
-          <div id="loader" class="dots-jump">
-              <div></div>
-              <div></div>
-              <div></div>
-          </div>
+    <div id="preloader">
+      <div id="loader" class="dots-jump">
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-
-
-      <!-- home
-      ================================================== -->
-      <%= yield %>
-
+    </div>
+    <%= yield %>
   </body>
 </html>

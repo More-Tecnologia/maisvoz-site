@@ -4,27 +4,21 @@
     <%= display_meta_tags site: ENV['COMPANY_NAME'] %>
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag 'click-tok-theme/app' %>
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <%= render 'layouts/shared/assets' %>
     <%= render 'layouts/shared/favicons' %>
   </head>
-
   <body>
     <div class="container">
       <div class="app">
-          <div class="main-app">
-            <%= render 'layouts/shared/simple_header' %>
-            <div class="main-app-content">
-              <%= render 'layouts/flash-messages' %>
-              <%= yield %>
-            </div>
-
+        <div class="main-app">
+          <%= render 'layouts/shared/simple_header' %>
+          <div class="main-app-content">
+            <%= render 'layouts/flash-messages' %>
+            <%= yield %>
           </div>
         </div>
       </div>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </div>
     <%= render 'layouts/gtag' %>
   </body>
 </html>

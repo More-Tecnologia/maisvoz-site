@@ -249,3 +249,7 @@ select:-webkit-autofill:focus {
     margin-top: 5vh;
     padding-left: 8vw;
 }
+
+.text-center {
+    text-align: center;
+}

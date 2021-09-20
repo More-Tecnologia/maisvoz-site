@@ -6,7 +6,7 @@
       <%= image_tag('icons/tasks.svg', class: 'icons') %>
       <%= t(:tasks)%>
     <% end %>
-    <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'nav__link'  do %>
+    <%= link_to backoffice_team_dashboard_index_path, class: 'nav__link'  do %>
       <%= image_tag('icons/team.svg', class: 'icons') %>
       <%= t(:my_team) %>
     <% end %>

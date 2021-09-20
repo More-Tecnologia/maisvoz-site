@@ -1,0 +1,108 @@
+<%= stylesheet_link_tag 'click-tok-theme/team_dashboard' %>
+<%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
+
+<div>
+  <div class="page">
+    <div class="f-balance-area">
+      <div class="balance-title t-break-line">
+        <%= t(:my) %>
+        <span><%= t(:community) %></span>
+      </div>
+
+      <div class="balance-value">
+        <%= @unilevel_nodes.count %>
+      </div>
+    </div>
+
+    <div class="login-fields t-fw">
+      <div class="field-icon">
+        <%= image_tag('icons/search.svg') %>
+      </div>
+
+      <input
+        type="text"
+        name="phone"
+        class="input-description"
+        placeholder="<%= t(:search) %>"
+      />
+    </div>
+
+    <div class="t-team-owner-avatar">
+      <div class="t-owner-avatar">
+        <div>
+          <%= cl_image_tag current_user.avatar.try(:path), { class: 'icons' } %>
+        </div>
+      </div>
+      <br>
+      <span class="text-center"><%= current_user.name.presence || t(:guest) %></span>
+    </div>
+
+    <div class="t-team-network-avatar">
+      <% direct_children(@unilevel_nodes).each do |child| %>
+        <div class="t-teste">
+          <div class="t-align">
+            <%= link_to backoffice_unilevel_index_path(user: child.user) do %>
+              <% if child.user.avatar.try(:path).present? %>
+                <%= cl_image_tag(child.user.avatar.try(:path), { class: 'icons' }) %>
+              <% else %>
+                <%= image_tag 'icons/user.svg', class: 'icons' %>
+              <% end %>
+            <% end %>
+          </div>
+          <span class="text-center"><%= child.user.name.presence || t(:guest) %></span>
+        </div>
+      <% end %>
+    </div>
+
+    <% @unilevel_nodes.group_by(&:ancestry_depth).each do |depth, nodes| %>
+      <div class="f-balance-area">
+        <div class="balance-title t-break-line">
+          <%= t(:total) %>
+          <span><%= depth - @current_node.depth %> <%= t(:generation) %></span>
+        </div>
+
+        <div class="balance-value">
+          <%= nodes.size %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="products-list">
+      <div class="f-options-box f-options-box-l">
+        <div class="f-box-title">
+          <%= t(:direct_referral) %>
+        </div>
+        <div class="f-box-icon">
+          <%= '0%' %>
+        </div>
+      </div>
+
+      <div class="f-options-box f-options-box-r">
+        <div class="f-box-title">
+          <%= t(:indirect_referral) %>
+        </div>
+        <div class="f-box-icon">
+          <%= '0%' %>
+        </div>
+      </div>
+
+      <div class="f-options-box f-options-box-l t-margin-bottom">
+        <div class="f-box-title">
+          <%= t(:earnings_by_campaign) %>
+        </div>
+        <div class="f-box-icon">
+          <%= '0' %>
+        </div>
+      </div>
+
+      <div class="f-options-box f-options-box-r t-margin-bottom">
+        <div class="f-box-title">
+          <%= t(:recurring_revenue) %>
+        </div>
+        <div class="f-box-icon">
+          <%= '0%' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

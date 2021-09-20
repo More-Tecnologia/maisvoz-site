@@ -1,0 +1,23 @@
+<h4 class="page-title"><%= title t(:update_login) %></h4>
+
+<%= form_for(current_user, url: update_login_users_display_index_path, validate: true, html: { method: :put }) do |f| %>
+  <div class="credentials-box">
+    <div class="login-fields">
+
+      <%= f.country_select("country", { only: ["BR", "US", "ES"], include_blank: t(:select_country) }, { class: 'input-description' }) %>
+    </div>
+    <div class="login-fields">
+      <%= f.text_field :username, placeholder: t(:new_phone), class: "input-description" %>
+    </div>
+    <div class="login-fields">
+      <%= f.password_field :current_password, placeholder: t(:password_confirmation_text), class: "input-description" %>
+    </div>
+
+    <div class="login-fields remove-padding">
+      <%= f.submit t(:save), class: 'login' %>
+    </div>
+  </div>
+<% end %>
+<% if current_user.errors.any? %>
+  <%= current_user.errors.full_messages %>
+<% end %>

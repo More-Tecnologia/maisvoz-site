@@ -23,7 +23,6 @@ module Users
       if current_user.update_with_password(user_params(%i[password
                                                           password_confirmation
                                                           current_password]))
-        # Sign in the user by passing validation in case their password changed
         bypass_sign_in(current_user)
         redirect_to users_display_index_path
       else

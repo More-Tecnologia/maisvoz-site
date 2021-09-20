@@ -15,7 +15,11 @@
       </li>
       <li class="ma-list-li">
         <%= image_tag 'icons/locker.svg', size: 18 %>
-        <%= link_to t(:change_password), edit_user_password_path, class: "hyperlink" %>
+        <%= link_to t(:change_login), edit_login_users_display_index_path, class: "hyperlink" %>
+      </li>
+      <li class="ma-list-li">
+        <%= image_tag 'icons/locker.svg', size: 18 %>
+        <%= link_to t(:change_password), edit_password_users_display_index_path, class: "hyperlink" %>
       </li>
 
       <li class="ma-list-li">

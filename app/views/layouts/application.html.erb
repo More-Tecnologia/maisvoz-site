@@ -5,29 +5,26 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'click-tok-theme/app' %>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <%= render 'layouts/shared/favicons' %>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggle();
-            });
-            $('form input[type=submit]').addClass('btn btn-primary');
-            $('form input[type=file]').addClass('form-control');
-        });
-    </script>
   </head>
 
-  <body class="<%= yield :body_class %>">
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4 m-t-30">
-        <%= render 'layouts/flash-messages' %>
+  <body>
+    <div class="container">
+      <div class="app">
+          <div class="main-app">
+            <%= render 'layouts/shared/simple_header' %>
+            <div class="main-app-content">
+              <%= render 'layouts/flash-messages' %>
+              <%= yield %>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
-    <%= yield %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render 'layouts/gtag' %>
   </body>
 </html>

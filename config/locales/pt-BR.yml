@@ -1613,6 +1613,19 @@ pt-BR:
   buy_safe: Compra Segura
   actions: Ações
   hashid: 'Código'
+  task: Tarefa
+  tasks: Tarefas
+  my_team: Minha Equipe
+  my_account: Minha Conta
+  logout: Sair da minha conta
+  update_profile: Alterar meus dados
+  password: 'Senha'
+  remember_me: Salvar acesso
+  password_confirmation: Confirme a senha
+  profile_picture: Imagem de perfil
+  select_country: Selecione um país
+  update_login: Alterar login
+  change_login: Alterar seu login
   update_product: 'Atualizar Produto'
   are_you_sure: 'Você tem certeza?'
   obligatory_main_photo: '* Foto Principal'

@@ -1,0 +1,21 @@
+
+
+.ma-list-ul {
+    padding: 0;
+}
+
+.ma-list-li {
+    align-items: center;
+    display: flex;
+    margin-top: 2vh;
+}
+
+.hyperlink {
+    color: #000000;
+    font-size: 14px;
+    margin-left: 2vw;
+}
+
+.pagegiatrion {
+    padding: 5vh 5vw;
+}

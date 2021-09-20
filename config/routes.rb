@@ -183,6 +183,15 @@ Rails.application.routes.draw do
   namespace :users do
     resources :digital_wallets, except: %i[show destroy]
     resources :emails, except: %i[show destroy]
+    resources :display, only: %i[index edit] do
+      collection do
+        get :edit_login
+        get :edit_password
+        put :update_login
+        put :update_password
+        put :update_profile
+      end
+    end
   end
 
   devise_for(:users,

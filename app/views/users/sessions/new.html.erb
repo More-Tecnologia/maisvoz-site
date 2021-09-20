@@ -1,37 +1,37 @@
-<%= content_for :body_class, 'login-page' %>
-<div class="wrapper-page" id="wrapper-page-login">
-  <div class="text-center register-logo">
-    <%= image_tag 'logo.png' %>
-  </div>
-  <br>
-  <div class=" card-box">
-    <div class="panel-body">
+<%= stylesheet_link_tag 'click-tok-theme/login' %>
 
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal m-t-20') do |f| %>
-        <%= f.error_notification %>
-
-        <div class="form-group">
-          <%= f.label :login %>
-          <%= f.input_field :login, autofocus: true , class: 'form-control', style: 'min-width: 100%;' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :password %>
-          <%= f.input_field :password, class: 'form-control', style: 'min-width: 100%;'  %>
-        </div>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-
-        <div class="form-actions">
-          <%= f.button :submit, t('.login'), class: 'btn-block text-uppercase' %>
-        </div>
-        <hr>
-
-      <% end %>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal m-t-20') do |f| %>
+  <%= f.error_notification %>
+  <div class="credentials-box">
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>
+      </div>
+      <%= f.input_field :country, selected: 'BR', only: ['BR', 'US', 'ES'], class: "input-description" %>
+    </div>
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/phone.svg', alt: t(:phone) ) %>
+      </div>
+      <%= f.input_field :login, autofocus: true , class: "input-description", placeholder: t(:phone) %>
+    </div>
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/locker.svg', alt: t(:locker) ) %>
+      </div>
+      <%= f.input_field :password, class: "input-description", placeholder: t(:password) %>
+    </div>
+    <div class="credentials-box">
+      <div class="checkbox">
+        <%= f.input_field :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        <span><%= t(:remember_me) %></span>
+      </div>
+    </div>
+    <div class="login-fields remove-padding">
+      <%= f.button :submit, t('.login'), class: "login" %>
+    </div>
+    <div class="helper-text">
       <%= render "users/shared/links" %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <%= render "users/shared/flags" %>
-    </div>
-  </div>
-</div> 
+<% end %>

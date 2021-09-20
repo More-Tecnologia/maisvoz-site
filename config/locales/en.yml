@@ -1592,6 +1592,19 @@ We will send a new e-mail as soon as the transaction is complete.'
   buy_safe: Buy Safe
   actions: Actions
   hashid: 'Code'
+  task: Task
+  tasks: Tasks
+  my_team: My Team
+  my_account: My Account
+  logout: Exit my account
+  update_profile: Update my account data
+  password: Password
+  remember_me: Remember me
+  password_confirmation: Password Confirmation
+  profile_picture: Profile picture
+  select_country: Select a country
+  update_login: Update login
+  change_login: Change your login
   update_product: 'Update Product'
   are_you_sure: 'Are you sure?'
   obligatory_main_photo: '* Main Photo'

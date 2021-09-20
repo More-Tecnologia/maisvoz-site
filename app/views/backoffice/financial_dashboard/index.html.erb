@@ -1,0 +1,57 @@
+<%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
+
+<div>
+  <div class="page">
+    <div class="f-balance-area">
+      <div class="balance-title">
+        <%= t(:available_balance) %>
+      </div>
+
+      <div class="balance-value">
+        <%= available_balance(current_user) %>
+      </div>
+    </div>
+
+    <div class="f-withdraw-area">
+      <%= t(:withdrawal) %>
+    </div>
+
+    <div class="products-list">
+      <div class="f-options-box f-options-box-l">
+        <div class="f-box-title">
+          <%= t(:withdrawal_report) %>
+        </div>
+        <div class="f-box-icon">
+          <%= image_tag 'icons/withdrawal.svg' %>
+        </div>
+      </div>
+
+      <div class="f-options-box f-options-box-r">
+        <div class="f-box-title">
+          <%= t(:earnings_report) %>
+        </div>
+        <div class="f-box-icon">
+          <%= image_tag 'icons/gains.svg' %>
+        </div>
+      </div>
+
+      <div class="f-options-box f-options-box-l">
+        <div class="f-box-title">
+          <%= t('defaults.my_orders') %>
+        </div>
+        <div class="f-box-icon">
+          <%= image_tag 'icons/orders.svg' %>
+        </div>
+      </div>
+
+      <div class="f-options-box f-options-box-r">
+        <div class="f-box-title">
+          <%= t(:my_wallet) %>
+        </div>
+        <div class="f-box-icon">
+          <%= image_tag 'icons/wallet.svg' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

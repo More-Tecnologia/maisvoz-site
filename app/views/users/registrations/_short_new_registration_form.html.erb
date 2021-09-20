@@ -1,46 +1,59 @@
-<%= content_for :body_class, 'login-page' %>
+<%= stylesheet_link_tag 'click-tok-theme/short_registration' %>
 
-<div class="account-pages"></div>
-<div class="clearfix"></div>
-<div class="wrapper-page" id="wrapper-page-login2">
-  <div class="text-center register-logo">
-    <%= image_tag 'logo.png' %>
-  </div>
-  <br>
-  <div class="card-box2 p-0">
-    <div class="panel-body p-20">
-      <%= simple_form_for(@form, as: resource_name, url: registration_path(resource_name), class: 'form-horizontal m-t-20', validate: true) do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= f.hidden_field :role %>
-          <%= f.hidden_field :registration_type %>
-          <%= f.hidden_field :g_recaptcha_response %>
-          <% if @form.sponsor_username && params[:sponsor].present? %>
-            <%= f.input :sponsor_username, autofocus: true, readonly: true, input_html: { style: 'min-width: 100%;'} %>
-          <% else %>
-            <%= f.input :sponsor_username, autofocus: true, input_html: { style: 'min-width: 100%;'} %>
-          <% end %>
-          <%= f.input :document_cpf, label: t(:id), input_html: { style: 'min-width: 100%;'} %>
-          <%= f.input :name, input_html: { style: 'min-width: 100%;'} %>
-          <%= f.input :email, input_html: { style: 'min-width: 100%;'} %>
-          <%= f.input :country, except: ["BR", "US"], input_html: { style: 'min-width: 100%;'} %>
-          <%= f.input :username, input_html: { style: 'min-width: 100%;'} %>
-          <%= f.input :password, input_html: { style: 'min-width: 100%;'} %>
-          <%= f.input :password_confirmation, input_html: { style: 'min-width: 100%;'} %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, t('users.registrations.new.sign_up'), class: 'btn btn-primary btn-block text-uppercase' %>
-        </div>
-        <hr>
+<%= simple_form_for(@form, as: resource_name, url: registration_path(resource_name), class: 'form-horizontal m-t-20', validate: true) do |f| %>
+  <%= f.error_notification %>
+  <div class="credentials-box">
+    <%= f.hidden_field :role %>
+    <%= f.hidden_field :registration_type %>
+    <%= f.hidden_field :g_recaptcha_response %>
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/sponsor.svg', alt: t(:sponsor) ) %>
+      </div>
+      <% if @form.sponsor_username && params[:sponsor].present? %>
+        <%= f.input_field :sponsor_username, autofocus: true, readonly: true, class: "input-description", placeholder: t(:sponsor) %>
+      <% else %>
+        <%= f.input_field :sponsor_username, autofocus: true, class: "input-description", placeholder: t(:sponsor) %>
       <% end %>
+    </div>
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>
+      </div>
+      <%= f.input_field :country, selected: "BR", only: ["BR", "US", "ES"], class: "input-description" %>
+    </div>
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/phone.svg', alt: t(:phone) ) %>
+      </div>
+      <%= f.input_field :username, class: "input-description", placeholder: t(:phone) %>
+    </div>
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/email.svg', alt: t(:email) ) %>
+      </div>
+      <%= f.input_field :email, class: "input-description", placeholder: t(:email) %>
+    </div>
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/locker.svg', alt: t(:locker) ) %>
+      </div>
+      <%= f.input_field :password, class: "input-description", placeholder: t(:password) %>
+    </div>
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/locker.svg', alt: t(:locker) ) %>
+      </div>
+      <%= f.input_field :password_confirmation, class: "input-description", placeholder: t(:password_confirmation) %>
+    </div>
+    <div class="login-fields remove-padding">
+      <%= f.button :submit, t('users.registrations.new.sign_up'), class: "login" %>
+    </div>
+    <div class="helper-text">
       <%= render "users/shared/links" %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <%= render "users/shared/flags" %>
-    </div>
-  </div>
-</div>
-<div id="document-cpf" ignore="true" hidden></div>
+<% end %>
+
+
 <%= javascript_include_tag 'recaptcha' %>

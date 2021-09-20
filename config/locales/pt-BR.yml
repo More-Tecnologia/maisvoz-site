@@ -1633,3 +1633,6 @@ pt-BR:
   confirm_delete_description: 'Tem certeza que deseja deletar esta descrição?'
   share: 'Compartilhar'
   most_sold: 'Mais vendidos'
+  withdrawal_report: Relátorio de saque
+  earnings_report: Relatório de ganhos
+  my_wallet: Minha carteira

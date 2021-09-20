@@ -135,6 +135,7 @@ Rails.application.routes.draw do
     resources :accumulated_pva, only: [:index]
     resources :bonus_financial_transactions, only: [:index]
     resources :vouchers, only: [:index]
+    resources :financial_dashboard, only: :index
     resources :pay_with_voucher, only: [:show] do
       post :new
       post :create

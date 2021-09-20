@@ -1,0 +1,89 @@
+.f-balance-area {
+    display: flex;
+    justify-content: space-between;
+    min-height: 60px;
+    height: 60px;
+    margin-top: 10px;
+}
+
+.f-balance-area div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-size: 12pt;
+    width: 50%;
+}
+
+.balance-title {
+    background-color: #643D8F;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.balance-value {
+    background-color: #EF539F;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.f-withdraw-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    background-color: #643D8F;
+    min-height: 60px;
+    height: 60px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.f-options-box {
+    border: 1px solid #00000029;
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    height: 8rem;
+    width: 46%;
+    margin-top: 3rem;
+    background-color: #ffffff;
+}
+
+.f-options-box-r {
+    margin-left: 4%;
+}
+
+.f-options-box-l {
+    margin-right: 4%;
+}
+
+.f-box-title {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    font-size: 14px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #643D8F;
+    min-height: 40px;
+}
+
+.f-box-icon {
+    height: 6rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.page {
+    padding: 3rem;
+}

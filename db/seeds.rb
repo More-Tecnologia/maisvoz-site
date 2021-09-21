@@ -285,7 +285,6 @@ end
   support_user.binary_node.delete
   contact_user.binary_node.delete
   admin_user.binary_node.update!(left_child_id: nil)
-
 end
 
 chargebacks = [['2100', '2000'], ['2300', '2200'], ['2500', '2400'], ['2700', '2600'], ['3000', '1400'], ['3200', '3100']]

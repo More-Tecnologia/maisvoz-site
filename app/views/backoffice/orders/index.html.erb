@@ -1,62 +1,117 @@
-<!-- Page-Title -->
-<div class="row">
-  <div class="col-sm-12 m-b-23">
-    <h4 class="page-title"><%= t('views.backoffice.orders.index.title') %></h4>
+<%= stylesheet_link_tag 'click-tok-theme/orders' %>
+
+<div class="page" style="display: none;">
+  <div class="is-page-title">
+    <span class="title">
+      <%= t('defaults.my_orders') %>
+    </span>
+    <span class="title">
+      <%= t(:filter) %>
+      >
+    </span>
   </div>
-</div>
+  <div class="th-history-list">
+    <div class="th-history-task-title wr-title">
+      <span class="th-history-task-id">
+        ID:0001s
+      </span>
+      17 Out
+    </div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card-box">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="table-responsive">
-          <table class="table table-striped table-bordered m-0">
+    <div class="th-history-task-status">
+      <div class="th-history-task-date">
+        17/08/2021
+      </div>
+      <div class="wr-align">
+        <div class="th-history-task-status-action">
+          Processando
+        </div>
 
-            <thead>
-              <tr>
-                <th>#</th>
-                <th><%= Order.human_attribute_name(:total) %></th>
-                <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
-                <th><%= t('defaults.total_at', digital_currency: ENV['CURRENT_DIGITAL_CURRENCY']) %></th>
-                <% end %>
-                <th><%= Order.human_attribute_name(:status) %></th>
-                <th><%= Order.human_attribute_name(:expire_at) %></th>
-                <th><%= Order.human_attribute_name(:paid_at) %></th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @orders.each do |order| %>
-                <tr>
-                  <td><%= order.hashid %></td>
-                  <td><%= number_to_currency(order.total, unit: ENV['CURRENT_CURRENCY']) %></td>
-                  <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
-                  <td><%= "#{ENV['CURRENT_DIGITAL_CURRENCY']} #{order.try(:payment_transaction).try(:amount)}"%></td>
-                  <% end %>
-                  <td><%= t "defaults.#{order.status}" %></td>
-                  <td><%= l(order.expire_at, format: '%B %d, %Y' ) if order.expire_at.present? %></td>
-                  <td><%= l(order.paid_at, format: '%B %d, %Y' ) if order.paid_at.present? %></td>
-                  <td>
-                    <%= link_to t('defaults.details'), backoffice_order_path(order) %>
-                  </td>
-                  <% if order.try(:payment_transaction) && !order.paid_at %>
-                  <td> <%= link_to t('defaults.pay'), backoffice_payment_transaction_path(order.try(:payment_transaction)) %> </td>
-                  <% end %>
-                </tr>
-              <% end %>
-              <% if @orders.empty? %>
-                <tr>
-                  <td colspan="8" class="text-center"><%= t('views.backoffice.orders.index.no_data') %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          </div>
-
+        <div class="wr-amount">
+          $100
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="th-history-list">
+    <% @orders.each do |order| %>
+    <div class="th-history-task-title wr-title">
+      <span class="th-history-task-id">
+        <%= order.hashid %>
+      </span>
+      <%= order.created_at.strftime('%d %b') %>
+    </div>
+
+    <div class="th-history-task-status">
+      <div class="th-history-task-date">
+        <%= order.created_at.strftime('%d/%m/%y') %>
+      </div>
+      <div class="wr-align">
+        <div class="th-history-task-status-action">
+          <%= order.status %>
+        </div>
+
+        <div class="wr-amount">
+          <%= number_to_currency order.total %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="th-history-list">
+    <div class="th-history-task-title wr-title">
+      <span class="th-history-task-id">
+        ID:0001s
+      </span>
+      17 Out
+    </div>
+
+    <div class="th-history-task-status">
+      <div class="th-history-task-date">
+        17/08/2021
+      </div>
+      <div class="wr-align">
+        <div class="th-history-task-status-action task-history-process">
+          Processando
+        </div>
+
+        <div class="wr-amount">
+          $100
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="th-history-list">
+    <div class="th-history-task-title wr-title">
+      <span class="th-history-task-id">
+        ID:0001s
+      </span>
+      17 Out
+    </div>
+
+    <div class="th-history-task-status">
+      <div class="th-history-task-date">
+        17/08/2021
+      </div>
+      <div class="wr-align">
+        <div class="th-history-task-status-action task-history-sucess">
+          Aprovado
+        </div>
+
+        <div class="wr-amount">
+          $50
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="t">
+
+  </div>
+  <div class="t">
+
   </div>
 </div>

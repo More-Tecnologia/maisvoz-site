@@ -1,0 +1,87 @@
+.th-history-list {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.th-history-task-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #373737;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.th-history-task-status {
+    display: flex;
+    justify-content: space-between;
+}
+
+.th-history-task-status div{
+    display: flex;
+}
+
+.th-history-task-id {
+    font-size: 10px;
+    font-weight: bold;
+    color: #9B9B9B;
+}
+
+.th-history-task-status-action {
+    width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    height: 20px;
+    font-size: 12px;
+    background-color: #FF0000;
+    color: white;
+}
+
+.task-history-sucess {
+    background-color: #20A400;
+}
+
+.task-history-process {
+    background-color:#E7A700;
+}
+
+.th-history-task-date {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.page {
+    padding: 3rem;
+}
+
+.wr-align {
+    display: flex;
+    flex-direction: column;
+}
+
+.wr-amount {
+    color: #373737 !important;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.wr-title {
+    justify-content: space-between;
+}
+
+.is-page-title {
+    display: flex;
+    justify-content: space-between;
+}
+.is-page-title span{
+    font-weight: bold;
+    font-size: 10pt;
+    color: #373737;
+}

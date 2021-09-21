@@ -31,7 +31,9 @@
           <%= t(:earnings_report) %>
         </div>
         <div class="f-box-icon">
-          <%= image_tag 'icons/gains.svg' %>
+          <%= link_to backoffice_orders_path do %>
+            <%= image_tag 'icons/gains.svg' %>
+          <% end %>
         </div>
       </div>
 
@@ -40,7 +42,9 @@
           <%= t('defaults.my_orders') %>
         </div>
         <div class="f-box-icon">
-          <%= image_tag 'icons/orders.svg' %>
+          <%= link_to backoffice_orders_path do %>
+            <%= image_tag 'icons/orders.svg' %>
+          <% end %>
         </div>
       </div>
 

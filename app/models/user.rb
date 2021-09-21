@@ -276,16 +276,9 @@ class User < ApplicationRecord
 
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
-    login = conditions.delete(:login)
-    where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
-  end
+    login = conditions.delete(:login).to_s.gsub(/\s/, '')
 
-  def month_pvg(ref_time = Time.zone.now)
-    pv_activity_histories.where(
-      'kind = ?', :pvg
-    ).where(height: 1).where(
-      'created_at >= ? AND created_at <= ?', ref_time.beginning_of_month, ref_time.end_of_month
-    ).sum(:amount)
+    where(conditions).where('username ILIKE ? OR email ILIKE ?', login, login).first
   end
 
   def destroy_documents!

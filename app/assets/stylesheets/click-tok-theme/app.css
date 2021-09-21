@@ -4,22 +4,18 @@
     box-sizing: border-box;
 }
 
-/* Remove list styles (bullets/numbers) */
 ol, ul {
     list-style: none;
 }
 
-/* For images to not be able to exceed their container */
 img {
     max-width: 100%;
 }
 
-/* removes spacing between cells in tables */
 table {
     border-collapse: collapse;
 }
 
-/* revert the 'white-space' property for textarea elements on Safari */
 textarea {
     white-space: revert;
 }
@@ -32,8 +28,8 @@ textarea {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    max-width: auto;
-    min-width: auto;
+    max-width: 100%;
+    min-width: 100%;
     margin: 0;
     background-color: #e9e9e9;
     -webkit-appearance: none;
@@ -180,8 +176,6 @@ textarea:focus, input:focus{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-
-
 a{
     text-decoration: none;
 }
@@ -229,7 +223,7 @@ select:-webkit-autofill:focus {
 
 .dropdown-content {
   background-color: #f9f9f9;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   display: none;
   left: auto;
   min-width: 160px;

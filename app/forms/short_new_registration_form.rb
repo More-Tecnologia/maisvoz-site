@@ -31,7 +31,6 @@ class ShortNewRegistrationForm < Form
   before_validation :normalize_usernames
 
   def sponsor
-    byebug
     return if token.blank? && sponsor_username.blank?
 
     query = { role: [:empreendedor, :consumidor] }

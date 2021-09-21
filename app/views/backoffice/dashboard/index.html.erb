@@ -1,150 +1,70 @@
 <%= javascript_include_tag 'charts' %>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css"
+    />
+<%= stylesheet_link_tag 'click-tok-theme/dashboard' %>
 
-<div class="container">
-  <div class="row" id="dashboard">
-    <div class="painel">
-      <%=  link_to backoffice_career_trail_users_path, class: 'item11' do %>
-        <%= image_tag 'icons/CHARMAIN1.png', class: 'img img-responsive' %>
-        <%= t('defaults.leadership_career') %>
-      <% end %>
+<script>
 
-      <%= link_to backoffice_banners_path, class: 'item12'  do%>
-        <%= image_tag 'icons/publicidade1.png', class: 'img img-responsive' %>
-        <%= t('defaults.view_publicity') %>
-      <% end %>
+  document.addEventListener( 'DOMContentLoaded', function () {
+  	new Splide( '#image-slider', {
+  		'cover'      : true,
+  		'heightRatio': 0.2,
+  	} ).mount();
+  } );
+</script>
+<div class="page">
+  <div id="image-slider" class="splide">
+  	<div class="splide__track">
+  		<ul class="splide__list">
+  			<li class="splide__slide">
+  				<%= image_tag('bg-home.jpg') %>
+  			</li>
+  			<li class="splide__slide">
+  				<%= image_tag('bg-home.jpg') %>
+  			</li>
+  			<li class="splide__slide">
+  				<%= image_tag('bg-home.jpg') %>
+  			</li>
+  		</ul>
+  	</div>
+    <div class="t-tasks-gallery-buy-button">
+      <button><%= t(:buy) %></button>
+    </div>
+  </div>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item13' do%>
-        <%= image_tag 'icons/saldo1.png', class: 'img img-responsive' %>
-        <%= available_balance(current_user) %>
-        <%= t('defaults.financial_histories') %>
-      <% end %>
+  <% data = [[t(:complete), 0], [t(:available), 0]] %>
 
-      <%= link_to backoffice_financial_transactions_path, class: 'item14' do %>
-        <%= image_tag 'icons/saldo11.png', class: 'img img-responsive' %>
-        <%= blocked_balance(current_user) if ENV['ENABLED_BLOCKED_BALANCE'] == 'true' %>
-        <%= t('attributes.blocked_balance') %>
-      <% end %>
-
-      <%= link_to backoffice_balance_transferences_path, class: 'item15' do %>
-        <%= image_tag 'icons/troca11.png', class: 'img img-responsive' %>
-        <%= order_payment_balance(current_user) %>
-        <%= t('defaults.balance_transference') %>
-      <% end %>
-
-      <% Type.order(:indications_quantity).each_with_index do |type, index| %>
-        <%= link_to '#', class: "item#{16 + index}"  do %>
-          <%= image_tag current_user.type == type ? 'icons/ativo1.png' : 'icons/inativo1.png',
-                        class: 'img img-responsive' %>
-          <%= type.name %>
-        <% end %>
-      <% end %>
-
-      <%= link_to new_backoffice_withdrawal_path, class: 'item20'  do%>
-        <%= image_tag 'icons/retirada1.png', class: 'img img-responsive' %>
-        <%= t('defaults.new_withdraw') %>
-      <% end %>
-
-      <a href="#"
-         class="item21"
-         sponsor-link="<%= new_user_registration_url(sponsor: current_user.username) %>"
-         id="sponsor-link"
-         title='<%= t(:copied_sponsor_link) %>'
-         message='<%= t(:copied_sponsor_link_message) %>'>
-         <%= image_tag 'icons/link1.png', class: 'img img-responsive' %>
-        <%= t(:sponsor_link) %>
-      </a>
-
-      <%= link_to backoffice_bonus_contracts_path, class: 'item22'  do%>
-        <%= image_tag 'icons/relatorio1.png', class: 'img img-responsive' %>
-        <%= t('defaults.unilevel') %>
-      <% end %>
-
-      <%= link_to backoffice_unilevel_index_path(user: current_user), class: 'item23'  do%>
-        <%= image_tag 'icons/rede1.png', class: 'img img-responsive' %>
-        <%= t('defaults.net') %>
-      <% end %>
-
-      <%= link_to backoffice_lineage_scores_path, class: 'item24' do %>
-        <%= image_tag 'icons/indicados1.png', class: 'img img-responsive' %>
-        <%= t('defaults.my_indications') %>
-      <% end %>
-
-      <%= link_to backoffice_banner_clicks_path, class: 'item25' do %>
-        <%= image_tag current_user.active? ? 'icons/ativo11.png': 'icons/ativo21.png',
-                      class: 'img img-responsive' %>
-        <%= t(:account_status) %>
-      <% end %>
-
-      <%= link_to backoffice_orders_path, class: 'item26'  do %>
-        <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
-        <%= t('defaults.my_orders') %>
-      <% end %>
-
-      <%= link_to shop_index_path, class: 'item27' do %>
-        <%= image_tag 'icons/loja1.png', class: 'img img-responsive' %>
-        <%= t(:shop) %>
-      <% end %>
-
-      <%= link_to backoffice_order_payments_path, class: 'item28'  do%>
-        <%= image_tag 'icons/fatura1.png', class: 'img img-responsive' %>
-        <%= t('defaults.order_payments') %>
-      <% end %>
-
-      <%= link_to backoffice_adhesion_products_path, class: 'item29'  do%>
-        <%= image_tag 'icons/clicks1.png', class: 'img img-responsive' %>
-        Pack Click Cash
-      <% end %>
-
-      <%= link_to backoffice_banner_clicks_path, class: 'item33' do %>
-        <i class="fas fa-mouse-pointer fa-3x"></i>
-        <%= t('defaults.daily_tasks') %>
-      <% end %>
-
-      <%=  link_to backoffice_downloads_path, class: 'item31' do %>
-        <%= image_tag 'icons/apoio1.png', class: 'img img-responsive' %>
-        <%= t(:download_support_material) %>
-      <% end %>
-
-      <%=  link_to backoffice_tickets_path, class: 'item34' do %>
-        <%= image_tag 'icons/suporte1.png', class: 'img img-responsive' %>
-        <%= t("defaults.support") %>
-      <% end %>
-
-      <% if current_user_bonus_contracts %>
-      <div class="item32">
-        <p>
-          <%= t('attributes.bonus_contract')%>:
-          <%= current_user_bonus_contracts.try(:hashid) %>&nbsp;&nbsp; &nbsp;
-          <%= number_to_currency(bonus_contracts_received_balance)%> /
-          <%= number_to_currency(bonus_contracts_balance) %>
-        </p>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-               role="progressbar"
-               style="width: <%= bonus_contracts_received_percent %>%"
-               aria-valuenow="25"
-               aria-valuemin="0"
-               aria-valuemax="100">
-              <%= number_to_percentage(bonus_contracts_received_percent, precision: 2) %>
-          </div>
+  <div class="products-list mt">
+    <div class="t-options-box t-options-box-l rh">
+      <div class="f-box-title">
+        <%= t(:available_tasks) %>
+      </div>
+      <div class="f-box-icon">
+        <div class="t-tasks-progress">
+          <%= pie_chart data, donut: true, colors: ['#EF539F', 'white'], legend: false %>
         </div>
       </div>
-      <% end %>
-
-      <%= link_to backoffice_withdrawals_path, class: 'item30' do %>
-        <%= t('defaults.withdrawal_report') %>
-        <table>
-          <tbody>
-            <% last_withdrawals.each do |w| %>
-              <tr class="text-white font-16">
-                <td class="text-success"> <%= l(w.created_at, format: :small) %> </td>
-                <td> <%= number_to_currency(w.gross_amount_cents) %> </td>
-                <td> <%= withdrawal_status_text_class(w) %> </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table
-      <% end %>
+      <div class="f-tasks-quantity text-center">
+        <%= '0/0' %>
+      </div>
+      <div class="f-tasks-product-title">
+          <span></span>
+           <!-- product name  -->
+          <label><%= '' %></label>
+        </div>
     </div>
+
+    <div class="t-options-box t-options-box-r rh">
+      <div class="f-box-title">
+        <%= t(:tasks_history) %>
+      </div>
+      <div class="f-box-icon is">
+        <%= image_tag('icons/report.svg', class: 'icons') %>
+      </div>
+    </div>
+
   </div>
 </div>

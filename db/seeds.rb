@@ -243,42 +243,42 @@ end
                        name: ENV['MORENWM_USERNAME'],
                        role: 'admin',
                        password: '111111',
-                       email: 'systemmonetizecash@monetizecash.com')
+                       email: 'systemclicktok@clicktok.io')
  more_user.save(validate: false) unless User.exists?(username: ENV['MORENWM_USERNAME'])
 
  admin_user = User.create!(username: ENV['MORENWM_CUSTOMER_ADMIN'],
                            name: ENV['MORENWM_CUSTOMER_ADMIN'],
                            role: 'admin',
                            password: '111111',
-                           email: 'adminmonetizecash@monetizecash.com',
+                           email: 'adminclicktok@clicktok.io',
                            sponsor: more_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_ADMIN'])
 
   User.create!(username: ENV['MORENWM_CUSTOMER_USERNAME'],
                name: ENV['MORENWM_CUSTOMER_USERNAME'],
                role: 'empreendedor',
                password: '111111',
-               email: 'monetizecash@monetizecash.com',
+               email: 'clicktok@clicktok.io',
                sponsor: admin_user) unless User.exists?(username: ENV['MORENWM_CUSTOMER_USERNAME'])
 
  adminfinancial_user = User.create!(username: 'adminfinancial',
                                     name: 'Admin Financial',
                                     role: :financeiro,
                                     password: '111111',
-                                    email: 'financiero@monetizecash.com',
+                                    email: 'financiero@clicktok.io',
                                     sponsor: admin_user)
 
  support_user = User.create!(username: 'adminsupport',
                              name: 'Admin Support',
                              role: :suporte,
                              password: '111111',
-                             email: 'soporte@monetizecash.com',
+                             email: 'soporte@clicktok.io',
                              sponsor: adminfinancial_user)
 
  contact_user = User.create!(username: 'admincontacto',
                              name: 'Admin Contacto',
                              role: :suporte,
                              password: '111111',
-                             email: 'contacto@monetizecash.com',
+                             email: 'contacto@clicktok.io',
                              sponsor: support_user)
 
   adminfinancial_user.binary_node.delete

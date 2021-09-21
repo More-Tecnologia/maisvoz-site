@@ -1633,3 +1633,4 @@ We will send a new e-mail as soon as the transaction is complete.'
   payment_method: Payment method
   pix: PIX
   filter: Filter
+  new_phone: New phone

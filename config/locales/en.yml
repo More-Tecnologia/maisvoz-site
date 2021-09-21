@@ -1624,4 +1624,8 @@ We will send a new e-mail as soon as the transaction is complete.'
   search: Search
   guest: Guest
   buy: Buy
-  tasks_per_day: Task Day Nº 
+  tasks_per_day: Task Day Nº
+  tasks_history: Task history
+  available_tasks: Available Tasks
+  complete: Complete
+  available: Available

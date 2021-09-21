@@ -1,40 +1,38 @@
-<div class="row">
-  <div class="col-sm-12" id="top-bar">
-    <div class="col-sm-6">
-      <ul class="top-bar-list">
-        <li class="nav-item dropdown">
-          
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Categoria>
-            Categorias
-          </a>
-          <i class="balloon-arrow"></i>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li>
-          <a href="">Oferta do dia</a>
-          
-        </li>
-        <li>
-          <a href="">Melhores avaliados</a>
-          
-        </li>
-      </ul>
-    </div>
+<%= stylesheet_link_tag 'click-tok-theme/store' %>
 
-  </div>
+<div class="products-list">
+  <% @products.each do |product| %>
+      <div class="item <%= product.id.odd? ? 'f-options-box-r': 'f-options-box-l' %>">
+        <div class="box" style='background-color: <%= product.details %>'>
+          <div class="product-title">
+             <%= product.name %>
+          </div>
+
+          <div class="product-task">
+            <%= t(:tasks_per_day) %>
+            <span class="product-task-amount"> <%= product.grace_period %></span>
+          </div>
+
+          <div class="product-desc">
+            <%= t(:earnings_by_campaign) %>
+            <span class="product-task-amount">
+              <%= product.grace_period %>
+            </span>
+          </div>
+
+          <div class="product-price">
+            <span><%= number_to_currency product.price %></span>
+          </div>
+        </div>
+
+        <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
+                     method: :post do %>
+           <div class="buy">
+             <button>
+               <%= t(:buy) %>
+             </button>
+           </div>
+        <% end %>
+      </div>
+    <% end %>
 </div>
-<section class="container">
-  <div class="row">
-    <%= render @products %>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= paginate @products %>
-    </div>
-  </div>
-</section>

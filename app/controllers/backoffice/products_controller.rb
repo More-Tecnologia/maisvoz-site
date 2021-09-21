@@ -4,13 +4,7 @@ module Backoffice
     before_action :redirect_back_if_deposit_product, only: :show
 
     def index
-      @q = Product.ransack(params[:q])
-      @products = @q.result
-                    .with_attached_main_photo
-                    .active
-                    .detached
-                    .order(:price_cents)
-                    .page(params[:page])
+      @products = Product.active
     end
 
     def show

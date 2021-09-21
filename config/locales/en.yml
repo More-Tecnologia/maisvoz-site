@@ -1632,3 +1632,4 @@ We will send a new e-mail as soon as the transaction is complete.'
   n_of_campaign: Nº of campaigns
   payment_method: Payment method
   pix: PIX
+  filter: Filter

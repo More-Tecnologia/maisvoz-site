@@ -1,5 +1,4 @@
 class NewRegistrationForm < Form
-
   attribute :sponsor_username
   attribute :sponsor
   attribute :username
@@ -71,23 +70,24 @@ class NewRegistrationForm < Form
   private
 
   def normalize_username
-    if username.present?
-      self.username = username.gsub(/\s+/, '').downcase
-    end
+    self.username = username.to_s.gsub(/\D+/, '').downcase if username.present?
   end
 
   def sponsor_exists
     return if sponsor.present?
+
     errors.add(:sponsor_username, :invalid)
   end
 
   def username_is_unique
     return unless User.where('LOWER(username) = ?', username).any?
+
     errors.add(:username, :taken)
   end
 
   def email_is_unique
     return unless User.where(email: email).any?
+
     errors.add(:email, I18n.t('activemodel.errors.messages.taken'))
   end
 
@@ -112,5 +112,4 @@ class NewRegistrationForm < Form
     errors.add(:document_cnpj,
                I18n.t('activemodel.errors.messages.taken')) if user_exists
   end
-
 end

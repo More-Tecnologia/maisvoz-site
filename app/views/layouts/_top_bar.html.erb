@@ -12,7 +12,6 @@
       </div>
     </div>
   </div>
-
   <div class="header-container align-center">
     <div class="user-details">
       <div class="user-avatar">
@@ -21,10 +20,9 @@
           <%= t(:hello) %>, <%= current_user.name %>
         </span>
       </div>
-
       <div class="link-share">
         <a href="#"
-           sponsor-link="<%= new_user_registration_url(sponsor: current_user.username) %>"
+           sponsor-link="<%= new_user_registration_url(token: current_user.token) %>"
            id="sponsor-link"
            title='<%= t(:copied_sponsor_link) %>'
            message='<%= t(:copied_sponsor_link_message) %>'>

@@ -202,6 +202,7 @@ class User < ApplicationRecord
   scope :with_children_pool_point_balance, -> { where('children_pool_trading_balance > 0') }
 
   before_create :assign_initial_type
+  before_create :assign_token
 
   after_create :ensure_initial_career_trail
   after_create :touch_unilevel_node
@@ -610,5 +611,9 @@ class User < ApplicationRecord
 
   def update_user_type
     Types::QualifierService.call(user: self)
+  end
+
+  def assign_token
+    self.token = SecureRandom.hex if self.token.blank?
   end
 end

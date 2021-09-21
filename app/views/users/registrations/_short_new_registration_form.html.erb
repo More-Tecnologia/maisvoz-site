@@ -1,20 +1,21 @@
 <%= stylesheet_link_tag 'click-tok-theme/short_registration' %>
 
-<%= simple_form_for(@form, as: resource_name, url: registration_path(resource_name), class: 'form-horizontal m-t-20', validate: true) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(@form, as: resource_name, url: registration_path(resource_name), class: 'form-horizontal m-t-20') do |f| %>
+  <%= f.object.errors.full_messages.join(', ') %>
   <div class="credentials-box">
     <%= f.hidden_field :role %>
     <%= f.hidden_field :registration_type %>
     <%= f.hidden_field :g_recaptcha_response %>
+    <%= f.hidden_field :token %>
     <div class="login-fields">
       <div class="field-icon">
-        <%= image_tag('icons/sponsor.svg', alt: t(:sponsor) ) %>
+        <%= image_tag('icons/sponsor.svg', alt: t(:sponsor)) %>
       </div>
-      <% if @form.sponsor_username && params[:sponsor].present? %>
-        <%= f.input_field :sponsor_username, autofocus: true, readonly: true, class: "input-description", placeholder: t(:sponsor) %>
-      <% else %>
-        <%= f.input_field :sponsor_username, autofocus: true, class: "input-description", placeholder: t(:sponsor) %>
-      <% end %>
+      <%= f.input_field :sponsor_username, autofocus: true,
+                                           class: "input-description",
+                                           placeholder: t(:sponsor),
+                                           readonly: @form.token.present?,
+                                           value: @form.token.present? ? @form.sponsor.try(:username).to_s.gsub(/.{5}$/, '*****') : @form.sponsor_username %>
     </div>
     <div class="login-fields">
       <div class="field-icon">

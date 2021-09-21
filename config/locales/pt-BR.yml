@@ -1606,7 +1606,7 @@ pt-BR:
   sponsor: Patrocinador
   bill: Faturar
   bill_order: Faturar Pedido
-  checkout: Checkout
+  checkout: Finalizar compra
   approve_without_bonification: Aprovar sem bonificação
   payment_type: Método de Pagamento
   payment_types: Métodos de Pagamento
@@ -1650,3 +1650,6 @@ pt-BR:
   available_tasks: Tarefas Disponiveis
   complete: Completas
   available: Disponiveis
+  n_of_campaign: N de campanhas
+  payment_method: Forma de pagamento
+  pix: PIX

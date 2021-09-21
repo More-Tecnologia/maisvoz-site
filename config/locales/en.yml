@@ -1629,3 +1629,6 @@ We will send a new e-mail as soon as the transaction is complete.'
   available_tasks: Available Tasks
   complete: Complete
   available: Available
+  n_of_campaign: Nº of campaigns
+  payment_method: Payment method
+  pix: PIX

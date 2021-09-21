@@ -19,15 +19,11 @@
   <div id="image-slider" class="splide">
   	<div class="splide__track">
   		<ul class="splide__list">
-  			<li class="splide__slide">
-  				<%= image_tag('bg-home.jpg') %>
-  			</li>
-  			<li class="splide__slide">
-  				<%= image_tag('bg-home.jpg') %>
-  			</li>
-  			<li class="splide__slide">
-  				<%= image_tag('bg-home.jpg') %>
-  			</li>
+        <% Banner.find_each do |banner| %>
+    			<li class="splide__slide">
+    				<%= image_tag(banner.image_path) %>
+    			</li>
+  			<% end %>
   		</ul>
   	</div>
     <div class="t-tasks-gallery-buy-button">

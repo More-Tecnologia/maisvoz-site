@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     if (params[:bypass] == 'true' && params[:pass] == 'plus-ultra') || ENV['UPTIME'] == 'running'
       build_resource({})
-      @form = build_registration_form(sponsor_username: params[:sponsor])
+      @form = build_registration_form(token: params[:token])
     else
       redirect_to maintenances_path
     end
@@ -20,8 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # super
     @form = build_registration_form(params[:user])
+    valid_form = @form.valid?
     build_resource(@form.attributes.except(:sponsor_username, :role, :contract, :g_recaptcha_response))
-    if @form.valid? && resource.save
+    if valid_form && resource.save
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)

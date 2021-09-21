@@ -1,0 +1,124 @@
+.image-gallery-slide .image-gallery-image {
+    width: 100%;
+    height: 170px !important;
+    object-fit: initial;
+}
+
+.t-tasks-galery-banner {
+    margin-top: 10px;
+    height: 175px;
+    z-index:9999999;
+    position:relative;
+}
+
+.t-tasks-gallery-buy-button {
+    position:absolute;
+    right:20px;
+    bottom:15px;
+}
+
+.t-tasks-gallery-buy-button button {
+    font-size: 8pt;
+    color: white;
+    width: 90px;
+    height: 24px;
+    background-color: #643D8F;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.t-tasks-progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+}
+
+.rh {
+    height: initial !important;
+    height: 16rem !important;
+}
+
+.f-tasks-quantity {
+    font-size: 14px;
+    color: #373737;
+}
+
+.f-tasks-product-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.f-tasks-product-title span {
+    display: block;
+    border: solid #EF539F;
+    width: 5px;
+    height: 2px;
+    border-radius: 50%;
+}
+
+
+.f-tasks-product-title label {
+    font-size: 12px;
+    color: #223E6D;
+    margin-left: 5px;
+}
+
+.is img{
+    width: 45px;
+}
+
+.mt {
+    margin-top: 0px !important;
+}
+
+.t-options-box {
+    border: 1px solid #00000029;
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    height: 10rem;
+    width: 46%;
+    margin-top: 3rem;
+    background-color: #ffffff;
+}
+
+.t-options-box-r {
+    margin-left: 4%;
+}
+
+.t-options-box-l {
+    margin-right: 4%;
+}
+
+.page {
+    padding: 3rem;
+}
+
+.f-box-title {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    font-size: 14px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #643D8F;
+    min-height: 3rem;
+}
+
+.f-box-icon {
+    height: 10rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

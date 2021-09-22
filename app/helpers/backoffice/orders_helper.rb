@@ -81,5 +81,12 @@ module Backoffice
     def payment_type_badge(order)
       content_tag :span, order.payment_type, class: payment_type_badge_class(order)
     end
+
+    def order_status_style_class(order)
+      { pending_payment: '',
+        processing: 'task-history-process',
+        completed: 'task-history-sucess',
+        expired: '' }[order.status.to_sym]
+    end
   end
 end

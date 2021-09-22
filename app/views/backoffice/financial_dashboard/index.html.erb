@@ -57,7 +57,9 @@
           <%= t(:my_wallet) %>
         </div>
         <div class="f-box-icon">
-          <%= image_tag 'icons/wallet.svg' %>
+          <%= link_to edit_backoffice_bank_account_path(current_user) do %>
+            <%= image_tag 'icons/wallet.svg' %>
+          <% end %>
         </div>
       </div>
     </div>

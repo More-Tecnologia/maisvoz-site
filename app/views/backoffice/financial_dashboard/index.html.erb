@@ -13,7 +13,9 @@
     </div>
 
     <div class="f-withdraw-area">
-      <%= t(:withdrawal) %>
+      <%= link_to new_backoffice_withdrawal_path do %>
+        <%= t(:withdrawal) %>
+      <% end %>
     </div>
 
     <div class="products-list">
@@ -22,7 +24,9 @@
           <%= t(:withdrawal_report) %>
         </div>
         <div class="f-box-icon">
-          <%= image_tag 'icons/withdrawal.svg' %>
+          <%= link_to backoffice_withdrawals_path do %>
+            <%= image_tag 'icons/withdrawal.svg' %>
+          <% end %>
         </div>
       </div>
 

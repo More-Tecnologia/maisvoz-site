@@ -42,6 +42,10 @@
     cursor: pointer;
 }
 
+.f-withdraw-area a {
+  color: white;
+}
+
 .f-options-box {
     border: 1px solid #000029;
     border-radius: 12px;

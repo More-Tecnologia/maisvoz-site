@@ -67,9 +67,10 @@
 
 .wr-amount {
     color: #373737 !important;
-    font-weight: bold;
     display: flex;
+    font-weight: bold;
     justify-content: center;
+    margin-top: 0.5rem;
 }
 
 .wr-title {
@@ -80,8 +81,9 @@
     display: flex;
     justify-content: space-between;
 }
-.is-page-title span{
+
+.is-page-title span {
     font-weight: bold;
-    font-size: 10pt;
+    font-size: 1.5rem;
     color: #373737;
 }

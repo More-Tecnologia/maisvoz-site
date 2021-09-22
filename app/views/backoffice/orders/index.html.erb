@@ -1,117 +1,39 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
 
-<div class="page" style="display: none;">
+<div class="page">
   <div class="is-page-title">
     <span class="title">
       <%= t('defaults.my_orders') %>
     </span>
     <span class="title">
       <%= t(:filter) %>
-      >
     </span>
   </div>
-  <div class="th-history-list">
-    <div class="th-history-task-title wr-title">
-      <span class="th-history-task-id">
-        ID:0001s
-      </span>
-      17 Out
-    </div>
 
-    <div class="th-history-task-status">
-      <div class="th-history-task-date">
-        17/08/2021
+  <% @orders.each do |order| %>
+    <div class="th-history-list">
+      <div class="th-history-task-title wr-title">
+        <span class="th-history-task-id">
+          <%= order.hashid %>
+        </span>
+        <%= order.created_at.strftime('%d %b') %>
       </div>
-      <div class="wr-align">
-        <div class="th-history-task-status-action">
-          Processando
+      <div class="th-history-task-status">
+        <div class="th-history-task-date">
+          <%= order.created_at.strftime('%d/%m/%y') %>
         </div>
-
-        <div class="wr-amount">
-          $100
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="th-history-list">
-    <% @orders.each do |order| %>
-    <div class="th-history-task-title wr-title">
-      <span class="th-history-task-id">
-        <%= order.hashid %>
-      </span>
-      <%= order.created_at.strftime('%d %b') %>
-    </div>
-
-    <div class="th-history-task-status">
-      <div class="th-history-task-date">
-        <%= order.created_at.strftime('%d/%m/%y') %>
-      </div>
-      <div class="wr-align">
-        <div class="th-history-task-status-action">
-          <%= order.status %>
-        </div>
-
-        <div class="wr-amount">
-          <%= number_to_currency order.total %>
+        <div class="wr-align">
+          <div class="th-history-task-status-action <%= order_status_style_class(order) %>">
+            <%= t(order.status) %>
+          </div>
+          <div class="wr-amount">
+            <%= number_to_currency order.total %>
+          </div>
         </div>
       </div>
     </div>
-    <% end %>
-  </div>
+  <% end %>
 
-  <div class="th-history-list">
-    <div class="th-history-task-title wr-title">
-      <span class="th-history-task-id">
-        ID:0001s
-      </span>
-      17 Out
-    </div>
-
-    <div class="th-history-task-status">
-      <div class="th-history-task-date">
-        17/08/2021
-      </div>
-      <div class="wr-align">
-        <div class="th-history-task-status-action task-history-process">
-          Processando
-        </div>
-
-        <div class="wr-amount">
-          $100
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="th-history-list">
-    <div class="th-history-task-title wr-title">
-      <span class="th-history-task-id">
-        ID:0001s
-      </span>
-      17 Out
-    </div>
-
-    <div class="th-history-task-status">
-      <div class="th-history-task-date">
-        17/08/2021
-      </div>
-      <div class="wr-align">
-        <div class="th-history-task-status-action task-history-sucess">
-          Aprovado
-        </div>
-
-        <div class="wr-amount">
-          $50
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="t">
-
-  </div>
-  <div class="t">
-
-  </div>
+  <div class="t"></div>
+  <div class="t"></div>
 </div>

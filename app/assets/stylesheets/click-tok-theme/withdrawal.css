@@ -1,0 +1,75 @@
+.w-withdraw-area {
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    height: 60px;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding-left: 20px;
+    padding-right: 25px;
+    background-color: white;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.25), 0 3px 10px rgba(0, 0, 0, 0.22);
+}
+
+.w-withdraw-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-left: 20px;
+    color: grey;
+}
+
+.w-withdraw-input input{
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    font-size: 12pt;
+    color: #c3c3c3;
+    font-weight: bold;
+}
+
+.w-withdraw-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.w-withdraw-icon img {
+    width: 30px;
+}
+
+.w-receivement-method-key {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.w-payment-key-edit {
+    display: flex;
+    justify-content: flex-end;
+    width: 20%;
+}
+
+.w-payment-key-value {
+    width: 100%;
+}
+
+.w-payment-key-value input {
+    border: none;
+    background-color: transparent;
+    margin-left: 20px;
+}
+
+.w-payment-key-icon img {
+    width: 20px;
+}
+
+.w-payment-key-edit img {
+    cursor: pointer;
+    width: 25px;
+}
+
+.x {
+    height: 5px;
+}

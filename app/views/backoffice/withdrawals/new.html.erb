@@ -1,57 +1,85 @@
-<div class="row">
-  <div class="col-sm-12 m-b-23">
-    <h4 class="page-title"><%= t('.title') %></h4>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class=" col-sm-6">
-      <div class="panel panel-default panel-border">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= t('.available_balance') %></h3>
-        </div>
-        <div class="panel-body">
-          <ul class="list-unstyled w-list">
-            <li>
-              <b><%= t('.available_balance') %>:</b>
-              <%= number_to_currency(current_user.available_balance) %>
-            </li>
-            <li>
-              <b><%= t('defaults.withdrawal_fee') %>:</b>
-              <%= number_to_percentage(ENV['WITHDRAWAL_FEE'].to_f, precision: 2) %>
-            </li>
-          </ul>
-        </div>
-      </div>
+<%= stylesheet_link_tag 'click-tok-theme/withdrawal' %>
+<%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
+<%= stylesheet_link_tag 'click-tok-theme/cart' %>
+
+<div class="page">
+  <div class="f-balance-area">
+    <div class="balance-title">
+      <%= t(:available_balance) %>
     </div>
-    <div class="col-sm-6">
-      <div class="panel panel-default panel-border">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= User.human_attribute_name(:wallet_address) %></h3>
-        </div>
-        <div class="panel-body">
-          <ul class="list-unstyled w-list">
-            <li>
-              <b><%= User.human_attribute_name(:wallet_address) %>:</b>
-              <%= link_to current_user.wallet_address, edit_backoffice_bank_account_path(current_user) %>
-            </li>
-            <p class="text-muted page-title-alt"><%= t('backoffice.bank_accounts.edit.subtitle') %></p>
-          </ul>
-        </div>
-      </div>
+
+    <div class="balance-value">
+      <%= number_to_currency(current_user.available_balance) %>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card-box">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="p-20">
-            <%= render partial: "form_pf" %>
-          </div>
-        </div>
+  <%= simple_form_for(@form, url: backoffice_withdrawals_path,
+                             method: :post,
+                             html: { class: 'form-horizontal' }) do |f| %>
+    <div class="w-withdraw-area">
+      <div class="w-withdraw-icon">
+        <%= image_tag('icons/withdrawal.svg') %>
+      </div>
+      <div class="w-withdraw-input">
+        <%= f.input_field :amount, placeholder: t(:withdrawal_value),
+                               value: @initial_amount,
+                               min: @form.withdrawal_minimum,
+                               max: @form.withdrawal_maximum,
+                               data: { input: true,
+                                       autonumeric: { aSep: '.', aDec: ',' } } %>
       </div>
     </div>
+    <div class="w-withdraw-area">
+      <div class="w-withdraw-icon">
+        <%= image_tag('icons/locker.svg') %>
+      </div>
+      <div class="w-withdraw-input">
+        <%= f.password_field :password, placeholder: t(:current_password) %>
+      </div>
+    </div>
+    <div class="ch-purchase-desc">
+      <div>
+        <label>Valor mínimo para saque</label>
+        <span><%= number_to_currency ENV['WITHDRAWAL_MINIMUM_VALUE'] %></span>
+      </div>
+      <div>
+        <label><%= t(:fee) %></label>
+        <span><%= number_to_percentage(ENV['WITHDRAWAL_FEE'].to_f, precision: 2) %></span>
+      </div>
+    </div>
+    <div class="division">
+      <div></div>
+    </div>
+    <div class="page-title">
+      <%= t(:select_receive_form) %>
+    </div>
+    <div class="ch-payment-buttons-area">
+      <button>
+        <%= image_tag('icons/pix.svg', class: 'icons') %>
+        <%= t(:pix) %>
+      </button>
+
+      <button >
+        <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
+        <%= t(:btc) %>
+      </button>
+    </div>
+    <div class="x">
+    </div>
+
+    <div class="ch-buy-action-button">
+      <%= f.button :button, t('defaults.new_withdraw'),
+                             data: { disable_with: t('helpers.save_with_disable') }, class: 'login' %>
+    </div>
+  <% end %>
+  <div class="t">
+  </div>
+  <div class="t">
   </div>
 </div>
+
+
+  <div data-withdraw-simulator="true" data-fee="<%= ENV['WITHDRAWAL_FEE'].to_f %>"
+                                      data-irpf="<%= @form.irpf %>"
+                                      data-inss="<%= @form.inss %>"
+                                      data-registration-type="<%= @form.user.registration_type %>">
+  </div>

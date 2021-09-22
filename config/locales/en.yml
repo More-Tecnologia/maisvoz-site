@@ -1636,3 +1636,5 @@ We will send a new e-mail as soon as the transaction is complete.'
   new_phone: New phone
   withdrawal_value: Enter the withdrawal amount
   select_receive_form: Select the form of receipt
+  earnings_report: Earnings report
+  by: by

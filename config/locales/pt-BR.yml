@@ -1650,10 +1650,12 @@ pt-BR:
   available_tasks: Tarefas Disponiveis
   complete: Completas
   available: Disponiveis
-  n_of_campaign: N de campanhas
+  n_of_campaign: Nº de campanhas
   payment_method: Forma de pagamento
   pix: PIX
   filter: Filtro
   new_phone: Novo telefone
   withdrawal_value: Digite o valor do saque
   select_receive_form: Selecione a forma de recebimento
+  earnings_report: Relatório de ganhos
+  by: por

@@ -5,8 +5,7 @@ module Backoffice
 
     def update
       @user = current_user
-      if valid_params[:wallet_address].present?
-        current_user.update!(wallet_address: valid_params[:wallet_address])
+      if current_user.update!(valid_params)
         redirect_to edit_backoffice_bank_account_path, alert: t('.success')
       else
         render :edit
@@ -17,8 +16,7 @@ module Backoffice
 
     def valid_params
       params.require(:user)
-            .permit(:bank_code, :bank_account_type, :account_number, :account_digit,
-                    :agency_digit, :account_number, :wallet_address)
+            .permit(:wallet_address, :pix_wallet)
     end
 
   end

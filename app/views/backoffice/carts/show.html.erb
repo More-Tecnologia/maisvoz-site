@@ -1,4 +1,8 @@
+<%= stylesheet_link_tag 'click-tok-theme/withdrawal' %>
+<%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
+
+<%= javascript_include_tag 'click-tok-theme/bank_account' %>
 
 <%= form_with model: @checkout_form, url: backoffice_cart_path, method: :post do |f| %>
   <% order_item = current_order.order_items.last %>
@@ -19,11 +23,11 @@
     <div class="ch-purchase-desc">
       <div>
         <label><%= t(:n_of_campaign) %></label>
-        <span><%= '0' %></span>
+        <span><%= order_item.product.task_per_day %></span>
       </div>
       <div>
         <label><%= t(:earnings_by_campaign) %></label>
-        <span><%= number_to_currency 0 %></span>
+        <span><%= number_to_currency order_item.product.earnings_per_campaign %></span>
       </div>
     </div>
 
@@ -34,18 +38,35 @@
       <%= t(:payment_method) %>
     </div>
 
-    <div class="ch-payment-buttons-area">
-      <button>
-        <%= image_tag('icons/pix.svg', class: 'icons') %>
-        <%= t(:pix) %>
-      </button>
+      <div class="ch-payment-buttons-area">
+        <div class="btn" onclick="showPixInput()">
+          <%= image_tag('icons/pix.svg', class: 'icons') %>
+          <%= t(:pix) %>
+        </div>
 
-      <button >
-        <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
-        <%= t(:btc) %>
-      </button>
-    </div>
-
+        <div class="btn" onclick="showBitCoinInput()">
+          <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
+          <%= t(:btc) %>
+        </div>
+      </div>
+        <div class="w-withdraw-area" id="pix_input">
+          <div class="w-withdraw-icon">
+            <%= image_tag('icons/pix-p.svg', class: 'icons') %>
+          </div>
+          <div class="w-withdraw-input">
+            <input type="text" name="pix_wallet" id="pix_wallet" placeholder="<%= t(:pix) %>" value=<%= current_user.pix_wallet %>>
+          </div>
+        </div>
+        <div class="w-withdraw-area" id="bitcoin_input" style="display: none;">
+          <div class="w-withdraw-icon">
+            <%= image_tag('icons/bitcoin-p.svg', class: 'icons') %>
+          </div>
+          <div class="w-withdraw-input">
+            <input type="text" name="wallet_address" id="wallet_address" placeholder="<%= t(:btc) %>" value=<%= current_user.wallet_address %>>
+          </div>
+        </div>
+        <input type="hidden" name="payment_method" id="payment_method" value='pix'>
+      </div>
     <div class="ch-buy-action-button">
       <%= f.submit t(:checkout), class: 'login', data: { disable_with: disable_spinner.html_safe } %>
     </div>

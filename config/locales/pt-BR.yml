@@ -1659,3 +1659,5 @@ pt-BR:
   select_receive_form: Selecione a forma de recebimento
   earnings_report: Relatório de ganhos
   by: por
+  no_address_input: "O endereço do método de pagamento %{payment_type_address} não pode ficar em branco"
+  no_payment_method_selected: Nenhum método de pagamento selecionado

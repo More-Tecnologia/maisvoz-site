@@ -1,5 +1,11 @@
 module Backoffice
   class CartsController < BackofficeController
+    PAYMENT_METHOD = {
+      'bitcoin' => 'wallet_address',
+      'pix' => 'pix_wallet'
+    }
+    before_action :ensure_wallet_addresses, only: :create
+
     def show
       @checkout_form = CheckoutForm.new(order: current_order, user: current_user)
     end
@@ -17,6 +23,28 @@ module Backoffice
     end
 
     private
+
+    def payment_type_address
+      PAYMENT_METHOD[params['payment_method']]
+    end
+
+    def payment_address
+      params[payment_type_address]
+    end
+
+    def ensure_wallet_addresses
+      raise I18n.t(:no_payment_method_selected) if params['payment_method'].blank?
+      raise I18n.t(:no_address_input, payment_type_address: params['payment_method'].capitalize) if payment_address.blank?
+
+      update_wallet_addresses
+    rescue StandardError => error
+      flash[:error] = error.message
+      render :show
+    end
+
+    def update_wallet_addresses
+      current_user.update(payment_type_address => payment_address)
+    end
 
     def valid_params
       params.permit(:order, :shipping_address, :custom_shipping_address_postal_code,

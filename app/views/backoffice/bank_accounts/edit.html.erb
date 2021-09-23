@@ -2,37 +2,42 @@
 <%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
 
+<%= javascript_include_tag 'click-tok-theme/bank_account' %>
+
 <div class="page">
-  <div class="ch-payment-buttons-area">
-    <button>
-      <%= image_tag('icons/pix.svg', class: 'icons') %>
-      <%= t(:pix) %>
-    </button>
+  <%= simple_form_for current_user, url: backoffice_bank_account_path, method: :put do |f| %>
+    <div class="ch-payment-buttons-area">
+      <div class="btn" onclick="showPixInput()">
+        <%= image_tag('icons/pix.svg', class: 'icons') %>
+        <%= t(:pix) %>
+      </div>
 
-    <button >
-      <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
-      <%= t(:btc) %>
-    </button>
-  </div>
-  <div class="w-withdraw-area">
-    <div class="w-withdraw-icon">
-      <%= image_tag('icons/pix-p.svg', class: 'icons') %>
+      <div class="btn" onclick="showBitCoinInput()">
+        <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
+        <%= t(:btc) %>
+      </div>
     </div>
-    <div class="w-withdraw-input">
-
+    <div class="w-withdraw-area" id="pix_input">
+      <div class="w-withdraw-icon">
+        <%= image_tag('icons/pix-p.svg', class: 'icons') %>
+      </div>
+      <div class="w-withdraw-input">
+        <%= f.input_field :pix_wallet %>
+      </div>
     </div>
-  </div>
-  <div class="t"></div>
-  <div class="ch-buy-action-button">
-    <button
-      class="login"
-    >Salvar
-    </button>
-  </div>
-  <div class="t">
-
-  </div>
-  <div class="t">
-
-  </div>
+    <div class="w-withdraw-area" id="bitcoin_input" style="display: none;">
+      <div class="w-withdraw-icon">
+        <%= image_tag('icons/bitcoin-p.svg', class: 'icons') %>
+      </div>
+      <div class="w-withdraw-input">
+        <%= f.input_field :wallet_address %>
+      </div>
+    </div>
+    <div class="t"></div>
+    <div class="ch-buy-action-button">
+      <%= f.submit t('save'), class: 'login' %>
+    </div>
+    <div class="t"></div>
+    <div class="t"></div>
+  <% end %>
 </div>

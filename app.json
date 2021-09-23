@@ -1,0 +1,9 @@
+{
+ "name": "backoffice",
+ "description": "postdeploy scripts",
+ "scripts": {
+   "dokku": {
+     "postdeploy": "bundle exec rake db:migrate && rails product_reason_scores:create"
+   }
+ }
+}

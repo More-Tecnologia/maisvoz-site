@@ -230,7 +230,7 @@ pt-BR:
     career_kind: Carreira
     old_career: Carreira Antiga
     new_career: Nova Carreira
-    available_balance: Saldo Disponível
+    available_balance: Saldo
     blocked_balance: Saldo Bloqueado
     left_pv: PV Esquerdo
     right_pv: PV Direito
@@ -390,7 +390,7 @@ pt-BR:
         title: Meus Saques
         unverified_account: Para solicitar saques sua conta precisa ser verificada.
       new:
-        available_balance: Saldo Disponível
+        available_balance: Saldo
         title: Novo Saque
         unverified_account: Para solicitar saques sua conta precisa ser verificada.
       form:
@@ -623,7 +623,7 @@ pt-BR:
     withdrawals:
       new:
         title: 'Novo saque'
-        available_balance: 'Saldo disponível'
+        available_balance: Saldo
       index:
         title: 'Meu histórico de saques'
       create:
@@ -950,6 +950,9 @@ pt-BR:
     attendant: Atendente
     no_data: Sem Registros
     loading: CARREGANDO
+    generation_count: 'até %{generation_count}º geração'
+    earnings_until: 'Até %{amount}'
+    withdrawal_minimum: Valor mínimo para saque
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:
@@ -1490,7 +1493,7 @@ pt-BR:
   make_default: 'Tornar padrão'
   account_code: 'Código da conta'
   balance: Saldo
-  available_balance: Saldo disponível
+  available_balance: Saldo
   blocked_balance: Saldo bloqueado
   binary_affiliates_count: Total de afiliados na rede binária
   binary_affiliates_left_count: Rede binária esquerda
@@ -1634,8 +1637,8 @@ pt-BR:
   confirm_delete_description: 'Tem certeza que deseja deletar esta descrição?'
   share: 'Compartilhar'
   most_sold: 'Mais vendidos'
-  withdrawal_report: Relátorio de saque
-  earnings_report: Relatório de ganhos
+  withdrawal_report: Saques
+  earnings_report: Ganhos
   my_wallet: Minha carteira
   my: Minha
   community: Comunidade
@@ -1658,7 +1661,7 @@ pt-BR:
   new_phone: Novo telefone
   withdrawal_value: Digite o valor do saque
   select_receive_form: Selecione a forma de recebimento
-  earnings_report: Relatório de ganhos
+  earnings_report: Ganhos
   by: por
   no_address_input: "O endereço do método de pagamento %{payment_type_address} não pode ficar em branco"
   no_payment_method_selected: Nenhum método de pagamento selecionado

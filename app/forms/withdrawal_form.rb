@@ -3,6 +3,9 @@ class WithdrawalForm < Form
   attribute :user, User
   attribute :fiscal_document_link
   attribute :fiscal_document_photo
+  attribute :wallet_address
+  attribute :pix_wallet
+  attribute :payment_method
 
   validates :amount, presence: true
   validates :amount, numericality: { greater_than_or_equal_to: proc { |f| f.withdrawal_minimum },

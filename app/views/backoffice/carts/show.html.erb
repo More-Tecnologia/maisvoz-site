@@ -2,6 +2,8 @@
 <%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
 
+<%= javascript_include_tag 'click-tok-theme/cart' %>
+
 <%= form_with model: @checkout_form, url: backoffice_cart_path, method: :post do |f| %>
   <% order_item = current_order.order_items.last %>
   <div>
@@ -32,18 +34,20 @@
     <div class="page-title">
       <%= t(:payment_method) %>
     </div>
-    <div class="ch-payment-buttons-area">
-      <label class="btn payment_method" data-method="pix" for="pix">
-        <%= image_tag('icons/pix.svg', class: 'icons') %>
-        <%= t(:pix) %>
-        <input type="radio" name="payment_method" id="pix" value='pix' style="z-index: -1;">
-      </label>
-      <label class="btn payment_method" data-method="btc" for="btc">
-        <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
-        <%= t(:btc) %>
-        <input type="radio" name="payment_method" id="btc" value='btc' style="z-index: -1;">
-      </label>
-    </div>
+
+      <div class="ch-payment-buttons-area">
+        <div class="btn" onclick="showPixInput()">
+          <%= image_tag('icons/pix.svg', class: 'icons') %>
+          <%= t(:pix) %>
+        </div>
+
+        <div class="btn" onclick="showBitCoinInput()">
+          <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
+          <%= t(:btc) %>
+        </div>
+      </div>
+        <input type="hidden" name="payment_method" id="payment_method" value='pix'>
+      </div>
     <div class="ch-buy-action-button">
       <%= f.submit t(:checkout), class: 'login', data: { disable_with: disable_spinner.html_safe } %>
     </div>

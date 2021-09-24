@@ -1,6 +1,6 @@
 module Backoffice
   class WithdrawalsController < EntrepreneurController
-    before_action :ensure_bank_account_valid
+    before_action :ensure_instance_withdrawal, only: :create
     before_action :validate_password, only: :create
     before_action :ensure_withdrawal, only: %i[edit update]
     before_action :ensure_waiting_status, only: %i[edit update]
@@ -18,7 +18,6 @@ module Backoffice
     end
 
     def create
-      @form = WithdrawalForm.new(valid_params)
       if @form.valid?
         Financial::CreatorWithdrawalService.call({ form: @form }, params[:locale])
         flash[:success] = t('.success')
@@ -37,12 +36,16 @@ module Backoffice
                                                        withdrawal: @withdrawal }, params[:locale])
       flash[:success] = t('.success')
       redirect_to backoffice_withdrawals_path
-    rescue Standard::Error => error
+    rescue StandardError => error
       flash[:error] = error
       render :edit
     end
 
     private
+
+    def ensure_instance_withdrawal
+      @form = WithdrawalForm.new(valid_params)
+    end
 
     def ensure_withdrawal
       @withdrawal = Withdrawal.find_by_hashid(params[:id])
@@ -57,7 +60,8 @@ module Backoffice
 
     def valid_params
       params.require(:withdrawal_form)
-            .permit(:amount, :fiscal_document_link, :fiscal_document_photo)
+            .permit(:amount, :fiscal_document_link, :fiscal_document_photo,
+                    :wallet_address, :pix_wallet, :payment_method)
             .merge(user: current_user)
     end
 

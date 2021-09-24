@@ -1,5 +1,6 @@
 module Backoffice
   class CartsController < BackofficeController
+
     def show
       @checkout_form = CheckoutForm.new(order: current_order, user: current_user)
     end

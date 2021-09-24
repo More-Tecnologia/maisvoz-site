@@ -99,7 +99,7 @@
         </div>
         <div class="f-box-icon pink">
           <% last_order = current_user.orders.paid.last %>
-          <% amount = last_order.products.first.try(:earnings_per_campaign).to_f %>
+          <% amount = last_order.try(:products).try(:first).try(:earnings_per_campaign).to_f %>
           <b><%= t('defaults.earnings_until', amount: number_to_currency(amount, unit: '$', precision: 2)) if last_order %></b>
         </div>
       </div>

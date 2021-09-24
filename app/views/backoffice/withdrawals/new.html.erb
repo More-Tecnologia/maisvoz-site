@@ -3,6 +3,7 @@
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
 
 <%= javascript_include_tag 'click-tok-theme/bank_account' %>
+<%= javascript_include_tag 'click-tok-theme/active-btn-tabs' %>
 
 <div class="page">
   <div class="f-balance-area">
@@ -41,7 +42,7 @@
     </div>
     <div class="ch-purchase-desc">
       <div>
-        <label>Valor mínimo para saque</label>
+        <label></label>
         <span><%= number_to_currency ENV['WITHDRAWAL_MINIMUM_VALUE'] %></span>
       </div>
       <div>
@@ -56,12 +57,12 @@
       <%= t(:select_receive_form) %>
     </div>
     <div class="ch-payment-buttons-area">
-      <div class="btn" onclick="showPixInput()">
+      <div class="btn btn-tab" onclick="showPixInput()">
         <%= image_tag('icons/pix.svg', class: 'icons') %>
         <%= t(:pix) %>
       </div>
 
-      <div class="btn" onclick="showBitCoinInput()">
+      <div class="btn btn-tab" onclick="showBitCoinInput()">
         <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
         <%= t(:btc) %>
       </div>

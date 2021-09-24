@@ -1,47 +1,39 @@
-<!-- Page-Title -->
-<div class="row">
+<%= stylesheet_link_tag 'click-tok-theme/orders' %>
+
+<div class="row" style="margin-bottom: 20px;">
   <div class="col-sm-12 m-b-23">
-    <h4 class="page-title"><%= t('.title') %></h4>
+    <h5 class="page-title"><%= t('.title') %></h5>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card-box">
-      <div class="row">
-        <div class="col-lg-12">
-          <table class="table table-striped table-bordered toggle-circle m-b-0">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th><%= t('attributes.gross_amount') %></th>
-                <th><%= t('withdrawal_fee') %></th>
-                <th><%= t('attributes.net_amount') %></th>
-                <th><%= t('attributes.status') %></th>
-                <th><%= t('attributes.created_at') %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @withdrawals.each do |withdraw| %>
-                <tr>
-                  <th><%= withdraw.hashid %></th>
-                  <th><%= number_to_currency withdraw.gross_amount_cents %></th>
-                  <th><%= number_to_currency (withdraw.gross_amount_cents - withdraw.net_amount_cents) %></th>
-                  <th><%= number_to_currency withdraw.net_amount_cents %></th>
-                  <td><%= withdraw.pretty_status %></td>
-                  <td><%= l withdraw.created_at, format: :long  %></td>
-                </tr>
-              <% end %>
-              <% if @withdrawals.empty? %>
-                <tr>
-                  <td colspan="7" class="text-center"><%= t('.no_data') %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <%= paginate @withdrawals %>
+<section style="padding: 10px;">
+<% @withdrawals.each do |withdrawal| %>
+  <div class="th-history-list">
+    <div class="th-history-task-title wr-title">
+      <span class="th-history-task-id">
+        <%= withdrawal.hashid %>
+      </span>
+      <%= withdrawal.created_at.strftime('%d %b') %>
+    </div>
+    <div class="th-history-task-status">
+      <div class="th-history-task-date">
+        <%= withdrawal.updated_at.strftime('%d/%m/%y') %>
+      </div>
+      <div class="wr-align">
+        <div class="th-history-task-status-action <%= order_status_style_class(withdrawal) %>">
+          <%= t(withdrawal.status) %>
+        </div>
+        <div class="wr-amount">
+          <small class="pink"><%= number_to_currency(-(withdrawal.gross_amount_cents - withdrawal.net_amount_cents), precision: 2) %></small>&nbsp;
+          <span class="purple"><%= number_to_currency(withdrawal.net_amount_cents, precision: 2) %></span>
         </div>
       </div>
     </div>
+  </div>
+<% end %>
+<section
+<div class="row">
+  <div class="col-sm-12">
+    <%= paginate @withdrawals %>
   </div>
 </div>

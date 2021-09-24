@@ -1,6 +1,13 @@
 module Backoffice
   class WithdrawalsController < EntrepreneurController
-    before_action :ensure_bank_account_valid
+
+    PAYMENT_METHOD = {
+      'bitcoin' => 'wallet_address',
+      'pix' => 'pix_wallet'
+    }
+
+    before_action :ensure_instance_withdrawal, only: :create
+    before_action :ensure_payment_method, only: :create
     before_action :validate_password, only: :create
     before_action :ensure_withdrawal, only: %i[edit update]
     before_action :ensure_waiting_status, only: %i[edit update]
@@ -18,7 +25,6 @@ module Backoffice
     end
 
     def create
-      @form = WithdrawalForm.new(valid_params)
       if @form.valid?
         Financial::CreatorWithdrawalService.call({ form: @form }, params[:locale])
         flash[:success] = t('.success')
@@ -37,12 +43,26 @@ module Backoffice
                                                        withdrawal: @withdrawal }, params[:locale])
       flash[:success] = t('.success')
       redirect_to backoffice_withdrawals_path
-    rescue Standard::Error => error
+    rescue StandardError => error
       flash[:error] = error
       render :edit
     end
 
     private
+
+    def ensure_instance_withdrawal
+      @form = WithdrawalForm.new(valid_params)
+    end
+
+    def ensure_payment_method
+      raise I18n.t(:no_payment_method_selected) unless params['payment_method'].in?(%w[pix bitcoin])
+      raise I18n.t(:no_address_input, payment_type_address: params['payment_method'].capitalize) if payment_address.blank?
+
+      update_wallet_addresses
+    rescue StandardError => error
+      flash[:error] = error
+      render :new
+    end
 
     def ensure_withdrawal
       @withdrawal = Withdrawal.find_by_hashid(params[:id])
@@ -84,6 +104,18 @@ module Backoffice
 
       flash[:alert] = t('defaults.errors.withdrawal_pending')
       redirect_to backoffice_withdrawals_path
+    end
+
+    def payment_type_address
+      PAYMENT_METHOD[params['payment_method']]
+    end
+
+    def payment_address
+      params[payment_type_address]
+    end
+
+    def update_wallet_addresses
+      current_user.update(payment_type_address => payment_address)
     end
   end
 end

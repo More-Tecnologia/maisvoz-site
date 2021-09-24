@@ -15,4 +15,22 @@ $(function(){
       'success'
     )
   });
+
+  $('a.copier').click(function(event){
+    event.preventDefault()
+
+    let copiable = $(this).data('copiable')
+    let temp_input = $('<input>');
+
+    $('body').append(temp_input);
+    temp_input.val(copiable).select();
+    document.execCommand('copy');
+    temp_input.remove();
+
+    let target = $($(this).data('target'))
+    target.addClass('opacity-0')
+    setTimeout(function(){
+      target.removeClass('opacity-0')
+    }, 300)
+  });
 });

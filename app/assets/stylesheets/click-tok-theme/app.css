@@ -240,3 +240,31 @@ select:-webkit-autofill:focus {
 .text-center {
     text-align: center;
 }
+
+.text-click {
+  color: #ef539f;
+}
+
+.font-10 {
+  font-size: 10px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.purple {
+  color: #643D8F;
+}
+
+.pink {
+  color: #ef539f;
+}
+
+.btn-purple {
+  background-color: #643D8F;
+}
+
+.text-white {
+  color: #FFF;
+}

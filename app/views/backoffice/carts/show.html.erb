@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
 
-<%= javascript_include_tag 'click-tok-theme/bank_account' %>
+<%= javascript_include_tag 'click-tok-theme/cart' %>
 
 <%= form_with model: @checkout_form, url: backoffice_cart_path, method: :post do |f| %>
   <% order_item = current_order.order_items.last %>
@@ -49,22 +49,6 @@
           <%= t(:btc) %>
         </div>
       </div>
-        <div class="w-withdraw-area" id="pix_input">
-          <div class="w-withdraw-icon">
-            <%= image_tag('icons/pix-p.svg', class: 'icons') %>
-          </div>
-          <div class="w-withdraw-input">
-            <input type="text" name="pix_wallet" id="pix_wallet" placeholder="<%= t(:pix) %>" value=<%= current_user.pix_wallet %>>
-          </div>
-        </div>
-        <div class="w-withdraw-area" id="bitcoin_input" style="display: none;">
-          <div class="w-withdraw-icon">
-            <%= image_tag('icons/bitcoin-p.svg', class: 'icons') %>
-          </div>
-          <div class="w-withdraw-input">
-            <input type="text" name="wallet_address" id="wallet_address" placeholder="<%= t(:btc) %>" value=<%= current_user.wallet_address %>>
-          </div>
-        </div>
         <input type="hidden" name="payment_method" id="payment_method" value='pix'>
       </div>
     <div class="ch-buy-action-button">

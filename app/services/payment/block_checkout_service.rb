@@ -1,69 +1,41 @@
 module Payment
-    class BlockCheckoutService < ApplicationService
-      def call
-        payment_transaction = nil
-        ActiveRecord::Base.transaction do
-          checkout = request_block_checkout_transaction
-          payment_transaction = create_payment_transaction(checkout)
-          order.pending_payment!
-        end
-        payment_transaction
+  class BlockCheckoutService < ApplicationService
+    def call
+      transaction = nil
+      ActiveRecord::Base.transaction do
+        checkout = payment_transaction_request
+        transaction = payment_transaction(checkout)
+        order.update!(status: :pending_payment, payment_type: @payment_method)
       end
+      transaction
+    end
 
-      private
+    private
 
-      attr_accessor :order, :user, :amount
+    attr_accessor :order, :user, :amount
 
-      def initialize(args)
-        @order = args[:order]
-        @user = order.user
-      end
+    def initialize(args)
+      @order = args[:order]
+      @user = @order.user
+      @payment_method = args[:payment_method]
+    end
 
-      def request_block_checkout_transaction
-        response = notify_payment_block
-        raise_error(response) unless success?(response.code)
-        body = JSON.parse(response.body)
-        body['data']
-      end
+    def payment_transaction_request
+      params = { amount: order.total_cents / 100.0,
+                 current_currency: ENV['CURRENT_CURRENCY'],
+                 payment_currency: @payment_method,
+                 name: @user.username,
+                 description: @order.hashid,
+                 payment_method: @payment_method }
 
-      def create_payment_transaction(checkout)
-        PaymentTransaction.create!(order: order,
-                                   amount: amount,
-                                   transaction_id: checkout['transaction_code'],
-                                   wallet_address: checkout['wallet_address'])
-      end
+      Webhooks::PaymentGateway::TransactionCreatorService.call(params)
+    end
 
-      def convert_to_currency_coin(total)
-        currency_exchange_rate = request_currency_exchange_rate
-        total / (currency_exchange_rate.to_f * 100.0)
-      end
-
-      def calculate_amount
-        @amount ||= convert_to_currency_coin(order.total_cents)
-      end
-
-      def request_currency_exchange_rate
-        currency = ENV['CURRENT_CURRENCY']
-        uri = URI("https://api.coinbase.com/v2/prices/spot?currency=#{currency}")
-        response = Net::HTTP.get(uri)
-        data = JSON.parse(response)
-        data['data']['amount']
-      end
-
-      def success?(response_code)
-        response_code.to_s.start_with?('2')
-      end
-
-      def raise_error(response)
-        body = JSON.parse(response.body)
-        raise body['message']
-      end
-
-      def notify_payment_block
-        uri = URI(ENV['PAYMENT_BLOCK_CHECKOUT_URL'])
-        params = "amount=#{calculate_amount}"
-        headers = { Authorization: ENV['PAYMENT_BLOCK_AUTHORIZATION_KEY'] }
-        Net::HTTP.post(uri, params, headers)
-      end
+    def payment_transaction(response)
+      order.create_payment_transaction!(amount: response['amount'],
+                                        transaction_id: response['transaction_code'],
+                                        wallet_address: response['wallet_address'],
+                                        provider_response: response)
     end
   end
+end

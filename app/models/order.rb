@@ -47,7 +47,10 @@ class Order < ApplicationRecord
                        admin: 'admin',
                        voucher: 'voucher',
                        btc: 'btc',
-                       admin_nb: 'admin_nb' }
+                       admin_nb: 'admin_nb',
+                       eth: 'eth',
+                       usdt: 'usdt',
+                       pix: 'pix' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories

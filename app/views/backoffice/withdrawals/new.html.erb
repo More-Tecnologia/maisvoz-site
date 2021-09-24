@@ -71,7 +71,7 @@
           <%= image_tag('icons/pix-p.svg', class: 'icons') %>
         </div>
         <div class="w-withdraw-input">
-          <input type="text" name="pix_wallet" id="pix_wallet" placeholder="<%= t(:pix) %>" value=<%= current_user.pix_wallet %>>
+          <%= f.input_field :pix_wallet, id: "pix_wallet", placeholder: t(:pix), value: current_user.pix_wallet %>
         </div>
       </div>
       <div class="w-withdraw-area" id="bitcoin_input" style="display: none;">
@@ -79,10 +79,10 @@
           <%= image_tag('icons/bitcoin-p.svg', class: 'icons') %>
         </div>
         <div class="w-withdraw-input">
-          <input type="text" name="wallet_address" id="wallet_address" placeholder="<%= t(:btc) %>" value=<%= current_user.wallet_address %>>
+          <%= f.input_field :wallet_address, id: "wallet_address", placeholder: t(:btc), value: current_user.wallet_address %>
         </div>
       </div>
-      <input type="hidden" name="payment_method" id="payment_method" value='pix'>
+      <input type="hidden" name="withdrawal_form[payment_method]" id="payment_method" value='pix'>
     </div>
     <br>
     <div class="ch-buy-action-button">

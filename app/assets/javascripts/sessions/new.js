@@ -10,9 +10,11 @@ $(document).ready(function(){
   });
 
   function add_locale_class(){
-    var html_class = 'phone-' + $('#user_country').val().toLowerCase()
+    if($('#user_country').length > 0){
+      var html_class = 'phone-' + $('#user_country').val().toLowerCase()
 
-    $('#user_login, #user_username').attr('data-mask', html_class)
+      $('#user_login, #user_username').attr('data-mask', html_class)
+    }
   }
 
   function add_mask_listeners(){

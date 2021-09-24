@@ -8,7 +8,7 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
-Rails.application.config.assets.precompile += %w( charts.js recaptcha.js amount_cleasing.js utilities/select2.js flag-icon.css)
+Rails.application.config.assets.precompile += %w( charts.js recaptcha.js amount_cleasing.js utilities/select2.js flag-icon.css active-btn-tabs.js)
 Rails.application.config.assets.precompile += %w( dashboards/* landing_page/* deposits/* click-tok-theme/*)
 
 # Precompile additional assets.

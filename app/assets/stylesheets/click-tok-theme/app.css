@@ -268,3 +268,15 @@ select:-webkit-autofill:focus {
 .text-white {
   color: #FFF;
 }
+
+.btn-tab {
+  opacity: 0.5;
+}
+
+.btn-tab.active {
+  opacity: 1;
+}
+
+.font-11 {
+  font-size: 11px;
+}

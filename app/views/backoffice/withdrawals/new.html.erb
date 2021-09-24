@@ -2,6 +2,8 @@
 <%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
 
+<%= javascript_include_tag 'click-tok-theme/bank_account' %>
+
 <div class="page">
   <div class="f-balance-area">
     <div class="balance-title">
@@ -15,6 +17,7 @@
   <%= simple_form_for(@form, url: backoffice_withdrawals_path,
                              method: :post,
                              html: { class: 'form-horizontal' }) do |f| %>
+    <div>
     <div class="w-withdraw-area">
       <div class="w-withdraw-icon">
         <%= image_tag('icons/withdrawal.svg') %>
@@ -53,19 +56,34 @@
       <%= t(:select_receive_form) %>
     </div>
     <div class="ch-payment-buttons-area">
-      <button>
+      <div class="btn" onclick="showPixInput()">
         <%= image_tag('icons/pix.svg', class: 'icons') %>
         <%= t(:pix) %>
-      </button>
+      </div>
 
-      <button >
+      <div class="btn" onclick="showBitCoinInput()">
         <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
         <%= t(:btc) %>
-      </button>
+      </div>
     </div>
-    <div class="x">
+      <div class="w-withdraw-area" id="pix_input">
+        <div class="w-withdraw-icon">
+          <%= image_tag('icons/pix-p.svg', class: 'icons') %>
+        </div>
+        <div class="w-withdraw-input">
+          <input type="text" name="pix_wallet" id="pix_wallet" placeholder="<%= t(:pix) %>" value=<%= current_user.pix_wallet %>>
+        </div>
+      </div>
+      <div class="w-withdraw-area" id="bitcoin_input" style="display: none;">
+        <div class="w-withdraw-icon">
+          <%= image_tag('icons/bitcoin-p.svg', class: 'icons') %>
+        </div>
+        <div class="w-withdraw-input">
+          <input type="text" name="wallet_address" id="wallet_address" placeholder="<%= t(:btc) %>" value=<%= current_user.wallet_address %>>
+        </div>
+      </div>
     </div>
-
+    <br>
     <div class="ch-buy-action-button">
       <%= f.button :button, t('defaults.new_withdraw'),
                              data: { disable_with: t('helpers.save_with_disable') }, class: 'login' %>
@@ -76,10 +94,3 @@
   <div class="t">
   </div>
 </div>
-
-
-  <div data-withdraw-simulator="true" data-fee="<%= ENV['WITHDRAWAL_FEE'].to_f %>"
-                                      data-irpf="<%= @form.irpf %>"
-                                      data-inss="<%= @form.inss %>"
-                                      data-registration-type="<%= @form.user.registration_type %>">
-  </div>

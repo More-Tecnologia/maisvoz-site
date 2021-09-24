@@ -8,6 +8,7 @@
     <meta name="theme-color" content="#643D8F" />
     <%= render 'layouts/shared/favicons' %>
     <%= stylesheet_link_tag 'click-tok-theme/app' %>
+    <%= render 'layouts/shared/assets' %>
   <body>
     <div id="root">
       <div class="disable-of">
@@ -27,7 +28,6 @@
         </div>
       </div>
     </div>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render 'layouts/gtag' %>
   </body>
 </html>

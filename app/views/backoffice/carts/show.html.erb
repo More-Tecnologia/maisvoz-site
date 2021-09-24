@@ -12,14 +12,12 @@
         <div class="ch-product-title">
           <span><%= order_item.product.name %></span>
         </div>
-
         <div class="ch-product-price">
           <label><%= t(:price) %></label>
           <span><%= number_to_currency order_item.product.price %></span>
         </div>
       </div>
     </div>
-
     <div class="ch-purchase-desc">
       <div>
         <label><%= t(:n_of_campaign) %></label>
@@ -30,7 +28,6 @@
         <span><%= number_to_currency order_item.product.earnings_per_campaign %></span>
       </div>
     </div>
-
     <div class="division">
       <div></div>
     </div>
@@ -54,7 +51,6 @@
     <div class="ch-buy-action-button">
       <%= f.submit t(:checkout), class: 'login', data: { disable_with: disable_spinner.html_safe } %>
     </div>
-
     <div class="t">
     </div>
     <div class="t">

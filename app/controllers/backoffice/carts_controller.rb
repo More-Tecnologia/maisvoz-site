@@ -1,16 +1,12 @@
 module Backoffice
   class CartsController < BackofficeController
-    before_action :ensure_payment_method, only: :create
 
     def show
       @checkout_form = CheckoutForm.new(order: current_order, user: current_user)
     end
 
     def create
-      @checkout_form = CheckoutForm.new(valid_params)
-      raise @checkout_form.errors.full_messages.join(', ') if @checkout_form.invalid?
-      @payment_transaction =
-        Shopping::CheckoutCreatorService.call(checkout_form: @checkout_form)
+      @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
       clean_shopping_cart
       render 'backoffice/payment_transactions/show'
     rescue StandardError => error
@@ -20,24 +16,9 @@ module Backoffice
 
     private
 
-    def ensure_payment_method
-      raise I18n.t(:no_payment_method_selected) unless params['payment_method'].in?(%w[pix bitcoin])
-    rescue StandardError => e
-      flash[:error] = e.message
-      render :show
-    end
-
     def valid_params
-      params.permit(:order, :shipping_address, :custom_shipping_address_postal_code,
-                    :custom_shipping_address_complement, :custom_shipping_address_number,
-                    :custom_shipping_address_neighborhood, :custom_shipping_address_street,
-                    :custom_shipping_address_city, :custom_shipping_address_state,
-                    :backoffice_shipping_address_postal_code, :backoffice_shipping_address_complement,
-                    :backoffice_shipping_address_number, :backoffice_shipping_address_neighborhood,
-                    :backoffice_shipping_address_street, :backoffice_shipping_address_city,
-                    :backoffice_shipping_address_state, :custom_shipping_address_country,
-                    :backoffice_shipping_address_country, :whatsapp)
-            .merge(order: current_order, user: current_user)
+      params.permit(:payment_method)
+            .merge(order: current_order)
     end
   end
 end

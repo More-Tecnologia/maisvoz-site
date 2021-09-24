@@ -21,7 +21,7 @@
           </div>
 
           <div class="product-price">
-            <span><%= number_to_currency(product.price, precision: 0) %></span>
+            <span><%= product.price.zero? ? t(:free) : number_to_currency(product.price, precision: 0) %></span>
           </div>
         </div>
 

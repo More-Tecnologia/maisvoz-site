@@ -1665,3 +1665,4 @@ pt-BR:
   by: por
   no_address_input: "O endereço do método de pagamento %{payment_type_address} não pode ficar em branco"
   no_payment_method_selected: Nenhum método de pagamento selecionado
+  mininum_withdrawal_value: Valor mínimo para saque

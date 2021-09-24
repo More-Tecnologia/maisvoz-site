@@ -42,7 +42,9 @@
     </div>
     <div class="ch-purchase-desc">
       <div>
-        <label></label>
+
+        <label><%= t(:mininum_withdrawal_value) %></label>
+
         <span><%= number_to_currency ENV['WITHDRAWAL_MINIMUM_VALUE'] %></span>
       </div>
       <div>

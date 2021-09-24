@@ -78,8 +78,15 @@ module ApplicationHelper
     @current_order_shipping_countries =
       current_order.products.map(&:shippings).flatten.map(&:country).uniq
   end
-      
+
   def account_type_label(user)
     content_tag :span, user.type.try(:name), class: 'label label-success'
+  end
+
+  def copier_button(copiable_text, data_target)
+    link_to '#', class: 'btn btn-purple btn-xs copier',
+                 data: { copiable: copiable_text, target: data_target } do
+      content_tag :i, '', class: 'fas fa-copy text-white'
+    end
   end
 end

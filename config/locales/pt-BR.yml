@@ -812,6 +812,7 @@ pt-BR:
       user_not_found: Usuario nao encontrado
       user_not_found_or_inactive: Usuario nao encontrado ou inativo
       coinpayments: 'Erro ao criar transação: %{error}.'
+      payment_gateway_transaction: 'Erro ao criar transação de pagamento: %{error}.'
     financial: Financeiro
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques

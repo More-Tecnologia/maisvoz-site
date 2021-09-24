@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <% data = [[t(:complete), 0], [t(:available), 0]] %>
+  <% data = [[t(:complete), current_user.banners_clicked_today_quantity], [t(:available), current_user.total_banners_per_day]] %>
 
   <div class="products-list mt">
     <div class="t-options-box t-options-box-l rh">
@@ -44,12 +44,12 @@
         </div>
       </div>
       <div class="f-tasks-quantity text-center">
-        <%= '0/0' %>
+        <%= "#{current_user.banners_clicked_today_quantity}/#{current_user.total_banners_per_day}" %>
       </div>
-      <div class="f-tasks-product-title">
+      <div class="f-tasks-product-titlse">
           <span></span>
            <!-- product name  -->
-          <label><%= '' %></label>
+          <label><%= current_user.contract_type_name %></label>
         </div>
     </div>
 
@@ -58,7 +58,9 @@
         <%= t(:tasks_history) %>
       </div>
       <div class="f-box-icon is">
-        <%= image_tag('icons/report.svg', class: 'icons') %>
+          <%= link_to backoffice_banners_path do %>
+            <%= image_tag('icons/report.svg', class: 'icons') %>
+          <% end %>
       </div>
     </div>
 

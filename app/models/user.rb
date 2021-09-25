@@ -524,15 +524,19 @@ class User < ApplicationRecord
   end
 
   def viewed_minimum_banner_quantity_today?
-    banners_clicked_today_quantity == BannerClick::QUANTITY_MINIMUM_VIEW_PER_DAY
+    total_banners_per_day.positive? && banners_clicked_today_quantity == total_banners_per_day
   end
 
   def total_banners_per_day
-    bonus_contracts.active.last.try(:order).try(:order_items).try(:last).try(:product).try(:task_per_day)
+    bonus_contracts.active.last.try(:order).try(:order_items).try(:last).try(:product).try(:task_per_day).to_i
   end
 
   def contract_type_name
     bonus_contracts.active.last.try(:order).try(:order_items).try(:last).try(:product).try(:name)
+  end
+
+  def current_earning
+    bonus_contracts.active.last.order.products.try(:first).try(:earnings_per_campaign) / 100.0
   end
 
   private

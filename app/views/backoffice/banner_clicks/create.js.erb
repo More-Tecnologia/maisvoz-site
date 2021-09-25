@@ -1,11 +1,13 @@
-var clicked_banner = "<%= j render(partial: 'backoffice/banners/banner_main',
-                                   locals: { banner: @banner_click.banner }) %>"
-$('div#main-banner').replaceWith(clicked_banner)
+<% if @banner_click.present? %>
+  var clicked_banner = "<%= j render(partial: 'backoffice/banners/banner_main',
+                                     locals: { banner: @banner_click.banner }) %>"
+  $('div#main-banner').replaceWith(clicked_banner)
 
-var banners_clicked_quantity = "<%= current_user.banners_clicked_today_quantity %>"
-$('span#banners-clicked-today-quantity').html(banners_clicked_quantity)
+  var banners_clicked_quantity = "<%= current_user.banners_clicked_today_quantity %>"
+  $('span#banners-clicked-today-quantity').html(banners_clicked_quantity)
+<% end %>
 
-window.open("<%= @banner_click.banner.link %>")
+window.open("<%= @banner.link %>")
 
 <% if current_user.banner_seen_today? %>
   $('.alert').remove()

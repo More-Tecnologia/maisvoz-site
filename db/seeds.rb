@@ -223,7 +223,7 @@ bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, compan
                  { title: 'Weekly Excess Binary Bonus Chargeback', code: '800', active: false, company_moneyflow: :credit  },
                  { title: 'Career Limit Bonus Chargeback', code: '900', active: false, company_moneyflow: :credit  },
                  { title: 'Referral Bonus', code: '1000', active: false, company_moneyflow: :debit },
-                 { title: 'Bônus Clickcach', code: '1100', active: true, company_moneyflow: :debit },
+                 { title: 'Tarefa Realizada', code: '1100', active: true, company_moneyflow: :debit },
                  { title: 'Binary Bonus Chargeback by Disqualification', code: '1300', active: false, company_moneyflow: :credit },
                  { title: 'Residual Support Point Bonus', code: '1400', active: false, company_moneyflow: :debit },
                  { title: 'Residual Support Point Inactivity Bonus Chargeback', code: '3000', active: false, company_moneyflow: :credit},
@@ -240,8 +240,8 @@ bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, compan
                  { title: 'Binary Bonus Chargeback for Daily Excess', code: '3300', active: false, company_moneyflow: :credit },
                  { title: 'Bonus Chargeback for Contract Limit', code: '3400', active: false, company_moneyflow: :credit },
                  { title: 'Pool Cash', code: '3500', active: false, company_moneyflow: :debit },
-                 { title: 'Equilibrium Bonus', code: '3600', active: false, company_moneyflow: :debit },
-                 { title: 'Equilibrium Bonus Chargeback by Inactivity', code: '3700', active: false, company_moneyflow: :credit },
+                 { title: 'Receita Recorrente', code: '3600', active: false, company_moneyflow: :debit },
+                 { title: 'Estorno de Receita Recorrente por Inatividade', code: '3700', active: false, company_moneyflow: :credit },
                  { title: 'Pool Leadership', code: '3900', active: false, company_moneyflow: :credit },
                  { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: false, company_moneyflow: :credit }]
 
@@ -303,7 +303,7 @@ end
   admin_user.binary_node.update!(left_child_id: nil)
 end
 
-chargebacks = [['2100', '2000'], ['2300', '2200'], ['2500', '2400'], ['2700', '2600'], ['3000', '1400'], ['3200', '3100']]
+chargebacks = [['2100', '2000'], ['2300', '2200'], ['2500', '2400'], ['2700', '2600'], ['3000', '1400'], ['3200', '3100'], ['3700', '3600']]
 chargebacks.each do |chargeback|
   chargeback_reason = FinancialReason.find_by(code: chargeback[0])
   chargeback_reason.update(financial_reason: FinancialReason.find_by(code: chargeback[1]))

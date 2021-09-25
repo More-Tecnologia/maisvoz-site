@@ -43,16 +43,14 @@
           <%= pie_chart data, donut: true, colors: ['#EF539F', 'white'], legend: false %>
         </div>
       </div>
-      <div class="f-tasks-quantity text-center">
+      <div class="f-tasks-quantity text-center pink">
         <%= "#{current_user.banners_clicked_today_quantity}/#{current_user.total_banners_per_day}" %>
       </div>
       <div class="f-tasks-product-titlse">
-          <span></span>
-           <!-- product name  -->
-          <label><%= current_user.contract_type_name %></label>
-        </div>
+        <span></span>
+        <label><%= current_user.contract_type_name %></label>
+      </div>
     </div>
-
     <div class="t-options-box t-options-box-r rh">
       <div class="f-box-title">
         <%= t(:tasks_history) %>

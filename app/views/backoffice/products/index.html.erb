@@ -16,7 +16,7 @@
           <div class="product-desc">
             <%= t(:earnings_by_campaign) %>
             <span class="product-task-amount">
-              <%= product.earnings_per_campaign %>
+              <%= number_to_currency(product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2) %>
             </span>
           </div>
 

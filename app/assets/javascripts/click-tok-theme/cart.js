@@ -7,5 +7,5 @@ function showPixInput() {
 };
 
 function showBitCoinInput() {
-  payment_method.setAttribute('value', 'bitcoin');
+  payment_method.setAttribute('value', 'btc');
 };

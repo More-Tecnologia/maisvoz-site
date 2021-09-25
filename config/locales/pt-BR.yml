@@ -953,6 +953,7 @@ pt-BR:
     generation_count: 'até %{generation_count}º geração'
     earnings_until: 'Até %{amount}'
     withdrawal_minimum: Valor mínimo para saque
+    free_product: Produto compro com sucesso!
   errors:
     cant_access_binary_node: Usuário não encontrado em sua rede binária
     messages:

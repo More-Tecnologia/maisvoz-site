@@ -50,7 +50,8 @@ class Order < ApplicationRecord
                        admin_nb: 'admin_nb',
                        eth: 'eth',
                        usdt: 'usdt',
-                       pix: 'pix' }
+                       pix: 'pix',
+                       free: 'free' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories

@@ -926,6 +926,7 @@ We will send a new e-mail as soon as the transaction is complete.'
     generation_count: 'until %{generation_count}th generation'
     earnings_until: 'Until %{amount}'
     withdrawal_minimum: Withdrawal minimum value
+    free_product: Product bought successfull!
   errors:
     cant_access_binary_node: User not found on your binary network
     messages:

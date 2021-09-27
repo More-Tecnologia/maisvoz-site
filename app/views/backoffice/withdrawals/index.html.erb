@@ -1,13 +1,20 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
 
 <div class="page">
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-sm-12 m-b-23">
-      <h5 class="page-title"><%= t('.title') %></h5>
-    </div>
+  <div class="back-button">
+    <%= image_tag('icons/back.svg') %>
+    <%= link_to t(:back), :back %>
+  </div>
+  <div class="is-page-title">
+    <span class="title">
+      <%= t('.title') %>
+    </span>
+    <span class="title">
+      <%= t(:filter) %>
+    </span>
   </div>
 
-  <section style="padding: 10px;">
+  <section>
   <% @withdrawals.each do |withdrawal| %>
     <div class="th-history-list">
       <div class="th-history-task-title wr-title">

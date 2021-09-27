@@ -1,4 +1,8 @@
 <div class="page">
+  <div class="back-button">
+    <%= image_tag('icons/back.svg') %>
+    <%= link_to t(:back), :back %>
+  </div>
   <h4 class="page-title"><%= title t(:update_login) %></h4>
 
   <%= form_for(current_user, url: update_login_users_display_index_path, validate: true, html: { method: :put }) do |f| %>

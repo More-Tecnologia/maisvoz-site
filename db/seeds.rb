@@ -120,7 +120,7 @@ deposit_attributes = [{ name: 'Uniclass Free',
                         generate_pool_points: false,
                         quantity: 1,
                         details: '#FF5300',
-                        task_per_day: 40,
+                        task_per_day: 30,
                         earnings_per_campaign: 200 }]
 deposit_attributes.each do |attributes|
   product = Product.find_by(name: attributes[:name])

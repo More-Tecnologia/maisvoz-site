@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'click-tok-theme/store' %>
-
-<div class="products-list">
-  <% @products.each do |product| %>
+<div class="page">
+  <div class="products-list">
+    <% @products.each do |product| %>
       <div class="item <%= product.id.odd? ? 'f-options-box-r': 'f-options-box-l' %>">
         <div class="box" style='background-color: <%= product.details %>'>
           <div class="product-title">
@@ -16,12 +16,12 @@
           <div class="product-desc">
             <%= t(:earnings_by_campaign) %>
             <span class="product-task-amount">
-              <%= number_to_currency(product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2) %>
+              <%= number_to_currency(product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
             </span>
           </div>
 
           <div class="product-price">
-            <span><%= product.price.zero? ? t(:free) : number_to_currency(product.price, precision: 0) %></span>
+            <span><%= product.price.zero? ? t(:free) : number_to_currency(product.price, precision: 0).gsub('USD ', '$') %></span>
           </div>
         </div>
 
@@ -35,4 +35,5 @@
         <% end %>
       </div>
     <% end %>
+  </div>
 </div>

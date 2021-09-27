@@ -19,7 +19,7 @@
 .box {
     box-sizing: border-box;
     border-radius: 12px;
-    height: 12rem;
+    height: 11rem;
     min-width: 42%;
     padding: 1rem;
 }

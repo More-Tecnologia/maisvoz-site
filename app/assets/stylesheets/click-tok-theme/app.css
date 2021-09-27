@@ -234,7 +234,7 @@ select:-webkit-autofill:focus {
     font-size: 2em;
     font-weight: bold;
     margin-top: 5vh;
-    padding-left: 8vw;
+    padding-left: 5vw;
 }
 
 .text-center {
@@ -350,4 +350,15 @@ button.close {
     color: #000;
     text-shadow: 0 1px 0 #fff;
     opacity: .5;
+}
+
+.t {
+    height: 100px;
+}
+
+.page {
+  margin-right:auto;
+  margin-left:auto;
+  width:100%;
+  max-width:1280px;
 }

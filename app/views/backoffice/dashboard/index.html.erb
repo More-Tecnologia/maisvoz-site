@@ -21,7 +21,11 @@
   		<ul class="splide__list">
         <% Banner.find_each do |banner| %>
     			<li class="splide__slide">
-    				<%= image_tag(banner.image_path) %>
+            <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
+                    method: :post,
+                    remote: true do %>
+              <%= image_tag(banner.image_path) %>
+            <% end %>
     			</li>
   			<% end %>
   		</ul>

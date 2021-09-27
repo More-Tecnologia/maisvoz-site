@@ -357,8 +357,10 @@ button.close {
 }
 
 .page {
-  margin-right:auto;
+  margin-bottom: 15rem;
   margin-left:auto;
-  width:100%;
+  margin-right:auto;
   max-width:1280px;
+  padding: 0.5rem;
+  width:100%;
 }

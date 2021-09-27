@@ -57,10 +57,6 @@
     margin-right: 5px;
 }
 
-.page {
-    padding: 3rem;
-}
-
 .wr-align {
     display: flex;
     flex-direction: column;

@@ -3,12 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_action :masquerade_user!
   before_action :set_locale
-  before_action :redirect_to_banners,
-                if: proc { current_user &&
-                           !current_user.banner_seen_today? &&
-                           current_user.empreendedor? &&
-                           current_user.bonus_contracts.active.any? },
-                unless: proc { user_masquerade? || Date.current.on_weekend? }
 
   def after_sign_in_path_for(resource)
     show_ticket_alert if current_user &&

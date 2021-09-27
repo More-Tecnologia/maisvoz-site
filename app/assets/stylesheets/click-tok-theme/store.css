@@ -65,9 +65,10 @@
 
 .product-title {
     color: #ffffff;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     text-align: center;
     line-height: 0.9;
+    white-space: nowrap;
 }
 
 .product-task {
@@ -102,13 +103,13 @@
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     height: 2rem;
     justify-content: flex-end;
 }
 
 .product-price span {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .t {

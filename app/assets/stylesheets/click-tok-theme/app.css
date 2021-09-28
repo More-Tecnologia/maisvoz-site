@@ -219,9 +219,9 @@ select:-webkit-autofill:focus {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   display: none;
   left: auto;
-  min-width: 160px;
+  min-width: 60px;
   position: absolute;
-  right: 4px;
+  right: -10px;
   z-index: 1;
 }
 

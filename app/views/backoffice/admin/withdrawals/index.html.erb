@@ -118,9 +118,20 @@
               </tbody>
             </table>
           </div>
-          <%= paginate @withdrawals %>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <%= paginate @withdrawals %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to t('helpers.export_to_csv'),
+                backoffice_admin_withdrawals_path(format: :csv, q: params[:q]),
+                class: 'btn btn-success' %>
   </div>
 </div>

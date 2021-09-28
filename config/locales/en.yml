@@ -369,6 +369,9 @@ en:
     category: Category
     photo: Photo
     user_type: Account type
+    hashid: Code
+    digital_wallet: Wallet
+    document: Document
   backoffice:
     orders:
       show:

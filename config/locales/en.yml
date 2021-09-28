@@ -1646,3 +1646,4 @@ We will send a new e-mail as soon as the transaction is complete.'
   no_address_input: "The address of the payment method %{payment_type_address} can't be blank"
   no_payment_method_selected: No payment method selected
   mininum_withdrawal_value: Minimum withdrawal amount
+  dashboard: Dashboard

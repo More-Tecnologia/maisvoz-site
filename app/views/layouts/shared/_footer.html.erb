@@ -2,9 +2,16 @@
 
 <div class="bottom-menu">
   <nav class="nav">
+    <% if current_user.admin? %>
     <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
       <%= image_tag('icons/tasks.svg', class: 'icons') %>
-      <%= t(:tasks)%>
+      <%= t(:dashboard)%>
+    <% end %>
+    <% else %>
+      <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
+        <%= image_tag('icons/tasks.svg', class: 'icons') %>
+        <%= t(:tasks)%>
+      <% end %>
     <% end %>
     <%= link_to backoffice_team_dashboard_index_path, class: 'nav__link'  do %>
       <%= image_tag('icons/team.svg', class: 'icons') %>

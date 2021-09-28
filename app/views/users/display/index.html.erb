@@ -28,6 +28,14 @@
           <%= t(:logout) %>
         <% end %>
       </li>
+      <% if user_masquerade? %>
+        <li class="ma-list-li">
+          <%= image_tag 'icons/logout.svg', size: 18 %>
+          <%= link_to back_masquerade_path(current_user), class: 'hyperlink hyperlink_red' do %>
+            <%= t(:back_account) %>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
   <div class="t">

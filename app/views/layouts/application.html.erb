@@ -8,17 +8,19 @@
     <%= render 'layouts/shared/favicons' %>
   </head>
   <body>
-    <div class="container">
-      <div class="app">
-        <div class="main-app">
-          <%= render 'layouts/shared/simple_header' %>
-          <div class="main-app-content">
-            <%= render 'layouts/flash-messages' %>
-            <%= yield %>
+    <div id="root">
+      <div class="container">
+        <div class="app">
+          <div class="main-app">
+            <%= render 'layouts/shared/simple_header' %>
+            <div class="main-app-content">
+              <%= render 'layouts/flash-messages' %>
+              <%= yield %>
+            </div>
           </div>
         </div>
       </div>
+      <%= render 'layouts/gtag' %>
     </div>
-    <%= render 'layouts/gtag' %>
   </body>
 </html>

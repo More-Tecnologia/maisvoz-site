@@ -3,8 +3,6 @@
 module Backoffice
   class FinancialDashboardController < EntrepreneurController
 
-    before_action :ensure_no_admin_user, only: :index
-
     def index; end
 
     private

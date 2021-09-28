@@ -374,6 +374,9 @@ pt-BR:
     category: Categoria
     photo: Foto
     user_type: Tipo de conta
+    hashid: Código
+    digital_wallet: Carteira
+    document: Documento
   backoffice:
     orders:
       show:

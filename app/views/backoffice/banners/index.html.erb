@@ -2,27 +2,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
 <section class="container">
-  <div class="row" style="display: none;">
-    <div class="col-sm-12">
-      <div> <%= t('defaults.banners_clicked_today') %>:
-        <span id="banners-clicked-today-quantity">
-          <%= current_user.banners_clicked_today_quantity %>
-        </span>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <%= render partial: 'banner_main',
-               locals: { banner: @banners.first } if @banners.first %>
-  </div>
   <div class="row" id="carousels">
     <% @banners.each_slice(7) do |banners| %>
       <div class="owl-carousel carousel">
         <%= render banners %>
       </div>
     <% end %>
-  </div>
-  <div class="row">
-    <%= render partial: 'congratulations_modal' %>
   </div>
 </section>

@@ -5,8 +5,9 @@ module Backoffice
                                           if: proc { current_user.bonus_contracts.active.any? }
 
     def index
-      @banners = Banner.page(params[:page])
-                       .shuffle
+      @banners = current_user.banner_clicks
+                             .today
+                             .map(&:banner)
     end
   end
 end

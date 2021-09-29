@@ -6,7 +6,7 @@ module Backoffice
     def create
       ActiveRecord::Base.transaction do
         @banner = Banner.find(params[:banner_id])
-        unless current_user.viewed_maximum_banner_quantity_today?
+        if current_user.can_click_more_banners?
           @banner_click = current_user.banner_clicks
                                       .create!(params.slice(:banner_id))
 

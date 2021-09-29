@@ -8,8 +8,8 @@
 <%= form_with model: @checkout_form, url: backoffice_cart_path, method: :post do |f| %>
   <% order_item = current_order.order_items.last %>
   <div>
-    <div class="ch-product-desc-area">
-      <div class="ch-product-item">
+    <div class="ch-product-desc-area" >
+      <div class="ch-product-item" style='background-color: <%= order_item.product.details %>'>
         <div class="ch-product-title">
           <span><%= order_item.product.name %></span>
         </div>
@@ -26,7 +26,9 @@
       </div>
       <div>
         <label><%= t(:earnings_by_campaign) %></label>
-        <span><%= number_to_currency order_item.product.earnings_per_campaign %></span>
+        <span>
+          <%= number_to_currency(order_item.product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+        </span>
       </div>
     </div>
     <div class="division">

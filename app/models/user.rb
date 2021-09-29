@@ -531,6 +531,10 @@ class User < ApplicationRecord
     bonus_contracts.active.last.try(:order).try(:order_items).try(:last).try(:product).try(:task_per_day).to_i
   end
 
+  def viewed_maximum_banner_quantity_today?
+    (total_banners_per_day - banners_clicked_today_quantity).zero?
+  end
+
   def contract_type_name
     bonus_contracts.active.last.try(:order).try(:order_items).try(:last).try(:product).try(:name)
   end

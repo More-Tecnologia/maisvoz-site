@@ -35,6 +35,7 @@ module Shopping
       if find_order_item.present?
         update_order_item
       else
+        order.order_items.destroy_all
         create_order_item
       end
     end

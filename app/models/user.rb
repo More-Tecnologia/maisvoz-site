@@ -532,7 +532,7 @@ class User < ApplicationRecord
   end
 
   def viewed_maximum_banner_quantity_today?
-    (total_banners_per_day - banners_clicked_today_quantity).zero?
+    banners_clicked_today_quantity < total_banners_per_day 
   end
 
   def contract_type_name

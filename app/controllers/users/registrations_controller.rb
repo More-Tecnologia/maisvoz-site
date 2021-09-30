@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # super
     @form = build_registration_form(params[:user])
     valid_form = @form.valid?
-    build_resource(@form.attributes.except(:sponsor_username, :role, :contract, :g_recaptcha_response))
+    build_resource(@form.attributes.except(:sponsor_username, :role, :contract, :g_recaptcha_response, :token))
     if valid_form && resource.save
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up

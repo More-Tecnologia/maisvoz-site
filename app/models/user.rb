@@ -623,6 +623,6 @@ class User < ApplicationRecord
   end
 
   def assign_token
-    self.token = SecureRandom.hex if self.token.blank?
+    self.token = SecureRandom.hex
   end
 end

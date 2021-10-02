@@ -16,6 +16,7 @@
         <span class="th-history-task-id">
           <%= order.hashid %>
         </span>
+        <%= order.order_items.first.product.name %> <br>
         <%= order.created_at.strftime('%d %b') %>
       </div>
       <div class="th-history-task-status">

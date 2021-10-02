@@ -2,7 +2,7 @@
 
 module Backoffice
   class TeamDashboardController < EntrepreneurController
-
+    before_action :user, only: :index
     before_action :current_node, only: :index
 
     def index
@@ -16,13 +16,17 @@ module Backoffice
     private
 
     def ensure_no_admin_user
-      if user_signed_in? && (current_user.admin? || current_user.financeiro?)
+      if user_signed_in? && (@user.admin? || @user.financeiro?)
         redirect_to backoffice_admin_dashboard_index_path
       end
     end
 
+    def user
+      @user = User.find(params[:user]) || current_user
+    end
+
     def current_node
-      @current_node ||= current_user.try(:unilevel_node)
+      @current_node ||= @user.try(:unilevel_node)
     end
 
     def unilevel_max_depth

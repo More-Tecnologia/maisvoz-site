@@ -30,22 +30,22 @@
     <div class="t-team-owner-avatar">
       <div class="t-owner-avatar">
         <div>
-          <% if current_user.avatar.try(:path).present? %>
-            <%= cl_image_tag(current_user.avatar.try(:path), { class: 'icons' }) %>
+          <% if @user.avatar.try(:path).present? %>
+            <%= cl_image_tag(@user.avatar.try(:path), { class: 'icons' }) %>
           <% else %>
             <%= image_tag 'icons/user.svg', class: 'icons' %>
           <% end %>
         </div>
       </div>
       <br>
-      <span class="text-center"><%= current_user.name.presence || t(:guest) %></span>
+      <span class="text-center"><%= @user.name.presence || t(:guest) %></span>
     </div>
 
     <div class="t-team-network-avatar">
       <% direct_children(@unilevel_nodes).each do |child| %>
         <div class="t-teste">
           <div class="t-align">
-            <%= link_to backoffice_unilevel_index_path(user: child.user) do %>
+            <%= link_to backoffice_team_dashboard_index_path(user: child.user) do %>
               <% if child.user.avatar.try(:path).present? %>
                 <%= cl_image_tag(child.user.avatar.try(:path), { class: 'icons' }) %>
               <% else %>
@@ -98,7 +98,7 @@
           <%= t(:earnings_by_campaign) %>
         </div>
         <div class="f-box-icon pink">
-          <% last_order = current_user.orders.paid.last %>
+          <% last_order = @user.orders.paid.last %>
           <% amount = last_order.try(:products).try(:first).try(:earnings_per_campaign).to_f %>
           <small><%= t('earnings_by_campaign_text') %></small>
         </div>

@@ -80,7 +80,7 @@
           <%= t(:direct_referral) %>
         </div>
         <div class="f-box-icon pink">
-          <b><%= number_to_percentage((first_generation_nodes_size / total_nodes) * 100, precision: 0) if total_nodes.positive? %></b>
+          <small><%= t(:direct_referral_text) %></small>
         </div>
       </div>
 
@@ -89,7 +89,7 @@
           <%= t(:indirect_referral)%>
         </div>
         <div class="f-box-icon pink">
-          <b><%= number_to_percentage((total_nodes - first_generation_nodes_size / total_nodes) * 100, precision: 0) if total_nodes.positive? %></b>&nbsp
+          <small><%= t(:indirect_referral_text) %></small>
         </div>
       </div>
 
@@ -100,7 +100,7 @@
         <div class="f-box-icon pink">
           <% last_order = current_user.orders.paid.last %>
           <% amount = last_order.try(:products).try(:first).try(:earnings_per_campaign).to_f %>
-          <b><%= t('defaults.earnings_until', amount: number_to_currency(amount, unit: '$', precision: 2)) if last_order %></b>
+          <small><%= t('earnings_by_campaign_text') %></small>
         </div>
       </div>
 
@@ -109,11 +109,9 @@
           <%= t(:recurring_revenue) %>
         </div>
         <div class="f-box-icon pink">
-          <b>
-            <%= number_to_percentage(50, precision: 0) %>&nbsp;
-            <%= number_to_percentage(5, precision: 0) %>&nbsp;
-            <%= number_to_percentage(2, precision: 0) %>&nbsp;
-          </b>
+          <small>
+            <%= t(:recurring_revenue_text) %>
+          </small>
         </div>
       </div>
     </div>

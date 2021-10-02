@@ -3,8 +3,12 @@ module Backoffice
     include Backoffice::FinancialTransactionsHelper
 
     def index
-      @q = FinancialTransaction.ransack(params[:q])
-      @financial_transactions = find_financial_transactions_by_current_user(@q)
+      @financial_transactions =
+        FinancialTransaction.by_user(current_user)
+                            .to_empreendedor
+                            .includes(:spreader, :financial_reason, :order)
+                            .order(created_at: :desc)
+                            .page(params[:page])
     end
   end
 end

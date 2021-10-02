@@ -13,9 +13,9 @@ module Bonification
 
     private
 
-    PERCENTAGES = { '1': 0.57,
-                    '2': 0.05,
-                    '3': 0.02 }.freeze
+    PERCENTAGES = { '1': 0.20,
+                    '2': 0.10,
+                    '3': 0.05 }.freeze
 
     def initialize(args)
       @user = args[:user]

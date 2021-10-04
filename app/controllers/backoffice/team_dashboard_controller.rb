@@ -22,7 +22,7 @@ module Backoffice
     end
 
     def user
-      @user = User.find(params[:user]) || current_user
+      @user = params[:user].present? ? User.find(params[:user]) : current_user
     end
 
     def current_node

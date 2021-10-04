@@ -4,6 +4,8 @@
 
 <%= javascript_include_tag 'click-tok-theme/cart' %>
 <%= javascript_include_tag 'click-tok-theme/active-btn-tabs' %>
+<script src="https://kit.fontawesome.com/b5d33f8ba4.js" crossorigin="anonymous"></script>
+
 
 <%= form_with model: @checkout_form, url: backoffice_cart_path, method: :post do |f| %>
   <% order_item = current_order.order_items.last %>
@@ -52,7 +54,7 @@
         <input type="hidden" name="payment_method" id="payment_method" value='pix'>
       </div>
     <div class="ch-buy-action-button">
-      <%= f.submit t(:checkout), class: 'login', data: { disable_with: disable_spinner.html_safe } %>
+      <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
     </div>
     <div class="t">
     </div>

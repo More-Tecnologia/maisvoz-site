@@ -540,7 +540,7 @@ class User < ApplicationRecord
   end
 
   def current_earning
-    bonus_contracts.active.last.order.products.try(:first).try(:earnings_per_campaign) / 100.0
+    bonus_contracts.active.last.try(:order).try(:products).try(:first).try(:earnings_per_campaign).to_f / 100.0
   end
 
   private

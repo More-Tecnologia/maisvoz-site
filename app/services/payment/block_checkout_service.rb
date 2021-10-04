@@ -3,8 +3,8 @@ module Payment
     def call
       transaction = nil
       ActiveRecord::Base.transaction do
-        checkout = payment_transaction_request
-        transaction = payment_transaction(checkout)
+        #checkout = payment_transaction_request
+        transaction = payment_transaction('transaction_code' => SecureRandom.hex, 'wallet_address' => SecureRandom.hex)
         order.update!(status: :pending_payment, payment_type: @payment_method)
       end
       transaction

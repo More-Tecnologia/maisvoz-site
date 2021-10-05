@@ -66,3 +66,6 @@
 .t-margin-bottom {
   margin-bottom: 8rem;
 }
+.half {
+  max-width: 50%;
+}

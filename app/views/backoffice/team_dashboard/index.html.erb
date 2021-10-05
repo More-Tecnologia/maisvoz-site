@@ -80,7 +80,7 @@
           <%= t(:direct_referral) %>
         </div>
         <div class="f-box-icon pink">
-          <small><%= t(:direct_referral_text) %></small>
+          <small class="half text-center"><%= t(:direct_referral_text) %></small>
         </div>
       </div>
 
@@ -89,7 +89,7 @@
           <%= t(:indirect_referral)%>
         </div>
         <div class="f-box-icon pink">
-          <small><%= t(:indirect_referral_text) %></small>
+          <small class="half text-center"><%= t(:indirect_referral_text) %></small>
         </div>
       </div>
 
@@ -100,7 +100,7 @@
         <div class="f-box-icon pink">
           <% last_order = @user.orders.paid.last %>
           <% amount = last_order.try(:products).try(:first).try(:earnings_per_campaign).to_f %>
-          <small><%= t('earnings_by_campaign_text') %></small>
+          <small class="half text-center"><%= t('earnings_by_campaign_text') %></small>
         </div>
       </div>
 
@@ -109,7 +109,7 @@
           <%= t(:recurring_revenue) %>
         </div>
         <div class="f-box-icon pink">
-          <small>
+          <small class="half text-center">
             <%= t(:recurring_revenue_text) %>
           </small>
         </div>

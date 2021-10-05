@@ -2,7 +2,7 @@ module Bonification
   class RecurrentCreatorService < ApplicationService
     def call
       sponsors.each_with_index do |sponsor, index|
-        next unless sponsor.admin?
+        next if sponsor.admin?
 
         transaction = create_recurrent_bonus_for(sponsor, index + 1)
         if sponsor.inactive?

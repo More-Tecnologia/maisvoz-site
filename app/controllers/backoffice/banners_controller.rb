@@ -1,9 +1,8 @@
 module Backoffice
   class BannersController < BackofficeController
     def index
-      @banners = current_user.banner_clicks
-                             .today
-                             .map(&:banner)
+      @banners_clicks = current_user.banner_clicks
+                                    .page(params[:page])
     end
   end
 end

@@ -1,12 +1,39 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<%= stylesheet_link_tag 'click-tok-theme/orders' %>
 
-<section class="container">
-  <div class="row" id="carousels">
-    <% @banners.each_slice(7) do |banners| %>
-      <div class="owl-carousel carousel">
-        <%= render banners %>
-      </div>
-    <% end %>
+<div class="page">
+  <div class="is-page-title">
+    <span class="title">
+      <%= t(:tasks_history) %>
+    </span>
+    <span class="title">
+      <%= t(:filter) %>
+    </span>
   </div>
-</section>
+
+  <% @banners_clicks.each do |banner_click| %>
+    <div class="th-history-list">
+      <div class="th-history-task-title wr-title">
+        <span class="th-history-task-id">
+          <%= banner_click.id %>
+        </span>
+        <span>
+          <%= t(:campaign) %> <%= banner_click.banner_id %>
+          </span>
+      </div>
+      <div class="th-history-task-status">
+        <div class="th-history-task-date">
+          <%= banner_click.created_at.strftime('%d/%m/%y') %>
+        </div>
+        <div class="wr-align">
+          <div class="th-history-task-status-action task-history-sucess">
+            <%= t(:completed) %>
+          </div>
+          <div class="wr-amount">
+            <%= format_cent_amount_value(banner_click.financial_transaction) if banner_click.financial_transaction %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>

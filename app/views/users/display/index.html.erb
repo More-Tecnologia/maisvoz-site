@@ -23,6 +23,13 @@
       </li>
 
       <li class="ma-list-li">
+        <%= image_tag 'icons/sponsor.svg', size: 18 %>
+        <%= link_to backoffice_tickets_path, class: "hyperlink" do %>
+          <%= t('defaults.support') %>
+        <% end %>
+      </li>
+
+      <li class="ma-list-li">
         <%= image_tag 'icons/logout.svg', size: 18 %>
         <%= link_to destroy_user_session_path, method: :delete, class: 'hyperlink' do %>
           <%= t(:logout) %>

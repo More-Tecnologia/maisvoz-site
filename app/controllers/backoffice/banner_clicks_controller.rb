@@ -10,11 +10,12 @@ module Backoffice
           @banner_click = current_user.banner_clicks
                                       .create!(params.slice(:banner_id))
 
-          current_user.financial_transactions
-                      .create!(spreader: @user,
-                               financial_reason: FinancialReason.yield_bonus,
-                               moneyflow: :credit,
-                               cent_amount: current_user.current_earning) if current_user.current_earning.positive?
+          transaction = current_user.financial_transactions
+                                    .create!(spreader: @user,
+                                             financial_reason: FinancialReason.yield_bonus,
+                                             moneyflow: :credit,
+                                             cent_amount: current_user.current_earning)
+          @banner_click.update(financial_transaction: transaction)
           RecurrentCreatorWorker.perform_async(current_user.id)
           current_user.banner_seen_today! if current_user.viewed_minimum_banner_quantity_today?
         end

@@ -1,18 +1,20 @@
 module Backoffice
   class BannerClicksController < BackofficeController
 
+    before_action :ensure_banner, only: :create
+
     def index; end
 
     def create
       ActiveRecord::Base.transaction do
-        bonus_contracts.each do |bonus_contract|
+        bonus_contracts.map do |bonus_contract|
           banner_click = current_user.banner_clicks
                                      .create!(params.slice(:banner_id))
           transaction = build_transaction(bonus_contract)
-          credit_bonus_to(bonus_contract)
+          credit_bonus_to(bonus_contract, transaction)
 
-          banner_click.update(financial_transaction: transaction)
           RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
+          banner_click.update(financial_transaction: transaction)
         end
       end
     end
@@ -32,10 +34,14 @@ module Backoffice
                                                 .to_f / 100.0)
     end
 
-    def credit_bonus_to(contract)
-      contract.received_balance += bonus_amount.to_f
+    def credit_bonus_to(contract, transaction)
+      contract.received_balance += transaction.cent_amount.to_f
       contract.remaining_balance = contract.cent_amount - contract.received_balance.to_f
       contract.save!
+    end
+
+    def ensure_banner
+      @banner = Banner.find(params[:banner_id])
     end
   end
 end

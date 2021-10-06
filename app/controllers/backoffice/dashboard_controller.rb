@@ -5,7 +5,7 @@ module Backoffice
 
     def index
       contract = @contracts.last
-      @total_banners_per_day = contract.order_items.last.task_per_day.to_i
+      @total_banners_per_day = contract.present? ? contract.order_items.last.task_per_day.to_i : 0
       @banners_clicked_today_quantity = current_user.banner_clicks
                                                     .today
                                                     .by_contract(contract)

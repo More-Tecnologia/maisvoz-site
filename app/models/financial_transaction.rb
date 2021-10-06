@@ -49,6 +49,7 @@ class FinancialTransaction < ApplicationRecord
   scope :order_payments, -> { where(financial_reason: [FinancialReason.order_payment, FinancialReason.order_sponsored]) }
   scope :created_at, ->(begin_datetime, end_datetime) { where(created_at: begin_datetime..end_datetime) }
   scope :withdrawals, -> { where(financial_reason: FinancialReason.withdrawal) }
+  scope :by_contract, ->(contract) { where(bonus_contract: contract) }
 
   validates :cent_amount, presence: true,
                           numericality: { only_integer: true }

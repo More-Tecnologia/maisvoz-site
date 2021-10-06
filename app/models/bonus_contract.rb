@@ -22,6 +22,8 @@ class BonusContract < ApplicationRecord
   scope :yield_contracts, -> { where(loan: false) }
   scope :enabled_bonification, -> { where(enabled_bonification: true) }
 
+  delegate :order_items, to: :order
+
   def active?
     return false if paid_at || expire_at < DateTime.current
     return true

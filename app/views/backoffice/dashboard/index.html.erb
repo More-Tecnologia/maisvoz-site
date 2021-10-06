@@ -30,7 +30,7 @@
   	</div>
   </div>
 
-  <% data = [[t(:complete), current_user.banners_clicked_today_quantity], [t(:available), current_user.total_banners_per_day - current_user.banners_clicked_today_quantity]] %>
+  <% data = [[t(:complete), @banners_clicked_today_quantity], [t(:available), @total_banners_per_day - @banners_clicked_today_quantity]] %>
 
   <div class="products-list mt">
     <div class="t-options-box t-options-box-l rh">
@@ -43,11 +43,11 @@
         </div>
       </div>
       <div class="f-tasks-quantity text-center pink">
-        <%= "#{current_user.banners_clicked_today_quantity}/#{current_user.total_banners_per_day}" %>
+        <%= "#{@banners_clicked_today_quantity}/#{@total_banners_per_day}" %>
       </div>
-      <div class="f-tasks-product-titlse">
+      <div class="f-tasks-product-title">
         <span></span>
-        <label><%= current_user.contract_type_name %></label>
+        <label class="text-center"><%= current_user.contract_type_name %></label>
       </div>
     </div>
     <div class="t-options-box t-options-box-r rh">

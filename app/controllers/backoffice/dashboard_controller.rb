@@ -1,8 +1,16 @@
 module Backoffice
   class DashboardController < EntrepreneurController
+    before_action :ensure_contracts, only: :index
     before_action :ensure_no_admin_user, only: :index
 
-    def index; end
+    def index
+      contract = @contracts.last
+      @total_banners_per_day = contract.order_items.last.task_per_day.to_i
+      @banners_clicked_today_quantity = current_user.banner_clicks
+                                                    .today
+                                                    .by_contract(contract)
+                                                    .count
+    end
 
     def balances_data
       render json: Dashboards::Users::BalancesPresenter.new(current_user)
@@ -32,6 +40,14 @@ module Backoffice
     def unilevel_counts_data
       render json: Dashboards::Users::UnilevelCountsPresenter.new(current_user)
                                                              .build
+    end
+
+    private
+
+    def ensure_contracts
+      @contracts = current_user.bonus_contracts.active.sort do |contract, other|
+        contract.order_items.last.task_per_day.to_i <=> other.order_items.last.task_per_day.to_i
+      end
     end
 
     def ensure_no_admin_user

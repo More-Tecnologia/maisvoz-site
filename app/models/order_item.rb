@@ -23,6 +23,7 @@ class OrderItem < ApplicationRecord
   QUANTITIES = [10, 35, 55, 105, 255, 505, 1005, 2505, 5005]
 
   delegate :name, :adhesion?, to: :product
+  delegate :earnings_per_campaign, to: :product
 
   belongs_to :order
   belongs_to :product

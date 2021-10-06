@@ -63,7 +63,7 @@ class FinancialTransaction < ApplicationRecord
 
   after_commit :debits_bonus_of_contract, on: :create,
                                           if: :payment_bonus?,
-                                          unless: :chargeback?
+                                          unless: proc { chargeback? || financial_reason_yield_bonus? }
 
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_admin,

@@ -24,6 +24,7 @@ class OrderItem < ApplicationRecord
 
   delegate :name, :adhesion?, to: :product
   delegate :earnings_per_campaign, to: :product
+  delegate :task_per_day, to: :product
 
   belongs_to :order
   belongs_to :product

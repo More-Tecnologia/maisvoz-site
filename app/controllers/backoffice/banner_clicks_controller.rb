@@ -8,13 +8,15 @@ module Backoffice
     def create
       ActiveRecord::Base.transaction do
         bonus_contracts.map do |bonus_contract|
+          next unless can_click_more_banners?(bonus_contract)
+
           banner_click = current_user.banner_clicks
                                      .create!(params.slice(:banner_id))
           transaction = build_transaction(bonus_contract)
           credit_bonus_to(bonus_contract, transaction)
 
-          RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
           banner_click.update(financial_transaction: transaction)
+          RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
         end
       end
     end
@@ -28,6 +30,7 @@ module Backoffice
                   .create!(spreader: User.find_morenwm_customer_admin,
                            financial_reason: FinancialReason.yield_bonus,
                            moneyflow: :credit,
+                           bonus_contract: contract,
                            cent_amount: contract.order_items
                                                 .last
                                                 .earnings_per_campaign
@@ -42,6 +45,10 @@ module Backoffice
 
     def ensure_banner
       @banner = Banner.find(params[:banner_id])
+    end
+
+    def can_click_more_banners?(contract)
+      current_user.banner_clicks.today.by_contract(contract).count < contract.order_items.last.task_per_day.to_i
     end
   end
 end

@@ -21,7 +21,7 @@ module Bonification
 
     def initialize(args)
       @user = args[:user]
-      @amount = @user.current_earning
+      @amount = args[:transaction].cent_amount
     end
 
     def sponsors
@@ -37,9 +37,9 @@ module Bonification
 
       sponsor.financial_transactions
              .create!(spreader: @user,
-                     financial_reason: FinancialReason.matching_bonus,
-                     moneyflow: :credit,
-                     cent_amount: cent_amount) if cent_amount.positive?
+                      financial_reason: FinancialReason.matching_bonus,
+                      moneyflow: :credit,
+                      cent_amount: cent_amount)
     end
   end
 end

@@ -1,3 +1,4 @@
+<script src="https://kit.fontawesome.com/b5d33f8ba4.js" crossorigin="anonymous"></script>
 <%= simple_form_for([:backoffice, @ticket],
                     validate: true,
                     html: { class: 'form-horizontal',
@@ -28,8 +29,8 @@
 		</div>
 	</div>
 	<br><br>
-  <%= f.submit class: 'btn btn-success',
-               data: { disable_with: disable_spinner.html_safe } %>
+  <%= button_tag t(:create), class: 'btn btn-success',
+               data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>' } %>
   <%= link_to backoffice_tickets_path, class: 'btn btn-primary waves-effect waves-light' do %>
     <%= t('views.backoffice.tickets.index.return_to_tickets') %>
   <% end %>

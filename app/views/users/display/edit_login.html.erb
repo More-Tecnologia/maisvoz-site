@@ -9,7 +9,7 @@
     <div class="credentials-box">
       <div class="login-fields">
 
-        <%= f.country_select("country", { only: ["BR", "US", "ES"], include_blank: t(:select_country) }, { class: 'input-description' }) %>
+        <%= f.country_select("country", { include_blank: t(:select_country) }, { class: 'input-description' }) %>
       </div>
       <div class="login-fields">
         <%= f.text_field :username, placeholder: t(:new_phone), class: "input-description" %>

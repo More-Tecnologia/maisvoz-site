@@ -8,6 +8,7 @@
 <% end %>
 
 window.open("<%= @banner.link %>")
+window.location.reload();
 
 <% if current_user.banner_seen_today? %>
   $('.alert').remove()

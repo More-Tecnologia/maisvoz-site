@@ -535,10 +535,6 @@ class User < ApplicationRecord
     banners_clicked_today_quantity < total_banners_per_day
   end
 
-  def contract_type_name
-    bonus_contracts.active.last.try(:order).try(:order_items).try(:last).try(:product).try(:name)
-  end
-
   def current_earning
     bonus_contracts.active.last.try(:order).try(:products).try(:first).try(:earnings_per_campaign).to_f / 100.0
   end

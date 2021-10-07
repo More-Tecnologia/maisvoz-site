@@ -1,6 +1,10 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
 
 <div class="page">
+  <div class="back-button">
+    <%= image_tag('icons/back.svg') %>
+    <%= link_to t(:back), :back %>
+  </div>
   <div class="is-page-title">
     <span class="title">
       <%= t(:earnings_report) %>
@@ -27,7 +31,9 @@
       </div>
     </div>
   <% end %>
-
-  <div class="t"></div>
-  <div class="t"></div>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= paginate @financial_transactions %>
+    </div>
+  </div>
 </div>

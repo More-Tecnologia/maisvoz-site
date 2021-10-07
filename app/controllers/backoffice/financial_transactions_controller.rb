@@ -9,6 +9,7 @@ module Backoffice
                             .includes(:spreader, :financial_reason, :order)
                             .order(created_at: :desc)
                             .page(params[:page])
+                            .per(10)
     end
   end
 end

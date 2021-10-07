@@ -1,9 +1,13 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
 
 <div class="page">
+  <div class="back-button">
+    <%= image_tag('icons/back.svg') %>
+    <%= link_to t(:back), :back %>
+  </div>
   <div class="is-page-title">
     <span class="title">
-      <%= t(:tasks_history) %>
+      <%= t(:tasks_history) %> - <%= @banners_clicks.total_count %>
     </span>
     <span class="title">
       <%= t(:filter) %>
@@ -35,5 +39,9 @@
       </div>
     </div>
   <% end %>
-
+  <div class="row">
+    <div class="col-sm-12">
+      <%= paginate @banners_clicks %>
+    </div>
+  </div>
 </div>

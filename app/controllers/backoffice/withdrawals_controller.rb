@@ -10,7 +10,9 @@ module Backoffice
     def index
       @withdrawals = current_user.withdrawals
                                  .order(created_at: :desc)
-                                 .page(params[:page]).decorate
+                                 .page(params[:page])
+                                 .per(10)
+                                 .decorate
     end
 
     def new

@@ -3,6 +3,7 @@ module Backoffice
     def index
       @banners_clicks = current_user.banner_clicks
                                     .page(params[:page])
+                                    .per(10)
     end
   end
 end

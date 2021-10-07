@@ -5,6 +5,8 @@ module Backoffice
       @orders = current_user.orders.includes(:payment_transaction)
                                    .where.not(status: :cart)
                                    .order(created_at: :desc)
+                                   .page(params[:page])
+                                   .per(10)
     end
 
     def show

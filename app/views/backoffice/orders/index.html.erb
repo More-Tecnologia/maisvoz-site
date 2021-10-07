@@ -1,6 +1,10 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
 
 <div class="page">
+  <div class="back-button">
+    <%= image_tag('icons/back.svg') %>
+    <%= link_to t(:back), :back %>
+  </div>
   <div class="is-page-title">
     <span class="title">
       <%= t('defaults.my_orders') %>
@@ -34,4 +38,9 @@
       </div>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= paginate @orders %>
+    </div>
+  </div>
 </div>

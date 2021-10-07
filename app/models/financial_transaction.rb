@@ -62,9 +62,9 @@ class FinancialTransaction < ApplicationRecord
   validates :cent_amount, presence: true,
                           numericality: { greater_than: 0 }, on: :expense
 
-  after_commit :debits_bonus_of_contract, on: :create,
-                                          if: :payment_bonus?,
-                                          unless: proc { chargeback? || financial_reason_yield_bonus? }
+  #after_commit :debits_bonus_of_contract, on: :create,
+  #                                        if: :payment_bonus?,
+  #                                        unless: proc { chargeback? || financial_reason_yield_bonus? }
 
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_admin,

@@ -6,17 +6,20 @@ module Backoffice
     def index; end
 
     def create
-      ActiveRecord::Base.transaction do
-        bonus_contracts.map do |bonus_contract|
-          next unless can_click_more_banners?(bonus_contract)
+      t = Time.now
+      unless t.saturday? || t.sunday?
+        ActiveRecord::Base.transaction do
+          bonus_contracts.map do |bonus_contract|
+            next unless can_click_more_banners?(bonus_contract)
 
-          banner_click = current_user.banner_clicks
-                                     .create!(params.slice(:banner_id))
-          transaction = build_transaction(bonus_contract)
-          credit_bonus_to(bonus_contract, transaction)
+            banner_click = current_user.banner_clicks
+                                       .create!(params.slice(:banner_id))
+            transaction = build_transaction(bonus_contract)
+            credit_bonus_to(bonus_contract, transaction)
 
-          banner_click.update(financial_transaction: transaction)
-          RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
+            banner_click.update(financial_transaction: transaction)
+            RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
+          end
         end
       end
     end

@@ -59,7 +59,7 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_minimum
-    @withdrawal_minimum ||= user.type.withdrawal_minimum_amount(contracts_amount)
+    @withdrawal_minimum ||= ENV['WITHDRAWAL_MINIMUM_VALUE']
   end
 
   def withdrawal_maximum

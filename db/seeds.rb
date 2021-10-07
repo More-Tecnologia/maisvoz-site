@@ -17,6 +17,22 @@ persisted_careers = careers.map do |attributes|
   end
 end
 
+attributes = [{ name: 'Financial', active: true },
+              { name: 'Network', active: true },
+              { name: 'Bonus Withdrawal', active: true },
+              { name: 'Others', active: true },
+              { name: 'Product Returns', active: true },
+              { name: 'Faulty Products', active: true },
+              { name: 'Purchase Cancellation', active: true },
+              { name: 'Bonus Not Received', active: true },
+              { name: 'Withdrawal Issues', active: true },
+              { name: 'Complain About a Seller', active: true },
+              { name: 'System Issues', active: true },
+              { name: 'Account Approval', active: true },
+              { name: 'Suggestions', active: true }]
+
+Subject.create!(attributes)
+
 deposit_cat = Category.find_or_create_by(name: 'Deposit')
 deposit_attributes = [{ name: 'Uniclass',
                         price_cents: 0,

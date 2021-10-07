@@ -17,7 +17,7 @@ module Backoffice
 
       def update
         withdrawal = Withdrawal.find(params[:id])
-        Financial::WithdrawalStatusUpdaterService.call({ updater_user: current_user,
+        Financial::UpdaterWithdrawalStatusService.call({ updater_user: current_user,
                                                          status: params[:status] ? params[:status].to_i : nil,
                                                          withdrawal: withdrawal }, params[:locale])
         if params[:status].to_i == Withdrawal.statuses[:approved]

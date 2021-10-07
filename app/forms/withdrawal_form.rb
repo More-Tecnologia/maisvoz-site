@@ -59,7 +59,7 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_minimum
-    @withdrawal_minimum ||= ENV['WITHDRAWAL_MINIMUM_VALUE']
+    @withdrawal_minimum ||= ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f
   end
 
   def withdrawal_maximum

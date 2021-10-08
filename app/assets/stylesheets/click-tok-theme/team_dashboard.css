@@ -66,6 +66,17 @@
 .t-margin-bottom {
   margin-bottom: 8rem;
 }
-.half {
-  max-width: 50%;
+.f-options-box {
+  font-size: 0.8rem;
+}
+.f-box-icon {
+  padding: 0.3rem;
+}
+@media (min-width: 1280px){
+  .half {
+    max-width: 50%;
+  }
+  .f-box-icon {
+    font-size: 1.2rem;
+  }
 }

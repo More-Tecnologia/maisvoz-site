@@ -1,6 +1,6 @@
 class CreatorBonusContractService < ApplicationService
   def call
-    expire_at = 6.months.from_now
+    expire_at = 3.months.from_now
     contract_value = @order.products.first == Product.first ? 10 : 1_000_000
     rentability = CONTRACT_RETABILITY
 

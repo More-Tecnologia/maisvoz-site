@@ -73,12 +73,14 @@ class WithdrawalForm < Form
   private
 
   def user_has_balance
-    return if amount_cents <= user.available_balance
+    return if amount_cents < user.available_balance
+
     errors.add(:base, I18n.t('defaults.errors.no_funds'))
   end
 
   def fiscal_document_presence
     return if fiscal_document_link.present? || fiscal_document_photo.present?
+
     errors.add(:fiscal_document_link, :blank)
   end
 end

@@ -7,7 +7,7 @@ module Backoffice
 
     def create
       t = Time.now
-      unless t.saturday? || t.sunday?
+      unless t.saturday? || t.sunday? || t.monday?
         ActiveRecord::Base.transaction do
           bonus_contracts.map do |bonus_contract|
             next unless can_click_more_banners?(bonus_contract)

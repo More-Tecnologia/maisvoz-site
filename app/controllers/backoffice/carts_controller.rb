@@ -1,13 +1,15 @@
 module Backoffice
   class CartsController < BackofficeController
-    before_action :redirect_back_if_duplicated_bought_of_free_product
-
     def show
       @checkout_form = CheckoutForm.new(order: current_order, user: current_user)
     end
 
     def create
       if current_order.products.first == Product.first
+        if free_product_already_purchased?
+          flash[:alert] = t('defaults.errors.duplicated_free_product')
+          redirect_back(fallback_location: backoffice_dashboard_index_path) and return
+        end
         current_order.update!(status: :pending_payment, payment_type: :free)
         current_order.create_payment_transaction!(amount: 0,
                                                   transaction_id: SecureRandom.hex,
@@ -37,14 +39,11 @@ module Backoffice
             .merge(order: current_order)
     end
 
-    def redirect_back_if_duplicated_bought_of_free_product
-      return if OrderItem.includes(:product, :order)
-                         .where(order: Order.paid, 'orders.user': current_user)
-                         .where(product: Product.first)
-                         .none?
-
-      flash[:alert] = t('defaults.errors.duplicated_free_product')
-      redirect_back(fallback_location: backoffice_dashboard_index_path)
+    def free_product_already_purchased?
+       OrderItem.includes(:product, :order)
+                .where(order: Order.paid, 'orders.user': current_user)
+                .where(product: Product.first)
+                .any?
     end
   end
 end

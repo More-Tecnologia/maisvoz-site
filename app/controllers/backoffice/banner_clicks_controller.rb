@@ -10,6 +10,7 @@ module Backoffice
       unless t.saturday? || t.sunday?
         ActiveRecord::Base.transaction do
           bonus_contracts.map do |bonus_contract|
+            next if free_user? && bonus_contract.max_free_gains?
             next unless can_click_more_banners?(bonus_contract)
 
             banner_click = current_user.banner_clicks
@@ -18,6 +19,8 @@ module Backoffice
             credit_bonus_to(bonus_contract, transaction)
 
             banner_click.update(financial_transaction: transaction)
+            next if free_user?
+
             RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
           end
         end
@@ -31,7 +34,7 @@ module Backoffice
     def build_transaction(contract)
       current_user.financial_transactions
                   .create!(spreader: User.find_morenwm_customer_admin,
-                           financial_reason: FinancialReason.yield_bonus,
+                           financial_reason: financial_reason,
                            moneyflow: :credit,
                            bonus_contract: contract,
                            cent_amount: contract.order_items
@@ -52,6 +55,18 @@ module Backoffice
 
     def can_click_more_banners?(contract)
       current_user.banner_clicks.today.by_contract(contract).count < contract.order_items.last.task_per_day.to_i
+    end
+
+    def financial_reason
+      free_user? ? FinancialReason.free_task_performed : FinancialReason.yield_bonus
+    end
+
+    def free_user?
+      current_user.orders
+                  .paid
+                  .map(&:order_items)
+                  .flatten
+                  .all? { |x| x.product.free_product? }
     end
   end
 end

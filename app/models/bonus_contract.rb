@@ -37,6 +37,12 @@ class BonusContract < ApplicationRecord
     self[:cent_amount] = (amount * 1e2).to_i
   end
 
+  def max_free_gains?
+    financial_transactions.includes(:financial_reason)
+                          .where(financial_reason: FinancialReason.free_task_performed)
+                          .sum(&:cent_amount) >= 750
+  end
+
   def remaining_balance
     self[:remaining_balance] / 1e2.to_f if self[:remaining_balance]
   end

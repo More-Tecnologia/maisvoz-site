@@ -94,4 +94,8 @@ class Product < ApplicationRecord
       end
     end
   end
+
+  def free_product?
+    self == self.class.first
+  end
 end

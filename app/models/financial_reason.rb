@@ -195,4 +195,8 @@ class FinancialReason < ApplicationRecord
   def self.order_payment_with_balance
     @@order_payment_with_balance ||= find_by(code: '4700')
   end
+
+  def self.free_task_performed
+    @@free_task_performed ||= find_by(code: '4800')
+  end
 end

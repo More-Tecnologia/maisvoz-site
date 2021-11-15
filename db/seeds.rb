@@ -239,7 +239,7 @@ bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, compan
                  { title: 'Weekly Excess Binary Bonus Chargeback', code: '800', active: false, company_moneyflow: :credit  },
                  { title: 'Career Limit Bonus Chargeback', code: '900', active: false, company_moneyflow: :credit  },
                  { title: 'Referral Bonus', code: '1000', active: false, company_moneyflow: :debit },
-                 { title: 'Tarefa Realizada', code: '1100', active: true, company_moneyflow: :debit },
+                 { title: 'Task Performed', code: '1100', active: true, company_moneyflow: :debit },
                  { title: 'Binary Bonus Chargeback by Disqualification', code: '1300', active: false, company_moneyflow: :credit },
                  { title: 'Residual Support Point Bonus', code: '1400', active: false, company_moneyflow: :debit },
                  { title: 'Residual Support Point Inactivity Bonus Chargeback', code: '3000', active: false, company_moneyflow: :credit},
@@ -259,7 +259,8 @@ bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, compan
                  { title: 'Receita Recorrente', code: '3600', active: true, company_moneyflow: :debit },
                  { title: 'Estorno de Receita Recorrente por Inatividade', code: '3700', active: true, company_moneyflow: :credit },
                  { title: 'Pool Leadership', code: '3900', active: false, company_moneyflow: :credit },
-                 { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: false, company_moneyflow: :credit }]
+                 { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: false, company_moneyflow: :credit },
+                 { title: 'Free Task Performed', code: '4800', active: true, company_moneyflow: :debit }]
 
 bonus_reasons.each do |attributes|
   financial_reason = FinancialReason.find_by(code: attributes[:code])

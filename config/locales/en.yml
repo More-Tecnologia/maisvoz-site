@@ -1636,6 +1636,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   tasks_per_day: Task Day Nº
   tasks_history: Task history
   available_tasks: Available Tasks
+  available_tasks: Available Tasks Bonus
   complete: Complete
   available: Available
   n_of_campaign: Nº of campaigns
@@ -1657,3 +1658,4 @@ We will send a new e-mail as soon as the transaction is complete.'
   recurring_revenue_text: Develop recurring income and earn bonuses up to the third generation of your network whenever they do their tasks - 20% 10% 5%
   campaign: Campaign
   create: 'Create'
+  active_until: Active until

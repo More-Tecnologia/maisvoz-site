@@ -37,10 +37,30 @@ class BonusContract < ApplicationRecord
     self[:cent_amount] = (amount * 1e2).to_i
   end
 
-  def max_free_gains?
+  def max_gains?
+    task_gains >= max_task_gains
+  end
+
+  def task_gains
     financial_transactions.includes(:financial_reason)
-                          .where(financial_reason: FinancialReason.free_task_performed)
-                          .sum(&:cent_amount) >= 750
+                          .where(financial_reason: task_reason)
+                          .sum(&:cent_amount)
+  end
+
+  def task_reason
+    free_product? ? FinancialReason.free_task_performed : FinancialReason.yield_bonus
+  end
+
+  def free_product?
+    price.zero?
+  end
+
+  def price
+    order_items.last.product.price_cents
+  end
+
+  def max_task_gains
+    free_product? ? 7.5 : price * 2.5
   end
 
   def remaining_balance

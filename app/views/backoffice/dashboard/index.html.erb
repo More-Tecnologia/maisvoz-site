@@ -31,6 +31,7 @@
   </div>
 
   <% data = [[t(:complete), @banners_clicked_today_quantity], [t(:available), @total_banners_per_day - @banners_clicked_today_quantity]] %>
+  <% data2 = [[t(:complete), @task_gains], [t(:available), @max_task_gains - @task_gains]] %>
 
   <div class="products-list mt">
     <div class="t-options-box t-options-box-l rh">
@@ -62,5 +63,35 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="products-list mt">
+    <div class="t-options-box t-options-box-l rh">
+      <div class="f-box-title">
+        <%= t(:available_tasks_bonus) %>
+      </div>
+      <div class="f-box-icon">
+        <div class="t-tasks-progress">
+          <%= pie_chart data2, donut: true, colors: ['#EF539F', 'white'], legend: false %>
+        </div>
+      </div>
+      <div class="f-tasks-quantity text-center pink">
+        <%= "#{@contracts.sum(&:task_gains)}/#{@contracts.sum(&:max_task_gains)}" %>
+      </div>
+    </div>
+
+    <div class="t-options-box t-options-box-r rh">
+      <div class="f-box-title">
+        <%= current_user.active? ? t(:active_until) : t(:inactive) %>
+      </div>
+      <div class="f-box-icon is">
+          <%= link_to '#' do %>
+            <%= image_tag((current_user.active? ? 'icons/active.svg': 'icons/inactive.svg'), class: 'icons') %>
+          <% end %>
+      </div>
+      <div class="f-tasks-quantity text-center pink">
+        <%= @contract.expire_at.strftime("%m/%d/%Y") if current_user.active? %>
+      </div>
+    </div>
   </div>
 </div>

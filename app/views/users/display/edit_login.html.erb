@@ -8,8 +8,7 @@
   <%= form_for(current_user, url: update_login_users_display_index_path, validate: true, html: { method: :put }) do |f| %>
     <div class="credentials-box">
       <div class="login-fields">
-
-        <%= f.country_select("country", { include_blank: t(:select_country) }, { class: 'input-description' }) %>
+        <%= f.country_select :country, { include_blank: t(:select_country), format: :with_country_code }, class: "input-description", prompt: t('attributes.country') %>
       </div>
       <div class="login-fields">
         <%= f.text_field :username, placeholder: t(:new_phone), class: "input-description" %>

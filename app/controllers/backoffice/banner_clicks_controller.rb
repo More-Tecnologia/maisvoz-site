@@ -10,7 +10,7 @@ module Backoffice
       unless t.saturday? || t.sunday?
         ActiveRecord::Base.transaction do
           bonus_contracts.map do |bonus_contract|
-            next if free_user? && bonus_contract.max_free_gains?
+            next if bonus_contract.max_gains?
             next unless can_click_more_banners?(bonus_contract)
 
             banner_click = current_user.banner_clicks

@@ -656,14 +656,14 @@ en:
       From now on you will be able to enjoy your new benefits achieved with your new title achieved.'
   shopping_mailer:
     order_paid:
-      body: 'You will receive <b>%{order_value}</b> in your %{company_name} account.
-After three confirmations from the network the amount will be available for use.
-We will send a new e-mail as soon as the transaction is complete.'
+      body: "We inform that your purchase of the product <strong> %{product_name} </strong> was successfully completed!
+            We thank and congratulate you for purchasing our products."
       footer: 'Yours sincerely, <br>
               Financial Department <br>
               %{company_name}'
     order_made:
-      body: The amount of <b>%{order_value}</b> is already available in your BackOffice for immediate use. We wish you good deals.
+      body: Your <b>order</b> worth of <b>%{order_value}</b> was carried out.
+            Complete payment and wait for processing.
   devise_mailer:
     reset_password_instructions:
       order_link: You requested a link to change your password. You can change it via the link below.
@@ -1659,3 +1659,9 @@ We will send a new e-mail as soon as the transaction is complete.'
   campaign: Campaign
   create: 'Create'
   active_until: Active until
+  purchased_product: Purchased product
+  my_orders: My orders
+  mail_locked_text: Your account has been locked due to an excessive number of unsuccessful sign in attempts
+  mail_locked_ins: "Click the link below to unlock your account:"
+  mail_unlock_account: Unlock my account
+  change_password_text: "We're contacting you to notify you that your password has been changed."

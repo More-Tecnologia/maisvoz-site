@@ -5,17 +5,17 @@
         valign="top"
         bgcolor="">
       <h2 style="text-align: center;">
-        <span style="color:#A9A9A9;"> <%= t('user_mailer.welcome.call', name: @user.name) %> </span>
+        <span> <%= t('user_mailer.welcome.call', name: @user.name) %> </span>
       </h2><br>
-      <div style="color:#808080;font-size: 16px;text-indent: 30px;">
+      <div style="font-size: 16px;text-indent: 30px;">
 
           <span>
-            <%= t('.body', order_value: number_to_currency(@order.total), company_name: ENV['COMPANY_NAME']).html_safe %>
+            <%= t('.body', product_name: @order.order_items.last.name, company_name: ENV['COMPANY_NAME']).html_safe %>
           </span>
 
       </div><br>
-      <p> <%= link_to t('my_deposits'), backoffice_deposits_url %> </p><br>
-      <span style="color:#808080;">
+      <p> <%= link_to t('my_orders'), backoffice_orders_url %> </p><br>
+      <span>
         <%= t(:financial_department_footer, company_name: ENV['COMPANY_NAME']).html_safe %>
       </span>
     </td>

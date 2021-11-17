@@ -6,7 +6,7 @@ class ShoppingMailer < ApplicationMailer
     @order = params[:order]
     @user = @order.user
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Deposit Solicitation"
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - #{t(:product_solicitation)}"
   end
 
   def order_paid
@@ -15,7 +15,7 @@ class ShoppingMailer < ApplicationMailer
     @order = params[:order]
     @user = @order.user
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - Deposit done"
+    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - #{t(:purchased_product)}"
   end
 
 end

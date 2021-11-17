@@ -256,8 +256,8 @@ bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, compan
                  { title: 'Binary Bonus Chargeback for Daily Excess', code: '3300', active: false, company_moneyflow: :credit },
                  { title: 'Bonus Chargeback for Contract Limit', code: '3400', active: false, company_moneyflow: :credit },
                  { title: 'Pool Cash', code: '3500', active: false, company_moneyflow: :debit },
-                 { title: 'Receita Recorrente', code: '3600', active: true, company_moneyflow: :debit },
-                 { title: 'Estorno de Receita Recorrente por Inatividade', code: '3700', active: true, company_moneyflow: :credit },
+                 { title: 'Recurring', code: '3600', active: true, company_moneyflow: :debit },
+                 { title: 'Recurring Chargeback for Inactivity', code: '3700', active: true, company_moneyflow: :credit },
                  { title: 'Pool Leadership', code: '3900', active: false, company_moneyflow: :credit },
                  { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: false, company_moneyflow: :credit },
                  { title: 'Free Task Performed', code: '4800', active: true, company_moneyflow: :debit }]

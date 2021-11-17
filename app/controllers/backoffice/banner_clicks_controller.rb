@@ -45,7 +45,6 @@ module Backoffice
 
     def credit_bonus_to(contract, transaction)
       contract.received_balance += transaction.cent_amount.to_f
-      contract.remaining_balance = contract.cent_amount - contract.received_balance.to_f
       contract.save!
     end
 

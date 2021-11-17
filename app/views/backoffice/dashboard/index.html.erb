@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="f-tasks-quantity text-center pink">
-        <%= "#{@contracts.sum(&:task_gains)}/#{@contracts.sum(&:max_task_gains)}" %>
+        <%= "$ #{@max_task_gains - @task_gains}" %>
       </div>
     </div>
 

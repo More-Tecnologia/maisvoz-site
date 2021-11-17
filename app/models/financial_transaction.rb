@@ -66,6 +66,8 @@ class FinancialTransaction < ApplicationRecord
   #                                        if: :payment_bonus?,
   #                                        unless: proc { chargeback? || financial_reason_yield_bonus? }
 
+  after_commit :inactive_free_contract, on: :create, if: :max_contract_gains?
+
   def chargeback!
     create_chargeback!(user: User.find_morenwm_customer_admin,
                        spreader: user,
@@ -161,5 +163,23 @@ class FinancialTransaction < ApplicationRecord
 
   def debits_bonus_of_contract
     Financial::BonusContractDistributorService.call(financial_transaction: self)
+  end
+
+  def inactive_free_contract
+    bonus_contract.update(paid_at: Time.now)
+    if bonus_contract.maxed_out_gains?
+      admin = User.find_morenwm_customer_admin
+      admin.financial_transactions.create!(spreader: user,
+                                           financial_reason: FinancialReason.chargeback_by_contract_limit,
+                                           cent_amount: bonus_contract.maxed_out_gains,
+                                           moneyflow: :debit,
+                                           bonus_contract: bonus_contract)
+    end
+    active_bonus_contracts = user.bonus_contracts.active.yield_contracts.order(:created_at)
+    user.inactivate! unless active_bonus_contracts.any?(&:active?)
+  end
+
+  def max_contract_gains?
+    bonus_contract.max_contract_gains? if bonus_contract.present?
   end
 end

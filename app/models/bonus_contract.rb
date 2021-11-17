@@ -41,14 +41,29 @@ class BonusContract < ApplicationRecord
     task_gains >= max_task_gains
   end
 
+  def max_contract_gains?
+    free_product? && task_gains >= 25
+  end
+
+  def maxed_out_gains
+    task_gains - 25
+  end
+
+  def maxed_out_gains?
+    maxed_out_gains.positive?
+  end
+
   def task_gains
     financial_transactions.includes(:financial_reason)
                           .where(financial_reason: task_reason)
-                          .sum(&:cent_amount)
+                          .sum(&:cent_amount) - financial_transactions.where(moneyflow: :debit)
+                                                                      .sum(&:cent_amount)
   end
 
   def task_reason
-    free_product? ? FinancialReason.free_task_performed : FinancialReason.yield_bonus
+    [FinancialReason.free_task_performed, FinancialReason.yield_bonus,
+     FinancialReason.indication_bonus, FinancialReason.indirect_referral_bonus,
+     FinancialReason.matching_bonus]
   end
 
   def free_product?

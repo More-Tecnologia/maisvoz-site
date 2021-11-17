@@ -8,7 +8,7 @@
       </div>
 
       <div class="balance-value">
-        <%= number_to_currency current_user.financial_transactions.sum(&:cent_amount) %>
+        <%= number_to_currency current_user.bonus_contracts.sum(&:task_gains) %>
       </div>
     </div>
 

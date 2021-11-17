@@ -31,7 +31,7 @@
   </div>
 
   <% data = [[t(:complete), @banners_clicked_today_quantity], [t(:available), @total_banners_per_day - @banners_clicked_today_quantity]] %>
-  <% data2 = [[t(:complete), @task_gains], [t(:available), @max_task_gains - @task_gains]] %>
+  <% data2 = [[t(:complete), @task_gains], [t(:available), @available_gains]] %>
 
   <div class="products-list mt">
     <div class="t-options-box t-options-box-l rh">
@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="f-tasks-quantity text-center pink">
-        <%= "$ #{@max_task_gains - @task_gains}" %>
+        <%= "$ #{@available_gains}" %>
       </div>
     </div>
 

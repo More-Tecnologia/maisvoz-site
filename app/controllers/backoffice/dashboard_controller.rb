@@ -6,6 +6,8 @@ module Backoffice
     def index
       @max_task_gains = @contracts.sum(&:max_task_gains)
       @task_gains = @contracts.sum(&:task_gains)
+      available = @max_task_gains - @task_gains
+      @available_gains = available.positive? ? available : 0
       @contract = @contracts.last
       @total_banners_per_day = @contract.present? ? @contract.order_items.last.task_per_day.to_i : 0
       @banners_clicked_today_quantity = current_user.banner_clicks

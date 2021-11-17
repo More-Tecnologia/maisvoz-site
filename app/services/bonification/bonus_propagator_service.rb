@@ -112,6 +112,7 @@ module Bonification
                                                financial_reason: financial_reason,
                                                generation: generation,
                                                cent_amount: bonus,
+                                               bonus_contract: sponsor.bonus_contract.last,
                                                order: order.loan_payment ? nil : order) if bonus > 0
     end
 

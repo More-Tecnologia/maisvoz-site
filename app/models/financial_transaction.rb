@@ -87,7 +87,8 @@ class FinancialTransaction < ApplicationRecord
                        financial_reason: financial_reason,
                        cent_amount: amount.to_f,
                        moneyflow: invert_money_flow,
-                       order: order)
+                       order: order,
+                       bonus_contract: bonus_contract)
   end
 
   def chargeback_by_inactivity!(reason = FinancialReason.chargeback_by_inactivity)

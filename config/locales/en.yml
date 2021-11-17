@@ -1636,7 +1636,7 @@ We will send a new e-mail as soon as the transaction is complete.'
   tasks_per_day: Task Day Nº
   tasks_history: Task history
   available_tasks: Available Tasks
-  available_tasks: Available Tasks Bonus
+  available_tasks_bonus: Available Tasks Bonus
   complete: Complete
   available: Available
   n_of_campaign: Nº of campaigns

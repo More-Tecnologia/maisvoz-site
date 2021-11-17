@@ -39,7 +39,8 @@ module Bonification
              .create!(spreader: @user,
                       financial_reason: FinancialReason.matching_bonus,
                       moneyflow: :credit,
-                      cent_amount: cent_amount)
+                      cent_amount: cent_amount,
+                      bonus_contract: sponsor.bonus_contract.last)
     end
   end
 end

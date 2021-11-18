@@ -24,7 +24,7 @@
       </div>
       <div class="th-history-task-status">
         <div class="wr-align">
-          <div class="wr-amount">
+          <div class="wr-amount <%= 'text-danger' if financial_transaction.debit? %>">
             <span><%= format_cent_amount_value(financial_transaction) %></span>
           </div>
         </div>

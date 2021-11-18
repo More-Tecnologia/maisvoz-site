@@ -57,7 +57,8 @@ module Financial
           .create!(financial_reason: FinancialReason.withdrawal,
                    cent_amount: withdrawal.gross_amount_cents,
                    moneyflow: :debit,
-                   withdrawal: withdrawal) if withdrawal.gross_amount_cents > 0
+                   withdrawal: withdrawal,
+                   bonus_contract: user.bonus_contracts.last) if withdrawal.gross_amount_cents > 0
     end
 
     def create_withdrawal_fee_financial_transaction

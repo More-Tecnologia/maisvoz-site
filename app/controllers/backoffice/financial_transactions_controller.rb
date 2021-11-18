@@ -4,7 +4,7 @@ module Backoffice
 
     def index
       @financial_transactions =
-        FinancialTransaction.by_user(current_user)
+        FinancialTransaction.by_current_user(current_user)
                             .to_empreendedor
                             .includes(:spreader, :financial_reason, :order)
                             .order(created_at: :desc)

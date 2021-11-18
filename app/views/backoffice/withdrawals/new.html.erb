@@ -60,8 +60,8 @@
     </div>
     <div class="ch-payment-buttons-area">
       <div class="btn btn-tab" onclick="showPixInput()">
-        <%= image_tag('icons/pix.svg', class: 'icons') %>
-        <%= t(:pix) %>
+        <%= image_tag('icons/eth.svg', class: 'icons') %>
+        <%= t(:eth) %>
       </div>
 
       <div class="btn btn-tab" onclick="showBitCoinInput()">
@@ -74,7 +74,7 @@
           <%= image_tag('icons/pix-p.svg', class: 'icons') %>
         </div>
         <div class="w-withdraw-input">
-          <%= f.input_field :pix_wallet, id: "pix_wallet", placeholder: t(:pix), value: current_user.pix_wallet %>
+          <%= f.input_field :pix_wallet, id: "pix_wallet", placeholder: t(:eth), value: current_user.pix_wallet %>
         </div>
       </div>
       <div class="w-withdraw-area" id="bitcoin_input" style="display: none;">

@@ -1400,7 +1400,7 @@ en:
   refuse_withdraw: 'If you do not recognize this request click'
   confirm_withdraw: 'If you did this request click'
   can_confirm_withdraw: 'Confirm or cancel your request through our website'
-  waiting_withdrawal_request: 'You have just made a withdrawal request for %{value} in the digital wallet: %{wallet}.'
+  waiting_withdrawal_request: 'You have just made a withdrawal request (%{withdrawal}) for %{value} in the digital wallet: %{wallet}.'
   waiting_withdrawal: 'Your withdraw request is being processed and will be available up to one work day. <br>
   Gross amount: %{value} <br>
   Net amount: %{net_value} <br>
@@ -1666,3 +1666,4 @@ en:
   mail_unlock_account: Unlock my account
   change_password_text: "We're contacting you to notify you that your password has been changed."
   eth: ETH
+  withdrawal_solicitation: Withdrawal solicitation

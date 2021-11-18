@@ -5,7 +5,7 @@
 <p><%= t('canceled_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), wallet: @user.wallet_address, support_email: ENV['SUPPORT_EMAIL']) %></p>
 
 <br>
-<span style="color:#808080;">
+<span>
   <%= t(:financial_department_footer, company_name: ENV['COMPANY_NAME']).html_safe %>
 </span>
 <br>

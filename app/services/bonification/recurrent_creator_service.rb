@@ -40,7 +40,7 @@ module Bonification
                       financial_reason: FinancialReason.matching_bonus,
                       moneyflow: :credit,
                       cent_amount: cent_amount,
-                      bonus_contract: sponsor.bonus_contract.last)
+                      bonus_contract: sponsor.bonus_contracts.last)
     end
   end
 end

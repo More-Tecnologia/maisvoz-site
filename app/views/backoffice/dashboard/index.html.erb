@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="f-tasks-quantity text-center pink">
-        <%= "$ #{@available_gains}" %>
+        <%= number_to_currency(@available_gains, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
       </div>
     </div>
 

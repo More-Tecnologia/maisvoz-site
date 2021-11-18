@@ -16,7 +16,7 @@
 }
 
 .box {
-    box-sizing: border-box;
+    box-sizing: -box;
     border-radius: 12px;
     height: 11rem;
     min-width: 42%;
@@ -38,7 +38,7 @@
 
 .buy {
     align-items: center;
-    background-color: #643D8F;
+    background-color: #5CB800;
     border-radius: 50%;
     color: white;
     cursor: pointer;
@@ -52,7 +52,7 @@
 }
 
 .buy button {
-    background-color: #643D8F;
+    background-color: #5CB800;
     border-radius: 1rem;
     color: white;
     cursor: pointer;
@@ -122,4 +122,7 @@
 
 .f-options-box-l {
     margin-right: 0.25%;
+}
+.hidden {
+  display: none;
 }

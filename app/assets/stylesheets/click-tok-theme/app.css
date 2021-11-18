@@ -273,6 +273,10 @@ select:-webkit-autofill:focus {
   opacity: 0.5;
 }
 
+.btn-tab2 {
+  opacity: 0.5;
+}
+
 .btn-tab.active {
   opacity: 1;
 }

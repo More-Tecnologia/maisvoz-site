@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag 'click-tok-theme/store' %>
+<%= javascript_include_tag 'click-tok-theme/shop' %>
 <div class="page">
   <div class="products-list">
     <% @products.each do |product| %>
@@ -25,7 +26,7 @@
           </div>
         </div>
 
-        <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
+        <%= link_to backoffice_order_items_path(product: {id: product.hashid}), class: 'confimation-button',
                      method: :post do %>
            <div class="buy">
              <button>

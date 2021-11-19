@@ -1,4 +1,6 @@
 <%= stylesheet_link_tag 'click-tok-theme/short_registration' %>
+<script src="https://unpkg.com/xregexp/xregexp-all.js"></script>
+<%= javascript_include_tag 'click-tok-theme/country_number' %>
 
 <%= simple_form_for(@form, as: resource_name, url: registration_path(resource_name), class: 'form-horizontal m-t-20') do |f| %>
   <%= f.object.errors.full_messages.join(', ') %>

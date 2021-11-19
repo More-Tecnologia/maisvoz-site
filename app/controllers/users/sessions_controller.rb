@@ -11,9 +11,10 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    params[:user][:login] = params[:user][:login].gsub(/[+]/, '')
+    super
+  end
 
   # DELETE /resource/sign_out
   # def destroy

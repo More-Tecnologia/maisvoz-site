@@ -1,16 +1,16 @@
 <%= stylesheet_link_tag 'click-tok-theme/login' %>
-<script src="https://unpkg.com/xregexp/xregexp-all.js"></script>
-<%= javascript_include_tag 'click-tok-theme/country_number' %>
+<!-- <script src="https://unpkg.com/xregexp/xregexp-all.js"></script>
+<%= javascript_include_tag 'click-tok-theme/country_number' %> -->
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal m-t-20') do |f| %>
   <%= f.error_notification %>
   <div class="credentials-box">
-    <div class="login-fields">
+    <!-- <div class="login-fields">
       <div class="field-icon">
         <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>
       </div>
       <%= f.input_field :country, class: "input-description", prompt: t('attributes.country'), format: :with_country_code %>
-    </div>
+    </div> -->
     <div class="login-fields">
       <div class="field-icon">
         <%= image_tag('icons/phone.svg', alt: t(:phone) ) %>

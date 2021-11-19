@@ -12,7 +12,7 @@
     </div>
 
     <div class="balance-value">
-      <%= number_to_currency(current_user.available_balance) %>
+      <%= number_to_currency(current_user.bonus_contracts.sum(&:net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
     </div>
   </div>
   <%= simple_form_for(@form, url: backoffice_withdrawals_path,
@@ -42,10 +42,8 @@
     </div>
     <div class="ch-purchase-desc">
       <div>
-
         <label><%= t(:mininum_withdrawal_value) %></label>
-
-        <span><%= number_to_currency ENV['WITHDRAWAL_MINIMUM_VALUE'] %></span>
+        <span><%= number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'], unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></span>
       </div>
       <div>
         <label><%= t(:fee) %></label>
@@ -70,7 +68,7 @@
         <%= t(:btc) %>
       </div>
     </div>
-      <div class="w-withdraw-area" id="pix_input">
+      <div class="w-withdraw-area" id="pix_input" style="display: none;">
         <div class="w-withdraw-icon">
           <%= image_tag('icons/pix-p.svg', class: 'icons') %>
         </div>

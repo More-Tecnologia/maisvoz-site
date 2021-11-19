@@ -63,7 +63,7 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_maximum
-    user.available_balance
+    user.bonus_contracts.sum(&:net_task_gains)
   end
 
   def contracts_amount
@@ -73,7 +73,7 @@ class WithdrawalForm < Form
   private
 
   def user_has_balance
-    return if amount_cents < user.available_balance
+    return if amount_cents < withdrawal_maximum
 
     errors.add(:base, I18n.t('defaults.errors.no_funds'))
   end

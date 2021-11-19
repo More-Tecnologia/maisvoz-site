@@ -53,11 +53,21 @@ class BonusContract < ApplicationRecord
     maxed_out_gains.positive?
   end
 
+  def net_task_gains
+    task_gains - financial_transactions.where(moneyflow: :debit, financial_reason: FinancialReason.withdrawal)
+                                       .sum(&:cent_amount)
+  end
+
   def task_gains
+    gross_task_gains - financial_transactions.where(moneyflow: :debit)
+                                             .where.not(financial_reason: FinancialReason.withdrawal)
+                                             .sum(&:cent_amount)
+  end
+
+  def gross_task_gains
     financial_transactions.includes(:financial_reason)
                           .where(financial_reason: task_reason)
-                          .sum(&:cent_amount) - financial_transactions.where(moneyflow: :debit)
-                                                                      .sum(&:cent_amount)
+                          .sum(&:cent_amount)
   end
 
   def task_reason
@@ -75,7 +85,7 @@ class BonusContract < ApplicationRecord
   end
 
   def max_task_gains
-    free_product? ? 7.5 : (price * 2.5 / 100)
+    free_product? ? 7.5 : (price * 2 / 100)
   end
 
   def remaining_balance

@@ -1,6 +1,7 @@
 module Backoffice
   class DashboardController < EntrepreneurController
     before_action :ensure_contracts, only: :index
+    before_action :contracts_by_value, only: :index
     before_action :ensure_no_admin_user, only: :index
 
     def index
@@ -9,6 +10,7 @@ module Backoffice
       available = @max_task_gains - @task_gains
       @available_gains = available.positive? ? available : 0
       @contract = @contracts.last
+      @most_value_contract = @contracts_by_value.last
       @total_banners_per_day = @contract.present? ? @contract.order_items.last.task_per_day.to_i : 0
       @banners_clicked_today_quantity = current_user.banner_clicks
                                                     .today
@@ -51,6 +53,12 @@ module Backoffice
     def ensure_contracts
       @contracts = current_user.bonus_contracts.active.sort do |contract, other|
         contract.order_items.last.task_per_day.to_i <=> other.order_items.last.task_per_day.to_i
+      end
+    end
+
+    def contracts_by_value
+      @contracts_by_value = @contracts.sort do |contract, other|
+        contract.order_items.last.unit_price_cents <=> other.order_items.last.unit_price_cents
       end
     end
 

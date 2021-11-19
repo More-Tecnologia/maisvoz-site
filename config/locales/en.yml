@@ -1639,6 +1639,8 @@ en:
   available_tasks_bonus: Available Tasks Bonus
   complete: Complete
   available: Available
+  complete_dollar: 'Complete: $'
+  available_dollar: 'Available: $'
   n_of_campaign: Nº of campaigns
   payment_method: Payment method
   pix: COMING SOON

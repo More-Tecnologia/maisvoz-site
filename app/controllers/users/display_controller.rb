@@ -10,6 +10,7 @@ module Users
     def edit_password; end
 
     def update_login
+      params[:user][:username] = params[:user][:username].gsub(/[ +]/, '')
       if current_user.update_with_password(user_params(%i[username
                                                           country
                                                           current_password]))

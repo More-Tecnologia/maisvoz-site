@@ -11,23 +11,24 @@ $(document).ready(function(){
 
   function add_locale_class(){
     if($('#user_country').length > 0){
-      var html_class = 'phone-' + $('#user_country').val().toLowerCase()
-
+      let country = $('#user_country option:selected').text()
+      let number = XRegExp.matchRecursive(country, '\\(', '\\)', 'g');
+      var html_class = 'phone-' + number
       $('#user_login, #user_username').attr('data-mask', html_class)
     }
   }
 
   function add_mask_listeners(){
-    $("input[data-mask='phone-br']").each(function() {
-      $(this).mask('00 00000 0000', {clearIfNotMatch: true})
+    $("input[data-mask='phone-55']").each(function() {
+      $(this).mask('+00 00 00000 0000', {clearIfNotMatch: true})
     });
 
-    $("input[data-mask='phone-us']").each(function() {
-      $(this).mask('000 000 00000', {clearIfNotMatch: true})
+    $("input[data-mask='phone-1']").each(function() {
+      $(this).mask('+0 000 000 00000', {clearIfNotMatch: true})
     });
 
-    $("input[data-mask='phone-es']").each(function() {
-      $(this).mask('000 00 00 00', {clearIfNotMatch: true})
+    $("input[data-mask='phone-34']").each(function() {
+      $(this).mask('+00 000 000 000', {clearIfNotMatch: true})
     });
   }
 })

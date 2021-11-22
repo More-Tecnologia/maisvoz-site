@@ -74,6 +74,7 @@ Rails.application.routes.draw do
         resources :interactions, only: [:show, :new, :create]
       end
       resources :subjects, only: [:show, :new]
+      resources :banners
     end
 
     namespace :support do

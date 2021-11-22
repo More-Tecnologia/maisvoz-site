@@ -13,20 +13,14 @@
         <%= @unilevel_nodes.count %>
       </div>
     </div>
-
-    <div class="login-fields t-fw">
-      <div class="field-icon">
-        <%= image_tag('icons/search.svg') %>
+    <%= form_tag(backoffice_team_dashboard_index_path, method: :get) do %>
+      <div class="login-fields t-fw">
+        <div class="field-icon">
+          <%= image_tag('icons/search.svg') %>
+        </div>
+        <%= text_field_tag(:q, params[:q], class:"input-description") %>
       </div>
-
-      <input
-        type="text"
-        name="phone"
-        class="input-description"
-        placeholder="<%= t(:search) %>"
-      />
-    </div>
-
+    <% end %>
     <div class="t-team-owner-avatar">
       <div class="t-owner-avatar">
         <div>
@@ -53,7 +47,7 @@
               <% end %>
             <% end %>
           </div>
-          <span class="text-center"><%= child.user.name.presence || t(:guest) %></span>
+          <span class="text-center"><%= child.user.name.presence.truncate(12) || t(:guest) %></span>
         </div>
       <% end %>
     </div>

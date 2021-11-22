@@ -17,7 +17,7 @@
   <div id="image-slider" class="splide">
   	<div class="splide__track">
   		<ul class="splide__list">
-        <% Banner.all.shuffle.each do |banner| %>
+        <% Banner.active.shuffle.each do |banner| %>
     			<li class="splide__slide">
             <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
                     method: :post,

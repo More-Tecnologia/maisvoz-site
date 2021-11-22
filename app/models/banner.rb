@@ -3,4 +3,6 @@ class Banner < ApplicationRecord
 
   validates :link, presence: true
   validates :image_path, presence: true
+
+  scope :active, -> { where(active: true) }
 end

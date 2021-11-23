@@ -16,7 +16,6 @@
 //= require 'jquery.webui-popover'
 //= require owl.carousel.min
 //= require theme
-//= require print-this/printThis
 //= require notifyjs
 //= require raphael
 //= require morris

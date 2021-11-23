@@ -5,4 +5,12 @@ class Banner < ApplicationRecord
   validates :image_path, presence: true
 
   scope :active, -> { where(active: true) }
+
+  def path
+    image.try(:fullpath)
+  end
+
+  def filename
+    "#{title}.#{image.format}"
+  end
 end

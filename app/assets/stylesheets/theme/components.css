@@ -2595,13 +2595,13 @@ a.editable-click:hover {
 #dashboard .painel .item11 {
   grid-column: 1 /span 2;
   grid-row: 3;
-  background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
+  background: #444444;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   color: #FFF;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 #dashboard .painel .item11 img{

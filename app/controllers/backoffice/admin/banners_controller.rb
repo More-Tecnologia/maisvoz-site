@@ -17,14 +17,8 @@ module Backoffice
       end
 
       def create
-        @banner = Banner.new(ensured_params)
-        if @banner.save
-          flash[:success] = I18n.t(:success_create_banner)
-          redirect_to backoffice_admin_banners_path
-        else
-          flash[:error] = I18n.t('defaults.saving_error')
-          render :new
-        end
+        flash[:success] = I18n.t(:success_create_banner)
+        redirect_to backoffice_admin_banners_path
       end
 
       def edit; end
@@ -50,12 +44,28 @@ module Backoffice
 
       private
 
+      def ensure_creation
+        # this step is necessary because of attachinary gem bug -
+        # https://github.com/assembler/attachinary/issues/130
+        # Remove this gem in favor of active storage
+        new_params = ensured_params
+        file = new_params.delete(:image)
+
+        @banner = Banner.new(new_params)
+        @banner.save
+        return if @banner.persisted? && @banner.update(image: file)
+
+        flash[:error] = @banner.errors.full_messages.join(', ')
+        @banner.destroy
+        render :new
+      end
+
       def ensured_career
-        @career = Banner.find(params[:id])
+        @banner = Banner.find(params[:id])
       end
 
       def ensured_params
-        params.require(:banner).permit(:link, :image_path, :active)
+        params.require(:banner).permit(:link, :image_path, :active, :image)
       end
     end
   end

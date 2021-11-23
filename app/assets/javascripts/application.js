@@ -14,11 +14,6 @@
 //= require rails-ujs
 //= require 'bootstrap'
 //= require 'jquery.webui-popover'
-//= require 'autonumeric/dist/autoNumeric.min'
-//= require 'select2/dist/js/select2.min'
-//= require twitter-bootstrap-wizard/jquery.bootstrap.wizard
-//= require jquery-mask-plugin/dist/jquery.mask
-//= require jquery-slimscroll/jquery.slimscroll
 //= require owl.carousel.min
 //= require theme
 //= require print-this/printThis

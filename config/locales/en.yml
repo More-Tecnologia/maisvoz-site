@@ -1669,3 +1669,9 @@ en:
   change_password_text: "We're contacting you to notify you that your password has been changed."
   eth: ETH
   withdrawal_solicitation: Withdrawal solicitation
+  banners: Banners
+  banner_inactivation_message: Do you intend to disable this banner?
+  success_inactivate_banner: The banner was successfully disabled
+  success_create_banner: The banner was successfully created
+  success_update_banner: The banner was successfully updated
+  link: Link

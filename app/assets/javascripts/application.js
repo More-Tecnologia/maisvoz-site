@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require rails-ujs
-//= require 'bootstrap/dist/js/bootstrap'
-//= require 'webui-popover/dist/jquery.webui-popover'
+//= require 'bootstrap'
+//= require 'jquery.webui-popover'
 //= require 'autonumeric/dist/autoNumeric.min'
 //= require 'select2/dist/js/select2.min'
 //= require twitter-bootstrap-wizard/jquery.bootstrap.wizard

@@ -7,7 +7,7 @@
 </script>
 <div class="page">
 <div class="container-imgs">
-        <% Banner.active.first(12).shuffle.each do |banner| %>
+        <% Banner.active.shuffle.last(12).each do |banner| %>
             <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
                     method: :post,
                     remote: true do %>

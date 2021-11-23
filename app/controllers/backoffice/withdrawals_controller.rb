@@ -74,7 +74,7 @@ module Backoffice
     end
 
     def validate_current_time
-      current_time = DateTime.current.in_time_zone('Brasilia')
+      current_time = DateTime.current.in_time_zone('GMT')
       friday_after_20_hours = current_time.friday? && current_time.hour >= 20
       saturday = current_time.saturday?
       sunday_before_20_hours = current_time.sunday? && current_time.hour <= 20

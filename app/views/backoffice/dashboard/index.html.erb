@@ -4,31 +4,17 @@
 <%= stylesheet_link_tag 'click-tok-theme/dashboard' %>
 
 <script>
-
-  document.addEventListener( 'DOMContentLoaded', function () {
-  	new Splide( '#image-slider', {
-  		'cover'      : true,
-  		'heightRatio': 0.35,
-      'pagination' : false,
-  	} ).mount();
-  } );
 </script>
 <div class="page">
-  <div id="image-slider" class="splide">
-  	<div class="splide__track">
-  		<ul class="splide__list">
-        <% Banner.active.shuffle.each do |banner| %>
-    			<li class="splide__slide">
+<div class="container-imgs">
+        <% Banner.active.shuffle.last(12).each do |banner| %>
             <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
                     method: :post,
                     remote: true do %>
               <%= image_tag(banner.image_path) %>
             <% end %>
-    			</li>
   			<% end %>
-  		</ul>
-  	</div>
-  </div>
+      </div>
 
   <% data = [[t(:complete), @banners_clicked_today_quantity], [t(:available), @total_banners_per_day - @banners_clicked_today_quantity]] %>
   <% data2 = [[t(:complete_dollar), @task_gains.round(2) ], [t(:available_dollar), @available_gains.round(2) ]] %>

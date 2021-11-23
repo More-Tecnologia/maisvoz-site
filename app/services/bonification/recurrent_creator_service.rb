@@ -15,7 +15,7 @@ module Bonification
 
     private
 
-    PERCENTAGES = { '1': 0.20,
+    PERCENTAGES = { '1': 0.15,
                     '2': 0.10,
                     '3': 0.05 }.freeze
 

@@ -124,7 +124,7 @@ textarea:focus, input:focus{
 .login {
     font-size: 14pt;
     font-weight: bold;
-    background-color: #643D8F;
+    background-color: #3F3F3F;
     color: #FFFFFF;
     width: 100%;
     height: 100%;
@@ -161,7 +161,7 @@ textarea:focus, input:focus{
 
 .loader {
     border: 5px solid #f3f3f3; /* Light grey */
-    border-top: 5px solid #643D8F; /* Blue */
+    border-top: 5px solid #3F3F3F; /* Blue */
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -242,7 +242,7 @@ select:-webkit-autofill:focus {
 }
 
 .text-click {
-  color: #ef539f;
+  color: #34EF00;
 }
 
 .font-10 {
@@ -254,15 +254,15 @@ select:-webkit-autofill:focus {
 }
 
 .purple {
-  color: #643D8F;
+  color: #3F3F3F;
 }
 
 .pink {
-  color: #ef539f;
+  color: #34EF00;
 }
 
 .btn-purple {
-  background-color: #643D8F;
+  background-color: #3F3F3F;
 }
 
 .text-white {

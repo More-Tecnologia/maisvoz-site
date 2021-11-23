@@ -25,7 +25,7 @@ header {
     width: 100%;
     min-height: 105px;
     height: 105px;
-    background-color: #643D8F;
+    background-color: #3F3F3F;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     font-family: 'Montserrat', sans-serif;
@@ -85,7 +85,7 @@ header {
 
 .link-share {
     align-items: center;
-    background-color: #EF539F;
+    background-color: #34EF00;
     border-radius: 15px;
     cursor: pointer;
     display: flex;

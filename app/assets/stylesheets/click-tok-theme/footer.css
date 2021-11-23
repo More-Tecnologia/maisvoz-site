@@ -6,7 +6,7 @@
     left: 0;
     right: 0;
     padding: 0;
-    background-color: #643D8F;
+    background-color: #3F3F3F;
     min-height: 40px;
     z-index: 99999;
 }
@@ -27,10 +27,10 @@
     width: 60px;
     height: 60px;
     position: fixed;
-    border: 5px solid #643D8F;
+    border: 5px solid #3F3F3F;
     border-radius: 80px;
     bottom: 15px;
-    background-color: #ef539f;
+    background-color: #34EF00;
 }
 
 .shops a {
@@ -50,7 +50,7 @@
 }
 .nav {
     display: flex;
-    background-color: #643D8F;
+    background-color: #3F3F3F;
 }
 
 .icons {
@@ -78,5 +78,5 @@
 }
 
 .nav__link--active {
-    color: #643D8F;
+    color: #3F3F3F;
 }

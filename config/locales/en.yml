@@ -791,7 +791,7 @@ en:
       not_unique: It is not unique
       invalid_deposit_value: Deposit value must be more than or equal to last
       withdrawal_pending: There is already a pending or waiting withdrawal request
-      withdrawal_invalid_time: Withdrawals are blocked after 8pm on Fridays and before 8pm on Sunday, Brasilia-BR time.
+      withdrawal_invalid_time: Withdrawals are blocked after 8pm on Fridays and before 8pm on Sunday, Greenwich Mean Time.
       user_not_found: User not found
       user_not_found_or_inactive: User not found or inactive
       coinpayments: 'Error on create transaction: %{error}.'

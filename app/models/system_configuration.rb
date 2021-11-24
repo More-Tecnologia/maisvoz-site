@@ -10,14 +10,14 @@ class SystemConfiguration < ApplicationRecord
   end
 
   def self.company_name
-    active_config.company_name
+    active_config.try(:company_name).presence || ENV['COMPANY_NAME']
   end
 
   def self.taxable_fee
-    active_config.taxable_fee
+    active_config.try(:taxable_fee).presence || ENV['SYSTEM_FEE']
   end
 
   def self.withdrawal_fee
-    active_config.withdrawal_fee
+    active_config.try(:withdrawal_fee).presence || ENV['WITHDRAWAL_FEE']
   end
 end

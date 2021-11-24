@@ -1655,9 +1655,9 @@ en:
   mininum_withdrawal_value: Minimum withdrawal amount
   dashboard: Dashboard
   direct_referral_text: "Receive 10% on all Uniclass package purchases made by your direct referrals"
-  indirect_referral_text: "Earn bonuses for referrals from your friends up to the third generation - 3% 1% 1% 1%"
+  indirect_referral_text: "Earn bonuses for referrals from your friends up to the third generation - 2% 1% 1% 1%"
   earnings_by_campaign_text: Perform your tasks and earn commissions daily
-  recurring_revenue_text: Develop recurring income and earn bonuses up to the third generation of your network whenever they do their tasks - 20% 10% 5%
+  recurring_revenue_text: Develop recurring income and earn bonuses up to the third generation of your network whenever they do their tasks - 15% 10% 5%
   campaign: Campaign
   create: 'Create'
   active_until: Active until

@@ -1,8 +1,9 @@
 module Backoffice
   class DashboardController < EntrepreneurController
+    before_action :ensure_no_admin_user, only: :index
+    before_action :ensure_contract_user, only: :index
     before_action :ensure_contracts, only: :index
     before_action :contracts_by_value, only: :index
-    before_action :ensure_no_admin_user, only: :index
 
     def index
       @max_task_gains = @contracts.sum(&:max_task_gains)
@@ -64,6 +65,10 @@ module Backoffice
 
     def ensure_no_admin_user
       redirect_to backoffice_admin_dashboard_index_path if user_signed_in? && (current_user.admin? || current_user.financeiro?)
+    end
+
+    def ensure_contract_user
+      redirect_to backoffice_products_path if current_user.bonus_contracts.active.none?
     end
   end
 end

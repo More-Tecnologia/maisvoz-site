@@ -22,7 +22,7 @@ module Financial
 
     def calculate_amount_fee
       order_value = @order_items.sum { |i| i.product.system_taxable ? i.amount : 0 }
-      order_value * ENV['SYSTEM_FEE'].to_d
+      order_value * SystemConfiguration.taxable_fee.to_d
     end
 
   end

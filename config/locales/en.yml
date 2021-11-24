@@ -1675,3 +1675,9 @@ en:
   success_create_banner: The banner was successfully created
   success_update_banner: The banner was successfully updated
   link: Link
+  configuration_inactivation_message: Do you intend to disable this configuration?
+  success_inactivate_configuration: The configuration was successfully disabled
+  success_create_configuration: The configuration was successfully created
+  success_update_configuration: The configuration was successfully updated
+  configs: System Configurations
+  company_name: Company Name

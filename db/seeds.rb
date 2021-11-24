@@ -325,3 +325,9 @@ chargebacks.each do |chargeback|
   chargeback_reason = FinancialReason.find_by(code: chargeback[0])
   chargeback_reason.update(financial_reason: FinancialReason.find_by(code: chargeback[1]))
 end
+
+unless SystemConfiguration.active_config.present?
+  SystemConfiguration.create(company_name: ENV['COMPANY_NAME'],
+                             withdrawal_fee: ENV['WITHDRAWAL_FEE'],
+                             taxable_fee: ENV['SYSTEM_FEE'])
+end

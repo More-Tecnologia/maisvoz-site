@@ -75,6 +75,7 @@ Rails.application.routes.draw do
       end
       resources :subjects, only: [:show, :new]
       resources :banners
+      resources :system_configurations
     end
 
     namespace :support do

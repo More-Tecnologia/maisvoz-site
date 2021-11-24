@@ -47,7 +47,7 @@
       </div>
       <div>
         <label><%= t(:fee) %></label>
-        <span><%= number_to_percentage(ENV['WITHDRAWAL_FEE'].to_f, precision: 2) %></span>
+        <span><%= number_to_percentage(SystemConfiguration.withdrawal_fee.to_f, precision: 2) %></span>
       </div>
     </div>
     <div class="division">

@@ -35,7 +35,7 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_fee
-    ENV['WITHDRAWAL_FEE'].to_d
+    SystemConfiguration.withdrawal_fee.to_d
   end
 
   def irpf

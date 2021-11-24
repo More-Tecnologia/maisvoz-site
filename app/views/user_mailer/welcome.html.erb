@@ -9,11 +9,11 @@
       </h2><br>
       <div style="font-size: 16px;text-indent: 30px;">
         <span>
-          <%= t('.body', company_name: ENV['COMPANY_NAME']) %>
+          <%= t('.body', company_name: SystemConfiguration.company_name) %>
         </span>
       </div><br>
       <span>
-        <%= t('.footer', company_name: ENV['COMPANY_NAME']).html_safe %>
+        <%= t('.footer', company_name: SystemConfiguration.company_name).html_safe %>
       </span>
     </td>
   </tr>

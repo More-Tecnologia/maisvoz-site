@@ -1,7 +1,7 @@
 <footer data-image-src="<%= image_url('bg.png') %>" style="background-color: transparent;">
     <div class="row">
         <div class="col-full ss-copyright">
-            <span>&copy; <%= t('defaults.copyright', company_name: ENV['COMPANY_NAME']) %></span>
+            <span>&copy; <%= t('defaults.copyright', company_name: SystemConfiguration.company_name) %></span>
         </div>
     </div>
 

@@ -10,13 +10,13 @@
       <div style="font-size: 16px;text-indent: 30px;">
 
           <span>
-            <%= t('.body', product_name: @order.order_items.last.name, company_name: ENV['COMPANY_NAME']).html_safe %>
+            <%= t('.body', product_name: @order.order_items.last.name, company_name: SystemConfiguration.company_name).html_safe %>
           </span>
 
       </div><br>
       <p> <%= link_to t('my_orders'), backoffice_orders_url %> </p><br>
       <span>
-        <%= t(:financial_department_footer, company_name: ENV['COMPANY_NAME']).html_safe %>
+        <%= t(:financial_department_footer, company_name: SystemConfiguration.company_name).html_safe %>
       </span>
     </td>
   </tr>

@@ -9,13 +9,13 @@
       </h2><br>
       <div style="font-size: 16px;text-indent: 30px;">
         <span>
-          <%= t('.body', order_value: number_to_currency(@order.total), company_name: ENV['COMPANY_NAME']).html_safe %><br>
+          <%= t('.body', order_value: number_to_currency(@order.total), company_name: SystemConfiguration.company_name).html_safe %><br>
         </span>
       </div><br>
 
       <p> <%= link_to t('my_orders'), backoffice_orders_url %> </p><br>
       <span>
-        <%= t(:financial_department_footer, company_name: ENV['COMPANY_NAME']).html_safe %>
+        <%= t(:financial_department_footer, company_name: SystemConfiguration.company_name).html_safe %>
       </span>
     </td>
   </tr>

@@ -3,7 +3,7 @@
     <div class="col-sm-12">
         <h4 class="page-title"><%= t('.title') %></h4>
         <ol class="breadcrumb">
-          <li><a href="#"><%= ENV['COMPANY_NAME'] %></a></li>
+          <li><a href="#"><%= SystemConfiguration.company_name %></a></li>
           <li><%= link_to t('views.backoffice.orders.index.title'), backoffice_orders_path %></li>
           <li class="active"><%= t('.title') %></li>
     </div>

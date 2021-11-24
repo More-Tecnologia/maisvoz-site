@@ -3,6 +3,10 @@
 
 <div>
   <div class="page">
+    <div class="back-button">
+      <%= image_tag('icons/back.svg') %>
+      <%= link_to t(:back), :back %>
+    </div>
     <div class="f-balance-area">
       <div class="balance-title t-break-line">
       <%= link_to backoffice_direct_nominees_list_index_path, class:'text-white' do %>

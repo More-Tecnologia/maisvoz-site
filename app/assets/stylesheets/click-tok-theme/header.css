@@ -33,6 +33,7 @@ header {
 
 .header-container {
     width: 100%;
+    max-width: 1720px;
 }
 
 .nav-link {
@@ -85,7 +86,7 @@ header {
 
 .link-share {
     align-items: center;
-    background-color: #34EF00;
+    background-color: #31db02;
     border-radius: 15px;
     cursor: pointer;
     display: flex;

@@ -34,7 +34,7 @@ body {
   min-height: 100%;
 }
 html {
-  height: 100%;
+  height: auto;
   box-sizing: border-box;
 }
 
@@ -413,57 +413,6 @@ a:focus {
 .row {
   margin-right: -10px;
   margin-left: -10px;
-}
-.col-lg-1,
-.col-lg-10,
-.col-lg-11,
-.col-lg-12,
-.col-lg-2,
-.col-lg-3,
-.col-lg-4,
-.col-lg-5,
-.col-lg-6,
-.col-lg-7,
-.col-lg-8,
-.col-lg-9,
-.col-md-1,
-.col-md-10,
-.col-md-11,
-.col-md-12,
-.col-md-2,
-.col-md-3,
-.col-md-4,
-.col-md-5,
-.col-md-6,
-.col-md-7,
-.col-md-8,
-.col-md-9,
-.col-sm-1,
-.col-sm-10,
-.col-sm-11,
-.col-sm-12,
-.col-sm-2,
-.col-sm-3,
-.col-sm-4,
-.col-sm-5,
-.col-sm-6,
-.col-sm-7,
-.col-sm-8,
-.col-sm-9,
-.col-xs-1,
-.col-xs-10,
-.col-xs-11,
-.col-xs-12,
-.col-xs-2,
-.col-xs-3,
-.col-xs-4,
-.col-xs-5,
-.col-xs-6,
-.col-xs-7,
-.col-xs-8,
-.col-xs-9 {
-  padding-left: 10px;
-  padding-right: 10px;
 }
 .breadcrumb {
   background-color: transparent;
@@ -1137,7 +1086,19 @@ pre {
   line-height: 60px;
   text-transform: uppercase;
 }
-
+.box-orders,
+.box-credit-debit,
+.box-financial,
+.box-expenses{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.orders,
+.box-second {
+  width: 90%;
+}
 
 
 @media (max-width: 400px){
@@ -1679,8 +1640,7 @@ body.fixed-left .side-menu.left {
   box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.05);
 }
 .user-details {
-  padding: 20px;
-  padding-bottom: 0px;
+  padding-top: 20px;
   position: relative;
 }
 .user-details img {
@@ -2212,6 +2172,9 @@ body.fixed-left .side-menu.left {
 .waves-block {
   display: block;
 }
+.balance-title span {
+  color: white;
+}
 /* =============
    Print css
 ============= */
@@ -2245,7 +2208,6 @@ body.fixed-left .side-menu.left {
     transform: translatex(-50%);
   }
   #sponsor-link {
-    margin-left: -350%!important;
   }
 }
 
@@ -2292,7 +2254,6 @@ body.fixed-left .side-menu.left {
 
 .nav.navbar-nav a, span{
   font-size: 15px;
-  color: #333333;
 }
 
 
@@ -2391,4 +2352,10 @@ body.fixed-left .side-menu.left {
     display: flex;
     align-items: center;
     text-align: center;
+}
+
+@media (min-width: 300px) and (max-width: 640px){
+  .user-details {
+    padding-top: 10px;
+  }
 }

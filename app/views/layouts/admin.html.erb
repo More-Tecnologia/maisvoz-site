@@ -18,6 +18,7 @@
           <div class="main-app">
             <%= render 'layouts/top_bar' %>
             <div class="main-app-content">
+              <%= render 'layouts/shared/admin_header' if current_user.admin? %>
               <% if current_user.refused_verification? %>
                 <div class="alert alert-danger"><%= current_user.document_refused_reason %></div>
               <% end %>

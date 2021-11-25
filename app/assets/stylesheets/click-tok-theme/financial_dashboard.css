@@ -53,10 +53,13 @@
     display: flex;
     flex-direction: column;
     float: left;
-    height: 8rem;
+    height: 160px;
     width: 49.5%;
     margin-top: 3rem;
     background-color: #ffffff;
+}
+.half{
+    margin: auto;
 }
 
 .f-options-box-r {
@@ -80,7 +83,7 @@
 }
 
 .f-box-icon {
-    height: 6rem;
+    height: 100%;
     width: auto;
     display: flex;
     align-items: center;

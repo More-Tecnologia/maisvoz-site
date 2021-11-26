@@ -26,15 +26,15 @@ module Bonification
     def calculate_percentages(sponsoreds)
       case sponsoreds
       when 0..10_000
-        0.010
+        0.00010
       when 10_001..20_000
-        0.015
+        0.00015
       when 20_001..30_000
-        0.025
+        0.00025
       when 30_001..40_000
-        0.035
+        0.00035
       else
-        0.040
+        0.00040
       end
     end
 

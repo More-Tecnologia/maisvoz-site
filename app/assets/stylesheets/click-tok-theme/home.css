@@ -5,6 +5,7 @@
     height: auto;
     margin: auto;
     font-family: 'Lato', sans-serif;
+    padding-bottom: 50px;
 }
 
 .home-page-title h3 {
@@ -164,7 +165,9 @@
     width: 100%;
     
 }
-
+.home-bottom-titles{
+    margin-bottom: 10px;
+}
 .home-bottom-titles h3 {
     font-weight: 600;
     font-size: 18px;

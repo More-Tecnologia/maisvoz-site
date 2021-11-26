@@ -1,13 +1,13 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <!-- Page-Title -->
-<div class="row">
-  <div class="col-sm-12">
+<div class="box-orders">
+  <div class="box-second">
     <h4 class="page-title m-b-30"><%= t('.title') %></h4>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-12">
+<div class="box-orders">
+  <div class="box-second">
     <div class="card-box table-responsive">
 
       <%= datagrid_form_for @grid, :method => :get, :url => backoffice_support_users_path %>

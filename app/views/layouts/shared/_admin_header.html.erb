@@ -1,0 +1,67 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'charts' %>
+
+<div class="container-items">
+  <div class="row" id="dashboard">
+    <div class="painel">
+
+      <%= link_to backoffice_admin_orders_path, class: 'item1 card-menu-admin'  do%>
+        <%= image_tag("header-admin-icons/orders.svg") %> <%= t('defaults.orders') %>
+      <% end %>
+
+      <%= link_to backoffice_admin_credits_debit_path(:find_user), class: 'item2 card-menu-admin'  do%>
+        <%= image_tag("header-admin-icons/creditdebits.svg") %> <%= t('defaults.credits_debits') %>
+      <% end %>
+
+      <%= link_to backoffice_admin_financial_transactions_path, class: 'item3 card-menu-admin'  do%>
+        <%= image_tag("header-admin-icons/financialhistory.svg") %> <%= t('defaults.financial_transactions') %>
+      <% end %>
+
+      <%=  link_to backoffice_admin_withdrawals_path, class: 'item4 card-menu-admin'  do%>
+        <%= image_tag("header-admin-icons/withdrawals.svg") %> <%= t('defaults.manage_withdrawals') %>
+      <% end %>
+
+      <%=  link_to new_backoffice_admin_expense_path, class: 'item5 card-menu-admin'  do%>
+        <%= image_tag("header-admin-icons/expenses.svg") %> <%= t('defaults.expenses') %>
+      <% end %>
+
+      <%= link_to backoffice_admin_bonus_contracts_path, class: 'item6 card-menu-admin'  do%>
+        <%= image_tag("header-admin-icons/bonus-contracts.svg") %> <%= t('defaults.unilevel') %>
+      <% end %>
+
+      <%=  link_to backoffice_admin_financial_reports_path, class: 'item7 card-menu-admin'  do%>
+        <%= image_tag("header-admin-icons/financialreports.svg") %> <%= t('defaults.financial_reports') %>
+      <% end %>
+
+      <%= link_to backoffice_support_users_path, class: 'item8 card-menu-admin'  do%>
+        <%= image_tag("header-admin-icons/user.svg") %> <%= t('defaults.users') %>
+      <% end %>
+
+      <% if any_active_waiting_tickets? %>
+        <%= link_to backoffice_admin_tickets_path, class: 'item9 alert card-menu-admin'  do%>
+          <%= image_tag("header-admin-icons/support.svg") %> <%= t('defaults.support') %>
+        <% end %>
+      <% else %>
+
+        <%= link_to backoffice_admin_tickets_path, class: 'item9 card-menu-admin'  do%>
+          <%= image_tag("header-admin-icons/support.svg") %> <%= t('defaults.support') %>
+        <% end %>
+      <% end %>
+
+      <%= link_to backoffice_admin_products_path, class: 'item10 card-menu-admin' do %>
+        <%= image_tag("header-admin-icons/products.svg") %> <%= t('defaults.products') %>
+      <% end %>
+
+      <%= link_to backoffice_admin_banners_path, class: 'item11 card-menu-admin' do %>
+        <%= image_tag("header-admin-icons/banners.svg") %> <%= t(:banners) %>
+      <% end %>
+
+      <%= link_to backoffice_admin_system_configurations_path, class: 'item12 card-menu-admin' do %>
+        <%= image_tag("header-admin-icons/settings.svg") %> <%= t(:configs) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'click-tok-theme/box-selected' %>
+
+

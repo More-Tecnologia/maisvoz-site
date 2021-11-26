@@ -75,8 +75,15 @@
     transition: background-color 0.1s ease-in-out;
     padding: 10px;
     cursor: pointer;
+    width: 20%;
 }
 
 .nav__link--active {
     color: #3F3F3F;
+}
+
+.title-btn-shop {
+    color: white;
+    height: 10px;
+    margin-bottom: 0;
 }

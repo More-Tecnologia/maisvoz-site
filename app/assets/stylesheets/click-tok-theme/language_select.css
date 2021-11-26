@@ -15,10 +15,10 @@
     border-radius: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     justify-content: space-between;
-    margin-right: 20px;
     padding: 1px;
-    width: 3.4rem;
+    width: 60px;
     background: whitesmoke;
+    transition: 0.5s;
 }
 
 .selected-language {
@@ -27,19 +27,22 @@
     height: 100%;
     margin: 0;
     width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .selected-language img {
     border-color: #3F3F3F;
     border-radius: 20px;
     margin-left: 1px;
-    height: 21px;
+    height: 100%;
     width: 21px;
     z-index: 99;
 }
 
 .selected-language svg {
-    margin-bottom: 3px;
+    fill: black;
 }
 
 .change-language {
@@ -50,6 +53,7 @@
     margin-right: 5px;
     text-align: center;
     margin-top: 60px;
+    transition: 0.5s;
 }
 
 .change-language img {

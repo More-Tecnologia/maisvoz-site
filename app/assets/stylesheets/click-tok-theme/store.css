@@ -33,8 +33,7 @@
 
 .box:hover {
     cursor: pointer;
-    border: 3px solid #34EF00;
-    height: 230px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 .box:nth-child(1) .content-box{
     background-color: #5CB800;
@@ -51,8 +50,7 @@
  }
 
 .box:nth-child(1):hover{
-    border: 3px solid #34EF00;
-    height: 230px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 
 .content-box{

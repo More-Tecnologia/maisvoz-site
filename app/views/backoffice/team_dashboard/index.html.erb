@@ -1,12 +1,13 @@
 <%= stylesheet_link_tag 'click-tok-theme/team_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
-
+<%= stylesheet_link_tag 'click-tok-theme/orders' %>
 <div>
   <div class="page">
-    <div class="back-button">
-      <%= image_tag('icons/back.svg') %>
-      <%= link_to t(:back), :back %>
-    </div>
+    <a class="back-button" href="/backoffice/dashboard?locale=en">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </a>
     <div class="f-balance-area">
       <div class="balance-title t-break-line">
       <%= link_to backoffice_direct_nominees_list_index_path, class:'text-white' do %>

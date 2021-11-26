@@ -14,6 +14,8 @@ module Backoffice
                                                    .count
       remaing_clicks = total_banners_per_day - banners_clicked_today_quantity
       @tasks_done = remaing_clicks.zero?
+      @net_task_gains = current_user.bonus_contracts.sum(&:net_task_gains)
+      @net_task_gains_percentage = (@net_task_gains > 25 ? 25 : @net_task_gains) * 4
     end
 
     private

@@ -68,12 +68,12 @@
             <div class="content-left">
                 <div class="content-left-top balance-left-top">
                     <h3>
-                    My balance is:
+                    <%= t(:my_balance) %>
                     </h3>
-                    <h2> $ 0,00</h2>
+                    <h2> <%= number_to_currency(current_user.bonus_contracts.sum(&:net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %></h2>
                 </div>
                 <div class="content-left-bottom">
-                    <p>Minimum required for withdrawal.</p>
+                    <p><%= t(:minimum_required_for_withdrawal) %> <%= number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %> </p>
                 </div>
             </div>
             <div class="content-right">
@@ -86,7 +86,7 @@
             <p>Make withdrawals in BTC whenever your available balance reaches.</p>
             <div class="">
                 <div class="w3-light-grey w3-round-xlarge" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; margin-bottom: 30px;">
-                <div class="w3-container w3-round-xlarge" style="width:50%; background-color:#00d928; color: white;">25%</div>
+                <div class="w3-container w3-round-xlarge" style="width:<%= @net_task_gains_percentage %>%; background-color:#00d928; color: white;"><%= @net_task_gains_percentage %>%</div>
             </div>
             </div>
             <p>There’s only <strong> $ 0,00 </strong> left for you to complete the minimum of <strong> $ 25,00 </strong> and make your withdrawal.</p>

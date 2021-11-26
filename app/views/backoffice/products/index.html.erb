@@ -24,13 +24,13 @@
 
           <div class="product-price">
             <span><%= product.price.zero? ? t(:free) : number_to_currency(product.price, precision: 0).gsub('USD ', '$') %></span>
-            <%= link_to backoffice_order_items_path(product: {id: product.hashid}), class: 'confimation-button',
+            <%= link_to backoffice_order_items_path(product: {id: product.hashid}), class: ' btn-buy',
                      method: :post do %>
-                     <a class="btn-buy" rel="nofollow" data-method="post" href="/backoffice/order_items?locale=en&product%5Bid%5D=9Y8u64">Buy</a>
+                     <%= t(:buy) %>
+            <% end %>
            </div>
-           
-        <% end %>
-          </div>      
+
+          </div>
         </div>
     <% end %>
   </div>

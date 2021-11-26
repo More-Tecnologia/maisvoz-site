@@ -182,6 +182,8 @@ class User < ApplicationRecord
   validate :support_point_requisits, on: :update, if: :support_point?
 
   scope :bought_adhesion, -> { where(bought_adhesion: true) }
+  scope :master_leaders, -> { where(master_leader: true) }
+  scope :not_master_leaders, -> { where(master_leader: false) }
   scope :active,
     -> { ENV['ENABLED_ACTIVATION'] == 'true' ?
           where('active_until >= ?', Date.current).where(active: true) : where(active: true) }

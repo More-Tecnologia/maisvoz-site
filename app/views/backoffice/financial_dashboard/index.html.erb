@@ -19,49 +19,46 @@
     <% end %>
 
     <div class="products-list">
-      <div class="f-options-box f-options-box-l">
-        <div class="f-box-title">
-          <%= t(:withdrawal_report) %>
+      <%= link_to backoffice_withdrawals_path do %>
+        <div class="f-options-box f-options-box-l">
+          <div class="f-box-title">
+            <%= t(:withdrawal_report) %>
+          </div>
+          <div class="f-box-icon">
+              <%= image_tag 'icons/withdrawal.svg' %>
+          </div>
         </div>
-        <div class="f-box-icon">
-          <%= link_to backoffice_withdrawals_path do %>
-            <%= image_tag 'icons/withdrawal.svg' %>
-          <% end %>
+      <% end %>
+      <%= link_to backoffice_financial_transactions_path do %>
+        <div class="f-options-box f-options-box-r">
+          <div class="f-box-title">
+            <%= t(:earnings_report) %>
+          </div>
+          <div class="f-box-icon">   
+              <%= image_tag 'icons/gains.svg' %>
+          </div>
         </div>
-      </div>
-
-      <div class="f-options-box f-options-box-r">
-        <div class="f-box-title">
-          <%= t(:earnings_report) %>
+      <% end %>
+      <%= link_to backoffice_orders_path do %>
+        <div class="f-options-box f-options-box-l">
+          <div class="f-box-title">
+            <%= t('defaults.my_orders') %>
+          </div>
+          <div class="f-box-icon">    
+              <%= image_tag 'icons/orders.svg' %>
+          </div>
         </div>
-        <div class="f-box-icon">
-          <%= link_to backoffice_financial_transactions_path do %>
-            <%= image_tag 'icons/gains.svg' %>
-          <% end %>
+      <% end %>
+      <%= link_to edit_backoffice_bank_account_path(current_user) do %>
+        <div class="f-options-box f-options-box-r">
+          <div class="f-box-title">
+            <%= t(:my_wallet) %>
+          </div>
+          <div class="f-box-icon">   
+              <%= image_tag 'icons/wallet.svg' %>
+          </div>
         </div>
-      </div>
-
-      <div class="f-options-box f-options-box-l">
-        <div class="f-box-title">
-          <%= t('defaults.my_orders') %>
-        </div>
-        <div class="f-box-icon">
-          <%= link_to backoffice_orders_path do %>
-            <%= image_tag 'icons/orders.svg' %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="f-options-box f-options-box-r">
-        <div class="f-box-title">
-          <%= t(:my_wallet) %>
-        </div>
-        <div class="f-box-icon">
-          <%= link_to edit_backoffice_bank_account_path(current_user) do %>
-            <%= image_tag 'icons/wallet.svg' %>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

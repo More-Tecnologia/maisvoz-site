@@ -1686,3 +1686,11 @@ en:
   active?: Active?
   country: Country
   master_leader: Master Leader
+  congratulations: Congratulations!!
+  account_ready_text: Your account is ready to earn dollars every day.
+  almost_done: Almost done!!
+  account_inactive_text: Activate your account to start earning money with ADmoney
+  active_account: Active Account
+  validated_account: Validated Account
+  tasks_of_the_day: Tasks of the day
+  activate_your_account_now: Activate your account now

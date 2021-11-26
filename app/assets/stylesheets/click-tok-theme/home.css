@@ -305,9 +305,12 @@
     }
     .balance-box {
         width: 48%;
+        height: 200px;
     }
     .progress-bar-balance {
         width: 48%;
+        margin-top: 0;
+        height: 200px;
     }
     .flex-lg-screen {
         display: flex;

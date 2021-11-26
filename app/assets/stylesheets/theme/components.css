@@ -2506,7 +2506,7 @@ a.editable-click:hover {
   align-items: center;
   flex-direction: column;
   color: #3f3f3f;
-  font-size: 14px
+  font-size: 14px;
   height: 120px;
   margin-left: 5px;
 }
@@ -3854,4 +3854,3 @@ a.editable-click:hover {
 .support-create-ticket .support-admin .support-report-button{
     width: 50%;
 }
-

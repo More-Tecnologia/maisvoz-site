@@ -168,6 +168,7 @@ Rails.application.routes.draw do
     resources :banners, only: :index
     resources :banner_clicks, only: [:index, :create]
     resources :direct_nominees_list, only: :index
+    resources :home, only: :index
   end
 
   namespace :api do
@@ -210,7 +211,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'backoffice/dashboard#index'
+      root 'backoffice/home#index'
     end
 
     unauthenticated do

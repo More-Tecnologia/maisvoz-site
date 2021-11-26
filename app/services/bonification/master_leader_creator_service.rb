@@ -48,9 +48,9 @@ module Bonification
     def sponsoreds_count(sponsor)
       sponsor.unilevel_node
              .subtree
-             .from_depth(sponsor.depth)
+             .from_depth(sponsor.unilevel_node.depth)
              .includes(user: %i[sponsor career])
-             .where.not(id: sponsor.user.id)
+             .where.not(id: sponsor.id)
              .count
     end
 

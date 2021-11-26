@@ -1696,3 +1696,15 @@ en:
   activate_your_account_now: Activate your account now
   my_balance: 'My balance is:'
   minimum_required_for_withdrawal: 'Minimum required for withdrawal:'
+  you_already_have_a_balance_available_for_withdrawal: You already have a balance available for withdrawal.
+  value_to_min_withdrawal_text: "There’s only <strong> $ %{value_to_min_withdrawal} </strong> left for you to complete the minimum of <strong> %{withdrawal_min_value} </strong> and make your withdrawal."
+  withdrawals_home_card_title: Make withdrawals in BTC whenever your available balance reaches.
+  you_can_accelerate_your_earnings: You can accelerate your earnings
+  indicating_company_name_to_your_friends: Indicating %{company_name} to your friends.
+  earn_card_title: 'Earn 10% on your direct indications and 15%
+                    on their earnings from tasks.'
+  copy_indication_card_text: 'Copy your indication link on the button on the side
+                              and send it to as many friends as possible.'
+  support_card_title: 'If you need something<br>
+                       we are avaible to help you.'
+  just_send_us_a_message: Just send us a message.

@@ -1089,7 +1089,9 @@ pre {
 .box-orders,
 .box-credit-debit,
 .box-financial,
-.box-expenses{
+.box-expenses,
+.box-bonus
+.box-support{
   width: 100%;
   display: flex;
   flex-direction: column;

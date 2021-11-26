@@ -199,4 +199,8 @@ class FinancialReason < ApplicationRecord
   def self.free_task_performed
     @@free_task_performed ||= find_by(code: '4800')
   end
+
+  def self.master_leader_bonus
+    @@master_leader_bonus ||= find_by(code: '5000')
+  end
 end

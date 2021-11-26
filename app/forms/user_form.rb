@@ -31,6 +31,7 @@ class UserForm < Form
   attribute :bank_account
   attribute :password
   attribute :password_confirmation
+  attribute :master_leader
 
   validates :name, :email, presence: true
   validates :email, email: true

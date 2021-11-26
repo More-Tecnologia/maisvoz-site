@@ -23,6 +23,10 @@
     <%= f.input :country, wrapper_html: { class: 'col-md-3' } %>
   </div>
   <div class="row">
+    <%= f.input_field :master_leader, as: :boolean, wrapper_html: { class: 'col-md-1' } %>
+    <%= f.label :master_leader %>
+  </div>
+  <div class="row">
     <%= f.input :password, wrapper_html: { class: 'col-md-4' } %>
     <%= f.input :password_confirmation, wrapper_html: { class: 'col-md-4' } %>
   </div>

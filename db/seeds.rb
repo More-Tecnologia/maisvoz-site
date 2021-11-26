@@ -260,7 +260,8 @@ bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, compan
                  { title: 'Recurring Chargeback for Inactivity', code: '3700', active: true, company_moneyflow: :credit },
                  { title: 'Pool Leadership', code: '3900', active: false, company_moneyflow: :credit },
                  { title: 'Pool Leadership Chargeback by Inactivity', code: '4000', active: false, company_moneyflow: :credit },
-                 { title: 'Free Task Performed', code: '4800', active: true, company_moneyflow: :debit }]
+                 { title: 'Free Task Performed', code: '4800', active: true, company_moneyflow: :debit },
+                 { title: 'Master Leader Bonus', code: '5000', active: true, company_moneyflow: :debit }  ]
 
 bonus_reasons.each do |attributes|
   financial_reason = FinancialReason.find_by(code: attributes[:code])

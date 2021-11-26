@@ -2,6 +2,10 @@
 
 <div class="bottom-menu">
   <nav class="nav">
+    <%= link_to root_path, class: 'nav__link'  do %>
+      <%= image_tag 'icons/user.svg', class: 'icons' %>
+      <%= t(:home) %>
+    <% end %>
     <% if current_user.admin? %>
     <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
       <%= image_tag('icons/tasks.svg', class: 'icons') %>
@@ -13,10 +17,6 @@
         <%= t(:tasks)%>
       <% end %>
     <% end %>
-    <%= link_to backoffice_team_dashboard_index_path, class: 'nav__link'  do %>
-      <%= image_tag('icons/team.svg', class: 'icons') %>
-      <%= t(:my_team) %>
-    <% end %>
     <div class="nav__link shop">
       <a class="shops" href="/shop?locale=en">
           <%= image_tag 'icons/store.svg', class: 'icons' %>
@@ -27,9 +27,9 @@
       <%= image_tag 'icons/financial.svg', class: 'icons' %>
       <%= t('defaults.financial') %>
     <% end %>
-    <%= link_to users_display_index_path, class: 'nav__link' do %>
-      <%= image_tag 'icons/user.svg', class: 'icons' %>
-      <%= t(:my_account) %>
+    <%= link_to backoffice_team_dashboard_index_path, class: 'nav__link'  do %>
+      <%= image_tag('icons/team.svg', class: 'icons') %>
+      <%= t(:my_team) %>
     <% end %>
   </nav>
 </div>

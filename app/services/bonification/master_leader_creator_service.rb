@@ -59,7 +59,7 @@ module Bonification
       cent_amount = @amount * calculate_percentages(sponsoreds)
 
       sponsor.financial_transactions
-             .create!(spreader: @order.user,
+             .create!(spreader: @user,
                       financial_reason: FinancialReason.master_leader_bonus,
                       moneyflow: :credit,
                       cent_amount: cent_amount,

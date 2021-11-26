@@ -42,7 +42,7 @@ module Bonification
       unilevel_nodes = @user.unilevel_node
                             .ancestors
 
-      unilevel_nodes.is_a?(Array) ? unilevel_nodes.reverse.map(&:user) : [unilevel_nodes.user]
+      unilevel_nodes.reverse.map(&:user)
     end
 
     def sponsoreds_count(sponsor)

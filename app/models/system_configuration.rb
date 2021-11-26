@@ -14,7 +14,9 @@ class SystemConfiguration < ApplicationRecord
   end
 
   def self.taxable_fee
-    active_config.try(:taxable_fee).presence || ENV['SYSTEM_FEE']
+    return (active_config.taxable_fee / 100) if active_config.try(:taxable_fee)
+
+    ENV['SYSTEM_FEE']
   end
 
   def self.withdrawal_fee

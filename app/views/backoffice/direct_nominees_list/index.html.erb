@@ -18,6 +18,7 @@
                     <th><%= t(:country) %></th>
                     <th><%= t(:phone) %></th>
                     <th><%= t(:email) %></th>
+                    <th><%= t(:products) %></th>
                     <th><%= t(:active?) %></th>
                   </tr>
                 </thead>
@@ -32,6 +33,7 @@
                     </td>
                     <td><%= nominee.username %></td>
                     <td><%= nominee.email %></td>
+                    <td><%= nominee.bonus_contracts.active.map { |bc| bc.order_items.last.name }.uniq.join(', ') %></td>
                     <td><%= t(nominee.active) %></td>
 
                   </tr>

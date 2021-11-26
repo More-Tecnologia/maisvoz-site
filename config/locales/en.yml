@@ -1694,3 +1694,5 @@ en:
   validated_account: Validated Account
   tasks_of_the_day: Tasks of the day
   activate_your_account_now: Activate your account now
+  my_balance: 'My balance is:'
+  minimum_required_for_withdrawal: 'Minimum required for withdrawal:'

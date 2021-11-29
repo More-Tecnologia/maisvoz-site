@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
                          Ticket.where(user: current_user)
                                .active
                                .answered.any?
-    request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_dashboard_index_path
+    request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_home_index_path
   end
 
   def set_locale

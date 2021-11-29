@@ -1708,3 +1708,5 @@ en:
   support_card_title: 'If you need something<br>
                        we are avaible to help you.'
   just_send_us_a_message: Just send us a message.
+  confirm_instructions_text: 'You can confirm your email account via the link below:'
+  confirm_account: 'Confirm my account'

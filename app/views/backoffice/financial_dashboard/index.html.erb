@@ -8,7 +8,11 @@
       </div>
 
       <div class="balance-value">
-        <%= number_to_currency(current_user.bonus_contracts.sum(&:net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+        <% if current_user.empreendedor? %>
+          <%= number_to_currency(current_user.bonus_contracts.sum(&:net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+        <% else %>
+          <%= number_to_currency(current_user.available_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+        <% end %>
       </div>
     </div>
 
@@ -34,7 +38,7 @@
           <div class="f-box-title">
             <%= t(:earnings_report) %>
           </div>
-          <div class="f-box-icon">   
+          <div class="f-box-icon">
               <%= image_tag 'icons/gains.svg' %>
           </div>
         </div>
@@ -44,7 +48,7 @@
           <div class="f-box-title">
             <%= t('defaults.my_orders') %>
           </div>
-          <div class="f-box-icon">    
+          <div class="f-box-icon">
               <%= image_tag 'icons/orders.svg' %>
           </div>
         </div>
@@ -54,7 +58,7 @@
           <div class="f-box-title">
             <%= t(:my_wallet) %>
           </div>
-          <div class="f-box-icon">   
+          <div class="f-box-icon">
               <%= image_tag 'icons/wallet.svg' %>
           </div>
         </div>

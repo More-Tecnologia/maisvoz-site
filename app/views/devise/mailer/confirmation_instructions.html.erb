@@ -1,5 +1,5 @@
 <p><%= t(:dear_associate) %>, <%= @email %>!</p>
 
-<p>Você pode confirmar sua conta de email através no link abaixo:</p>
+<p><%= t(:confirm_instructions_text) %></p>
 
-<p><%= link_to 'Confirmar minha conta', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to t(:confirm_account), confirmation_url(@resource, confirmation_token: @token) %></p>

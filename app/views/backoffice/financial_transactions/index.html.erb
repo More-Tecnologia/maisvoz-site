@@ -1,6 +1,5 @@
 <% if current_user.empreendedor? %>
-<%= stylesheet_link_tag 'click-tok-theme/orders' %>
-
+  <%= stylesheet_link_tag 'click-tok-theme/orders' %>
 <div class="page">
   <a class="back-button" href="/backoffice/dashboard?locale=en">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -16,6 +15,10 @@
         <%= t(:filter) %>
       </span>
     </div>
+    <% if @financial_transactions.length > 0 %>
+    <%= render 'as_morenwm_user' if current_user.morenwm_user? %>
+    <% end %>
+    <% if current_user.empreendedor? %>
     <% @financial_transactions.each do |financial_transaction| %>
       <div class="th-history-list">
         <div class="th-history-task-title wr-title">
@@ -27,12 +30,13 @@
         </div>
         <div class="th-history-task-status">
           <div class="wr-align">
-            <div class="wr-amount <%= 'text-danger' if financial_transaction.debit? %>">
+            <div class="wr-amount <%= 'text-danger' if financial_transaction.debit? && current_user != User.find_morenwm_user %>">
               <span><%= format_cent_amount_value(financial_transaction) %></span>
             </div>
           </div>
         </div>
       </div>
+    <% end %>
     <% end %>
     <div class="row">
       <div class="col-sm-12">
@@ -45,20 +49,20 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <!-- Page-Title -->
-<div class="box-financial">
-  <div class="box-second">
+<div class="row">
+  <div class="col-sm-12 m-b-23">
     <h4 class="page-title"><%= t('defaults.financial_transactions') %></h4>
   </div>
 </div>
 
-<div class="box-financial">
-  <div class="box-second">
+<div class="row">
+  <div class="col-sm-12">
     <%= render 'backoffice/financial_transactions/filters' %>
   </div>
 </div>
 
-<div class="box-financial">
-  <div class="box-second">
+<div class="row">
+  <div class="col-sm-12">
     <div class="card-box">
       <div class="row">
         <div class="col-lg-12">

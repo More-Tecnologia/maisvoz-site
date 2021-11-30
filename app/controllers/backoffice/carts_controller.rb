@@ -24,6 +24,7 @@ module Backoffice
         end
       else
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
+        ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)
         clean_shopping_cart
         render 'backoffice/payment_transactions/show'
       end

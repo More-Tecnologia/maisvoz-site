@@ -4,6 +4,7 @@ class UserForm < Form
 
   attribute :user_id
   attribute :name
+  attribute :username
   attribute :birthdate
   attribute :phone
   attribute :skype

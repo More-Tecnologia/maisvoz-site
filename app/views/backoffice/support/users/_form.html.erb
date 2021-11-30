@@ -1,7 +1,8 @@
 <%= simple_form_for(user_form, url: url, method: method, validate: true, html: { class: 'form-', multipart: true }) do |f| %>
   <div class="row">
-    <%= f.input :name, wrapper_html: { class: 'col-md-6' } %>
-    <%= f.input :email, wrapper_html: { class: 'col-md-6' } %>
+    <%= f.input :name, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :email, wrapper_html: { class: 'col-md-4' } %>
+    <%= f.input :username, wrapper_html: { class: 'col-md-4' } %>
   </div>
   <div class="row">
     <%= f.input :birthdate, as: :date, wrapper_html: { class: 'col-md-3' } %>

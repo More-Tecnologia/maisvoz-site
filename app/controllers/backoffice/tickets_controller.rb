@@ -33,7 +33,7 @@ module Backoffice
     private
 
     def notify_admin
-      TicketsMailer.with(ticket: @ticket).notify_admin.deliver_later
+      TicketsMailer.with(ticket: @ticket)
                    .notify_admin
                    .deliver_later
     end

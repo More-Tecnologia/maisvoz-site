@@ -69,7 +69,7 @@
           </div>
         </div>
         <% end %>
-        
+
       </div>
       <div class="box-bottom">
         <div class='row text-center'>
@@ -93,6 +93,12 @@
           <div class="">
             <%= copier_button(@payment_transaction.wallet_address, '#wallet-address') %>
           </div>
+        </div>
+        <br>
+        <div class="row text-center">
+          <h6 class="">
+            <%= t(:order_expire_warning, time: seconds_to_hms((@payment_transaction.order.created_at + 5.hours) - Time.now)) %>
+          </h6>
         </div>
       </div>
     </div>

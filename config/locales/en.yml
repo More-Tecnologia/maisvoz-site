@@ -1718,3 +1718,4 @@ en:
   created_at: Created at
   ticket: Ticket
   tickets: Tickets
+  order_expire_warning: This order will expire in %{time}

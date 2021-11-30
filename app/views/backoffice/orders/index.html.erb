@@ -21,7 +21,7 @@
         <span class="th-history-task-id">
           <%= order.hashid %>
         </span>
-        <%= order.order_items.first.product.name %> <br>
+        <%= link_to order.order_items.first.product.name, backoffice_order_path(order) %> <br>
         <%= order.created_at.strftime('%d %b') %>
       </div>
       <div class="th-history-task-status">

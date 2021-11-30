@@ -89,24 +89,29 @@ header {
     margin-left: 5px;
 }
 
+.logout-user {
+    padding: 20px;
+}
+
 .link-share {
     align-items: center;
-    background-color: #31db02;
+    color: white;
     border-radius: 15px;
     cursor: pointer;
     display: flex;
+    font-size: 12px;
     justify-content: space-around;
     padding: 5px;
-    width: 90px;
+    width: 104px;
 }
 
-.link-share img {
-    width: 15px;
+.link-share svg {
+    margin-right: 5px;
 }
 
 .link-share a {
     color: white;
-    font-size: 8px;
+    font-size: 10px;
 }
 
 

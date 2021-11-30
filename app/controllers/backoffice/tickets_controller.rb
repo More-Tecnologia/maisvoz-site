@@ -14,6 +14,7 @@ module Backoffice
       @ticket = Ticket.new(valid_params)
       if @ticket.save
         flash[:success] = t('defaults.saving_success')
+        notify_admin
         redirect_to backoffice_tickets_path
       else
         flash[:error] = @ticket.errors.full_messages.join(', ')
@@ -30,6 +31,12 @@ module Backoffice
     end
 
     private
+
+    def notify_admin
+      TicketsMailer.with(ticket: @ticket).notify_admin.deliver_later
+                   .notify_admin
+                   .deliver_later
+    end
 
     def tickets
       @q = Ticket.ransack(params[:q])

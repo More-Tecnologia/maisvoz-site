@@ -1,0 +1,27 @@
+<h2>
+  <%= t(:dear_admin) %>
+</h2>
+<hr>
+<h3>
+  <%= t(:notify_admin_email_text) %>
+</h3>
+<hr>
+<h4>
+  <%= t(:user) %>: <%= @ticket.user.username %>
+</h4>
+<h4>
+  <%= t(:subject) %>: <%= @ticket.subject.name %>
+</h4>
+<h4>
+  <%= t(:title) %>: <%= @ticket.title %>
+</h4>
+<h4>
+  <%= t(:body) %>:
+</h4>
+<%= @ticket.body %>
+<h6>
+  <%= t(:created_at) %>: <%= @ticket.created_at %>
+</h6>
+<hr>
+<%= link_to t(:ticket), backoffice_admin_ticket_url(@ticket) %> <br>
+<%= link_to t(:tickets), backoffice_admin_tickets_url %>

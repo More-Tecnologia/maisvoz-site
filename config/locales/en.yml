@@ -1710,3 +1710,11 @@ en:
   just_send_us_a_message: Just send us a message.
   confirm_instructions_text: 'You can confirm your email account via the link below:'
   confirm_account: 'Confirm my account'
+  tickets_notify_email: Ticket notification email
+  notify_admin_email_text: The ticket below has just been requested.
+  subject: Subject
+  title: Title
+  body: Body
+  created_at: Created at
+  ticket: Ticket
+  tickets: Tickets

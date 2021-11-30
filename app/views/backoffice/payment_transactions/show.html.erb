@@ -4,16 +4,29 @@
 <%= stylesheet_link_tag 'click-tok-theme/app' %>
 
 <div class="row">
-  <div class="col-sm-12">
+  <div class="d-flex flex-column align-items-center">
     <div class="card-box">
-      <div class="row">
-        <div class="col-sm-12">
-          <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %> </span>
+      <div class="box-top">
+        <div class="request-box">
+            <h1><strong>Request number</strong></h1>
+            <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
+        </div>
+        <div class="request-box">
+            <h4>
+            <p><strong>Package value</strong></p>
+              <i class="fas fa-dollar-sign"></i>
+              <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
+              <br>
+              <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+                <i class="fab fa-btc"></i>
+                <%= format_digital_currency(@payment_transaction.amount) %>
+              <% end %>
+            </h4>
         </div>
       </div>
       <% unless @payment_transaction.order.order_items.first.product.deposit? %>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="">
           <table class="table table-bordered cart-table">
             <thead class="cart-table__title">
               <tr>
@@ -56,38 +69,30 @@
           </div>
         </div>
         <% end %>
-        <div class="col-md-12" style="margin-bottom: 40px;">
-          <h4>
-            <i class="fas fa-dollar-sign"></i>
-            <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
-            <br>
-            <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
-              <i class="fab fa-btc"></i>
-              <%= format_digital_currency(@payment_transaction.amount) %>
-            <% end %>
-          </h4>
+        
+      </div>
+      <div class="box-bottom">
+        <div class='row text-center'>
+          <div class='col-md-12'>
+            <h5 class="purple">
+              <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@payment_transaction.amount)) %>
+            </h5>
+            <h6 class='text-click pink'>
+              <i class="fas fa-exclamation-triangle"></i>
+              <%= t('backoffice.payment_transactions.show.transfer_rate_warning_html') %>
+            </h6>
+          </div>
         </div>
-      </div>
-      <div class='row text-center'>
-        <div class='col-md-12'>
-          <h5 class="purple">
-            <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@payment_transaction.amount)) %>
-          </h5>
-          <h6 class='text-click pink'>
-            <i class="fas fa-exclamation-triangle"></i>
-            <%= t('backoffice.payment_transactions.show.transfer_rate_warning_html') %>
-          </h6>
+        <div class='row text-center'>
+          <span class="text-center">
+            <%= render_qr_code_img(@payment_transaction.wallet_address) if @payment_transaction.wallet_address.present? %>
+          </span> <br>
+          <span class="purple text-center" id="wallet-address"><%= @payment_transaction.wallet_address %></span>
         </div>
-      </div>
-      <div class='row text-center'>
-        <span class="text-center">
-          <%= render_qr_code_img(@payment_transaction.wallet_address) if @payment_transaction.wallet_address.present? %>
-        </span> <br>
-        <span class="purple text-center" id="wallet-address"><%= @payment_transaction.wallet_address %></span>
-      </div>
-      <div class="row text-center" style="margin-bottom: 100px;">
-        <div class="col-sm-12">
-          <%= copier_button(@payment_transaction.wallet_address, '#wallet-address') %>
+        <div class="row text-center">
+          <div class="">
+            <%= copier_button(@payment_transaction.wallet_address, '#wallet-address') %>
+          </div>
         </div>
       </div>
     </div>

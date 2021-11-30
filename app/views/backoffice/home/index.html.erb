@@ -21,7 +21,7 @@
                 </svg>
               <% end %>
             </div>
-            <p><%= t(:validated_account) %></p>
+            <a href="#" class="btn-red"><%= t(:validated_account) %></a>
         </div>
         <div class="card-account">
             <div class="content-card-account">
@@ -37,7 +37,7 @@
                 </svg>
               <% end %>
             </div>
-            <p><%= t(:active_account) %></p>
+            <a href="#" class="btn-red"><%= t(:active_account) %></a>
         </div>
         <div class="card-account">
             <div class="content-card-account">
@@ -53,16 +53,16 @@
                 </svg>
               <% end %>
             </div>
-            <p><%= t(:tasks_of_the_day) %></p>
+            <a href="#" class="btn-red"><%= t(:tasks_of_the_day) %></a>
         </div>
     </div>
-    <% unless current_user.active? %>
+    <!--<% unless current_user.active? %>
       <div class="content-bottom-cards">
           <%= link_to backoffice_products_path, class: "btn-active-account" do %>
               <p><%= t(:activate_your_account_now) %></p>
           <% end %>
       </div>
-    <% end %>
+    <% end %>-->
     <div class="balance">
         <div class="balance-box">
             <div class="content-left">

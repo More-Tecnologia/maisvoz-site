@@ -225,6 +225,26 @@
     font-size: 12px;
 }
 
+.btn-red {
+    background: #dc3545;
+    padding: 5px 12px;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-size: 7px;
+}
+
+.btn-green {
+    background: #30da03;
+    padding: 5px 12px;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-size: 7px;
+}
+
 @media (min-width: 550px){
     .balance-box {
         min-height: 200px;
@@ -252,6 +272,13 @@
     }
     .support-home .content-left p {
         font-size: 14px;
+    }
+    .btn-red {
+        font-size: 12px;
+    }
+    
+    .btn-green {
+        font-size: 12px;
     }
 }
 
@@ -335,10 +362,7 @@
 @media (min-width: 1500px) {
     .cards-account {
         height: auto;
-    }
-    .card-account {
-        height: 300px;
-    }
+    }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
     .content-card-account {
         height: 250px;
     }

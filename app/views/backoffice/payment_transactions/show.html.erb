@@ -8,12 +8,12 @@
     <div class="card-box">
       <div class="box-top">
         <div class="request-box">
-            <h1><strong>Request number</strong></h1>
+            <h1><strong><%= t(:request_number) %></strong></h1>
             <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
         </div>
         <div class="request-box">
             <h4>
-            <p><strong>Package value</strong></p>
+            <p><strong><%= t(:package_value) %></strong></p>
               <i class="fas fa-dollar-sign"></i>
               <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
               <br>

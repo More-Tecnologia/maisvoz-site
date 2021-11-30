@@ -1697,7 +1697,7 @@ en:
   my_balance: 'My balance is:'
   minimum_required_for_withdrawal: 'Minimum required for withdrawal:'
   you_already_have_a_balance_available_for_withdrawal: You already have a balance available for withdrawal.
-  value_to_min_withdrawal_text: "There’s only <strong> $ %{value_to_min_withdrawal} </strong> left for you to complete the minimum of <strong> %{withdrawal_min_value} </strong> and make your withdrawal."
+  value_to_min_withdrawal_text: "There’s only <strong> %{value_to_min_withdrawal} </strong> left for you to complete the minimum of <strong> %{withdrawal_min_value} </strong> and make your withdrawal."
   withdrawals_home_card_title: Make withdrawals in BTC whenever your available balance reaches.
   you_can_accelerate_your_earnings: You can accelerate your earnings
   indicating_company_name_to_your_friends: Indicating %{company_name} to your friends.

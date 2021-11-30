@@ -21,7 +21,9 @@
                 </svg>
               <% end %>
             </div>
-            <a href="#" class="btn-red"><%= t(:validated_account) %></a>
+            <% unless current_user.confirmed_at.present? %>
+              <a href="#" class="btn-red"><%= t(:validated_account) %></a>
+            <% end %>
         </div>
         <div class="card-account">
             <div class="content-card-account">
@@ -37,7 +39,11 @@
                 </svg>
               <% end %>
             </div>
-            <a href="#" class="btn-red"><%= t(:active_account) %></a>
+            <% unless current_user.active? %>
+              <%= link_to shop_index_path, class: "btn-red" do %>
+                <%= t(:active_account) %>
+              <% end %>
+            <% end %>
         </div>
         <div class="card-account">
             <div class="content-card-account">
@@ -53,7 +59,11 @@
                 </svg>
               <% end %>
             </div>
-            <a href="#" class="btn-red"><%= t(:tasks_of_the_day) %></a>
+            <% unless @tasks_done %>
+              <%= link_to dashboard_direction(current_user), class: 'btn-red' do %>
+                <%= t(:tasks_of_the_day)%>
+              <% end %>
+            <% end %>
         </div>
     </div>
     <!--<% unless current_user.active? %>
@@ -90,7 +100,7 @@
             </div>
             </div>
             <% if @net_task_gains_percentage < 100 %>
-            <p><%= t(:value_to_min_withdrawal_text, value_to_min_withdrawal: (ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f - @net_task_gains), withdrawal_min_value: number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')).html_safe %></p>
+            <p><%= t(:value_to_min_withdrawal_text, value_to_min_withdrawal: (number_to_currency((ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f - @net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')), withdrawal_min_value: number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')).html_safe %></p>
             <% elsif @net_task_gains_percentage == 100 %>
               <p><%= t(:you_already_have_a_balance_available_for_withdrawal) %></p>
             <% end %>

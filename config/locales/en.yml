@@ -1719,3 +1719,5 @@ en:
   ticket: Ticket
   tickets: Tickets
   order_expire_warning: This order will expire in %{time}
+  request_number: Request number
+  package_value: Package value

@@ -1,100 +1,106 @@
-<!-- Page-Title -->
-<div class="row">
-    <div class="col-sm-12">
-        <h4 class="page-title"><%= t('.title') %></h4>
-        <ol class="breadcrumb">
-          <li><a href="#"><%= SystemConfiguration.company_name %></a></li>
-          <li><%= link_to t('views.backoffice.orders.index.title'), backoffice_orders_path %></li>
-          <li class="active"><%= t('.title') %></li>
-    </div>
-</div>
+<%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css',
+                        integrity: 'sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU',
+                        crossorigin: 'anonymous' %>
+<%= stylesheet_link_tag 'click-tok-theme/app' %>
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-body" id="page-print">
-                <div class="clearfix">
-                    <div class="pull-right">
-                        <h4><%= t('.invoice') %> # <br>
-                            <strong><%= @order.hashid %></strong>
-                        </h4>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-
-                        <div class="pull-left m-t-30">
-                            <address>
-                              <strong><%= @order.user.name %></strong><br>
-                              <strong><%= @order.user.username %></strong><br>
-                              <%= @order.user.address %><br>
-                              <%= @order.user.address_2 %>, <%= @order.user.city %>, <%= @order.user.state %> <%= @order.user.country %><br>
-                              <abbr title="Phone">P:</abbr> <%= @order.user.phone %>
-                              </address>
-                        </div>
-                        <div class="pull-right m-t-30">
-                            <p><strong><%= t('.order_date') %>: </strong> <%= l @order.created_at, format: '%B %d, %Y'  %></p>
-                            <p class="m-t-10"><strong><%= t('.status') %>: </strong> <span class="label label-default"><%= t "defaults.#{@order.status}" %></span></p>
-                            <p class="m-t-10"><strong><%= Order.human_attribute_name(:id) %>: </strong> #<%= @order.hashid %></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-h-50"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table m-t-30">
-                                <thead>
-                                    <tr><th>#</th>
-                                    <th><%= OrderItem.human_attribute_name(:item) %></th>
-                                    <th><%= OrderItem.human_attribute_name(:quantity) %></th>
-                                    <th><%= OrderItem.human_attribute_name(:unit_cost) %></th>
-                                    <th><%= OrderItem.human_attribute_name(:total) %></th>
-                                </tr></thead>
-                                <tbody>
-                                  <% @order.order_items.each do |oi| %>
-                                  <tr>
-                                    <td><%= oi.product.id %></td>
-                                    <td><%= oi.product.name %></td>
-                                    <td><%= oi.quantity %></td>
-                                    <td><%= number_to_currency oi.unit_price, unit: ENV['CURRENT_CURRENCY'] %></td>
-                                    <td><%= number_to_currency oi.total, unit: ENV['CURRENT_CURRENCY'] %></td>
-                                  </tr>
-                                  <% end %>
-
-                                  <% @order.monthly_order_items.each do |oi| %>
-                                  <tr>
-                                    <td><%= oi.product.id %></td>
-                                    <td><%= oi.product.name %></td>
-                                    <td><%= oi.quantity %></td>
-                                    <td><%= number_to_currency oi.unit_price, unit: ENV['CURRENT_CURRENCY'] %></td>
-                                    <td><%= number_to_currency oi.total, unit: ENV['CURRENT_CURRENCY'] %></td>
-                                  </tr>
-                                  <% end %>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="border-radius: 0px;">
-                    <div class="col-md-3 col-md-offset-9">
-                        <p class="text-right"><b><%= t('.subtotal') %>:</b> <%= @order.subtotal %></p>
-                        <p class="text-right"><%= Order.human_attribute_name(:shipping) %>: <%= @order.shipping %></p>
-                        <p class="text-right"><%= t('.taxes') %>: <%= @order.tax %></p>
-                        <hr>
-                        <h3 class="text-right"><%= number_to_currency @order.total, unit: ENV['CURRENT_CURRENCY'] %></h3>
-                    </div>
-                </div>
-                <hr>
-                <div class="hidden-print">
-                    <div class="pull-right">
-                        <a href="javascript:$('#page-print').printThis()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
-                    </div>
-                </div>
-            </div>
+  <div class="d-flex flex-column align-items-center">
+    <div class="card-box">
+      <div class="box-top">
+        <div class="request-box">
+            <h1><strong><%= t(:request_number) %></strong></h1>
+            <span class="pull-right" style="float: right;"> <%= @order.hashid %></span>
         </div>
+        <div class="request-box">
+            <h4>
+            <p><strong><%= t(:package_value) %></strong></p>
+              <i class="fas fa-dollar-sign"></i>
+              <%= number_to_currency(@order.total, unit: '') %>
+              <br>
+              <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+                <i class="fab fa-btc"></i>
+                <%= format_digital_currency(@order.payment_transaction.amount) %>
+              <% end %>
+            </h4>
+        </div>
+      </div>
+      <% unless @order.order_items.first.product.deposit? %>
+      <div class="row">
+        <div class="">
+          <table class="table table-bordered cart-table">
+            <thead class="cart-table__title">
+              <tr>
+                <th></th>
+                <th><%= Product.human_attribute_name(:name) %></th>
+                <th><%= OrderItem.human_attribute_name(:quantity) %></th>
+                <th><%= OrderItem.human_attribute_name(:unit_price) %></th>
+                <th><%= OrderItem.human_attribute_name(:total) %></th>
+              </tr>
+            </thead>
+            <tbody class="cart-table__body">
+              <% @order.order_items.each do |order_item| %>
+                <tr>
+                  <td><%= cl_image_tag(order_item.product.main_photo_path, { size: '150x150', class: 'thumb-md' }) %></td>
+                  <td><%= order_item.name %></td>
+                  <td><%= order_item.quantity %></td>
+                  <td><%= number_to_currency(order_item.unit_price, unit: ENV['CURRENT_CURRENCY']) %></td>
+                  <td><%= number_to_currency(order_item.total, unit: ENV['CURRENT_CURRENCY']) %></td>
+                </tr>
+              <% end %>
+              <% if @order.order_items.empty? %>
+                <tr>
+                  <td colspan="6" class="text-center"><%= t('views.backoffice.cart.show.no_data') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <% end %>
+      <div class="row m-t-30">
+        <% if @order.shipping > 0 %>
+        <div class="col-md-12">
+          <div class="col-md-1">
+            <h3> <%= Order.human_attribute_name(:shipping) %> </h3>
+          </div>
+          <div class="col-md-11">
+            <h3> <%= number_to_currency(@order.shipping,
+                                        unit: ENV['CURRENT_CURRENCY']) %> </h3>
+          </div>
+        </div>
+        <% end %>
 
+      </div>
+      <div class="box-bottom">
+        <div class='row text-center'>
+          <div class='col-md-12'>
+            <h5 class="purple">
+              <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@order.payment_transaction.amount)) %>
+            </h5>
+            <h6 class='text-click pink'>
+              <i class="fas fa-exclamation-triangle"></i>
+              <%= t('backoffice.payment_transactions.show.transfer_rate_warning_html') %>
+            </h6>
+          </div>
+        </div>
+        <div class='row text-center'>
+          <span class="text-center">
+            <%= render_qr_code_img(@order.payment_transaction.provider_response['wallet_address']) if @order.payment_transaction.provider_response['wallet_address'].present? %>
+          </span> <br>
+          <span class="purple text-center" id="wallet-address"><%= @order.payment_transaction.provider_response['wallet_address'] %></span>
+        </div>
+        <div class="row text-center">
+          <div class="">
+            <%= copier_button(@order.payment_transaction.provider_response['wallet_address'], '#wallet-address') %>
+          </div>
+        </div>
+        <br>
+        <div class="row text-center">
+          <h6 class="">
+            <%= t(:order_expire_warning, time: seconds_to_hms((@order.created_at + 5.hours) - Time.now)) %>
+          </h6>
+        </div>
+      </div>
     </div>
-
+  </div>
 </div>

@@ -163,7 +163,7 @@
 .home-bottom {
     margin-top: 100px;
     width: 100%;
-    
+
 }
 .home-bottom-titles{
     margin-bottom: 10px;
@@ -231,8 +231,8 @@
     color: white;
     font-weight: bold;
     border-radius: 20px;
-    margin-top: 10px;
     font-size: 7px;
+    margin-bottom: 15px;
 }
 
 .btn-green {
@@ -241,7 +241,7 @@
     color: white;
     font-weight: bold;
     border-radius: 20px;
-    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 7px;
 }
 
@@ -259,7 +259,9 @@
         font-size: 40px;
     }
     .content-left-bottom p {
-        font-size: 16px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #3f3f3f;
     }
     .progress-bar-balance p{
         font-size: 14px;
@@ -276,7 +278,7 @@
     .btn-red {
         font-size: 12px;
     }
-    
+
     .btn-green {
         font-size: 12px;
     }
@@ -296,16 +298,13 @@
         min-height: 200px;
     }
     .balance-left-top {
-        margin-top: 40px;
+        margin-top: 20px;
     }
     .content-left-top h3 {
         font-size: 18px;
     }
     .content-left-top h2 {
         font-size: 40px;
-    }
-    .content-left-bottom p {
-        font-size: 16px;
     }
     .progress-bar-balance p{
         font-size: 14px;
@@ -367,5 +366,3 @@
         height: 250px;
     }
 }
-
-

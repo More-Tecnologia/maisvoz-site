@@ -20,12 +20,12 @@
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
               <% end %>
+              <% if current_user.confirmed_at.present? %>
+                <div class="btn-green"><%= t(:validated_account) %></div>
+              <% else %>
+                <a href="#" class="btn-red"><%= t(:validate_your_account) %></a>
+              <% end %>
             </div>
-            <% if current_user.confirmed_at.present? %>
-              <div class="btn-green"><%= t(:validated_account) %></div>
-            <% else %>
-              <a href="#" class="btn-red"><%= t(:validate_your_account) %></a>
-            <% end %>
         </div>
         <div class="card-account">
             <div class="content-card-account">
@@ -40,14 +40,14 @@
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
               <% end %>
-            </div>
-            <% if current_user.active? %>
-               <div class="btn-green"> <%= t(:account_activated) %> </div>
-            <% else %>
-              <%= link_to shop_index_path, class: "btn-red" do %>
-                <%= t(:activate_your_account_now) %>
+              <% if current_user.active? %>
+                 <div class="btn-green"> <%= t(:account_activated) %> </div>
+              <% else %>
+                <%= link_to shop_index_path, class: "btn-red" do %>
+                  <%= t(:activate_your_account_now) %>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
         </div>
         <div class="card-account">
             <div class="content-card-account">
@@ -62,14 +62,14 @@
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
               <% end %>
-            </div>
-            <% if @tasks_done %>
-              <div class="btn-green"> <%= t(:tasks_of_the_day)%> </div>
-            <% else %>
-              <%= link_to dashboard_direction(current_user), class: 'btn-red' do %>
-                <%= t(:tasks_of_the_day)%>
+              <% if @tasks_done %>
+                <div class="btn-green"> <%= t(:tasks_of_the_day)%> </div>
+              <% else %>
+                <%= link_to dashboard_direction(current_user), class: 'btn-red' do %>
+                  <%= t(:tasks_of_the_day)%>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
         </div>
     </div>
     <!--<% unless current_user.active? %>
@@ -101,7 +101,7 @@
         <div class="progress-bar-balance">
             <p><%= t(:withdrawals_home_card_title) %></p>
             <div class="">
-                <div class="w3-light-grey w3-round-xlarge" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; margin-bottom: 30px;">
+                <div class="w3-light-grey w3-round-xlarge" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; margin-bottom: 30px; margin-top:30px;">
                 <div class="w3-container w3-round-xlarge" style="width:<%= @net_task_gains_percentage %>%; background-color:#00d928; color: white;"><%= @net_task_gains_percentage %>%</div>
             </div>
             </div>

@@ -18,10 +18,10 @@
       <% end %>
     <% end %>
     <div class="nav__link shop">
-      <a class="shops" href="/shop?locale=en">
+      <%= link_to backoffice_products_path, class: 'shops' do %>
           <%= image_tag 'icons/store.svg', class: 'icons' %>
-          <p class="title-btn-shop">Shop</p>
-      </a>
+          <p class="title-btn-shop"><%= t(:shop) %></p>
+      <% end %>
     </div>
     <%= link_to backoffice_financial_dashboard_index_path, class: 'nav__link' do %>
       <%= image_tag 'icons/financial.svg', class: 'icons' %>

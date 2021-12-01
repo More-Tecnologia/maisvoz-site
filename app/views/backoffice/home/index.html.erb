@@ -43,7 +43,7 @@
               <% if current_user.active? %>
                  <div class="btn-green"> <%= t(:account_activated) %> </div>
               <% else %>
-                <%= link_to shop_index_path, class: "btn-red" do %>
+                <%= link_to backoffice_products_path, class: "btn-red" do %>
                   <%= t(:activate_your_account_now) %>
                 <% end %>
               <% end %>

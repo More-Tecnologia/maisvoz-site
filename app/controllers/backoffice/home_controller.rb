@@ -15,7 +15,7 @@ module Backoffice
       remaing_clicks = total_banners_per_day - banners_clicked_today_quantity
       @tasks_done = remaing_clicks.zero? && current_user.bonus_contracts.active.any?
       @net_task_gains = current_user.bonus_contracts.sum(&:net_task_gains)
-      @net_task_gains_percentage = (@net_task_gains > ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f ? ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f : @net_task_gains) * (100/ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f)
+      @net_task_gains_percentage = ((@net_task_gains > ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f ? ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f : @net_task_gains) * (100/ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f)).round(2)
     end
 
     private

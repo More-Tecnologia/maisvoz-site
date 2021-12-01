@@ -10,8 +10,8 @@
             <%= f.file_field :avatar, as: :file, label: false, input_html: { accept: 'image/*' }, class: "input-description" %>
           </div>
           <div class="btns-box-top">
-            <a href="#" class="btn-green">Edit</a>
-            <a href="#" class="btn-green">Security</a>
+            <a href="#" class="btn-green">Edit profile</a>
+            <a href="http://localhost:3000/users/display/edit_password?locale=en" class="btn-green">Security</a>
           </div>
         <% end %>
       </div>
@@ -46,7 +46,7 @@
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
-        <div class="login-fields user-field remove-padding">
+        <div class="login-fields save-input user-field remove-padding">
           <%= f.submit t(:save), class: 'login' %>
         </div>
       </div>

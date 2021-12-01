@@ -22,7 +22,7 @@
               <% end %>
             </div>
             <% if current_user.confirmed_at.present? %>
-              <%= t(:validated_account) %>
+              <div class="btn-green"><%= t(:validated_account) %></div>
             <% else %>
               <a href="#" class="btn-red"><%= t(:validate_your_account) %></a>
             <% end %>
@@ -42,7 +42,7 @@
               <% end %>
             </div>
             <% if current_user.active? %>
-                <%= t(:account_activated) %>
+               <div class="btn-green"> <%= t(:account_activated) %> </div>
             <% else %>
               <%= link_to shop_index_path, class: "btn-red" do %>
                 <%= t(:activate_your_account_now) %>
@@ -64,7 +64,7 @@
               <% end %>
             </div>
             <% if @tasks_done %>
-              <%= t(:tasks_of_the_day)%>
+              <div class="btn-green"> <%= t(:tasks_of_the_day)%> </div>
             <% else %>
               <%= link_to dashboard_direction(current_user), class: 'btn-red' do %>
                 <%= t(:tasks_of_the_day)%>

@@ -1,6 +1,8 @@
 module Backoffice
   class CartsController < BackofficeController
     def show
+      redirect_to backoffice_products_path unless current_order.order_items.any?
+
       @checkout_form = CheckoutForm.new(order: current_order, user: current_user)
     end
 

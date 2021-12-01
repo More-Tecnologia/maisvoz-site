@@ -6,11 +6,11 @@ module Bonification
 
         transaction = create_recurrent_bonus_for(sponsor, index + 1)
         contracts = sponsor.bonus_contracts.active.reject(&:max_gains?)
-        unless contracts.any?
-          chargeback_reason = transaction.financial_reason.chargeback_by_max_gains
-          transaction.chargeback_by_inactivity!(chargeback_reason)
-        elsif sponsor.inactive?
+        if sponsor.inactive?
           chargeback_reason = transaction.financial_reason.chargeback_by_inactivity
+          transaction.chargeback_by_inactivity!(chargeback_reason)
+        elsif contracts.none?
+          chargeback_reason = transaction.financial_reason.chargeback_by_max_gains
           transaction.chargeback_by_inactivity!(chargeback_reason)
         end
       end

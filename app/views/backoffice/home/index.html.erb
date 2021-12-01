@@ -22,7 +22,7 @@
               <% end %>
             </div>
             <% if current_user.confirmed_at.present? %>
-              <div href="#" class="btn-green"><%= t(:validated_account) %></div>
+              <div class="btn-green"><%= t(:validated_account) %></div>
             <% else %>
               <a href="#" class="btn-red"><%= t(:validate_your_account) %></a>
             <% end %>

@@ -60,6 +60,22 @@
     white-space: nowrap;
 }
 
+.status-pending {
+    background-color: yellow;
+}
+
+.status-success {
+    background-color: #30da03;
+}
+
+.status-waiting {
+    background-color: blue;
+}
+
+.status-canceled {
+    background-color: red;
+}
+
 .task-history-sucess {
     background-color: #20A400;
 }

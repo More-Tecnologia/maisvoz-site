@@ -120,7 +120,7 @@ body {
 .box-user-top {
   width: 100%;
   position: absolute;
-  margin-bottom: 470px;
+  margin-bottom: 520px;
   display: flex;
   justify-content: space-around;
 }
@@ -155,7 +155,8 @@ body {
 }
 
 .box-user-form {
-  margin-top: 70px;
+  width: 100%;
+  margin-top: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -633,5 +634,65 @@ button.close {
   }
   .user-field{
     width: 100%;
+  }
+}
+
+@media (min-width: 800px){
+  .box-user-top {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+  }
+
+  .avatar-user {
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+    border: 3px solid #00de28;
+  }
+
+  .input-avatar-user {
+    display: none;
+  }
+
+  .btns-box-top {
+    display: flex;
+    align-items: flex-end;
+    width: 60%;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .btn-green {
+    width: 30%;
+    background: #00de28;
+    padding: 10px;
+    color: white;
+    border-radius: 20px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
+  .box-user-form {
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-field{
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .btn-green {
+    width: 15%;
   }
 }

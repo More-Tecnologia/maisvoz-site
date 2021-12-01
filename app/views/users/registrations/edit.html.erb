@@ -46,7 +46,7 @@
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
-        <div class="login-fields remove-padding">
+        <div class="login-fields user-field remove-padding">
           <%= f.submit t(:save), class: 'login' %>
         </div>
       </div>

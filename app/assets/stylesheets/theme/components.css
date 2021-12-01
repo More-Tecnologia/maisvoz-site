@@ -2575,13 +2575,31 @@ a.editable-click:hover {
   width: 8%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
   color: #3f3f3f;
   font-size: 14px;
   height: 120px;
   margin-left: 5px;
+  padding: 0;
+}
+
+.svg-alert {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item9 svg {
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+.support-img-text {
+  height: 88%;
+  display: flex;
+  flex-direction: column;
 }
 
 #dashboard .painel .item9alert{

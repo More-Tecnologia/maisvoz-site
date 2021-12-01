@@ -29,6 +29,10 @@
     width: 70px;
 }
 
+.user-icon {
+  border-radius: 35px;
+}
+
 .t-team-network-avatar {
     display: flex;
     height: 80px;

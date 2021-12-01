@@ -21,8 +21,10 @@
                 </svg>
               <% end %>
             </div>
-            <% unless current_user.confirmed_at.present? %>
-              <a href="#" class="btn-red"><%= t(:validated_account) %></a>
+            <% if current_user.confirmed_at.present? %>
+              <%= t(:validated_account) %>
+            <% else %>
+              <a href="#" class="btn-red"><%= t(:validate_your_account) %></a>
             <% end %>
         </div>
         <div class="card-account">
@@ -39,9 +41,11 @@
                 </svg>
               <% end %>
             </div>
-            <% unless current_user.active? %>
+            <% if current_user.active? %>
+                <%= t(:account_activated) %>
+            <% else %>
               <%= link_to shop_index_path, class: "btn-red" do %>
-                <%= t(:active_account) %>
+                <%= t(:activate_your_account_now) %>
               <% end %>
             <% end %>
         </div>
@@ -59,7 +63,9 @@
                 </svg>
               <% end %>
             </div>
-            <% unless @tasks_done %>
+            <% if @tasks_done %>
+              <%= t(:tasks_of_the_day)%>
+            <% else %>
               <%= link_to dashboard_direction(current_user), class: 'btn-red' do %>
                 <%= t(:tasks_of_the_day)%>
               <% end %>

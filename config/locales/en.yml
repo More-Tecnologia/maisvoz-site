@@ -1691,7 +1691,7 @@ en:
   almost_done: Almost done!!
   account_inactive_text: Activate your account to start earning money with ADmoney
   active_account: Active Account
-  validated_account: Validated Account
+  validated_account: Validated account
   tasks_of_the_day: Tasks of the day
   activate_your_account_now: Activate your account now
   my_balance: 'My balance is:'
@@ -1721,3 +1721,6 @@ en:
   order_expire_warning: This order will expire in %{time}
   request_number: Request number
   package_value: Package value
+  account_activated: Account activated
+  activate_your_account: Activate your account
+  validate_your_account: Validate your account

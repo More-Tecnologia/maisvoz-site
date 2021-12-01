@@ -32,9 +32,9 @@
       <div class="t-owner-avatar" style="background-color: <%= "#{@user.active? ? expensive_product_active(@user).order_items.first.product.details : '#34EF00' }"%>">
         <div>
           <% if @user.avatar.try(:path).present? %>
-            <%= cl_image_tag(@user.avatar.try(:path), { class: 'icons' }) %>
+            <%= cl_image_tag(@user.avatar.try(:path), { class: 'icons user-icon' }) %>
           <% else %>
-            <%= image_tag 'icons/user.svg', class: 'icons' %>
+            <%= image_tag 'icons/user.svg', class: 'icons user-icon' %>
           <% end %>
         </div>
       </div>
@@ -48,9 +48,9 @@
           <div class="t-align" style="background-color: <%= "#{child.user.active? ? expensive_product_active(child.user).order_items.first.product.details : '#34EF00' }"%>">
             <%= link_to backoffice_team_dashboard_index_path(user: child.user) do %>
               <% if child.user.avatar.try(:path).present? %>
-                <%= cl_image_tag(child.user.avatar.try(:path), { class: 'icons' }) %>
+                <%= cl_image_tag(child.user.avatar.try(:path), { class: 'icons user-icon' }) %>
               <% else %>
-                <%= image_tag 'icons/user.svg', class: 'icons' %>
+                <%= image_tag 'icons/user.svg', class: 'icons user-icon' %>
               <% end %>
             <% end %>
           </div>

@@ -100,7 +100,8 @@ header {
     cursor: pointer;
     display: flex;
     font-size: 12px;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-end;
     padding: 5px;
     width: 104px;
 }
@@ -111,7 +112,10 @@ header {
 
 .link-share a {
     color: white;
-    font-size: 10px;
+    font-size: 12px;
+    width: auto;
+    display: flex;
+    align-items: center;
 }
 
 

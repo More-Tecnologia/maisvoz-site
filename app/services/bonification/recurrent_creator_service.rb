@@ -5,11 +5,11 @@ module Bonification
         next if sponsor.admin?
 
         transaction = create_recurrent_bonus_for(sponsor, index + 1)
+        next unless transaction.present?
         if sponsor.inactive?
           chargeback_reason = transaction.financial_reason.chargeback_by_inactivity
           transaction.chargeback_by_inactivity!(chargeback_reason)
         end
-        transaction
       end
     end
 
@@ -34,13 +34,15 @@ module Bonification
 
     def create_recurrent_bonus_for(sponsor, generation)
       cent_amount = @amount * PERCENTAGES[generation.to_s.to_sym]
-
-      sponsor.financial_transactions
-             .create!(spreader: @user,
-                      financial_reason: FinancialReason.matching_bonus,
-                      moneyflow: :credit,
-                      cent_amount: cent_amount,
-                      bonus_contract: sponsor.bonus_contracts.last)
+      contracts = sponsor.bonus_contracts.active.reject(&:max_gains?)
+      if contracts.any?
+        sponsor.financial_transactions
+               .create!(spreader: @user,
+                        financial_reason: FinancialReason.matching_bonus,
+                        moneyflow: :credit,
+                        cent_amount: cent_amount,
+                        bonus_contract: sponsor.bonus_contracts.active.last)
+      end
     end
   end
 end

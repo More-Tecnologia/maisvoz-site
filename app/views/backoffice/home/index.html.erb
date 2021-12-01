@@ -108,7 +108,7 @@
             <% if @net_task_gains_percentage < 100 %>
             <p><%= t(:value_to_min_withdrawal_text, value_to_min_withdrawal: (number_to_currency((ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f - @net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')), withdrawal_min_value: number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')).html_safe %></p>
             <% elsif @net_task_gains_percentage == 100 %>
-              <p><%= t(:you_already_have_a_balance_available_for_withdrawal) %></p>
+              <p class="title-bottom-bar"><%= t(:you_already_have_a_balance_available_for_withdrawal) %></p>
             <% end %>
         </div>
     </div>

@@ -62,6 +62,7 @@
 
 .status-pending {
     background-color: yellow;
+    color: black;
 }
 
 .status-success {

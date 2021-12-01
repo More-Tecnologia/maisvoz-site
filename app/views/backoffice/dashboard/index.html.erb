@@ -76,7 +76,7 @@
           <% end %>
       </div>
       <div class="f-tasks-quantity text-center pink">
-        <%= @contract.expire_at.strftime("%m/%d/%Y") if current_user.active? %>
+        <%= @contracts.last.expire_at.strftime("%m/%d/%Y") if current_user.active? %>
       </div>
     </div>
   </div>

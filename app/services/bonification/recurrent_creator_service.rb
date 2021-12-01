@@ -10,8 +10,7 @@ module Bonification
           chargeback_reason = transaction.financial_reason.chargeback_by_inactivity
           transaction.chargeback_by_inactivity!(chargeback_reason)
         elsif contracts.none?
-          chargeback_reason = transaction.financial_reason.chargeback_by_max_gains
-          transaction.chargeback_by_inactivity!(chargeback_reason)
+          transaction.chargeback_by_inactivity!(FinancialReason.chargeback_by_max_gains)
         end
       end
     end

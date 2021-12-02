@@ -123,10 +123,10 @@ body {
 
 .box-user-top {
   width: 100%;
-  position: absolute;
-  margin-bottom: 520px;
   display: flex;
   justify-content: space-around;
+  position: absolute;
+  margin-bottom: 710px;
 }
 
 .change-password-top {
@@ -183,6 +183,7 @@ body {
 .box-user-form {
   width: 100%;
   margin-top: 60px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -629,7 +630,7 @@ button.close {
 @media (min-width: 600px){
   .box-user-top {
     position: absolute;
-    margin-bottom: 470px;
+    margin-bottom: 720px;
     display: flex;
     justify-content: space-around;
   }
@@ -755,8 +756,13 @@ button.close {
     flex-direction: column;
     align-items: center;
   }
+
   .user-field{
     width: 100%;
+  }
+
+  .box-user-form {
+    margin-bottom: 100px;
   }
 }
 

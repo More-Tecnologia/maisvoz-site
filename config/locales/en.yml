@@ -1730,3 +1730,9 @@ en:
   security: Security
   select_store: Select the store
   tasks_title_text: where you want to see the products to perform the tasks
+  banner_stores: Banner Stores
+  banner_store: Banner Store
+  banner_store_inactivation_message: Do you intend to disable this banner store?
+  success_inactivate_banner_store: The banner store was successfully disabled
+  success_create_banner_store: The banner store was successfully created
+  success_update_banner_store: The banner store was successfully updated

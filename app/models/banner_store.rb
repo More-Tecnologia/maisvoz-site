@@ -1,9 +1,9 @@
-class Banner < ApplicationRecord
+class BannerStore < ApplicationRecord
   has_attachment :image
 
-  belongs_to :banner
+  has_many :banners
 
-  validates :link, presence: true
+  validates :title, presence: true
 
   scope :active, -> { where(active: true) }
 

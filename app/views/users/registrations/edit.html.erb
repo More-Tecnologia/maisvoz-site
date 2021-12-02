@@ -2,7 +2,7 @@
 <%= javascript_include_tag 'click-tok-theme/country_number' %>
 <div class='page'>
   <%= form_for(current_user, url: update_profile_users_display_index_path, validate: true, html: { method: :put }) do |f| %>
-    <div class="credentials-box">
+    <div class="credentials-box box-absolute">
       <div class="box-user-top">
         <% if current_user.avatar? %>
           <label for="user_avatar">

@@ -6,7 +6,7 @@
 
 .align-items {
     margin: 0;
-    padding: 10px 0;
+    padding-top: 10px;
     position: relative;
     text-align: center;
 }

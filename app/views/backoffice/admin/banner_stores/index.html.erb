@@ -2,7 +2,7 @@
 <!-- Page-Title -->
 <div class="box-orders">
   <div class="box-second">
-    <h1 class="page-title m-b-30"><%= t(:banners) %></h1>
+    <h1 class="page-title m-b-30"><%= t(:banner_stores) %></h1>
   </div>
 </div>
 <div class="box-orders">
@@ -15,37 +15,31 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th><%= t('backoffice.tickets.index.link') %></th>
+                    <th><%= t('title') %></th>
                     <th><%= t('backoffice.tickets.index.image_path') %></th>
-                    <th><%= t(:banner_store) %></th>
-                    <th><%= t('backoffice.tickets.index.created_at') %></th>
-                    <th><%= t('backoffice.tickets.index.updated_at') %></th>
                     <th><%= t(:active?) %></th>
                     <th><%= t('backoffice.tickets.index.action') %></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% @banners.each do |banner| %>
+                  <% @banner_stores.each do |banner| %>
                   <tr>
                     <td><%= banner.id %></td>
                     <td>
-                      <a href="<%= banner.link %>" target="_blank"><%= banner.link %></a>
+                      <a href="<%= banner.title %>" target="_blank"><%= banner.title %></a>
                     </td>
                     <td>
                       <a href="<%= banner.path %>" target="_blank"><%= banner.path %></a>
                     </td>
-                    <td><%= t(banner.banner_store.try(:title)) %></td>
-                    <td><%= l(banner.created_at, format: '%B %d, %Y' ) %></td>
-                    <td><%= l(banner.updated_at, format: '%B %d, %Y' ) %></td>
                     <td><%= t(banner.active) %></td>
                     <td>
-                      <%= link_to edit_backoffice_admin_banner_path(banner), class: 'action-edit' do %>
+                      <%= link_to edit_backoffice_admin_banner_store_path(banner), class: 'action-edit' do %>
                         <i class="fa fa-edit"></i>
                       <% end %>
-                      <%= link_to(backoffice_admin_banner_path(banner),
+                      <%= link_to(backoffice_admin_banner_store_path(banner),
                                   class: 'action-remove',
                                   method: :delete,
-                                  data: { confirm: t(:banner_inactivation_message) }
+                                  data: { confirm: t(:banner_store_inactivation_message) }
                                   ) do %>
                         <i class="fa fa-minus-circle"></i>
                       <% end %>
@@ -59,11 +53,11 @@
         </div>
           <br>
           <div class="col-md-10">
-            <%= paginate @banners %>
+            <%= paginate @banner_stores %>
           </div>
           <div class="col-md-2">
             <br>
-            <%= link_to t(:new), new_backoffice_admin_banner_path, class: 'btn btn-success pull-right' %>
+            <%= link_to t(:new), new_backoffice_admin_banner_store_path, class: 'btn btn-success pull-right' %>
           </div>
 
     </div>

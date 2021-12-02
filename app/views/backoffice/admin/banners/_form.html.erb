@@ -10,6 +10,12 @@
         <td><%= f.attachinary_file_field :image, class: 'form-control' %></td>
       </tr>
       <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :banner_store %></strong></td>
+        <td>
+          <%= f.collection_select :banner_store_id, BannerStore.active, :id, :title, {prompt: t(:select_store) }, { class: 'form-control' } %>
+        </td>
+      </tr>
+      <tr>
         <td style="vertical-align: middle; text-align: center;">
           <%= f.label :active %>
         </td>

@@ -3,8 +3,8 @@
 module Backoffice
   module Admin
     class BannersController < AdminController
-
-      before_action :ensured_career, only: %i[edit update destroy]
+      before_action :ensure_creation, only: :create
+      before_action :ensured_banner, only: %i[edit update destroy]
 
       def index
         @banners = Banner.all
@@ -28,7 +28,7 @@ module Backoffice
           flash[:success] = I18n.t(:success_update_banner)
           redirect_to backoffice_admin_banners_path
         else
-          flash[:error] = I18n.t('defaults.saving_error')
+          flash[:error] = @banner.errors.full_messages.join(', ')
           render :edit
         end
       end
@@ -37,7 +37,7 @@ module Backoffice
         if @banner.update(active: false)
           flash[:success] = I18n.t(:success_inactivate_banner)
         else
-          flash[:error] = I18n.t('defaults.destroying_error')
+          flash[:error] = @banner.errors.full_messages.join(', ')
         end
         redirect_to backoffice_admin_banners_path
       end
@@ -60,12 +60,12 @@ module Backoffice
         render :new
       end
 
-      def ensured_career
+      def ensured_banner
         @banner = Banner.find(params[:id])
       end
 
       def ensured_params
-        params.require(:banner).permit(:link, :image_path, :active, :image)
+        params.require(:banner).permit(:link, :image_path, :active, :image, :banner_store_id)
       end
     end
   end

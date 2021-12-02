@@ -51,6 +51,7 @@
 .nav {
     display: flex;
     background-color: #3F3F3F;
+    min-height: 55px;
 }
 
 .icons {

@@ -166,6 +166,19 @@ body {
   margin-bottom: 10px;
 }
 
+.btn-disable {
+  user-select: none;
+  width: 45%;
+  background: black;
+  padding: 10px;
+  color: white;
+  border-radius: 20px;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  margin-bottom: 10px;
+  opacity: 0.3;
+}
+
 .box-user-form {
   width: 100%;
   margin-top: 60px;
@@ -653,6 +666,10 @@ button.close {
     margin-bottom: 10px;
   }
 
+  .btn-disable {
+    width: 45%;
+  }
+
   .box-user-form {
     width: 100%;
     margin-top: 70px;
@@ -717,6 +734,15 @@ button.close {
     margin-left: 10px;
   }
 
+  .btn-disable {
+    width: 30%;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+
+
   .box-user-form {
     width: 100%;
     margin-top: 0;
@@ -731,6 +757,10 @@ button.close {
 
 @media (min-width: 1200px) {
   .btn-green {
+    width: 15%;
+  }
+
+  .btn-disable {
     width: 15%;
   }
 }

@@ -2,15 +2,22 @@
 
 <div class="bottom-menu">
   <nav class="nav">
-    <%= link_to root_path, class: 'nav__link'  do %>
-      <%= image_tag 'icons/user.svg', class: 'icons' %>
-      <%= t(:home) %>
+    <% if current_user.empreendedor? %>
+      <%= link_to root_path, class: 'nav__link'  do %>
+        <%= image_tag 'icons/user.svg', class: 'icons' %>
+        <%= t(:home) %>
+      <% end %>
+    <% else %>
+      <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
+        <%= image_tag('icons/tasks.svg', class: 'icons') %>
+        <%= t(:dashboard)%>
+      <% end %>
     <% end %>
     <% if current_user.admin? %>
-    <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
-      <%= image_tag('icons/tasks.svg', class: 'icons') %>
-      <%= t(:dashboard)%>
-    <% end %>
+      <%= link_to backoffice_support_users_path, class: 'nav__link'  do %>
+        <%= image_tag 'icons/user.svg', class: 'icons' %>
+        <%= t('defaults.users') %>
+      <% end %>
     <% else %>
       <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
         <%= image_tag('icons/tasks.svg', class: 'icons') %>

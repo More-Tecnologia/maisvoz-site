@@ -1656,10 +1656,6 @@ body.fixed-left .side-menu.left {
   -moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.05);
 }
-.user-details {
-  padding-top: 20px;
-  position: relative;
-}
 .user-details img {
   position: relative;
   z-index: 9999;
@@ -2270,7 +2266,7 @@ body.fixed-left .side-menu.left {
 }
 
 .nav.navbar-nav a, span{
-  font-size: 15px;
+  font-size: 10px;
 }
 
 

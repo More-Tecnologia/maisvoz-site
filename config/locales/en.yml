@@ -1724,3 +1724,5 @@ en:
   account_activated: Account activated
   activate_your_account: Activate your account
   validate_your_account: Validate your account
+  profile_updated_successfully: Profile updated successfully
+  password_updated_successfully: Password updated successfully

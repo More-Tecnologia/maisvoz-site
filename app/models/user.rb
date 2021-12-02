@@ -110,7 +110,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :lockable, :timeoutable,:masqueradable
+         :trackable, :validatable, :lockable, :timeoutable, :masqueradable
 
   has_attachment :avatar, accept: [:jpg, :png]
   has_attachment :document_rg_photo

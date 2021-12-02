@@ -9,24 +9,11 @@
     <p class="p-title-task"><%= t(:tasks_title_text) %></p>
   </div>
     <div class="row-stores">
-        <a href="#" class="box-store">
-          <img src="/assets/alibaba.png" alt="" class="img-box-store">
-        </a>
-        <a href="#" class="box-store">
-          <img src="/assets/alibaba.png" alt="" class="img-box-store">
-        </a>
-        <a href="#" class="box-store">
-          <img src="/assets/alibaba.png" alt="" class="img-box-store">
-        </a>
-        <a href="#" class="box-store">
-          <img src="/assets/alibaba.png" alt="" class="img-box-store">
-        </a>
-        <a href="#" class="box-store">
-          <img src="/assets/alibaba.png" alt="" class="img-box-store">
-        </a>
-        <a href="#" class="box-store">
-          <img src="/assets/alibaba.png" alt="" class="img-box-store">
-        </a>
+      <% BannerStore.active.each do |banner_store| %>
+        <%= link_to backoffice_dashboard_index_path(banner_store_hashid: banner_store.hashid), class: "box-store" do %>
+          <img src="<%= banner_store.path %>" alt="" class="img-box-store">
+        <% end %>
+      <% end %>
     </div>
     <div class="title-ads">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -35,7 +22,7 @@
       <p><%= t(:premium_ads) %></p>
     </div>
     <div class="container-imgs">
-            <% Banner.active.shuffle.last(12).each do |banner| %>
+            <% @banners.shuffle.last(12).each do |banner| %>
                 <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
                         method: :post,
                         remote: true do %>
@@ -44,7 +31,7 @@
       			<% end %>
     </div>
     <div class="container-imgs2">
-            <% Banner.active.shuffle.last(12).each do |banner| %>
+            <% @banners.shuffle.last(12).each do |banner| %>
                 <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
                         method: :post,
                         remote: true do %>

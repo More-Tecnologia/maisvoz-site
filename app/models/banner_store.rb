@@ -1,4 +1,5 @@
 class BannerStore < ApplicationRecord
+  include Hashid::Rails
   has_attachment :image
 
   has_many :banners

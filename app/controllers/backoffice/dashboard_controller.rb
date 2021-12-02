@@ -6,6 +6,12 @@ module Backoffice
     before_action :contracts_by_value, only: :index
 
     def index
+      if params[:banner_store_hashid].present?
+        @banner_store = BannerStore.find_by_hashid(params[:banner_store_hashid])
+      else
+        @banner_store = BannerStore.active.shuffle.last
+      end
+      @banners = @banner_store.banners.active
       @max_task_gains = @contracts.sum(&:max_task_gains)
       @task_gains = @contracts.sum(&:task_gains)
       available = @max_task_gains - @task_gains

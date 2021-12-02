@@ -22,7 +22,7 @@
       <p><%= t(:premium_ads) %></p>
     </div>
     <div class="container-imgs">
-            <% @banners.shuffle.last(12).each do |banner| %>
+            <% @banners.premium.shuffle.last(12).each do |banner| %>
                 <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
                         method: :post,
                         remote: true do %>
@@ -31,7 +31,7 @@
       			<% end %>
     </div>
     <div class="container-imgs2">
-            <% @banners.shuffle.last(12).each do |banner| %>
+            <% @banners.default.shuffle.last(12).each do |banner| %>
                 <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
                         method: :post,
                         remote: true do %>

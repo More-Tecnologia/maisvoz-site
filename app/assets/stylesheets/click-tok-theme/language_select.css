@@ -47,15 +47,21 @@
 
 .change-language {
     align-items: center;
-    border-radius: 15px;
+    border-radius: 5px;
     cursor: pointer;
     justify-content: flex-end;
-    margin-right: 5px;
+    margin-right: 10px;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 65px;
     transition: 0.5s;
+    padding: 10px;
 }
 
-.change-language img {
-    margin-top: 5px;
+.change-language a {
+
+
+}
+
+.change-language a img {
+    border-radius: 10px;
 }

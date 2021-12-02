@@ -6,25 +6,18 @@
           <label for="user_avatar">
             <%= cl_image_tag current_user.avatar.path, { size: '150x150', class: 'avatar-user' } %>
           </label>
-          <div class="input-avatar-user">
-            <%= f.file_field :avatar, as: :file, label: false, input_html: { accept: 'image/*' }, class: "input-description" %>
-          </div>
-          <div class="btns-box-top">
-            <a href="#" class="btn-green">Edit profile</a>
-            <a href="http://localhost:3000/users/display/edit_password?locale=en" class="btn-green">Security</a>
-          </div>
           <% else %>
             <label for="user_avatar">
               <%= current_user.decorate.avatar_image_tag %>
             </label>
-            <div class="input-avatar-user">
-              <%= f.file_field :avatar, as: :file, label: false, input_html: { accept: 'image/*' }, class: "input-description" %>
-            </div>
-            <div class="btns-box-top">
-              <a href="#" class="btn-green">Edit profile</a>
-              <a href="http://localhost:3000/users/display/edit_password?locale=en" class="btn-green">Security</a>
-            </div>
         <% end %>
+        <div class="input-avatar-user">
+          <%= f.file_field :avatar, as: :file, label: false, input_html: { accept: 'image/*' }, class: "input-description" %>
+        </div>
+        <div class="btns-box-top">
+          <a href="#" class="btn-green">Edit profile</a>
+          <a href="http://localhost:3000/users/display/edit_password?locale=en" class="btn-green">Security</a>
+        </div>
       </div>
 
       <div class="box-user-form">

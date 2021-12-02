@@ -36,6 +36,11 @@ body {
     touch-action: manipulation;
 }
 
+.invisible-box {
+  display: block;
+  margin-bottom: 150px;
+}
+
 .container {
     min-width: 100%;
     width: 100%;
@@ -127,6 +132,15 @@ body {
   justify-content: space-around;
   position: absolute;
   margin-bottom: 710px;
+}
+
+.box-admin-top {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: -30px;
 }
 
 .change-password-top {
@@ -298,6 +312,15 @@ textarea:focus, input:focus{
     height: 30px;
     animation: spin 2s linear infinite;
   }
+.input-disable{
+  background: #3f3f3f;
+  color: white;
+}
+
+.input-disable input {
+  background: #3f3f3f;
+  color: white;
+}
 
   @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -690,6 +713,16 @@ button.close {
 
 @media (min-width: 800px){
   .box-user-top {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+  }
+
+  .box-admin-top {
     flex-direction: column;
     align-items: center;
     position: relative;

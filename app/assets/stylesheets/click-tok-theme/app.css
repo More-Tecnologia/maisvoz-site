@@ -177,6 +177,7 @@ body {
   text-align: center;
   margin-bottom: 10px;
   opacity: 0.3;
+  cursor: default
 }
 
 .box-user-form {

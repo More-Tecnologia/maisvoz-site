@@ -132,3 +132,14 @@
 .selected-button {
     background-color: #f0c0d8 !important;
 }
+
+.main-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.second-box {
+  width: 90%;
+}

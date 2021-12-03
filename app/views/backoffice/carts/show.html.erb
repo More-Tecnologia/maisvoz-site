@@ -9,7 +9,7 @@
 
 <%= form_with model: @checkout_form, url: backoffice_cart_path, method: :post do |f| %>
   <% order_item = current_order.order_items.last %>
-  <div class="box-orders">
+  <div class="main-box">
     <div class="second-box">
       <div class="ch-product-desc-area" >
         <div class="ch-product-item" style='background-color:#5cb802;'>

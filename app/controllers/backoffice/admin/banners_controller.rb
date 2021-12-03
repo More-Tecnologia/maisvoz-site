@@ -7,9 +7,14 @@ module Backoffice
       before_action :ensured_banner, only: %i[edit update destroy]
 
       def index
-        @banners = Banner.all
-                         .page(params[:page])
-                         .per(10)
+        if params[:banner_store_hashid].present?
+          @banner_store = BannerStore.find_by_hashid(params[:banner_store_hashid])
+        else
+          @banner_store = BannerStore.active.shuffle.last
+        end
+        @banners = @banner_store.banners
+                                .page(params[:page])
+                                .per(10)
       end
 
       def new

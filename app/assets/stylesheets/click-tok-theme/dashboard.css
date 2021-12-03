@@ -89,6 +89,7 @@
 .f-tasks-quantity {
     font-size: 14px;
     color: #373737;
+    margin-bottom: 10px;
 }
 
 .f-tasks-product-title {
@@ -96,7 +97,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-top: -5px;
 }
 
 .f-tasks-product-title span {
@@ -240,6 +242,10 @@
   overflow-y: hidden;
 }
 
+.selected-banner {
+  background: #3f3f3f;
+}
+
 @media (min-width: 300px) and (max-width: 640px){
   .page-home {
     width: 100%;
@@ -293,7 +299,9 @@
     width: 120px;
     height: 40px;
   }
+
   .img-box-store {
+    max-width: 90%;
     width: auto;
     max-height: 35px;
   }
@@ -371,6 +379,10 @@
       margin-bottom: 30px;
   }
 
+  .box-store:nth-child(1) {
+    margin-left: 5%;
+  }
+
   .container-imgs a:nth-child(1){
     margin-left: 5%;
   }
@@ -389,18 +401,15 @@
 
   .box-store {
     min-width: 150px;
-    margin-left: 10px;
+    margin-right: 10px;
     width: 120px;
     height: 40px;
   }
 
   .img-box-store {
+    max-width: 90%;
     width: auto;
     max-height: 35px;
-  }
-
-  .box-store:nth-child(1){
-    margin-left: 5%;
   }
 
     .container-imgs a {
@@ -487,12 +496,13 @@
 
   .box-store {
     min-width: 150px;
-    margin-left: 10px;
+    margin-right: 10px;
     width: 120px;
     height: 40px;
   }
 
   .img-box-store {
+    max-width: 90%;
     width: auto;
     max-height: 35px;
   }
@@ -587,12 +597,13 @@
 
   .box-store {
     min-width: 150px;
-    margin-left: 10px;
+    margin-right: 10px;
     width: 120px;
     height: 40px;
   }
 
   .img-box-store {
+    max-width: 90%;
     width: auto;
     max-height: 35px;
   }
@@ -645,8 +656,16 @@
   }
 
   .box-store {
-    margin-top: 10px;
-    margin-left: 10px;
+    min-width: 150px;
+    margin-right: 10px;
+    width: 120px;
+    height: 60px;
+  }
+
+  .img-box-store {
+    padding: 5px;
+    max-width: 90%;
+    width: auto;
   }
 
   .box-store:nth-child(1) {

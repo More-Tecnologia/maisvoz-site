@@ -35,6 +35,9 @@ File: Components
   border-radius: 3px;
   outline: none !important;
 }
+.btn-left {
+  margin-right: 5px;
+}
 .btn-md {
   padding: 8px 16px;
 }

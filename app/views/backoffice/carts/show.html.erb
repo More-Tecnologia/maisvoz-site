@@ -9,57 +9,59 @@
 
 <%= form_with model: @checkout_form, url: backoffice_cart_path, method: :post do |f| %>
   <% order_item = current_order.order_items.last %>
-  <div>
-    <div class="ch-product-desc-area" >
-      <div class="ch-product-item" style='background-color:#5cb802;'>
-        <div class="ch-product-title">
-          <span><%= order_item.product.name %></span>
+  <div class="box-orders">
+    <div class="second-box">
+      <div class="ch-product-desc-area" >
+        <div class="ch-product-item" style='background-color:#5cb802;'>
+          <div class="ch-product-title">
+            <span><%= order_item.product.name %></span>
+          </div>
+          <div class="ch-product-price">
+            <label><%= t(:price) %></label>
+            <span><%= number_to_currency order_item.product.price %></span>
+          </div>
         </div>
-        <div class="ch-product-price">
-          <label><%= t(:price) %></label>
-          <span><%= number_to_currency order_item.product.price %></span>
+      </div>
+      <div class="ch-purchase-desc">
+        <div>
+          <label><%= t(:n_of_campaign) %></label>
+          <span><%= order_item.product.task_per_day %></span>
+        </div>
+        <div>
+          <label><%= t(:earnings_by_campaign) %></label>
+          <span>
+            <%= number_to_currency(order_item.product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+          </span>
         </div>
       </div>
-    </div>
-    <div class="ch-purchase-desc">
-      <div>
-        <label><%= t(:n_of_campaign) %></label>
-        <span><%= order_item.product.task_per_day %></span>
+      <div class="division">
+        <div></div>
       </div>
-      <div>
-        <label><%= t(:earnings_by_campaign) %></label>
-        <span>
-          <%= number_to_currency(order_item.product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
-        </span>
+      <div class="page-title">
+        <%= t(:payment_method) %>
       </div>
-    </div>
-    <div class="division">
-      <div></div>
-    </div>
-    <div class="page-title">
-      <%= t(:payment_method) %>
-    </div>
 
-      <div class="ch-payment-buttons-area">
-        <!-- <div class="btn btn-tab" onclick="showPixInput()"> -->
-        <div class="btn btn-tab2">
-          <%= image_tag('icons/eth.svg', class: 'icons') %>
-          <%= t(:eth) %>
-        </div>
+        <div class="ch-payment-buttons-area">
+          <!-- <div class="btn btn-tab" onclick="showPixInput()"> -->
+          <div class="btn btn-tab2">
+            <%= image_tag('icons/eth.svg', class: 'icons') %>
+            <%= t(:eth) %>
+          </div>
 
-        <div class="btn btn-tab" onclick="showBitCoinInput()">
-          <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
-          <%= t(:btc) %>
+          <div class="btn btn-tab" onclick="showBitCoinInput()">
+            <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
+            <%= t(:btc) %>
+          </div>
         </div>
+          <input type="hidden" name="payment_method" id="payment_method" value='pix'>
+        </div>
+      <div class="ch-buy-action-button">
+        <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
       </div>
-        <input type="hidden" name="payment_method" id="payment_method" value='pix'>
+      <div class="t">
       </div>
-    <div class="ch-buy-action-button">
-      <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
-    </div>
-    <div class="t">
-    </div>
-    <div class="t">
+      <div class="t">
+      </div>
     </div>
   </div>
 <% end %>

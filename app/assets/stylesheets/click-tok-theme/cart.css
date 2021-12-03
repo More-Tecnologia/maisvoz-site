@@ -17,8 +17,6 @@
 
 
 .ch-product-desc-area {
-    padding-right: 15px;
-    padding-left: 15px;
     margin-top: 3rem;
 }
 
@@ -59,7 +57,7 @@
 }
 
 .ch-purchase-desc {
-    padding: 15px;
+    padding: 15px 0;
 
 }
 
@@ -80,8 +78,6 @@
 }
 
 .division {
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .division div {
@@ -89,7 +85,6 @@
 }
 
 .page-title {
-    padding-left: 15px;
     font-weight: bold;
     font-size: 1.5rem;
     color: #373737;
@@ -99,7 +94,7 @@
 .ch-payment-buttons-area {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    padding: 15px 0;
 }
 
 .ch-payment-buttons-area button,
@@ -125,9 +120,9 @@
 }
 
 .ch-buy-action-button {
+  width: 90%;
     margin-top: 5px;
     height: 60px;
-    padding: 0px 15px 0 15px;
 }
 
 .t {

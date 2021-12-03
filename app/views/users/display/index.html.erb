@@ -1,51 +1,110 @@
-<%= stylesheet_link_tag 'click-tok-theme/display' %>
+<script src="https://unpkg.com/xregexp/xregexp-all.js"></script>
 
-<div class="page">
-  <div class="ma-list">
-    <ul class="ma-list-ul">
-      <li class="ma-list-li">
-        <%= image_tag 'icons/sponsor.svg', size: 18 %>
-        <%= link_to edit_user_registration_path, class: "hyperlink" do %>
-          <%= t(:update_profile) %>
+<%= javascript_include_tag 'click-tok-theme/country_number' %>
+<div class='page'>
+  <%= form_for(current_user, url: update_profile_users_display_index_path, validate: true, html: { method: :put }) do |f| %>
+    <div class="credentials-box box-absolute">
+      <% if current_user.admin? %>
+      <div class="box-admin-top">
+        <% if current_user.avatar? %>
+          <label for="user_avatar">
+            <%= cl_image_tag current_user.avatar.path, { size: '150x150', class: 'avatar-user' } %>
+            <div class="photo-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+              </svg>
+            </div>
+          </label>
+          <% else %>
+            <label for="user_avatar">
+              <%= current_user.decorate.avatar_image_tag %>
+              <div class="photo-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                  <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                </svg>
+              </div>
+            </label>
         <% end %>
-      </li>
-      <li class="ma-list-li">
-        <%= image_tag 'icons/report.svg', size: 18 %>
-        <%= link_to t(:new_email), new_users_email_path, class: "hyperlink" %>
-      </li>
-      <li class="ma-list-li">
-        <%= image_tag 'icons/locker.svg', size: 18 %>
-        <%= link_to t(:change_login), edit_login_users_display_index_path, class: "hyperlink" %>
-      </li>
-      <li class="ma-list-li">
-        <%= image_tag 'icons/locker.svg', size: 18 %>
-        <%= link_to t(:change_password), edit_password_users_display_index_path, class: "hyperlink" %>
-      </li>
-
-      <li class="ma-list-li">
-        <%= image_tag 'icons/sponsor.svg', size: 18 %>
-        <%= link_to backoffice_tickets_path, class: "hyperlink" do %>
-          <%= t('defaults.support') %>
+        <div class="input-avatar-user">
+          <%= f.file_field :avatar, as: :file, label: false, input_html: { accept: 'image/*' }, class: "input-description" %>
+        </div>
+        <div class="btns-box-top">
+          <%= link_to t(:edit_profile), edit_user_registration_path, class: "btn-green" %>
+          <%= link_to t(:security), edit_password_users_display_index_path, class: "btn-green" %>
+        </div>
+      </div>
+      <% else %>
+      <div class="box-user-top">
+        <% if current_user.avatar? %>
+          <label for="user_avatar">
+            <%= cl_image_tag current_user.avatar.path, { size: '150x150', class: 'avatar-user' } %>
+            <div class="photo-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+              </svg>
+            </div>
+          </label>
+          <% else %>
+            <label for="user_avatar">
+              <%= current_user.decorate.avatar_image_tag %>
+              <div class="photo-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-camera-fill" viewBox="0 0 16 16">
+                  <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/>
+                </svg>
+              </div>
+            </label>
         <% end %>
-      </li>
-
-      <li class="ma-list-li">
-        <%= image_tag 'icons/logout.svg', size: 18 %>
-        <%= link_to destroy_user_session_path, method: :delete, class: 'hyperlink' do %>
-          <%= t(:logout) %>
-        <% end %>
-      </li>
-      <% if user_masquerade? %>
-        <li class="ma-list-li">
-          <%= image_tag 'icons/logout.svg', size: 18 %>
-          <%= link_to back_masquerade_path(current_user), class: 'hyperlink hyperlink_red' do %>
-            <%= t(:back_account) %>
-          <% end %>
-        </li>
+        <div class="input-avatar-user">
+          <%= f.file_field :avatar, as: :file, label: false, input_html: { accept: 'image/*' }, class: "input-description" %>
+        </div>
+        <div class="btns-box-top">
+          <%= link_to t(:edit_profile), edit_user_registration_path, class: "btn-green" %>
+          <%= link_to t(:security), edit_password_users_display_index_path, class: "btn-green" %>
+        </div>
+      </div>
       <% end %>
-    </ul>
-  </div>
-  <div class="t">
 
-  </div>
+
+      <div class="box-user-form">
+        <div class="login-fields user-field input-disable"  title="<%= t(:name) %>">
+          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="black" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
+          <%= f.text_field :name, autofocus: true, disabled: true, placeholder: t(:name), class: "input-description" %>
+        </div>
+        <div class="login-fields user-field input-disable">
+          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="black" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+          </svg>
+          <%= f.country_select :country, { include_blank: t(:select_country), format: :with_country_code }, class: "input-description", prompt: t('attributes.country'), disabled: true %>
+        </div>
+        <div class="login-fields user-field input-disable" title="<%= t(:phone) %>">
+          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="black" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+          </svg>
+          <%= f.text_field :username, placeholder: t(:new_phone), class: "input-description", disabled: true %>
+        </div>
+        <div class="login-fields user-field input-disable">
+          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" class="bi bi-envelope" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+          </svg>
+          <input placeholder="<%= t(:email) %>" value="<%= current_user.email %>" class="input-description" disabled type="text" name="email">
+        </div>
+
+        <div class="login-fields user-field input-disable" id="sponsor-input"  title="<%= t(:sponsor) %>">
+          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" class="bi bi-person-plus" viewBox="0 0 16 16">
+            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+          <input placeholder="<%= t(:sponsor) %>" value="<%= current_user.sponsor.try(:username) %>" class="input-description" disabled type="text" name="sponsor_username">
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

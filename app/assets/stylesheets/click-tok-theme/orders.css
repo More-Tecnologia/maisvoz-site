@@ -20,6 +20,7 @@
 .th-history-list {
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
@@ -101,9 +102,16 @@
 .wr-amount {
     color: #373737 !important;
     display: flex;
-    font-weight: bold;
     justify-content: center;
     margin-top: 0.5rem;
+    height: auto;
+}
+
+.wr-amount a {
+  color: white;
+  background: #dc3545;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .wr-title {
@@ -115,6 +123,33 @@
     justify-content: space-between;
 }
 
+.title-withdrawal {
+  width: 100%;
+  text-align: center;
+}
+
+.withdrawal-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.withdrawal-card {
+  width: 50%;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.withdrawal-history {
+  color: white;
+  width: 180px;
+  background: #30da03;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+}
 .is-page-title span {
     font-weight: bold;
     font-size: 1.5rem;

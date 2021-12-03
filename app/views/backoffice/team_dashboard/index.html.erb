@@ -74,47 +74,5 @@
         </div>
       </div>
     <% end %>
-
-    <div class="products-list">
-      <div class="f-options-box f-options-box-l">
-        <div class="f-box-title">
-          <%= t(:direct_referral) %>
-        </div>
-        <div class="f-box-icon">
-          <span class="half text-center"><%= t(:direct_referral_text) %></span>
-        </div>
-      </div>
-
-      <div class="f-options-box f-options-box-r">
-        <div class="f-box-title">
-          <%= t(:indirect_referral)%>
-        </div>
-        <div class="f-box-icon">
-          <span class="half text-center"><%= t(:indirect_referral_text) %></span>
-        </div>
-      </div>
-
-      <div class="f-options-box f-options-box-l t-margin-bottom">
-        <div class="f-box-title">
-          <%= t(:earnings_by_campaign) %>
-        </div>
-        <div class="f-box-icon">
-          <% last_order = @user.orders.paid.last %>
-          <% amount = last_order.try(:products).try(:first).try(:earnings_per_campaign).to_f %>
-          <span class="half text-center"><%= t('earnings_by_campaign_text') %></span>
-        </div>
-      </div>
-
-      <div class="f-options-box f-options-box-r t-margin-bottom">
-        <div class="f-box-title">
-          <%= t(:recurring_revenue) %>
-        </div>
-        <div class="f-box-icon">
-          <span class="half text-center">
-            <%= t(:recurring_revenue_text) %>
-          </span>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

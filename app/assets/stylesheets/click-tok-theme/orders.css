@@ -136,7 +136,7 @@
 
 .withdrawal-card {
   width: 50%;
-  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   background: white;
   border-radius: 20px;
   padding: 20px;

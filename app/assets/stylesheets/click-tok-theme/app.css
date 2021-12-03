@@ -154,7 +154,7 @@ body {
 .change-password-top {
   width: 100%;
   position: absolute;
-  margin-bottom: 430px;
+  margin-bottom: 490px;
   display: flex;
   justify-content: space-around;
 }
@@ -699,7 +699,7 @@ button.close {
   .change-password-top {
     width: 100%;
     position: absolute;
-    margin-bottom: 400px;
+    margin-bottom: 490px;
     display: flex;
     justify-content: space-around;
 }

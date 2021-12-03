@@ -10,20 +10,22 @@
         text-align: justify;
         font-size: 1.2em;
       }
-
-
-
     </style>
   </head>
-  <body>
+  <body style="background: #ebeff2;">
     <div class="container"
-        style=" margin-left: 10%;
-                margin-right: 10%;
-                margin-bottom: 5%;
-                display: flex;
+        style=" display: flex;
                 justify-content: space-around;
                 align-items: center;
-                flex-direction: column;"
+                flex-direction: column;
+                background: white;
+                box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+                border-radius: 10px;
+                font-family: 'Lato', sans-serif;
+                background-image: url('https://mlgbzz6iaqdd.i.optimole.com/XzaT3g-ka1kldGy/w:auto/h:auto/q:74/https://djcleanto.com.br/wp-content/uploads/2014/01/black-background-hd-images.jpg');
+                color: white;
+                width: 100%;
+                "
     >
       <div class="topo" style="
                 display: flex;
@@ -31,30 +33,11 @@
                 align-items: center;
                 flex-direction: column;
                 width: 100%;
-                height: 200px;
+                height: auto;
       ">
-      <%= image_tag('logo.png', alt: SystemConfiguration.company_name, 'stroke-width' => '2', style:"
-        height: auto;
-        max-height: 100px;
-        width: 350px;
-        max-width: 350px;
-        margin-bottom: 20px;
-      " ) %>
-
-        <hr style="
-            height: 2px;
-            width: 100%;
-            background: #34EF00;
-            border: 0;
-            margin-bottom: 5px;
-        ">
-        <hr style="
-            height: 2px;
-            width: 100%;
-            background: #34EF00;
-            border: 0;
-            margin-bottom: 5px;
-        ">
+        <div class="banner-admoney" style="width: 100%; height: auto;">
+          <img src="http://localhost:3000/assets/banners/email-af97a42073740ddba251f7457b0c014515364f6ccfa46c9cdaf9a89b88fe966e.png" alt="" style="width: 100%; height: auto;">
+        </div>
       </div>
       <div class="conteudo"
             style="
@@ -88,10 +71,10 @@
       >
 
         <h2 style="
-            color: #222222 !important;
-            font-weight: 100;
+            color: white;
+            font-weight: bold;
         ">
-          <%= ENV['COMPANY_DOMAIN_SITE'] %>
+          <%= ENV["COMPANY_DOMAIN_SITE"] %>
         </h2>
         <hr style="
               height: 2px;
@@ -113,7 +96,7 @@
               margin-bottom: 5px;
             "
 
-        > <%= t('mailer.doubt', contact_email: ENV['CONTACT_EMAIL']) %> </p>
+        > <%= t('mailer.doubt', contact_email: ENV["CONTACT_EMAIL"]) %> </p>
       </div>
     </div>
   </body>

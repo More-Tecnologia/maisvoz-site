@@ -253,6 +253,12 @@
     border-bottom-right-radius: 10px;
 }
 
+@media (min-width: 250px) and (max-width: 550px){
+  .content-card-account {
+    max-height: 150px;
+  }
+}
+
 @media (min-width: 550px){
     .balance-box {
         min-height: 200px;

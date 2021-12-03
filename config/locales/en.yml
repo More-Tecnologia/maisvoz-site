@@ -1738,3 +1738,4 @@ en:
   success_update_banner_store: The banner store was successfully updated
   premium: Premium
   premium?: Premium?
+  request_withdraw: Request withdraw

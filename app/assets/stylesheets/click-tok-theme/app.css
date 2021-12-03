@@ -329,9 +329,30 @@ textarea:focus, input:focus{
 a{
     text-decoration: none;
 }
-@media (min-width: 300px) and (max-width: 880px){
+@media (min-width: 200px) {
   .main-app-content {
     min-height: 600px;
+  }
+  .btns-box-top a{
+    font-size: 10px;
+  }
+  .photo-box {
+    width: 20px;
+    height: 20px;
+    background: #00de28;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 5px;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 70px;
+  }
+
+  .photo-box svg {
+    margin: 3px;
   }
 }
 @media (min-width: 1024px) and (max-width: 2560px)
@@ -632,6 +653,9 @@ button.close {
     justify-content: space-between;
     flex-direction: row;
   }
+  .btns-box-top a{
+    font-size: 16px;
+  }
   .box-top {
     width: 20%;
     flex-direction: column;
@@ -674,6 +698,28 @@ button.close {
 
   .input-avatar-user {
     display: none;
+  }
+  .btns-box-top a{
+    font-size: 16px;
+  }
+
+  .photo-box {
+    width: 20px;
+    height: 20px;
+    background: #00de28;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 5px;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 75px;
+  }
+
+  .photo-box svg {
+    margin: 3px;
   }
 
   .btns-box-top {
@@ -750,6 +796,25 @@ button.close {
 
   .input-avatar-user {
     display: none;
+  }
+
+  .photo-box {
+    width: 20px;
+    height: 20px;
+    background: #00de28;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 5px;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: -40px;
+    margin-left: 112px;
+  }
+
+  .photo-box svg {
+    margin: 3px;
   }
 
   .btns-box-top {

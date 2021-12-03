@@ -62,7 +62,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :memory_store, { size: 64.megabytes }
 
   config.session_store :redis_session_store, {
     key: '_morenwm_session',

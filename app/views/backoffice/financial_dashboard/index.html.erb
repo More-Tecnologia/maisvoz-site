@@ -8,11 +8,7 @@
       </div>
 
       <div class="balance-value">
-        <% if current_user.empreendedor? %>
-          <%= number_to_currency(current_user.bonus_contracts.sum(&:net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
-        <% else %>
-          <%= number_to_currency(current_user.available_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
-        <% end %>
+        <%= number_to_currency(current_user.available_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
       </div>
     </div>
 

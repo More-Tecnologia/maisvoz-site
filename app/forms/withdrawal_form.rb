@@ -63,7 +63,7 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_maximum
-    user.bonus_contracts.sum(&:net_task_gains)
+    user.available_balance
   end
 
   def contracts_amount

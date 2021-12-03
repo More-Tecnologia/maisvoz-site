@@ -492,12 +492,16 @@ select:-webkit-autofill:focus {
   color: #155724;
   background-color: #d4edda;
   border-color: #c3e6cb;
+  margin-left: 30px;
+  margin-top: 45px;
 }
 
 .alert-danger {
   color: #721c24;
   background-color: #f8d7da;
   border-color: #f5c6cb;
+  margin-left: 30px;
+  margin-top: 45px;
 }
 
 .alert-info {
@@ -510,10 +514,14 @@ select:-webkit-autofill:focus {
   color: #856404;
   background-color: #fff3cd;
   border-color: #ffeeba;
+  margin-left: 30px;
+  margin-top: 45px;
 }
 
 .alert-dismissible {
   padding-right: 3rem;
+  margin-left: 30px;
+  margin-top: 45px;
 }
 
 .close:not(:disabled):not(.disabled) {
@@ -678,6 +686,31 @@ button.close {
   .box-bottom {
     width: 75%;
     margin-bottom: 0;
+  }
+  .alert-success {
+    margin-left: 30px;
+    margin-top: 52px;
+  }
+
+  .alert-danger {
+    margin-left: 30px;
+    margin-top: 52px;
+  }
+
+  .alert-info {
+    margin-left: 30px;
+    margin-top: 52px;
+  }
+
+  .alert-warning {
+    margin-left: 30px;
+    margin-top: 52px;
+  }
+
+  .alert-dismissible {
+    padding-right: 3rem;
+    margin-left: 30px;
+    margin-top: 52px;
   }
 }
 
@@ -895,5 +928,31 @@ button.close {
 
   .btn-disable {
     width: 15%;
+  }
+
+  .alert-success {
+    margin-left: 80px;
+    margin-top: 52px;
+  }
+
+  .alert-danger {
+    margin-left: 80px;
+    margin-top: 52px;
+  }
+
+  .alert-info {
+    margin-left: 80px;
+    margin-top: 52px;
+  }
+
+  .alert-warning {
+    margin-left: 80px;
+    margin-top: 52px;
+  }
+
+  .alert-dismissible {
+    padding-right: 3rem;
+    margin-left: 80px;
+    margin-top: 52px;
   }
 }

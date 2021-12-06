@@ -246,6 +246,10 @@
   background: #3f3f3f;
 }
 
+.margin-bottom {
+  margin-bottom: 30px;
+}
+
 @media (min-width: 300px) and (max-width: 640px){
   .page-home {
     width: 100%;
@@ -668,7 +672,7 @@
   }
 
   .box-store:nth-child(1) {
-    margin-left: 0;
+    margin-left: 5%;
   }
 
   .title-ads {

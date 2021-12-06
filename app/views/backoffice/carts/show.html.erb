@@ -54,10 +54,11 @@
           </div>
         </div>
           <input type="hidden" name="payment_method" id="payment_method" value='pix'>
+          <div class="ch-buy-action-button">
+            <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
+          </div>
         </div>
-      <div class="ch-buy-action-button">
-        <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
-      </div>
+
       <div class="t">
       </div>
       <div class="t">

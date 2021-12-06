@@ -1,19 +1,20 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'click-tok-theme/dashboard' %>
 <!-- Page-Title -->
 <div class="box-orders">
   <div class="box-second">
     <h1 class="page-title m-b-30"><%= t(:banners) %></h1>
   </div>
 </div>
+<div class="row-stores margin-bottom">
+  <% BannerStore.active.each do |banner_store| %>
+    <%= link_to backoffice_admin_banners_path(banner_store_hashid: banner_store.hashid), class: "box-store" do %>
+      <img src="<%= banner_store.path %>" alt="" class="img-box-store">
+    <% end %>
+  <% end %>
+</div>
 <div class="box-orders">
   <div class="box-second">
-    <div class="row-stores">
-      <% BannerStore.active.each do |banner_store| %>
-        <%= link_to backoffice_admin_banners_path(banner_store_hashid: banner_store.hashid), class: "box-store" do %>
-          <img src="<%= banner_store.path %>" alt="" class="img-box-store">
-        <% end %>
-      <% end %>
-    </div>
     <div class="card-box">
       <div class="row">
         <div class="col-lg-12">

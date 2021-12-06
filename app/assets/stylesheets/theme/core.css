@@ -1119,6 +1119,58 @@ pre {
   width: 90%;
 }
 
+.main-box-user {
+  width: 90%;
+  display: flex;
+  margin: auto;
+}
+
+.box-user-details {
+  width: 40%;
+}
+
+.user-content-right {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.content-right-row {
+  width: 100%;
+  margin: 0;
+}
+
+.widget-panel form {
+  height: 120px;
+}
+
+.widget-panel form input {
+  font-size: 8px;
+}
+
+.widget-panel a {
+  font-size: 8px;
+}
+.content-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.container-main p{
+  width: 90%;
+  margin: auto;
+}
+
+.back-button {
+    background: #30da03;
+    width: 50px;
+    height: 27px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
 
 @media (max-width: 400px){
   .logo{
@@ -1320,6 +1372,7 @@ body.fixed-left .side-menu.left {
   padding: 20px 5px 15px 5px;
   object-fit: cover;
 }
+
 
 @media (max-width: 400px){
   .content-page > .content {
@@ -2224,6 +2277,22 @@ body.fixed-left .side-menu.left {
   }
   #sponsor-link {
   }
+  .main-box-user {
+    width: 90%;
+    display: flex;
+    margin: auto;
+  }
+
+  .box-user-details {
+    width: 40%;
+  }
+
+  .user-content-right {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 1920px) {
@@ -2232,6 +2301,7 @@ body.fixed-left .side-menu.left {
     left: 40%;
     transform: translatex(-50%);
   }
+
 
 }
 @media screen and (max-width: 1920px) and (min-width: 1280px) {
@@ -2370,7 +2440,37 @@ body.fixed-left .side-menu.left {
 }
 
 @media (min-width: 300px) and (max-width: 640px){
+
   .user-details {
     padding-top: 10px;
+  }
+
+  .main-box-user {
+    width: 90%;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+  }
+
+  .box-user-details {
+    width: 100%;
+  }
+
+  .user-content-right {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 680px) {
+  .widget-panel form input {
+    font-size: 12px;
+  }
+
+  .widget-panel a {
+    font-size: 12px;
   }
 }

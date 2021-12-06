@@ -2583,7 +2583,7 @@ a.editable-click:hover {
   width: 8%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   color: #3f3f3f;

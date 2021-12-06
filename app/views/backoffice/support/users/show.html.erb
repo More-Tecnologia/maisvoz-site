@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<div class="row">
-  <div class="col-md-4 col-lg-4">
+<%= stylesheet_link_tag 'click-tok-theme/reset-bootstrap.css' %>
+<div class="main-box-user">
+  <div class="box-user-details" style="margin-left: 0;">
       <div class="profile-detail card-box">
           <div>
               <h4 class="m-b-20"><%= user.name %></h4>
@@ -98,69 +99,67 @@
       </div>
 
   </div>
-
-  <div class="col-md-8">
-    <div class="row">
-      <div class="col-lg-6 col-sm-6">
-        <div class="widget-panel widget-style-2 bg-white">
-          <i class="md md-attach-money text-success"></i>
-          <h2 class="m-0 text-dark counter font-600"><span> <%= number_to_currency(user.available_balance) %> </span></h2>
-          <div class="text-muted m-t-5"><%= User.human_attribute_name(:available_balance) %></div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-sm-6">
-        <div class="widget-panel widget-style-2 bg-white">
-          <i class="md md-attach-money text-warning"></i>
-          <h2 class="m-0 text-dark counter font-600"><span> <%= number_to_currency(user.blocked_balance) %> </span></h2>
-          <div class="text-muted m-t-5"><%= User.human_attribute_name(:blocked_balance) %></div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6 col-sm-6">
+  <div class="user-content-right">
+    <div class="col-md-8" style="width: 100%;">
+      <div class="content-right">
+        <div class="col-lg-6 col-sm-6">
           <div class="widget-panel widget-style-2 bg-white">
-              <i class="md md-account-child text-custom"></i>
-              <h2 class="m-0 text-dark counter font-600"><span><%= user.sponsored_count %></span></h2>
-              <div class="text-muted m-t-5"><%= t('.direct_users') %></div>
+            <i class="md md-attach-money text-success"></i>
+            <h2 class="m-0 text-dark counter font-600"><span> <%= number_to_currency(user.available_balance) %> </span></h2>
+            <div class="text-muted m-t-5"><%= User.human_attribute_name(:available_balance) %></div>
           </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="widget-panel widget-style-2 bg-white">
+            <i class="md md-attach-money text-warning"></i>
+            <h2 class="m-0 text-dark counter font-600"><span> <%= number_to_currency(user.blocked_balance) %> </span></h2>
+            <div class="text-muted m-t-5"><%= User.human_attribute_name(:blocked_balance) %></div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+            <div class="widget-panel widget-style-2 bg-white">
+                <i class="md md-account-child text-custom"></i>
+                <h2 class="m-0 text-dark counter font-600"><span><%= user.sponsored_count %></span></h2>
+                <div class="text-muted m-t-5"><%= t('.direct_users') %></div>
+            </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="col-md-8">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="widget-panel widget-style-2 bg-white">
-          <h3><%= t(:documents) %></h3>
+    <div class="col-md-8" style="width: 100%;">
+      <div class="row content-right-row">
+        <div class="col-md-12">
+          <div class="widget-panel widget-style-2 bg-white">
+            <h3><%= t(:documents) %></h3>
 
-          <% if user.pending_verification? %>
-            <%= form_tag(backoffice_support_documents_validation_path(id: user.id, status: User.document_verification_statuses['refused_verification']), method: :put) do %>
-              <label for=""><%= t(:reason) %>:</label>
-              <%= text_field_tag :reason, nil, class: 'form-control' %>
-              <br>
-              <%= submit_tag t(:reject_deleting_photos), class: 'btn btn-danger pull-left', name: 'delete' %>
-              <%= submit_tag t(:reject_without_delete_photos), class: 'btn btn-danger pull-left m-l-15', name: 'no-delete' %>
+            <% if user.pending_verification? %>
+              <%= form_tag(backoffice_support_documents_validation_path(id: user.id, status: User.document_verification_statuses['refused_verification']), method: :put) do %>
+                <label for=""><%= t(:reason) %>:</label>
+                <%= text_field_tag :reason, nil, class: 'form-control' %>
+                <br>
+                <%= submit_tag t(:reject_deleting_photos), class: 'btn btn-danger pull-left', name: 'delete' %>
+                <%= submit_tag t(:reject_without_delete_photos), class: 'btn btn-danger pull-left m-l-15', name: 'no-delete' %>
+              <% end %>
+              <%= link_to t(:approve), backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
+            <% elsif user.refused_verification? %>
+              <p><%= user.document_refused_reason %> - <%= user.document_verification_updated_at %></p>
+              <%= link_to t(:approve), backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
             <% end %>
-            <%= link_to t(:approve), backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
-          <% elsif user.refused_verification? %>
-            <p><%= user.document_refused_reason %> - <%= user.document_verification_updated_at %></p>
-            <%= link_to t(:approve), backoffice_support_documents_validation_path(id: user.id, status: 'verified'), class: 'btn btn-success m-l-15', method: :put %>
-          <% end %>
-          <%= link_to t('helpers.approve_support_point'),
-                      backoffice_support_support_point_users_path(user_id: params[:id]),
-                      method: :post,
-                      class: 'btn btn-warning m-l-15' unless user.support_point? %>
-          <hr>
+            <%= link_to t('helpers.approve_support_point'),
+                        backoffice_support_support_point_users_path(user_id: params[:id]),
+                        method: :post,
+                        class: 'btn btn-warning m-l-15' unless user.support_point? %>
+            <hr>
 
-          <%= link_to(cl_image_tag(user.document_rg_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_rg_photo.path), target: '_blank') if user.document_rg_photo %>
-          <%= link_to(cl_image_tag(user.document_cpf_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_cpf_photo.path), target: '_blank') if user.document_cpf_photo %>
-          <%= link_to(cl_image_tag(user.document_pis_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_pis_photo.path), target: '_blank') if user.document_pis_photo %>
-          <%= link_to(cl_image_tag(user.document_address_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_address_photo.path), target: '_blank') if user.document_address_photo %>
-          <%= link_to(cl_image_tag(user.document_scontract_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_scontract_photo.path), target: '_blank') if user.document_scontract_photo %>
+            <%= link_to(cl_image_tag(user.document_rg_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_rg_photo.path), target: '_blank') if user.document_rg_photo %>
+            <%= link_to(cl_image_tag(user.document_cpf_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_cpf_photo.path), target: '_blank') if user.document_cpf_photo %>
+            <%= link_to(cl_image_tag(user.document_pis_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_pis_photo.path), target: '_blank') if user.document_pis_photo %>
+            <%= link_to(cl_image_tag(user.document_address_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_address_photo.path), target: '_blank') if user.document_address_photo %>
+            <%= link_to(cl_image_tag(user.document_scontract_photo.path, { size: '50x50', class: 'm-b-20' }), cloudinary_url(user.document_scontract_photo.path), target: '_blank') if user.document_scontract_photo %>
 
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>

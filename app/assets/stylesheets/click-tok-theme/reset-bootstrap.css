@@ -1,0 +1,42 @@
+.col-sm-6,
+.col-md-8,
+.col-md-12{
+  padding: 0;
+}
+
+.m-l-15 {
+  margin: 0;
+}
+
+@media (min-width: 680px){
+  .col-sm-6,
+  .col-md-12{
+    padding: 15px;
+  }
+  .col-lg-6{
+    padding: 2px 15px
+  }
+}
+
+@media (min-width: 1300px){
+  .col-sm-6 {
+    width: 33%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .col-lg-6 {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .col-md-8 {
+    padding-right: 0;
+    padding-left: 10px;
+  }
+  .widget-panel {
+    width: 100%;
+    margin-right: 5px;
+  }
+  .col-md-12{
+    padding: 0;
+  }
+}

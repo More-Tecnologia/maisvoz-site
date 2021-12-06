@@ -35,6 +35,11 @@ File: Components
   border-radius: 3px;
   outline: none !important;
 }
+
+.border-radius-pattern {
+  font-weight: bold;
+  border-radius: 70px;
+}
 .btn-left {
   margin-right: 5px;
 }

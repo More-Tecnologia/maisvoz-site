@@ -159,6 +159,11 @@ body {
   justify-content: space-around;
 }
 
+.change-password-admin {
+  margin-bottom: 350px;
+}
+
+
 .avatar-user {
   width: 100px;
   height: 100px;
@@ -209,6 +214,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.box-admin-form {
+  margin-bottom: 0;
+  margin-top: 150px;
 }
 
 .box-user-form form {
@@ -737,6 +747,10 @@ button.close {
     justify-content: space-around;
 }
 
+.change-password-admin {
+  margin-bottom: 370px;
+}
+
   .avatar-user {
     width: 100px;
     height: 100px;
@@ -798,6 +812,11 @@ button.close {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .box-admin-form {
+    margin-bottom: 0;
+    margin-top: 150px;
   }
   .user-field{
     width: 100%;

@@ -64,14 +64,15 @@ Rails.application.configure do
   # Use a different cache store in production.
   config.cache_store = :memory_store, { size: 64.megabytes }
 
-  # config.session_store :redis_session_store, {
-  #   key: '_morenwm_session',
-  #   redis: {
-  #     expire_after: 60.minutes,
-  #     key_prefix: 'morenwm:session:',
-  #     url: ENV.fetch('REDIS_URL'),
-  #   }
-  # }
+  config.session_store :redis_session_store, {
+    key: '_backoffice_session',
+    redis: {
+      expire_after: 120.minutes,  # cookie expiration
+      ttl: 120.minutes,           # Redis expiration, defaults to 'expire_after'
+      key_prefix: 'backoffice:session:',
+      url: ENV.fetch('REDIS_URL'),
+    }
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque

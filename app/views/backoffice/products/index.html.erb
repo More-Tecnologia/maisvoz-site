@@ -3,38 +3,35 @@
 <div class="page">
   <div class="products-list">
     <% @products.each do |product| %>
-      <div class="item <%= product.id.odd? ? 'f-options-box-r': 'f-options-box-l' %>">
-        <div class="box" style='background-color: <%= product.details %>'>
+        <div class="box">
+          <div class="header-box"></div>
+          <div class="content-box">
           <div class="product-title">
              <%= product.name %>
           </div>
-
-          <div class="product-task">
-            <%= t(:tasks_per_day) %>
+          <div class="content-mid">
+            <div class="product-task">
             <span class="product-task-amount"> <%= product.task_per_day %></span>
-          </div>
-
-          <div class="product-desc">
-            <%= t(:earnings_by_campaign) %>
+              <%= t(:tasks_per_day) %>
+            </div>
+            <div class="product-desc">
             <span class="product-task-amount">
-              <%= number_to_currency(product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
-            </span>
+                <%= number_to_currency(product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+              </span>
+              <%= t(:earnings_by_campaign) %>
+            </div>
           </div>
 
           <div class="product-price">
             <span><%= product.price.zero? ? t(:free) : number_to_currency(product.price, precision: 0).gsub('USD ', '$') %></span>
+            <%= link_to backoffice_order_items_path(product: {id: product.hashid}), class: ' btn-buy',
+                     method: :post do %>
+                     <%= t(:buy) %>
+            <% end %>
+           </div>
+
           </div>
         </div>
-
-        <%= link_to backoffice_order_items_path(product: {id: product.hashid}), class: 'confimation-button',
-                     method: :post do %>
-           <div class="buy">
-             <button>
-               <%= t(:buy) %>
-             </button>
-           </div>
-        <% end %>
-      </div>
     <% end %>
   </div>
 </div>

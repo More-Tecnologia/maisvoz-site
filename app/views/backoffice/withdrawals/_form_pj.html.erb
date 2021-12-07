@@ -3,7 +3,7 @@
 <%= simple_form_for(@form, url: backoffice_withdrawals_path,
                            method: :post,
                            html: { class: 'form-horizontal' }) do |f| %>
- <div data-withdraw-simulator="true" data-fee="<%= ENV['WITHDRAWAL_FEE'].to_f %>"
+ <div data-withdraw-simulator="true" data-fee="<%= SystemConfiguration.withdrawal_fee.to_f %>"
                                      data-irpf="<%= @form.irpf %>"
                                      data-inss="<%= @form.inss %>"
                                      data-registration-type="<%= @form.user.registration_type %>">

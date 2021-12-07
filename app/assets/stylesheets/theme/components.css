@@ -20,9 +20,28 @@ File: Components
 /* =============
    Buttons
 ============= */
+
+
+.fa-user-shield {
+  width: 25px;
+  height: 21px;
+}
+
+.fa-user-shield:before {
+  width: 25px;
+  height: 21px;
+}
 .btn {
   border-radius: 3px;
   outline: none !important;
+}
+
+.border-radius-pattern {
+  font-weight: bold;
+  border-radius: 70px;
+}
+.btn-left {
+  margin-right: 5px;
 }
 .btn-md {
   padding: 8px 16px;
@@ -1070,7 +1089,7 @@ File: Components
 .table > tfoot > tr > td,
 .table > thead > tr > th,
 .table-bordered {
-  border-top: 1px solid #ebeff2;
+  border: 1px #c3c3c3 solid;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2340,6 +2359,23 @@ a.editable-click:hover {
   max-height: 466px;
   margin-bottom: 20px;
 }
+.box-selected {
+  background: red;
+}
+.painel a img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+.box-withdrawals {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.box-second {
+  width: 90%;
+}
 @media (min-width: 768px) {
   .img-container {
     min-height: 466px;
@@ -2368,24 +2404,25 @@ a.editable-click:hover {
   float: left;
   margin: 11px 0 0 8px;
 }
-
+.container-items {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 #dashboard{
-  width: 100%;
+  width: 90%;
   height: auto;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding-top: 20px;
 }
 
 #dashboard  .painel{
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-gap: 10px;
-  padding: 10px;
-  grid-template-columns: 10;
-  grid-template-rows: 8;
-
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 #dashboard  .painel > a {
@@ -2397,100 +2434,92 @@ a.editable-click:hover {
 }
 
 #dashboard  .painel > a:hover{
-  box-shadow: 5px 5px 10px #333333;
-  margin-top: -5px;
-  margin-left: -5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  margin-top: 2px;
+  margin-left: 2px;
 }
 
 #dashboard .painel .item1 {
-  grid-column: 1 /span 2 ;
-  grid-row:  1 ;
-  background: #444444;
+  width: 8%;
+  box-shadow:rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-  font-size: 16px;
-
+  color: #3f3f3f;
+  font-size: 14px;
+  height: 120px;
 }
 
 #dashboard .painel .item1 i{
   font-size: 20px;
 }
 
-#dashboard .painel .item1 img{
-  width: 30px;
-  height: 30px;
-  margin-bottom: 10px;
-}
-
 #dashboard .painel .item2 {
-  grid-column: 3 /span 2;
-  grid-row: 1 ;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
+  color: #3f3f3f;
   font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
 }
 
 #dashboard .painel .item2 i{
   font-size: 20px;
 }
 
-
-
 #dashboard .painel .item3 {
-  grid-column:  5 /span 2;
-  grid-row: 1;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
+  color: #3f3f3f;
   font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
 }
 
 #dashboard .painel .item3 i{
   font-size: 20px;
 }
 
-
 #dashboard .painel .item4 {
-  grid-column: 7 /span 2;
-  grid-row: 1;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-  font-size: 12px;
+  color: #3f3f3f;
+  font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
 }
 
 #dashboard .painel .item4 i{
   font-size: 20px;
 }
 
-
 #dashboard .painel .item5 {
-  grid-column: 9 /span 2;
-  grid-row: 1;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-
+  color: #3f3f3f;
+  font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
 }
 
 #dashboard .painel .item5 span{
-  color: #FFF;
   font-size: 14px;
 
 }
@@ -2500,15 +2529,16 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item6 {
-  grid-column: 1 /span 2;
-  grid-row: 2;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-  font-size: 12px;
+  color: #3f3f3f;
+  font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
 }
 
 #dashboard .painel .item6 i{
@@ -2516,15 +2546,16 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item7 {
-  grid-column: 3 /span 2;
-  grid-row: 2;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-  font-size: 12px;
+  color: #3f3f3f;
+  font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
 }
 
 #dashboard .painel .item7 i{
@@ -2532,15 +2563,16 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item8 {
-  grid-column: 5 /span 2;
-  grid-row: 2;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
+  color: #3f3f3f;
   font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
 }
 
 #dashboard .painel .item8 i{
@@ -2548,20 +2580,37 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item9 {
-  grid-column: 7 /span 2;
-  grid-row: 2;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
+  color: #3f3f3f;
   font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
+  padding: 0;
+}
+
+.svg-alert {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item9 svg {
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+.support-img-text {
+  height: 88%;
+  display: flex;
+  flex-direction: column;
 }
 
 #dashboard .painel .item9alert{
-  grid-column: 7 /span 2;
-  grid-row: 2;
   background: #F00;
   display: flex;
   justify-content: center;
@@ -2576,49 +2625,48 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item10 {
-  grid-column: 9 /span 2;
-  grid-row: 2;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-  font-size: 12px;
-}
-
-#dashboard .painel .item10 img{
-  width: 30px;
-  height: 30px;
+  color: #3f3f3f;
+  font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
 }
 
 #dashboard .painel .item11 {
-  grid-column: 1 /span 2;
-  grid-row: 3;
-  background: #444444;
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-  font-size: 12px;
+  color: #3f3f3f;
+  font-size: 14px;
+  min-height: 60px;
+  height: 120px;
+  margin-left: 5px;
 }
 
-#dashboard .painel .item11 img{
-  width: 50px;
-  height: 50px;
+#dashboard .painel .item11 i{
+  width: 25px;
+  height: 25px;
 }
 
 #dashboard .painel .item12 {
-  grid-column: 3 /span 2;
-  grid-row: 3 /span 2;
-  background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-  font-size: 16px;
+  color: #3f3f3f;
+  font-size: 14px;
+  margin-left: 5px;
+  height: 120px;
 }
 
 #dashboard .painel .item12 img{
@@ -2628,8 +2676,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item13 {
-  grid-column: 5 /span 2;
-  grid-row: 3 ;
   background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
   display: flex;
   justify-content: center;
@@ -2646,8 +2692,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item14 {
-  grid-column: 7 /span 2;
-  grid-row: 3;
   background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
   display: flex;
   justify-content: center;
@@ -2664,8 +2708,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item15 {
-  grid-column: 9 /span 2;
-  grid-row: 3;
   background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
   display: flex;
   justify-content: center;
@@ -2682,8 +2724,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item16 {
-  grid-column: 1;
-  grid-row: 4;
   background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
   display: flex;
   justify-content: center;
@@ -2700,8 +2740,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item17 {
-  grid-column: 2;
-  grid-row: 4;
   background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
   display: flex;
   justify-content: center;
@@ -2718,8 +2756,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item18 {
-  grid-column: 1;
-  grid-row: 5;
   background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
   display: flex;
   justify-content: center;
@@ -2736,8 +2772,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item19 {
-  grid-column: 2;
-  grid-row: 5;
   background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
   display: flex;
   justify-content: center;
@@ -2754,8 +2788,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item20 {
-  grid-column: 9 / span 2;
-  grid-row: 4;
   background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
   display: flex;
   justify-content: center;
@@ -2772,8 +2804,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item21 {
-  grid-column: 5 /span 2;
-  grid-row: 4;
   background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
   display: flex;
   justify-content: center;
@@ -2790,8 +2820,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item22 {
-  grid-column: 7 /span 2;
-  grid-row: 4;
   background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
   display: flex;
   justify-content: center;
@@ -2808,8 +2836,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item23 {
-  grid-column: 3;
-  grid-row: 5;
   background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
   display: flex;
   justify-content: center;
@@ -3032,7 +3058,7 @@ a.editable-click:hover {
   font-size: 12px;
 }
 
-@media (max-width: 420px){
+@media (max-width: 1200px){
   .container{
     padding-right: 0;
   }
@@ -3050,9 +3076,9 @@ a.editable-click:hover {
   #dashboard  .painel{
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-gap: 10px;
-    padding: 0;
+    display: flex;
+    overflow-x: scroll;
+    margin-top: 30px;
   }
 
   #dashboard  .painel > a {
@@ -3064,21 +3090,21 @@ a.editable-click:hover {
   }
 
   #dashboard  .painel > a:hover{
-    box-shadow: 5px 5px 10px #333333;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     margin-top: -5px;
     margin-left: -5px;
   }
 
   #dashboard .painel .item1 {
-    grid-column: 1 /span 2 ;
-    grid-row:  1 ;
-    background: #444444;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-    font-size: 16px;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item1 i{
@@ -3086,21 +3112,19 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item1 img{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     margin-bottom: 10px;
   }
 
   #dashboard .painel .item2 {
-    grid-column: 3 /span 2;
-    grid-row: 1 ;
-    background: #444444;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
+    color: #3f3f3f;
     font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item2 i{
@@ -3108,15 +3132,15 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item3 {
-    grid-column:  1 /span 2;
-    grid-row: 2;
-    background: #444444;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
+    color: #3f3f3f;
     font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item3 i{
@@ -3124,15 +3148,15 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item4 {
-    grid-column: 3 /span 2;
-    grid-row: 2;
-    background: #444444;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-    font-size: 12px;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item4 i{
@@ -3140,19 +3164,17 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item5 {
-    grid-column: 1 /span 2;
-    grid-row: 3;
-    background: #444444;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-
+    color: #3f3f3f;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item5 span{
-    color: #FFF;
     font-size: 14px;
 
   }
@@ -3162,15 +3184,15 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item6 {
-    grid-column: 3 /span 2;
-    grid-row: 3;
-    background: #444444;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-    font-size: 12px;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item6 i{
@@ -3178,15 +3200,15 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item7 {
-    grid-column: 1 /span 2;
-    grid-row: 4;
-    background: #444444;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-    font-size: 12px;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item7 i{
@@ -3194,65 +3216,67 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item8 {
-    grid-column: 3 /span 2;
-    grid-row: 4;
-    background: #444444;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
+    color: #3f3f3f;
     font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item8 i{
     font-size: 20px;
+    width: 25px;
+    height: 21px;
   }
 
   #dashboard .painel .item9 {
-    grid-column: 1 /span 2;
-    grid-row: 5;
-    background: #444444;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-    font-size: 12px;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item9 img{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
   }
 
   #dashboard .painel .item10 {
-    grid-column: 3 /span 2;
-    grid-row: 5;
-    background: #444444;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-    font-size: 12px;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
-  #dashboard .painel .item10 img{
-    width: 30px;
-    height: 30px;
+  #dashboard .painel .item10 i{
+    width: 25px;
+    height: 21px;
   }
 
   #dashboard .painel .item11 {
-    grid-column: 1 /span 2;
-    grid-row: 6;
-    background-image: linear-gradient(rgb(219,44,107), rgb(191, 30, 75));
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
+    color: #3f3f3f;
     font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item11 img{
@@ -3261,15 +3285,14 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item12 {
-    grid-column: 3 /span 2;
-    grid-row: 6 /span 2;
-    background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-    font-size: 16px;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
   #dashboard .painel .item12 img{
@@ -3279,8 +3302,6 @@ a.editable-click:hover {
   }
 
   #dashboard .painel .item13 {
-    grid-column: 1 /span 2;
-    grid-row: 7 ;
     background-image: linear-gradient(rgb(8,68,68), rgb(0, 147, 166));
     display: flex;
     justify-content: center;

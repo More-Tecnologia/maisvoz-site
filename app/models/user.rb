@@ -110,7 +110,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :lockable, :masqueradable
+         :trackable, :validatable, :lockable, :timeoutable, :masqueradable
 
   has_attachment :avatar, accept: [:jpg, :png]
   has_attachment :document_rg_photo
@@ -182,6 +182,8 @@ class User < ApplicationRecord
   validate :support_point_requisits, on: :update, if: :support_point?
 
   scope :bought_adhesion, -> { where(bought_adhesion: true) }
+  scope :master_leaders, -> { where(master_leader: true) }
+  scope :not_master_leaders, -> { where(master_leader: false) }
   scope :active,
     -> { ENV['ENABLED_ACTIVATION'] == 'true' ?
           where('active_until >= ?', Date.current).where(active: true) : where(active: true) }

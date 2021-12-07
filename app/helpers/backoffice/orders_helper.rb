@@ -84,9 +84,13 @@ module Backoffice
 
     def order_status_style_class(order)
       { pending_payment: '',
-        processing: 'task-history-process',
-        completed: 'task-history-sucess',
-        expired: '' }[order.status.to_sym]
+        processing: '',
+        completed: '',
+        expired: '',
+        waiting: 'status-waiting',
+        pending: 'status-pending',
+        canceled: 'status-canceled',
+        approved: 'status-success'  }[order.status.to_sym]
     end
   end
 end

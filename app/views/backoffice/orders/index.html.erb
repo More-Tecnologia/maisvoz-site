@@ -1,26 +1,27 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
 
 <div class="page">
-  <div class="back-button">
-    <%= image_tag('icons/back.svg') %>
-    <%= link_to t(:back), :back %>
-  </div>
-  <div class="is-page-title">
-    <span class="title">
-      <%= t('defaults.my_orders') %>
-    </span>
-    <span class="title">
-      <%= t(:filter) %>
-    </span>
-  </div>
-
-  <% @orders.each do |order| %>
+    <a class="back-button" href="/backoffice/dashboard?locale=en">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+    </svg>
+  </a>
+  <div class="card-order">
+    <div class="is-page-title">
+      <span class="title">
+        <%= t('defaults.my_orders') %>
+      </span>
+      <span class="title">
+        <%= t(:filter) %>
+      </span>
+    </div>
+    <% @orders.each do |order| %>
     <div class="th-history-list">
       <div class="th-history-task-title wr-title">
         <span class="th-history-task-id">
           <%= order.hashid %>
         </span>
-        <%= order.order_items.first.product.name %> <br>
+        <%= link_to order.order_items.first.product.name, backoffice_order_path(order) %> <br>
         <%= order.created_at.strftime('%d %b') %>
       </div>
       <div class="th-history-task-status">
@@ -38,6 +39,7 @@
       </div>
     </div>
   <% end %>
+  </div>
   <div class="row">
     <div class="col-sm-12">
       <%= paginate @orders %>

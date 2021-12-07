@@ -4,7 +4,7 @@ class DigitalWalletsMailer < ApplicationMailer
     @user = @digital_wallet.user
     @locale = params[:locale]
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - " + t('digital_wallet_change_solicitation')
+    mail to: @user.email, subject: "#{SystemConfiguration.company_name} - " + t('digital_wallet_change_solicitation')
   end
 
   def refused
@@ -13,7 +13,7 @@ class DigitalWalletsMailer < ApplicationMailer
     @user = @digital_wallet.user
     @locale = params[:locale]
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - " + t('digital_wallet_refuse_info')
+    mail to: @user.email, subject: "#{SystemConfiguration.company_name} - " + t('digital_wallet_refuse_info')
   end
 
   def reactive
@@ -21,7 +21,7 @@ class DigitalWalletsMailer < ApplicationMailer
     @user = @digital_wallet.user
     @locale = params[:locale]
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - " + t('digital_wallet_reactive_info')
+    mail to: @user.email, subject: "#{SystemConfiguration.company_name} - " + t('digital_wallet_reactive_info')
   end
 
   def activated
@@ -29,6 +29,6 @@ class DigitalWalletsMailer < ApplicationMailer
     @user = @digital_wallet.user
     @locale = params[:locale]
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - " + t('digital_wallet_changed_info')
+    mail to: @user.email, subject: "#{SystemConfiguration.company_name} - " + t('digital_wallet_changed_info')
   end
 end

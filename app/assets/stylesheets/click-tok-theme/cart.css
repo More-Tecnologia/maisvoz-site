@@ -17,8 +17,6 @@
 
 
 .ch-product-desc-area {
-    padding-right: 15px;
-    padding-left: 15px;
     margin-top: 3rem;
 }
 
@@ -59,7 +57,7 @@
 }
 
 .ch-purchase-desc {
-    padding: 15px;
+    padding: 15px 0;
 
 }
 
@@ -80,8 +78,6 @@
 }
 
 .division {
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .division div {
@@ -89,7 +85,6 @@
 }
 
 .page-title {
-    padding-left: 15px;
     font-weight: bold;
     font-size: 1.5rem;
     color: #373737;
@@ -99,7 +94,7 @@
 .ch-payment-buttons-area {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    padding: 15px 0;
 }
 
 .ch-payment-buttons-area button,
@@ -115,7 +110,7 @@
     border: none;
     border-radius: 70px;
     cursor: pointer;
-    background-color: #EF539F;
+    background-color: #34EF00;
     border: none;
 }
 
@@ -125,9 +120,9 @@
 }
 
 .ch-buy-action-button {
+    width: 100%;
     margin-top: 5px;
     height: 60px;
-    padding: 0px 15px 0 15px;
 }
 
 .t {
@@ -136,4 +131,15 @@
 
 .selected-button {
     background-color: #f0c0d8 !important;
+}
+
+.main-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.second-box {
+  width: 90%;
 }

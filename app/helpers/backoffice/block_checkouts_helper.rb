@@ -4,7 +4,7 @@ module Backoffice
   module BlockCheckoutsHelper
 
     def format_digital_currency(amount)
-      ENV['CURRENT_DIGITAL_CURRENCY'] + ' ' + @payment_transaction.amount.to_s
+      ENV['CURRENT_DIGITAL_CURRENCY'] + ' ' + amount.to_s
     end
 
     def generate_qr_code(text)

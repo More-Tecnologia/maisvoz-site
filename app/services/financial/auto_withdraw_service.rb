@@ -66,7 +66,7 @@ module Financial
     end
 
     def fee
-      ENV['WITHDRAWAL_FEE'].to_d
+      SystemConfiguration.withdrawal_fee.to_d
     end
 
     def h

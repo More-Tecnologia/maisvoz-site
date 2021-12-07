@@ -1,47 +1,50 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
 
 <div class="page">
-  <div class="back-button">
-    <%= image_tag('icons/back.svg') %>
-    <%= link_to t(:back), :back %>
-  </div>
+  <a class="back-button" href="/backoffice/dashboard?locale=en">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+    </svg>
+  </a>
   <div class="is-page-title">
-    <span class="title">
+    <span class="title title-withdrawal">
       <%= t('.title') %>
     </span>
   </div>
 
-  <section>
-    <div class="th-history-list">
-      <div class="th-history-task-title wr-title">
-        <h3 class="panel-title"><%= t('hello')%>, <%= current_user.name %></h3>
-      </div>
-      <div class="th-history-task-status">
-        <div class="wr-align">
-          <div class="wr-amount">
-            <%= t('confirm_withdraw') %>&nbsp;
-            <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:pending]), method: :patch,  data: { confirm: t('.pending_withdraw') }, class: 'hyperlink' %>
+  <section class="withdrawal-section">
+    <div class="withdrawal-card">
+      <div class="th-history-list">
+        <div class="th-history-task-title wr-title">
+          <h3 class="panel-title"><%= t('hello')%>, <%= current_user.name %></h3>
+        </div>
+        <div class="th-history-task-status">
+          <div class="wr-align">
+            <div class="wr-amount">
+              <%= t('confirm_withdraw') %>&nbsp;
+              <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:pending]), method: :patch,  data: { confirm: t('.pending_withdraw') }, class: 'hyperlink' %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="th-history-list">
-      <div class="th-history-task-title wr-title">
-        <%= t('waiting_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), hashid: @withdrawal.hashid, net_value: number_to_currency(@withdrawal.net_amount_cents)).html_safe %>
-      </div>
-      <div class="th-history-task-status">
-        <div class="wr-align">
-          <div class="wr-amount">
-            <%= t('refuse_withdraw') %> &nbsp;
-            <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:canceled]), method: :patch, data: { confirm: t('.cancel_withdraw') } %>
+      <div class="th-history-list">
+        <div class="th-history-task-title wr-title">
+          <%= t('waiting_withdrawal', value: number_to_currency(@withdrawal.gross_amount_cents), hashid: @withdrawal.hashid, net_value: number_to_currency(@withdrawal.net_amount_cents)).html_safe %>
+        </div>
+        <div class="th-history-task-status">
+          <div class="wr-align">
+            <div class="wr-amount">
+              <%= t('refuse_withdraw') %> &nbsp;
+              <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:canceled]), method: :patch, data: { confirm: t('.cancel_withdraw') } %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="th-history-list">
-      <div class="th-history-task-title wr-title">
-        <%= link_to t('withdrawals_history'), backoffice_withdrawals_path, class: 'hyperlink' %>
+      <div class="th-history-list">
+        <div class="th-history-task-title wr-title">
+          <%= link_to t('withdrawals_history'), backoffice_withdrawals_path, class: 'hyperlink withdrawal-history' %>
+        </div>
       </div>
     </div>
   </section>

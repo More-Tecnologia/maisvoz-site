@@ -1,40 +1,19 @@
-<%= content_for :body_class, 'login-page' %>
+<%= stylesheet_link_tag 'click-tok-theme/short_registration' %>
 
-<div class="account-pages"></div>
-<div class="clearfix"></div>
-<div class="wrapper-page">
-  <div class="text-center">
-    <%= image_tag 'logo.png' %>
-  </div>
-  <br>
-  <div class=" card-box">
-    <div class="panel-heading">
-      <h3 class="text-center"><%= title 'Reenviar instruções de confirmação de conta' %></h3>
+<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <div class="credentials-box">
+    <div class="login-fields">
+      <div class="field-icon">
+        <%= image_tag('icons/email.svg', alt: t(:sponsor)) %>
+      </div>
+
+      <%= f.input_field :email, required: true, autofocus: true, class: "input-description" %>
     </div>
-
-    <div class="panel-body">
-      <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-        <%= f.error_notification %>
-        <%= f.full_error :confirmation_token %>
-
-        <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, t('defaults.post') %>
-        </div>
-        <hr>
-        <%= render "users/shared/links" %>
-        <%= render "users/shared/flags" %>
-      <% end %>
-
+    <div class="login-fields remove-padding">
+      <%= f.button :submit, t('defaults.post'), class: "login"  %>
+    </div>
+    <div class="helper-text">
+      <%= render "users/shared/links" %>
     </div>
   </div>
-</div>
-
-<style media="screen">
-  label, .help-block {
-    color: white;
-  }
-</style>
+<% end %>

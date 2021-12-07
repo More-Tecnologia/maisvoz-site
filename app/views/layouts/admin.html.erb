@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= display_meta_tags site: ENV['COMPANY_NAME'] %>
+    <%= display_meta_tags site: SystemConfiguration.company_name %>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#643D8F" />
+    <meta name="theme-color" content="#3F3F3F" />
     <%= render 'layouts/shared/favicons' %>
     <%= stylesheet_link_tag 'click-tok-theme/app' %>
     <%= render 'layouts/shared/assets' %>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
   <body>
     <div id="root">
       <div class="disable-of">
@@ -16,6 +18,7 @@
           <div class="main-app">
             <%= render 'layouts/top_bar' %>
             <div class="main-app-content">
+              <%= render 'layouts/shared/admin_header' if (current_user.admin? || current_user.financeiro? || current_user.suporte?) %>
               <% if current_user.refused_verification? %>
                 <div class="alert alert-danger"><%= current_user.document_refused_reason %></div>
               <% end %>
@@ -34,5 +37,10 @@
     </div>
     <%= render 'layouts/gtag' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
   </body>
 </html>

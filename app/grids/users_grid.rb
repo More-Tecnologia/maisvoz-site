@@ -22,6 +22,9 @@ class UsersGrid < BaseGrid
   filter(:active, :xboolean, header: I18n.t('attributes.active')) do |value|
      value == true ? merge(User.active) : merge(User.inactive)
   end
+  filter(:master_leader, :xboolean, header: I18n.t(:master_leader)) do |value|
+     value == true ? merge(User.master_leaders) : merge(User.not_master_leaders)
+  end
   filter(:created_at, :date, :range => true, header: I18n.t('attributes.created_at'))
   filter(:binary_qualified, :xboolean, header: I18n.t('attributes.binary_qualify')) if ENV['ENABLED_BINARY'] == 'true'
 

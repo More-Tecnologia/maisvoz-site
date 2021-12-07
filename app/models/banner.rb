@@ -1,16 +1,15 @@
 class Banner < ApplicationRecord
   has_attachment :image
 
+  belongs_to :banner_store
+
   validates :link, presence: true
-  validates :image_path, presence: true
 
   scope :active, -> { where(active: true) }
+  scope :premium, -> { where(premium: true) }
+  scope :default, -> { where(premium: false) }
 
   def path
     image.try(:fullpath)
-  end
-
-  def filename
-    "#{title}.#{image.format}"
   end
 end

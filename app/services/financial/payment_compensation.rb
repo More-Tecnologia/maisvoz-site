@@ -38,6 +38,7 @@ module Financial
         propagate_bonuses if enabled_bonification
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product
+        propagate_master_bonus unless free_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         update_user_and_sponsor_types
         notify_user_by_email_about_paid_order
@@ -78,6 +79,10 @@ module Financial
 
     def propagate_bonuses
       Bonification::BonusPropagatorService.call(order: order)
+    end
+
+    def propagate_master_bonus
+      MasterLeaderCreatorWorker.perform_async(order.id)
     end
 
     def create_vouchers
@@ -149,6 +154,10 @@ module Financial
 
     def deposit_product
       @deposit_product ||= order.products.detect(&:deposit?)
+    end
+
+    def free_product
+      order.products.detect(&:free_product?)
     end
 
     def new_trail?

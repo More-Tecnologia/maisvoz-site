@@ -34,6 +34,7 @@ module Users
     end
 
     def update_profile
+      params[:user][:username] = params[:user][:username].gsub(/[ +]/, '')
       if current_user.update_with_password(user_params(%i[name avatar country username current_password]))
         flash[:success] = t(:profile_updated_successfully)
         redirect_to users_display_index_path

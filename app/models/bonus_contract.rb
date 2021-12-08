@@ -85,7 +85,7 @@ class BonusContract < ApplicationRecord
   end
 
   def max_task_gains
-    free_product? ? 7.5 : (price * 2 / 100)
+    free_product? ? 7.5 : (price * 2 / 100).to_f
   end
 
   def remaining_balance

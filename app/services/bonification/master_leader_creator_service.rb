@@ -7,10 +7,12 @@ module Bonification
         next if sponsor.admin?
         next unless sponsor.master_leader
 
-        transaction = create_master_leader_bonus_for(sponsor)
+        transactions = create_master_leader_bonus_for(sponsor)
         if sponsor.inactive?
-          chargeback_reason = transaction.financial_reason.chargeback_by_inactivity
-          transaction.chargeback_by_inactivity!(chargeback_reason)
+          chargeback_reason = transactions.last.financial_reason.chargeback_by_inactivity
+          transactions.each do |transaction|
+            transaction.chargeback_by_inactivity!(chargeback_reason)
+          end
         end
       end
     end
@@ -57,13 +59,12 @@ module Bonification
     def create_master_leader_bonus_for(sponsor)
       sponsoreds = sponsoreds_count(sponsor)
       cent_amount = @amount * calculate_percentages(sponsoreds)
-
-      sponsor.financial_transactions
-             .create!(spreader: @user,
-                      financial_reason: FinancialReason.master_leader_bonus,
-                      moneyflow: :credit,
-                      cent_amount: cent_amount,
-                      bonus_contract: sponsor.bonus_contracts.active.reject(&:max_gains?).first.presence || sponsor.bonus_contracts.last)
+      Bonification::GenericBonusCreatorService.call({
+        amount: cent_amount,
+        spreader: @user,
+        sponsor: sponsor,
+        reason: FinancialReason.master_leader_bonus,
+      })
     end
   end
 end

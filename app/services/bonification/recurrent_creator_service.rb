@@ -4,13 +4,12 @@ module Bonification
       sponsors.each_with_index do |sponsor, index|
         next if sponsor.admin?
 
-        transaction = create_recurrent_bonus_for(sponsor, index + 1)
-        contracts = sponsor.bonus_contracts.active.reject(&:max_gains?)
+        transactions = create_recurrent_bonus_for(sponsor, index + 1)
         if sponsor.inactive?
           chargeback_reason = transaction.financial_reason.chargeback_by_inactivity
-          transaction.chargeback_by_inactivity!(chargeback_reason)
-        elsif contracts.none?
-          transaction.chargeback_by_inactivity!(FinancialReason.chargeback_by_max_gains)
+          transactions.each do |transaction|
+            transaction.chargeback_by_inactivity!(chargeback_reason)
+          end
         end
       end
     end
@@ -36,13 +35,13 @@ module Bonification
 
     def create_recurrent_bonus_for(sponsor, generation)
       cent_amount = @amount * PERCENTAGES[generation.to_s.to_sym]
-
-        sponsor.financial_transactions
-               .create!(spreader: @user,
-                        financial_reason: FinancialReason.matching_bonus,
-                        moneyflow: :credit,
-                        cent_amount: cent_amount,
-                        bonus_contract: sponsor.bonus_contracts.active.reject(&:max_gains?).first.presence || sponsor.bonus_contracts.last)
+      Bonification::GenericBonusCreatorService.call({
+        amount: cent_amount,
+        spreader: @user,
+        sponsor: sponsor,
+        reason: FinancialReason.matching_bonus,
+        chargebackable: true
+      })
     end
   end
 end

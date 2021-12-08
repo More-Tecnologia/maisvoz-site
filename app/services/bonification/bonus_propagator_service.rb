@@ -110,37 +110,15 @@ module Bonification
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
       order_item_quantity -= Order::FEE if order_item_quantity > 10
       bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
-      transactions = []
-      while bonus > 0
-        contract = sponsor.bonus_contracts
-                          .active
-                          .reject(&:max_gains?)
-                          .sort_by(&:created_at)
-                          .first
-        if contract.present?
-          to_receive = contract.max_task_gains - contract.task_gains
-          to_receive = to_receive > 0 ? to_receive : 0
-          if to_receive > bonus
-            value = bonus
-            bonus -= bonus
-          else
-            value = to_receive
-            bonus -= to_receive
-          end
-        else
-          contract = sponsor.bonus_contracts.last
-          value = bonus
-          bonus -= bonus
-        end
-        transactions << sponsor.financial_transactions
-                               .create!(spreader: user,
-                                        financial_reason: financial_reason,
-                                        generation: generation,
-                                        cent_amount: value,
-                                        bonus_contract: contract,
-                                        order: order.loan_payment ? nil : order)
-      end
-      transactions
+      filtered_order = order.loan_payment ? nil : order
+      Bonification::GenericBonusCreatorService.call({
+        amount: bonus,
+        spreader: user,
+        sponsor: sponsor,
+        generation: generation,
+        reason: financial_reason,
+        order: filtered_order
+      })
     end
 
     def create_bonus_and_chargeback_for_inactive_sponsors(sponsors, product, product_reason, financial_reason)

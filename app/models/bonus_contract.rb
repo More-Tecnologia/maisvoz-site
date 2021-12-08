@@ -73,7 +73,7 @@ class BonusContract < ApplicationRecord
   def task_reason
     [FinancialReason.free_task_performed, FinancialReason.yield_bonus,
      FinancialReason.direct_commission_bonus, FinancialReason.indirect_referral_bonus,
-     FinancialReason.matching_bonus]
+     FinancialReason.matching_bonus, FinancialReason.credit_reason]
   end
 
   def free_product?

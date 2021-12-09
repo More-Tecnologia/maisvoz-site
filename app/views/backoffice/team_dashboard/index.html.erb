@@ -45,7 +45,7 @@
     <div class="t-team-network-avatar">
       <% direct_children(@unilevel_nodes).each do |child| %>
         <div class="t-teste">
-          <div class="t-align" style="background-color: <%= "#{child.user.active? ? expensive_product_active(child.user).order_items.first.product.details : '#34EF00' }"%>">
+          <div class="t-align" style="background-color: <%= "#{child.user.active? ? expensive_product_active(child.user).order_items.first.product.details : '#A8A8A8' }"%>">
             <%= link_to backoffice_team_dashboard_index_path(user: child.user) do %>
               <% if child.user.avatar.try(:path).present? %>
                 <%= cl_image_tag(child.user.avatar.try(:path), { class: 'icons user-icon' }) %>

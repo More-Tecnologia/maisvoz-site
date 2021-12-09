@@ -12,11 +12,11 @@ module Backoffice
         @banner_store = BannerStore.active.shuffle.last
       end
       @banners = @banner_store.banners.active
-      @max_task_gains = @contracts.sum(&:max_task_gains)
-      @task_gains = @contracts.sum(&:task_gains)
+      @max_task_gains = @tasks_active_contracts.sum(&:max_task_gains)
+      @task_gains = @tasks_active_contracts.sum(&:task_gains)
       available = @max_task_gains - @task_gains
       @available_gains = available.positive? ? available : 0
-      @contract = @contracts.last
+      @contract = @tasks_active_contracts.last
       @most_value_contract = @contracts_by_value.last
       @total_banners_per_day = @contract.present? ? @contract.order_items.last.task_per_day.to_i : 0
       @banners_clicked_today_quantity = current_user.banner_clicks
@@ -58,13 +58,14 @@ module Backoffice
     private
 
     def ensure_contracts
-      @contracts = current_user.bonus_contracts.active.reject(&:max_gains?).sort do |contract, other|
+      @contracts = current_user.bonus_contracts.active.sort do |contract, other|
         contract.order_items.last.task_per_day.to_i <=> other.order_items.last.task_per_day.to_i
       end
+      @tasks_active_contracts = @contracts.reject(&:max_gains?)
     end
 
     def contracts_by_value
-      @contracts_by_value = @contracts.sort do |contract, other|
+      @contracts_by_value = @tasks_active_contracts.sort do |contract, other|
         contract.order_items.last.unit_price_cents <=> other.order_items.last.unit_price_cents
       end
     end

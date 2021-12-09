@@ -22,8 +22,9 @@ module Backoffice
 
             banner_click.update(financial_transaction: transactions.first)
             next if free_user?
-
-            RecurrentCreatorWorker.perform_async(current_user.id, transactions.id)
+            transactions.each do |transaction|
+              RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
+            end
           end
         end
       end

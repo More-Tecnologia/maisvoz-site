@@ -44,7 +44,8 @@ module Backoffice
         spreader: User.find_morenwm_customer_admin,
         sponsor: current_user,
         reason: financial_reason,
-        chargebackable: true
+        chargebackable: true,
+        bonus_contract: contract
       })
     end
 

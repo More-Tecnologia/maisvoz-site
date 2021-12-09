@@ -13,6 +13,7 @@ module Bonification
       @sponsor = params[:sponsor]
       @order = params[:order]
       @generation = params[:generation]
+      @bonus_contract = params[:bonus_contract]
       @chargebackable = params[:chargebackable].presence || false
       @transactions = []
     end
@@ -21,11 +22,15 @@ module Bonification
 
     def create_financial_transactions
       while @amount > 0
-        contract = @sponsor.bonus_contracts
-                           .active
-                           .reject(&:max_gains?)
-                           .sort_by(&:created_at)
-                           .first
+        if @bonus_contract.present?
+          contract = @bonus_contract
+        else
+          contract = @sponsor.bonus_contracts
+                             .active
+                             .reject(&:max_gains?)
+                             .sort_by(&:created_at)
+                             .first
+        end
         if contract.present?
           to_receive = (contract.max_task_gains - contract.task_gains).round
           to_receive = to_receive > 0 ? to_receive : 0
@@ -54,6 +59,7 @@ module Bonification
         else
           @transactions << transaction
         end
+        @bonus_contract = nil
       end
     end
   end

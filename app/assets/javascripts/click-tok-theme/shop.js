@@ -1,9 +1,9 @@
 $(document).ready(function() {
-  $('.confimation-button').on('click', function() {
+  $('.btn-buy').on('click', function() {
     if($(this).hasClass('hidden'))
       return;
     // do work
     $(this).addClass('hidden');
-    $(this).parent().append( "<a href='#'><div class='buy'><button><i class='fa fa-spinner fa-spin'></i></button></div></a>" );
+    $(this).parent().append( "<a href='#' class='btn-buy'><i class='fa fa-spinner fa-spin'></i></a>" );
   })
 })

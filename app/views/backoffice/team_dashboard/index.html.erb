@@ -29,7 +29,7 @@
       </div>
     <% end %>
     <div class="t-team-owner-avatar">
-      <div class="t-owner-avatar" style="background-color: <%= "#{@user.active? ? expensive_product_active(@user).order_items.first.product.details : '#34EF00' }"%>">
+      <div class="t-owner-avatar" style="background-color: <%= "#{@user.active? ? expensive_product_active(@user).order_items.first.product.details : '#A8A8A8' }"%>">
         <div>
           <% if @user.avatar.try(:path).present? %>
             <%= cl_image_tag(@user.avatar.try(:path), { class: 'icons user-icon' }) %>

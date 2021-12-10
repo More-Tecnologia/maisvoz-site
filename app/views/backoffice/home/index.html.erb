@@ -23,7 +23,7 @@
               <% if current_user.confirmed_at.present? %>
                 <div class="btn-green"><%= t(:validated_account) %></div>
               <% else %>
-                <a href="#" class="btn-red"><%= t(:validate_your_account) %></a>
+                <%= link_to t(:validate_your_account), new_backoffice_valid_account_path, class: 'btn-red' %>
               <% end %>
             </div>
         </div>

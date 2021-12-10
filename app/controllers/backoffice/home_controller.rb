@@ -1,5 +1,3 @@
-
-
 module Backoffice
   class HomeController < EntrepreneurController
     before_action :ensure_no_admin_user, only: :index
@@ -29,6 +27,5 @@ module Backoffice
     def ensure_no_admin_user
       redirect_to backoffice_admin_dashboard_index_path if user_signed_in? && (current_user.admin? || current_user.financeiro? || current_user.suporte?)
     end
-
   end
 end

@@ -32,7 +32,7 @@ module Bonification
                              .first
         end
         if contract.present?
-          to_receive = (contract.max_task_gains - contract.task_gains).round
+          to_receive = (contract.max_task_gains - contract.task_gains.round(2)).round(2)
           to_receive = to_receive > 0 ? to_receive : 0
           if to_receive > @amount
             value = @amount

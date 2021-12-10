@@ -73,7 +73,7 @@ class WithdrawalForm < Form
   private
 
   def user_has_balance
-    return if amount_cents < withdrawal_maximum
+    return unless amount_cents > withdrawal_maximum
 
     errors.add(:base, I18n.t('defaults.errors.no_funds'))
   end

@@ -670,6 +670,14 @@ en:
       password_reset: Change my password
       order_alert: If you did not request it, please ignore this email.<br>
                    Your password will not change until you access the link above and create a new one.
+    confirmation_instructions:
+      title: Confirmation Instructions
+    unlock_instructions:
+      title: Unlock Instructions
+    reset_password_instructions:
+      title: Reset password instructions
+    email_change:
+      title: Email change
   date:
     abbr_day_names:
     - Sun

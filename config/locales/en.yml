@@ -490,6 +490,9 @@ en:
     banner_clicks:
       index:
         title: Daily Tasks
+    valid_accounts:
+      new:
+        success: 'An confirmation instructions email has been sent to: %{email}.'
     admin:
       media_files:
         form:

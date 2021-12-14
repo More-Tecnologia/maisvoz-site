@@ -177,10 +177,14 @@ class FinancialTransaction < ApplicationRecord
                                            bonus_contract: bonus_contract)
     end
     active_bonus_contracts = user.bonus_contracts.active.yield_contracts.order(:created_at)
-    user.inactivate! unless active_bonus_contracts.any?(&:active?)
+    user.inactivate! and send_user_to_interspire unless active_bonus_contracts.any?(&:active?)
   end
 
   def max_contract_gains?
     bonus_contract.max_contract_gains? if bonus_contract.present?
+  end
+
+  def send_user_to_interspire
+    Interspire::ContactAdderWorker.perform_async(user.id)
   end
 end

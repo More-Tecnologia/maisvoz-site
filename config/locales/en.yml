@@ -372,6 +372,7 @@ en:
     hashid: Code
     digital_wallet: Wallet
     document: Document
+    crypto_amount: Crypto
   backoffice:
     orders:
       show:

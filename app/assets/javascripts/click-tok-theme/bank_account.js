@@ -19,6 +19,6 @@ function showBitCoinInput() {
   var payment_method = document.getElementById("payment_method")
 
   if(payment_method != null){
-    payment_method.setAttribute('value', 'bitcoin');
+    payment_method.setAttribute('value', 'btc');
   }
 };

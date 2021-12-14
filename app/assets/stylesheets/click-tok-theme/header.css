@@ -163,4 +163,8 @@ header {
     .logo a img {
         margin-top: 0;
     }
+
+    .link-share .hyperlink {
+      font-size: 8px;
+    }
  }

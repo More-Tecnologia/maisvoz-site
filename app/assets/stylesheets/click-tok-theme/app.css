@@ -142,6 +142,11 @@ body {
   margin-bottom: 510px;
 }
 
+.box-user-top-display img,
+.box-user-top img  {
+  border-radius: 50px;
+}
+
 .box-admin-top {
   width: 100%;
   height: auto;
@@ -366,7 +371,7 @@ a{
     border-radius: 20px;
     position: absolute;
     margin-top: -35px;
-    margin-left: 70px;
+    margin-left: 60px;
   }
 
   .photo-box svg {
@@ -777,7 +782,7 @@ button.close {
     border-radius: 20px;
     position: absolute;
     margin-top: -35px;
-    margin-left: 75px;
+    margin-left: 55px;
   }
 
   .photo-box svg {
@@ -887,7 +892,7 @@ button.close {
     border-radius: 20px;
     position: absolute;
     margin-top: -40px;
-    margin-left: 112px;
+    margin-left: 65px;
   }
 
   .photo-box svg {

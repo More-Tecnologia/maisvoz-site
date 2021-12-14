@@ -34,6 +34,10 @@ function itemSelected(){
 
   list.forEach((item) => {
 
+      if(window.location.pathname == "/backoffice/dashboard" || window.location.pathname == "/backoffice/dashboard"){
+        indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 1))`;
+        indicator.style.transition = "none";
+      }
       if(window.location.pathname == "/backoffice/support/users" || window.location.pathname == "/backoffice/dashboard"){
         indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 1))`;
         indicator.style.transition = "none";
@@ -56,9 +60,12 @@ function itemSelected(){
       else {
         item.classList.remove('active');
       }
+      if(window.location.pathname !== "/backoffice/support/users" && window.location.pathname !== "/backoffice/products" && window.location.pathname !== "/backoffice/financial_dashboard" && window.location.pathname !== "/backoffice/team_dashboard" && window.location.pathname !== "/backoffice/dashboard"){
+        console.log(window.location.pathname)
+        indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 0))`;
+        indicator.style.transition = "none";
+      }
   });
-
-
 }
 
 itemSelected();

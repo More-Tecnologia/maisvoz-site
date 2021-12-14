@@ -36,6 +36,10 @@ body {
     touch-action: manipulation;
 }
 
+.main-app-content {
+  margin-bottom: 100px;
+}
+
 .invisible-box {
   display: block;
   margin-bottom: 150px;

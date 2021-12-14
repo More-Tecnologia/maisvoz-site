@@ -1,6 +1,6 @@
 module Interspire
   class ContactDeleterWorker
-    include Sidekiq::Woker
+    include Sidekiq::Worker
 
     def perform(email)
       Webhooks::Interspire::ContactDeleterService.call(email: email)

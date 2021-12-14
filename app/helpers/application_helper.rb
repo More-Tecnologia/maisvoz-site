@@ -93,4 +93,21 @@ module ApplicationHelper
   def seconds_to_hms(sec)
     "%02d:%02d:%02d" % [sec / 3600, sec / 60 % 60, sec % 60]
   end
+
+  def current_currencies_rates
+    @current_currencies_rates ||= Webhooks::Coinbase::DollarExchangeRates.call
+  end
+
+  def currency_price origin_currency, cents, target_currency = ENV['CURRENT_CURRENCY']
+    currency_cents(origin_currency, cents, target_currency) / 100.0
+  end
+
+  private
+
+  def currency_cents origin_currency, cents, target_currency = ENV['CURRENT_CURRENCY']
+    return cents if origin_currency == target_currency
+
+    cents.to_d * current_currencies_rates.dig(target_currency) /
+    current_currencies_rates.dig(origin_currency)
+  end
 end

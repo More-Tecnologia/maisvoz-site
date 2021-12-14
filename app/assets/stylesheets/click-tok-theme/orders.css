@@ -164,6 +164,12 @@
   margin-bottom: 50px;
 }
 
+.earnings-status {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+}
+
 @media (min-width: 300px) and (max-width: 1280px) {
     .card-order {
         width: 100%;

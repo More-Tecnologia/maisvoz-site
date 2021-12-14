@@ -1,5 +1,11 @@
 <% if current_user.empreendedor? %>
   <%= stylesheet_link_tag 'click-tok-theme/orders' %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
 <div class="page">
   <a class="back-button" href="/backoffice/dashboard?locale=en">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -11,9 +17,17 @@
       <span class="title">
         <%= t(:earnings_report) %>
       </span>
-      <span class="title">
-        <%= t(:filter) %>
-      </span>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= t(:filter) %>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Direct referral bonus</button>
+            <button class="dropdown-item" type="button">Indirect referral bonus</button>
+            <button class="dropdown-item" type="button">Residual bonus</button>
+            <button class="dropdown-item" type="button">Chargebacks</button>
+          </div>
+        </div>
     </div>
     <% if @financial_transactions.length > 0 %>
     <%= render 'as_morenwm_user' if current_user.morenwm_user? %>
@@ -28,7 +42,7 @@
           </span>
           <%= financial_transaction.created_at.strftime('%d %b') %>
         </div>
-        <div class="th-history-task-status">
+        <div class="earnings-status">
           <div class="wr-align">
             <div class="wr-amount <%= 'text-danger' if financial_transaction.debit? && current_user != User.find_morenwm_user %>">
               <span><%= format_cent_amount_value(financial_transaction) %></span>

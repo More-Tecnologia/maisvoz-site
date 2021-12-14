@@ -25,13 +25,12 @@ function moveMenu() {
       }
       x++;
   })
-  console.log(x);
 }
 
 function itemSelected(){
   let links = document.querySelectorAll('.link-nav');
   let sizeNav = document.querySelector('.list').offsetWidth;
-
+  let firstList = list[0];
   list.forEach((item) => {
 
       if(window.location.pathname == "/backoffice/dashboard" || window.location.pathname == "/backoffice/dashboard"){
@@ -61,7 +60,7 @@ function itemSelected(){
         item.classList.remove('active');
       }
       if(window.location.pathname !== "/backoffice/support/users" && window.location.pathname !== "/backoffice/products" && window.location.pathname !== "/backoffice/financial_dashboard" && window.location.pathname !== "/backoffice/team_dashboard" && window.location.pathname !== "/backoffice/dashboard"){
-        console.log(window.location.pathname)
+        firstList.classList.add('active')
         indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 0))`;
         indicator.style.transition = "none";
       }

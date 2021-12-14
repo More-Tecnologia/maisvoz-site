@@ -10,6 +10,7 @@ class WithdrawalForm < Form
   validates :amount, presence: true
   validates :amount, numericality: { greater_than_or_equal_to: proc { |f| f.withdrawal_minimum },
                                      less_than_or_equal_to: proc { |f| f.withdrawal_maximum } }
+  validates :payment_method, presence: true
 
   validate :user_has_balance
   validate :fiscal_document_presence, if: -> { user.pj? }

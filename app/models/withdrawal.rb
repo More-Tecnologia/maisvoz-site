@@ -1,22 +1,3 @@
-# == Schema Information
-#
-# Table name: withdrawals
-#
-#  id                   :bigint(8)        not null, primary key
-#  status               :string           not null
-#  user_id              :bigint(8)
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  gross_amount_cents   :bigint(8)        not null
-#  net_amount_cents     :bigint(8)        not null
-#  fiscal_document_link :string
-#
-# Indexes
-#
-#  index_withdrawals_on_status   (status)
-#  index_withdrawals_on_user_id  (user_id)
-#
-
 class Withdrawal < ApplicationRecord
   include Hashid::Rails
 
@@ -27,6 +8,7 @@ class Withdrawal < ApplicationRecord
   has_many :financial_transactions
 
   enum status: [:pending,  :approved, :approved_balance, :refused, :waiting, :canceled]
+  enum payment_method: [:usd, :btc, :eth]
 
   def gross_amount_cents
     self[:gross_amount_cents] / 1e8.to_f if self[:gross_amount_cents]
@@ -44,6 +26,13 @@ class Withdrawal < ApplicationRecord
     self[:net_amount_cents] = (amount * 1e8).to_i
   end
 
+  def crypto_amount
+    self[:crypto_amount] / 1e8.to_f if self[:crypto_amount]
+  end
+
+  def crypto_amount=(amount)
+    self[:crypto_amount] = (amount * 1e8).to_i
+  end
 
   has_attachment :fiscal_document_photo
 

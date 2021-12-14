@@ -377,6 +377,7 @@ pt-BR:
     hashid: Código
     digital_wallet: Carteira
     document: Documento
+    crypto_amount: Cripto
   backoffice:
     orders:
       show:

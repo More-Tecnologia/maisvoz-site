@@ -41,6 +41,7 @@ module Financial
         propagate_master_bonus unless free_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         update_user_and_sponsor_types
+        remove_user_from_free_product_list if order.total_cents.positive? && user.interspire_code.present?
         notify_user_by_email_about_paid_order
       end
     end
@@ -212,6 +213,10 @@ module Financial
     def update_user_and_sponsor_types
       Types::QualifierService.call(user: user)
       Types::QualifierService.call(user: user.sponsor)
+    end
+
+    def remove_user_from_free_product_list
+      Interspire::ContactDeleterWorker.perform_async(user.email)
     end
   end
 end

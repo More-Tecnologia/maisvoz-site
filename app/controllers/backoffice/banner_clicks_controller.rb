@@ -19,7 +19,9 @@ module Backoffice
             transactions.each do |transaction|
               credit_bonus_to(transaction.bonus_contract, transaction)
             end
-
+            if free_user? && current_user.reached_free_contract_gain?
+              send_current_user_to_interspire
+            end
             banner_click.update(financial_transaction: transactions.first)
             next if free_user?
             transactions.each do |transaction|
@@ -69,11 +71,15 @@ module Backoffice
     end
 
     def free_user?
-      current_user.orders
-                  .paid
-                  .map(&:order_items)
-                  .flatten
-                  .all? { |x| x.product.free_product? }
+      @free_user ||= current_user.orders
+                                 .paid
+                                 .map(&:order_items)
+                                 .flatten
+                                 .all? { |x| x.product.free_product? }
+    end
+
+    def send_current_user_to_interspire
+      Interspire::ContactAdderWorker.perform_async(current_user.id)
     end
   end
 end

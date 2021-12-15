@@ -11,7 +11,7 @@ module Webhooks::Interspire
 
     def initialize(args)
       @email = args[:email]
-      @mailing_list_id = args[:mailing_list_id] || Rails.application.credentials.mailing_list_id
+      @mailing_list_id = args[:mailing_list_id] || Rails.application.credentials.interspire_list_id
     end
 
     def add_user_to_request

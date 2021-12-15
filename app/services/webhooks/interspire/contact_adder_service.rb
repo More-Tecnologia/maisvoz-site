@@ -9,14 +9,13 @@ module Webhooks::Interspire
 
     private
 
-    MANDATORY_CUSTOM_FIELD_IDS = { FirstName: 2, LastName: 3 }.with_indifferent_access.freeze
-    MAILING_LIST_ID = 42
+    CUSTOM_FIELD_IDS = { FirstName: 2, LastName: 3 }.with_indifferent_access.freeze
 
     def initialize(args)
       @email = args[:email]
       @confirmed = args[:confirmed]
-      @valid_custom_fields = args[:custom_fields].with_indifferent_access
-                                                 .slice(*MANDATORY_CUSTOM_FIELD_IDS.keys)
+      @valid_custom_fields = (args[:custom_fields] || {}).with_indifferent_access
+                                                         .slice(*CUSTOM_FIELD_IDS.keys)
     end
 
     def add_user_to_request
@@ -46,7 +45,7 @@ module Webhooks::Interspire
       itens = ''
       @valid_custom_fields.map do |field, value|
         itens += "<item>
-                  <fieldid>#{MANDATORY_CUSTOM_FIELD_IDS[field]}</fieldid>
+                  <fieldid>#{CUSTOM_FIELD_IDS[field]}</fieldid>
                   <value>#{value}</value>
                   </item>"
       end

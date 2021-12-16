@@ -62,6 +62,17 @@
 
 }
 
+<<<<<<< HEAD
 .change-language a img {
     border-radius: 10px;
+=======
+.change-language img {
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+.flag img {
+    border-radius: 10px;
+    margin-bottom: 5px;
+>>>>>>> 45250dc7 (add border-radius in flag of language)
 }

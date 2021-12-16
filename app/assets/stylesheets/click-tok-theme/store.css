@@ -1,3 +1,9 @@
+.main-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .main-app-content {
     background-color: #e9e9e9;
@@ -233,7 +239,7 @@
   color: white;
   background: linear-gradient(to bottom, #58f701, #26ac00);
   margin-right: 5px;
-  padding: 10px 10px 0 10px;
+  padding: 20px 10px 10px 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -469,6 +475,14 @@ text-align: left;
 
 .btn-active-account {
     width: 250px;
+}
+
+.store-banner {
+  width: 200px;
+}
+
+.store-banner p {
+  font-size: 15px;
 }
 }
 

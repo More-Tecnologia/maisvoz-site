@@ -1,20 +1,8 @@
 <%= stylesheet_link_tag 'click-tok-theme/store' %>
 <%= javascript_include_tag 'click-tok-theme/shop' %>
+
 <div class="main-box">
-  <div class="nav-store">
-    <a class="store-banner">
-      <p>ADCASH</p>
-    </a>
-    <a class="store-banner">
-      <p>JOGOS ONLINE</p>
-    </a>
-    <a class="store-banner">
-      <p>CURSOS ONLINE</p>
-    </a>
-    <a class="store-banner">
-      <p>PUBLICIDADE ONLINE</p>
-    </a>
-  </div>
+  <%= render 'backoffice/stores/menu' %>
 
   <div class="banner-img">
     <div class="banner-img__content-left">

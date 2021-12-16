@@ -27,7 +27,7 @@
                 <a href="#" class='btn-red' id="already-send-email-confirmation-btn" title='<%= t(:modal_already_send_email_confirmation_title) %>' message='<%= t(:modal_already_send_email_confirmation_text, time: activation_email_time) %>'><%= t(:validate_your_account) %></a>
                 <% else %>
                   <%= link_to t(:validate_your_account), backoffice_valid_accounts_path, method: :post, class: 'btn-red', id: "email-confirmation-btn", title: t(:modal_email_confirmation_title),
-                  message: t(:modal_email_confirmation_text) %>
+                  message: t(:modal_email_confirmation_text), next_message: t(:validate_your_account) %>
                 <% end %>
               <% end %>
             </div>

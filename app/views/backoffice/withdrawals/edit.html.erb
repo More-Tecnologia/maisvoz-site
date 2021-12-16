@@ -22,7 +22,7 @@
           <div class="wr-align">
             <div class="wr-amount">
               <%= t('confirm_withdraw') %>&nbsp;
-              <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:pending]), method: :patch,  data: { confirm: t('.pending_withdraw') }, class: 'hyperlink' %>
+              <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:pending]), method: :patch,  data: { confirm: t('.pending_withdraw') }, class: 'btn-confirm-withdraw' %>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@
           <div class="wr-align">
             <div class="wr-amount">
               <%= t('refuse_withdraw') %> &nbsp;
-              <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:canceled]), method: :patch, data: { confirm: t('.cancel_withdraw') } %>
+              <%= link_to t('here'), backoffice_withdrawal_url(@withdrawal, status: Withdrawal.statuses[:canceled]), method: :patch, data: { confirm: t('.cancel_withdraw') }, class: 'btn-cancel-withdraw' %>
             </div>
           </div>
         </div>

@@ -7,5 +7,3 @@ $(function(){
         nextArrow: $(".arrow-next")
     });
 })
-
-console.log("opa")

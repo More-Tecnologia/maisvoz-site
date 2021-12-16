@@ -22,10 +22,15 @@
               <%= t(:filter) %>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Direct referral bonus</button>
-            <button class="dropdown-item" type="button">Indirect referral bonus</button>
-            <button class="dropdown-item" type="button">Residual bonus</button>
-            <button class="dropdown-item" type="button">Chargebacks</button>
+            <button class="dropdown-item" type="button"><%= link_to t(:all), backoffice_financial_transactions_path %></button>
+            <button class="dropdown-item" type="button"><%= link_to t(:direct_referral_bonus), backoffice_financial_transactions_path(financial_reason: 'direct_referral_bonus') %></button>
+            <button class="dropdown-item" type="button"><%= link_to t(:indirect_referral_bonus), backoffice_financial_transactions_path(financial_reason: 'indirect_referral_bonus') %></button>
+            <button class="dropdown-item" type="button"><%= link_to t(:task_performed), backoffice_financial_transactions_path(financial_reason: 'task_performed') %></button>
+            <button class="dropdown-item" type="button"><%= link_to t(:recurring_bonus), backoffice_financial_transactions_path(financial_reason: 'recurrent_bonus') %></button>
+            <button class="dropdown-item" type="button"><%= link_to t(:master_leader_bonus), backoffice_financial_transactions_path(financial_reason: 'master_leader_bonus') %></button>
+            <button class="dropdown-item" type="button"><%= link_to t(:chargeback_by_inactivity), backoffice_financial_transactions_path(financial_reason: 'chargeback_by_inactivity') %></button>
+            <button class="dropdown-item" type="button"><%= link_to t(:chargeback_by_max_task_gains), backoffice_financial_transactions_path(financial_reason: 'chargeback_by_max_task_gains') %></button>
+            <button class="dropdown-item" type="button"></button>
           </div>
         </div>
     </div>

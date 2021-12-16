@@ -1,0 +1,28 @@
+<%= form_for([:backoffice, :admin, @config], html: { role: 'form' }) do |f| %>
+  <div class="text-left m-t-30">
+    <table class="table table-striped">
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label :company_name %></strong></td>
+        <td><%= f.text_field :company_name, class: 'form-control', placeholder: t(:company_name) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :withdrawal_fee %></strong></td>
+        <td><%= f.number_field :withdrawal_fee, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :taxable_fee %></strong></td>
+        <td><%= f.number_field :taxable_fee, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle; text-align: center;">
+          <%= f.label :active %>
+        </td>
+        <td> <%= f.check_box :active %></td>
+      </tr>
+    </table>
+    <%= f.submit class: 'btn btn-primary pull-right' %>
+    <%= link_to t('new'), [:new, :backoffice, :admin, :system_configuration], class: 'btn btn-primary' if params[:action] == 'edit' %>
+    <%= link_to t('see_all'), [:backoffice, :admin, :system_configurations], class: 'btn btn-primary' %>
+    <br>
+  </div>
+<% end %>

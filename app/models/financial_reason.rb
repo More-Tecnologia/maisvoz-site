@@ -72,6 +72,10 @@ class FinancialReason < ApplicationRecord
     @@chargeback_by_inactivity ||= find_by(code: '600')
   end
 
+  def self.chargeback_by_max_gains
+    @@chargeback_by_max_gains ||= find_by(code: '6000')
+  end
+
   def self.chargeback_excess_monthly
     @@chargeback_excess_monthly ||= find_by(code: '700')
   end
@@ -198,5 +202,9 @@ class FinancialReason < ApplicationRecord
 
   def self.free_task_performed
     @@free_task_performed ||= find_by(code: '4800')
+  end
+
+  def self.master_leader_bonus
+    @@master_leader_bonus ||= find_by(code: '5000')
   end
 end

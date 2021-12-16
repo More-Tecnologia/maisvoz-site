@@ -1,27 +1,28 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <!-- Page-Title -->
-<div class="row">
-  <div class="col-sm-12">
-    <h4 class="page-title m-b-30"><%= t('.title') %></h4>
+<div class="box-orders">
+  <div class="orders">
+    <div class="">
+      <h4 class="page-title m-b-30"><%= t('.title') %></h4>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card-box table-responsive">
+  <div class="orders">
+    <div class="">
+      <div class="card-box table-responsive">
 
-      <%= datagrid_form_for @grid, :method => :get, :url => backoffice_admin_orders_path %>
+        <%= datagrid_form_for @grid, :method => :get, :url => backoffice_admin_orders_path %>
 
-      <%= link_to "Download CSV", url_for(format: 'csv', orders_grid: params[:orders_grid]), class: 'btn btn-primary btn-sm m-t-10' %>
-      <hr>
-      <%= paginate(@grid.assets) %>
-      <%= datagrid_table @grid %>
-      <%= paginate(@grid.assets) %>
+        <%= link_to "Download CSV", url_for(format: 'csv', orders_grid: params[:orders_grid]), class: 'btn btn-primary btn-sm m-t-10' %>
+        <hr>
+        <%= paginate(@grid.assets) %>
+        <%= datagrid_table @grid %>
+        <%= paginate(@grid.assets) %>
 
+      </div>
     </div>
   </div>
 </div>
-
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
       $('.date_filter').prop("type", "date");

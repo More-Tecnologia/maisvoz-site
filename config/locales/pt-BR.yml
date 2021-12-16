@@ -377,6 +377,7 @@ pt-BR:
     hashid: Código
     digital_wallet: Carteira
     document: Documento
+    crypto_amount: Cripto
   backoffice:
     orders:
       show:
@@ -1674,9 +1675,9 @@ pt-BR:
   mininum_withdrawal_value: Valor mínimo para saque
   dashboard: Dashboard
   direct_referral_text: "Receba 10% sobre todas as compras de pacote Uniclass realizadas por seus indicados diretos"
-  indirect_referral_text: "Ganhe bônus pelas indicações de seus amigos até a terceira geração - 3% 1% 1% 1%"
+  indirect_referral_text: "Ganhe bônus pelas indicações de seus amigos até a terceira geração - 2% 1% 1% 1%"
   earnings_by_campaign_text: Realize suas tarefas e ganhe comissões diariamente
-  recurring_revenue_text: Desenvolva renda recorrente e ganhe bonus até a terceira geração de sua rede sempre que eles fizerem suas tarefas - 20% 10% 5%
+  recurring_revenue_text: Desenvolva renda recorrente e ganhe bonus até a terceira geração de sua rede sempre que eles fizerem suas tarefas - 15% 10% 5%
   campaign: Campanha
   create: 'Criar'
   active_until: Ativo até

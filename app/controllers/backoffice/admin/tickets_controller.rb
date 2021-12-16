@@ -43,7 +43,7 @@ module Backoffice
                  .where(attendant_user: current_user)
                  .or(@q.result.includes(:user, :subject).where(attendant_user: nil))
                  .where(active: true)
-                 .order(:created_at)
+                 .order(created_at: :desc)
         query.merge!(Ticket.not_finished) if params[:q].nil? || params[:q][:status_eq].blank?
         query
       end

@@ -10,6 +10,7 @@ class WithdrawalForm < Form
   validates :amount, presence: true
   validates :amount, numericality: { greater_than_or_equal_to: proc { |f| f.withdrawal_minimum },
                                      less_than_or_equal_to: proc { |f| f.withdrawal_maximum } }
+  validates :payment_method, presence: true
 
   validate :user_has_balance
   validate :fiscal_document_presence, if: -> { user.pj? }
@@ -35,7 +36,7 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_fee
-    ENV['WITHDRAWAL_FEE'].to_d
+    SystemConfiguration.withdrawal_fee.to_d
   end
 
   def irpf
@@ -63,7 +64,7 @@ class WithdrawalForm < Form
   end
 
   def withdrawal_maximum
-    user.bonus_contracts.sum(&:net_task_gains)
+    user.available_balance
   end
 
   def contracts_amount
@@ -73,7 +74,7 @@ class WithdrawalForm < Form
   private
 
   def user_has_balance
-    return if amount_cents < withdrawal_maximum
+    return unless amount_cents > withdrawal_maximum
 
     errors.add(:base, I18n.t('defaults.errors.no_funds'))
   end

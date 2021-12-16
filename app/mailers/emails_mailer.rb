@@ -4,7 +4,7 @@ class EmailsMailer < ApplicationMailer
     @user = @email.user
     @locale = params[:locale]
 
-    mail to: @user.email, subject: "#{ENV['COMPANY_NAME']} - " + t('email_change_solicitation')
+    mail to: @user.email, subject: "#{SystemConfiguration.company_name} - " + t('email_change_solicitation')
   end
 
   def refused
@@ -13,7 +13,7 @@ class EmailsMailer < ApplicationMailer
     @user = @email.user
     @locale = params[:locale]
 
-    mail to: @current_email, subject: "#{ENV['COMPANY_NAME']} - " + t('email_refuse_info')
+    mail to: @current_email, subject: "#{SystemConfiguration.company_name} - " + t('email_refuse_info')
   end
 
   def reactive
@@ -22,7 +22,7 @@ class EmailsMailer < ApplicationMailer
     @user = @email.user
     @locale = params[:locale]
 
-    mail to: @current_email, subject: "#{ENV['COMPANY_NAME']} - " + t('email_reactive_info')
+    mail to: @current_email, subject: "#{SystemConfiguration.company_name} - " + t('email_reactive_info')
   end
 
   def activated
@@ -31,6 +31,6 @@ class EmailsMailer < ApplicationMailer
     @user = @email.user
     @locale = params[:locale]
 
-    mail to: @email, subject: "#{ENV['COMPANY_NAME']} - " + t('email_changed_info')
+    mail to: @email, subject: "#{SystemConfiguration.company_name} - " + t('email_changed_info')
   end
 end

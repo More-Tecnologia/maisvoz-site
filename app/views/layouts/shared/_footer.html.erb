@@ -2,36 +2,41 @@
 
 <div class="bottom-menu">
   <nav class="nav">
-    <% if current_user.admin? %>
-    <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
-      <%= image_tag('icons/tasks.svg', class: 'icons') %>
-      <%= t(:dashboard)%>
+    <% if current_user.empreendedor? %>
+      <%= link_to root_path, class: 'nav__link'  do %>
+        <%= image_tag 'icons/user.svg', class: 'icons' %>
+        <%= t(:home) %>
+      <% end %>
+    <% else %>
+      <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
+        <%= image_tag('icons/tasks.svg', class: 'icons') %>
+        <%= t(:dashboard)%>
+      <% end %>
     <% end %>
+    <% if current_user.admin? %>
+      <%= link_to backoffice_support_users_path, class: 'nav__link'  do %>
+        <%= image_tag 'icons/user.svg', class: 'icons' %>
+        <%= t('defaults.users') %>
+      <% end %>
     <% else %>
       <%= link_to dashboard_direction(current_user), class: 'nav__link' do %>
         <%= image_tag('icons/tasks.svg', class: 'icons') %>
         <%= t(:tasks)%>
       <% end %>
     <% end %>
-    <%= link_to backoffice_team_dashboard_index_path, class: 'nav__link'  do %>
-      <%= image_tag('icons/team.svg', class: 'icons') %>
-      <%= t(:my_team) %>
-    <% end %>
     <div class="nav__link shop">
-      <div class="shops">
-        <%= link_to shop_index_path do %>
+      <%= link_to backoffice_products_path, class: 'shops' do %>
           <%= image_tag 'icons/store.svg', class: 'icons' %>
-          <%= t(:shop) %>
-        <% end %>
-      </div>
+          <p class="title-btn-shop"><%= t(:shop) %></p>
+      <% end %>
     </div>
     <%= link_to backoffice_financial_dashboard_index_path, class: 'nav__link' do %>
       <%= image_tag 'icons/financial.svg', class: 'icons' %>
       <%= t('defaults.financial') %>
     <% end %>
-    <%= link_to users_display_index_path, class: 'nav__link' do %>
-      <%= image_tag 'icons/user.svg', class: 'icons' %>
-      <%= t(:my_account) %>
+    <%= link_to backoffice_team_dashboard_index_path, class: 'nav__link'  do %>
+      <%= image_tag('icons/team.svg', class: 'icons') %>
+      <%= t(:my_team) %>
     <% end %>
   </nav>
 </div>

@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<!-- Page-Title -->
+<div class="box-orders">
+  <div class="box-second">
+    <h1 class="page-title m-b-30"><%= t(:direct_nominees_list) %></h1>
+  </div>
+</div>
+<div class="box-orders">
+  <div class="box-second">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover m-0">
+                <thead>
+                  <tr>
+                    <th><%= t(:name) %></th>
+                    <th><%= t(:country) %></th>
+                    <th><%= t(:phone) %></th>
+                    <th><%= t(:email) %></th>
+                    <th><%= t(:products) %></th>
+                    <th><%= t(:active?) %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @nominees.each do |nominee| %>
+                  <tr>
+                    <td>
+                      <%= nominee.name %>
+                    </td>
+                    <td>
+                      <%= nominee.country %>
+                    </td>
+                    <td><%= nominee.username %></td>
+                    <td><%= nominee.email %></td>
+                    <td><%= nominee.bonus_contracts.active.map { |bc| bc.order_items.last.name }.uniq.join(', ') %></td>
+                    <td><%= t(nominee.active) %></td>
+
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+
+            </div>
+        </div>
+          <br>
+          <div class="col-md-10">
+            <%= paginate @nominees %>
+          </div>
+    </div>
+  </div>
+</div>

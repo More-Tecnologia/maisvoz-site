@@ -40,7 +40,7 @@ module Backoffice
 
       def as_csv(withdrawals)
         attributes = %i[hashid username id digital_wallet currency gross_amount
-                        net_amount status created_at]
+                        net_amount crypto_amount status created_at]
         header = attributes.map { |attr| Withdrawal.human_attribute_name(attr) }
 
         body = withdrawals.map do |w|
@@ -49,9 +49,10 @@ module Backoffice
            w.user.try(:username),
            w.user.try(:decorate).try(:main_document),
            w.wallet,
-           w.user.wallet_currency(w.wallet).to_s.upcase,
-           number_to_currency(w.gross_amount_cents, unit: '', precision: 6),
-           number_to_currency(w.net_amount_cents, unit: '', precision: 6),
+           w.payment_method.to_s.upcase,
+           number_to_currency(w.gross_amount_cents, unit: '', precision: 2),
+           number_to_currency(w.net_amount_cents, unit: '', precision: 2),
+           number_to_currency(w.crypto_amount, unit: '', precision: 8),
            w.status,
            l(w.created_at, format: :long)
          ]

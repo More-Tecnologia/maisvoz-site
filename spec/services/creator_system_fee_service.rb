@@ -12,7 +12,7 @@ RSpec.describe Financial::CreatorSystemFeeService, type: :service do
   end
 
   it 'create system fee' do
-    order_cent_amount = order.taxable_product_cent_amount * ENV['SYSTEM_FEE'].to_d
+    order_cent_amount = order.taxable_product_cent_amount * SystemConfiguration.taxable_fee.to_d
     financial_transaction = FinancialTransaction.where(user: morenwm_user,
                                                        cent_amount: order_cent_amount.to_i).first
     expect(financial_transaction.persisted?).to be_truthy

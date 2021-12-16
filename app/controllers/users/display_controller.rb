@@ -25,17 +25,22 @@ module Users
                                                           password_confirmation
                                                           current_password]))
         bypass_sign_in(current_user)
+        flash[:success] = t(:password_updated_successfully)
         redirect_to users_display_index_path
       else
+        flash[:error] = current_user.errors.full_messages.join(', ')
         render 'edit_password'
       end
     end
 
     def update_profile
-      if current_user.update(user_params(%i[name avatar]))
+      params[:user][:username] = params[:user][:username].gsub(/[ +]/, '')
+      if current_user.update_with_password(user_params(%i[name avatar country username current_password]))
+        flash[:success] = t(:profile_updated_successfully)
         redirect_to users_display_index_path
       else
-        render 'edit'
+        flash[:error] = current_user.errors.full_messages.join(', ')
+        render 'users/registrations/edit'
       end
     end
 

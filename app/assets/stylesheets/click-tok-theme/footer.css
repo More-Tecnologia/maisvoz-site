@@ -6,9 +6,9 @@
     left: 0;
     right: 0;
     padding: 0;
-    background-color: #643D8F;
-    min-height: 40px;
-    z-index: 99999;
+    background-color: #3F3F3F;
+    min-height: 55px;
+    max-height: 55px;
 }
 
 .float-icon {
@@ -27,10 +27,10 @@
     width: 60px;
     height: 60px;
     position: fixed;
-    border: 5px solid #643D8F;
+    border: 5px solid #3F3F3F;
     border-radius: 80px;
     bottom: 15px;
-    background-color: #ef539f;
+    background-color: #31db02;
 }
 
 .shops a {
@@ -50,7 +50,8 @@
 }
 .nav {
     display: flex;
-    background-color: #643D8F;
+    background-color: #3F3F3F;
+    min-height: 55px;
 }
 
 .icons {
@@ -75,8 +76,15 @@
     transition: background-color 0.1s ease-in-out;
     padding: 10px;
     cursor: pointer;
+    width: 20%;
 }
 
 .nav__link--active {
-    color: #643D8F;
+    color: #3F3F3F;
+}
+
+.title-btn-shop {
+    color: white;
+    height: 10px;
+    margin-bottom: 0;
 }

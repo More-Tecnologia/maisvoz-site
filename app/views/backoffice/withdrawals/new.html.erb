@@ -12,7 +12,7 @@
     </div>
 
     <div class="balance-value">
-      <%= number_to_currency(current_user.bonus_contracts.sum(&:net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+      <%= number_to_currency(current_user.available_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
     </div>
   </div>
   <%= simple_form_for(@form, url: backoffice_withdrawals_path,
@@ -47,7 +47,7 @@
       </div>
       <div>
         <label><%= t(:fee) %></label>
-        <span><%= number_to_percentage(ENV['WITHDRAWAL_FEE'].to_f, precision: 2) %></span>
+        <span><%= number_to_percentage(SystemConfiguration.withdrawal_fee.to_f, precision: 2) %></span>
       </div>
     </div>
     <div class="division">
@@ -89,7 +89,7 @@
     <br>
     <div class="ch-buy-action-button">
       <%= f.button :button, t('defaults.new_withdraw'),
-                             data: { disable_with: t('helpers.save_with_disable') }, class: 'login' %>
+                             data: { disable_with: t('helpers.save_with_disable') }, class: 'login border-radius-pattern' %>
     </div>
   <% end %>
   <div class="t">

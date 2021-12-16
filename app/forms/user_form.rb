@@ -4,6 +4,7 @@ class UserForm < Form
 
   attribute :user_id
   attribute :name
+  attribute :username
   attribute :birthdate
   attribute :phone
   attribute :skype
@@ -31,6 +32,7 @@ class UserForm < Form
   attribute :bank_account
   attribute :password
   attribute :password_confirmation
+  attribute :master_leader
 
   validates :name, :email, presence: true
   validates :email, email: true

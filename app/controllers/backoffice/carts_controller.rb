@@ -1,6 +1,8 @@
 module Backoffice
   class CartsController < BackofficeController
     def show
+      redirect_to backoffice_products_path unless current_order.order_items.any?
+
       @checkout_form = CheckoutForm.new(order: current_order, user: current_user)
     end
 
@@ -24,6 +26,7 @@ module Backoffice
         end
       else
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
+        ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)
         clean_shopping_cart
         render 'backoffice/payment_transactions/show'
       end

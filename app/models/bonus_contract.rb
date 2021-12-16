@@ -2,6 +2,7 @@ class BonusContract < ApplicationRecord
   include Hashid::Rails
 
   RENTABILITY_DAYS_COUNT = 365
+  FREE_PRODUCT_EARNING = 7.5
 
   belongs_to :order
   belongs_to :user
@@ -73,7 +74,7 @@ class BonusContract < ApplicationRecord
   def task_reason
     [FinancialReason.free_task_performed, FinancialReason.yield_bonus,
      FinancialReason.direct_commission_bonus, FinancialReason.indirect_referral_bonus,
-     FinancialReason.matching_bonus]
+     FinancialReason.matching_bonus, FinancialReason.credit_reason]
   end
 
   def free_product?
@@ -85,7 +86,7 @@ class BonusContract < ApplicationRecord
   end
 
   def max_task_gains
-    free_product? ? 7.5 : (price * 2 / 100)
+    free_product? ? FREE_PRODUCT_EARNING : (price * 2 / 100).to_f
   end
 
   def remaining_balance

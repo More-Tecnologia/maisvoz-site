@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-sm-12">
+<div class="box-second">
+  <div>
     <div class="panel panel-border panel-custom">
     <div class="panel-heading">
 			<h3 class="panel-title"><%= t(:filters) %></h3>
@@ -10,7 +10,9 @@
           <div class="row">
             <div class="col-md-4">
               <%= f.label t('.status') %>
-              <%= f.select :status_eq, Withdrawal.statuses.map { |k, v| [t(k), v] }, { include_blank: t('all') }, { class: 'form-control input-sm' } %>
+              <%= f.select :status_eq, Withdrawal.statuses.map { |k, v| [t(k), v] },
+                                       { include_blank: t('all') },
+                                       { class: 'form-control input-sm' } %>
             </div>
             <div class="col-md-4">
               <%= f.label t('.created_from') %>
@@ -29,6 +31,12 @@
             <div class="col-md-4">
               <%= f.label t('user') %>
               <%= f.search_field :user_username_cont, class: 'form-control input-sm'  %>
+            </div>
+            <div class="col-md-4">
+              <%= f.label t('payment_method') %>
+              <%= f.select :payment_method_eq, Withdrawal.payment_methods.map { |k, v| [k.to_s.upcase, v] },
+                                               { include_blank: true },
+                                               { class: 'form-control input-sm' } %>
             </div>
           </div>
         </div>

@@ -75,6 +75,8 @@ Rails.application.routes.draw do
       end
       resources :subjects, only: [:show, :new]
       resources :banners
+      resources :banner_stores
+      resources :system_configurations
     end
 
     namespace :support do
@@ -112,6 +114,7 @@ Rails.application.routes.draw do
     resources :order_payments, except: %i[destroy]
     resources :balance_transferences, except: %i[destroy]
     resources :adhesion_products, only: :index
+    resources :valid_accounts, only: :new
 
     # Shopping
     resources :products, only: [:index, :show]
@@ -166,6 +169,8 @@ Rails.application.routes.draw do
 
     resources :banners, only: :index
     resources :banner_clicks, only: [:index, :create]
+    resources :direct_nominees_list, only: :index
+    resources :home, only: :index
   end
 
   namespace :api do
@@ -208,7 +213,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'backoffice/dashboard#index'
+      root 'backoffice/home#index'
     end
 
     unauthenticated do

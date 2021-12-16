@@ -52,10 +52,13 @@ module Bonification
         generation = index + 1
         product_score = detect_product_score_by(sponsor, generation, product_reason)
         next unless product_score.try(:amount_cents).to_f > 0
-        financial_transaction =
+        transactions =
           create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
-        chargeback_by_inactivity!(financial_transaction, financial_reason) if financial_transaction && sponsor.inactive?
-        financial_transaction
+        if sponsor.inactive?
+          transactions.each do |transaction|
+            chargeback_by_inactivity!(transaction, financial_reason)
+          end
+        end
       end
     end
 
@@ -107,13 +110,15 @@ module Bonification
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
       order_item_quantity -= Order::FEE if order_item_quantity > 10
       bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
-      transaction =
-        sponsor.financial_transactions.create!(spreader: user,
-                                               financial_reason: financial_reason,
-                                               generation: generation,
-                                               cent_amount: bonus,
-                                               bonus_contract: sponsor.bonus_contracts.last,
-                                               order: order.loan_payment ? nil : order) if bonus > 0
+      filtered_order = order.loan_payment ? nil : order
+      Bonification::GenericBonusCreatorService.call({
+        amount: bonus,
+        spreader: user,
+        sponsor: sponsor,
+        generation: generation,
+        reason: financial_reason,
+        order: filtered_order
+      })
     end
 
     def create_bonus_and_chargeback_for_inactive_sponsors(sponsors, product, product_reason, financial_reason)
@@ -122,10 +127,12 @@ module Bonification
         generation = index + 1
         product_score = detect_product_score_by(sponsor, generation, product_reason)
         next unless product_score.try(:amount_cents).to_f > 0
+        transactions =
+          create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
         if sponsor.inactive?
-          financial_transaction =
-            create_financial_transaction_by(sponsor, generation, product, product_score, financial_reason)
-          chargeback_by_inactivity!(financial_transaction, financial_reason) if financial_transaction
+          transactions.each do |transaction|
+            chargeback_by_inactivity!(transaction, financial_reason)
+          end
         end
       end
     end

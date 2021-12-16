@@ -8,7 +8,6 @@ module Backoffice
     def index
       @unilevel_nodes = @current_node.subtree
                                      .from_depth(@current_node.depth)
-                                     .to_depth(unilevel_max_depth)
                                      .includes(user: %i[sponsor career])
                                      .where.not(id: @current_node.user.id)
       @unilevel_nodes = @unilevel_nodes.joins(:user).where("users.name LIKE :search OR users.username LIKE :search", search: "%#{params[:q]}%") if params[:q]

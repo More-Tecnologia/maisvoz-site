@@ -1,12 +1,19 @@
 <%= stylesheet_link_tag 'click-tok-theme/team_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
-
+<%= stylesheet_link_tag 'click-tok-theme/orders' %>
 <div>
   <div class="page">
+    <a class="back-button" href="/backoffice/dashboard?locale=en">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </a>
     <div class="f-balance-area">
       <div class="balance-title t-break-line">
+      <%= link_to backoffice_direct_nominees_list_index_path, class:'text-white' do %>
         <%= t(:my) %>
         <span><%= t(:community) %></span>
+        <% end %>
       </div>
 
       <div class="balance-value">
@@ -22,12 +29,12 @@
       </div>
     <% end %>
     <div class="t-team-owner-avatar">
-      <div class="t-owner-avatar">
+      <div class="t-owner-avatar" style="background-color: <%= "#{@user.active? ? expensive_product_active(@user).order_items.first.product.details : '#A8A8A8' }"%>">
         <div>
           <% if @user.avatar.try(:path).present? %>
-            <%= cl_image_tag(@user.avatar.try(:path), { class: 'icons' }) %>
+            <%= cl_image_tag(@user.avatar.try(:path), { class: 'icons user-icon' }) %>
           <% else %>
-            <%= image_tag 'icons/user.svg', class: 'icons' %>
+            <%= image_tag 'icons/user.svg', class: 'icons user-icon' %>
           <% end %>
         </div>
       </div>
@@ -38,12 +45,12 @@
     <div class="t-team-network-avatar">
       <% direct_children(@unilevel_nodes).each do |child| %>
         <div class="t-teste">
-          <div class="t-align">
+          <div class="t-align" style="background-color: <%= "#{child.user.active? ? expensive_product_active(child.user).order_items.first.product.details : '#A8A8A8' }"%>">
             <%= link_to backoffice_team_dashboard_index_path(user: child.user) do %>
               <% if child.user.avatar.try(:path).present? %>
-                <%= cl_image_tag(child.user.avatar.try(:path), { class: 'icons' }) %>
+                <%= cl_image_tag(child.user.avatar.try(:path), { class: 'icons user-icon' }) %>
               <% else %>
-                <%= image_tag 'icons/user.svg', class: 'icons' %>
+                <%= image_tag 'icons/user.svg', class: 'icons user-icon' %>
               <% end %>
             <% end %>
           </div>
@@ -67,47 +74,5 @@
         </div>
       </div>
     <% end %>
-
-    <div class="products-list">
-      <div class="f-options-box f-options-box-l">
-        <div class="f-box-title">
-          <%= t(:direct_referral) %>
-        </div>
-        <div class="f-box-icon">
-          <span class="half text-center"><%= t(:direct_referral_text) %></span>
-        </div>
-      </div>
-
-      <div class="f-options-box f-options-box-r">
-        <div class="f-box-title">
-          <%= t(:indirect_referral)%>
-        </div>
-        <div class="f-box-icon">
-          <span class="half text-center"><%= t(:indirect_referral_text) %></span>
-        </div>
-      </div>
-
-      <div class="f-options-box f-options-box-l t-margin-bottom">
-        <div class="f-box-title">
-          <%= t(:earnings_by_campaign) %>
-        </div>
-        <div class="f-box-icon">
-          <% last_order = @user.orders.paid.last %>
-          <% amount = last_order.try(:products).try(:first).try(:earnings_per_campaign).to_f %>
-          <span class="half text-center"><%= t('earnings_by_campaign_text') %></span>
-        </div>
-      </div>
-
-      <div class="f-options-box f-options-box-r t-margin-bottom">
-        <div class="f-box-title">
-          <%= t(:recurring_revenue) %>
-        </div>
-        <div class="f-box-icon">
-          <span class="half text-center">
-            <%= t(:recurring_revenue_text) %>
-          </span>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

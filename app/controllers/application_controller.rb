@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery prepend: true, with: :reset_session
+  protect_from_forgery prepend: true, with: :null_session
 
   before_action :masquerade_user!
   before_action :set_locale
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
                          Ticket.where(user: current_user)
                                .active
                                .answered.any?
-    request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_dashboard_index_path
+    request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_home_index_path
   end
 
   def set_locale

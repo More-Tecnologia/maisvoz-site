@@ -1,60 +1,8 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'charts' %>
 
-<div class="container">
+<div class="container-items">
   <div class="row" id="dashboard">
-    <div class="painel">
-
-      <%= link_to backoffice_admin_orders_path, class: 'item1'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.orders') %>
-      <% end %>
-
-      <%= link_to backoffice_admin_credits_debit_path(:find_user), class: 'item2'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.credits_debits') %>
-      <% end %>
-
-      <%= link_to backoffice_admin_financial_transactions_path, class: 'item3'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.financial_transactions') %>
-      <% end %>
-
-      <%=  link_to backoffice_admin_withdrawals_path, class: 'item4'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.manage_withdrawals') %>
-      <% end %>
-
-      <%=  link_to new_backoffice_admin_expense_path, class: 'item5'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.expenses') %>
-      <% end %>
-
-      <%= link_to backoffice_admin_bonus_contracts_path, class: 'item6'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.unilevel') %>
-      <% end %>
-
-      <%=  link_to backoffice_admin_financial_reports_path, class: 'item7'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.financial_reports') %>
-      <% end %>
-
-      <%= link_to backoffice_support_users_path, class: 'item8'  do%>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.users') %>
-      <% end %>
-
-      <% if any_active_waiting_tickets? %>
-        <%= link_to backoffice_admin_tickets_path, class: 'item9alert'  do%>
-          <i class="fas fa-user-shield"></i> <%= t('defaults.support') %>
-        <% end %>
-      <% else %>
-
-        <%= link_to backoffice_admin_tickets_path, class: 'item9'  do%>
-          <i class="fas fa-user-shield"></i> <%= t('defaults.support') %>
-        <% end %>
-      <% end %>
-
-      <%= link_to backoffice_admin_products_path, class: 'item10' do %>
-        <i class="fas fa-user-shield"></i> <%= t('defaults.products') %>
-      <% end %>
-
-      <%= link_to backoffice_admin_banners_path, class: 'item11' do %>
-        <i class="fas fa-user-shield"></i> <%= t(:banners) %>
-      <% end %>
-    </div>
+    
   </div>
 </div>

@@ -38,7 +38,7 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
-
+    config.action_mailer.asset_host = ENV['DOMAIN_HOST']
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
@@ -62,13 +62,14 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :memory_store, { size: 64.megabytes }
 
   config.session_store :redis_session_store, {
-    key: '_morenwm_session',
+    key: '_backoffice_session',
     redis: {
-      expire_after: 10.minutes,
-      key_prefix: 'morenwm:session:',
+      expire_after: 120.minutes,  # cookie expiration
+      ttl: 120.minutes,           # Redis expiration, defaults to 'expire_after'
+      key_prefix: 'backoffice:session:',
       url: ENV.fetch('REDIS_URL'),
     }
   }

@@ -1,12 +1,12 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<div class="row">
-  <div class="col-sm-12 m-b-23">
+<div class="box-orders">
+  <div class="box-second">
     <h4 class="page-title"><%= t('defaults.bonus_contracts') %></h4>
   </div>
 </div>
 <%= render 'filters' %>
-<div class="row">
-  <div class="col-sm-12">
+<div class="box-orders">
+  <div class="box-second">
     <div class="card-box">
       <div class="row">
         <div class="col-lg-12">
@@ -21,6 +21,7 @@
                   <th><%= Score.human_attribute_name(:in_date) %></th>
                   <th><%= Score.human_attribute_name(:username) %></th>
                   <th><%= Score.human_attribute_name(:status) %></th>
+                  <th><%= t(:max_task_gains?) %></th>
                   <th><%= Score.human_attribute_name(:processed_at) %></th>
                 </tr>
               </thead>
@@ -32,10 +33,11 @@
                       <td> <%= link_to(bonus_contract.hashid, backoffice_bonus_contract_path(bonus_contract)) %> </td>
                       <td> <%= order.try(:hashid) if order %> </td>
                       <td> <%= number_to_currency(bonus_contract.order.order_items.last.product.price) %> </td>
-                      <td> <%= number_to_currency(1_000_000 - bonus_contract.remaining_balance) %></td>
+                      <td> <%= number_to_currency(bonus_contract.task_gains) %></td>
                       <td> <%= l(bonus_contract.try(:created_at), format: '%B %d, %Y' ) %></td>
                       <td> <%= link_to(bonus_contract.user.username, backoffice_support_user_path(bonus_contract.user)) if bonus_contract.user %></td>
                       <td> <%= bonus_contract_status(bonus_contract) %></td>
+                      <td> <%= t(bonus_contract.max_gains?) %></td>
                       <td> <%= l(bonus_contract.paid_at, format: '%m/%d/%Y') if bonus_contract.paid_at %></td>
                     </tr>
                   <% end %>

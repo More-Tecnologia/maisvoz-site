@@ -39,7 +39,7 @@ module Fee
     end
 
     def fee
-      @fee ||= ENV['SYSTEM_FEE'].to_d
+      @fee ||= SystemConfiguration.taxable_fee.to_d
     end
 
     def master_username

@@ -1,4 +1,6 @@
 class Ticket < ApplicationRecord
+  include Hashid::Rails
+
 	STATUSES = { waiting: 0, answered: 1, finished: 2 }
 
 	enum status: STATUSES

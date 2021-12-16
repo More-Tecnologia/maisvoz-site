@@ -60,7 +60,8 @@ module Financial
       user.financial_transactions.create!(spreader: @user,
                                           financial_reason: FinancialReason.chargeback_by_contract_limit,
                                           cent_amount: remaining_balance,
-                                          moneyflow: :debit)
+                                          moneyflow: :debit,
+                                          bonus_contract: @user.bonus_contracts.last)
     end
 
     def inactive_contract_pool_point(contract)

@@ -15,13 +15,18 @@ module Backoffice
 
             banner_click = current_user.banner_clicks
                                        .create!(params.slice(:banner_id))
-            transaction = build_transaction(bonus_contract)
-            credit_bonus_to(bonus_contract, transaction)
-
-            banner_click.update(financial_transaction: transaction)
+            transactions = build_transactions(bonus_contract)
+            transactions.each do |transaction|
+              credit_bonus_to(transaction.bonus_contract, transaction)
+            end
+            if free_user? && current_user.reached_free_contract_gain?
+              send_current_user_to_interspire
+            end
+            banner_click.update(financial_transaction: transactions.first)
             next if free_user?
-
-            RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
+            transactions.each do |transaction|
+              RecurrentCreatorWorker.perform_async(current_user.id, transaction.id)
+            end
           end
         end
       end
@@ -31,16 +36,19 @@ module Backoffice
       current_user.bonus_contracts.active.yield_contracts.order(:created_at)
     end
 
-    def build_transaction(contract)
-      current_user.financial_transactions
-                  .create!(spreader: User.find_morenwm_customer_admin,
-                           financial_reason: financial_reason,
-                           moneyflow: :credit,
-                           bonus_contract: contract,
-                           cent_amount: contract.order_items
-                                                .last
-                                                .earnings_per_campaign
-                                                .to_f / 100.0)
+    def build_transactions(contract)
+      cent_amount = contract.order_items
+                            .last
+                            .earnings_per_campaign
+                            .to_f / 100.0
+      Bonification::GenericBonusCreatorService.call({
+        amount: cent_amount,
+        spreader: User.find_morenwm_customer_admin,
+        sponsor: current_user,
+        reason: financial_reason,
+        chargebackable: true,
+        bonus_contract: contract
+      })
     end
 
     def credit_bonus_to(contract, transaction)
@@ -53,6 +61,8 @@ module Backoffice
     end
 
     def can_click_more_banners?(contract)
+      return true
+
       current_user.banner_clicks.today.by_contract(contract).count < contract.order_items.last.task_per_day.to_i
     end
 
@@ -61,11 +71,15 @@ module Backoffice
     end
 
     def free_user?
-      current_user.orders
-                  .paid
-                  .map(&:order_items)
-                  .flatten
-                  .all? { |x| x.product.free_product? }
+      @free_user ||= current_user.orders
+                                 .paid
+                                 .map(&:order_items)
+                                 .flatten
+                                 .all? { |x| x.product.free_product? }
+    end
+
+    def send_current_user_to_interspire
+      Interspire::ContactAdderWorker.perform_async(current_user.id)
     end
   end
 end

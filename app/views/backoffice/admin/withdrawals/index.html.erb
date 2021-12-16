@@ -1,137 +1,167 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<div class="row">
-  <div class="col-sm-12">
-    <h4 class="page-title m-b-30"><%= t('.title') %></h4>
+
+<div class="box-withdrawals">
+  <div class="box-second">
+    <div>
+      <h4 class="page-title m-b-30"><%= t('.title') %></h4>
+    </div>
   </div>
-</div>
-<%= render 'filters', q: @q %>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card-box">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="table-responsive">
-            <table class="table table-striped table-bordered toggle-circle m-b-0">
-              <thead>
-                <tr>
-                  <th><%= batch_action_checkbox_parent %></th>
-                  <th>#</th>
-                  <th><%= User.human_attribute_name(:username) %></th>
-                  <th><%= User.human_attribute_name(:email) %></th>
-                  <th><%= t('digital_wallet') %></th>
-                  <th><%= t('id') %></th>
-                  <th><%= sort_link(@q, :gross_amount_cents, Withdrawal.human_attribute_name(:gross_amount)) %></th>
-                  <th><%= sort_link(@q, :net_amount_cents, Withdrawal.human_attribute_name(:net_amount)) %></th>
-                  <th><%= sort_link(@q, :status, Withdrawal.human_attribute_name(:status)) %></th>
-                  <th><%= sort_link(@q, :created_at, Withdrawal.human_attribute_name(:created_at), default_order: :desc) %></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <div class="dropdown m-5">
-                  <button class="btn dropdown-toggle batch-actions disabled"
-                          type="button"
-                          id="dropdownMenu1"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="true">
-                    <%= t('helpers.batch_actions') %>
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li>
-                      <%= link_to t('helpers.submit.approve'),
-                                  new_backoffice_admin_withdrawal_approval_path,
-                                  class: 'batch-action',
-                                  id: 'approve-withdrawals',
-                                  data: { url: new_backoffice_admin_withdrawal_approval_path } %>
-                    </li>
-                  </ul>
-                </div>
-                <% @withdrawals.each do |withdraw| %>
+  <%= render 'filters', q: @q %>
+  <div class="box-second">
+    <div>
+      <div class="card-box">
+        <div class="row">
+          <div class="row m-b-5">
+            <div class="col-md-4">
+              <strong><%= t('attributes.quantity') %>:</strong>&nbsp;<%= @q.result.count %>
+            </div>
+            <% if params[:q] && params[:q][:payment_method_eq].present? %>
+              <%- origin_currency = Withdrawal.payment_methods.keys[params.dig(:q, :payment_method_eq).to_i].upcase -%>
+              <%- attribute = {usd: :net_amount_cents, btc: :crypto_amount, eth: :crypto_amount }[origin_currency.downcase.to_sym] -%>
+              <div class="col-md-4">
+                <strong><%= t('attributes.total') %>:</strong>&nbsp;
+                <%= number_to_currency(@q.result.sum(attribute) / 1e8,
+                                       unit: origin_currency,
+                                       precision: 8) %>
+              </div>
+              <div class="col-md-4">
+                <strong><%= t('attributes.total') %>:</strong>&nbsp;
+                <%= number_to_currency(currency_price(origin_currency,
+                                                      (@q.result.sum(attribute) / 1e8) * 100),
+                                       unit: ENV['CURRENT_CURRENCY']) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered toggle-circle m-b-0">
+                <thead>
                   <tr>
-                    <th> <%= batch_action_checkbox_child(withdraw) if withdraw.pending? %></th>
-                    <th><%= withdraw.hashid %></th>
-                    <th><%= link_to withdraw.user.username, backoffice_support_user_path(withdraw.user) %></th>
-                    <th><%= link_to withdraw.user.email, backoffice_support_user_path(withdraw.user) %></th>
-                    <th>
-                      <%= link_to withdraw.user.wallet_address, '#', data: { toggle: "modal", target: "#modal-#{withdraw.hashid}" } %>
-                    </th>
-                    <td><%= withdraw.user.decorate.main_document %></td>
-                    <td><%= number_to_currency withdraw.gross_amount_cents %></td>
-                    <td><%= number_to_currency withdraw.net_amount_cents %></td>
-                    <td><%= withdraw.pretty_status %></td>
-                    <td><%= l withdraw.created_at, format: :long %></td>
-                    <td>
-                      <%= link_to backoffice_admin_withdrawals_mailer_send_email_confirmation_path(withdraw, locale: params[:locale]),
-                                  method: :put,
-                                  data: { confirm: t('.resend_withdrawal_confirmation_text') },
-                                          class: 'btn btn-info m-r-10',
-                                          toggle: 'tooltip',
-                                          placement: 'top',
-                                          title: t('.resend_withdrawal_confirmation') do %>
-                        <i class="fas fa-paper-plane"></i>
-                      <% end if withdraw.waiting? %>
-                      <% if withdraw.pending? || withdraw.approved_balance? || withdraw.waiting?  %>
-                        <%= link_to backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:approved]),
-                                    method: :put,
-                                    data: { confirm: t('.approve_withdraw'),
-                                            toggle: 'tooltip',
-                                            placement: 'top',
-                                            title: t(:approve) },
-                                    class: 'm-r-10' do %>
-                          <i class="icon-like"></i>
-                        <% end %>
-                        <%= link_to backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:refused]),
-                                    method: :put,
-                                    data: { confirm: t('.refuse_withdraw'),
-                                            toggle: 'tooltip',
-                                            placement: 'top',
-                                            title: t('.refuse') } do %>
-                          <i class="icon-dislike"></i>
-                        <% end %>
-                      <% end %>
-                    </td>
+                    <th><%= batch_action_checkbox_parent %></th>
+                    <th>#</th>
+                    <th><%= User.human_attribute_name(:username) %></th>
+                    <th><%= User.human_attribute_name(:email) %></th>
+                    <th><%= t('digital_wallet') %></th>
+                    <th><%= sort_link(@q, :gross_amount_cents, Withdrawal.human_attribute_name(:gross_amount)) %></th>
+                    <th><%= sort_link(@q, :net_amount_cents, Withdrawal.human_attribute_name(:net_amount)) %></th>
+                    <th><%= sort_link(@q, :net_amount_cents, Withdrawal.human_attribute_name(:payment_method)) %></th>
+                    <th><%= sort_link(@q, :net_amount_cents, Withdrawal.human_attribute_name(:crypto_amount)) %></th>
+                    <th><%= sort_link(@q, :status, Withdrawal.human_attribute_name(:status)) %></th>
+                    <th><%= sort_link(@q, :created_at, Withdrawal.human_attribute_name(:created_at), default_order: :desc) %></th>
+                    <th></th>
                   </tr>
-                  <%= content_tag(:div, id: "modal-" + withdraw.hashid, class: 'modal fade', tabindex: '-1', role: 'dialog', aria: { labelledby: "modal-" + withdraw.hashid, hidden: true }) do %>
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title"><%= withdraw.user.wallet_address %></h4>
-                        </div>
-                        <div class="modal-body">
-                          <%= render_qr_code_img(withdraw.user.wallet_address) %>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
+                </thead>
+                <tbody>
+                  <div class="dropdown m-5">
+                    <button class="btn dropdown-toggle batch-actions disabled"
+                            type="button"
+                            id="dropdownMenu1"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="true">
+                      <%= t('helpers.batch_actions') %>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li>
+                        <%= link_to t('helpers.submit.approve'),
+                                    new_backoffice_admin_withdrawal_approval_path,
+                                    class: 'batch-action',
+                                    id: 'approve-withdrawals',
+                                    data: { url: new_backoffice_admin_withdrawal_approval_path } %>
+                      </li>
+                    </ul>
+                  </div>
+                  <% @withdrawals.each do |withdraw| %>
+                    <tr>
+                      <th> <%= batch_action_checkbox_child(withdraw) if withdraw.pending? %></th>
+                      <th><%= withdraw.hashid %></th>
+                      <th><%= link_to withdraw.user.username, backoffice_support_user_path(withdraw.user) %></th>
+                      <th><%= link_to withdraw.user.email, backoffice_support_user_path(withdraw.user) %></th>
+                      <th>
+                        <%= link_to(withdraw.wallet,
+                                    '',
+                                    data: { toggle: "modal", target: "#modal-#{withdraw.hashid}" }) %>
+                      </th>
+                      <td><%= number_to_currency withdraw.gross_amount_cents %></td>
+                      <td><%= number_to_currency withdraw.net_amount_cents %></td>
+                      <td><%= withdraw.payment_method.to_s.upcase %></td>
+                      <td><%= number_to_currency(withdraw.crypto_amount, precision: 8, unit: '') %></td>
+                      <td><%= withdraw.pretty_status %></td>
+                      <td><%= l withdraw.created_at, format: :long %></td>
+                      <td>
+                        <%= link_to backoffice_admin_withdrawals_mailer_send_email_confirmation_path(withdraw, locale: params[:locale]),
+                                    method: :put,
+                                    data: { confirm: t('.resend_withdrawal_confirmation_text') },
+                                            class: 'btn btn-info btn-xs m-r-10',
+                                            toggle: 'tooltip',
+                                            placement: 'top',
+                                            title: t('.resend_withdrawal_confirmation') do %>
+                          <i class="fas fa-paper-plane"></i>
+                        <% end if withdraw.waiting? %>
+                        <% if withdraw.pending? || withdraw.approved_balance? || withdraw.waiting?  %>
+                          <%= link_to backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:approved]),
+                                      method: :put,
+                                      data: { confirm: t('.approve_withdraw'),
+                                              toggle: 'tooltip',
+                                              placement: 'top',
+                                              title: t(:approve) },
+                                      class: 'm-r-10' do %>
+                            <i class="icon-like"></i>
+                          <% end %>
+                          <%= link_to backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:refused]),
+                                      method: :put,
+                                      data: { confirm: t('.refuse_withdraw'),
+                                              toggle: 'tooltip',
+                                              placement: 'top',
+                                              title: t('.refuse') } do %>
+                            <i class="icon-dislike"></i>
+                          <% end %>
+                        <% end %>
+                      </td>
+                    </tr>
+                    <%= content_tag(:div, id: "modal-" + withdraw.hashid, class: 'modal fade', tabindex: '-1', role: 'dialog', aria: { labelledby: "modal-" + withdraw.hashid, hidden: true }) do %>
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><%= withdraw.user.wallet_address %></h4>
+                          </div>
+                          <div class="modal-body">
+                            <%= render_qr_code_img(withdraw.user.wallet_address) %>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    <% end %>
                   <% end %>
-                <% end %>
-                <% if @withdrawals.empty? %>
-                  <tr>
-                    <td colspan="10" class="text-center"><%= t('.no_data') %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+                  <% if @withdrawals.empty? %>
+                    <tr>
+                      <td colspan="20" class="text-center"><%= t('.no_data') %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row m-t-5">
+          <div class="col-sm-12">
+            <%= link_to t('helpers.export_to_csv'),
+                        backoffice_admin_withdrawals_path(format: :csv, q: params[:q]),
+                        class: 'btn btn-success' %>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <%= paginate @withdrawals %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <%= link_to t('helpers.export_to_csv'),
-                backoffice_admin_withdrawals_path(format: :csv, q: params[:q]),
-                class: 'btn btn-success' %>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= paginate @withdrawals %>
+    </div>
   </div>
 </div>

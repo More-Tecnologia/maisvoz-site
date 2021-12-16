@@ -23,46 +23,61 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    background-color: #EF539F;
 }
 
 .t-team-owner-avatar img {
     width: 70px;
-}
-
-.user-icon {
-  border-radius: 35px;
+    border-radius: 50px;
 }
 
 .t-team-network-avatar {
     display: flex;
-    height: 80px;
+    height: auto;
     margin-top: 25px;
+    overflow-x: scroll;
+    width: 100%;
 }
 
 .t-align{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    background-color: #EF539F;
     margin-left: 10px;
 }
 
+.t-teste:nth-child(1){
+  margin-left: 5%;
+}
+
 .t-align img{
-    width: 45px;
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    margin: auto;
     border-radius: 50%;
 }
 
+.t-align a {
+  width: 50px;
+  height: 50px;
+}
+
 .t-teste {
+    min-width: 85px;
+    height: 120px;
     font-size: 12px;
     color: #373737;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.t-teste span {
+  font-size: 10px;
 }
 
 .t-margin-bottom {
@@ -74,6 +89,51 @@
 .f-box-icon {
   padding: 0.3rem;
 }
+
+.box-carrousel {
+  display: none;
+}
+
+
+@media (min-width: 880px) {
+  .t-team-network-avatar {
+      display: none;
+  }
+
+  .t-team-network-avatar2 {
+    width: 94%;
+  }
+
+  .arrow-prev,
+  .arrow-next {
+    width: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: white;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    opacity: 0.4;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+
+  .box-carrousel {
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+.t-teste:nth-child(1) {
+     margin-left: 0;
+}
+.t-teste span {
+  width: 100%;
+}
+}
+
+
 @media (min-width: 1280px){
   .half {
     max-width: 50%;

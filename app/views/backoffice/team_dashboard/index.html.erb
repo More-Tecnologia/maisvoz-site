@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag 'click-tok-theme/team_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/financial_dashboard' %>
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <div>
   <div class="page">
     <a class="back-button" href="/backoffice/dashboard?locale=en">
@@ -58,6 +59,39 @@
         </div>
       <% end %>
     </div>
+
+    <div class="box-carrousel">
+          <div class="arrow-prev btn-store">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+              <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+            </svg>
+          </div>
+
+          <div class="t-team-network-avatar2">
+            <% direct_children(@unilevel_nodes).each do |child| %>
+              <div class="t-teste">
+                <div class="t-align" style="background-color: <%= "#{child.user.active? ? expensive_product_active(child.user).order_items.first.product.details : '#A8A8A8' }"%>">
+                  <%= link_to backoffice_team_dashboard_index_path(user: child.user) do %>
+                    <% if child.user.avatar.try(:path).present? %>
+                      <%= cl_image_tag(child.user.avatar.try(:path), { class: 'icons' }) %>
+                    <% else %>
+                      <%= image_tag 'icons/user.svg', class: 'icons' %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <span class="text-center"><%= (child.user.name.presence || t(:guest)).truncate(12) %></span>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="arrow-next btn-store">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+            </svg>
+          </div>
+        </div>
+
+
     <% nodes_per_depth = @unilevel_nodes.group_by(&:ancestry_depth) %>
     <% total_nodes = nodes_per_depth.values.size  %>
     <% first_generation_nodes_size = nodes_per_depth[@current_node.depth + 1].try(:size).to_f  %>
@@ -76,3 +110,7 @@
     <% end %>
   </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<%= javascript_include_tag 'click-tok-theme/team-dashboard' %>

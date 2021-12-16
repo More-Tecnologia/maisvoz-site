@@ -1,0 +1,22 @@
+.btn-email-green {
+  background: #31db02;
+  width: 100%;
+  text-decoration: none;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 20px;
+}
+
+.btn-email-green:hover,
+.btn-white-green-email {
+  cursor: pointer;
+}
+
+.btn-white-green-email {
+  background: white;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  padding: 10px 10px;
+  border-radius: 20px;
+}

@@ -36,6 +36,10 @@ body {
     touch-action: manipulation;
 }
 
+.main-app-content {
+  margin-bottom: 100px;
+}
+
 .invisible-box {
   display: block;
   margin-bottom: 150px;
@@ -140,6 +144,11 @@ body {
   justify-content: space-around;
   position: absolute;
   margin-bottom: 510px;
+}
+
+.box-user-top-display img,
+.box-user-top img  {
+  border-radius: 50px;
 }
 
 .box-admin-top {
@@ -366,7 +375,7 @@ a{
     border-radius: 20px;
     position: absolute;
     margin-top: -35px;
-    margin-left: 70px;
+    margin-left: 60px;
   }
 
   .photo-box svg {
@@ -887,7 +896,7 @@ button.close {
     border-radius: 20px;
     position: absolute;
     margin-top: -40px;
-    margin-left: 112px;
+    margin-left: 115px;
   }
 
   .photo-box svg {

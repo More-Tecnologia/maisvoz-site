@@ -1757,3 +1757,10 @@ en:
   modal_email_confirmation_title: Confirmation email sent
   modal_already_send_email_confirmation_title: Confirmation email has already been sent
   modal_already_send_email_confirmation_text: 'Your confirmation email has already been sent, you can send another one in %{time}'
+  direct_referral_bonus: Direct referral bonus
+  indirect_referral_bonus: Indirect referral bonus
+  task_performed: Task performed
+  recurring_bonus: Recurring bonus
+  master_leader_bonus: Master leader bonus
+  chargeback_by_inactivity: Chargeback by inactivity
+  chargeback_by_max_task_gains: Chargeback by max task gains

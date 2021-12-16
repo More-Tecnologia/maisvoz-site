@@ -171,6 +171,13 @@ Rails.application.routes.draw do
     resources :banner_clicks, only: [:index, :create]
     resources :direct_nominees_list, only: :index
     resources :home, only: :index
+    resources :stores, only: :none do
+      collection do
+        get :games
+        get :courses
+        get :ads
+      end
+    end
   end
 
   namespace :api do

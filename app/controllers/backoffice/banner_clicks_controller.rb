@@ -61,6 +61,8 @@ module Backoffice
     end
 
     def can_click_more_banners?(contract)
+      return true
+
       current_user.banner_clicks.today.by_contract(contract).count < contract.order_items.last.task_per_day.to_i
     end
 

@@ -20,10 +20,15 @@
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
               <% end %>
-              <% if current_user.confirmed_at.present? %>
+              <% if current_user.confirmed? %>
                 <div class="btn-green"><%= t(:validated_account) %></div>
               <% else %>
-                <%= link_to t(:validate_your_account), new_backoffice_valid_account_path, class: 'btn-red' %>
+                <% if confirmation_email_sent_in_less_than_24_hours? %>
+                <a href="#" class='btn-red' id="already-send-email-confirmation-btn" title='<%= t(:modal_already_send_email_confirmation_title) %>' message='<%= t(:modal_already_send_email_confirmation_text, time: activation_email_time) %>'><%= t(:validate_your_account) %></a>
+                <% else %>
+                  <%= link_to t(:validate_your_account), backoffice_valid_accounts_path, method: :post, class: 'btn-red', id: "email-confirmation-btn", title: t(:modal_email_confirmation_title),
+                  message: t(:modal_email_confirmation_text), next_message: t(:validate_your_account) %>
+                <% end %>
               <% end %>
             </div>
         </div>
@@ -156,3 +161,5 @@
         </div>
     </div>
 </div>
+
+<%= javascript_include_tag 'click-tok-theme/email_activation', 'data-turbolinks-track': 'reload' %>

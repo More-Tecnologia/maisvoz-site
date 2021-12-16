@@ -1752,3 +1752,8 @@ en:
   premium?: Premium?
   request_withdraw: Request withdraw
   max_task_gains: Max task gains?
+  modal_email_confirmation_text: 'Hi. We send you an email to finish validating your account. Please click on the link to complete the process.
+                                  If our email has gone to the SPAM box, mark it as trusted. This way, you will be the first to receive news about our platform.'
+  modal_email_confirmation_title: Confirmation email sent
+  modal_already_send_email_confirmation_title: Confirmation email has already been sent
+  modal_already_send_email_confirmation_text: 'Your confirmation email has already been sent, you can send another one in %{time}'

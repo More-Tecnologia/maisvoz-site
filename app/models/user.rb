@@ -465,6 +465,10 @@ class User < ApplicationRecord
 
   private
 
+  def confirmation_required?
+    false
+  end
+
   def ensure_initial_career_trail
     first_career_trail = CareerTrail.first
     CareerTrailUser.create!(user: self, career_trail: first_career_trail)

@@ -975,3 +975,6 @@ button.close {
     margin-top: 52px;
   }
 }
+.hidden {
+  display: none;
+}

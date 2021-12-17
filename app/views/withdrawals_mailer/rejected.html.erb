@@ -3,7 +3,7 @@
 <br>
 
 <p><%= t('rejected_withdrawal', support_email: ENV['SUPPORT_EMAIL']) %></p>
-
+<p><%= t(:reason) %>: <%= @withdrawal.note %></p>
 <br>
 <span>
   <%= t(:financial_department_footer, company_name: SystemConfiguration.company_name).html_safe %>

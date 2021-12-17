@@ -19,7 +19,7 @@ module Backoffice
         withdrawal = Withdrawal.find(params[:id])
         Financial::UpdaterWithdrawalStatusService.call({ updater_user: current_user,
                                                          status: params[:status] ? params[:status].to_i : nil,
-                                                         withdrawal: withdrawal }, params[:locale])
+                                                         withdrawal: withdrawal, note: params[:note] }, params[:locale])
         if params[:status].to_i == Withdrawal.statuses[:approved]
           flash[:success] = t('.success')
         else

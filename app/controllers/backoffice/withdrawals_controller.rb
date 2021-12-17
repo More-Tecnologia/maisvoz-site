@@ -6,9 +6,11 @@ module Backoffice
     before_action :ensure_waiting_status, only: %i[edit update]
     before_action :validate_current_time, only: %i[new create]
     before_action :validate_none_withdrawal_pending_or_waiting, only: %i[new create]
+    before_action :ensure_status, only: :index
 
     def index
       @withdrawals = current_user.withdrawals
+                                 .__send__(params[:status].to_sym)
                                  .order(created_at: :desc)
                                  .page(params[:page])
                                  .per(10)
@@ -44,6 +46,12 @@ module Backoffice
     end
 
     private
+
+    def ensure_status
+      if params[:status].nil?
+        params[:status] = 'all'
+      end
+    end
 
     def ensure_instance_withdrawal
       @form = WithdrawalForm.new(valid_params)

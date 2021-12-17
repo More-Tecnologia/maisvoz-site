@@ -36,6 +36,10 @@ body {
     touch-action: manipulation;
 }
 
+.main-app-content {
+  padding-bottom: 100px;
+}
+
 .invisible-box {
   display: block;
   margin-bottom: 150px;
@@ -94,6 +98,12 @@ body {
   margin-bottom: 50px;
 }
 
+.img-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
 #wallet-address {
   font-size: 12px;
 }
@@ -141,6 +151,7 @@ body {
   position: absolute;
   margin-bottom: 510px;
 }
+
 
 .box-admin-top {
   width: 100%;
@@ -722,6 +733,11 @@ button.close {
     margin-left: 30px;
     margin-top: 52px;
   }
+
+  .img-circle {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 @media (min-width: 600px){
@@ -887,7 +903,7 @@ button.close {
     border-radius: 20px;
     position: absolute;
     margin-top: -40px;
-    margin-left: 112px;
+    margin-left: 115px;
   }
 
   .photo-box svg {
@@ -974,4 +990,7 @@ button.close {
     margin-left: 80px;
     margin-top: 52px;
   }
+}
+.hidden {
+  display: none;
 }

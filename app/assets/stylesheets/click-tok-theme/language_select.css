@@ -62,6 +62,12 @@
 
 }
 
-.change-language a img {
+.change-language img {
+    margin-top: 5px;
     border-radius: 10px;
+}
+
+.flag img {
+    border-radius: 10px;
+    margin-bottom: 5px;
 }

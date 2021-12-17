@@ -1,6 +1,19 @@
 <%= stylesheet_link_tag 'click-tok-theme/store' %>
 <%= javascript_include_tag 'click-tok-theme/shop' %>
-<div class="page">
+
+<div class="main-box">
+  <%= render 'backoffice/stores/menu' %>
+
+  <div class="banner-img">
+    <div class="banner-img__content-left">
+      <p>ADCASH</p>
+      <h1>INCREASE YOUR EARNINGS</h1>
+      <a href="#" class="btn-active-account">Ative sua conta</a>
+    </div>
+    <div class="banner-img__content-right">
+      <%= image_tag('nav-store/man.png') %>
+    </div>
+  </div>
   <div class="products-list">
     <% @products.each do |product| %>
         <div class="box">

@@ -1,4 +1,5 @@
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
 <!-- Page-Title -->
 <div class="box-orders">
   <div class="orders">
@@ -23,8 +24,11 @@
     </div>
   </div>
 </div>
+<input id="btc-amount" hidden value="<%= @btc_amount.round(9) %>">
+<input id="dollar-amount" hidden value="<%= @dollar_amount %>">
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
       $('.date_filter').prop("type", "date");
   });
 </script>
+<%= javascript_include_tag 'click-tok-theme/admin/orders' %>

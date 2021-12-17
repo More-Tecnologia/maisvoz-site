@@ -114,7 +114,7 @@ Rails.application.routes.draw do
     resources :order_payments, except: %i[destroy]
     resources :balance_transferences, except: %i[destroy]
     resources :adhesion_products, only: :index
-    resources :valid_accounts, only: :new
+    resources :valid_accounts, only: :create
 
     # Shopping
     resources :products, only: [:index, :show]
@@ -171,6 +171,13 @@ Rails.application.routes.draw do
     resources :banner_clicks, only: [:index, :create]
     resources :direct_nominees_list, only: :index
     resources :home, only: :index
+    resources :stores, only: :none do
+      collection do
+        get :games
+        get :courses
+        get :ads
+      end
+    end
   end
 
   namespace :api do

@@ -6,9 +6,11 @@ module Backoffice
     before_action :ensure_waiting_status, only: %i[edit update]
     before_action :validate_current_time, only: %i[new create]
     before_action :validate_none_withdrawal_pending_or_waiting, only: %i[new create]
+    before_action :ensure_status, only: :index
 
     def index
       @withdrawals = current_user.withdrawals
+                                 .__send__(params[:status].to_sym)
                                  .order(created_at: :desc)
                                  .page(params[:page])
                                  .per(10)
@@ -45,6 +47,12 @@ module Backoffice
 
     private
 
+    def ensure_status
+      if params[:status].nil?
+        params[:status] = 'all'
+      end
+    end
+
     def ensure_instance_withdrawal
       @form = WithdrawalForm.new(valid_params)
     end
@@ -74,15 +82,15 @@ module Backoffice
     end
 
     def validate_current_time
-      current_time = DateTime.current.in_time_zone('GMT')
-      friday_after_20_hours = current_time.friday? && current_time.hour >= 20
-      saturday = current_time.saturday?
-      sunday_before_20_hours = current_time.sunday? && current_time.hour <= 20
-
-      if friday_after_20_hours || saturday || sunday_before_20_hours
-        flash[:alert] = t('defaults.errors.withdrawal_invalid_time')
-        redirect_back(fallback_location: root_path)
-      end
+      # current_time = DateTime.current.in_time_zone('GMT')
+      # friday_after_20_hours = current_time.friday? && current_time.hour >= 20
+      # saturday = current_time.saturday?
+      # sunday_before_20_hours = current_time.sunday? && current_time.hour <= 20
+      #
+      # if friday_after_20_hours || saturday || sunday_before_20_hours
+      #   flash[:alert] = t('defaults.errors.withdrawal_invalid_time')
+      #   redirect_back(fallback_location: root_path)
+      # end
     end
 
     def validate_none_withdrawal_pending_or_waiting

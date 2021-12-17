@@ -4,7 +4,7 @@ module Financial
       return if withdrawal.refused? || withdrawal.canceled? || withdrawal.approved?
 
       ActiveRecord::Base.transaction do
-        withdrawal.update!(status: status, updater_user: updater_user)
+        withdrawal.update!(status: status, updater_user: updater_user, note: note)
         case withdrawal.status.to_sym
         when :refused
           restore_credit_and_send_email_to_user
@@ -21,12 +21,13 @@ module Financial
 
     private
 
-    attr_reader :updater_user, :status, :withdrawal, :user, :withdrawal_fee
+    attr_reader :updater_user, :status, :withdrawal, :user, :withdrawal_fee, :note
 
     def initialize(args, locale)
       @updater_user = args[:updater_user]
       @status = args[:status]
       @withdrawal = args[:withdrawal]
+      @note = (args[:note].presence || args[:withdrawal].note)
       @user = @withdrawal.user
       @withdrawal_fee = @withdrawal.gross_amount_cents - @withdrawal.net_amount_cents
       @locale = locale

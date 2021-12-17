@@ -6,7 +6,9 @@ module Backoffice
         authorize :admin_order, :index?
 
         @grid = OrdersGrid.new(grid_params)
-
+        @orders = @grid.rows.flatten.select { |order| order.is_a?(Order) }
+        @btc_amount = @orders.sum { |order| order.payment_transaction.try(:amount).to_f }
+        @dollar_amount = @orders.sum { |order| order.total.to_f }
         respond_to do |format|
           format.html { render_index }
           format.csv { render_csv }
@@ -62,6 +64,10 @@ module Backoffice
       end
 
       def grid_params
+        if params[:orders_grid].nil?
+          params[:orders_grid] = {}
+          params[:orders_grid][:created_at] = [Date.today.beginning_of_day, Date.today.end_of_day]
+        end
         params.fetch(:orders_grid, {}).permit!
       end
 

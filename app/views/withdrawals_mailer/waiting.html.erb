@@ -8,7 +8,7 @@
 
 <p>
   <%= t('can_confirm_withdraw') %>
-  <%= link_to t('here'), edit_backoffice_withdrawal_url(@withdrawal, locale: @locale) %>
+  <%= link_to t('here'), edit_backoffice_withdrawal_url(@withdrawal, locale: @locale), class:'btn-white-green-email' %>
 </p>
 
 <br>
@@ -17,4 +17,4 @@
 </span>
 <br>
 
-<p><%= link_to t('withdrawals_history'), backoffice_withdrawals_url(locale: @locale) %></p>
+<p><%= link_to t('withdrawals_history'), backoffice_withdrawals_url(locale: @locale), class: 'btn-email-green' %></p>

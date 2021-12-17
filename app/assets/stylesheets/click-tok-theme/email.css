@@ -10,6 +10,8 @@
 .btn-email-green:hover,
 .btn-white-green-email {
   cursor: pointer;
+  text-decoration: none;
+  color: white;
 }
 
 .btn-white-green-email {

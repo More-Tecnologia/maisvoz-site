@@ -49,6 +49,24 @@ html {
   width: 90%;
 }
 
+.btn-modal-withdraw {
+  text-decoration: none;
+  background: #00d928;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.btn-modal-withdraw:hover {
+  text-decoration: none;
+  color:white;
+  cursor: pointer;
+}
+
 *,
 *:before,
 *:after {

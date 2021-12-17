@@ -1,11 +1,9 @@
 module Backoffice
   class ValidAccountsController < BackofficeController
-    def new
+    def create
       Devise::Mailer.confirmation_instructions(current_user, current_user.confirmation_token)
                     .deliver_later
-
-      flash[:alert] = t('.success', email: current_user.email)
-      redirect_to backoffice_home_index_path
+      current_user.update(confirmation_sent_at: Time.now)
     end
   end
 end

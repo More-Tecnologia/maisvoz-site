@@ -40,6 +40,9 @@ class OrdersGrid < BaseGrid
       number_to_currency(value.to_f)
     end
   end
+  column(:crypto, header: I18n.t(:btc)) do |record|
+    record.payment_transaction.try(:amount)
+  end
   column(:status, order: false) do |record|
     format(record.status) do |format|
       css_class = { completed: 'badge badge-success',

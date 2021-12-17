@@ -14,6 +14,7 @@ module Backoffice
               .includes(:user, :spreader, :financial_reason, :order)
               .order(created_at: :desc)
               .page(params[:page])
+              .per(10)
     end
 
     def financial_transactions_by_customer_admin(q)
@@ -21,6 +22,7 @@ module Backoffice
               .includes(:user, :spreader, :financial_reason, :order)
               .order(created_at: :desc)
               .page(params[:page])
+              .per(10)
     end
 
     def financial_transactions_by_empreendedor(q)
@@ -29,6 +31,7 @@ module Backoffice
               .includes(:spreader, :financial_reason, :order)
               .order(created_at: :desc)
               .page(params[:page])
+              .per(10)
     end
 
     def format_cent_amount_value(financial_transaction)

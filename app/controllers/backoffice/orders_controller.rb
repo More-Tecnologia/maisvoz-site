@@ -1,8 +1,9 @@
 module Backoffice
   class OrdersController < BackofficeController
+    before_action :ensure_status, only: :index
 
     def index
-      @orders = current_user.orders.includes(:payment_transaction)
+      @orders = current_user.orders.__send__(params[:status].to_sym)
                                    .where.not(status: :cart)
                                    .order(created_at: :desc)
                                    .page(params[:page])
@@ -31,6 +32,14 @@ module Backoffice
         flash[:success] = 'Boleto adicionado a fila de processamento'
       end
       redirect_to backoffice_orders_path
+    end
+
+    private
+
+    def ensure_status
+      if params[:status].nil?
+        params[:status] = 'all'
+      end
     end
 
   end

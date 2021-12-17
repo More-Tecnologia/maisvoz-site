@@ -62,6 +62,10 @@ module Backoffice
       end
 
       def grid_params
+        if params[:orders_grid].nil?
+          params[:orders_grid] = {}
+          params[:orders_grid][:created_at] = [Date.today.beginning_of_day, Date.today.end_of_day]
+        end
         params.fetch(:orders_grid, {}).permit!
       end
 

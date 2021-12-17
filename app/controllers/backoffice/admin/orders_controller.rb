@@ -7,7 +7,7 @@ module Backoffice
 
         @grid = OrdersGrid.new(grid_params)
         @orders = @grid.rows.flatten.select { |order| order.is_a?(Order) }
-        @btc_amount = @orders.sum { |order| order.payment_transaction.try(:amount).to_f.round(9) }
+        @btc_amount = @orders.sum { |order| order.payment_transaction.try(:amount).to_f }
         @dollar_amount = @orders.sum { |order| order.total.to_f }
         respond_to do |format|
           format.html { render_index }

@@ -24,7 +24,7 @@
     </div>
   </div>
 </div>
-<input id="btc-amount" hidden value="<%= @btc_amount %>">
+<input id="btc-amount" hidden value="<%= @btc_amount.round(9) %>">
 <input id="dollar-amount" hidden value="<%= @dollar_amount %>">
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {

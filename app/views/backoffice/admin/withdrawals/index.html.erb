@@ -105,7 +105,7 @@
                           <i class="fas fa-paper-plane"></i>
                         <% end if withdraw.waiting? %>
                         <% if withdraw.pending? || withdraw.approved_balance? || withdraw.waiting?  %>
-                          <%= link_to backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:approved]),
+                          <%= link_to backoffice_admin_withdrawal_path(withdraw, withdrawal: { status: :approved }),
                                       method: :put,
                                       data: { confirm: t('.approve_withdraw'),
                                               toggle: 'tooltip',
@@ -114,8 +114,10 @@
                                       class: 'm-r-10' do %>
                             <i class="icon-like"></i>
                           <% end %>
-                          <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal" style="background: none; color: #4a91fe;"><i class="icon-dislike" style="-min-width: 12px; min-height: 12px;"></i></button>
-                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <button type="button" class="btn" data-toggle="modal" data-target="#modal-<%= withdraw.id%>" style="background: none; color: #4a91fe;">
+                            <i class="icon-dislike" style="-min-width: 12px; min-height: 12px;"></i>
+                          </button>
+                          <div class="modal fade" id="modal-<%= withdraw.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <div class="modal-content" style="margin-top: 50%;">
                                 <div class="modal-header" style="border: none;">
@@ -123,20 +125,20 @@
                                     <span aria-hidden="true" style="font-size: 20px;">&times;</span>
                                   </button>
                                 </div>
+                                <%= form_for([:backoffice, :admin, withdraw]) do |f| %>
                                 <div class="modal-body" style="margin-top: 0;">
-                                  <form>
                                     <div class="form-group">
                                       <label for="message-text" class="col-form-label" style="font-size: 15px;">Message:</label>
-                                      <textarea class="form-control" id="message-text"></textarea>
+                                      <%= f.text_area :note, class: "form-control", id: "message-text" %>
                                     </div>
-                                  </form>
+                                    <%= f.hidden_field :status, value: 'refused' %>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal" style="padding: 10px 20px; font-size: 12px;">Close</button>
-                                  <%= link_to backoffice_admin_withdrawal_path(withdraw, status: Withdrawal.statuses[:refused]), class: 'btn-modal-withdraw' do %>
-                                  Send Message
-                                  <% end %>
+
+                                  <%= f.submit t(:save), class: 'btn-modal-withdraw' %>
                                 </div>
+                                <% end %>
                               </div>
                             </div>
                           </div>

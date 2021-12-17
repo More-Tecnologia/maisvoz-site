@@ -82,15 +82,15 @@ module Backoffice
     end
 
     def validate_current_time
-      current_time = DateTime.current.in_time_zone('GMT')
-      friday_after_20_hours = current_time.friday? && current_time.hour >= 20
-      saturday = current_time.saturday?
-      sunday_before_20_hours = current_time.sunday? && current_time.hour <= 20
-
-      if friday_after_20_hours || saturday || sunday_before_20_hours
-        flash[:alert] = t('defaults.errors.withdrawal_invalid_time')
-        redirect_back(fallback_location: root_path)
-      end
+      # current_time = DateTime.current.in_time_zone('GMT')
+      # friday_after_20_hours = current_time.friday? && current_time.hour >= 20
+      # saturday = current_time.saturday?
+      # sunday_before_20_hours = current_time.sunday? && current_time.hour <= 20
+      #
+      # if friday_after_20_hours || saturday || sunday_before_20_hours
+      #   flash[:alert] = t('defaults.errors.withdrawal_invalid_time')
+      #   redirect_back(fallback_location: root_path)
+      # end
     end
 
     def validate_none_withdrawal_pending_or_waiting

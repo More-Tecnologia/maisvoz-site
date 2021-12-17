@@ -239,10 +239,18 @@
   color: white;
   background: linear-gradient(to bottom, #58f701, #26ac00);
   margin-right: 5px;
-  padding: 20px 10px 10px 10px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
+}
+
+.store-banner svg {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  fill: white;
 }
 
 .store-banner p {
@@ -478,7 +486,7 @@ text-align: left;
 }
 
 .store-banner {
-  width: 200px;
+  width: 250px;
 }
 
 .store-banner p {

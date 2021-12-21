@@ -1,6 +1,14 @@
 const list = document.querySelectorAll(".list");
 let indicator = document.querySelector(".indicator");
 
+if(navigator.userAgent.match(/iPhone|iPad|iPod/i)){
+  let initialIndicator = window.innerWidth / 2;
+  let porcentIndicator = initialIndicator / 5;
+  let finalIndicator = initialIndicator - porcentIndicator;
+  indicator.style.marginLeft = `-${finalIndicator}px`
+}
+
+
 function activeLink() {
   list.forEach((item) => {
     item.classList.remove("active");
@@ -31,7 +39,7 @@ function itemSelected() {
   let links = document.querySelectorAll('.link-nav');
   let sizeNav = document.querySelector('.list').offsetWidth;
   let firstList = list[0];
-  
+
   let footerDashboardHome = ["/",
     "/backoffice/admin/dashboard",
     "/backoffice/home"
@@ -64,6 +72,8 @@ function itemSelected() {
   ];
 
   let footerTeam = ["/backoffice/team_dashboard"]
+
+
 
   if (footerDashboardHome.includes(window.location.pathname)) {
     indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 0))`;

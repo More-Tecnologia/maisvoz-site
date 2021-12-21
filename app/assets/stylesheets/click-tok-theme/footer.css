@@ -175,7 +175,7 @@
 }
 
 .indicator {
-    position: absolute;
+    position: absolute ;
     display: flex;
     top: -47%;
     margin-left: -80%;

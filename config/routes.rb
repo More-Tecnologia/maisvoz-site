@@ -46,6 +46,8 @@ Rails.application.routes.draw do
       resources :credits_debits, only: [:show, :update, :create]
       resources :financial_transactions, only: [:index]
       resources :withdrawals, only: %i[index update]
+      resources :withdrawal_approvals, only: %i[new]
+      resources :withdrawal_processing, only: %i[new]
       resources :withdrawal_approvals, only: %i[new create]
       resources :withdrawals_mailer, only: :none do
         put :send_email_confirmation

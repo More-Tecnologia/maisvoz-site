@@ -7,7 +7,13 @@ class Withdrawal < ApplicationRecord
 
   has_many :financial_transactions
 
-  enum status: [:pending,  :approved, :approved_balance, :refused, :waiting, :canceled]
+  enum status: [:pending,
+                :approved,
+                :approved_balance,
+                :refused,
+                :waiting,
+                :canceled,
+                :processing]
   enum payment_method: [:usd, :btc, :eth]
 
   def gross_amount_cents

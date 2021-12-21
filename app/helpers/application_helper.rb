@@ -102,6 +102,14 @@ module ApplicationHelper
     currency_cents(origin_currency, cents, target_currency) / 100.0
   end
 
+  def batch_action_checkbox_parent
+    check_box_tag :select, '', false, class: 'parent'
+  end
+
+  def batch_action_checkbox_child(withdrawal)
+    check_box_tag :select, withdrawal.id, false, class: 'child'
+  end
+
   private
 
   def currency_cents origin_currency, cents, target_currency = ENV['CURRENT_CURRENCY']

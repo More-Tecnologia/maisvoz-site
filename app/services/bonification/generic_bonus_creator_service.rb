@@ -40,6 +40,7 @@ module Bonification
           else
             value = to_receive
             @amount -= to_receive
+            @amount = @amount.round(2)
           end
         else
           chargebackable = @chargebackable

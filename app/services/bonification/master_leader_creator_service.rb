@@ -9,7 +9,7 @@ module Bonification
 
         transactions = create_master_leader_bonus_for(sponsor)
         if sponsor.inactive?
-          chargeback_reason = transactions.last.financial_reason.chargeback_by_inactivity
+          chargeback_reason = FinancialReason.chargeback_by_inactivity
           transactions.each do |transaction|
             transaction.chargeback_by_inactivity!(chargeback_reason)
           end

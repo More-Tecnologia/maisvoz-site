@@ -6,7 +6,7 @@ module Bonification
 
         transactions = create_recurrent_bonus_for(sponsor, index + 1)
         if sponsor.inactive?
-          chargeback_reason = transaction.financial_reason.chargeback_by_inactivity
+          chargeback_reason = FinancialReason.chargeback_by_inactivity
           transactions.each do |transaction|
             transaction.chargeback_by_inactivity!(chargeback_reason)
           end

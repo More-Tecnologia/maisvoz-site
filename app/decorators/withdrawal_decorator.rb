@@ -11,8 +11,10 @@ class WithdrawalDecorator < ApplicationDecorator
       h.content_tag(:span, h.t('waiting'), class: 'label label-info')
     elsif canceled?
       h.content_tag(:span, h.t('canceled'), class: 'label label-danger')
+    elsif refused?
+      h.content_tag(:span, h.t('refused'), class: 'badge badge-danger')
     else
-      h.content_tag(:span, h.t('refused'), class: 'label label-danger')
+      h.content_tag(:span, h.t('processing'), class: 'badge badge-primary')
     end
   end
 

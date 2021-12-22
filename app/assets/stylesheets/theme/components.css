@@ -46,6 +46,20 @@ File: Components
 .btn-md {
   padding: 8px 16px;
 }
+
+.approve-withdraw a {
+  padding-left: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+.approve-withdraw a:hover {
+  text-decoration: none;
+}
+.approve-withdraw:hover {
+  background: #f4f8fb;
+}
+
 .btn-primary,
 .btn-success,
 .btn-default,

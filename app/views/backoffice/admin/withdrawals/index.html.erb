@@ -1,8 +1,10 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<%= javascript_include_tag 'click-tok-theme/admin/batch-checkbox' %>
+<style>
+  body{ background: #ebeff2; }
+</style>
 <div class="box-withdrawals">
   <div class="box-second">
     <div>
@@ -42,7 +44,32 @@
               <table class="table table-striped table-bordered toggle-circle m-b-0">
                 <thead>
                   <tr>
-                    <th><%= batch_action_checkbox_parent %></th>
+                    <th>
+                      <%= batch_action_checkbox_parent %>
+                      <button class="btn dropdown-toggle batch-actions disabled"
+                              type="button"
+                              id="dropdownMenu1"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="true">
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li>
+                          <%= link_to t('helpers.submit.processing'),
+                                      new_backoffice_admin_withdrawal_processing_path,
+                                      class: 'batch-action',
+                                      id: 'processing-withdrawals',
+                                      data: { url: new_backoffice_admin_withdrawal_processing_path } %>
+                        </li>
+                        <li>
+                          <%= link_to t('helpers.submit.approve'),
+                                      new_backoffice_admin_withdrawal_approval_path,
+                                      class: 'batch-action',
+                                      id: 'approve-withdrawals',
+                                      data: { url: new_backoffice_admin_withdrawal_approval_path } %>
+                        </li>
+                      </ul>
+                    </th>
                     <th>#</th>
                     <th><%= User.human_attribute_name(:username) %></th>
                     <th><%= User.human_attribute_name(:email) %></th>
@@ -57,29 +84,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <div class="dropdown m-5">
-                    <button class="btn dropdown-toggle batch-actions disabled"
-                            type="button"
-                            id="dropdownMenu1"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="true">
-                      <%= t('helpers.batch_actions') %>
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li>
-                        <%= link_to t('helpers.submit.approve'),
-                                    new_backoffice_admin_withdrawal_approval_path,
-                                    class: 'batch-action',
-                                    id: 'approve-withdrawals',
-                                    data: { url: new_backoffice_admin_withdrawal_approval_path } %>
-                      </li>
-                    </ul>
-                  </div>
+
+
+                              <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <%= t('helpers.batch_actions') %>
+                                </button>
+                                <div class="dropdown-menu approve-withdraw">
+                                  <%= link_to t('helpers.submit.approve'),
+                                              new_backoffice_admin_withdrawal_approval_path,
+                                              class: 'batch-action',
+                                              id: 'approve-withdrawals',
+                                              data: { url: new_backoffice_admin_withdrawal_approval_path } %>
+                                </div>
+                              </div>
                   <% @withdrawals.each do |withdraw| %>
                     <tr>
-                      <th> <%= batch_action_checkbox_child(withdraw) if withdraw.pending? %></th>
+                      <th> <%= batch_action_checkbox_child(withdraw) if withdraw.pending? || withdraw.processing? %></th>
                       <th><%= withdraw.hashid %></th>
                       <th><%= link_to withdraw.user.username, backoffice_support_user_path(withdraw.user) %></th>
                       <th><%= link_to withdraw.user.email, backoffice_support_user_path(withdraw.user) %></th>

@@ -110,6 +110,8 @@ module Bonification
       order_item_quantity = order_items.fetch(product.id).quantity.to_i
       order_item_quantity -= Order::FEE if order_item_quantity > 10
       bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
+      return if bonus.zero?
+
       filtered_order = order.loan_payment ? nil : order
       Bonification::GenericBonusCreatorService.call({
         amount: bonus,

@@ -589,6 +589,12 @@ pt-BR:
       tickets:
         index:
           title: Tickets
+      withdrawal_approvals:
+        new:
+          success: Saques aprovados com sucesso
+      withdrawal_processing:
+        new:
+          success: Saques processando com sucesso
     support:
       users:
         index:
@@ -1028,6 +1034,8 @@ pt-BR:
       transfer: Transferir
       approve: Aprovar
       buy: Comprar
+      approve: Aprovar
+      processing: Processar
     confirm:
       approve_order_without_bonification: Deseja aprovar esse pedido sem bonificação?
     from: De

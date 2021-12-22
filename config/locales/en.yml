@@ -590,6 +590,12 @@ en:
         new:
           title: New Shipping
           shippings: Shippings
+      withdrawal_approvals:
+        new:
+          success: Withdrawals approved successfull
+      withdrawal_processing:
+        new:
+          success: Withdrawals processing successfull
     support:
       users:
         index:
@@ -1013,6 +1019,8 @@ en:
       batch_actions: Batch actions
       approve: Approve
       buy: Buy
+      approve: Approve
+      processing: Processing
     confirm:
       approve_order_without_bonification: Do you want to approve this order without a bonus?
     from: From
@@ -1368,7 +1376,6 @@ en:
   invoice: Invoice
   cart: Cart
   pending_payment: Pending
-  processing: Processing
   completed: Completed
   expired: Expired
   past_due: Expired
@@ -1765,3 +1772,4 @@ en:
   chargeback_by_inactivity: Chargeback by inactivity
   chargeback_by_max_task_gains: Chargeback by max task gains
   approved_balance: Approved balance
+  processing: 'Processing'

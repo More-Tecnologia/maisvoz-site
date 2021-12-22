@@ -39,7 +39,7 @@ class BonusContract < ApplicationRecord
   end
 
   def max_gains?
-    task_gains >= max_task_gains
+    task_gains.round(2) >= max_task_gains
   end
 
   def max_contract_gains?

@@ -1,4 +1,4 @@
-class CreateUserCourse < ActiveRecord::Migration[5.2]
+class CreateUserCourseLesson < ActiveRecord::Migration[5.2]
   def change
     create_table :user_course_lessons do |t|
       t.boolean :complete, default: false

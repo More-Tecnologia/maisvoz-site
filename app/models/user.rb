@@ -80,6 +80,12 @@ class User < ApplicationRecord
   has_many :bonus_contracts
   has_many :payer_orders, class_name: 'Order',
                           foreign_key: 'payer_id'
+  has_many :courses, through: :user_courses
+  has_many :course_lessons, through: :user_course_lessons
+  has_many :authorial_courses, class_name: 'Course', foreign_key: 'owner_id'
+  has_many :approved_courses, class_name: 'Course', foreign_key: 'approver_user_id'
+  has_many :reviews
+  has_many :reactions
 
   validates :bank_account_type, presence: true, on: :withdrawal
   validates :bank_account, presence: true, on: :withdrawal

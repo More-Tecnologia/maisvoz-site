@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :categorizations
+      resources :courses, only: %i[update destroy]
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy] do
         resources :shippings
         member do
@@ -132,6 +134,10 @@ Rails.application.routes.draw do
     resources :shipping_calculations, only: :new
     resources :cellphone_reloads, only: [:new, :create]
     resources :product_checkouts, only: %i[new create]
+    resources :item_categorizations, only: %i[create update destroy]
+    resources :courses
+    resources :course_lessons
+    resources :taught_courses
 
     # Financial
     resources :withdrawals, only: [:index, :new, :create, :edit, :update]

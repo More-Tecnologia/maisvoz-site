@@ -112,16 +112,16 @@ module Bonification
       bonus = order_item_quantity * product_score.calculate_product_score(product.price_cents)
       filtered_order = order.loan_payment ? nil : order
 
-      unless bonus.zero?
-        Bonification::GenericBonusCreatorService.call({
-          amount: bonus,
-          spreader: user,
-          sponsor: sponsor,
-          generation: generation,
-          reason: financial_reason,
-          order: filtered_order
-        })
-      end
+      return [] if bonus <= 0
+
+      Bonification::GenericBonusCreatorService.call({
+        amount: bonus,
+        spreader: user,
+        sponsor: sponsor,
+        generation: generation,
+        reason: financial_reason,
+        order: filtered_order
+      })
     end
 
     def create_bonus_and_chargeback_for_inactive_sponsors(sponsors, product, product_reason, financial_reason)

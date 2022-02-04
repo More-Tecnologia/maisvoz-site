@@ -244,6 +244,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  text-decoration: none !important;
 }
 
 .selected-background {
@@ -260,6 +261,7 @@
 .store-banner p {
   font-size: 10px;
   margin: 0;
+  text-decoration: none;
 }
 
 .store-banner:hover {

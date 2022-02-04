@@ -1,0 +1,144 @@
+body {
+  background-color: whitesmoke !important;
+}
+
+.container-taught-courses {
+  width: 90%;
+  margin: auto;
+}
+
+.container-mid-taught-courses {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box-taught-courses-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-taught-courses {
+  font-weight: bold;
+}
+
+.btn-secondary {
+  color: black !important;
+  background-color: transparent !important;
+  border-color: whitesmoke !important;
+}
+
+.btn {
+  padding: 0 !important;
+}
+
+.box-taught-course {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+  padding-bottom: 20px;
+}
+
+.id-course {
+  color: grey;
+  font-size: 12px;
+}
+
+.id-number {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.img-course {
+  width: 60px;
+  height: auto;
+  object-fit: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+.details-course {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.date-course,
+.text-course {
+  font-size: 10px;
+}
+
+.text-course {
+  font-weight: bold;
+}
+
+.status-taught-course {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.status-taught-course .btn-status:nth-child(2) {
+  margin-top: 5px;
+}
+
+.btn-status {
+  border: none;
+  color: white;
+  font-size: 10px;
+  padding: 3px 10px;
+  width: 90px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.status-waiting {
+  background: linear-gradient(to bottom, #58f701, #26ac00);
+}
+
+.status-inactive {
+  background: red;
+}
+
+.status-waiting-lessons {
+  background: #9b9b9b;
+}
+
+.status-active {
+  background: #00de28;
+}
+
+.actions-taught-course,
+.status-taught-course {
+  cursor: pointer;
+}
+
+.actions-taught-course svg:nth-child(1) {
+  margin-right: 5px;
+}
+
+@media (min-width: 880px){
+  .img-course {
+    width: 120px;
+    height: auto;
+  }
+
+  .date-course, .text-course {
+  font-size: 13px;
+}
+
+.id-course span{
+  font-size: 18px !important;
+}
+
+.btn-status {
+  padding: 5px 10px;
+  font-size: 13px;
+  width: 120px;
+}
+}

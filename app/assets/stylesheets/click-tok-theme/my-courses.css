@@ -60,7 +60,7 @@
   align-items: center;
 }
 
-.container-add-lessons span:nth-child(1){
+.container-add-lessons span:nth-child(1) {
   font-weight: bold;
   width: 100%;
 }
@@ -163,7 +163,6 @@
   margin-top: 50px;
 }
 
-
 .btn-resume-lessons:hover {
   background: linear-gradient(to bottom, #26ac00, #58f701);
 }
@@ -182,11 +181,10 @@
   margin-top: 30px;
 }
 
-
-@media (min-width: 880px){
+@media (min-width: 880px) {
   .course {
-      width: 50%;
-      justify-content: flex-start;
+    width: 50%;
+    justify-content: flex-start;
   }
 
   .img-course {

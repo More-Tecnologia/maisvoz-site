@@ -48,7 +48,7 @@ body {
 .accordion-button:not(.collapsed) {
   color: white;
   background-color: #00d928 !important;
-  box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
 }
 
 .accordion-button:focus {
@@ -66,22 +66,21 @@ body {
 }
 
 @media (min-width: 880px) {
-.container-apprenticeship{
-  width: 90%;
-  padding: 0;
+  .container-apprenticeship {
+    width: 90%;
+    padding: 0;
+  }
+
+  .cards-courses {
+    margin-top: 40px;
+  }
+
+  .lesson-video {
+    height: 350px;
+  }
 }
 
-.cards-courses {
-  margin-top: 40px;
-}
-
-.lesson-video {
-  height: 350px;
-}
-
-}
-
-@media (min-width: 1280px){
+@media (min-width: 1280px) {
   .lesson-video {
     width: 49%;
     height: 410px;

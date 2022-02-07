@@ -18,7 +18,7 @@ body {
 }
 
 .btn-return {
-  background: linear-gradient(to right bottom, #4de701, #26ad00) ;
+  background: linear-gradient(to right bottom, #4de701, #26ad00);
   padding: 5px 0;
   border-radius: 50px;
   display: flex;

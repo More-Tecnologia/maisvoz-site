@@ -68,6 +68,13 @@
                                       id: 'approve-withdrawals',
                                       data: { url: new_backoffice_admin_withdrawal_approval_path } %>
                         </li>
+                        <li>
+                          <%= link_to t('helpers.submit.export'),
+                                      render_csv_backoffice_admin_withdrawals_path(format: :csv),
+                                      class: 'batch-action',
+                                      id: 'export-withdrawals',
+                                      data: { url: render_csv_backoffice_admin_withdrawals_path(format: :csv) } %>
+                        </li>
                       </ul>
                     </th>
                     <th>#</th>
@@ -86,18 +93,7 @@
                 <tbody>
 
 
-                              <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <%= t('helpers.batch_actions') %>
-                                </button>
-                                <div class="dropdown-menu approve-withdraw">
-                                  <%= link_to t('helpers.submit.approve'),
-                                              new_backoffice_admin_withdrawal_approval_path,
-                                              class: 'batch-action',
-                                              id: 'approve-withdrawals',
-                                              data: { url: new_backoffice_admin_withdrawal_approval_path } %>
-                                </div>
-                              </div>
+
                   <% @withdrawals.each do |withdraw| %>
                     <tr>
                       <th> <%= batch_action_checkbox_child(withdraw) if withdraw.pending? || withdraw.processing? %></th>

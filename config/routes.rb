@@ -45,7 +45,11 @@ Rails.application.routes.draw do
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]
       resources :financial_transactions, only: [:index]
-      resources :withdrawals, only: %i[index update]
+      resources :withdrawals, only: %i[index update] do
+        collection do
+          get :render_csv
+        end
+      end
       resources :withdrawal_approvals, only: %i[new]
       resources :withdrawal_processing, only: %i[new]
       resources :withdrawal_approvals, only: %i[new create]

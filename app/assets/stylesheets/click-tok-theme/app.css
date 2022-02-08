@@ -992,5 +992,5 @@ button.close {
   }
 }
 .hidden {
-  display: none;
+  display: none !important;
 }

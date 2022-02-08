@@ -37,7 +37,7 @@
 
           <div class="product-price">
             <span><%= product.price.zero? ? t(:free) : number_to_currency(product.price, precision: 0).gsub('USD ', '$') %></span>
-            <%= link_to backoffice_order_items_path(product: {id: product.hashid}), class: ' btn-buy',
+            <%= link_to backoffice_order_items_path(product: {id: product.hashid}), class: 'btn-buy',
                      method: :post do %>
                      <%= t(:buy) %>
             <% end %>

@@ -1773,3 +1773,4 @@ en:
   chargeback_by_max_task_gains: Chargeback by max task gains
   approved_balance: Approved balance
   processing: 'Processing'
+  export_only_wallets: Export only wallets

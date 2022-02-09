@@ -65,7 +65,10 @@ module Backoffice
       end
 
       def render_csv
-        withdrawals = Withdrawal.where(id: params[:ids])
+        q = Withdrawal.ransack(params[:q])
+        withdrawals = q.result
+                       .includes(:user)
+                       .order(created_at: :desc)
         respond_to do |format|
           format.csv { render_as_csv_only_value(withdrawals) }
         end

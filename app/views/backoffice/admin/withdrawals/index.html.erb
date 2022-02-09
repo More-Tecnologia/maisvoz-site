@@ -68,13 +68,6 @@
                                       id: 'approve-withdrawals',
                                       data: { url: new_backoffice_admin_withdrawal_approval_path } %>
                         </li>
-                        <li>
-                          <%= link_to t('helpers.submit.export'),
-                                      render_csv_backoffice_admin_withdrawals_path(format: :csv),
-                                      class: 'batch-action',
-                                      id: 'export-withdrawals',
-                                      data: { url: render_csv_backoffice_admin_withdrawals_path(format: :csv) } %>
-                        </li>
                       </ul>
                     </th>
                     <th>#</th>
@@ -194,6 +187,9 @@
             <%= link_to t('helpers.export_to_csv'),
                         backoffice_admin_withdrawals_path(format: :csv, q: params[:q]),
                         class: 'btn btn-success' %>
+            <%= link_to t(:export_only_wallets),
+                        render_csv_backoffice_admin_withdrawals_path(format: :csv, q: params[:q]),
+                        class: 'btn btn-warning' %>
           </div>
         </div>
       </div>

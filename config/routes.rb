@@ -71,7 +71,11 @@ Rails.application.routes.draw do
         end
       end
       resources :expenses, only: [:new, :create]
-      resources :bonus_contracts, only: :index
+      resources :bonus_contracts, only: :index do
+        member do
+          put :toggle_enabled_bonification
+        end
+      end
       resources :media_files, only: %i[show new create edit update]
       resources :financial_reports, only: %i[index update]
 

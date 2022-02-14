@@ -1,13 +1,12 @@
 const list = document.querySelectorAll(".list");
 let indicator = document.querySelector(".indicator");
 
-if(navigator.userAgent.match(/iPhone|iPad|iPod/i)){
+if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
   let initialIndicator = window.innerWidth / 2;
   let porcentIndicator = initialIndicator / 5;
   let finalIndicator = initialIndicator - porcentIndicator;
   indicator.style.marginLeft = `-${finalIndicator}px`
 }
-
 
 function activeLink() {
   list.forEach((item) => {
@@ -24,13 +23,10 @@ function moveMenu() {
   let menu = document.querySelector(".main-list");
   let lists = document.querySelectorAll(".list");
   let indicator = document.querySelector(".indicator");
-  let x = -1;
+  let x = 0;
 
-  if(screen.width < 880){
+  if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
     x = -1
-  }
-  else {
-    x = 0;
   }
 
   list.forEach((item, i) => {
@@ -83,16 +79,15 @@ function itemSelected() {
   let counterUsers = 1;
   let counterShop = 2;
   let counterFinancial = 3;
-  let conterMyTeam = 4;
+  let counterMyTeam = 4;
 
-  if(screen.width < 880){
-     counterDashboard = -1;
-     counterUsers = 0;
-     counterShop = 1;
-     counterFinancial = 2;
-     counterMyTeam = 3;
+  if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+    counterDashboard = -1;
+    counterUsers = 0;
+    counterShop = 1;
+    counterFinancial = 2;
+    counterMyTeam = 3;
   }
-
 
   if (footerDashboardHome.includes(window.location.pathname)) {
     indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterDashboard}))`;
@@ -101,6 +96,7 @@ function itemSelected() {
   } else {
     list[0].classList.remove('active');
   }
+
   if (footerTasksUsers.includes(window.location.pathname)) {
     indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterUsers}))`;
     indicator.style.transition = "none";
@@ -108,6 +104,7 @@ function itemSelected() {
   } else {
     list[1].classList.remove('active');
   }
+
   if (footerShop.includes(window.location.pathname)) {
     indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterShop}))`;
     indicator.style.transition = "none";
@@ -115,6 +112,7 @@ function itemSelected() {
   } else {
     list[2].classList.remove('active');
   }
+
   if (footerFinancial.includes(window.location.pathname)) {
     indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterFinancial}))`;
     indicator.style.transition = "none";
@@ -122,6 +120,7 @@ function itemSelected() {
   } else {
     list[3].classList.remove('active');
   }
+
   if (footerTeam.includes(window.location.pathname)) {
     indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterMyTeam}))`;
     indicator.style.transition = "none";

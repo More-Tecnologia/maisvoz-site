@@ -4,6 +4,8 @@ class CreateUserCourseLesson < ActiveRecord::Migration[5.2]
       t.boolean :complete, default: false
       t.references :course_lesson
       t.references :user_course
+
+      t.timestamps
     end
   end
 end

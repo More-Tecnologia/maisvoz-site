@@ -7,6 +7,8 @@ class CreateCourseLesson < ActiveRecord::Migration[5.2]
       t.string :link, null: false
       t.string :description, null: false
       t.references :course
+
+      t.timestamps
     end
   end
 end

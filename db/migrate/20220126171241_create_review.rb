@@ -7,6 +7,8 @@ class CreateReview < ActiveRecord::Migration[5.2]
       t.boolean :banned, default: false
       t.references :reviewable
       t.references :user
+
+      t.timestamps
     end
   end
 end

@@ -80,6 +80,7 @@
                     <th><%= sort_link(@q, :net_amount_cents, Withdrawal.human_attribute_name(:crypto_amount)) %></th>
                     <th><%= sort_link(@q, :status, Withdrawal.human_attribute_name(:status)) %></th>
                     <th><%= sort_link(@q, :created_at, Withdrawal.human_attribute_name(:created_at), default_order: :desc) %></th>
+                    <th><%= sort_link(@q, :updated_at, Withdrawal.human_attribute_name(:updated_at), default_order: :desc) %></th>
                     <th></th>
                   </tr>
                 </thead>
@@ -104,6 +105,7 @@
                       <td><%= number_to_currency(withdraw.crypto_amount, precision: 8, unit: '') %></td>
                       <td><%= withdraw.pretty_status %></td>
                       <td><%= l withdraw.created_at, format: :long %></td>
+                      <td><%= l withdraw.updated_at, format: :long %></td>
                       <td>
                         <%= link_to backoffice_admin_withdrawals_mailer_send_email_confirmation_path(withdraw, locale: params[:locale]),
                                     method: :put,

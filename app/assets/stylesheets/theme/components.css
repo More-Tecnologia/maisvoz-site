@@ -2710,18 +2710,21 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item14 {
-  background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #FFF;
-  font-size: 12px;
+  color: #3f3f3f;
+  font-size: 14px;
+  margin-left: 5px;
+  height: 120px;
 }
 
 #dashboard .painel .item14 img{
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   margin-bottom: 10px;
 }
 
@@ -3336,21 +3339,20 @@ a.editable-click:hover {
     margin-bottom: 10px;
   }
 
-  #dashboard .painel .item14 {
-    grid-column: 1 /span 2;
-    grid-row: 8;
-    background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
+  #dashboard .painel .item13 {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
-    font-size: 12px;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
   }
 
-  #dashboard .painel .item14 img{
-    width: 30px;
-    height: 30px;
+  #dashboard .painel .item13 img{
+    width: 50px;
+    height: 50px;
     margin-bottom: 10px;
   }
 

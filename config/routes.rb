@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categorizations
-      resources :courses, only: %i[update destroy]
+      resources :courses, only: %i[index update destroy]
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy] do
         resources :shippings
         member do

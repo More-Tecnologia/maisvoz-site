@@ -13,6 +13,8 @@ class CreateCourse < ActiveRecord::Migration[5.2]
       t.references :product
       t.references :owner
       t.references :approver_user
+
+      t.timestamps
     end
   end
 end

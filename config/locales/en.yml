@@ -1239,7 +1239,7 @@ en:
       categories:
         edit:
           subtitle: Edit Category
-          title: Edit Category
+          title: Edit %{category_name} category
         index:
           new_category: New Category
           no_data: No categories registered
@@ -1247,7 +1247,7 @@ en:
           title: List of Categories
         new:
           subtitle: Subtitle
-          title: Title
+          title: New category
       credits_debits:
         index:
           title: Credits and Debits
@@ -1774,3 +1774,5 @@ en:
   approved_balance: Approved balance
   processing: 'Processing'
   export_only_wallets: Export only wallets
+  categorizations: Categories
+  tag: Tag

@@ -8,7 +8,6 @@ module Backoffice
       def index
         @q = Categorization.ransack(params)
         @categorizations = @q.result
-                             .includes_associations
                              .order(created_at: :desc)
                              .page(params[:page])
       end
@@ -23,7 +22,7 @@ module Backoffice
         @categorization = Categorization.new(ensured_params)
         if @categorization.save!
           flash[:success] = I18n.t('defaults.success')
-          redirect_to @categorization
+          redirect_to [:backoffice, :admin, @categorization]
         else
           flash[:error] = @categorization.errors.map(&:message)
           render 'new'
@@ -35,7 +34,7 @@ module Backoffice
       def update
         if @categorization.update!(ensured_params)
           flash[:success] = I18n.t('defaults.success')
-          redirect_to @categorization
+          redirect_to [:backoffice, :admin, @categorization]
         else
           flash[:error] = @categorization.errors.map(&:message)
           render 'edit'

@@ -1260,7 +1260,7 @@ pt-BR:
       categories:
         edit:
           subtitle: Editar Categoria
-          title: Editar Categoria
+          title: Editar categoria %{category_name}
         index:
           new_category: Nova Categoria
           no_data: Nenhuma categoria cadastrada
@@ -1268,7 +1268,7 @@ pt-BR:
           title: Lista de Categorias
         new:
           subtitle: Subtitle
-          title: Title
+          title: Nova categoria
       credits_debits:
         index:
           title: Créditos e Débitos
@@ -1691,3 +1691,5 @@ pt-BR:
   active_until: Ativo até
   eth: ETH
   export_only_wallets: Exportar apenas carteiras
+  categorizations: Categorias
+  tag: Tag

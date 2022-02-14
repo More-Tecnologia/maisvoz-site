@@ -7,6 +7,8 @@ class CreateUserCourse < ActiveRecord::Migration[5.2]
       t.boolean :on_wishlist, default: false
       t.references :course
       t.references :user
+
+      t.timestamps
     end
   end
 end

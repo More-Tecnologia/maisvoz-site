@@ -1,0 +1,137 @@
+.container-showcase {
+  width: 100%;
+  margin: auto;
+}
+
+.container-showcase-video {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-showcase {
+  font-weight: bold;
+}
+
+.video-showcase {
+  background-image: url('courses/course2.png');
+  width: 90%;
+  margin: auto;
+  height: 200px;
+  background-size: 100% 100%;
+  border-radius: 20px;
+}
+
+.showcase-created-by,
+.container-reputation,
+.title-video-showcase,
+.subtitle-video-showcase,
+.title-showcase,
+.description-showcase,
+.additionals,
+.top-new-showcase {
+  width: 90%;
+  margin: auto;
+}
+
+.showcase-created-by span {
+  font-size: 11px;
+  color: grey;
+}
+
+.showcase-created-by span:nth-child(2) {
+  font-weight: bold;
+  font-size: 12px;
+  color: black;
+}
+
+.title-video-showcase {
+  font-weight: bold;
+}
+
+.subtitle-video-showcase {
+  font-size: 13px;
+}
+
+.container-payment-showcase {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.value-payment {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.btn-showcase-buy {
+  background: linear-gradient(to bottom, #26ac00, #58f701);
+  color: white;
+  border: none;
+  padding: 5px 0;
+  width: 100px;
+  border-radius: 5px;
+  margin-left: 10px;
+  transition: .5s;
+}
+
+.btn-showcase-buy:hover {
+  background: linear-gradient(to bottom, #58f701, #26ac00);
+}
+
+.description-showcase {
+  margin-top: 40px;
+}
+
+.description-showcase span {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.description-showcase p {
+  font-size: 12px;
+}
+
+.additionals {
+  display: flex;
+  flex-direction: column;
+}
+
+.additionals span {
+  font-size: 12px;
+}
+
+.title-additionals {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.container-related-videos {
+  margin-top: 40px;
+  padding-left: 5%;
+}
+
+.title-related-videos {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+@media (min-width: 880px) {
+  .video-showcase {
+    height: 350px;
+  }
+
+  .container-related-videos {
+    width: 90%;
+    padding: 0;
+    margin: auto;
+  }
+}
+
+@media(min-width: 1280px){
+  .video-showcase {
+    height: 500px;
+  }
+}

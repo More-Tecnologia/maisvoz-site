@@ -22,5 +22,8 @@ module Backoffice
 
     def destroy
     end
+
+    def cart
+    end
   end
 end

@@ -143,7 +143,11 @@ Rails.application.routes.draw do
     resources :cellphone_reloads, only: [:new, :create]
     resources :product_checkouts, only: %i[new create]
     resources :item_categorizations, only: %i[create update destroy]
-    resources :courses
+    resources :courses do
+      collection do
+        get :cart
+      end
+    end
     resources :course_lessons
     resources :taught_courses
 

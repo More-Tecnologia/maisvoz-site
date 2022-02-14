@@ -1,13 +1,12 @@
 const list = document.querySelectorAll(".list");
 let indicator = document.querySelector(".indicator");
 
-if(navigator.userAgent.match(/iPhone|iPad|iPod/i)){
+if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
   let initialIndicator = window.innerWidth / 2;
   let porcentIndicator = initialIndicator / 5;
   let finalIndicator = initialIndicator - porcentIndicator;
   indicator.style.marginLeft = `-${finalIndicator}px`
 }
-
 
 function activeLink() {
   list.forEach((item) => {
@@ -25,6 +24,10 @@ function moveMenu() {
   let lists = document.querySelectorAll(".list");
   let indicator = document.querySelector(".indicator");
   let x = 0;
+
+  if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+    x = -1
+  }
 
   list.forEach((item, i) => {
     if (item.className == "list active") {
@@ -72,39 +75,54 @@ function itemSelected() {
   ];
 
   let footerTeam = ["/backoffice/team_dashboard"]
+  let counterDashboard = 0;
+  let counterUsers = 1;
+  let counterShop = 2;
+  let counterFinancial = 3;
+  let counterMyTeam = 4;
 
-
+  if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+    counterDashboard = -1;
+    counterUsers = 0;
+    counterShop = 1;
+    counterFinancial = 2;
+    counterMyTeam = 3;
+  }
 
   if (footerDashboardHome.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 0))`;
+    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterDashboard}))`;
     indicator.style.transition = "none";
     list[0].classList.add('active');
   } else {
     list[0].classList.remove('active');
   }
+
   if (footerTasksUsers.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 1))`;
+    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterUsers}))`;
     indicator.style.transition = "none";
     list[1].classList.add('active');
   } else {
     list[1].classList.remove('active');
   }
+
   if (footerShop.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 2))`;
+    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterShop}))`;
     indicator.style.transition = "none";
     list[2].classList.add('active');
   } else {
     list[2].classList.remove('active');
   }
+
   if (footerFinancial.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 3))`;
+    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterFinancial}))`;
     indicator.style.transition = "none";
     list[3].classList.add('active');
   } else {
     list[3].classList.remove('active');
   }
+
   if (footerTeam.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 4))`;
+    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterMyTeam}))`;
     indicator.style.transition = "none";
     list[4].classList.add('active');
   } else {

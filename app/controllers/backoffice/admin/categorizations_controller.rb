@@ -8,7 +8,6 @@ module Backoffice
       def index
         @q = Categorization.ransack(params)
         @categorizations = @q.result
-                             .includes_associations
                              .order(created_at: :desc)
                              .page(params[:page])
       end

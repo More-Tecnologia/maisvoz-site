@@ -86,18 +86,7 @@
                 <tbody>
 
 
-                              <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <%= t('helpers.batch_actions') %>
-                                </button>
-                                <div class="dropdown-menu approve-withdraw">
-                                  <%= link_to t('helpers.submit.approve'),
-                                              new_backoffice_admin_withdrawal_approval_path,
-                                              class: 'batch-action',
-                                              id: 'approve-withdrawals',
-                                              data: { url: new_backoffice_admin_withdrawal_approval_path } %>
-                                </div>
-                              </div>
+
                   <% @withdrawals.each do |withdraw| %>
                     <tr>
                       <th> <%= batch_action_checkbox_child(withdraw) if withdraw.pending? || withdraw.processing? %></th>
@@ -125,7 +114,7 @@
                                             title: t('.resend_withdrawal_confirmation') do %>
                           <i class="fas fa-paper-plane"></i>
                         <% end if withdraw.waiting? %>
-                        <% if withdraw.pending? || withdraw.approved_balance? || withdraw.waiting?  %>
+                        <% unless withdraw.approved? || withdraw.refused? || withdraw.canceled? %>
                           <%= link_to backoffice_admin_withdrawal_path(withdraw, withdrawal: { status: :approved }),
                                       method: :put,
                                       data: { confirm: t('.approve_withdraw'),
@@ -198,6 +187,9 @@
             <%= link_to t('helpers.export_to_csv'),
                         backoffice_admin_withdrawals_path(format: :csv, q: params[:q]),
                         class: 'btn btn-success' %>
+            <%= link_to t(:export_only_wallets),
+                        render_csv_backoffice_admin_withdrawals_path(format: :csv, q: params[:q]),
+                        class: 'btn btn-warning' %>
           </div>
         </div>
       </div>

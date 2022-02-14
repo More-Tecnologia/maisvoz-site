@@ -19,6 +19,13 @@ module Backoffice
         query.merge!(BonusContract.inactive) if params['active'] == 'false'
         query
       end
+
+      def toggle_enabled_bonification
+        bonus_contract = BonusContract.find_by_hashid(params[:id])
+        bonus_contract.toggle!(:enabled_bonification)
+
+        redirect_to backoffice_admin_bonus_contracts_path
+      end
     end
   end
 end

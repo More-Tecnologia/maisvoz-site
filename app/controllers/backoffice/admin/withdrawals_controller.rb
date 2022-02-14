@@ -63,6 +63,36 @@ module Backoffice
           body.each {|b| csv << b }
         end
       end
+
+      def render_csv
+        q = Withdrawal.ransack(params[:q])
+        withdrawals = q.result
+                       .includes(:user)
+                       .order(created_at: :desc)
+        respond_to do |format|
+          format.csv { render_as_csv_only_value(withdrawals) }
+        end
+      end
+
+      def render_as_csv_only_value(withdrawals)
+        send_data(as_csv_only_value(withdrawals),
+                  type: 'text/csv',
+                  disposition: 'inline',
+                  filename: t('defaults.withdrawals') + "-#{Time.now.to_s}.csv")
+      end
+
+      def as_csv_only_value(withdrawals)
+        body = withdrawals.map do |w|
+          [
+           w.wallet,
+           number_to_currency(w.crypto_amount, unit: '', precision: 8)
+         ]
+        end
+
+        CSV.generate do |csv|
+          body.each {|b| csv << b }
+        end
+      end
     end
   end
 end

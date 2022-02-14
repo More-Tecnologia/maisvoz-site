@@ -23,6 +23,7 @@
                   <th><%= Score.human_attribute_name(:status) %></th>
                   <th><%= t(:max_task_gains?) %></th>
                   <th><%= Score.human_attribute_name(:processed_at) %></th>
+                  <th><%= t(:actions) %></th>
                 </tr>
               </thead>
               <tbody>
@@ -39,6 +40,19 @@
                       <td> <%= bonus_contract_status(bonus_contract) %></td>
                       <td> <%= t(bonus_contract.max_gains?) %></td>
                       <td> <%= l(bonus_contract.paid_at, format: '%m/%d/%Y') if bonus_contract.paid_at %></td>
+                      <td>
+                        <%= link_to toggle_enabled_bonification_backoffice_admin_bonus_contract_path(bonus_contract), method: :put do %>
+                          <% if bonus_contract.enabled_bonification %>
+                            <div class="btn btn-danger">
+                              <%= t(:inactive) %>
+                            </div>
+                          <% else %>
+                            <div class="btn btn-success">
+                              <%= t(:active) %>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </td>
                     </tr>
                   <% end %>
                 <% else %>

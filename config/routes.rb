@@ -47,7 +47,11 @@ Rails.application.routes.draw do
       # Financial Admin
       resources :credits_debits, only: [:show, :update, :create]
       resources :financial_transactions, only: [:index]
-      resources :withdrawals, only: %i[index update]
+      resources :withdrawals, only: %i[index update] do
+        collection do
+          get :render_csv
+        end
+      end
       resources :withdrawal_approvals, only: %i[new]
       resources :withdrawal_processing, only: %i[new]
       resources :withdrawal_approvals, only: %i[new create]
@@ -69,7 +73,11 @@ Rails.application.routes.draw do
         end
       end
       resources :expenses, only: [:new, :create]
-      resources :bonus_contracts, only: :index
+      resources :bonus_contracts, only: :index do
+        member do
+          put :toggle_enabled_bonification
+        end
+      end
       resources :media_files, only: %i[show new create edit update]
       resources :financial_reports, only: %i[index update]
 

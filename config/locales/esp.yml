@@ -1,0 +1,1776 @@
+en:
+  '':
+    success: Éxito
+  active_admin:
+    dashboard: Tablero de mandos
+    dashboard_welcome:
+      call_to_action: Llamada a la acción
+      welcome: Bienvenido
+  activerecord:
+    models:
+      score_type: Tipo de puntuación
+      user: Usuario
+      order: Pedido
+      media_file: Adjunto archivo
+    attributes:
+      pv_activity_history:
+        from: Desde
+        order: Pedido
+      pv_history:
+        balance: Saldar
+        description: Descripción
+      user:
+        login: Email/Login
+        registration_type: Tipo de registro
+        document_verification_status: Documentos
+      order:
+        paid_by: Pagado por
+        payment_type: Tipo de pago
+        dr_recorded: DR grabado
+      score:
+        user: Para
+        spreader_user: De
+        order: Pedido
+        score_type: Tipo de puntuación
+        height: Generacion
+        cent_amount: Amount
+        created_at: Monto
+        source_leg: Tramo de origen
+      financial_transaction:
+        user: Para
+        spreader: De
+        financial_reason: Razón
+        order: Pedido
+        financial_transaction: Transacción Financiera
+        chargeback: Contracargo
+        moneyflow: Flujo
+        cent_amount: Valor
+        created_at: Añadido en
+        credit: Crédito
+        debit: Débito
+        generation: Generacion
+      email:
+        body: 'Dirección de correo electrónico'
+        status:
+          pending: 'Pendiente'
+          active: 'Activo'
+          inactive: 'Inactivo'
+      order:
+        shipping: Transporte
+        total: Total
+        subtotal: Total parcial
+      payment_transaction:
+        transcation_id: ID de transacción
+      user:
+        document_cpf_photo: Foto de CPF
+        document_rg_photo: Foto de RG
+        document_pis_photo: Foto de PIS/PASEP
+        document_address_photo: Prueba de residencia
+        document_scontract_photo: Contrato social
+        wallet_address: Monedero digital
+      media_file:
+        file_content: 'Archivo'
+      digital_wallet:
+        address: 'Código de billetera'
+        status:
+          pending: 'Pendiente'
+          active: 'Activo'
+          inactive: 'Inactivo'
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: Este correo electrónico ya se está utilizando
+            password_confirmation:
+              confirmation: Contraseñas diferentes
+            registration_type:
+              not_pj: Debe ser una persona jurídica
+            document_verification_status:
+              not_verified: No verificado
+        product:
+          attributes:
+            main_photo:
+              attached: "El producto debe tener una foto principal."
+            photos:
+              maximum_number: "Puede seleccionar un máximo de %{maximum_number} fotos."
+              types: "Las fotos deben ser jpeg o png."
+        product_description:
+          attributes:
+            photo:
+              attached: "Una descripción debe tener una foto."
+      messages:
+        too_short: "mínimo %{count} caracteres"
+        blank: no puede estar en blanco
+        record_invalid: 'Validación fallida: %{errors}'
+        wrong_length: Tamaño equivocado
+        taken: ya se esta usando %{value}
+        rule_type_missmatch: "un objeto de tipo %{ruleable_type} no puede recibir el tipo de regla %{rule_type_title}."
+        restrict_dependent_destroy:
+          has_many: No puede eliminar el registro porque hay un %{record} dependientes
+          has_one: No puede eliminar el registro porque hay un %{record} dependiente
+        invalid: Inválido
+        bank_account_presence: Complete sus datos bancarios antes de solicitar un retiro.
+        order_total_value_multiple_of_five: El valor del pedido debe ser múltiplo de 5
+  activemodel:
+    errors:
+      models:
+        new_registration_form:
+          attributes:
+            username:
+              format: solo letras minúsculas y números
+            document_cpf:
+              cpf: 'inválido'
+        credit_debit_wizard/create_form:
+          attributes:
+            amount:
+              not_a_number: no es un numero
+      messages:
+        taken: ya se esta usando
+        not_authenticate: No autenticado
+        too_long: "máximo %{count} caracteres"
+        still_in_cart: Pedido aún en el carrito de compras
+        already_approved: Pedido ya aprobado
+        too_long: "máximo %{count} caracteres"
+        without_available_balance: El usuario no tiene saldo disponible.
+        invalid: Inválido
+        invalid_order_status_for_payment: "El estado del pedido no permite el pago"
+        only_advance_product_can_be_paid_with_voucher: Solo el producto anticipado se puede pagar con bono
+        invalid_voucher: Recibo invalido
+        user_voucher: Vale ya usado
+        wrong_password: Contraseña incorrecta
+    attributes:
+      credit_debit_wizard/create_form:
+        master_password: Contraseña maestra
+        amount: Valor
+      cellphone_reload_form:
+        product: Valor
+        ddd: DDD
+        cellphone_number: Número de teléfono
+        value: Valor
+  attributes:
+    active_session: Sesión activa
+    order: Pedido
+    accept_terms: Aceptar los terminos
+    amount: Valor
+    created_at: Fecha de creación
+    expire_at: Fecha de caducidad
+    description: Descripción
+    gross_amount: Cantidad bruta
+    name: Nombre
+    net_amount: Valor neto
+    paid_at: Fecha de pago
+    password: Contraseña
+    password_confirmation: confirmación de contraseña
+    phone: Teléfono
+    product: Producto
+    quantity: Cantidad
+    price: Precio
+    score: Punto(s)
+    profit: Lucro
+    next_bonus_payment: Siguiente pago
+    remember_me: Recordar
+    sponsor_username: Usuario patrocinador
+    unit_cost: Costo unitario
+    subtotal: Total parcial
+    shipping: Transporte
+    tax: Impuesto
+    user: Usuario
+    username: Nombre de usuario
+    activity: Actividad
+    qualification: Calificación
+    order_date: Fecha de orden
+    order_status: Estado del pedido
+    binary_position: Posición binaria
+    binary_qualified: Binario
+    active_until: Activo hasta
+    registration_type: Tipo de cuenta
+    pva_total: PVA Total
+    from: Desde
+    until: Hasta
+    to: A
+    type: Tipo
+    from_user: Desde
+    to_user: A
+    kind: Tipo
+    birthdate: Fecha de nacimiento
+    main_document: Documento
+    document_cpf: CPF
+    document_cnpj: CNPJ
+    document_ie: IE
+    document_rg: RG
+    document_rg_expeditor: Agencia emisora
+    document_pis: PIS/PASEP
+    document_company_name: Nombre de empresa
+    document_fantasy_name: Nombre de fantasía
+    gender: Género
+    marital_status: Estado civil
+    address: Habla a
+    address_2: Complemento de dirección
+    address_number: Número de dirección
+    district: Distrito
+    country: País
+    state: Estado
+    city: Ciudad
+    zipcode: Código postal
+    fiscal_document_link: Enlace a factura
+    fiscal_document_photo: Factura
+    bank_code: Banco
+    bank_account_type: Tipo de cuenta
+    account_number: Cuenta
+    account_digit: Dígito de la cuenta
+    agency_number: Numero de agencia
+    agency_digit: Dígito de la agencia
+    balance: Equilibrio
+    unit_price: Precio unitario
+    role: Tipo
+    career_kind: Carrera profesional
+    old_career: Antigua carrera
+    new_career: Nueva carrera
+    available_balance: Saldo disponible
+    blocked_balance: Saldo bloqueado
+    left_pv: PV Izquierdo
+    right_pv: PV Derecho
+    sponsor: Patrocinador
+    active: Activo
+    invoice_id: Factura ID
+    product_id: Producto
+    product_serial: Serie del producto
+    status_message: Estado del mensaje
+    product_name: nombre del producto
+    status_updated_at: Estado actualizado el
+    updated_at: Última fecha actualizada
+    bonus_1: Instalador adicional
+    binary_bonus: Bono binario
+    binary_score: Puntuación binaria
+    document_verification_status: Estado de verificación de documentos
+    plate: Plato
+    cnpj_cpf: CNPJ/CPF
+    owner_name: Dueño
+    manufacture_year: Año de fabricación
+    model_year: Año del modelo
+    fuel: Tipo de combustible
+    mileage: Kilometraje
+    gearbox: Tipo de intercambio
+    mercosul_code: Motorización
+    color: Color
+    color_type: Tipo de color
+    origin: Importar
+    admin_company_username: '* Administrator Name'
+    trail: Rastro
+    career: Carrera profesional
+    email: Correo electrónico
+    not_applicable: ''
+    left: Izquierdo
+    right: Derecho
+    financial_reason_types: Tipos de razones
+    message: Mensaje
+    master_password: Contraseña maestra
+    financial_reason_id: Razón
+    financial_reason: Razón
+    generation: Generacion
+    status: Situación
+    pf: Persona física
+    pj: Persona legal
+    note: Mensaje
+    blocked: Obstruido
+    canceled: Cancelado
+    binary_qualify: Cualificado binario
+    height: Generacion
+    unit_price_cents: Precio unitario
+    sim_card_quantity: CHIPS Cantidad
+    order_id: Pedido
+    processed_at: Fecha de procesamiento
+    quantity_per_product: Cantidad por producto
+    iccid: ICCID
+    support_point_user: Punto de apoyo
+    phone_number: Número de teléfono
+    in_stock: En stock
+    out_stock: Agotado
+    transfered: Transferido
+    sim_card_quantity_added: CHIP agregados
+    actions: Comportamiento
+    in_date: Fecha de entrada
+    activation_date: Fecha de activacion
+    support_point: Punto de apoyo
+    transference_date: Fecha de transferencia
+    transferences: Transferencias
+    unilevel_qualifying_career_count: Número de calificadores de indicación
+    unilevel_qualifying_career_id: Carrera de candidato calificado
+    indications: Indicaciones
+    role_type: Tipo de regla
+    lineage_score: Puntuación de linaje
+    requalification_score: Puntaje de recalificación
+    qualifying_score: Puntaje de calificación
+    updated_at: Cambiar fecha
+    document: Documento
+    bank: Banco
+    bank_account: Cuenta
+    bank_agency: Agencia
+    cellphone_number: Teléfono
+    wallet_address: Dirección de la billetera
+    image_path: Alfiler
+    expire_at: Duracion
+    voucher_code: Código
+    voucher_order: Pedido
+    order_kind: Tipo de pedido
+    voucher_use_date: Fecha de uso
+    my_vouchers: Mis cupónes
+    system_taxable: Sistema imponible
+    payment_type: Tipo de pago
+    billed: Facturado
+    order_code: Código de pedido
+    email_user: Correo electrónico del usuario
+    code: 'Código'
+    payer: Pagador
+    order_payment_amount_cents: Total de pedidos pagados
+    pool_amount_cents: Total del fondo común
+    withdrawal_amount_cents: Retiros Totales
+    pool_balance_amount_cents: Saldo del fondo
+    profit_amount_cents: Beneficio total
+    profit_per_partner_amount_cents: Beneficio del socio
+    begin_datetime: Fecha de inicio
+    end_datetime: Fecha final
+    transfer_at: Fecha
+    value: Valor
+    backoffice_address: Backoffice
+    custom_address: Cambiar la dirección de envío
+    backoffice_shipping_address_country: País
+    backoffice_shipping_address_postal_code: Código postal
+    backoffice_shipping_address_street: Calle
+    backoffice_shipping_address_number: Número
+    backoffice_shipping_address_complement: Complemento
+    backoffice_shipping_address_neighborhood: Barrio
+    backoffice_shipping_address_city: Ciudad
+    backoffice_shipping_address_state: Estado
+    custom_shipping_address_country: País
+    custom_shipping_address_postal_code: Código postal
+    custom_shipping_address_street: Calle
+    custom_shipping_address_number: Número
+    custom_shipping_address_complement: Complemento
+    custom_shipping_address_neighborhood: Barrio
+    custom_shipping_address_city: Ciudad
+    custom_shipping_address_state: Estado
+    bonus_contract: Contrato de bonificación
+    main_photo: Foto principal
+    photos: Fotos
+    short_description: Breve descripción
+    length: Longitud
+    width: Anchura
+    weight: Peso
+    product_height: Altura
+    price_cents: Precio (centavos)
+    subject: Sujeto
+    title: Título
+    product_details: Detalles de producto
+    product_description: Información general del producto
+    dropship_link: Enlace de envío directo
+    dropship_links: Enlaces de envío directo
+    category: Categoría
+    photo: Foto
+    user_type: Tipo de cuenta
+    hashid: Código
+    digital_wallet: Cartera
+    document: Documento
+    crypto_amount: Cripto
+  backoffice:
+    orders:
+      show:
+        invoice: Factura
+        order_date: Fecha de la factura
+        status: Estado de la factura
+        subtotal: Total parcial
+        taxes: Impuestos
+        title: Factura
+        confirm_bill: ¿Estás seguro de que quieres facturar este pedido?
+    withdrawals:
+      index:
+        no_data: No se realizan retiros
+        title: Mis retiros
+        unverified_account: Para solicitar retiros, su cuenta debe ser verificada.
+      new:
+        available_balance: Saldo disponible
+        title: Nuevo retiro
+        unverified_account: Para solicitar retiros, su cuenta debe ser verificada.
+      form:
+        fees: Tarifas
+        total: Total
+      create:
+        success: 'Su solicitud de retiro ha sido recibida. Revisa tu correo electrónico para confirmar tu solicitud de retiro.'
+      edit:
+        title: Confirmar retiro
+        pending_withdraw: '¿Estás seguro de que quieres confirmar la solicitud?'
+        cancel_withdraw: '¿Estás seguro de que deseas cancelar la solicitud?'
+      update:
+        success: 'Su solicitud fue realizada con éxito'
+    binary_strategies:
+      index:
+        title: Estrategia binaria
+        subtitle: Defina su estrategia de red
+        save: Guardar estrategia
+        default_strategy: Estrategia Standard
+        default_strategy_sub: Esta es la estrategia standard para su red.
+        indicated_strategy: Estrategia de indicación directa
+        indicated_strategy_sub: Defina con precisión dónde se distribuirá cada indicación directa
+    binary_tree:
+      show:
+        title: Árbol binario
+        left_pv: Calificaciones de puntos de la pierna izquierda
+        right_pv: Calificaciones de puntos de la pierna derecha
+        username: Nombre de usuario
+        sponsor: Patrocinador
+        search: Búsqueda
+    unilevel:
+      index:
+        title: Uninivel
+        no_binary_node: No indications
+        generation: Generacion
+    financial_entries:
+      index:
+        title: Historia Financiera
+        no_data: Aún no hay registros financieros
+    pv_histories:
+      index:
+        title: PV binario
+        left: Izquierda
+        right: Derecha
+        no_data: Aún no hay registro de PV
+        invoice_no: 'Generado por el usuario PV %{username}'
+    pv_activity_histories:
+      index:
+        title: PVG Historia
+        invoice_no: 'PV generado a partir de factura ID: %{id}'
+        no_data: No se encontraron registros de PV de actividad
+    accumulated_pva:
+      index:
+        title: PVA Acumulado
+    lineage_scores:
+      index:
+        title: Calificaciones de puntos
+    financial_transactions:
+      index:
+        title: Transacciones financieras
+    payment_transactions:
+      show:
+        title: Pago
+        transfer_note_html: "Transferir <strong>%{value}</strong> a la siguiente dirección"
+        transfer_rate_warning_html: 'Para agilizar la identificación del pago, recomendamos utilizar el <strong>Express Rate<strong>'
+    order_items:
+      update:
+        cart_updated: Carrito actualizado
+      destroy:
+        cart_updated: Carrito actualizado
+    order_payments:
+      index:
+        title: Pagos de pedidos
+        paid_orders: Pedidos pagados
+      create:
+        success: Se está procesando el pago del pedido
+      new:
+        title: Orden de pago
+    balance_transferences:
+      index:
+        title: Transferencias de Saldo
+        transferences: Transferencias
+      create:
+        success: Transferencia de saldo exitosa
+      new:
+        title: Transferencia de Saldo
+    carts:
+      show:
+        purchase_resume: Currículum de compra
+        total: Total
+        shipping_address: Dirección de envío
+    product_checkouts:
+      new:
+        purchase_resume: Currículum de compra
+        total: Total
+    adhesion_products:
+      index:
+        title: Paquete de tienda Haga clic en Efectivo
+    banner_clicks:
+      index:
+        title: Tareas diarias
+    valid_accounts:
+      new:
+        success: 'Se ha enviado un correo electrónico con confirmaciones de instrucciones a: %{email}.'
+    admin:
+      media_files:
+        form:
+          title: 'Título'
+          maximum_number_of_photos: '%{maximum_number} fotos al maximo.'
+        new:
+          title: 'Nuevo archivo adjunto'
+        create:
+          success: 'Adjunto creado'
+        edit:
+          title: 'Actualizar archivo adjunto'
+        update:
+          success: 'Adjunto actualizado'
+      credits_debits:
+        step_1: Paso 1
+        step_2: Paso 2
+      accumulated_pva:
+        index:
+          title: PVs Avance de título
+      career_histories:
+        index:
+          title: Historia de Carreras
+      financial_entries:
+        index:
+          title: Informe financiero
+        filters:
+          from_user: Nombre de usuario
+          type: Tipo de evento financiero
+          created_from: Creado a partir de
+          created_until: Creado hasta
+      orders:
+        index:
+          title: Informe de pedidos
+        filters:
+          user: Usuario
+          total: Total
+          status: Status
+          paid_from: Pagado desde
+          paid_until: Pagado hasta
+          id_in: Lista ID
+      withdrawals:
+        index:
+          title: Administrar retiros
+          approve_withdraw: ¿Realmente quieres aprobar este retiro?
+          refuse_withdraw: ¿Realmente desea rechazar este retiro?
+          resend_withdrawal_confirmation_text: ¿Realmente desea volver a enviar un correo electrónico de confirmación a este cliente?
+          resend_withdrawal_confirmation: 'Reenviar confirmación de retiro'
+          refuse: Negar
+        filters:
+          status: Status
+          created_from: Creado a partir de
+          created_until: Creado hasta
+        form:
+          fees: Tarifas
+        update:
+          success: ¡Retiro aprobado!
+          rejected: ¡Retiro rechazado!
+      withdrawals_mailer:
+        send_email_confirmation:
+          success: 'Se reenvió un correo electrónico de confirmación al cliente'
+      pv_activity_histories:
+        index:
+          title: Historia de PVA/PVG
+      pv_histories:
+        index:
+          title: Historia de PVG
+      sim_card_controls:
+        new:
+          title: CHIP pedidos
+      sim_cards:
+        new:
+          title: Agregar CHIPs A pedido / usuario
+      user_versions:
+        index:
+          title: Informe de actividad del usuario
+      expenses:
+        create:
+          success: Gasto creado
+      pool_leaderships:
+        create:
+          success: Liderazgo de grupo actualizado.
+      pool_trandings:
+        create:
+          success: Efectivo de fondo actualizado.
+      dashboard:
+        index:
+          current_week_report: Informe financiero de la semana actual
+      withdrawal_approvals:
+        new:
+          title: Aprobación de Retiros
+        create:
+          success: Retiros aprobados con éxito
+      shippings:
+        new:
+          title: Envío nuevo
+          shippings: Envíos
+      withdrawal_approvals:
+        new:
+          success: Retiros aprobados con éxito
+      withdrawal_processing:
+        new:
+          success: Procesamiento de retiros exitoso
+    support:
+      users:
+        index:
+          title: Administrar usuarios
+          actions: Acciones
+          sign_in: Registrarse
+        show:
+          direct_users: Indicaciones Directas
+      support_point_users:
+        create:
+          success: Usuario actualizado a Punto de Soporte
+    bank_accounts:
+      edit:
+        title: Monedero digital
+        subtitle: Esta cuenta se utilizará para retiros de la plataforma.
+        save: Guardar billetera digital
+        ownership_info: Solo aceptamos billeteras digitales en su posesión
+      update:
+        success: Monedero digital actualizado con éxito
+    scores:
+      index:
+        title:
+          unilevel: Efectivo del fondo común
+          binary: Puntos binarios
+          all: Calificaciones
+    sim_cards:
+      index:
+        title: Transferencia de CHIPs
+        success: CHIPs transferido con éxito.
+    career_trail_users:
+      index:
+        title: Historia de Carreras
+    pay_with_voucher:
+      create:
+        success: Vale usado!
+    tickets:
+      index:
+        status: Status
+        created_at: Creado en
+        finished_at: Terminado en
+        action: Acción
+        view: Vista
+  balanced_strategy: Equilibrado
+  buy_cart:
+    updated: Carrito actualizado
+  cart:
+    cart_updated: Carrito actualizado
+    see_cart: Ver carrito
+    title: Carrito
+  mailer:
+    no-reply: Por favor, no responda.
+    doubt: 'En caso de duda contáctenos por correo electrónico: %{contact_email}.'
+    automatic: Este correo electrónico fue enviado automáticamente. Por favor no respondas.
+               En caso de duda contactar %{contact_mail}
+  user_mailer:
+    welcome:
+      subject: Bienvenidos
+      call: Querido asociado %{name}
+      body: 'La %{company_name} se complace en darle la bienvenida y felicitarlo por su elección para ser incluido en nuestro selecto grupo de ganadores.
+            Trabajaremos arduamente para ofrecerle las mayores prestaciones y servicios buscando siempre la excelencia en la calidad.
+            También aprovechamos esta oportunidad para renovar nuestros deseos de alta estima.'
+      footer: 'Tuyo sinceramente, <br>
+              %{company_name}'
+    upgrade_career:
+      subject: Avance de título
+      body: 'Felicidades por este logro, cada nuevo paso que logras en nuestro plan de negocios tiene un significado extraordinario para nosotros, es la certeza de que estamos haciendo lo correcto. <br>
+      Estamos encantados de reconocer su nuevo título de liderazgo. <b>%{career_name}</b>.<br>
+      A partir de ahora podrás disfrutar de tus nuevos beneficios conseguidos con tu nuevo título conseguido.'
+  shopping_mailer:
+    order_paid:
+      body: "Informamos que su compra del producto <strong> %{product_name} </strong> se completó con éxito!
+            Le agradecemos y felicitamos por la compra de nuestros productos."
+      footer: 'Tuyo sinceramente, <br>
+              Departamento financiero <br>
+              %{company_name}'
+    order_made:
+      body: Su <b>order</b> valor de <b>%{order_value}</b> se llevo a cabo.
+            Complete el pago y espere a que se procese.
+  devise_mailer:
+    reset_password_instructions:
+      order_link: Ha solicitado un enlace para cambiar su contraseña. Puedes cambiarlo a través del siguiente enlace.
+      password_reset: Cambiar mi contraseña
+      order_alert: Si no lo solicitó, ignore este correo electrónico.<br>
+                   Su contraseña no cambiará hasta que acceda al enlace anterior y cree una nueva.
+    confirmation_instructions:
+      title: Instrucciones de confirmación
+    unlock_instructions:
+      title: Instrucciones de desbloqueo
+    reset_password_instructions:
+      title: Instrucciones para restablecer la contraseña
+    email_change:
+      title: Cambio de correo electrónico
+  date:
+    abbr_day_names:
+    - Dom
+    - Lun
+    - Mar
+    - Miér
+    - Jue
+    - Vie
+    - Sáb
+    abbr_month_names:
+    -
+    - Ene
+    - Feb
+    - Mar
+    - Abr
+    - May
+    - Jun
+    - Jul
+    - Ago
+    - Sept
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Domingo
+    - Lunes
+    - Martes
+    - Miércoles
+    - Jueves
+    - Viernes
+    - Sábado
+    formats:
+      default: '%B %d, %Y'
+      long: "%d of %B, %Y"
+      short: "%d of %B"
+    month_names:
+    -
+    - Enero
+    - Febrero
+    - Marcha
+    - Abril
+    - Mayo
+    - Junio
+    - Julio
+    - Agosto
+    - September
+    - Octubre
+    - Noviembre
+    - Diciembre
+    order:
+    - :día
+    - :mes
+    - :año
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente 1 hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente 1 mes
+        other: aproximadamente %{count} meses
+      about_x_years:
+        one: aproximadamente 1 año
+        other: aproximadamente %{count} años
+      almost_x_years:
+        one: casi 1 año
+        other: casi %{count} años
+      half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de un minuto
+        other: menos que %{count} minutos
+      less_than_x_seconds:
+        one: menos de un segundo
+        other: menos que %{count} segundos
+      over_x_years:
+        one: más de 1 año
+        other: más que %{count} años
+      x_days:
+        one: 1 día
+        other: "%{count} días"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mes
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+      x_years:
+        one: 1 año
+        other: "%{count} años"
+    prompts:
+      day: Día
+      hour: Hora
+      minute: Minuto
+      month: Mes
+      second: Segundo
+      year: Año
+  defaults:
+    admin: Admin
+    approved_success: Aprobado con éxito
+    binary_strategy: Estrategia Binaria
+    binary_tree: Árbol binario
+    bonus_entries: Historial de bonos
+    careers: Carrera 
+    categories: Categorías
+    completed: Pagado
+    expired: Pago vencido
+    confirm_removal: Confirmar eliminación
+    credits_debits: Créditos y Débitos
+    destroying_error: Error al eliminar
+    destroying_success: Eliminación exitosa
+    error: Error
+    errors:
+      career_required: Carrera requerida
+      different_sponsor: Patrocinador diferente
+      no_funds: No tienes fondos suficientes en tu saldo
+      not_unique: No es unico
+      invalid_deposit_value: El valor del depósito debe ser mayor o igual al último
+      withdrawal_pending: Ya hay una solicitud de retiro pendiente o en espera
+      withdrawal_invalid_time: Los retiros están bloqueados después de las 8:00 p.m. los viernes y antes de las 8:00 p.m. los domingos, hora del meridiano de Greenwich.
+      user_not_found: Usuario no encontrado
+      user_not_found_or_inactive: Usuario no encontrado o inactivo
+      coinpayments: 'Error al crear transacción: %{error}.'
+      payment_gateway_transaction: 'Error al crear transacción de pago: %{error}.'
+      duplicated_free_product: Producto GRATIS ya comprado
+    financial: Financiero
+    financial_entries: Historia Financiera
+    manage_withdrawals: Administrar retiros
+    my_orders: Mis pedidos
+    network: Red
+    new_transfer: Solicitar Transferencia
+    new_withdraw: Solicitar Retiro
+    order_placed: Pedido realizado
+    orders: Pedidos
+    post: Entregar
+    put: Actualizar
+    processing: Procesando
+    pending_payment: Pago pendiente
+    products: Productos
+    pv_activity_history: PV General
+    pv_history: PV Historia
+    pv_histories: PV Binario
+    pv_binary_history: PV Binario
+    saving_error: Error al guardar
+    saving_success: Éxito en el ahorro
+    search: Búsqueda
+    settings: Ajustes
+    shop: Tienda
+    success: Éxito
+    users: Usuarios
+    withdrawal_fee: Cargo por retiro
+    withdrawals: Historial de retiros
+    accumulated_pva: PV Avance de título
+    admin_accumulated_pva: PVs Title Advancement
+    pv_activity_histories: General PVG
+    pv_admin_histories: PVs Binario
+    generation_scores: Generaciones
+    career_histories: Historia de Carreras
+    documents_validation: Documentos aprobados
+    my_vouchers: Centro de vales
+    pay: Pagar
+    new_product_setup: Nueva instalación
+    vehicles: Vehículos
+    my_vehicles: Mis vehículos
+    upgrades: Actualizaciones
+    scores: Puntuaciones
+    score: Puntaje
+    unilevel: Contratos de bonificación
+    binary: Puntos binarios
+    point_qualifications: Calificaciones de puntos
+    unilevel_binary: Reporte
+    financial_transactions: Historia Financiera
+    wrong_master_password: Contraseña maestra incorrecta
+    details: Detalles
+    total_at: "Total en %{digital_currency}"
+    order_do_not_paid: "Pedido sin pagar. Fondos insuficientes: %{available_balance}."
+    started: 'Empezado'
+    paid: 'Pagado'
+    support: Apoyo
+    contract_link_html: Contrato de consultor de ventas
+    accept_contract_html: "Acepto el %{link}"
+    cant_buy_product: No puede comprar un paquete de membresía con una puntuación igual o inferior.
+    approve_order_without_bonification: Aprobar pedido sin bonificación
+    source_leg_left: Pierna izquierda
+    source_leg_right: Pierna derecha
+    lineage: Linaje
+    sim_card_control: Control de CHIP 
+    add_sim_cards: Agregar CHIPs
+    processed_at: Fecha de procesamiento
+    sim_card_add: Agregar CHIPs
+    sim_cards_added: CHIPS Agregado
+    sim_cards_created: CHIPS agregado exitosamente.
+    sim_card_not_stoke: CHIP no está en stock.
+    sim_card_threshold_reached: "Límite de fichas alcanzado: %{count}."
+    sim_card_transfer: Transferir CHIPs
+    user_sim_cards: Usuario CHIPS
+    sim_card_inactive_user: El usuario inactivo no puede recibir CHIPs
+    sim_card_unavailable_to_transfer: "CHIP no registrados o ya transferidos %{iccids}"
+    user_sim_card_report: Informe de CHIP
+    sim_card_transfers: Transferencias CHIP
+    cellphone_reloads: Rellenar
+    new_cellphone_reload: Nueva recarga
+    financial_reports: Informe financiero
+    activation: "%{product_value} - Activación"
+    reloads_csv_filename: "Recargas %{datetime}.csv"
+    lineage_scores: Deformación
+    fiscal_document_warning: Genere una factura del monto bruto; de lo contrario, se rechazará la solicitud de retiro.
+    fiscal_document_company: La nota debe ser emitida para los siguientes %{company_id}
+    irpf: Impuestos personales (IRPF)
+    inss: Instituto Nacional de la Seguridad Social (INSS)
+    qualification_date: Fecha de calificación
+    user_versions: Informe de actividades
+    no_data: No hay registros
+    indication_link: Enlace de indicación
+    filters: Filtros
+    my_orders: Mis pedidos
+    send_email: Envíanos un correo electrónico
+    copyright: 'Reservados todos los derechos %{company_name}'
+    score_active: Activo
+    score_expired: Caducado
+    pay_with_voucher: Paga con Vale
+    unauthenticate_master_password: Contraseña maestra no autenticada
+    congratulations: Felicidades!
+    daily_task_successfull: Su tarea diaria ha sido completada con éxito.
+    financial_reports: Reportes financieros
+    balance_transferences: Transferencias de Saldo
+    financial_transactions_csv: Transacciones financieras - %{datetime}
+    bonus_contracts_csv: Contratos de bonificación - %{datetime}
+    withdrawal_fee_greater: Retirar más de %{amount}
+    withdrawal_fee_less: Retirar menos o igual a %{amount}
+    contract_active: Activo
+    contract_expired: Caducado
+    view_publicity: Ver publicidad
+    leadership_career: Título de liderazgo
+    net: Net
+    my_indications: Mis Indicaciones
+    balance_transference: Transferencia de Saldo
+    financial_histories: Historia Financiera
+    withdrawal_report: Informe de retiro
+    support: Apoyo
+    order_payments: Orden de pago
+    bonus_contracts: Contratos de bonificación
+    banners_clicked_today: Número de banners en los que se ha hecho clic hoy
+    daily_tasks: Tareas diarias
+    tickets: Entradas
+    ticket: Boleto
+    user: Usuario
+    by: Por
+    financial: Financiero
+    network: Red
+    bonus_withdrawal: Retiro de bonificación
+    others: Otros
+    attendant: Asistente
+    no_data: Sin datos
+    loading: CARGANDO
+    generation_count: 'Hasta %{generation_count}th Generacion'
+    earnings_until: 'Hasta %{amount}'
+    withdrawal_minimum: Retirar valor mínimo
+    free_product: ¡Producto comprado con éxito!
+  errors:
+    cant_access_binary_node: Usuario no encontrado en su red binaria
+    messages:
+      invalid_password: Contraseña invalida
+      not_enough_balance: Fondos insuficientes
+      not_found: Extraviado
+      wrong_master_pw: Contraseña maestra incorrecta
+      accepted: Debe aceptar los términos antes de continuar
+      blank: No puede estar en blanco
+      confirmation: No es igual a %{attribute}
+      empty: No puede estar vacío
+      equal_to: Debe ser igual a %{count}
+      even: Debe ser incluso
+      exclusion: No disponible
+      greater_than: Debe ser mayor que %{count}
+      greater_than_or_equal_to: Debe ser mayor o igual que %{count}
+      inclusion: No está incluido en la lista
+      invalid: No es valido
+      less_than: Debe ser menor que %{count}
+      less_than_or_equal_to: Debe ser menor o igual que %{count}
+      model_invalid: 'Validación fallida: %{errors}'
+      not_a_number: No es un numero
+      not_an_integer: No es un numero entero
+      odd: Debe ser extraño
+      other_than: Debe ser diferente de %{count}
+      present: Debe estar en blanco
+      required: Se requiere
+      taken: Ya se esta usando
+      order_not_found: Pedido no encontrado
+      user_insufficient_balance: Saldo de usuario insuficiente
+      transfer_value_minimum: "Valor mínimo de transferencia: %{value}."
+      invalid_order_quantity: El pago con saldo solo se puede realizar para el pedido del primer usuario.
+      user_not_direct_referral: El usuario del pedido no es su referencia directa
+      order_amount_invalid: El monto del pedido es menor o igual al pedido del contrato de bonificación actual
+      invalid_type_to_balance_transference: Solo usuarios %{user_types} puede transferir saldo.
+      daily_task: 'Haga clic al menos %{quantity} Banners para desbloquear el backoffice'
+      your_tickets_were_answered: Sus boletos fueron respondidos.
+      not_enough_balance: Saldo insuficiente
+      too_long:
+        one: "Es demasiado larga (máximo: 1 carácter)"
+        other: "Es demasiado larga (máximo: %{count} caracteres)"
+      too_short:
+        one: "Es demasiado corta (mínimo: 1 carácter)"
+        other: "Es demasiado corta (mínimo: %{count} caracteres)"
+      wrong_length:
+        one: No tiene el tamaño esperado (1 carácter)
+        other: No tiene el tamaño esperado (%{count} caracteres)
+    template:
+      body: 'Por favor revise el siguiente campo(s) :'
+      header:
+        one: 'No se pudo grabar %{model}: 1 error'
+        other: 'No se pudo grabar %{model}: %{count} errores'
+  filters: Filtros
+  helpers:
+    select:
+      prompt: Por favor seleccione
+    submit:
+      create: Crear %{model}
+      submit: Ahorrar %{model}
+      update: Actualizar %{model}
+      new: Nuevo %{model}
+      add: Agregar %{model}
+      sim_card_transfer: Transferir CHIP(s)
+      checkout: Generar orden
+      send_expense: Enviar gasto
+      pay: Pagar
+      transfer: Transferir
+      batch_actions: Acciones por lotes
+      approve: Aprobar
+      buy: Comprar
+      approve: Aprobar
+      processing: Procesando
+    confirm:
+      approve_order_without_bonification: ¿Quiere aprobar este pedido sin bonificación?
+    from: Desde
+    util: Hasta
+    approve_support_point: Aprobar Punto de Soporte
+    export_to_csv: Exportar a CSV
+    save_with_disable: "<i class='fa fa-spinner fa-spin'></i> Ahorro..."
+    expire_at_from: Válido desde
+    expire_at_until: Válido hasta
+    no_data: No hay registros
+    use_voucher: Usar cupón
+    in: en
+  left: Izquierda
+  left_strategy: Siempre a la izquierda
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u %n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: USD
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: mil millones
+            other: miles de millones
+          million:
+            one: millón
+            other: millones
+          quadrillion:
+            one: cuatrillón
+            other: cuatrillones
+          thousand: mil
+          trillion:
+            one: trillón
+            other: trillones
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
+  registrations:
+    user:
+      edit:
+        title: Editar cuenta
+  right: Derecha
+  right_strategy: Siempre derecha
+  rotateZ: Rotatez
+  scale: Escala
+  scaleX: Escalax
+  scaleY: Escalay
+  search: Búsqueda
+  skewX: Skewx
+  skewY: Skewy
+  support:
+    array:
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      long: "%B %d of %Y, %H:%M"
+      short: "%B %d, %H:%M"
+      small: "%Y/%m/%d"
+    pm: ''
+  translateX: Traducirx
+  translateY: Traduciry
+  users:
+    digital_wallets:
+      create:
+        same_digital_wallet: '%{digital_wallet} ya es la dirección de tu billetera'
+        success: 'Se realizó una solicitud de cambio de dirección de billetera. Revisa tu correo electrónico para confirmar el cambio'
+      edit:
+        title: 'Solicitud de cambio de monedero digital'
+        waiting_digital_wallet_confirmation_html: 'Ha solicitado una transferencia desde su billetera de ganancias (<span class = "text-info">%{current_wallet} </span>) a la billetera <span class = "text-danger">%{digital_wallet} </span>'
+        confirm_digital_wallet_change: 'Si realmente desea cambiar la dirección de su billetera, haga clic en'
+        confirm_digital_wallet_change_question: '¿Estás seguro de que quieres cambiar tu digital_wallet?'
+        refuse_digital_wallet_change: 'Si no solicitó o no desea cambiar la dirección de su billetera, haga clic en'
+        refuse_digital_wallet_change_question: '¿Está seguro de que desea rechazar el cambio de billetera digital?'
+        digital_wallets_list: 'Historial de la billetera digital'
+        unauthorized_action: 'Acción no válida'
+      update:
+        success: Acción realizada con éxito
+    sessions:
+      new:
+        login: Iniciar sesión
+    emails:
+      create:
+        same_email: '%{email} ya es tu dirección de correo electrónico'
+        success: 'Se realizó una solicitud de cambio de correo electrónico. Verifique su correo electrónico antiguo/actual para confirmar el cambio'
+      edit:
+        title: 'Solicitud de cambio de correo electrónico'
+        waiting_email_confirmation_html: 'Ha solicitado cambiar su correo electrónico actual de (<span class = "text-info">%{current_email} </span>) a: <span class = "text-danger">%{email} </span>'
+        confirm_email_change: 'Confirme o cancele esta operación haciendo clic en'
+        confirm_email_change_question: '¿Estás seguro de que quieres cambiar tu correo electrónico?'
+        refuse_email_change: 'Si no solicitó o no desea cambiar su correo electrónico, haga clic en'
+        refuse_email_change_question: '¿Está seguro de que desea rechazar el cambio de correo electrónico?'
+        emails_list: 'Historial de correos electrónicos'
+        unauthorized_action: 'Acción no válida'
+      update:
+        success: Acción realizada con éxito
+    shared:
+      links:
+        didnt_receive_instructions: ¿No recibió las instrucciones de confirmación?
+        forgot_password: ¿Olvidaste tu contraseña?
+        login: Acceso
+        sign_up: Inscribirse
+        unlock_instructions: ¿No recibiste las instrucciones de desbloqueo?
+    registrations:
+      edit:
+        basic_info: Información básica
+        address: Habla a
+        leave_blank: Déjelo en blanco si no desea cambiar su contraseña
+        update: Actualizar cuenta
+      new:
+        sign_up: Inscribirse
+        title: Nuevo usuario
+        next: Próximo
+        previous: Previo
+    passwords:
+      new:
+        title: ¿Se te olvidó tu contraseña?
+        get_password_reset_link: Obtener enlace de restablecimiento de contraseña
+  view_all: Ver todo
+  views:
+    backoffice:
+      admin:
+        orders:
+          index:
+            no_data: No hay registros
+            title: Título
+        products:
+          basic_info: Información básica
+          bonus: Beneficio
+          dimensions: Dimensiones
+          parametrization: Parametrización
+          shippings: Envíos
+          edit:
+            subtitle: Editar detalles del producto
+            title: Editar
+          index:
+            new_product: Nuevo producto
+            no_data: Sin productos registrados
+            title: Lista de productos
+          new:
+            subtitle: Crear un nuevo producto
+            title: Nuevo producto
+        credits_debits:
+          index:
+            transfer_to: Transferir a
+        tickets:
+          index:
+            new_ticket: Nueva entrada
+            return_to_tickets: Volver a Entradas
+            no_data: Sin datos
+            status:
+              waiting: ESPERA
+              answered: CONTESTADA
+              finished: TERMINADA
+          new:
+            title: Nueva entrada
+          show:
+            ticket_id: Entrada ID
+            subject: Sujeto
+            interaction:
+              new: Enviar interacción
+      careers:
+        edit:
+          subtitle: Editar carrera
+          title: Editar Carrera
+        index:
+          new_career: Nueva carrera
+          no_data: Sin datos
+          subtitle: Subtitular
+          title: Carreras
+        new:
+          subtitle: Nueva carrera
+          title: Nueva carrera
+      cart:
+        show:
+          continue_shopping: Seguir comprando
+          no_data: Carro vacía
+          place_order: Cerrar compra
+          title: Carro
+      categories:
+        edit:
+          subtitle: Editar categoria
+          title: Editar categoria
+        index:
+          new_category: Nueva categoría
+          no_data: No hay categorías registradas
+          subtitle: Subtitular
+          title: Lista de Categorías
+        new:
+          subtitle: Subtitular
+          title: Título
+      credits_debits:
+        index:
+          title: Créditos y Débitos
+      orders:
+        index:
+          no_data: No se realizaron compras
+          title: Mis pedidos
+        show:
+          title: Título
+      products:
+        index:
+          details: Detalles
+          title: 'Tienda %{company_name}'
+        show:
+          buy: Comprar
+          description: Descripción
+          specifications: Especificaciones
+      topbar:
+        edit_account: Editar cuenta
+        edit_bank_account: Billetera digital
+        documents: Documentos
+        subscriptions: Suscripciones
+        logout: Cerrar sesión
+      tickets:
+        index:
+          new_ticket: Nueva entrada
+          return_to_tickets: Volver a Entradas
+          no_data: Sin datos
+          status:
+            waiting: ESPERA
+            answered: CONTESTADA
+            finished: TERMINADA
+        new:
+          title: Nueva entrada
+        show:
+          ticket_id: Entrada ID
+          subject: Sujeto
+          interaction:
+            new: Enviar interacción
+    dashboard:
+      admin:
+        active_products: Productos activos
+        subtitle: Subtitular
+        title: Título
+        today_orders: Pedidos de hoy
+        today_deposits: Los depositos de hoy
+        total_orders: Pedidos totales
+        total_deposits: Depósitos totales
+        total_users: Total de usuarios
+      client:
+        subtitle: Subtitular
+        title: Título
+    pagination:
+      first: Primero
+      last: Último
+      next: Próximo
+      previous: Previo
+  pending: Pendiente
+  approved: Aprobado
+  waiting: Espera
+  answered: Respondido
+  refused: Rechazado
+  in_analysis: En revisión
+  finished: Terminado
+  account_false: Cuenta no verificada
+  account_true: Cuenta verificada
+  pf: Persona física
+  pj: Persona legal
+  male: Masculino
+  female: Mujer
+  single: Soltero
+  married: Casado
+  widowed: Viudo
+  divorced: Divorciado
+  direct_indication_bonus: Bono de Indicación Directa
+  direct_indication_bonus_in_percentage: Bono de Indicación Directa en Porcentaje
+  indirect_bonus: Bono de Indicación Indirecta
+  executive_sale_bonus: Bono de venta directa
+  binary_bonus: Bono binario
+  reverse_binary_bonus: Reversión de bonificación binaria
+  flex_bonus: Bono flexible
+  activity_bonus: Bono de actividad
+  reverse_bonus: Contracargo de bonificación
+  direct_captation_bonus: Bono de financiación directa
+  indirect_captation_bonus: Bonos de financiación indirecta
+  participation_bonus: Bono de participación
+  pool_leadership_bonus: Liderazgo de grupo
+  bonus_chargeback:
+  credit_by_admin: Crédito administrativo
+  debit_by_admin: Débito administrativo
+  fee: Tasa de administración
+  withdrawal_fee: Tasa de retiro / Impuesto(s)
+  product_return: Devolución de producto
+  tax: Impuesto
+  transfer: Transferir
+  withdrawal: Retirar
+  save: Ahorrar
+  active: Activo
+  inactive: Inactivo
+  qualified: Calificado
+  unqualified: Descalificado
+  shop: Tienda
+  signup: Inscribirse
+  login: Acceso
+  no_data: No hay entrada
+  all: Todo
+  affiliate: Afiliado
+  executive: Ejecutivo
+  bronze: Bronce
+  silver: Plata
+  gold: Oro
+  ruby: Rubí
+  emerald: Esmeralda
+  diamond: Diamante
+  white_diamond: Diamante Blanco
+  blue_diamond: Diamante Azul
+  black_diamond: Diamante Negro
+  chairman: Presidente
+  chairman_two_star: Presidente dos estrellas
+  chairman_three_star: Chairman Three Star
+  pending_verification: Verificación pendiente
+  verified: Verificado
+  refused_verification: Rechazado
+  left_count: Cantidad restante
+  right_count: Cantidad correcta
+  invoice: Factura
+  cart: Carro
+  pending_payment: Pendiente
+  completed: Terminado
+  expired: Caducado
+  past_due: Caducado
+  upgrade: Ascender de categoría
+  ancore: FuturoPRO
+  up_to_10: Hasta 1.0
+  from_10_to_15: De 1.0 a 1.5
+  from_15_to_30: De 1.5 a 3.0
+  from_30: Desde 3.0
+  cargo: Carga
+  manual: Manual
+  automatic: Automático
+  national: Nacional
+  imported_direct: Importación directa
+  imported_internal: Importación Doméstica
+  national_import: Importado Nacional
+  tracker: FuturoSAT
+  credit: Crédito
+  debit: Débito
+  "cierto": 'Sí'
+  "falso": 'No'
+  there_are_adhesion_product: El carrito ya tiene un producto tipo membresía
+  cant_add_produt_to_cart: No se puede agregar el producto al carrito
+  product_is_not_active: Producto inactivo
+  more_details: Más detalles
+  datagrid:
+    form:
+      search: Búsqueda
+      reset: Reiniciar
+    table:
+      order:
+        asc: ASC
+        desc: DESC
+  binary_qualified: 'Cualificado binario'
+  invalid_password: 'Contraseña invalida'
+  confirmation_warning: 'Necesitamos su contraseña actual para confirmar su solicitud'
+  success_withdrawal: 'Su solicitud de retiro de %{value} fue procesado con éxito.'
+  rejected_withdrawal: 'Su retiro fue denegado porque detectamos inconsistencias en los datos proporcionados. Póngase en contacto inmediatamente con nuestro equipo de soporte a través del correo electrónico: %{support_email}
+  También puede volver a intentar esta operación introduciendo los datos correctos.'
+  canceled_withdrawal: 'Su retiro por la cantidad de %{value} a la billetera digital %{wallet} fue cancelado como usted desea. Para obtener más información, póngase en contacto con nuestro equipo de soporte a través del correo electrónico %{support_email}'
+  refuse_withdraw: 'Si no reconoce esta solicitud, haga clic en'
+  confirm_withdraw: 'Si hiciste esta solicitud haz clic'
+  can_confirm_withdraw: 'Confirma o cancela tu solicitud a través de nuestra web'
+  waiting_withdrawal_request: 'Acabas de hacer una solicitud de retiro (%{withdrawal}) por %{value} en la billetera digital: %{wallet}.'
+  waiting_withdrawal: 'Su solicitud de retiro se está procesando y estará disponible hasta un día hábil. <br>
+  Cantidad bruta: %{value} <br>
+  Cantidad de red: %{net_value} <br>
+  Solicitud: %{hashid}'
+  withdrawals_history: 'Tu historial de retiros'
+  here: 'aquí'
+  request_already_processed: 'Solicitud ya procesada'
+  close: 'Cerca'
+  digital_wallet: 'Billetera digital'
+  id: 'ID'
+  hello: 'Hola'
+  dear_associate: 'Querido asociado'
+  effected: 'efectuado'
+  account_status: 'Estado de la cuenta'
+  datae: 'Fecha'
+  career: 'Carrera'
+  next: 'Próximo'
+  course: 'Curso'
+  last_qualifications: 'Últimas Calificaciones'
+  last_posts: 'Últimos mensajes'
+  download_support_material: 'Descargar material de apoyo'
+  business_presentation: 'Presentación de negocios'
+  adhesion_contract: 'Contrato de adhesión'
+  actual_user_password_required: 'Introduce tu contraseña para confirmar los cambios'
+  current_user_password: 'Contraseña de usuario actual (verificación de autenticidad de soporte)'
+  current_password: 'Contraseña actual'
+  password_confirmation_text: 'Necesitamos su contraseña actual para confirmar sus cambios'
+  new_password: 'Nueva contraseña'
+  new_password_confirmation: 'Nueva confirmación de contraseña'
+  email: 'Correo electrónico'
+  yep: 'Sí'
+  nope: 'No'
+  new: 'Nuevo'
+  back: 'Volver'
+  see_all: 'Ver todo'
+  edit: 'Editar'
+  download: 'Descargar'
+  inactive: 'Inactivo'
+  corrupted_attachment: 'Adjunto corrupto'
+  media_file_corrupted_tooltip: 'Este archivo adjunto se ha dañado. Solicite soporte'
+  media_file_corrupted_tooltip_support: 'Este archivo adjunto se ha dañado. Edite y vuelva a enviar el archivo, por favor'
+  media_file_inactive_tooltip: 'Este archivo adjunto ha sido deshabilitado y se mostrará solo para administradores'
+  digital_wallet_change_solicitaion: 'Solicitud de cambio de billetera digital'
+  digital_wallet_changed_info: 'Cambio de billetera digital completado'
+  new_digital_wallet: 'Cambiar la dirección de la billetera digital'
+  can_confirm_digital_wallet_change: 'Confirma o cancela tu solicitud a través de nuestra web'
+  waiting_digital_wallet_reativation: 'Usted solicitó cambiar su billetera a %{digital_wallet}'
+  digital_wallet_activated: 'Su solicitud de cambio de billetera de ganancias a %{digital_wallet} fue procesado con éxito. Cada billetera ya configurada está disponible para su uso.'
+  digital_wallet_refused: 'Se negó a cambiar su billetera digital a la cuenta %{digital_wallet}'
+  digital_wallet_change_solicitation: 'Solicitud de cambio de Billetera Digital'
+  digital_wallet_changed_info: 'Cambio de billetera digital completado'
+  digital_wallet_refuse_info: 'Cambio de billetera digital rechazado'
+  digital_wallet_reactive_info: 'Solicitud de reactivación de billetera digital'
+  email_change_solicitaion: 'Solicitud de cambio de correo electrónico'
+  email_changed_info: 'Cambio de correo electrónico completado'
+  new_email: 'Cambiar dirección de correo electrónico'
+  can_confirm_email_change: 'Confirma o cancela tu solicitud a través de nuestra web'
+  waiting_email_reativation: 'Usted solicitó cambiar su correo electrónico a %{email}'
+  email_activated: 'Nos ponemos en contacto contigo para notificarte que tu correo electrónico fue modificado a %{email}. Qué correo electrónico usar como su correo electrónico estándar se deja a su discreción.'
+  email_refused: 'Su solicitud para modificar su correo electrónico a %{email} fue rechazado. Póngase en contacto con nuestro equipo de soporte a través del correo electrónico: %{support_email}'
+  email_change_solicitation: 'Solicitud de cambio de correo electrónico'
+  email_changed_info: 'Cambio de correo electrónico completado'
+  email_refuse_info: 'Cambio de correo electrónico rechazado'
+  email_reactive_info: 'Solicitud de reactivación de correo electrónico'
+  make_default: 'Hacer por defecto'
+  account_code: 'Código de billetera'
+  balance: Saldo
+  available_balance: Saldo
+  blocked_balance: Saldo bloqueado
+  binary_affiliates_count: Total de afiliados en el árbol binario
+  binary_affiliates_left_count: Árbol binario izquierdo
+  binary_affiliates_right_count: Árbol binario derecho
+  total_bonus: Bono Total
+  matching_bonus: Equilibrio
+  pool_trade_bonus: Efectivo del fondo común
+  residual_bonus: Residual
+  direct_commission_bonus: 'Comience rápido'
+  account_earnings_limit: Límite de ganancias de la cuenta
+  receivable_amount: Importe a cobrar
+  received_amount: Cantidad recibida
+  unilevel_affiliates_count: Total de afiliados en el árbol uninivel
+  unilevel_affiliates_actives_count: Árbol uninivel activo
+  unilevel_affiliates_inactives_count: Árbol uninivel inactivo
+  refresh: 'Actualizar'
+  chargebacks: 'Contracargos'
+  gross_bonus: 'Bono bruto'
+  binary_scores: 'Calificaciones de puntos'
+  left_binary_score: 'Pierna izquierda'
+  right_binary_score: 'Pierna derecha'
+  admin: 'Administrador'
+  admin_nb: Administrador sin bonificación
+  voucher: 'Vale'
+  btc: 'BTC'
+  total_payments: 'Pagos totales'
+  total_withdrawals: 'Retiros totales'
+  waiting: 'Espera'
+  canceled: 'Cancelado'
+  binary: 'Binario'
+  orders_history: 'Historial de pedidos'
+  deposits_history: 'Historial de depósitos'
+  users_history: 'Historial de usuarios'
+  last_orders: 'Últimos pedidos'
+  last_deposits: 'Últimos depósitos'
+  user: 'Usuario'
+  order_date: 'Fecha de orden'
+  deposit_date: 'Fecha de depósito'
+  order_number: 'Número de pedido'
+  amount: 'Monto'
+  make_deposit_order: 'Hacer solicitud de depósito'
+  new_deposit_order: 'Nueva solicitud de depósito'
+  value: 'Valor'
+  deposit_list: 'Lista de depósitos'
+  new_deposit: 'Nuevo deposito'
+  deposits: 'Depósitos'
+  edit_deposit: 'Editar solicitud de depósito'
+  min_deposit: 'El depósito debe ser mayor o igual a %{limit}'
+  max_deposit: 'El depósito debe ser menor o igual a %{limit}'
+  deposit_info: 'Depósitos mínimos %{min_limit}'
+  support_material: 'Material de apoyo'
+  sponsor_link: 'Enlace de patrocinador'
+  copied_sponsor_link: 'Enlace de patrocinador copiado'
+  copied_sponsor_link_message: 'Su enlace de patrocinador se copió con éxito'
+  pool_leadership: 'Cantidad de liderazgo del fondo'
+  passport: Pasaporte
+  gender: 'Género'
+  birthdate: 'Fecha de nacimiento'
+  registration_type: 'Tipo de registro'
+  phone: 'Teléfono'
+  pool_tranding: 'Efectivo del fondo de porcentaje'
+  username: Nombre de usuario
+  deposit: 'Depositar'
+  landing_page_title: '¿QUÉ HAS HECHO POR TU FUTURO?'
+  landing_page_subtitle: Sin complicaciones. Te ayudamos a crearlo.
+  watch_video: 'Ver video'
+  register_thanks: GRACIAS POR REGISTRARSE CONMIGO
+  jorney_together: ESTARÉ A SU DISPOSICIÓN EN ESTE VIAJE
+  welcome_message_landing_page: 'BIENVENIDO A %{company_name}'
+  sponsored_by: Estás siendo indicado por
+  location: 'Ubicación'
+  company_in_numbers: '%{company_name} EN NÚMEROS'
+  custody_money: MILLONES DE USD EN CUSTODIA
+  satisfied_customers: CLIENTES SATISFECHOS
+  total_customers: CLIENTES TOTALES
+  latest_registrations: Últimos registros
+  back_account: "Volver a la cuenta"
+  back_to_store: 'De vuelta a la tienda'
+  enter_as_user: 'Iniciar sesión como usuario'
+  edit_user: 'Editar usuario'
+  see_profile: 'Ver el perfil'
+  financial_history: Historial financiero
+  additional_columns: Columnas adicionales
+  show: Mostrar
+  want_approve_bill: ¿Quieres aprobar esta factura?
+  details: Detalles
+  order_marked_as_billed: 'Pedido marcado como facturado'
+  send_documents: 'Enviar documentos'
+  documents: Documentos
+  necessary_documents_list: Lista de documentos requeridos para aprobar su %{company} cuenta
+  account_situation: Situación de la cuenta
+  sending: "Enviando..."
+  documents_successful_updated: 'Documentos actualizados con éxito'
+  documents_not_updated: 'No se pueden cargar documentos'
+  admin_or_entrepreneur_necessary: 'Necesitas ser administrador o emprendedor'
+  change_password: Cambia tu contraseña
+  change_my_password: Cambiar mi contraseña
+  min_password_length: '%{min} mínimo de caracteres'
+  reject_deleting_photos: 'Rechazar la eliminación de fotos'
+  reject_without_delete_photos: 'Rechazar sin borrar fotos'
+  reason: 'Razón'
+  approve: 'Aprobar'
+  billed: 'Facturado'
+  position: Posición
+  entry_date: Fecha de entrada
+  name: Nombre
+  username: Nombre de usuario
+  documents_approval: Aprobación de Documentos
+  status: Estado
+  support_director_footer: 'Tuyo sinceramente, <br>
+                           Departamento de soporte <br>
+                           %{company_name}'
+  financial_department_footer: 'Tuyo sinceramente, <br>
+                                Departamento financiero <br>
+                                %{company_name}'
+  user_edit_form: Edición de registro de usuario
+  must_be_admin_or_financial: 'Necesitas ser administrador o financiero'
+  there_are_loan_contract_active: Hay contrato de préstamo activo para el usuario
+  direct_referral: Indicación Directa
+  indirect_referral: Indicación Indirecta
+  yield: Publicidad
+  register_date: Fecha de registro
+  sponsor: Patrocinador
+  bill: Factura
+  bill_order: Pedido de facturas
+  checkout: Revisa
+  approve_without_bonification: Aprobar sin bonificación
+  payment_type: Método de pago
+  payment_types: Métodos de pago
+  buy_safe: Comprar seguro
+  actions: Acciones
+  hashid: 'Código'
+  task: Tarea
+  tasks: Tareas
+  my_team: Mi equipo
+  my_account: Mi cuenta
+  logout: Desconectarse
+  update_profile: Actualizar los datos de mi cuenta
+  password: Contraseña
+  remember_me: Recuérdame
+  password_confirmation: Confirmación de contraseña
+  profile_picture: Foto de perfil
+  select_country: Seleccione un país
+  update_login: Actualizar inicio de sesión
+  change_login: Cambiar su inicio de sesión
+  update_product: 'Actualizar producto'
+  are_you_sure: '¿Estás seguro?'
+  obligatory_main_photo: '* Foto principal'
+  confirm_delete_photo: '¿Estás seguro de que quieres eliminar esta foto?'
+  confirm_delete_description: '¿Está seguro de que desea eliminar esta descripción?'
+  share: Cuota
+  most_sold: Más vendido
+  withdrawal_report: Retiros
+  earnings_report: Ganancias
+  my_wallet: Mi billetera
+  my: Mi
+  community: Comunidad
+  total: Total
+  generation: Generacion
+  earnings_by_campaign: Ganancias por campaña
+  recurring_revenue: Ingresos recurrentes
+  search: Búsqueda
+  guest: Invitado
+  buy: Comprar
+  tasks_per_day: Día de la tarea Nº
+  tasks_history: Historial de tareas
+  available_tasks: Tareas disponibles
+  available_tasks_bonus: Bono de tareas disponibles
+  complete: Completo
+  available: Disponible
+  complete_dollar: 'Completo: $'
+  available_dollar: 'Disponible: $'
+  n_of_campaign: Nº de campañas
+  payment_method: Método de pago
+  pix: PRÓXIMAMENTE
+  filter: Filtrar
+  new_phone: Teléfono nuevo
+  withdrawal_value: Ingrese el monto del retiro
+  select_receive_form: Seleccione la forma de recibo
+  earnings_report: Ganancias
+  by: por
+  no_address_input: "La dirección del método de pago %{payment_type_address} no puede estar en blanco"
+  no_payment_method_selected: No se seleccionó ningún método de pago
+  mininum_withdrawal_value: Cantidad mínima de retiro
+  dashboard: Tablero de mandos
+  direct_referral_text: "Recibe 10% en todas las compras de paquetes Uniclass realizadas por tus indicaciones directas"
+  indirect_referral_text: "Gana bonos por indicaciones de tus amigos hasta la tercera generación - 2% 1% 1% 1%"
+  earnings_by_campaign_text: Realiza tus tareas y gana comisiones diariamente
+  recurring_revenue_text: Desarrolle ingresos recurrentes y gane bonos hasta la tercera generación de su red cada vez que realicen sus tareas - 15% 10% 5%
+  campaign: Campaña
+  create: 'Crear'
+  active_until: Activo hasta
+  purchased_product: Producto comprado
+  my_orders: Mis pedidos
+  mail_locked_text: Su cuenta ha sido bloqueada debido a un número excesivo de intentos fallidos de inicio de sesión
+  mail_locked_ins: "Haga clic en el enlace de abajo para desbloquear su cuenta:"
+  mail_unlock_account: Desbloquear mi cuenta
+  change_password_text: "Nos comunicamos con usted para notificarle que su contraseña ha sido cambiada."
+  eth: ETH
+  withdrawal_solicitation: Solicitud de Retiro
+  banners:Banners
+  banner_inactivation_message: ¿Tiene la intención de deshabilitar este banner?
+  success_inactivate_banner: El banner se deshabilitó con éxito.
+  success_create_banner: El banner fue creado con éxito.
+  success_update_banner: El banner se actualizó con éxito.
+  link: Enlace
+  configuration_inactivation_message: ¿Tiene la intención de deshabilitar esta configuración?
+  success_inactivate_configuration: La configuración fue deshabilitada con éxito
+  success_create_configuration: La configuración fue creada con éxito
+  success_update_configuration: La configuración se actualizó con éxito
+  configs: Configuraciones del sistema
+  company_name: Nombre de empresa
+  direct_nominees_list: Lista de nominados directos
+  products: Productos
+  active?: ¿Activo?
+  country: País
+  master_leader: Líder maestro
+  congratulations: Felicidades!!
+  account_ready_text: Tu cuenta está lista para ganar dólares todos los días.
+  almost_done: Casi termino!!
+  account_inactive_text: Activa tu cuenta para empezar a ganar dinero con ADmoney
+  active_account: Cuenta activa
+  validated_account: Cuenta validada
+  tasks_of_the_day: Tareas del dia
+  activate_your_account_now: Activa tu cuenta ahora
+  my_balance: 'Mi saldo es:'
+  minimum_required_for_withdrawal: 'Mínimo requerido para el retiro:'
+  you_already_have_a_balance_available_for_withdrawal: Ya tienes saldo disponible para retirar.
+  value_to_min_withdrawal_text: "Solo hay <strong> %{value_to_min_withdrawal} </strong> te queda para completar el mínimo de <strong> %{withdrawal_min_value} </strong> y haz tu retiro."
+  withdrawals_home_card_title: Realice retiros en BTC siempre que alcance su saldo disponible.
+  you_can_accelerate_your_earnings: Puedes acelerar tus ganancias
+  indicating_company_name_to_your_friends: Indicando %{company_name} a tus amigos.
+  earn_card_title: 'Gana un 10% en tus indicaciones directas y un 15%
+                    en sus ganancias de las tareas.'
+  copy_indication_card_text: 'Copie el enlace de su indicación en el botón lateral
+                              y envíelo a tantos amigos como sea posible.'
+  support_card_title: 'Si necesitas algo<br>
+                       nosotros estamos disponibles para ayudarte.'
+  just_send_us_a_message: Simplemente envíenos un mensaje.
+  confirm_instructions_text: 'Puede confirmar su cuenta de correo electrónico a través del siguiente enlace:'
+  confirm_account: 'Confirmar mi cuenta'
+  tickets_notify_email: Correo electrónico de notificación de entradas
+  notify_admin_email_text: El boleto a continuación acaba de ser solicitado.
+  subject: Sujeto
+  title: Título
+  body: Cuerpo
+  created_at: Creado en
+  ticket: Boleto
+  tickets: Boletos
+  order_expire_warning: Esta orden caducará en %{time}
+  request_number: Número de solicitud
+  package_value: Valor del paquete
+  account_activated: Cuenta activada
+  activate_your_account: Activa tu cuenta
+  validate_your_account: Valida tu cuenta
+  profile_updated_successfully: Perfil actualizado con éxito
+  password_updated_successfully: Contraseña actualizada exitosamente
+  edit_profile: Editar perfil
+  security: Seguridad
+  select_store: Selecciona la tienda
+  tasks_title_text: Donde quieres ver los productos para realizar las tareas
+  banner_stores: Banner de Tiendas
+  banner_store: Banner de Tienda
+  banner_store_inactivation_message: ¿Tiene la intención de deshabilitar esta tienda de banners?
+  success_inactivate_banner_store: La tienda de banners se deshabilitó con éxito.
+  success_create_banner_store: La tienda de banners se creó con éxito.
+  success_update_banner_store: La tienda de banners se actualizó con éxito.
+  premium: Premium
+  premium?: ¿Premium?
+  request_withdraw: Solicitar retiro
+  max_task_gains: ¿Ganancias máximas de tareas?
+  modal_email_confirmation_text: 'Hola. Te enviamos un email para que termines de validar tu cuenta. Por favor, haga clic en el enlace para completar el proceso.
+                                  Si nuestro correo ha ido a la casilla de SPAM, márcalo como de confianza. De esta manera, serás el primero en recibir noticias sobre nuestra plataforma.'
+  modal_email_confirmation_title: Correo de Confirmación Mandado
+  modal_already_send_email_confirmation_title: Ya se envió el correo electrónico de confirmación
+  modal_already_send_email_confirmation_text: 'Tu email de confirmación ya ha sido enviado, puedes enviar otro en %{time}'
+  direct_referral_bonus: Bono de indicación directa
+  indirect_referral_bonus: Bono de indicación indirecta
+  task_performed: Tarea realizada
+  recurring_bonus: Bono recurrente
+  master_leader_bonus: Bono de líder maestro
+  chargeback_by_inactivity: Contracargo por inactividad
+  chargeback_by_max_task_gains: Contracargo por ganancias máximas de tareas
+  approved_balance: Saldo aprobado
+  processing: 'Procesando'
+  export_only_wallets: Exportar solo billeteras

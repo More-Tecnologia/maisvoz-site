@@ -1,0 +1,154 @@
+.container-cart-courses {
+  width: 90%;
+  margin: auto;
+}
+
+.cart-courses__title {
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.cart-courses {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-courses__item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  padding: 30px 0;
+  justify-content: space-between;
+}
+
+.cart-courses__item__id__title {
+  font-size: 13px;
+  color: grey;
+}
+
+.cart-courses__item__id__number {
+  color: grey;
+  font-weight: bold;
+}
+
+
+.cart-courses__item__image img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-left: 10px;
+}
+
+.cart-courses__item__texts {
+  width: 30%;
+  margin-left: 10px;
+}
+
+.stars {
+  margin-left: 5px !important;
+}
+
+.container-reputation {
+  margin-top: 0 !important;
+}
+
+.cart-courses__item__text {
+  font-size: 8px;
+  font-weight: bold;
+}
+
+.cart-courses__item__text p{
+  margin: 0;
+}
+
+.cart-courses__item__value {
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 10px;
+  width: auto;
+}
+
+.cart-courses__item__delete {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.cart-courses__coupon {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-courses__coupon__input {
+  background: #ffffff;
+  box-shadow: 1px 4px 10px 1px rgba(207, 207, 207, 1);
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+  width: 72%;
+  padding: 0 10px;
+}
+
+.cart-courses__coupon__button {
+  background: linear-gradient(to right bottom, #57f502, #27ae00);
+  border: none;
+  color: white;
+  height: 40px;
+  width: 25%;
+  border-radius: 5px;
+}
+
+@media (min-width: 880px){
+  .cart-courses__item__text {
+    font-size: 16px;
+  }
+
+  .cart-courses__item__id__title {
+    font-size: 18px
+  }
+
+  .cart-courses__item__id__number {
+    font-size: 22px;
+  }
+
+  .cart-courses__item__image img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .reputation-value {
+    font-size: 22px !important;
+  }
+
+  .stars svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cart-courses__item__value {
+    font-size: 25px;
+  }
+
+  .cart-courses__item__delete svg{
+    width: 25px;
+    height: 25px;
+  }
+
+  .cart-courses__coupon {
+    justify-content: flex-end;
+  }
+
+  .cart-courses__coupon__input {
+    width: 25%;
+    margin-right: 10px;
+  }
+
+  .cart-courses__coupon__button {
+    width: 10%;
+  }
+}

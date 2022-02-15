@@ -10,7 +10,7 @@ module Financial
 
     def call
       return errors.add(:order, :still_in_cart) if order.cart?
-      return errors.add(:order, :already_approved) unless (order.pending_payment? || order.expired?)
+      return errors.add(:order, :already_approved) if !order.pending_payment?
       return order if compensate_order
       errors.add(:order, :invalid)
     end

@@ -7,10 +7,10 @@ body {
 }
 
 .main-box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .filter-courses {
@@ -56,9 +56,10 @@ body {
   justify-content: center;
   text-align: center;
 }
+
 .banner-img-courses__content-left p {
-font-size: 10px;
-text-align: left;
+  font-size: 10px;
+  text-align: left;
 }
 
 .banner-img-courses__content-left h1 {
@@ -191,7 +192,6 @@ text-align: left;
 
 .btn-buy-course:hover {
   background: linear-gradient(to bottom, #26ac00, #58f701);
-
 }
 
 @media (max-width: 500px) {
@@ -205,9 +205,11 @@ text-align: left;
     min-width: 45%;
     width: 46%;
   }
+
   .img-card-course {
     height: 200px;
   }
+
   .banner-img-courses {
     height: 250px;
   }
@@ -219,27 +221,30 @@ text-align: left;
     width: 30%;
     margin-top: 20px;
   }
+
   .img-card-course {
     height: 200px;
   }
 }
 
-@media (min-width: 1200px){
+@media (min-width: 1200px) {
   .container-online-courses {
     width: 90%;
     padding: 0;
   }
+
   .card-course {
     min-width: 22%;
     width: 22%;
     margin: 0;
   }
+
   .img-card-course {
     height: 200px;
   }
 }
 
-@media (min-width: 1500px){
+@media (min-width: 1500px) {
   .img-card-course {
     height: 250px;
   }
@@ -250,6 +255,7 @@ text-align: left;
     font-size: 17px;
     line-height: 1.5;
   }
+
   .banner-img-courses {
     height: 300px;
   }
@@ -262,27 +268,29 @@ text-align: left;
   .banner-img-courses__content-left p {
     font-size: 20px;
     text-align: left;
-}
+  }
 
-.banner-img-courses__content-left h1 {
+  .banner-img-courses__content-left h1 {
     font-size: 32px;
     line-height: 40px;
-}
+  }
 
-.store-banner {
-  width: 200px;
-  text-decoration: none;
-}
+  .store-banner {
+    width: 200px;
+    text-decoration: none;
+  }
 
-.store-banner p {
-  font-size: 15px;
-}
-.cards-courses {
-  overflow-x: inherit;
-  flex-wrap: wrap;
-}
-.card-courses {
-  min-width: 15%;
-  height: 200px;
-}
+  .store-banner p {
+    font-size: 15px;
+  }
+
+  .cards-courses {
+    overflow-x: inherit;
+    flex-wrap: wrap;
+  }
+
+  .card-courses {
+    min-width: 15%;
+    height: 200px;
+  }
 }

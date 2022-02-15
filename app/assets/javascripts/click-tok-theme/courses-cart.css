@@ -104,6 +104,14 @@
 }
 
 @media (min-width: 880px){
+  .top-new-courses span{
+    font-size: 16px
+  }
+
+  .cart-courses__title span{
+    font-size: 25px;
+  }
+
   .cart-courses__item__text {
     font-size: 16px;
   }
@@ -130,7 +138,7 @@
     height: 20px;
   }
 
-  .cart-courses__item__value {
+  .cart-courses__item__value span {
     font-size: 25px;
   }
 

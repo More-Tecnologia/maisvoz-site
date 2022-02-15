@@ -1777,3 +1777,7 @@ en:
   categorizations: Categories
   tag: Tag
   courses: Courses
+  language: Language
+  owner: Creator
+  approver: Supervisor
+  category: Category

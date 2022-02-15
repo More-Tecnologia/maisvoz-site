@@ -1774,3 +1774,10 @@ es:
   approved_balance: Saldo aprobado
   processing: 'Procesando'
   export_only_wallets: Exportar solo billeteras
+  categorizations: Categorias
+  tag: Etiqueta
+  courses: Cursos
+  language: Idioma
+  owner: Creador
+  approver: Supervisor
+  category: Categoría

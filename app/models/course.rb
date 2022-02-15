@@ -19,4 +19,7 @@ class Course < ApplicationRecord
   validates :language, presence: true
   validates :short_description, presence: true
   validates :title, presence: true
+
+  delegate :username, to: :owner, prefix: :owner
+  delegate :username, to: :approver_user, prefix: :approver
 end

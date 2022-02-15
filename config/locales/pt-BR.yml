@@ -1699,3 +1699,6 @@ pt-BR:
   approver: Supervisor
   category: Categoria
   title: Título
+  approved?: Aprovado?
+  active?: Ativo?
+  short_description: Descrição curta

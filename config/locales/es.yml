@@ -1781,3 +1781,6 @@ es:
   owner: Creador
   approver: Supervisor
   category: Categoría
+  approved?: ¿Bueno?
+  active?: Activo?
+  short_description: Breve descripción

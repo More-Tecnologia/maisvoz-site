@@ -793,7 +793,7 @@ en:
     binary_strategy: Estrategia Binaria
     binary_tree: Árbol binario
     bonus_entries: Historial de bonos
-    careers: Carrera 
+    careers: Carrera
     categories: Categorías
     completed: Pagado
     expired: Pago vencido
@@ -876,7 +876,7 @@ en:
     source_leg_left: Pierna izquierda
     source_leg_right: Pierna derecha
     lineage: Linaje
-    sim_card_control: Control de CHIP 
+    sim_card_control: Control de CHIP
     add_sim_cards: Agregar CHIPs
     processed_at: Fecha de procesamiento
     sim_card_add: Agregar CHIPs
@@ -1688,7 +1688,7 @@ en:
   change_password_text: "Nos comunicamos con usted para notificarle que su contraseña ha sido cambiada."
   eth: ETH
   withdrawal_solicitation: Solicitud de Retiro
-  banners:Banners
+  banners: Banners
   banner_inactivation_message: ¿Tiene la intención de deshabilitar este banner?
   success_inactivate_banner: El banner se deshabilitó con éxito.
   success_create_banner: El banner fue creado con éxito.

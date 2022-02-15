@@ -110,7 +110,7 @@ en:
           has_many: You cannot delete the record because there is a %{record} dependents
           has_one: You cannot delete the record because there is a %{record} dependent
         invalid: Invalid
-        bank_account_presence: Fill in your bank details before requesting a withdrawal.
+        bank_account_presence: Fill in your bank details before requesting a withdraw.
         order_total_value_multiple_of_five: Order value must be multiple of 5
   activemodel:
     errors:
@@ -325,7 +325,7 @@ en:
     payer: Payer
     order_payment_amount_cents: Paid Orders Total
     pool_amount_cents: Pool Total
-    withdrawal_amount_cents: Withdrawals Total
+    withdrawal_amount_cents: Withdraws Total
     pool_balance_amount_cents: Pool Balance
     profit_amount_cents: Total Profit
     profit_per_partner_amount_cents: Partner Profit
@@ -385,20 +385,20 @@ en:
         confirm_bill: Are you sure you want to bill this order?
     withdrawals:
       index:
-        no_data: No withdrawals made
-        title: My withdrawals
-        unverified_account: To request withdrawals your account needs to be verified.
+        no_data: No withdraws made
+        title: My withdraws
+        unverified_account: To request withdraws your account needs to be verified.
       new:
         available_balance: Available balance
-        title: New withdrawal
-        unverified_account: To request withdrawals your account needs to be verified.
+        title: New withdraw
+        unverified_account: To request withdraws your account needs to be verified.
       form:
         fees: Fees
         total: Total
       create:
-        success: 'Your withdrawl request has been received. Check your email to confirm your withdrawl request.'
+        success: 'Your withdraw request has been received. Check your email to confirm your withdraw request.'
       edit:
-        title: Confirm withdrawal
+        title: Confirm withdraw
         pending_withdraw: 'Are you sure you want to confirm the request?'
         cancel_withdraw: 'Are you sure you want to cancel the request?'
       update:
@@ -536,11 +536,11 @@ en:
           id_in: List ID
       withdrawals:
         index:
-          title: Manage Withdrawals
-          approve_withdraw: Do you really want to approve this withdrawal?
-          refuse_withdraw: Do you really want to reject this withdrawal?
+          title: Manage Withdraws
+          approve_withdraw: Do you really want to approve this withdraw?
+          refuse_withdraw: Do you really want to reject this withdraw?
           resend_withdrawal_confirmation_text: Do you really want to resend an email confirmation to this customer?
-          resend_withdrawal_confirmation: 'Resend withdrawal confirmation'
+          resend_withdrawal_confirmation: 'Resend withdraw confirmation'
           refuse: Refuse
         filters:
           status: Status
@@ -549,8 +549,8 @@ en:
         form:
           fees: Fees
         update:
-          success: Withdrawal Approved!
-          rejected: Withdrawal Rejected!
+          success: Withdraw Approved!
+          rejected: Withdraw Rejected!
       withdrawals_mailer:
         send_email_confirmation:
           success: 'A confirmation email was resent to the customer'
@@ -583,19 +583,19 @@ en:
           current_week_report: Current Week Financial Report
       withdrawal_approvals:
         new:
-          title: Withdrawals Approval
+          title: Withdraws Approval
         create:
-          success: Withdrawals approved successfull
+          success: Withdraws approved successfull
       shippings:
         new:
           title: New Shipping
           shippings: Shippings
       withdrawal_approvals:
         new:
-          success: Withdrawals approved successfull
+          success: Withdraws approved successfull
       withdrawal_processing:
         new:
-          success: Withdrawals processing successfull
+          success: Withdraws processing successfull
     support:
       users:
         index:
@@ -610,7 +610,7 @@ en:
     bank_accounts:
       edit:
         title: Digital Wallet
-        subtitle: This account will be used for withdrawals from the platform
+        subtitle: This account will be used for withdraws from the platform
         save: Save digital wallet
         ownership_info: We only accept digital wallets in your possession
       update:
@@ -808,8 +808,8 @@ en:
       no_funds: You don't have enough funds in your balance
       not_unique: It is not unique
       invalid_deposit_value: Deposit value must be more than or equal to last
-      withdrawal_pending: There is already a pending or waiting withdrawal request
-      withdrawal_invalid_time: Withdrawals are blocked after 8pm on Fridays and before 8pm on Sunday, Greenwich Mean Time.
+      withdrawal_pending: There is already a pending or waiting withdraw request
+      withdrawal_invalid_time: Withdraws are blocked after 8pm on Fridays and before 8pm on Sunday, Greenwich Mean Time.
       user_not_found: User not found
       user_not_found_or_inactive: User not found or inactive
       coinpayments: 'Error on create transaction: %{error}.'
@@ -817,11 +817,11 @@ en:
       duplicated_free_product: FREE product already purchased
     financial: Financial
     financial_entries: Financial History
-    manage_withdrawals: Manage Withdrawals
+    manage_withdrawals: Manage Withdraws
     my_orders: My orders
     network: Network
     new_transfer: Request Transfer
-    new_withdraw: Request Withdrawal
+    new_withdraw: Request Withdraw
     order_placed: Order placed
     orders: Orders
     post: Submit
@@ -840,8 +840,8 @@ en:
     shop: Shop
     success: Success
     users: Users
-    withdrawal_fee: Withdrawal Fee
-    withdrawals: Withdrawal History
+    withdrawal_fee: Withdraw Fee
+    withdrawals: Withdraw History
     accumulated_pva: PV Title Advance
     admin_accumulated_pva: PVs Title Advancement
     pv_activity_histories: General PVG
@@ -896,7 +896,7 @@ en:
     activation: "%{product_value} - Activation"
     reloads_csv_filename: "Refills %{datetime}.csv"
     lineage_scores: Strains
-    fiscal_document_warning: Please generate invoice of the gross amount, otherwise the withdrawal request will be rejected.
+    fiscal_document_warning: Please generate invoice of the gross amount, otherwise the withdraw request will be rejected.
     fiscal_document_company: The note should be issued for the folling %{company_id}
     irpf: Personal Income Tax (IRPF)
     inss: National Social Security Institute (INSS)
@@ -918,8 +918,8 @@ en:
     balance_transferences: Balance Transferences
     financial_transactions_csv: Financial Transactions - %{datetime}
     bonus_contracts_csv: Bonus Contracts - %{datetime}
-    withdrawal_fee_greater: to withdrawal greater than %{amount}
-    withdrawal_fee_less: to withdrawal less than or equal to %{amount}
+    withdrawal_fee_greater: to withdraw greater than %{amount}
+    withdrawal_fee_less: to withdraw less than or equal to %{amount}
     contract_active: Active
     contract_expired: Expired
     view_publicity: View Publicity
@@ -928,7 +928,7 @@ en:
     my_indications: My Indications
     balance_transference: Balance Transference
     financial_histories: Financial History
-    withdrawal_report: Withdrawal Report
+    withdrawal_report: Withdraw Report
     support: Support
     order_payments: Order payment
     bonus_contracts: Bonus Contracts
@@ -940,14 +940,14 @@ en:
     by: by
     financial: Financial
     network: Network
-    bonus_withdrawal: Bonus withdrawal
+    bonus_withdrawal: Bonus withdraw
     others: Others
     attendant: Attendant
     no_data: No Data
     loading: LOADING
     generation_count: 'until %{generation_count}th generation'
     earnings_until: 'Until %{amount}'
-    withdrawal_minimum: Withdrawal minimum value
+    withdrawal_minimum: Withdraw minimum value
     free_product: Product bought successfull!
   errors:
     cant_access_binary_node: User not found on your binary network
@@ -1339,7 +1339,7 @@ en:
   credit_by_admin: Admin Credit
   debit_by_admin: Admin Debit
   fee: Administration fee
-  withdrawal_fee: Withdrawal Fee / Tax(es)
+  withdrawal_fee: Withdraw Fee / Tax(es)
   product_return: Product Return
   tax: Tax
   transfer: Transfer
@@ -1412,19 +1412,19 @@ en:
   binary_qualified: 'Binary Qualified'
   invalid_password: 'Invalid Password'
   confirmation_warning: 'we need your current password to confirm your request'
-  success_withdrawal: 'Your withdrawal request of %{value} was successfully processed.'
-  rejected_withdrawal: 'Your withdrawal was denied as we detected inconsistencies on the provided data. Please get in touch immediately with our support team through the e-mail: %{support_email}
+  success_withdrawal: 'Your withdraw request of %{value} was successfully processed.'
+  rejected_withdrawal: 'Your withdraw was denied as we detected inconsistencies on the provided data. Please get in touch immediately with our support team through the e-mail: %{support_email}
   You can also try this operation again inputing the right data.'
-  canceled_withdrawal: 'Your withdrawal in the amount of %{value} to the digital wallet %{wallet} was canceled as you wish. For further information please get in touch with our support team through the e-mail %{support_email}'
+  canceled_withdrawal: 'Your withdraw in the amount of %{value} to the digital wallet %{wallet} was canceled as you wish. For further information please get in touch with our support team through the e-mail %{support_email}'
   refuse_withdraw: 'If you do not recognize this request click'
   confirm_withdraw: 'If you did this request click'
   can_confirm_withdraw: 'Confirm or cancel your request through our website'
-  waiting_withdrawal_request: 'You have just made a withdrawal request (%{withdrawal}) for %{value} in the digital wallet: %{wallet}.'
-  waiting_withdrawal: 'Your withdrawal request is being processed and will be available up to one work day. <br>
+  waiting_withdrawal_request: 'You have just made a withdraw request (%{withdrawal}) for %{value} in the digital wallet: %{wallet}.'
+  waiting_withdrawal: 'Your withdraw request is being processed and will be available up to one work day. <br>
   Gross amount: %{value} <br>
   Net amount: %{net_value} <br>
   Request: %{hashid}'
-  withdrawals_history: 'Your withdrawals history'
+  withdrawals_history: 'Your withdraws history'
   here: 'here'
   request_already_processed: 'Request already processed'
   close: 'Close'
@@ -1514,7 +1514,7 @@ en:
   voucher: 'Voucher'
   btc: 'BTC'
   total_payments: 'Total Payments'
-  total_withdrawals: 'Total Withdrawals'
+  total_withdrawals: 'Total Withdraws'
   waiting: 'Waiting'
   canceled: 'Canceled'
   binary: 'Binary'
@@ -1665,13 +1665,13 @@ en:
   pix: COMING SOON
   filter: Filter
   new_phone: New phone
-  withdrawal_value: Enter the withdrawal amount
+  withdrawal_value: Enter the withdraw amount
   select_receive_form: Select the form of receipt
   earnings_report: Earnings
   by: by
   no_address_input: "The address of the payment method %{payment_type_address} can't be blank"
   no_payment_method_selected: No payment method selected
-  mininum_withdrawal_value: Minimum withdrawal amount
+  mininum_withdrawal_value: Minimum withdraw amount
   dashboard: Dashboard
   direct_referral_text: "Receive 10% on all Uniclass package purchases made by your direct indications"
   indirect_referral_text: "Earn bonuses for indications from your friends up to the third generation - 2% 1% 1% 1%"
@@ -1687,7 +1687,7 @@ en:
   mail_unlock_account: Unlock my account
   change_password_text: "We're contacting you to notify you that your password has been changed."
   eth: ETH
-  withdrawal_solicitation: Withdrawal solicitation
+  withdrawal_solicitation: Withdraw solicitation
   banners: Banners
   banner_inactivation_message: Do you intend to disable this banner?
   success_inactivate_banner: The banner was successfully disabled
@@ -1714,10 +1714,10 @@ en:
   tasks_of_the_day: Tasks of the day
   activate_your_account_now: Activate your account now
   my_balance: 'My balance is:'
-  minimum_required_for_withdrawal: 'Minimum required for withdrawal:'
-  you_already_have_a_balance_available_for_withdrawal: You already have a balance available for withdrawal.
-  value_to_min_withdrawal_text: "There’s only <strong> %{value_to_min_withdrawal} </strong> left for you to complete the minimum of <strong> %{withdrawal_min_value} </strong> and make your withdrawal."
-  withdrawals_home_card_title: Make withdrawals in BTC whenever your available balance reaches.
+  minimum_required_for_withdrawal: 'Minimum required for withdraw:'
+  you_already_have_a_balance_available_for_withdrawal: You already have a balance available for withdraw.
+  value_to_min_withdrawal_text: "There’s only <strong> %{value_to_min_withdrawal} </strong> left for you to complete the minimum of <strong> %{withdrawal_min_value} </strong> and make your withdraw."
+  withdrawals_home_card_title: Make withdraws in BTC whenever your available balance reaches.
   you_can_accelerate_your_earnings: You can accelerate your earnings
   indicating_company_name_to_your_friends: Indicating %{company_name} to your friends.
   earn_card_title: 'Earn 10% on your direct indications and 15%
@@ -1757,7 +1757,7 @@ en:
   success_update_banner_store: The banner store was successfully updated
   premium: Premium
   premium?: Premium?
-  request_withdraw: Request withdrawal
+  request_withdraw: Request withdraw
   max_task_gains: Max task gains?
   modal_email_confirmation_text: 'Hi. We send you an email to finish validating your account. Please click on the link to complete the process.
                                   If our email has gone to the SPAM box, mark it as trusted. This way, you will be the first to receive news about our platform.'

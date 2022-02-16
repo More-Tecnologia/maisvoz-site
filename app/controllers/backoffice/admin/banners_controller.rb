@@ -15,7 +15,7 @@ module Backoffice
                                   .per(10)
         else
           @banners = @q.result
-                       .order(created_at: :desc)
+                       .order(:updated_at)
                        .page(params[:page])
         end
       end

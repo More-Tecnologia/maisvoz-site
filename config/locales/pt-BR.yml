@@ -79,6 +79,12 @@ pt-BR:
           pending: 'Pendente'
           active: 'Ativo'
           inactive: 'Inativo'
+    enums:
+      course:
+        days_to_cashback:
+          seven: Sete
+          fifteen: Quinze
+          thirty: Trinta
     errors:
       models:
         user:
@@ -1702,3 +1708,6 @@ pt-BR:
   approved?: Aprovado?
   active?: Ativo?
   short_description: Descrição curta
+  countries_of_operation: Países de operação
+  ideal_thumb_size: Ideal 500 x 300
+  add_course: Adicionar Curso

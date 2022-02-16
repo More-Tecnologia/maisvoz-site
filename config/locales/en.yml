@@ -76,6 +76,12 @@ en:
           pending: 'Pending'
           active: 'Active'
           inactive: 'Inactive'
+    enums:
+      course:
+        days_to_cashback:
+          seven: Seven
+          fifteen: Fifteen
+          thirty: Thirty
     errors:
       models:
         user:
@@ -1784,3 +1790,6 @@ en:
   approved?: Okay?
   active?: Active?
   short_description: Short description
+  countries_of_operation: Countries of operation
+  ideal_thumb_size: Ideal 500 x 300
+  add_course: Add Course

@@ -9,7 +9,7 @@ module Backoffice
     end
 
     def new
-      @taught_course = Course.new
+      @course = Course.new
     end
 
     def create

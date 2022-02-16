@@ -8,57 +8,58 @@
         <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
       </svg>
     </a>
-    <span>Adicionar Cursos</span>
+    <span><%= t(:add_course) %></span>
   </div>
   <div class="cover-course">
     <span class="title-cover-course">Capa</span>
-    <%= form_for([:backoffice, @taught_course], url: backoffice_taught_courses_path, method: :post, html: { role: 'form', class: "form-add-courses" }) do |f| %>
+    <%= form_for([:backoffice, @course], url: backoffice_taught_courses_path, method: :post, html: { role: 'form', class: "form-add-courses" }) do |f| %>
     <div class="container-select-img-course">
       <label for="cover-course-img" class="cover-course-img_label">
         <div class="cover-course-img_label">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey" class="bi bi-image" viewbox="0 0 16 16">
-            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-            <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
-          </svg>
+          <% if @course.thumb.present? %>
+            <img src="<%= @course.path %>" alt="" class="cover-course-img_label">
+          <% else %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey" class="bi bi-image" viewbox="0 0 16 16">
+              <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+              <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+            </svg>
+          <% end %>
         </div>
-        <input id="cover-course-img" type="file" name="" value="">
+        <%= f.file_field :thumb, as: :file, label: false, id: "cover-course-img", input_html: { accept: 'image/*' } %>
       </label>
-      <span class="size-course-img">Ideal 500 x 300</span>
+      <span class="size-course-img"><%= t(:ideal_thumb_size) %></span>
     </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course1.svg') %>
         </div>
-        <input class="input-description" type="text" placeholder="Name">
+        <%= f.text_field :title, class: 'input-description', placeholder: t(:title) %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course2.svg') %>
         </div>
-        <select class="input-description">
-          <option selected>Select category</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+        <%= select_tag :categories, options_for_select(categorizations_title_for_select),
+                                  class: 'input-description',
+                                  multiple: true, class: "input-description", select2: 'true', data: { placeholder: t(:categorizations) } %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course3.svg') %>
         </div>
-          <input class="input-description" type="text" placeholder="Short description">
+        <%= f.text_field :short_description, class: 'input-description', placeholder: t(:short_description) %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course4.svg') %>
         </div>
-        <input class="input-description" type="text" placeholder="What the student will learn">
+        <%= f.text_area :description, class: 'input-description', rows: '1', placeholder: "What the student will learn" %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course3.svg') %>
         </div>
-          <input class="input-description" type="text" placeholder="This course includes">
+        <%= f.text_area :content, class: 'input-description', rows: '1', placeholder: "This course includes" %>
       </div>
 
       <div class="title-mid-course">Parametrização</div>
@@ -66,67 +67,25 @@
         <div class="field-icon">
           <%= image_tag('courses/add-course6.svg') %>
         </div>
-        <select class="input-description">
-          <option selected>Select language</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+         <%= f.select :language, options_for_select(language_options), {include_blank: 'Select language'}, { class: 'input-description'  } %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course7.svg') %>
         </div>
-        <select class="input-description">
-          <option selected>Select country origin</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-      <div class="login-fields user-field">
-        <div class="field-icon">
-          <%= image_tag('courses/add-course7.svg') %>
-        </div>
-        <select class="input-description">
-          <option selected>Select country acting</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-      <div class="login-fields user-field">
-        <div class="field-icon">
-          <%= image_tag('courses/add-course8.svg') %>
-        </div>
-        <select class="input-description">
-          <option selected>Months warranty</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+        <%= f.select :country_of_operation,
+                                   options_for_select(country_options),
+                                   {},
+                                   { multiple: true, class: "input-description", select2: 'true', data: { placeholder: t('countries_of_operation') } } %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course9.svg') %>
         </div>
-        <select class="input-description">
-          <option selected>Money back period</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-      <div class="login-fields user-field">
-        <div class="field-icon">
-          <%= image_tag('courses/add-course10.svg') %>
-        </div>
-        <select class="input-description">
-          <option selected>Selling currency</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+        <%= f.select :days_to_cashback,
+                     options_for_enum(@course, :days_to_cashback),
+                     { include_blank: t('days_to_cashback') },
+                     { class: "input-description" } %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
@@ -152,3 +111,4 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<%= javascript_include_tag('utilities/select2') %>

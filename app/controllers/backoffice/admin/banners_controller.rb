@@ -7,7 +7,7 @@ module Backoffice
       before_action :ensured_banner, only: %i[edit update destroy]
 
       def index
-        @q = BannerStore.ransack(params)
+        @q = Banner.ransack(params)
         if params[:banner_store_hashid].present?
           @banner_store = BannerStore.find_by_hashid(params[:banner_store_hashid])
           @banners = @banner_store.banners

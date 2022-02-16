@@ -22,4 +22,8 @@ class Course < ApplicationRecord
 
   delegate :username, to: :owner, prefix: :owner
   delegate :username, to: :approver_user, prefix: :approver
+
+  def path
+    thumb.try(:fullpath)
+  end
 end

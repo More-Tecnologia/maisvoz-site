@@ -1,0 +1,36 @@
+<div class="box-orders">
+  <div class="box-second">
+    <div class="panel panel-border panel-custom">
+      <div class="panel-heading">
+  			<h3 class="panel-title"><%= t(:filters) %></h3>
+  		</div>
+      <div class="panel-body">
+        <%= search_form_for @q, url: backoffice_admin_banners_path do |f| %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-2">
+                <%= f.label t(:banner_store) %>
+                <%= select_tag :banner_store, options_for_select(banner_stores_for_select),
+                                              class: 'form-control',
+                                              include_blank: true %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:active) %>
+                <%= select_tag :active, options_for_select(boolean_select_options),
+                                        class: 'form-control',
+                                        include_blank: true %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:premium) %>
+                <%= select_tag :premium, options_for_select(boolean_select_options),
+                                        class: 'form-control',
+                                        include_blank: true %>
+              </div>
+            </div>
+          </div>
+          <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

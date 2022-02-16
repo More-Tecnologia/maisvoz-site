@@ -6,6 +6,7 @@
     <h1 class="page-title m-b-30"><%= t(:banners) %></h1>
   </div>
 </div>
+<%= render 'filters' %>
 <div class="row-stores margin-bottom">
   <% BannerStore.active.each do |banner_store| %>
     <%= link_to backoffice_admin_banners_path(banner_store_hashid: banner_store.hashid), class: "box-store" do %>
@@ -38,10 +39,10 @@
                   <tr>
                     <td><%= banner.id %></td>
                     <td>
-                      <a href="<%= banner.link %>" target="_blank"><%= banner.link %></a>
+                      <a href="<%= banner.link %>" target="_blank"><%= banner.link.truncate(90) %></a>
                     </td>
                     <td>
-                      <a href="<%= banner.path %>" target="_blank"><%= banner.path %></a>
+                      <a href="<%= banner.path %>" target="_blank"><img src="<%= banner.path %>" alt="" class="image-banner-small"></a>
                     </td>
                     <td><%= t(banner.banner_store.try(:title)) %></td>
                     <td><%= l(banner.created_at, format: '%B %d, %Y' ) %></td>

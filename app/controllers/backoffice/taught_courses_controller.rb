@@ -9,9 +9,11 @@ module Backoffice
     end
 
     def new
+      @taught_course = Course.new
     end
 
     def create
+      redirect_to backoffice_taught_courses_path
     end
 
     def edit

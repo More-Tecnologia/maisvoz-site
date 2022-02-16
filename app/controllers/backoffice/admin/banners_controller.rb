@@ -10,14 +10,15 @@ module Backoffice
         @q = Banner.ransack(params)
         if params[:banner_store_hashid].present?
           @banner_store = BannerStore.find_by_hashid(params[:banner_store_hashid])
-          @banners = @banner_store.banners
+          banners = @banner_store.banners
                                   .page(params[:page])
                                   .per(10)
         else
-          @banners = @q.result
-                       .order(:updated_at)
-                       .page(params[:page])
+          banners = @q.result
         end
+        @banners = banners.order(:id)
+                          .page(params[:page])
+                          .per(10)
       end
 
       def new

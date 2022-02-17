@@ -1,10 +1,17 @@
 <div class="container-cards">
-  <%= render 'backoffice/admin/dashboard/container_cards/bitcoin_card' %>
-  <%= render 'backoffice/admin/dashboard/container_cards/pools_total_card' %>
-  <%= render 'backoffice/admin/dashboard/container_cards/pools_total_plus_card' %>
-  <%= render 'backoffice/admin/dashboard/container_cards/total_balance_card' %>
-  <%= render 'backoffice/admin/dashboard/container_cards/course_card' %>
-  <%= render 'backoffice/admin/dashboard/container_cards/package_card' %>
-  <%= render 'backoffice/admin/dashboard/container_cards/publicity_card' %>
-  <%= render 'backoffice/admin/dashboard/container_cards/cripto_card' %>
+  <div class="container-cards-balance-left">
+    <%= render 'backoffice/admin/dashboard/container_cards/bitcoin_card' %>
+    <%= render 'backoffice/admin/dashboard/container_cards/pools_total_card' %>
+    <%= render 'backoffice/admin/dashboard/container_cards/pools_total_plus_card' %>
+    <%= render 'backoffice/admin/dashboard/container_cards/total_balance_card' %>
+  </div>
+  <div class="container-cards-balance-right">
+    <span class="card__total-balance">Total de vendas</span>
+    <div class="cards__right__dashboard">
+      <%= render 'backoffice/admin/dashboard/container_cards/course_card' %>
+      <%= render 'backoffice/admin/dashboard/container_cards/package_card' %>
+      <%= render 'backoffice/admin/dashboard/container_cards/publicity_card' %>
+      <%= render 'backoffice/admin/dashboard/container_cards/cripto_card' %>
+    </div>
+  </div>
 </div>

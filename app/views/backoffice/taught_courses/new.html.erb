@@ -11,7 +11,7 @@
     <span><%= t(:add_course) %></span>
   </div>
   <div class="cover-course">
-    <span class="title-cover-course">Capa</span>
+    <span class="title-cover-course"><%= t(:thumb) %></span>
     <%= form_for([:backoffice, @course], url: backoffice_taught_courses_path, method: :post, html: { role: 'form', class: "form-add-courses" }) do |f| %>
     <div class="container-select-img-course">
       <label for="cover-course-img" class="cover-course-img_label">
@@ -91,13 +91,13 @@
         <div class="field-icon">
           <%= image_tag('courses/add-course11.svg') %>
         </div>
-        <input class="input-description" type="text" placeholder="Price">
+        <%= text_field_tag :price, nil, class: 'input-description', placeholder: t(:price) %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course12.svg') %>
         </div>
-        <input class="input-description" type="text" placeholder="Network commission">
+        <%= text_field_tag :network_commission, nil, class: 'input-description', placeholder: t(:network_commission) %>
       </div>
       <span class="subtitle-input">Min: 22%</span>
       <div class="sale-summary-course">

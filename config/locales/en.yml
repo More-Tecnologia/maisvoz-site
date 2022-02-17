@@ -1774,3 +1774,5 @@ en:
   approved_balance: Approved balance
   processing: 'Processing'
   export_only_wallets: Export only wallets
+  total_requests: Total requests
+  open_requests: Open requests

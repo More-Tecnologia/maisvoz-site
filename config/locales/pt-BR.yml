@@ -1691,3 +1691,5 @@ pt-BR:
   active_until: Ativo até
   eth: ETH
   export_only_wallets: Exportar apenas carteiras
+  total_requests: Total de Chamados
+  open_requests: Chamados em aberto

@@ -1,1 +1,8 @@
-<div class="container-graph-line"></div>
+<%= javascript_include_tag 'charts' %>
+<% data = {key1: 5, key2: 4,key3: 3, key4: 2, key5: 1 } %>
+<% labels = data.keys %>
+<% values = data.values %>
+<div class="container-graph-line">
+  <canvas id="application-chart" width="1000" height="400" data-labels="<%= labels %>" data-values="<%= values %>" data-values-2="<%= values.map { |v| v * v } %>" data-values-3="<%= values.map { |v| v * 3 } %>" data-title="<%= t('defaults.last_updated', date: l(DateTime.current.beginning_of_day, format: :long)) %>"></canvas>
+</div>
+<%= javascript_include_tag 'dashboards/chart' %>

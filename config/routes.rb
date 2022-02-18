@@ -70,7 +70,9 @@ Rails.application.routes.draw do
           get :withdrawals_data
         end
       end
-      resources :expenses, only: [:new, :create]
+      resources :expenses, only: %i[index new create]
+      resources :pool_expenses, only: %i[new create]
+      resources :pool_wallets
       resources :bonus_contracts, only: :index do
         member do
           put :toggle_enabled_bonification

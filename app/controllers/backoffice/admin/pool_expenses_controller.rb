@@ -1,10 +1,8 @@
 module Backoffice
   module Admin
-    class ExpensesController < AdminController
+    class PoolExpensesController < AdminController
 
       before_action :validate_master_password, only: :create
-
-      def index; end
 
       def new
         @financial_transaction = FinancialTransaction.new
@@ -27,7 +25,7 @@ module Backoffice
         attributes = params.require(:financial_transaction)
                            .permit(:cent_amount, :note)
                            .merge(user: User.find_morenwm_customer_admin,
-                                  financial_reason: FinancialReason.expense)
+                                  financial_reason: FinancialReason.send(params[:pool_expense_wallet]))
         attributes[:cent_amount] = cleasing_decimal_number(attributes[:cent_amount])
         attributes
       end

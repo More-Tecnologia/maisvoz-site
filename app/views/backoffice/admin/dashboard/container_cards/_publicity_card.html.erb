@@ -1,14 +1,14 @@
 <div class="admin-dashboard__card-right" id="publicity_card">
   <div class="card__currency">
     <%= image_tag('admin-dashboard/publicidade.svg') %>
-    Publicidade
+    <%= t(:publicity) %>
   </div>
   <div class="card__container-bottom align-items-card">
     <div class="card__currency">
       <%= image_tag('admin-dashboard/btc.svg') %>
-      BTC Bitcoin
+      <%= t(:btc_bitcoin) %>
     </div>
-    <span class="card__balance">$15.12548</span>
-    <span class="card__botom-value">US$ 1,125.4</span>
+    <span class="card__balance"><%= number_to_currency(0, unit: 'BTC', precision: 8) %></span>
+    <span class="card__botom-value"><%= number_to_currency(0, unit: 'USD', precision: 2) %></span>
   </div>
 </div>

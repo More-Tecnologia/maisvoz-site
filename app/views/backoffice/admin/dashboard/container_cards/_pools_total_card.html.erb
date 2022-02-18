@@ -1,11 +1,11 @@
 <div class="admin-dashboard__card" id="pools_total_card">
-  <span class="card__total-balance">Saldo Total</span>
+  <span class="card__total-balance"><%= t(:pool_balance) %></span>
   <div class="card__container-bottom">
     <div class="card__currency">
-      <%= image_tag('admin-dashboard/eth.svg') %>
-      ETH Ethereum
+      <%= image_tag('admin-dashboard/btc.svg') %>
+      <%= t(:btc_bitcoin) %>
     </div>
-    <span class="card__balance">15.12548 ETH</span>
-    <span class="card__botom-value">US$ 1,125.4</span>
+    <span class="card__balance"><%= number_to_currency(0, unit: 'BTC', precision: 8) %></span>
+    <span class="card__botom-value"><%= number_to_currency(0, unit: 'USD', precision: 2) %></span>
   </div>
 </div>

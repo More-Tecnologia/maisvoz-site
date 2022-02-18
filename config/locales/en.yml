@@ -1786,3 +1786,5 @@ en:
   system_balance: System balance
   pool_balance: Pool balance
   virtual_balance: Virtual balance
+  new_expense: New expense
+  expenses: Expenses

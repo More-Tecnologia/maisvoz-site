@@ -3,6 +3,30 @@
 <% labels = data.keys %>
 <% values = data.values %>
 <div class="container-graph-line">
+  <h4>Total de entradas e saídas</h4>
   <canvas id="application-chart" width="1000" height="400" data-labels="<%= labels %>" data-values="<%= values %>" data-values-2="<%= values.map { |v| v * v } %>" data-values-3="<%= values.map { |v| v * 3 } %>" data-title="<%= t('defaults.last_updated', date: l(DateTime.current.beginning_of_day, format: :long)) %>"></canvas>
+  <div class="container-bottom-graph-line">
+    <div class="container-bottom-graph-line__item">
+      <div class="item__identifier1">
+      </div>
+      <span class="item__name">Total de Entradas</span>
+      <span class="item__value">15.12548 BTC</span>
+      <span class="item__dollar__value">US$ 1,125.4</span>
+    </div>
+    <div class="container-bottom-graph-line__item">
+      <div class="item__identifier2">
+      </div>
+      <span class="item__name">Total de Saques Pagos</span>
+      <span class="item__value">15.12548 BTC</span>
+      <span class="item__dollar__value">US$ 1,125.4</span>
+    </div>
+    <div class="container-bottom-graph-line__item">
+      <div class="item__identifier3">
+      </div>
+      <span class="item__name">Total de Despesas</span>
+      <span class="item__value">15.12548 BTC</span>
+      <span class="item__dollar__value">US$ 1,125.4</span>
+    </div>
+  </div>
 </div>
 <%= javascript_include_tag 'dashboards/chart' %>

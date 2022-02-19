@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Pool < ApplicationRecord
+class PoolWallet < ApplicationRecord
   validates :title, presence: true
   validates :cent_amount, presence: true
-  validates :wallet_hash, presence: true
+  validates :wallet, presence: true
 end

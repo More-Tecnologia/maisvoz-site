@@ -1,56 +1,22 @@
 <div class="cards-bottom__container-left">
-  <div class="container-left__card">
-    <span class="pool__title">
-      Piscina
-    </span>
-    <div class="card-bottom__container-mid">
-      <span class="pool__type">VNK</span>
-      <div class="card__currency">
-        <%= image_tag('admin-dashboard/btc.svg') %>
-        BTC Bitcoin
+  <% PoolWallet.all.each do |pool_wallet| %>
+    <div class="container-left__card">
+      <span class="pool__title">
+        <%= t(:pool) %>
+      </span>
+      <div class="card-bottom__container-mid">
+        <span class="pool__type"><%= pool_wallet.title %></span>
+        <div class="card__currency">
+          <%= image_tag('admin-dashboard/btc.svg') %>
+          <%= t(:btc_bitcoin) %>
+        </div>
+        <span class="card__balance"><%= number_to_currency(pool_wallet.cent_amount, unit: 'BTC', precision: 8) %> </span>
+        <span class="card__botom-value"><%= number_to_currency(0, unit: 'USD', precision: 2) %></span>
       </div>
-      <span class="card__balance">15.12548 BTC</span>
-      <span class="card__botom-value">US$ 1,125.4</span>
-    </div>
-    <div class="card-bottom__container-bottom">
-      <span class="container-bottom__title">Hash</span>
-      <span>8595d6443eeec147699633649de37c6a</span>
-    </div>
-  </div>
-  <div class="container-left__card">
-    <span class="pool__title">
-      Piscina
-    </span>
-    <div class="card-bottom__container-mid">
-      <span class="pool__type">VNK</span>
-      <div class="card__currency">
-        <%= image_tag('admin-dashboard/btc.svg') %>
-        BTC Bitcoin
+      <div class="card-bottom__container-bottom">
+        <span class="container-bottom__title">Hash</span>
+        <span><%= pool_wallet.wallet %></span>
       </div>
-      <span class="card__balance">15.12548 BTC</span>
-      <span class="card__botom-value">US$ 1,125.4</span>
     </div>
-    <div class="card-bottom__container-bottom">
-      <span class="container-bottom__title">Hash</span>
-      <span>8595d6443eeec147699633649de37c6a</span>
-    </div>
-  </div>
-  <div class="container-left__card">
-    <span class="pool__title">
-      Piscina
-    </span>
-    <div class="card-bottom__container-mid">
-      <span class="pool__type">VNK</span>
-      <div class="card__currency">
-        <%= image_tag('admin-dashboard/btc.svg') %>
-        BTC Bitcoin
-      </div>
-      <span class="card__balance">15.12548 BTC</span>
-      <span class="card__botom-value">US$ 1,125.4</span>
-    </div>
-    <div class="card-bottom__container-bottom">
-      <span class="container-bottom__title">Hash</span>
-      <span>8595d6443eeec147699633649de37c6a</span>
-    </div>
-  </div>
+  <% end %>
 </div>

@@ -1,7 +1,6 @@
 module Backoffice
   module Admin
     class PoolExpensesController < AdminController
-
       before_action :validate_master_password, only: :create
 
       def new
@@ -25,7 +24,7 @@ module Backoffice
         attributes = params.require(:financial_transaction)
                            .permit(:cent_amount, :note)
                            .merge(user: User.find_morenwm_customer_admin,
-                                  financial_reason: FinancialReason.send(params[:pool_expense_wallet]))
+                                  financial_reason: FinancialReason.pool_expense_wallet)
         attributes[:cent_amount] = cleasing_decimal_number(attributes[:cent_amount])
         attributes
       end
@@ -36,7 +35,6 @@ module Backoffice
         flash[:error] = t('defaults.unauthenticate_master_password')
         redirect_to new_backoffice_admin_expense_path
       end
-
     end
   end
 end

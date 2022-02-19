@@ -36,7 +36,7 @@
 .admin-dashboard__card {
   background: #ffffff;
   width: 24%;
-  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+  box-shadow: rgb(99, 99, 99, 0.2) 0px 2px 8px 0px;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -104,7 +104,7 @@
 .container-graph-line {
   width: 49%;
   background: #ffffff;
-  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+  box-shadow: rgb(99, 99, 99, 0.2) 0px 2px 8px 0px;
   height: auto;
   border-radius: 5px;
   padding: 10px;
@@ -165,7 +165,7 @@
   width: 48%;
   height: auto;
   background: #ffffff;
-  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+  box-shadow: rgb(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
   padding: 20px;
   color: #373737;
@@ -220,7 +220,7 @@
   justify-content: space-between;
   height: 100%;
   background: #ffffff;
-  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+  box-shadow: rgb(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
   width: 31%;
   padding: 10px 20px;
@@ -255,7 +255,7 @@
   width: 20%;
   height: 100%;
   background: #ffffff;
-  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+  box-shadow: rgb(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
   padding: 10px 20px 20px 20px;
   display: flex;
@@ -287,7 +287,7 @@
   width: 78%;
   height: 300px;
   background: #ffffff;
-  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+  box-shadow: rgb(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
   padding: 10px;
   overflow-y: scroll;
@@ -324,7 +324,7 @@
   display: flex;
   width: 49%;
   background: #ffffff;
-  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+  box-shadow: rgb(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
   flex-direction: column;
   padding: 10px;

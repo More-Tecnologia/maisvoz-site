@@ -1,0 +1,65 @@
+<%= javascript_include_tag 'charts' %>
+
+
+<div class="container-graph-donuts">
+  <div class="graph-donuts">
+    <div class="title-donuts-graph">Total de pedidos pagos</div>
+    <canvas id="application-chart-donuts1" width="200" height="200"></canvas>
+    <div class="content-bottom-donuts">
+      <div class="donuts-free">
+        <div class="item__identifier limegreen">
+        </div>
+        <span>Free</span>
+      </div>
+      <div class="donuts-btc">
+        <div class="item__identifier dark-orange">
+        </div>
+        <span>BTC</span>
+      </div>
+      <div class="donuts-admin-nb">
+        <div class="item__identifier darkslate-grey">
+        </div>
+        <span>Admin NB</span>
+      </div>
+      <div class="donuts-admin">
+        <div class="item__identifier dark-grey">
+        </div>
+        <span>Admin</span>
+      </div>
+    </div>
+  </div>
+  <div class="graph-donuts">
+    <div class="title-donuts-graph">Total de pedidos pagos</div>
+    <canvas id="application-chart-donuts2" width="200" height="200"></canvas>
+    <div class="content-bottom-donuts">
+      <div class="donuts-paid">
+        <div class="item__identifier limegreen">
+        </div>
+        <span>Pagos</span>
+      </div>
+      <div class="donuts-pending">
+        <div class="item__identifier dark-orange">
+        </div>
+        <span>Pendentes</span>
+      </div>
+      <div class="donuts-waiting">
+        <div class="item__identifier cornflower-blue">
+        </div>
+        <span>Aguardando</span>
+      </div>
+      <div class="donuts-rejected">
+        <div class="item__identifier dark-grey">
+        </div>
+        <span>Rejeitado</span>
+      </div>
+      <div class="donuts-canceled mt-2">
+        <div class="item__identifier red">
+        </div>
+        <span>Cancelado</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'dashboards/donuts1' %>
+<%= javascript_include_tag 'dashboards/donuts2' %>

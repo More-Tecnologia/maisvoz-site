@@ -1,0 +1,14 @@
+<div class="admin-dashboard__card-right" id="course_card">
+  <div class="card__currency">
+    <%= image_tag('admin-dashboard/cursos.svg') %>
+    <%= t(:courses) %>
+  </div>
+  <div class="card__container-bottom align-items-card">
+    <div class="card__currency">
+      <%= image_tag('admin-dashboard/btc.svg') %>
+      <%= t(:btc_bitcoin) %>
+    </div>
+    <span class="card__balance"><%= number_to_currency(0, unit: 'BTC', precision: 8) %></span>
+    <span class="card__botom-value"><%= number_to_currency(0, unit: 'USD', precision: 2) %></span>
+  </div>
+</div>

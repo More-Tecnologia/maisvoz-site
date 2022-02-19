@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div class="box-orders">
+  <div class="box-second">
+    <h4 class="page-title"><%= t('expenses') %></h4>
+  </div>
+</div>
+<div class="box-orders">
+  <div class="box-second">
+    <div class="panel panel-border panel-custom">
+      <div class="panel-body">
+        <%=  link_to new_backoffice_admin_expense_path, class: 'btn btn-info' do %>
+          <strong>
+            <%= t('new_expense') %>
+          </strong>
+        <% end %>
+        <%=  link_to new_backoffice_admin_pool_expense_path, class: 'btn btn-warning' do %>
+          <strong>
+            <%= t('new_pool_expense') %>
+          </strong>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

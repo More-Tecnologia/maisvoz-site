@@ -1774,3 +1774,18 @@ en:
   approved_balance: Approved balance
   processing: 'Processing'
   export_only_wallets: Export only wallets
+  total_requests: Total requests
+  open_requests: Open requests
+  sales_amount: Sales amount
+  btc_bitcoin: BTC Bitcoin
+  courses: Courses
+  adcash: Adcash
+  publicity: Publicity
+  crypto: Crypto
+  total_balance: Total balance
+  system_balance: System balance
+  pool_balance: Pool balance
+  virtual_balance: Virtual balance
+  new_expense: New expense
+  expenses: Expenses
+  pool: Pool

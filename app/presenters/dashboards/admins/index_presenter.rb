@@ -24,7 +24,7 @@ module Dashboards
       end
 
       def pool_balance
-        PoolWallet.sum(&:amount)
+        PoolWallet.sum(&:cent_amount)
       end
 
       def system_balance
@@ -53,6 +53,38 @@ module Dashboards
 
       def free_order_count
         Order.paid.free.count
+      end
+
+      def btc_order_count
+        Order.paid.btc.count
+      end
+
+      def admin_order_count
+        Order.paid.admin.count
+      end
+
+      def admin_nb_order_count
+        Order.paid.admin_nb.count
+      end
+
+      def paid_withdraws_count
+        Withdrawal.approved.count
+      end
+
+      def pending_withdraws_count
+        Withdrawal.pending.count
+      end
+
+      def waiting_withdraws_count
+        Withdrawal.waiting.count
+      end
+
+      def rejected_withdraws_count
+        Withdrawal.refused.count
+      end
+
+      def canceled_withdraws_count
+        Withdrawal.canceled.count
       end
 
       private

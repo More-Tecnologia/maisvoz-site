@@ -1,7 +1,7 @@
 Chart.defaults.global.defaultFontColor = "#000"
 Chart.defaults.global.legend.display = false
 
-let applicationChart = () => {
+const dashboardLineChart = () => {
   const ctx = document.querySelector('#application-chart');
   const labels = ctx.getAttribute('data-labels').replace(/[^a-z0-9, ]/gi,'').split(',');
   const values = ctx.getAttribute('data-values').split(',').map(Number);;
@@ -68,4 +68,4 @@ let applicationChart = () => {
   };
   new Chart(ctx, config);
 };
-applicationChart();
+dashboardLineChart();

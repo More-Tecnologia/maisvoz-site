@@ -6,7 +6,8 @@ class Product < ApplicationRecord
   PHOTO_WIDTH = '500'
   PHOTO_HEIGHT = '300'
 
-  enum kind: [:detached, :adhesion, :activation, :voucher, :subscription, :deposit]
+  enum kind: %i[detached adhesion activation voucher
+                subscription deposit course publicity crypto]
   enum paid_by: [:paid_by_user, :paid_by_company]
 
   has_one_attached :main_photo

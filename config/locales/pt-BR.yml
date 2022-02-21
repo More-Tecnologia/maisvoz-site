@@ -1705,3 +1705,7 @@ pt-BR:
   pool: Piscina
   total_withdraws: Total de saques
   total_paid_orders: Total de pedidos pagos
+  total_incoming_outcoming: Total de entradas e saídas
+  incoming_total: Total de entradas
+  total_paid_withdraws: Total de saques pagos
+  total_expenses: Total de despesas

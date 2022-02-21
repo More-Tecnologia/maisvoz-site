@@ -3,29 +3,29 @@
 <% labels = data.keys %>
 <% values = data.values %>
 <div class="container-graph-line">
-  <h4>Total de entradas e saídas</h4>
-  <canvas id="application-chart" width="1000" height="400" data-labels="<%= labels %>" data-values="<%= values %>" data-values-2="<%= values.map { |v| v * v } %>" data-values-3="<%= values.map { |v| v * 3 } %>" data-title="<%= t('defaults.last_updated', date: l(DateTime.current.beginning_of_day, format: :long)) %>"></canvas>
+  <h4><%= t(:total_incoming_outcoming) %></h4>
+  <canvas id="application-chart" width="1000" height="400" data-labels="<%= labels %>" data-incoming-amounts="<%= values %>" data-paid-withdraws-amounts="<%= values.map { |v| v * v } %>" data-expenses-amounts="<%= values.map { |v| v * 3 } %>" %>"></canvas>
   <div class="container-bottom-graph-line">
     <div class="container-bottom-graph-line__item">
       <div class="item__identifier1">
       </div>
-      <span class="item__name">Total de Entradas</span>
-      <span class="item__value">15.12548 BTC</span>
-      <span class="item__dollar__value">US$ 1,125.4</span>
+      <span class="item__name"><%= t(:incoming_total) %></span>
+      <span class="item__value"><%= number_to_currency(@index.incoming_balance, unit: 'BTC', precision: 8) %></span>
+      <!-- <span class="item__dollar__value">US$ 1,125.4</span> -->
     </div>
     <div class="container-bottom-graph-line__item">
       <div class="item__identifier2">
       </div>
-      <span class="item__name">Total de Saques Pagos</span>
-      <span class="item__value">15.12548 BTC</span>
-      <span class="item__dollar__value">US$ 1,125.4</span>
+      <span class="item__name"><%= t(:total_paid_withdraws) %></span>
+      <span class="item__value"><%= number_to_currency(@index.paid_withdraws_balance, unit: 'BTC', precision: 8) %></span>
+      <!-- <span class="item__dollar__value">US$ 1,125.4</span> -->
     </div>
     <div class="container-bottom-graph-line__item">
       <div class="item__identifier3">
       </div>
-      <span class="item__name">Total de Despesas</span>
-      <span class="item__value">15.12548 BTC</span>
-      <span class="item__dollar__value">US$ 1,125.4</span>
+      <span class="item__name"><%= t(:total_expenses) %></span>
+      <span class="item__value"><%= number_to_currency(@index.expenses_balance, unit: 'BTC', precision: 8) %></span>
+      <!-- <span class="item__dollar__value">US$ 1,125.4</span> -->
     </div>
   </div>
 </div>

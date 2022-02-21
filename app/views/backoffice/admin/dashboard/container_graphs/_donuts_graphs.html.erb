@@ -9,53 +9,55 @@
       <div class="donuts-free">
         <div class="item__identifier limegreen">
         </div>
-        <span>Free</span>
+        <span>Free (<%= @index.free_order_count %>)</span>
       </div>
       <div class="donuts-btc">
         <div class="item__identifier dark-orange">
         </div>
-        <span>BTC</span>
+        <span>BTC (<%= @index.btc_order_count %>)</span>
       </div>
       <div class="donuts-admin-nb">
         <div class="item__identifier darkslate-grey">
         </div>
-        <span>Admin NB</span>
+        <span>Admin NB (<%= @index.admin_nb_order_count %>)</span>
       </div>
       <div class="donuts-admin">
         <div class="item__identifier dark-grey">
         </div>
-        <span>Admin</span>
+        <span>Admin (<%= @index.admin_order_count %>)</span>
       </div>
     </div>
   </div>
   <div class="graph-donuts">
     <div class="title-donuts-graph"><%= t(:total_withdraws) %></div>
-    <canvas id="application-chart-donuts2" width="200" height="200" data-labels="<%= "#{t(:paids)},#{t(:pendings)},#{t(:waiting)},#{t(:rejecteds)},#{t(:canceled)}"%>" data-values="<%= "#{@index.paid_withdraws_count}, #{@index.pending_withdraws_count}, #{@index.waiting_withdraws_count}, #{@index.rejected_withdraws_count}, #{@index.canceled_withdraws_count}" %>"></canvas>
+    <canvas id="application-chart-donuts2" width="200" height="200"
+    data-labels="<%= "#{t(:paids)},#{t(:pendings)},#{t(:waiting)},#{t(:rejecteds)},#{t(:canceled)}"%>"
+    data-values="<%= "#{@index.paid_withdraws_count}, #{@index.pending_withdraws_count}, #{@index.waiting_withdraws_count}, #{@index.rejected_withdraws_count}, #{@index.canceled_withdraws_count}" %>"></canvas>
     <div class="content-bottom-donuts">
       <div class="donuts-paid">
         <div class="item__identifier limegreen">
         </div>
-        <span><%= t(:paids) %></span>
+        <span><%= t(:paids) %> (<%= @index.paid_withdraws_count %>)</span>
       </div>
       <div class="donuts-pending">
         <div class="item__identifier dark-orange">
         </div>
-        <span><%= t(:pendings) %></span>
+        <span><%= t(:pendings) %> (<%= @index.pending_withdraws_count %>)</span>
       </div>
       <div class="donuts-waiting">
         <div class="item__identifier cornflower-blue">
         </div>
-        <span><%= t(:waiting) %></span>
+        <span><%= t(:waiting) %> (<%= @index.waiting_withdraws_count %>)</span>
       </div>
       <div class="donuts-rejected">
         <div class="item__identifier dark-grey">
         </div>
-        <span><%= t(:rejected) %></span>
+        <span><%= t(:rejected) %> (<%= @index.rejected_withdraws_count %>)</span>
       </div>
       <div class="donuts-canceled mt-2">
         <div class="item__identifier red">
         </div>
-        <span><%= t(:canceled) %></span>
+        <span><%= t(:canceled) %> (<%= @index.canceled_withdraws_count %>)</span>
       </div>
     </div>
   </div>

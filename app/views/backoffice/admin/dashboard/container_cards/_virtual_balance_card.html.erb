@@ -1,0 +1,10 @@
+<div class="admin-dashboard__card" id="virtual_balance_card">
+  <span class="card__total-balance"><%= t(:virtual_balance) %></span>
+  <div class="card__container-bottom align-items-card">
+    <div class="card__currency">
+      <%= image_tag('admin-dashboard/usd.svg') %>
+      Dollar
+    </div>
+    <span class="card__balance"><%= number_to_currency(User.find_morenwm_customer_admin.available_balance, unit: 'USD', precision: 2) %></span>
+  </div>
+</div>

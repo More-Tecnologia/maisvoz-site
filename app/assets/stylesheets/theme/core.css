@@ -68,6 +68,11 @@ html {
   cursor: pointer;
 }
 
+.image-banner-small {
+  max-width: 80px;
+  max-height: 80px;
+}
+
 *,
 *:before,
 *:after {

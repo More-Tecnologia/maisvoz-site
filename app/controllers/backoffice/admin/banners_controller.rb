@@ -7,14 +7,18 @@ module Backoffice
       before_action :ensured_banner, only: %i[edit update destroy]
 
       def index
+        @q = Banner.ransack(params)
         if params[:banner_store_hashid].present?
           @banner_store = BannerStore.find_by_hashid(params[:banner_store_hashid])
+          banners = @banner_store.banners
+                                  .page(params[:page])
+                                  .per(10)
         else
-          @banner_store = BannerStore.active.shuffle.last
+          banners = @q.result
         end
-        @banners = @banner_store.banners
-                                .page(params[:page])
-                                .per(10)
+        @banners = banners.order(:id)
+                          .page(params[:page])
+                          .per(10)
       end
 
       def new

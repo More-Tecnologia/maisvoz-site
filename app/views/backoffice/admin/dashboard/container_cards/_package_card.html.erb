@@ -8,7 +8,7 @@
       <%= image_tag('admin-dashboard/btc.svg') %>
       <%= t(:btc_bitcoin) %>
     </div>
-    <span class="card__balance"><%= number_to_currency(0, unit: 'BTC', precision: 8) %></span>
+    <span class="card__balance"><%= number_to_currency(@index.packages_balance, unit: 'BTC', precision: 8) %></span>
     <span class="card__botom-value"><%= number_to_currency(0, unit: 'USD', precision: 2) %></span>
   </div>
 </div>

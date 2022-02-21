@@ -1789,3 +1789,8 @@ en:
   new_expense: New expense
   expenses: Expenses
   pool: Pool
+  total_withdraws: Total withdraws
+  total_paid_orders: Total paid orders
+  paids: Paids
+  pendings: Pendings
+  rejecteds: Rejecteds

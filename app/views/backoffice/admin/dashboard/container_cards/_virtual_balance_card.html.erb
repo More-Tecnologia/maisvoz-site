@@ -5,6 +5,6 @@
       <%= image_tag('admin-dashboard/usd.svg') %>
       Dollar
     </div>
-    <span class="card__balance"><%= number_to_currency(User.find_morenwm_customer_admin.available_balance, unit: 'USD', precision: 2) %></span>
+    <span class="card__balance"><%= number_to_currency(@index.virtual_balance, unit: 'USD', precision: 2) %></span>
   </div>
 </div>

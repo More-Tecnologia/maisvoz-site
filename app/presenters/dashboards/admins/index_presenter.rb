@@ -28,11 +28,19 @@ module Dashboards
       end
 
       def system_balance
+        incoming_balance - paid_withdraws_balance - expenses_balance
+      end
+
+      def incoming_balance
         system_balance_orders.sum(&:amount)
       end
 
       def virtual_balance
         User.find_morenwm_customer_admin.available_balance
+      end
+
+      def expenses_balance
+        FinancialTransaction.where(financial_reason: FinancialReason.expense).sum(&:cent_amount)
       end
 
       def courses_balance
@@ -85,6 +93,10 @@ module Dashboards
 
       def canceled_withdraws_count
         Withdrawal.canceled.count
+      end
+
+      def paid_withdraws_balance
+        Withdrawal.select(:crypto_amount).approved.sum(&:crypto_amount)
       end
 
       private

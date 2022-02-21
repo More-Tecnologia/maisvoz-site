@@ -1,10 +1,11 @@
 <div class="admin-dashboard__card" id="virtual_balance_card">
   <span class="card__total-balance"><%= t(:virtual_balance) %></span>
-  <div class="card__container-bottom align-items-card">
+  <div class="card__container-bottom">
     <div class="card__currency">
       <%= image_tag('admin-dashboard/usd.svg') %>
       Dollar
     </div>
     <span class="card__balance"><%= number_to_currency(@index.virtual_balance, unit: 'USD', precision: 2) %></span>
+    <span class="card__botom-value"><%= number_to_currency(@index.virtual_balance_btc, unit: 'BTC', precision: 8) %></span>
   </div>
 </div>

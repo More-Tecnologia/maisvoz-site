@@ -23,12 +23,24 @@ module Dashboards
         system_balance + pool_balance
       end
 
+      def total_balance_dollar
+        to_btc(total_balance)
+      end
+
       def pool_balance
-        PoolWallet.sum(&:cent_amount)
+        @pool_balance ||= PoolWallet.sum(&:cent_amount)
+      end
+
+      def pool_balance_dollar
+        to_btc(pool_balance)
       end
 
       def system_balance
         incoming_balance - paid_withdraws_balance - expenses_balance
+      end
+
+      def system_balance_dollar
+        to_btc(system_balance)
       end
 
       def incoming_balance
@@ -39,24 +51,44 @@ module Dashboards
         User.find_morenwm_customer_admin.available_balance
       end
 
+      def virtual_balance_btc
+        User.find_morenwm_customer_admin.available_balance * btc_rate
+      end
+
       def expenses_balance
-        FinancialTransaction.where(financial_reason: FinancialReason.expense).sum(&:cent_amount)
+        FinancialTransaction.where(financial_reason: FinancialReason.expense).sum(&:cent_amount) * btc_rate
       end
 
       def courses_balance
         OrderItem.includes(:product, order: :payment_transaction).where(product: Product.course, order: Order.paid.currency_balance).sum { |oi| oi.order.payment_transaction.amount }
       end
 
+      def courses_balance_dollar
+        to_btc(courses_balance)
+      end
+
       def packages_balance
         OrderItem.includes(:product, order: :payment_transaction).where(product: Product.deposit, order: Order.paid.currency_balance).sum { |oi| oi.order.payment_transaction.amount }
+      end
+
+      def packages_balance_dollar
+        to_btc(packages_balance)
       end
 
       def publicity_balance
         OrderItem.includes(:product, order: :payment_transaction).where(product: Product.publicity, order: Order.paid.currency_balance).sum { |oi| oi.order.payment_transaction.amount }
       end
 
+      def publicity_balance_dollar
+        to_btc(publicity_balance)
+      end
+
       def crypto_balance
         OrderItem.includes(:product, order: :payment_transaction).where(product: Product.crypto, order: Order.paid.currency_balance).sum { |oi| oi.order.payment_transaction.amount }
+      end
+
+      def crypto_balance_dollar
+        to_btc(crypto_balance)
       end
 
       def free_order_count
@@ -99,10 +131,26 @@ module Dashboards
         Withdrawal.select(:crypto_amount).approved.sum(&:crypto_amount)
       end
 
+      def pool_wallets
+        PoolWallet.all
+      end
+
+      def to_btc(amount)
+        amount / btc_rate
+      end
+
       private
 
       def system_balance_orders
         PaymentTransaction.select(:amount).where(order: Order.paid.currency_balance)
+      end
+
+      def rates
+        @rates ||= Webhooks::Coinbase::DollarExchangeRates.call
+      end
+
+      def btc_rate
+        rates[:BTC]
       end
     end
   end

@@ -1794,3 +1794,7 @@ en:
   paids: Paids
   pendings: Pendings
   rejecteds: Rejecteds
+  total_incoming_outcoming: Total Incoming and Outcoming
+  incoming_total: Total incoming
+  total_paid_withdraws: Total paid withdraws
+  total_expenses: Total expenses

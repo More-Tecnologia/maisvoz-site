@@ -1,31 +1,29 @@
 <%= javascript_include_tag 'charts' %>
-<% data = {key1: 5, key2: 4,key3: 3, key4: 2, key5: 1 } %>
-<% labels = data.keys %>
-<% values = data.values %>
+
 <div class="container-graph-line">
   <h4><%= t(:total_incoming_outcoming) %></h4>
-  <canvas id="application-chart" width="1000" height="400" data-labels="<%= labels %>" data-incoming-amounts="<%= values %>" data-paid-withdraws-amounts="<%= values.map { |v| v * v } %>" data-expenses-amounts="<%= values.map { |v| v * 3 } %>" %>"></canvas>
+  <canvas id="application-chart" width="1000" height="400" data-labels="<%= @index.last_30_days_keys %>" data-incoming-amounts="<%= @index.incoming_balance_last_30_days %>" data-paid-withdraws-amounts="<%= @index.paid_withdraws_balance_last_30_days %>" data-expenses-amounts="<%= @index.expenses_balance_last_30_days %>" %>"></canvas>
   <div class="container-bottom-graph-line">
     <div class="container-bottom-graph-line__item">
       <div class="item__identifier1">
       </div>
       <span class="item__name"><%= t(:incoming_total) %></span>
       <span class="item__value"><%= number_to_currency(@index.incoming_balance, unit: 'BTC', precision: 8) %></span>
-      <!-- <span class="item__dollar__value">US$ 1,125.4</span> -->
+      <span class="item__dollar__value"><%= number_to_currency(@index.incoming_balance_dollar, unit: 'USD', precision: 2) %></span>
     </div>
     <div class="container-bottom-graph-line__item">
       <div class="item__identifier2">
       </div>
       <span class="item__name"><%= t(:total_paid_withdraws) %></span>
       <span class="item__value"><%= number_to_currency(@index.paid_withdraws_balance, unit: 'BTC', precision: 8) %></span>
-      <!-- <span class="item__dollar__value">US$ 1,125.4</span> -->
+      <span class="item__dollar__value"><%= number_to_currency(@index.paid_withdraws_balance_dollar, unit: 'USD', precision: 2) %></span>
     </div>
     <div class="container-bottom-graph-line__item">
       <div class="item__identifier3">
       </div>
       <span class="item__name"><%= t(:total_expenses) %></span>
       <span class="item__value"><%= number_to_currency(@index.expenses_balance, unit: 'BTC', precision: 8) %></span>
-      <!-- <span class="item__dollar__value">US$ 1,125.4</span> -->
+      <span class="item__dollar__value"><%= number_to_currency(@index.expenses_balance_dollar, unit: 'USD', precision: 2) %></span>
     </div>
   </div>
 </div>

@@ -78,7 +78,7 @@ module Dashboards
         reverse_hash(
         last_30_days_hash.merge(
         system_balance_orders_last_30_days.group_by { |order| order.created_at.to_date }
-                                          .transform_values { |v| v.sum(&:total_cents)}
+                                          .transform_values { |v| v.sum { |order| order.payment_transaction.amount }}
                                           ) { |key, old_value, new_value| old_value + new_value })
                                           .values
       end

@@ -15,7 +15,7 @@ const dashboardLineChart = () => {
         data: incomingAmounts,
         backgroundColor: '#373737',
         fill: false,
-        borderColor: '#81c869',
+        borderColor: '#ff8800',
         tension: 0.1,
         color: '#ffffff',
         display: false
@@ -25,7 +25,7 @@ const dashboardLineChart = () => {
         data: paidWithdrawsAmounts,
         backgroundColor: '#373737',
         fill: false,
-        borderColor: '#000',
+        borderColor: '#1119ff',
         tension: 0.1,
         color: '#ffffff',
         display: false
@@ -35,7 +35,7 @@ const dashboardLineChart = () => {
         data: expensesAmounts,
         backgroundColor: '#373737',
         fill: false,
-        borderColor: '#ff00f0',
+        borderColor: '#0fb1ff',
         tension: 0.1,
         color: '#ffffff',
         display: false

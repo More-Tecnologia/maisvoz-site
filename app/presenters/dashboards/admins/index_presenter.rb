@@ -142,7 +142,7 @@ module Dashboards
       end
 
       def pool_wallets
-        PoolWallet.all
+        PoolWallet.all.order(:created_at)
       end
 
       def publicity_balance

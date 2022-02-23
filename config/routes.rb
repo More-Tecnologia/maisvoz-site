@@ -72,7 +72,7 @@ Rails.application.routes.draw do
       end
       resources :expenses, only: %i[index new create]
       resources :pool_expenses, only: %i[new create]
-      resources :pool_wallets
+      resources :pool_wallets, only: %i[new create edit update]
       resources :bonus_contracts, only: :index do
         member do
           put :toggle_enabled_bonification

@@ -1713,3 +1713,5 @@ pt-BR:
   btc_amount_cant_be_blank: BTC não pode ficar em branco
   select_valid_pool_wallet: Selecione uma piscina valida
   created_with_success: Criado com sucesso
+  wallet: Carteira
+  pool_wallet: Carteira

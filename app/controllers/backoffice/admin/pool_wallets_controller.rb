@@ -1,10 +1,7 @@
 module Backoffice
   module Admin
     class PoolWalletsController < AdminController
-
-      def index
-        @pool_wallet = PoolWallet.all
-      end
+      before_action :ensure_pool_wallet, only: %i[edit update]
 
       def new
         @pool_wallet = PoolWallet.new
@@ -33,17 +30,15 @@ module Backoffice
         end
       end
 
-      def destroy
-        @pool_wallet.toggle!
-        redirect_to backoffice_admin_pool_wallets_path
-      end
-
       private
 
       def valid_params
+        params.require(:pool_wallet)
+              .permit(:title, :wallet)
       end
 
       def ensure_pool_wallet
+        @pool_wallet = PoolWallet.find(params[:id])
       end
     end
   end

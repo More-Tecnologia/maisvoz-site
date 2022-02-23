@@ -4,7 +4,11 @@ module Backoffice
 
       before_action :validate_master_password, only: :create
 
-      def index; end
+      def index
+        @pool_wallets = PoolWallet.order(:created_at)
+                                  .page(params[:page])
+                                  .per(10)
+      end
 
       def new
         @financial_transaction = FinancialTransaction.new

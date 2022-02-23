@@ -2,7 +2,6 @@
 
 class PoolWallet < ApplicationRecord
   validates :title, presence: true
-  validates :cent_amount, presence: true
   validates :wallet, presence: true
 
   def add_amount(amount)

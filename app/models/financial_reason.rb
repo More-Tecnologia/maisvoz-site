@@ -44,6 +44,10 @@ class FinancialReason < ApplicationRecord
     code == '3800'
   end
 
+  def pool_wallet_expense_reason?
+    code == '9999'
+  end
+
   def order_sponsored?
     self == FinancialReason.order_sponsored
   end
@@ -162,6 +166,10 @@ class FinancialReason < ApplicationRecord
 
   def self.expense
     @@expense ||= find_by(code: '3800')
+  end
+
+  def self.pool_wallet_expense
+    @@expense ||= find_by(code: '9999')
   end
 
   def self.pool_leadership

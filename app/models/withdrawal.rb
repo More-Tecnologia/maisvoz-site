@@ -16,6 +16,8 @@ class Withdrawal < ApplicationRecord
                 :processing]
   enum payment_method: [:usd, :btc, :eth]
 
+  scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
+
   def gross_amount_cents
     self[:gross_amount_cents] / 1e8.to_f if self[:gross_amount_cents]
   end

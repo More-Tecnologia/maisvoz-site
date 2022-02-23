@@ -1,11 +1,11 @@
-<div class="admin-dashboard__card" id="pools_total_card">
+<div class="admin-dashboard__card" id="pool_balance_card">
   <span class="card__total-balance"><%= t(:pool_balance) %></span>
   <div class="card__container-bottom">
     <div class="card__currency">
       <%= image_tag('admin-dashboard/btc.svg') %>
       <%= t(:btc_bitcoin) %>
     </div>
-    <span class="card__balance"><%= number_to_currency(0, unit: 'BTC', precision: 8) %></span>
-    <span class="card__botom-value"><%= number_to_currency(0, unit: 'USD', precision: 2) %></span>
+    <span class="card__balance"><%= number_to_currency(@index.pool_balance, unit: 'BTC', precision: 8) %></span>
+    <span class="card__botom-value"><%= number_to_currency(@index.pool_balance_dollar, unit: 'USD', precision: 2) %></span>
   </div>
 </div>

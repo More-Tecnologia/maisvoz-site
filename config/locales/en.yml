@@ -1795,6 +1795,19 @@ en:
   new_expense: New expense
   expenses: Expenses
   pool: Pool
+  total_withdraws: Total withdraws
+  total_paid_orders: Total paid orders
+  paids: Paids
+  pendings: Pendings
+  rejecteds: Rejecteds
+  total_incoming_outcoming: Total Incoming and Outcoming
+  incoming_total: Total incoming
+  total_paid_withdraws: Total paid withdraws
+  total_expenses: Total expenses
+  select_pool_wallet: Select Pool Wallet
+  btc_amount_cant_be_blank: BTC amount can not be blank
+  select_valid_pool_wallet: Select a valid pool wallet
+  created_with_success: Created with success
   categorizations: Categories
   tag: Tag
   courses: Courses

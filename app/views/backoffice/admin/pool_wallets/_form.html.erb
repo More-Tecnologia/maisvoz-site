@@ -1,0 +1,18 @@
+<%= form_for([:backoffice, :admin, @pool_wallet], html: { role: 'form' }) do |f| %>
+  <div class="text-left m-t-30">
+    <table class="table table-striped">
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label :title %></strong></td>
+        <td><%= f.text_field :title, class: 'form-control', placeholder: t(:title) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label :wallet %></strong></td>
+        <td><%= f.text_field :wallet, class: 'form-control', placeholder: t(:wallet) %></td>
+      </tr>
+    </table>
+    <%= f.submit class: 'btn btn-primary pull-right' %>
+    <%= link_to t('new'), [:new, :backoffice, :admin, :pool_wallet], class: 'btn btn-primary' if params[:action] == 'edit' %>
+    <%= link_to t('see_all'), [:backoffice, :admin, :expenses], class: 'btn btn-primary' %>
+    <br>
+  </div>
+<% end %>

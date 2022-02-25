@@ -1808,6 +1808,8 @@ en:
   btc_amount_cant_be_blank: BTC amount can not be blank
   select_valid_pool_wallet: Select a valid pool wallet
   created_with_success: Created with success
+  wallet: Wallet Hash
+  pool_wallet: Pool Wallet
   categorizations: Categories
   tag: Tag
   courses: Courses

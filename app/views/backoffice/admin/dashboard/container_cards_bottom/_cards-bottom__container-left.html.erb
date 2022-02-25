@@ -1,0 +1,22 @@
+<div class="cards-bottom__container-left">
+  <% @index.pool_wallets.each do |pool_wallet| %>
+    <div class="container-left__card">
+      <span class="pool__title">
+        <%= t(:pool) %>
+      </span>
+      <div class="card-bottom__container-mid">
+        <span class="pool__type"><%= pool_wallet.title %></span>
+        <div class="card__currency">
+          <%= image_tag('admin-dashboard/btc.svg') %>
+          <%= t(:btc_bitcoin) %>
+        </div>
+        <span class="card__balance"><%= number_to_currency(pool_wallet.cent_amount, unit: 'BTC', precision: 8) %> </span>
+        <span class="card__botom-value"><%= number_to_currency(@index.to_dollar(pool_wallet.cent_amount), unit: 'USD', precision: 2) %></span>
+      </div>
+      <div class="card-bottom__container-bottom">
+        <span class="container-bottom__title">Hash</span>
+        <span><%= pool_wallet.wallet %></span>
+      </div>
+    </div>
+  <% end %>
+</div>

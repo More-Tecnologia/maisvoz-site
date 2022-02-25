@@ -333,7 +333,7 @@ pt-BR:
     code: 'Código'
     payer: Pagador
     order_payment_amount_cents: Total de Pedidos Pagos
-    pool_amount_cents: Total da Pscicina
+    pool_amount_cents: Total da Piscina
     withdrawal_amount_cents: Total de Saques
     pool_balance_amount_cents: Saldo da Piscina
     profit_amount_cents: Lucro Total
@@ -1691,6 +1691,30 @@ pt-BR:
   active_until: Ativo até
   eth: ETH
   export_only_wallets: Exportar apenas carteiras
+  total_requests: Total de Chamados
+  open_requests: Chamados em aberto
+  sales_amount: Total de vendas
+  btc_bitcoin: BTC Bitcoin
+  courses: Cursos
+  adcash: Adcash
+  publicity: Publicidade
+  crypto: Cripto
+  total_balance: Saldo Total
+  new_expense: Nova despesa
+  expenses: Despesas
+  pool: Piscina
+  total_withdraws: Total de saques
+  total_paid_orders: Total de pedidos pagos
+  total_incoming_outcoming: Total de entradas e saídas
+  incoming_total: Total de entradas
+  total_paid_withdraws: Total de saques pagos
+  total_expenses: Total de despesas
+  select_pool_wallet: Selecione a piscina
+  btc_amount_cant_be_blank: BTC não pode ficar em branco
+  select_valid_pool_wallet: Selecione uma piscina valida
+  created_with_success: Criado com sucesso
+  wallet: Carteira
+  pool_wallet: Carteira
   categorizations: Categorias
   tag: Tag
   courses: Cursos

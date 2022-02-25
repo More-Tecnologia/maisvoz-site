@@ -1774,6 +1774,36 @@ en:
   approved_balance: Approved balance
   processing: 'Processing'
   export_only_wallets: Export only wallets
+  total_requests: Total requests
+  open_requests: Open requests
+  sales_amount: Sales amount
+  btc_bitcoin: BTC Bitcoin
+  courses: Courses
+  adcash: Adcash
+  publicity: Publicity
+  crypto: Crypto
+  total_balance: Total balance
+  system_balance: System balance
+  pool_balance: Pool balance
+  virtual_balance: Virtual balance
+  new_expense: New expense
+  expenses: Expenses
+  pool: Pool
+  total_withdraws: Total withdraws
+  total_paid_orders: Total paid orders
+  paids: Paids
+  pendings: Pendings
+  rejecteds: Rejecteds
+  total_incoming_outcoming: Total Incoming and Outcoming
+  incoming_total: Total incoming
+  total_paid_withdraws: Total paid withdraws
+  total_expenses: Total expenses
+  select_pool_wallet: Select Pool Wallet
+  btc_amount_cant_be_blank: BTC amount can not be blank
+  select_valid_pool_wallet: Select a valid pool wallet
+  created_with_success: Created with success
+  wallet: Wallet Hash
+  pool_wallet: Pool Wallet
   categorizations: Categories
   tag: Tag
   courses: Courses

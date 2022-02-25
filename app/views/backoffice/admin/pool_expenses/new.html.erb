@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div class="box-expenses">
+  <div class="box-second">
+    <h4 class="page-title"><%= t('expenses') %></h4>
+  </div>
+</div>
+
+<div class="box-expenses">
+  <div class="box-second">
+    <div class="card-box" style="padding-bottom: 0px;">
+      <div class="row">
+        <div class="col-md-12">
+          <%= simple_form_for(@financial_transaction, url: backoffice_admin_pool_expenses_path,
+                                                      method: :post,
+                                                      html: { class: 'form-horizontal' }) do |f| %>
+
+            <%= f.input :cent_amount, as: :string, required: true, input_html: { class: 'money-br', value: '' } %>
+            <div class="form-group">
+              <label class="control-label string required" for="btc_amount"><abbr title="required">*</abbr> <%= t(:btc) %></label>
+              <%= text_field_tag :btc_amount, '', as: :string, required: true, class: 'form-control string required' %>
+            </div>
+            <div class="form-group">
+              <label class="control-label required" for="pool_wallet"><abbr title="required">*</abbr> <%= t(:pool_wallet) %></label>
+              <%= select_tag :pool_wallet_id, options_from_collection_for_select(PoolWallet.all, "id", "title"), prompt: t(:select_pool_wallet), required: true, class: 'form-control string required' %>
+            </div>
+
+            <%= f.input :note, as: :text, required: true %><br>
+            <%= f.input :master_password %>
+            <b>
+              <%= f.submit t('helpers.submit.send_expense'), class: 'btn btn-success btn-lg' %>
+            </b>
+          <% end %>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

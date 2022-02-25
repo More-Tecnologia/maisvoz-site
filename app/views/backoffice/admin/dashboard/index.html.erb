@@ -1,8 +1,9 @@
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <%= javascript_include_tag 'charts' %>
+<%= stylesheet_link_tag 'click-tok-theme/admin-dashboard' %>
 
-<div class="container-items">
-  <div class="row" id="dashboard">
-    
-  </div>
+<div class="container-dashboard-admin">
+  <%= render 'container_cards' %>
+  <%= render 'container_graphs' %>
+  <%= render 'container_cards_bottom' %>
 </div>

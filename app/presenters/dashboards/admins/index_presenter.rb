@@ -40,7 +40,7 @@ module Dashboards
       end
 
       def expenses_balance
-        expenses_balance_dollar * btc_rate
+        SystemConfiguration.expense_cent_amount
       end
 
       def expenses_balance_dollar

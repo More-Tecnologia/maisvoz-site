@@ -62,7 +62,7 @@
         <%= f.text_area :content, class: 'input-description', rows: '1', placeholder: "This course includes" %>
       </div>
 
-      <div class="title-mid-course">Parametrização</div>
+      <div class="title-mid-course"><%= t(:parameterization) %></div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course6.svg') %>
@@ -99,12 +99,12 @@
         </div>
         <%= text_field_tag :network_commission, nil, class: 'input-description', placeholder: t(:network_commission) %>
       </div>
-      <span class="subtitle-input">Min: 22%</span>
+      <span class="subtitle-input">Min: <%= ENV['MIN_NETWORK_COMMISION'] %>%</span>
       <div class="sale-summary-course">
-        <h4 class="title-cover-course">Sale summary</h4>
-        <span>Valor de venda: <strong>0,00</strong></span>
-        <span>Comissão de Rede: <strong>0,00</strong></span>
-        <span>Você receberá por venda: <strong>0,00</strong></span>
+        <h4 class="title-cover-course"><%= t(:sale_summary) %></h4>
+        <span><%= t(:sale_value) %>: <strong>0,00</strong></span>
+        <span><%= t(:network_commission) %>: <strong>0,00</strong></span>
+        <span><%= t(:you_will_receive_per_sale) %>: <strong>0,00</strong></span>
         <%= f.submit t(:create), class: 'btn-create-course' %>
       </div>
     <% end %>

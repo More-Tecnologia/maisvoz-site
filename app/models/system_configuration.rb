@@ -22,4 +22,12 @@ class SystemConfiguration < ApplicationRecord
   def self.withdrawal_fee
     active_config.try(:withdrawal_fee).presence || ENV['WITHDRAWAL_FEE']
   end
+
+  def self.add_expense_amount(amount)
+    active_config.increment(:expense_cent_amount, amount.to_f * 1e8).save!
+  end
+
+  def self.expense_cent_amount
+    active_config.expense_cent_amount / 1e8.to_f if active_config.expense_cent_amount
+  end
 end

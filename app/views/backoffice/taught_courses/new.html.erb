@@ -39,7 +39,7 @@
         <div class="field-icon">
           <%= image_tag('courses/add-course2.svg') %>
         </div>
-        <%= select_tag :categories, options_for_select(categorizations_title_for_select),
+        <%= select_tag :categories_ids, options_for_select(categorizations_title_for_select),
                                   class: 'input-description',
                                   multiple: true, class: "input-description", select2: 'true', data: { placeholder: t(:categorizations) } %>
       </div>
@@ -97,7 +97,7 @@
         <div class="field-icon">
           <%= image_tag('courses/add-course12.svg') %>
         </div>
-        <%= text_field_tag :network_commission, nil, class: 'input-description', placeholder: t(:network_commission) %>
+        <%= text_field_tag :'product[network_commission]', nil, class: 'input-description', placeholder: t(:network_commission) %>
       </div>
       <span class="subtitle-input">Min: <%= ENV['MIN_NETWORK_COMMISION'] %>%</span>
       <div class="sale-summary-course">

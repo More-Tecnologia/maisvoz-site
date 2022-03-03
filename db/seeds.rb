@@ -33,6 +33,7 @@ attributes = [{ name: 'Financial', active: true },
 
 Subject.create!(attributes)
 
+Category.find_or_create_by(name: 'Course')
 deposit_cat = Category.find_or_create_by(name: 'Deposit')
 deposit_attributes = [{ name: 'Adcash',
                         price_cents: 0,

@@ -11,7 +11,29 @@ module Courses
     private
 
     def call
+      ActiveRecord::Base.transaction do
+        create_product
+        create_course
+        add_categories
+      end
+    end
 
+    def create_product
+      @product = ProductCreateService.call(@product_params)
+    end
+
+    def create_course
+      @course = @product.courses.create(@course_params)
+    end
+
+    def categories
+      Categorization.where(id: @categories_ids)
+    end
+
+    def add_categories
+      categories.each do |category|
+        @course.add(category)
+      end
     end
   end
 end

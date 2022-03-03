@@ -22,4 +22,7 @@ class Category < ApplicationRecord
   scope :sim_card, -> { where(code: 10) }
   scope :cellphone_reload, -> { where(code: 11) }
 
+  def self.course
+    @@course ||= find_by(name: 'Course')
+  end
 end

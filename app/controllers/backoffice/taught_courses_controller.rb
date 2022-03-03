@@ -17,7 +17,9 @@ module Backoffice
     end
 
     def create
-      @course = Course.new(valid_params)
+      @course = Course.new(valid_course_params)
+      flash[:error] = @course.errors.full_messages
+      redirect_to backoffice_taught_courses_path
     end
 
     def edit; end
@@ -34,7 +36,7 @@ module Backoffice
     private
 
     def build_course
-      Courses::CreateService.call()
+      Courses::CreateService.call(course_params: valid_course_params, categories_ids: params[:categories_ids], product_params: valid_product_params)
     end
 
     def ensure_course
@@ -45,10 +47,14 @@ module Backoffice
       Courses::UpdateService.call()
     end
 
-    def valid_params
+    def valid_course_params
       params.require(:course)
             .permit(:title, :short_description, :language, :country_of_operation, :days_to_cashback,
                     :description, :content)
+    end
+
+    def valid_product_params
+
     end
   end
 end

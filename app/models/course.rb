@@ -26,4 +26,12 @@ class Course < ApplicationRecord
   def path
     thumb.try(:fullpath)
   end
+
+  def add(category)
+    category.itemables << self
+  end
+
+  def remove(category)
+    category.itemables.delete(self)
+  end
 end

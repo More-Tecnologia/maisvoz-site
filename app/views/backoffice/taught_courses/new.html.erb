@@ -91,13 +91,13 @@
         <div class="field-icon">
           <%= image_tag('courses/add-course11.svg') %>
         </div>
-        <%= text_field_tag :price, nil, class: 'input-description', placeholder: t(:price) %>
+        <%= text_field_tag :'product[price]', nil, class: 'input-description', placeholder: t(:price) %>
       </div>
       <div class="login-fields user-field">
         <div class="field-icon">
           <%= image_tag('courses/add-course12.svg') %>
         </div>
-        <%= text_field_tag :'product[network_commission]', nil, class: 'input-description', placeholder: t(:network_commission) %>
+        <%= text_field_tag :'product[network_commission_percentage]', nil, class: 'input-description', placeholder: t(:network_commission) %>
       </div>
       <span class="subtitle-input">Min: <%= ENV['MIN_NETWORK_COMMISION'] %>%</span>
       <div class="sale-summary-course">

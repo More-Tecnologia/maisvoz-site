@@ -3,7 +3,7 @@
 module Courses
   class ProductCreateService < ApplicationService
     def initialize(params)
-      @price = params[:price] * 100
+      @price = params[:price].to_f * 100
       @title = params[:title]
       @network_commission_percentage = params[:network_commission_percentage]
     end

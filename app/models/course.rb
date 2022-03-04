@@ -9,7 +9,7 @@ class Course < ApplicationRecord
   belongs_to :approver_user, class_name: 'User'
 
   has_many :item_categorizations, as: :itemable
-  has_many :categorizations, through: :item_categorizations
+  has_many :categorizations, through: :item_categorizations, source_type: "Itemable"
   has_many :course_lessons
   has_many :user_courses
   has_many :students, as: :users, through: :user_courses

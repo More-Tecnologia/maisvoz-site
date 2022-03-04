@@ -67,7 +67,7 @@ module Dashboards
       end
 
       def incoming_balance
-        system_balance_orders.sum(&:amount) - pool_balance
+        system_balance_orders.sum(&:amount)
       end
 
       def incoming_balance_dollar
@@ -162,7 +162,7 @@ module Dashboards
       end
 
       def system_balance
-        incoming_balance - paid_withdraws_balance - expenses_balance
+        incoming_balance - paid_withdraws_balance - expenses_balance - pool_balance
       end
 
       def system_balance_dollar

@@ -27,14 +27,8 @@ module Courses
       @course = @product.create_course(@course_params)
     end
 
-    def categories
-      Categorization.where(id: @categories_ids)
-    end
-
     def add_categories
-      categories.each do |category|
-        @course.add(category)
-      end
+      AddCategoriesService.call(course: @course, categories_ids: @categories_ids)
     end
   end
 end

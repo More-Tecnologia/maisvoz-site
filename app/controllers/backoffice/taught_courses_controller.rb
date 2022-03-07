@@ -25,6 +25,7 @@ module Backoffice
     def edit; end
 
     def update
+
     end
 
     def destroy
@@ -46,7 +47,10 @@ module Backoffice
     end
 
     def update_course
-      Courses::UpdateService.call()
+      Courses::UpdateService.call(course: @course,
+                                  course_params: valid_course_params,
+                                  categories_ids: params[:categories_ids],
+                                  product_params: valid_product_params)
     end
 
     def valid_course_params

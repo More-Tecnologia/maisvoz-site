@@ -19,7 +19,7 @@ module Courses
       Categorization.where(id: @categories_ids)
     end
 
-    def add_categories
+    def remove_categories
       categories.each do |category|
         @course.remove(category)
       end

@@ -4,7 +4,7 @@ module Courses
   class UpdateCategoriesService < ApplicationService
     def initialize(params)
       @course = params[:course]
-      @categories_ids = params[:categories_ids]
+      @categories_ids = params[:categories_ids].map(&:to_i)
     end
 
     private
@@ -29,15 +29,15 @@ module Courses
     end
 
     def new_categories_ids
-      @categories_ids - course_categories_ids
+      @categories_ids - categories_ids
     end
 
     def categories_ids
-      @course.categories.map(&:id)
+      @course.categorizations.map(&:id)
     end
 
     def removed_categories_ids
-      course_categories_ids - @categories_ids
+      categories_ids - @categories_ids
     end
   end
 end

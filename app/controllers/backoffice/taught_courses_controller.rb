@@ -65,8 +65,9 @@ module Backoffice
       params.require(:course)
             .permit(:title, :short_description, :language,
                     :country_of_operation, :days_to_cashback,
-                    :description, :content, :country_of_operation)
-            .merge(owner: current_user)
+                    :description, :content)
+            .merge(owner: current_user,
+                   country_of_operation: params[:course][:country_of_operation].reject(&:blank?))
     end
 
     def valid_product_params

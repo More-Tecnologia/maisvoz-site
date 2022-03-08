@@ -15,20 +15,21 @@ module Courses
     def call
       ActiveRecord::Base.transaction do
         update_product
-        create_course
+        update_course
         update_categories
-        @course
       end
     end
 
-    def create_product
-      ProductCreateService.call(@product, @product_params)
+    def update_product
+      ProductUpdateService.call(@product_params.merge(product: @product))
     end
 
-    def create_course
+    def update_course
       @course.update!(@course_params)
     end
 
-
+    def update_categories
+      UpdateCategoriesService.call(course: @course, categories_ids: @categories_ids)
+    end
   end
 end

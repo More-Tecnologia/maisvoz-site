@@ -6,10 +6,10 @@ class Course < ApplicationRecord
 
   belongs_to :product
   belongs_to :owner, class_name: 'User'
-  belongs_to :approver_user, class_name: 'User'
+  belongs_to :approver_user, class_name: 'User', optional: true
 
   has_many :item_categorizations, as: :itemable
-  has_many :categorizations, through: :item_categorizations, source_type: "Itemable"
+  has_many :categorizations, through: :item_categorizations
   has_many :course_lessons
   has_many :user_courses
   has_many :students, as: :users, through: :user_courses
@@ -28,10 +28,10 @@ class Course < ApplicationRecord
   end
 
   def add(category)
-    category.itemables << self
+    category.courses << self
   end
 
   def remove(category)
-    category.itemables.delete(self)
+    category.courses.delete(self)
   end
 end

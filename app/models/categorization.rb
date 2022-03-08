@@ -3,7 +3,7 @@
 class Categorization < ApplicationRecord
   include Hashid::Rails
   has_many :item_categorizations
-  has_many :itemables, through: :item_categorizations
+  has_many :courses, through: :item_categorizations, source: :itemable, source_type: "Course"
 
   validates :tag, presence: true
   validates :title, presence: true

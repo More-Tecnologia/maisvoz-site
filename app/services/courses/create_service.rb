@@ -15,7 +15,6 @@ module Courses
         create_product
         create_course
         add_categories
-        @course
       end
     end
 
@@ -24,7 +23,7 @@ module Courses
     end
 
     def create_course
-      @course = @product.create_course(@course_params)
+      @course = @product.create_course!(@course_params)
     end
 
     def add_categories

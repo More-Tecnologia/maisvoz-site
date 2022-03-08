@@ -11,17 +11,15 @@ module Courses
     private
 
     def call
-      ActiveRecord::Base.transaction do
-        ensure_product
-      end
+      build_product
     end
 
     def course_category
       Category.course
     end
 
-    def ensure_product
-      Product.create(product_attributes)
+    def build_product
+      Product.create!(product_attributes)
     end
 
     def product_attributes

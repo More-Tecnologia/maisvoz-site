@@ -26,7 +26,7 @@ module Courses
     end
 
     def create_course
-      @course.update(@course_params)
+      @course.update!(@course_params)
     end
 
 

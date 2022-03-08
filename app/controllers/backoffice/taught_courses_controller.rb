@@ -17,15 +17,23 @@ module Backoffice
     end
 
     def create
-      @course = build_course
-      flash[:error] = valid_product_params
+      build_course
+      flash[:success] = t(:success_create)
       redirect_to backoffice_taught_courses_path
+    rescue StandardError => e
+      flash[:error] = e.message
+      redirect_back(fallback_location: '')
     end
 
     def edit; end
 
     def update
-
+      update_course
+      flash[:success] = t(:success_update)
+      redirect_to backoffice_taught_courses_path
+    rescue StandardError => e
+      flash[:error] = e.message
+      render :edit
     end
 
     def destroy
@@ -58,6 +66,7 @@ module Backoffice
             .permit(:title, :short_description, :language,
                     :country_of_operation, :days_to_cashback,
                     :description, :content, :country_of_operation)
+            .merge(owner: current_user)
     end
 
     def valid_product_params

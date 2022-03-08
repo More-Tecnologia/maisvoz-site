@@ -52,6 +52,7 @@ class Product < ApplicationRecord
                                              allow_blank: true }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   # validates :main_photo, attached: true
+  validates :network_commission_percentage, presence: true, if: :course?
 
   validate :photos_quantity_limit
   validate :photos_types

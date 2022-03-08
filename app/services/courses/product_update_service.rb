@@ -18,7 +18,7 @@ module Courses
     end
 
     def update_product
-      Product.update(product_attributes)
+      Product.update!(product_attributes)
     end
 
     def product_attributes

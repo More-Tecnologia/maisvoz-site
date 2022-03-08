@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Course < ApplicationRecord
+  include Hashid::Rails
+
   has_attachment :thumb
   enum days_to_cashback: { seven: 7, fifteen: 15, thirty: 30 }
 

@@ -51,7 +51,7 @@ module Backoffice
     end
 
     def ensure_course
-      @course = Course.find(params[:id])
+      @course = Course.find_by_hashid(params[:id])
     end
 
     def update_course

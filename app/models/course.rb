@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class Course < ApplicationRecord
-  has_attachment :thumb
+  include Hashid::Rails
+
+  has_attachment :thumb, accept: [:jpg, :png]
   enum days_to_cashback: { seven: 7, fifteen: 15, thirty: 30 }
 
   belongs_to :product
   belongs_to :owner, class_name: 'User'
-  belongs_to :approver_user, class_name: 'User'
+  belongs_to :approver_user, class_name: 'User', optional: true
 
   has_many :item_categorizations, as: :itemable
   has_many :categorizations, through: :item_categorizations
@@ -19,4 +21,24 @@ class Course < ApplicationRecord
   validates :language, presence: true
   validates :short_description, presence: true
   validates :title, presence: true
+
+  delegate :username, to: :owner, prefix: :owner
+  delegate :username, to: :approver_user, prefix: :approver, allow_nil: true
+  delegate :price, :network_commission_percentage, to: :product
+
+  scope :active, -> { where(active: true, approved: true) }
+  scope :inactive, -> { where(active: false) }
+  scope :waiting, -> { where(active: true, approved: false) }
+
+  def path
+    thumb.try(:fullpath)
+  end
+
+  def add(category)
+    category.courses << self
+  end
+
+  def remove(category)
+    category.courses.delete(self)
+  end
 end

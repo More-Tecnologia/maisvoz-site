@@ -15,7 +15,7 @@ module BackOffice
 
     config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
     config.i18n.default_locale = :en
-    config.i18n.available_locales = [:en, :es]
+    config.i18n.available_locales = [:en, :es, 'pt-BR']
 
     config.i18n.enforce_available_locales = false
 

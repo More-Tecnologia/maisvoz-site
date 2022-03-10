@@ -76,6 +76,12 @@ en:
           pending: 'Pending'
           active: 'Active'
           inactive: 'Inactive'
+    enums:
+      course:
+        days_to_cashback:
+          seven: Seven
+          fifteen: Fifteen
+          thirty: Thirty
     errors:
       models:
         user:
@@ -1807,3 +1813,23 @@ en:
   categorizations: Categories
   tag: Tag
   courses: Courses
+  language: Language
+  owner: Creator
+  approver: Supervisor
+  category: Category
+  approved?: Okay?
+  active?: Active?
+  short_description: Short description
+  countries_of_operation: Countries of operation
+  ideal_thumb_size: Ideal 500 x 300
+  add_course: Add Course
+  thumb: Thumbnail
+  price: Price
+  network_commission: Network Commission
+  you_will_receive_per_sale: You will receive per sale
+  parameterization: Parameterization
+  add_lessons: Add lessons
+  summary: Summary
+  description: Description
+  approved_course: Course successfully approved!
+  disallowed_course: Course disapproved!

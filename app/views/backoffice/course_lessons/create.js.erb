@@ -1,0 +1,7 @@
+if (true) {
+  let toggle = () => {
+    let elem = document.querySelector("#container-lessons-container")
+    elem.insertAdjacentHTML('beforeend', "<%= j render 'course_lesson', course_lesson: @course_lesson %>");
+  }
+  toggle()
+}

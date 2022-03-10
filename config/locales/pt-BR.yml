@@ -79,6 +79,12 @@ pt-BR:
           pending: 'Pendente'
           active: 'Ativo'
           inactive: 'Inativo'
+    enums:
+      course:
+        days_to_cashback:
+          seven: Sete
+          fifteen: Quinze
+          thirty: Trinta
     errors:
       models:
         user:
@@ -1714,7 +1720,23 @@ pt-BR:
   select_valid_pool_wallet: Selecione uma piscina valida
   created_with_success: Criado com sucesso
   wallet: Carteira
-  pool_wallet: Carteira
+  pool_wallet: Carteira da Piscina
   categorizations: Categorias
   tag: Tag
   courses: Cursos
+  language: Lingua
+  owner: Criador
+  approver: Supervisor
+  category: Categoria
+  title: Título
+  approved?: Aprovado?
+  active?: Ativo?
+  short_description: Descrição curta
+  countries_of_operation: Países de operação
+  ideal_thumb_size: Ideal 500 x 300
+  add_course: Adicionar Curso
+  thumb: Capa
+  price: Preço
+  network_commission: Comissão de rede
+  you_will_receive_per_sale: Você receberá por venda
+  parameterization: Parametrização

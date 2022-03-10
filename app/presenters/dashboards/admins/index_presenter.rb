@@ -40,7 +40,7 @@ module Dashboards
       end
 
       def expenses_balance
-        expenses_balance_dollar * btc_rate
+        SystemConfiguration.expense_cent_amount
       end
 
       def expenses_balance_dollar
@@ -67,7 +67,7 @@ module Dashboards
       end
 
       def incoming_balance
-        system_balance_orders.sum(&:amount)
+        system_balance_orders.sum(&:amount) - pool_balance
       end
 
       def incoming_balance_dollar

@@ -169,7 +169,7 @@ class FinancialReason < ApplicationRecord
   end
 
   def self.pool_wallet_expense
-    @@expense ||= find_by(code: '9999')
+    @@pool_wallet_expense ||= find_by(code: '9999')
   end
 
   def self.pool_leadership

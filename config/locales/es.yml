@@ -1,4 +1,4 @@
-en:
+es:
   '':
     success: Éxito
   active_admin:
@@ -76,6 +76,12 @@ en:
           pending: 'Pendiente'
           active: 'Activo'
           inactive: 'Inactivo'
+    enums:
+      course:
+        days_to_cashback:
+          seven: Siete
+          fifteen: Quince
+          thirty: Treinta
     errors:
       models:
         user:
@@ -1774,3 +1780,19 @@ en:
   approved_balance: Saldo aprobado
   processing: 'Procesando'
   export_only_wallets: Exportar solo billeteras
+  categorizations: Categorias
+  tag: Etiqueta
+  courses: Cursos
+  language: Idioma
+  owner: Creador
+  approver: Supervisor
+  category: Categoría
+  approved?: ¿Bueno?
+  active?: Activo?
+  short_description: Breve descripción
+  countries_of_operation: Países de operación
+  ideal_thumb_size: Ideal 500 x 300
+  add_course: Añadir Curso
+  thumb: Portada
+  price: Precio
+  network_commission: Comisión de Red

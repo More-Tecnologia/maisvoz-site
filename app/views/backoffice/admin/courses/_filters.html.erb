@@ -1,0 +1,60 @@
+<div class="box-orders">
+  <div class="box-second">
+    <div class="panel panel-border panel-custom">
+      <div class="panel-heading">
+  			<h3 class="panel-title"><%= t(:filters) %></h3>
+  		</div>
+      <div class="panel-body">
+        <%= search_form_for @q, url: backoffice_admin_courses_path do |f| %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-2">
+                <%= f.label t(:title) %>
+                <%= f.search_field :title_cont, class: 'form-control' %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:language) %>
+                <%= f.search_field :language_cont, class: 'form-control' %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:owner) %>
+                <%= f.search_field :owner_username_cont, class: 'form-control' %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:approver) %>
+                <%= f.search_field :approver_user_username_cont, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <%= f.label t(:active) %>
+                <%= select_tag :active, options_for_select(boolean_select_options),
+                                        class: 'form-control',
+                                        include_blank: true %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:approved) %>
+                <%= select_tag :approved, options_for_select(boolean_select_options),
+                                          class: 'form-control',
+                                          include_blank: true %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:category) %>
+                <%= select_tag :category, options_for_select(categorizations_title_for_select),
+                                          class: 'form-control',
+                                          include_blank: true %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:tag) %>
+                <%= select_tag :category, options_for_select(categorizations_tag_for_select),
+                                          class: 'form-control',
+                                          include_blank: true %>
+              </div>
+            </div>
+          </div>
+          <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,8 @@
 module Backoffice
   module Admin
     class ExpensesController < AdminController
-
       before_action :validate_master_password, only: :create
+      before_action :ensure_btc_amount_presence, only: :create
 
       def index
         @pool_wallets = PoolWallet.order(:created_at)
@@ -17,6 +17,7 @@ module Backoffice
       def create
         @financial_transaction = FinancialTransaction.new(valid_params)
         if @financial_transaction.valid?(:expense) && @financial_transaction.save
+          SystemConfiguration.add_expense_amount(params[:btc_amount])
           flash[:success] = t('.success')
           redirect_to new_backoffice_admin_expense_path
         else
@@ -27,12 +28,19 @@ module Backoffice
 
       private
 
+      def ensure_btc_amount_presence
+        return if params[:btc_amount].present?
+        flash[:error] = t(:btc_amount_cant_be_blank)
+        redirect_to new_backoffice_expense_path
+      end
+
       def valid_params
         attributes = params.require(:financial_transaction)
                            .permit(:cent_amount, :note)
                            .merge(user: User.find_morenwm_customer_admin,
                                   financial_reason: FinancialReason.expense)
         attributes[:cent_amount] = cleasing_decimal_number(attributes[:cent_amount])
+        attributes[:note] += " - #{params[:btc_amount]}"
         attributes
       end
 

@@ -77,7 +77,7 @@ class Order < ApplicationRecord
   scope :paid, -> { where.not(paid_at: nil) }
   scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
   scope :not_cart, -> { where.not(status: :cart) }
-  scope :currency_balance, -> { where.not(payment_type: %i[free admin_nb voucher])}
+  scope :currency_balance, -> { where(payment_type: %i[btc])}
   scope :created_at,
     ->(begin_datetime, end_datetime) { where(created_at: begin_datetime..end_datetime) }
 

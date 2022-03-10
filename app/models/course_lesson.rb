@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CourseLesson < ApplicationRecord
-  has_attachment :thumb
+  has_attachment :thumb, accept: [:jpg, :png]
   has_attachments :attachments
 
   belongs_to :course

@@ -1828,3 +1828,8 @@ en:
   network_commission: Network Commission
   you_will_receive_per_sale: You will receive per sale
   parameterization: Parameterization
+  add_lessons: Add lessons
+  summary: Summary
+  description: Description
+  approved_course: Course successfully approved!
+  disallowed_course: Course disapproved!

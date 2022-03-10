@@ -4,121 +4,25 @@
 
 <div class="container-my-courses">
   <div class="top-new-courses">
-    <a href="#" class="btn-return">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-arrow-left" viewbox="0 0 16 16">
-        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+    <a class="back-button" href="/backoffice/financial_dashboard?locale=en">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
       </svg>
     </a>
-    <span>Voltar</span>
   </div>
   <div class="container-mid-my-courses">
-    <span>Meu Curso</span>
+    <span><%= @course.title %></span>
     <div class="course">
       <div class="id-course">
         <span>ID</span>
-        <span>002</span>
+        <span><%= @course.hashid %></span>
       </div>
-      <div class="img-course"></div>
-      <p class="course-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+      <%= image_tag(course_thumb(@course), class: 'img-course') %>
+      <p class="course-description"><%= @course.short_description %></p>
     </div>
   </div>
   <div class="container-add-lessons">
-    <span>Adicionar Aulas</span>
-    <form class="form-add-lessons" action="index.html" method="post">
-      <label for="cover-course-img" class="cover-course-img_label" style="margin: auto;">
-        <div class="cover-course-img_label">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey" class="bi bi-image" viewbox="0 0 16 16">
-            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-            <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
-          </svg>
-        </div>
-        <input id="cover-course-img" type="file" name="" value="">
-      </label>
-      <span class="size-course-img" style="margin: auto;">Ideal 500 x 300</span>
-      <div class="container-preview">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            Prévia
-          </label>
-        </div>
-      </div>
-      <div class="login-fields user-field">
-        <div class="field-icon">
-          <%= image_tag('courses/add-course1.svg') %>
-        </div>
-        <input class="input-description" type="text" placeholder="Name">
-      </div>
-      <div class="login-fields user-field">
-        <div class="field-icon">
-          <%= image_tag('courses/add-course3.svg') %>
-        </div>
-        <input class="input-description" type="text" placeholder="Descrição">
-      </div>
-      <div class="login-fields user-field">
-        <div class="field-icon">
-          <%= image_tag('courses/menu-courses2.svg') %>
-        </div>
-        <input class="input-description" type="text" placeholder="URL do vídeo">
-      </div>
-      <div class="container-attachments">
-        <span>Anexos</span>
-        <label for="course-files" class="btn-choose-files">
-          <input type="file" name="" value="" id="course-files">
-          Choose Files
-        </label>
-      </div>
-      <button type="button" name="button" class="btn-resume-lessons">Adicionar</button>
-      <div class="container-resume">
-        <span>Resumo</span>
-      </div>
-      <div class="container-lessons">
-        <div class="container-lesson">
-          <div class="container-top-lesson">
-            <div class="id-lesson">
-              01 - Aula 1
-            </div>
-            <div class="btns-lesson">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-pencil-fill" viewbox="0 0 16 16">
-                <path
-                  d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3-fill" viewbox="0 0 16 16">
-                <path
-                  fill-rule="evenodd"
-                  d="M6 1.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v1H6v-1Zm5 0v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5ZM4.5 5.029a.5.5 0 1 1 .998-.06l.5 8.5a.5.5 0 0 1-.998.06l-.5-8.5Zm6.53-.528a.5.5 0 0 1 .47.528l-.5 8.5a.5.5 0 1 1-.998-.058l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="container-bottom-lesson">
-            <span>Imagem.jpeg</span>
-            <span>Anexos.pdf</span>
-          </div>
-        </div>
-        <div class="container-lesson">
-          <div class="container-top-lesson">
-            <div class="id-lesson">
-              02 - Aula 2
-            </div>
-            <div class="btns-lesson">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-pencil-fill" viewbox="0 0 16 16">
-                <path
-                  d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3-fill" viewbox="0 0 16 16">
-                <path
-                  fill-rule="evenodd"
-                  d="M6 1.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v1H6v-1Zm5 0v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5ZM4.5 5.029a.5.5 0 1 1 .998-.06l.5 8.5a.5.5 0 0 1-.998.06l-.5-8.5Zm6.53-.528a.5.5 0 0 1 .47.528l-.5 8.5a.5.5 0 1 1-.998-.058l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="container-bottom-lesson">
-            <span>Imagem.jpeg</span>
-            <span>Anexos.pdf</span>
-          </div>
-        </div>
-      </div>
-      <button type="button" name="button" class="btn-save-lessons">Save</button>
-    </form>
+    <span><%= t(:add_lessons) %></span>
+    <%= render 'form' %>
   </div>
 </div>

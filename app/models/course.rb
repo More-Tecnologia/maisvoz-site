@@ -3,7 +3,7 @@
 class Course < ApplicationRecord
   include Hashid::Rails
 
-  has_attachment :thumb
+  has_attachment :thumb, accept: [:jpg, :png]
   enum days_to_cashback: { seven: 7, fifteen: 15, thirty: 30 }
 
   belongs_to :product
@@ -23,8 +23,12 @@ class Course < ApplicationRecord
   validates :title, presence: true
 
   delegate :username, to: :owner, prefix: :owner
-  delegate :username, to: :approver_user, prefix: :approver
+  delegate :username, to: :approver_user, prefix: :approver, allow_nil: true
   delegate :price, :network_commission_percentage, to: :product
+
+  scope :active, -> { where(active: true, approved: true) }
+  scope :inactive, -> { where(active: false) }
+  scope :waiting, -> { where(active: true, approved: false) }
 
   def path
     thumb.try(:fullpath)

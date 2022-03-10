@@ -5,9 +5,16 @@ module Backoffice
     before_action :ensure_course, only: %i[show edit update destroy]
 
     def index
-      @courses = current_user.authorial_courses
-                             .page(params[:page])
-                             .per(10)
+      if params[:status].present?
+        @courses = current_user.authorial_courses
+                               .__send__(params[:status])
+                               .page(params[:page])
+                               .per(10)
+      else
+        @courses = current_user.authorial_courses
+                               .page(params[:page])
+                               .per(10)
+      end
     end
 
     def show; end

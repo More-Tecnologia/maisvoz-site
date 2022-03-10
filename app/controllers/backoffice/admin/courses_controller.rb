@@ -3,6 +3,8 @@
 module Backoffice
   module Admin
     class CoursesController < AdminController
+      before_action :ensure_course, only: %i[update destroy]
+
       def index
         @q = Course.ransack(params)
         @courses = @q.result
@@ -11,9 +13,23 @@ module Backoffice
       end
 
       def update
+        @course.update(approved: true, approver_user: current_user)
+        flash[:success] = t(:approved_course)
+
+        redirect_to backoffice_admin_courses_path
       end
 
       def destroy
+        @course.update(approved: false)
+        flash[:error] = t(:disallowed_course)
+
+        return_to backoffice_admin_courses_path
+      end
+
+      private
+
+      def ensure_course
+        @course = Course.find_by_hashid(params[:id])
       end
     end
   end

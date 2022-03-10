@@ -36,7 +36,15 @@
                       <td> <%= course.owner_username %></td>
                       <td> <%= course.approver_username %></td>
                       <td>
-                        '#'
+                        <% if course.active? %>
+                          <%= link_to backoffice_admin_course_path(course), method: :put do %>
+                            <%= content_tag :i, '', class: 'fas fa-thumbs-up text-success' %>
+                          <% end %>
+
+                          <%= link_to backoffice_admin_course_path(course), method: :delete do %>
+                            <%= content_tag :i, '', class: 'fas fa-thumbs-down text-danger' %>
+                          <% end %>
+                        <% end %>
                       </td>
                     </tr>
                   <% end %>

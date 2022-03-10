@@ -23,7 +23,7 @@ module Backoffice
         @course.update(approved: false)
         flash[:error] = t(:disallowed_course)
 
-        return_to backoffice_admin_courses_path
+        redirect_to backoffice_admin_courses_path
       end
 
       private

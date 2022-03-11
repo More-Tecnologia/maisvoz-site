@@ -22,7 +22,7 @@ class Course < ApplicationRecord
   validates :short_description, presence: true
   validates :title, presence: true
 
-  delegate :username, to: :owner, prefix: :owner
+  delegate :username, :name, to: :owner, prefix: :owner
   delegate :username, to: :approver_user, prefix: :approver, allow_nil: true
   delegate :price, :network_commission_percentage, to: :product
 

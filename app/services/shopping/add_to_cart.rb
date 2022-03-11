@@ -54,7 +54,7 @@ module Shopping
 
     def update_order_item
       order_item = find_order_item
-      order_item.quantity += 1
+      order_item.quantity = 1
       order_item.unit_price_cents = product.price_cents
       order_item.total_cents = product.price_cents * order_item.quantity
       order_item.save!

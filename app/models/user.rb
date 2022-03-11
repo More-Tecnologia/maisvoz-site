@@ -80,6 +80,7 @@ class User < ApplicationRecord
   has_many :bonus_contracts
   has_many :payer_orders, class_name: 'Order',
                           foreign_key: 'payer_id'
+  has_many :user_courses
   has_many :courses, through: :user_courses
   has_many :course_lessons, through: :user_course_lessons
   has_many :authorial_courses, class_name: 'Course', foreign_key: 'owner_id'

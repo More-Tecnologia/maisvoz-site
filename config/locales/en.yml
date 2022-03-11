@@ -1833,3 +1833,5 @@ en:
   description: Description
   approved_course: Course successfully approved!
   disallowed_course: Course disapproved!
+  published_by: Published by
+  anonymous: Anonymous

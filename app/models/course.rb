@@ -14,7 +14,7 @@ class Course < ApplicationRecord
   has_many :categorizations, through: :item_categorizations
   has_many :course_lessons
   has_many :user_courses
-  has_many :students, as: :users, through: :user_courses
+  has_many :students, through: :user_courses
 
   validates :content, presence: true
   validates :description, presence: true

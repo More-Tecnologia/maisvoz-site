@@ -60,7 +60,7 @@
             </div>
             <div class="buy-course">
               <span class="value-course"><%= number_to_currency(course.price) %></span>
-              <%= link_to t(:buy), backoffice_courses_path(product: { id: course.product.id }, country: 'USA'), method: :put, class: "btn-buy-course" %>
+              <%= link_to t(:buy), backoffice_courses_carts_path(product: { id: course.product.id }, country: 'USA'), method: :put, class: "btn-buy-course" %>
             </div>
           </div>
         </div>

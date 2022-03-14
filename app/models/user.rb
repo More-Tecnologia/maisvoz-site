@@ -125,6 +125,7 @@ class User < ApplicationRecord
   scope :with_blocked_pool_trading, -> { where('pool_tranding_blocked_balance > 0') }
   scope :with_children_pool_point_balance, -> { where('children_pool_trading_balance > 0') }
 
+
   before_create :assign_initial_type
   before_create :assign_token
 
@@ -468,6 +469,10 @@ class User < ApplicationRecord
                                                    .sum(&:cent_amount)
 
     free_task_bonus_amount >= BonusContract::FREE_PRODUCT_EARNING
+  end
+
+  def enroll_course(course)
+    course.students << self
   end
 
   private

@@ -14,7 +14,7 @@ class Course < ApplicationRecord
   has_many :categorizations, through: :item_categorizations
   has_many :course_lessons
   has_many :user_courses
-  has_many :students, as: :users, through: :user_courses
+  has_many :students, through: :user_courses
 
   validates :content, presence: true
   validates :description, presence: true
@@ -22,9 +22,9 @@ class Course < ApplicationRecord
   validates :short_description, presence: true
   validates :title, presence: true
 
-  delegate :username, to: :owner, prefix: :owner
+  delegate :username, :name, to: :owner, prefix: :owner
   delegate :username, to: :approver_user, prefix: :approver, allow_nil: true
-  delegate :price, :network_commission_percentage, to: :product
+  delegate :price, :network_commission_percentage, to: :product, allow_nil: true
 
   scope :active, -> { where(active: true, approved: true) }
   scope :inactive, -> { where(active: false) }
@@ -36,6 +36,10 @@ class Course < ApplicationRecord
 
   def add(category)
     category.courses << self
+  end
+
+  def owner_name
+    self[:owner_name].presence || I18n.t(:anonymous)
   end
 
   def remove(category)

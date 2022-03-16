@@ -1780,6 +1780,38 @@ es:
   approved_balance: Saldo aprobado
   processing: 'Procesando'
   export_only_wallets: Exportar solo billeteras
+
+
+  total_requests: Solicitudes totales
+  open_requests: Solicitudes abiertas
+  sales_amount: Cantidad de ventas
+  btc_bitcoin: BTC Bitcoin
+  courses: Cursos
+  adcash: Adcash
+  publicity: Publicidad
+  crypto: Cripto
+  total_balance: Balance total
+  system_balance: Balance del sistema
+  pool_balance: Balance del piscinas
+  virtual_balance: Balance Virtual
+  new_expense: Nuevo gasto
+  expenses: Gastos
+  pool: Piscina
+  total_withdraws: Retiros totales
+  total_paid_orders: Pedidos totales pagados
+  paids: Pagado
+  pendings: Pendientes
+  rejecteds: Rechazados
+  total_incoming_outcoming: Entrada y salida totales
+  incoming_total: Entrada total
+  total_paid_withdraws: Retiros totales de efectivo
+  total_expenses: Gastos totales
+  select_pool_wallet: Seleccione la cartera de la piscina
+  btc_amount_cant_be_blank: La cantidad de BTC no puede estar en blanco
+  select_valid_pool_wallet: Seleccione una tarjeta de piscina válida
+  created_with_success: Creado con éxito
+  wallet: Hash del tarjeta
+  pool_wallet: Cartera de la piscina
   categorizations: Categorias
   tag: Etiqueta
   courses: Cursos
@@ -1796,3 +1828,12 @@ es:
   thumb: Portada
   price: Precio
   network_commission: Comisión de Red
+  you_will_receive_per_sale: Recibirás por venta
+  parameterization: Parametrización
+  add_lessons: Añadir clases
+  summary: Resumen
+  description: Descripción
+  approved_course: ¡Curso aprobado con éxito!
+  disallowed_course: ¡Curso reprobado!
+  published_by: Publicado por
+  anonymous: Anónimo

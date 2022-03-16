@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CourseLesson < ApplicationRecord
+  include Hashid::Rails
+
   has_attachment :thumb, accept: [:jpg, :png]
   has_attachments :attachments
 

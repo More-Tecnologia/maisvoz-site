@@ -57,7 +57,8 @@ module Backoffice
               .permit(:company_name,
                       :taxable_fee,
                       :withdrawal_fee,
-                      :active)
+                      :active,
+                      :reputation)
       end
     end
   end

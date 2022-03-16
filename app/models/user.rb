@@ -80,6 +80,7 @@ class User < ApplicationRecord
   has_many :bonus_contracts
   has_many :payer_orders, class_name: 'Order',
                           foreign_key: 'payer_id'
+  has_many :user_courses
   has_many :courses, through: :user_courses
   has_many :course_lessons, through: :user_course_lessons
   has_many :authorial_courses, class_name: 'Course', foreign_key: 'owner_id'
@@ -123,6 +124,7 @@ class User < ApplicationRecord
   scope :with_blocked_mathing_bonus, -> { where('blocked_matching_bonus_balance > 0') }
   scope :with_blocked_pool_trading, -> { where('pool_tranding_blocked_balance > 0') }
   scope :with_children_pool_point_balance, -> { where('children_pool_trading_balance > 0') }
+
 
   before_create :assign_initial_type
   before_create :assign_token
@@ -467,6 +469,10 @@ class User < ApplicationRecord
                                                    .sum(&:cent_amount)
 
     free_task_bonus_amount >= BonusContract::FREE_PRODUCT_EARNING
+  end
+
+  def enroll_course(course)
+    course.students << self
   end
 
   private

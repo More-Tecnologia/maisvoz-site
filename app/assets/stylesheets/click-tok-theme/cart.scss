@@ -112,6 +112,9 @@
     cursor: pointer;
     background-color: #34EF00;
     border: none;
+    &:hover {
+      color: #fff;
+    }
 }
 
 .ch-payment-buttons-area img {
@@ -124,6 +127,7 @@
     margin-top: 5px;
     height: 60px;
 }
+
 
 .t {
     height: 100px;

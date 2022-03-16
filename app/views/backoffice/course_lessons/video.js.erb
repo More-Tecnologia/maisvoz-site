@@ -1,0 +1,8 @@
+if (true) {
+  let toggle = () => {
+    let elem = document.querySelector("#video-iframe")
+    elem.innerHTML = '';
+    elem.insertAdjacentHTML('beforeend', "<%= j render 'video' %>");
+  }
+  toggle()
+}

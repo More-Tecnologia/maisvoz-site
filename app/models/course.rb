@@ -24,7 +24,7 @@ class Course < ApplicationRecord
 
   delegate :username, :name, to: :owner, prefix: :owner
   delegate :username, to: :approver_user, prefix: :approver, allow_nil: true
-  delegate :price, :network_commission_percentage, to: :product
+  delegate :price, :network_commission_percentage, to: :product, allow_nil: true
 
   scope :active, -> { where(active: true, approved: true) }
   scope :inactive, -> { where(active: false) }
@@ -36,6 +36,10 @@ class Course < ApplicationRecord
 
   def add(category)
     category.courses << self
+  end
+
+  def owner_name
+    self[:owner_name].presence || I18n.t(:anonymous)
   end
 
   def remove(category)

@@ -25,6 +25,10 @@ module Backoffice
       @course_lesson.toggle!(:active)
     end
 
+    def video
+      @course_lesson = CourseLesson.find_by_hashid(params[:id])
+    end
+
     private
 
     def ensure_course_lesson

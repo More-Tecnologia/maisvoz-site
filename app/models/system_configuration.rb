@@ -5,39 +5,47 @@ class SystemConfiguration < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-  def self.active_config
-    return unless table_exists?
+  class << self
+    def active_config
+      return unless table_exists?
 
-    active.first
-  end
+      active.first
+    end
 
-  def self.company_name
-    return ENV['COMPANY_NAME'] unless table_exists?
+    def add_expense_amount(amount)
+      return unless table_exists?
 
-    active_config.try(:company_name).presence
-  end
+      active_config.increment(:expense_cent_amount, amount.to_f * 1e8).save!
+    end
 
-  def self.taxable_fee
-    return (active_config.taxable_fee / 100) if table_exists? && active_config.taxable_fee.present?
+    def company_name
+      return ENV['COMPANY_NAME'] unless table_exists?
 
-    ENV['SYSTEM_FEE']
-  end
+      active_config.try(:company_name).presence
+    end
 
-  def self.withdrawal_fee
-    return active_config.withdrawal_fee if table_exists? && active_config.withdrawal_fee.present?
+    def expense_cent_amount
+      return unless table_exists?
 
-    ENV['WITHDRAWAL_FEE']
-  end
+      active_config.expense_cent_amount / 1e8.to_f if active_config.expense_cent_amount
+    end
 
-  def self.add_expense_amount(amount)
-    return unless table_exists?
+    def reputation?
+      return ActiveModel::Type::Boolean.new.cast(ENV['REPUTATION']) unless table_exists?
 
-    active_config.increment(:expense_cent_amount, amount.to_f * 1e8).save!
-  end
+      active_config.reputation
+    end
 
-  def self.expense_cent_amount
-    return unless table_exists?
+    def taxable_fee
+      return (active_config.taxable_fee / 100) if table_exists? && active_config.taxable_fee.present?
 
-    active_config.expense_cent_amount / 1e8.to_f if active_config.expense_cent_amount
+      ENV['SYSTEM_FEE']
+    end
+
+    def withdrawal_fee
+      return active_config.withdrawal_fee if table_exists? && active_config.withdrawal_fee.present?
+
+      ENV['WITHDRAWAL_FEE']
+    end
   end
 end

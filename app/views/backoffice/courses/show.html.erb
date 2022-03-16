@@ -1,0 +1,49 @@
+<%= stylesheet_link_tag 'click-tok-theme/add-courses' %>
+<%= stylesheet_link_tag 'click-tok-theme/my-apprenticeship' %>
+<%= stylesheet_link_tag 'click-tok-theme/courses' %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div class="container-class">
+  <div class="top-new-courses">
+    <a href="#" class="btn-return">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-arrow-left" viewbox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </a>
+    <span><%= t(:my_learning) %></span>
+  </div>
+  <div class="title-class">
+    <span><%= @course.title %></span>
+  </div>
+  <div class="container-mid-lessons">
+    <div id="video-iframe">
+      <iframe src="<%= @course.course_lessons.first.link %>" width="976" height="549" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="lessons">
+      <!-- <div class="top-lessons">
+        <span class="lesson-filter-active">Conteúdo do curso</span>
+        <span>Anexos</span>
+        <span>Avaliação</span>
+      </div> -->
+      <div class="accordion mt-4" id="accordionExample">
+        <% @course.course_lessons.each_with_index do |lesson, i| %>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-heading-lesson-<%= lesson.id %>">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-lesson-<%= lesson.id %>" aria-expanded="<%= i.zero? %>" aria-controls="panelsStayOpen-collapse-lesson-<%= lesson.id %>">
+                <%= link_to lesson.title, video_backoffice_course_lesson_path(lesson) %>
+
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapse-lesson-<%= lesson.id %>" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading-lesson-<%= lesson.id %>" <%= 'data-bs-parent=#accordionExample' if i.zero? %>>
+              <div class="accordion-body">
+                <%= link_to lesson.description, video_backoffice_course_lesson_path(lesson), remote: true %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

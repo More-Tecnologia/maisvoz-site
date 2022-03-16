@@ -14,5 +14,11 @@ module Backoffice
                                .per(10)
       end
     end
+
+    def show
+      @course = Course.find_by_hashid(params[:id])
+
+      redirect_to course_backoffice_store_path(@course) unless @course.in?(current_user.courses)
+    end
   end
 end

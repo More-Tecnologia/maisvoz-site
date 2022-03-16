@@ -147,8 +147,12 @@ Rails.application.routes.draw do
     resources :item_categorizations, only: %i[create update destroy]
     resource :course_checkout, only: :create
     resource :courses_carts, only: %i[show update destroy]
-    resources :courses
-    resources :course_lessons
+    resources :courses, only: %i[index show]
+    resources :course_lessons do
+      member do
+        get :video
+      end
+    end
     resources :taught_courses
 
     # Financial
@@ -196,6 +200,10 @@ Rails.application.routes.draw do
         get :games
         get :courses
         get :ads
+      end
+
+      member do
+        get :course
       end
     end
   end

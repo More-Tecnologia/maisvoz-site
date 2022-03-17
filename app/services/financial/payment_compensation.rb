@@ -38,7 +38,8 @@ module Financial
         propagate_bonuses if enabled_bonification
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product
-        propagate_master_bonus unless free_product
+        propagate_master_bonus unless free_product || course_product
+        enroll_student_on_course if course_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         update_user_and_sponsor_types
         remove_user_from_free_product_list if order.total_cents.positive? && user.interspire_code.present?
@@ -82,8 +83,16 @@ module Financial
       Bonification::BonusPropagatorService.call(order: order)
     end
 
+    def propagate_course_bonus
+      Bonification::CourseDirectIndirectCreatorService.call(user: order.user, amount: order.total)
+    end
+
     def propagate_master_bonus
       MasterLeaderCreatorWorker.perform_async(order.id)
+    end
+
+    def enroll_student_on_course
+      Courses::EnrollStudentService.call(student: order.user, courses: order.products.map(&:course))
     end
 
     def create_vouchers
@@ -151,6 +160,10 @@ module Financial
 
     def activation_product
       @activation_product ||= order.products.detect(&:activation?)
+    end
+
+    def course_product
+      @course_product ||= order.products.detect(&:course?)
     end
 
     def deposit_product

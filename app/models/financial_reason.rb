@@ -164,6 +164,22 @@ class FinancialReason < ApplicationRecord
     @@indirect_referral_bonus_chargeback ||= find_by(code: '2300')
   end
 
+  def self.course_direct_commission_bonus
+    @@course_direct_commission_bonus ||= find_by(code: '5000')
+  end
+
+  def self.course_direct_commission_bonus_chargeback
+    @@course_direct_commission_bonus_chargeack ||= find_by(code: '5100')
+  end
+
+  def self.course_indirect_referral_bonus
+    @@course_indirect_referral_bonus ||= find_by(code: '5200')
+  end
+
+  def self.course_indirect_referral_bonus_chargeback_by_inactivity
+    @@course_indirect_referral_bonus_chargeback ||= find_by(code: '5300')
+  end
+
   def self.expense
     @@expense ||= find_by(code: '3800')
   end

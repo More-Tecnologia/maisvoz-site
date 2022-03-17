@@ -35,7 +35,6 @@ module Shopping
       if find_order_item.present?
         update_order_item
       else
-        order.order_items.destroy_all
         create_order_item
       end
     end
@@ -46,7 +45,6 @@ module Shopping
       order_item.quantity = 1
       order_item.unit_price_cents = product.price_cents
       order_item.total_cents = product.price_cents
-      order.order_items.destroy_all
       order.order_items << order_item
       order.save!
       order_item

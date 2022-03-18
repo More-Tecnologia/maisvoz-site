@@ -91,6 +91,12 @@ module Financial
       MasterLeaderCreatorWorker.perform_async(order.id)
     end
 
+    def propagate_course_sale_payment
+      order.order_items.each do |order_item|
+        Bonification::CourseSaleService.call(user: order.user, product: order_item.product)
+      end
+    end
+
     def enroll_student_on_course
       Courses::EnrollStudentService.call(student: order.user, courses: order.products.map(&:course))
     end

@@ -180,6 +180,10 @@ class FinancialReason < ApplicationRecord
     @@course_indirect_referral_bonus_chargeback ||= find_by(code: '5300')
   end
 
+  def self.course_sale
+    @@course_sale ||= find_by(code: '5400')
+  end
+
   def self.expense
     @@expense ||= find_by(code: '3800')
   end

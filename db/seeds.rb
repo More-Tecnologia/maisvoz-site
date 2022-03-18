@@ -268,7 +268,8 @@ bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, compan
                  { title: 'Course Direct Referral Bonus', code: '5000', active: true, company_moneyflow: :debit  },
                  { title: 'Chargeback Course Direct Referral Bonus By Inactivity', code: '5100', active: true, company_moneyflow: :credit },
                  { title: 'Course Indirect Referral Bonus', code: '5200', dynamic_compression: true, active: true, company_moneyflow: :debit },
-                 { title: 'Chargeback Course Indirect Referral Bonus By Inactivity', code: '5300', active: true, company_moneyflow: :credit } ]
+                 { title: 'Chargeback Course Indirect Referral Bonus By Inactivity', code: '5300', active: true, company_moneyflow: :credit },
+                 { title: 'Course sale', code: '5400', dynamic_compression: false, active: true, company_moneyflow: :debit }]
 
 bonus_reasons.each do |attributes|
   financial_reason = FinancialReason.find_by(code: attributes[:code])

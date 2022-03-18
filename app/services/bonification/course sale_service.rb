@@ -11,10 +11,10 @@ module Bonification
     private
 
     def initialize(params)
-      @seller = params[:seller]
       @user = params[:user]
-      @amount = params[:amount]
       @product = params[:product]
+      @amount = @product.price_cents
+      @seller = @product.course.owner
     end
 
     def create_sale
@@ -22,9 +22,9 @@ module Bonification
 
       @seller.financial_transactions
              .create!(spreader: @user,
-                     financial_reason: FinancialReason.course_sale,
-                     moneyflow: :credit,
-                     cent_amount: cent_amount) if cent_amount.positive?
+                      financial_reason: FinancialReason.course_sale,
+                      moneyflow: :credit,
+                      cent_amount: cent_amount)
     end
   end
 end

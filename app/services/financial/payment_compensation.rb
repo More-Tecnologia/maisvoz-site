@@ -36,6 +36,8 @@ module Financial
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if deposit_product
         propagate_bonuses if enabled_bonification
+        propagate_course_sale_payment if course_product
+        propagate_course_bonus if course_product
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product
         propagate_master_bonus unless free_product || course_product

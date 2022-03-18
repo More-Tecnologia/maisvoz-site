@@ -9,7 +9,7 @@ end
 
 gem 'ancestry'
 gem 'annotate'
-gem 'attachinary', git: 'git://github.com/ThomasConnolly/attachinary.git'
+gem 'attachinary', git: 'https://github.com/ThomasConnolly/attachinary.git'
 gem 'autonumeric-rails'
 gem 'aws-sdk-s3'
 gem 'chartkick'

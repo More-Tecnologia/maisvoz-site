@@ -13,17 +13,21 @@ module Backoffice
       end
 
       def update
-        @course.update(approved: true, approver_user: current_user)
-        @course.product.update(active: true)
-        flash[:success] = t(:approved_course)
+        if  @course.update(approved: true, approver_user: current_user) && @course.product.update(active: true)
+          flash[:success] = t(:approved_course)
+        else
+          flash[:error] = @course.errors.full_messages.join(', ') + ', ' + @course.product.errors.full_messages.join(', ')
+        end
 
         redirect_to backoffice_admin_courses_path
       end
 
       def destroy
-        @course.update(active: false, approved: false)
-        @course.product.update(active: false)
-        flash[:error] = t(:disallowed_course)
+        if @course.update(active: false, approved: false) && @course.product.update(active: false)
+         flash[:error] = t(:disallowed_course)
+        else
+          flash[:error] = @course.errors.full_messages.join(', ') + ', ' + @course.product.errors.full_messages.join(', ')
+        end
 
         redirect_to backoffice_admin_courses_path
       end

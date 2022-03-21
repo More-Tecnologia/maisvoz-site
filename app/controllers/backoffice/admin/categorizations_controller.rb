@@ -3,7 +3,7 @@
 module Backoffice
   module Admin
     class CategorizationsController < AdminController
-      before_action :ensure_categorization, only: %i[show edit update destroy]
+      before_action :ensure_categorization, only: %i[edit update destroy]
 
       def index
         @q = Categorization.ransack(params)
@@ -11,8 +11,6 @@ module Backoffice
                              .order(created_at: :desc)
                              .page(params[:page])
       end
-
-      def show; end
 
       def new
         @categorization = Categorization.new
@@ -42,7 +40,12 @@ module Backoffice
       end
 
       def destroy
-        @categorization.inactive
+        if @categorization.update!(active: false)
+          flash[:success] = I18n.t('defaults.success')
+        else
+          flash[:error] = @categorization.errors.map(&:message)
+        end
+
         redirect_to backoffice_admin_categorizations_path
       end
 

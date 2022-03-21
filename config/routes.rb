@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
-      resources :categorizations
+      resources :categorizations, except: :show
       resources :courses, only: %i[index update destroy]
       resources :products, only: [:index, :new, :create, :edit, :update, :destroy] do
         resources :shippings

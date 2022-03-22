@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'click-tok-theme/courses' %>
+
+
 <%= form_for([:backoffice, @course], url: path, html: { role: 'form', class: "form-add-courses" }) do |f| %>
 <div class="container-select-img-course">
   <label for="cover-course-img" class="cover-course-img_label">
@@ -27,7 +30,7 @@
     </div>
     <%= select_tag :categories_ids, options_for_select(categorizations_title_for_select, selected: f.object.categorizations.map(&:id)),
                               class: 'input-description',
-                              multiple: true, class: "input-description", select2: 'true', data: { placeholder: t(:categorizations) } %>
+                              multiple: true, class: "input-description input-border-none", select2: 'true', data: { placeholder: t(:categorizations) } %>
   </div>
   <div class="login-fields user-field">
     <div class="field-icon">

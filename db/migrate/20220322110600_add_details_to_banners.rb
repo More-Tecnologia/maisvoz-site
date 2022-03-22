@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AddDetailsToBanners < ActiveRecord::Migration[5.2]
   def change
     add_column :banners, :country_of_operation, :string, array: true,  default: [], null: false

@@ -38,17 +38,19 @@
     </div>
     <%= f.text_field :short_description, class: 'input-description', placeholder: t(:short_description) %>
   </div>
-  <div class="login-fields user-field">
+  <div class="login-fields user-field" style="height: auto; border-radius: 10px;">
     <div class="field-icon">
       <%= image_tag('courses/add-course4.svg') %>
     </div>
-    <%= f.text_area :description, class: 'input-description', rows: '1', placeholder: "What the student will learn" %>
+    <%= f.text_area :description, class: 'input-description', rows: '5', placeholder: "What the student will learn" %>
+
   </div>
-  <div class="login-fields user-field">
+
+  <div class="login-fields user-field"  style="height: auto; border-radius: 10px;">
     <div class="field-icon">
       <%= image_tag('courses/add-course3.svg') %>
     </div>
-    <%= f.text_area :content, class: 'input-description', rows: '1', placeholder: "This course includes" %>
+    <%= f.text_area :content, class: 'input-description', rows: '5', placeholder: "This course includes" %>
   </div>
 
   <div class="title-mid-course"><%= t(:parameterization) %></div>

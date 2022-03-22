@@ -34,8 +34,8 @@ body {
 
 .btn-secondary {
   color: black !important;
-  background-color: #3F3F3F3F !important;
-  border-color: whitesmoke !important;
+  background-color: transparent !important;
+  border: none !important;
   padding: 5px 10px;
 }
 

@@ -11,4 +11,8 @@ class BannerStore < ApplicationRecord
   def path
     image.try(:fullpath)
   end
+
+  def self.ads
+    @@ads ||= find_by(title: 'Ads')
+  end
 end

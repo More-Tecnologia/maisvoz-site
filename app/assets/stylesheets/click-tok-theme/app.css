@@ -337,7 +337,7 @@ input:focus {
 
 .helper-text {
   margin-top: 20px;
-  width: 85%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -732,6 +732,21 @@ button.close {
   border-bottom-right-radius: 3px;
 }
 
+.container-login {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.remember-user {
+  width: 50%;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
 @media (min-width: 680px) {
   .card-box {
     display: flex;
@@ -1044,7 +1059,7 @@ button.close {
     margin-top: 52px;
   }
   .credentials-box {
-    width: 50%;
+    width: 40%;
     margin: auto;
   }
 }

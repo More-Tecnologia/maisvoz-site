@@ -5,35 +5,31 @@
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-horizontal m-t-20') do |f| %>
   <%= f.error_notification %>
   <div class="credentials-box">
-    <!-- <div class="login-fields">
-      <div class="field-icon">
-        <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>
-      </div>
-      <%= f.input_field :country, class: "input-description", prompt: t('attributes.country'), format: :with_country_code %>
-    </div> -->
-    <div class="login-fields">
+  <div class="container-login">
+    <div class="login-fields w-100">
       <div class="field-icon">
         <%= image_tag('icons/phone.svg', alt: t(:phone) ) %>
       </div>
       <%= f.input_field :login, autofocus: true , class: 'input-description login-input', placeholder: t(:phone) %>
     </div>
-    <div class="login-fields">
+    <div class="login-fields w-100">
       <div class="field-icon">
         <%= image_tag('icons/locker.svg', alt: t(:locker) ) %>
       </div>
       <%= f.input_field :password, class: "input-description", placeholder: t(:password) %>
     </div>
-    <div class="credentials-box">
+    <div class="remember-user">
       <div class="checkbox">
         <%= f.input_field :remember_me, as: :boolean if devise_mapping.rememberable? %>
         <span><%= t(:remember_me) %></span>
       </div>
     </div>
-    <div class="login-fields remove-padding">
+    <div class="login-fields remove-padding w-100">
       <%= f.button :submit, t('.login'), class: "login" %>
     </div>
     <div class="helper-text">
       <%= render "users/shared/links" %>
+    </div>
     </div>
   </div>
 <% end %>

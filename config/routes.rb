@@ -191,7 +191,7 @@ Rails.application.routes.draw do
     end
     resources :subjects, only: [:show, :new]
 
-    resources :banners, only: :index
+    resources :banners, only: [:index, :new, :edit, :update]
     resources :banner_clicks, only: [:index, :create]
     resources :direct_nominees_list, only: :index
     resources :home, only: :index

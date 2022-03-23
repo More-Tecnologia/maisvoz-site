@@ -18,6 +18,7 @@ module Backoffice
 
       @course_lesson = CourseLesson.new(new_params)
       @course_lesson.save
+      @course_lesson.course.update(approved: false, active: false)
       @course_lesson.update(thumb: file)
     end
 
@@ -27,10 +28,12 @@ module Backoffice
 
     def update
       @course_lesson.update(valid_params)
+      @course_lesson.course.update(approved: false, active: false)
     end
 
     def destroy
       @course_lesson.toggle!(:active)
+      @course_lesson.course.update(approved: false, active: false)
     end
 
     def video

@@ -12,6 +12,14 @@ body {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+}
+
+.box-taught-course:last-child {
+  border-bottom: none;
 }
 
 .box-taught-courses-top {
@@ -27,7 +35,8 @@ body {
 .btn-secondary {
   color: black !important;
   background-color: transparent !important;
-  border-color: whitesmoke !important;
+  border: none !important;
+  padding: 5px 10px;
 }
 
 .btn {
@@ -95,6 +104,7 @@ body {
   width: 90px;
   border-radius: 5px;
   text-align: center;
+  margin-top: 5px;
 }
 
 .status-waiting {
@@ -122,23 +132,24 @@ body {
   margin-right: 5px;
 }
 
-@media (min-width: 880px){
+@media (min-width: 880px) {
   .img-course {
     width: 120px;
     height: auto;
   }
 
-  .date-course, .text-course {
-  font-size: 13px;
-}
+  .date-course,
+  .text-course {
+    font-size: 13px;
+  }
 
-.id-course span{
-  font-size: 18px !important;
-}
+  .id-course span {
+    font-size: 18px !important;
+  }
 
-.btn-status {
-  padding: 5px 10px;
-  font-size: 13px;
-  width: 120px;
-}
+  .btn-status {
+    padding: 5px 10px;
+    font-size: 13px;
+    width: 120px;
+  }
 }

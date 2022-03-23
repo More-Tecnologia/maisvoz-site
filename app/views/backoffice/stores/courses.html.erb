@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag 'click-tok-theme/store' %>
 <%= stylesheet_link_tag 'click-tok-theme/courses' %>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <div class="main-box">
   <%= render 'menu' %>
@@ -8,14 +7,14 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="grey" class="bi bi-filter-left" viewBox="0 0 16 16">
   <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
 </svg>
-    <!-- <div class="link-filters">
+     <div class="link-filters">
       <a href="#highlights">Destaques</a>
       <a href="#promotion">Promoções</a>
       <a href="#most-valued">Mais Avaliados</a>
-    </div> -->
+    </div>
   </div>
-  <div class="banner-img-courses">
-  </div>
+  <%# <div class="banner-img-courses">
+  </div> %>
   <div id="highlights" class="container-online-courses">
     <span class="title-courses">
       <%= t(:featured_courses) %>
@@ -24,11 +23,7 @@
       <% @courses.each do |course| %>
         <div class="card-course">
           <%= link_to course_backoffice_store_path(course) do %>
-            <div class="img-card-course">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
-              </svg>
-            </div>
+            <img class="img-card-course" src="<%= course_thumb(course) %>">
           <% end %>
           <div class="bottom-card-course">
             <div class="container-created-by">

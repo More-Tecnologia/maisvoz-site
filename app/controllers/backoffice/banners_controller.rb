@@ -47,7 +47,7 @@ module Backoffice
       new_params = ensured_params
       file = new_params.delete(:image)
 
-      @banner = Banner.new(new_params)
+      @banner = BannerStore.ads.banners.build(new_params)
       @banner.save
       return if @banner.persisted? && @banner.update(image: file)
 
@@ -61,8 +61,10 @@ module Backoffice
     end
 
     def ensured_params
-      params.require(:banner).permit(:link, :image_path, :image, :title,
-                                     :country_of_operation, :description)
+      params.require(:banner)
+            .permit(:link, :image_path, :image, :title,
+                    :country_of_operation, :description)
+            .merge(user: current_user, premium: true)
     end
   end
 end

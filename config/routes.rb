@@ -101,10 +101,8 @@ Rails.application.routes.draw do
       resource :support_point_users, only: :create
     end
 
-    resources :ads, only: [:index, :show]
-      
+    resources :ads, only: [:index]
     
-
     resources :dashboard, only: :index do
       collection do
         get :balances_data

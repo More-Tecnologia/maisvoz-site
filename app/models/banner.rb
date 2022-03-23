@@ -2,6 +2,7 @@ class Banner < ApplicationRecord
   has_attachment :image
 
   belongs_to :banner_store
+  belongs_to :user, optional: true
 
   validates :link, presence: true
 

@@ -9,7 +9,7 @@ class Banner < ApplicationRecord
 
   validates :country_of_operation, length: { maximum: 255 }
   validates :title, presence: true, length: { maximum: 255 }
-  validates :description, length: { maximum: 255 }
+  validates :description, length: { maximum: 1000 }
   validates :link, presence: true
 
   scope :active, -> { where(active: true) }

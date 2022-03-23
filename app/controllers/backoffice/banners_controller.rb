@@ -61,8 +61,8 @@ module Backoffice
     end
 
     def ensured_params
-      params.require(:banner).permit(:link, :image_path, :active, :image, :banner_store_id, 
-                                     :premium, :title, :country_of_operation, :description)
+      params.require(:banner).permit(:link, :image_path, :image, :title,
+                                     :country_of_operation, :description)
     end
   end
 end

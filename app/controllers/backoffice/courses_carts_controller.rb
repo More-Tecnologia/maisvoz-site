@@ -2,7 +2,9 @@
 
 module Backoffice
   class CoursesCartsController < BackofficeController
-    def show; end
+    def show
+      redirect_to courses_backoffice_stores_path unless current_courses_cart.order_items.any?
+    end
 
     def update
       command = Shopping::AddToCart.call(current_courses_cart, product_params[:id], params[:country])
@@ -16,7 +18,8 @@ module Backoffice
     end
 
     def destroy
-      clean_courses_cart
+      current_courses_cart.order_items.find(params[:order_item_id]).destroy
+      flash[:success] = t(:removed_successfully)
 
       redirect_to backoffice_courses_carts_path
     end

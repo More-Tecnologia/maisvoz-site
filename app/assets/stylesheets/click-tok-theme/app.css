@@ -787,6 +787,11 @@ button.close {
     width: 150px;
     height: 150px;
   }
+
+  .credentials-box {
+    width: 70%;
+    margin: auto;
+  }
 }
 
 @media (min-width: 600px) {
@@ -1037,6 +1042,10 @@ button.close {
     padding-right: 3rem;
     margin-left: 80px;
     margin-top: 52px;
+  }
+  .credentials-box {
+    width: 50%;
+    margin: auto;
   }
 }
 .hidden {

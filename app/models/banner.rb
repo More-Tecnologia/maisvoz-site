@@ -5,7 +5,7 @@ class Banner < ApplicationRecord
                  holding: 5, finish: 6 }
 
   belongs_to :banner_store
-  belongs_to :user
+  belongs_to :user, optional: true
 
   validates :country_of_operation, length: { maximum: 255 }
   validates :title, presence: true, length: { maximum: 255 }

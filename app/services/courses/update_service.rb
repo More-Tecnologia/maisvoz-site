@@ -5,8 +5,8 @@ module Courses
     def initialize(params)
       @course = params[:course]
       @product = @course.product
-      @course_params = params[:course_params]
-      @product_params = params[:product_params]
+      @course_params = params[:course_params].merge(approved: false, active: false)
+      @product_params = params[:product_params].merge(active: false)
       @categories_ids = params[:categories_ids]
     end
 

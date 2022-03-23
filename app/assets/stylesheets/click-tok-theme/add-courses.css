@@ -9,7 +9,7 @@ body {
 
 .top-new-courses {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-top: 20px;
 }
 
@@ -62,7 +62,6 @@ body {
 .subtitle-input {
   color: grey;
   font-size: 12px;
-  margin-left: 10%;
 }
 
 #cover-course-img {

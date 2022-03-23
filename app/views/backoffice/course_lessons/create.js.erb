@@ -1,7 +1,13 @@
 if (true) {
+  window.scrollTo(0, document.body.scrollHeight);
   let toggle = () => {
     let elem = document.querySelector("#container-lessons-container")
-    elem.insertAdjacentHTML('beforeend', "<%= j render 'course_lesson', course_lesson: @course_lesson %>");
+    elem.insertAdjacentHTML('beforeend', "<%= j render 'course_lesson', course_lesson: @course_lesson, index: @course_lesson.course.course_lessons.count.pred %>");
   }
   toggle()
+  Swal.fire(
+    '<%= t(:course_lesson) %>',
+    '<%= t(:success_create) %>',
+    'success'
+  )
 }

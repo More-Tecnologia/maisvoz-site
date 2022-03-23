@@ -12,4 +12,8 @@ class CourseLesson < ApplicationRecord
   validates :title, presence: true
   validates :link, presence: true
   validates :description, presence: true
+
+  def path
+    thumb.try(:fullpath)
+  end
 end

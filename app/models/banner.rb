@@ -19,6 +19,4 @@ class Banner < ApplicationRecord
   def path
     image.try(:fullpath)
   end
-
-  
 end

@@ -5,7 +5,7 @@ if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
   let initialIndicator = window.innerWidth / 2;
   let porcentIndicator = initialIndicator / 5;
   let finalIndicator = initialIndicator - porcentIndicator;
-  indicator.style.marginLeft = `-${finalIndicator}px`
+  indicator.style.marginLeft = `-${finalIndicator}px`;
 }
 
 function activeLink() {
@@ -26,41 +26,47 @@ function moveMenu() {
   let x = 0;
 
   if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-    x = -1
+    x = -1;
   }
 
   list.forEach((item, i) => {
     if (item.className == "list active") {
-      indicator.style.transition = "0.5s"
-      indicator.style.transform = `translateX(calc(${item.offsetWidth+"px"} * ${x}))`;
+      indicator.style.transition = "0.5s";
+      indicator.style.transform = `translateX(calc(${
+        item.offsetWidth + "px"
+      } * ${x}))`;
     }
     x++;
-  })
+  });
 }
 
 function itemSelected() {
-  let links = document.querySelectorAll('.link-nav');
-  let sizeNav = document.querySelector('.list').offsetWidth;
+  let links = document.querySelectorAll(".link-nav");
+  let sizeNav = document.querySelector(".list").offsetWidth;
   let firstList = list[0];
 
-  let footerDashboardHome = ["/",
+  let footerDashboardHome = [
+    "/",
     "/backoffice/admin/dashboard",
-    "/backoffice/home"
+    "/backoffice/home",
   ];
 
-  let footerTasksUsers = ["/backoffice/dashboard",
+  let footerTasksUsers = [
+    "/backoffice/dashboard",
     "/backoffice/banners",
-    "/backoffice/support/users"
+    "/backoffice/support/users",
   ];
 
-  let footerShop = ["/backoffice/products",
+  let footerShop = [
+    "/backoffice/products",
     "/backoffice/stores/games",
     "/backoffice/stores/courses",
     "/backoffice/stores/ads",
-    "/backoffice/cart"
+    "/backoffice/cart",
   ];
 
-  let footerFinancial = ["/backoffice/financial_dashboard",
+  let footerFinancial = [
+    "/backoffice/financial_dashboard",
     "/backoffice/withdrawals",
     "/backoffice/financial_transactions",
     "/backoffice/orders",
@@ -71,10 +77,10 @@ function itemSelected() {
     "/backoffice/admin/expenses/new",
     "/backoffice/admin/orders",
     "/backoffice/admin/financial_transactions",
-    "/backoffice/admin/bonus_contracts"
+    "/backoffice/admin/bonus_contracts",
   ];
 
-  let footerTeam = ["/backoffice/team_dashboard"]
+  let footerTeam = ["/backoffice/team_dashboard"];
   let counterDashboard = 0;
   let counterUsers = 1;
   let counterShop = 2;
@@ -90,55 +96,70 @@ function itemSelected() {
   }
 
   if (footerDashboardHome.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterDashboard}))`;
+    indicator.style.transform = `translateX(calc(${
+      sizeNav + "px"
+    } * ${counterDashboard}))`;
     indicator.style.transition = "none";
-    list[0].classList.add('active');
+    list[0].classList.add("active");
   } else {
-    list[0].classList.remove('active');
+    list[0].classList.remove("active");
   }
 
   if (footerTasksUsers.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterUsers}))`;
+    indicator.style.transform = `translateX(calc(${
+      sizeNav + "px"
+    } * ${counterUsers}))`;
     indicator.style.transition = "none";
-    list[1].classList.add('active');
+    list[1].classList.add("active");
   } else {
-    list[1].classList.remove('active');
+    list[1].classList.remove("active");
   }
 
   if (footerShop.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterShop}))`;
+    indicator.style.transform = `translateX(calc(${
+      sizeNav + "px"
+    } * ${counterShop}))`;
     indicator.style.transition = "none";
-    list[2].classList.add('active');
+    list[2].classList.add("active");
   } else {
-    list[2].classList.remove('active');
+    list[2].classList.remove("active");
   }
 
   if (footerFinancial.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterFinancial}))`;
+    indicator.style.transform = `translateX(calc(${
+      sizeNav + "px"
+    } * ${counterFinancial}))`;
     indicator.style.transition = "none";
-    list[3].classList.add('active');
+    list[3].classList.add("active");
   } else {
-    list[3].classList.remove('active');
+    list[3].classList.remove("active");
   }
 
   if (footerTeam.includes(window.location.pathname)) {
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * ${counterMyTeam}))`;
+    indicator.style.transform = `translateX(calc(${
+      sizeNav + "px"
+    } * ${counterMyTeam}))`;
     indicator.style.transition = "none";
-    list[4].classList.add('active');
+    list[4].classList.add("active");
   } else {
-    list[4].classList.remove('active');
+    list[4].classList.remove("active");
   }
 
-  if (footerDashboardHome.includes(window.location.pathname) == false &&
+  if (
+    footerDashboardHome.includes(window.location.pathname) == false &&
     footerTasksUsers.includes(window.location.pathname) == false &&
     footerShop.includes(window.location.pathname) == false &&
     footerFinancial.includes(window.location.pathname) == false &&
-    footerTeam.includes(window.location.pathname) == false) {
-
-    firstList.classList.add('active')
-    indicator.style.transform = `translateX(calc(${sizeNav+"px"} * 0))`;
+    footerTeam.includes(window.location.pathname) == false
+  ) {
+    firstList.classList.add("active");
+    indicator.style.transform = `translateX(calc(${sizeNav + "px"} * 0))`;
     indicator.style.transition = "none";
   }
+}
+
+function navigate(href) {
+  window.location.href = href;
 }
 
 itemSelected();

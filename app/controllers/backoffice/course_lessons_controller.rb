@@ -10,7 +10,16 @@ module Backoffice
     end
 
     def create
-      @course_lesson = CourseLesson.create(valid_params)
+      # this step is necessary because of attachinary gem bug -
+      # https://github.com/assembler/attachinary/issues/130
+      # Remove this gem in favor of active storage
+      new_params = valid_params
+      file = new_params.delete(:thumb)
+
+      @course_lesson = CourseLesson.new(new_params)
+      @course_lesson.save
+      @course_lesson.course.update(approved: false, active: false)
+      @course_lesson.update(thumb: file)
     end
 
     def edit
@@ -19,10 +28,12 @@ module Backoffice
 
     def update
       @course_lesson.update(valid_params)
+      @course_lesson.course.update(approved: false, active: false)
     end
 
     def destroy
       @course_lesson.toggle!(:active)
+      @course_lesson.course.update(approved: false, active: false)
     end
 
     def video
@@ -37,7 +48,7 @@ module Backoffice
 
     def valid_params
       params.require(:course_lesson)
-            .permit(:course_id, :preview, :title, :description, :link)
+            .permit(:course_id, :preview, :title, :description, :link, :thumb)
     end
   end
 end

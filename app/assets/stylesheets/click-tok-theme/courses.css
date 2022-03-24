@@ -101,6 +101,16 @@ body {
   overflow-x: scroll;
 }
 
+.container-img-card-course {
+  display: flex;
+}
+
+.container-img-card-course svg {
+  position: absolute;
+  align-self: center;
+  margin: auto;
+}
+
 .card-course {
   min-width: 52%;
   width: 52%;
@@ -109,7 +119,6 @@ body {
 }
 
 .img-card-course {
-  background-image: url('courses/course2.png');
   width: 100%;
   height: 130px;
   border-radius: 15px;
@@ -188,10 +197,14 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: .5s;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .btn-buy-course:hover {
   background: linear-gradient(to bottom, #26ac00, #58f701);
+  color: white;
 }
 
 .payment-method-button {
@@ -216,6 +229,12 @@ body {
   margin-top: 20px;
 }
 
+.selection span {
+  border: none !important;
+  width: 100%;
+  margin-left: 5px;
+}
+
 @media (max-width: 500px) {
   .link-filters a {
     font-size: 10px;
@@ -238,6 +257,9 @@ body {
 }
 
 @media (min-width: 800px) {
+  .cards-courses {
+    justify-content: flex-start;
+  }
   .card-course {
     min-width: 30%;
     width: 30%;
@@ -258,7 +280,6 @@ body {
   .card-course {
     min-width: 22%;
     width: 22%;
-    margin: 0;
   }
 
   .img-card-course {

@@ -15,6 +15,7 @@ class Product < ApplicationRecord
 
   belongs_to :category
   belongs_to :trail, optional: true
+  has_one :course
   has_many :product_reason_scores
   has_many :product_scores, through: :product_reason_scores
   has_many :career_trails
@@ -51,6 +52,7 @@ class Product < ApplicationRecord
                                              allow_blank: true }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   # validates :main_photo, attached: true
+  validates :network_commission_percentage, presence: true, numericality: { greater_than_or_equal_to: ENV['MIN_NETWORK_COMMISION'].to_i }, if: :course?
 
   validate :photos_quantity_limit
   validate :photos_types

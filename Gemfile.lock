@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/ThomasConnolly/attachinary.git
+  remote: https://github.com/ThomasConnolly/attachinary.git
   revision: c7bbc9d5d5ea6aee7584e381c82d0b5bea73e49b
   specs:
     attachinary (1.3.1)

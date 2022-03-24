@@ -1,0 +1,17 @@
+<div class="card-course">
+  <%= link_to backoffice_course_path(course) do %>
+  <div class="container-img-card-course">
+    <img class="img-card-course" src="<%= course_thumb(course) %>" />
+      </div>
+  <% end %>
+  <div class="bottom-card-course">
+    <div class="container-created-by">
+      <span class="created-by"><%= t(:published_by) %></span>
+      <span class="author-course"><%= course.owner_name %></span>
+    </div>
+    <%= render 'layouts/shared/reputation' %>
+    <div class="title-card-course">
+      <p><%= course.short_description %></p>
+    </div>
+  </div>
+</div>

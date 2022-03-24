@@ -1,0 +1,60 @@
+<%= form_for([:backoffice, @course_lesson], remote: true, html: { role: 'form', class: "form-add-courses" }) do |f| %>
+  <%= f.hidden_field :course_id, value: @course.id %>
+  <div class="container-select-img-course">
+  <label for="cover-course-img" class="cover-course-img_label">
+    <div class="cover-course-img_label">
+      <% if @course_lesson.thumb.present? %>
+        <img src="<%= @course_lesson.path %>" alt="" class="cover-course-img_label">
+      <% else %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="grey" class="bi bi-image" viewbox="0 0 16 16">
+          <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+          <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+        </svg>
+      <% end %>
+    </div>
+    <%= f.file_field :thumb, as: :file, label: false, input_html: { accept: 'image/*' }, id: "cover-course-img" %>
+  </label>
+  <span class="size-course-img" style="margin: auto;"><%= t(:ideal_thumb_size) %></span>
+  </div>
+  <div class="container-preview">
+    <div class="form-check">
+      <%= f.check_box :preview, class: "form-check-input" %>
+      <%= f.label :preview, class: "form-check-label" %>
+    </div>
+  </div>
+  <div class="login-fields user-field">
+    <div class="field-icon">
+      <%= image_tag('courses/add-course1.svg') %>
+    </div>
+    <%= f.text_field :title, class: 'input-description', placeholder: t(:title) %>
+  </div>
+  <div class="login-fields user-field">
+    <div class="field-icon">
+      <%= image_tag('courses/add-course3.svg') %>
+    </div>
+    <%= f.text_field :description, class: 'input-description', placeholder: t(:description) %>
+  </div>
+  <div class="login-fields user-field">
+    <div class="field-icon">
+      <%= image_tag('courses/menu-courses2.svg') %>
+    </div>
+    <%= f.text_field :link, class: 'input-description', placeholder: t(:link) %>
+  </div>
+  <div class="container-attachments">
+    <span><%= t(:attachments) %></span>
+    <label for="course-files" class="btn-choose-files">
+      <input type="file" name="" value="" id="course-files">
+      <%= t(:choose_files) %>
+    </label>
+  </div>
+  <%= f.attachinary_file_field :attachments, class: 'btn-resume-lessons', multiple: true %>
+  <%= f.submit class: 'btn-save-lessons' %>
+  <div class="container-resume">
+    <span><%= t(:summary) %></span>
+  </div>
+  <div class="container-lessons" id="container-lessons-container">
+    <% @course.course_lessons.each_with_index do |course_lesson, index| %>
+      <%= render 'course_lesson', course_lesson: course_lesson, index: index %>
+    <% end %>
+  </div>
+<% end %>

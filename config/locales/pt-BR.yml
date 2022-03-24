@@ -79,6 +79,12 @@ pt-BR:
           pending: 'Pendente'
           active: 'Ativo'
           inactive: 'Inativo'
+    enums:
+      course:
+        days_to_cashback:
+          seven: Sete
+          fifteen: Quinze
+          thirty: Trinta
     errors:
       models:
         user:
@@ -1260,7 +1266,7 @@ pt-BR:
       categories:
         edit:
           subtitle: Editar Categoria
-          title: Editar Categoria
+          title: Editar categoria %{category_name}
         index:
           new_category: Nova Categoria
           no_data: Nenhuma categoria cadastrada
@@ -1268,7 +1274,7 @@ pt-BR:
           title: Lista de Categorias
         new:
           subtitle: Subtitle
-          title: Title
+          title: Nova categoria
       credits_debits:
         index:
           title: Créditos e Débitos
@@ -1691,27 +1697,62 @@ pt-BR:
   active_until: Ativo até
   eth: ETH
   export_only_wallets: Exportar apenas carteiras
-  total_requests: Total de Chamados
-  open_requests: Chamados em aberto
-  sales_amount: Total de vendas
+
+  total_requests: Total de solicitações
+  open_requests: Solicitações abertas
+  sales_amount: Quantidade de vendas
   btc_bitcoin: BTC Bitcoin
   courses: Cursos
   adcash: Adcash
   publicity: Publicidade
   crypto: Cripto
-  total_balance: Saldo Total
+  total_balance: Balanço total
+  system_balance: Balanço do sistema
+  pool_balance: Balanço da piscinas
+  virtual_balance: Balanço virtual
   new_expense: Nova despesa
   expenses: Despesas
   pool: Piscina
   total_withdraws: Total de saques
   total_paid_orders: Total de pedidos pagos
-  total_incoming_outcoming: Total de entradas e saídas
-  incoming_total: Total de entradas
-  total_paid_withdraws: Total de saques pagos
+  paids: Pagos
+  pendings: Pendentes
+  rejecteds: Rejeitados
+  total_incoming_outcoming: Total de entrada e saida
+  incoming_total: Total de entrada
+  total_paid_withdraws: Total de saques de pagos
   total_expenses: Total de despesas
-  select_pool_wallet: Selecione a piscina
-  btc_amount_cant_be_blank: BTC não pode ficar em branco
-  select_valid_pool_wallet: Selecione uma piscina valida
+  select_pool_wallet: Selecione a carteira da piscina
+  btc_amount_cant_be_blank: A quantia de BTC não pode ficar em branco
+  select_valid_pool_wallet: Selecione uma carteira de piscina valida
   created_with_success: Criado com sucesso
-  wallet: Carteira
-  pool_wallet: Carteira
+  wallet: Hash da carteira
+  pool_wallet: Carteira da piscina
+  categorizations: Categorias
+  tag: Tag
+  courses: Cursos
+  language: Lingua
+  owner: Criador
+  approver: Supervisor
+  category: Categoria
+  approved?: Okay?
+  active?: Ativo?
+  short_description: Descrição curta
+  countries_of_operation: Paises de operação
+  ideal_thumb_size: Ideal 500 x 300
+  add_course: Adicionar curso
+  thumb: Thumbnail
+  price: Preço
+  network_commission: Comissão de rede
+  you_will_receive_per_sale: Você receberá por venda
+  parameterization: Parametrização
+  add_lessons: Adicionar aulas
+  summary: Sumario
+  description: Descrição
+  approved_course: Curso aprovado com sucesso!
+  disallowed_course: Curso reprovado!
+  published_by: Publicado por
+  anonymous: Anônimo
+  success_create: Criado com sucesso!
+  course_lesson: Aula do curso
+  success_updated: Atualizado com sucesso!

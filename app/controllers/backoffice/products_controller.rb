@@ -4,7 +4,7 @@ module Backoffice
     before_action :redirect_back_if_deposit_product, only: :show
 
     def index
-      @products = Product.active.order(:price_cents)
+      @products = Product.deposit.active.order(:price_cents)
     end
 
     def show

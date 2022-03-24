@@ -21,7 +21,7 @@ en:
         description: Description
       user:
         login: Email/Login
-        registration_type: Type of Registation
+        registration_type: Type of Registration
         document_verification_status: Documents
       order:
         paid_by: Paid by
@@ -76,6 +76,12 @@ en:
           pending: 'Pending'
           active: 'Active'
           inactive: 'Inactive'
+    enums:
+      course:
+        days_to_cashback:
+          seven: Seven
+          fifteen: Fifteen
+          thirty: Thirty
     errors:
       models:
         user:
@@ -93,7 +99,7 @@ en:
             main_photo:
               attached: "Product must have a main photo."
             photos:
-              maximum_number: "You can select at maximum %{maximum_number} photos."
+              maximum_number: "You can select a maximum of %{maximum_number} photos."
               types: "The photos need to be jpeg or png."
         product_description:
           attributes:
@@ -107,11 +113,11 @@ en:
         taken: Is already being used %{value}
         rule_type_missmatch: "an object of type %{ruleable_type} cannot receive the rule type %{rule_type_title}."
         restrict_dependent_destroy:
-          has_many: You cannot delete the record because there %{record} dependents
+          has_many: You cannot delete the record because there is a %{record} dependents
           has_one: You cannot delete the record because there is a %{record} dependent
         invalid: Invalid
-        bank_account_presence: Fill in your bank details before requesting a withdrawal.
-        order_total_value_multiple_of_five: Order value must be multipe of 5
+        bank_account_presence: Fill in your bank details before requesting a withdraw.
+        order_total_value_multiple_of_five: Order value must be multiple of 5
   activemodel:
     errors:
       models:
@@ -133,7 +139,7 @@ en:
         already_approved: Order already approved
         too_long: "max %{count} characters"
         without_available_balance: User has no available balance.
-        invalid: Inválido
+        invalid: Invalid
         invalid_order_status_for_payment: "Order status don't permit payment"
         only_advance_product_can_be_paid_with_voucher: Only Advance product can be paid by voucher
         invalid_voucher: Invalid Voucher
@@ -240,7 +246,7 @@ en:
     product_name: Product Name
     status_updated_at: Status Updated On
     updated_at: Last updated date
-    bonus_1: Bônus Instalador
+    bonus_1: Bonus Installer
     binary_bonus: Binary Bonus
     binary_score: Binary Score
     document_verification_status: Document Verification Status
@@ -287,7 +293,7 @@ en:
     phone_number: Phone number
     in_stock: In stock
     out_stock: Out of stock
-    transfered: Transferred
+    transfered: Transfered
     sim_card_quantity_added: Added CHIPs
     actions: Actions
     in_date: Entry date
@@ -295,7 +301,7 @@ en:
     support_point: Support point
     transference_date: Transfer Date
     transferences: Transfers
-    unilevel_qualifying_career_count: Number of Referral Qualifiers
+    unilevel_qualifying_career_count: Number of Indication Qualifiers
     unilevel_qualifying_career_id: Qualifying Nominee Career
     indications: Indications
     role_type: Rule type
@@ -315,7 +321,7 @@ en:
     voucher_order: Order
     order_kind: Order Kind
     voucher_use_date: Use Date
-    my_vouchers: Meus Vouchers
+    my_vouchers: My Vouchers
     system_taxable: System Taxable
     payment_type: Payment Type
     billed: Billed
@@ -385,20 +391,20 @@ en:
         confirm_bill: Are you sure you want to bill this order?
     withdrawals:
       index:
-        no_data: No withdrawals made
-        title: My withdrawals
-        unverified_account: To request withdrawals your account needs to be verified.
+        no_data: No withdraws made
+        title: My withdraws
+        unverified_account: To request withdraws your account needs to be verified.
       new:
         available_balance: Available balance
-        title: New withdrawal
-        unverified_account: To request withdrawals your account needs to be verified.
+        title: New withdraw
+        unverified_account: To request withdraws your account needs to be verified.
       form:
         fees: Fees
         total: Total
       create:
         success: 'Your withdraw request has been received. Check your email to confirm your withdraw request.'
       edit:
-        title: Confirm withdrawal
+        title: Confirm withdraw
         pending_withdraw: 'Are you sure you want to confirm the request?'
         cancel_withdraw: 'Are you sure you want to cancel the request?'
       update:
@@ -410,8 +416,8 @@ en:
         save: Save Strategy
         default_strategy: Standard Strategy
         default_strategy_sub: This is the standard strategy for your network
-        indicated_strategy: Direct Referral Strategy
-        indicated_strategy_sub: Define precisely where each direct referral will be distributed
+        indicated_strategy: Direct Indication Strategy
+        indicated_strategy_sub: Define precisely where each direct indication will be distributed
     binary_tree:
       show:
         title: Binary Tree
@@ -493,7 +499,7 @@ en:
         title: Daily Tasks
     valid_accounts:
       new:
-        success: 'An confirmation instructions email has been sent to: %{email}.'
+        success: 'An email with instructions confirmations has been sent to: %{email}.'
     admin:
       media_files:
         form:
@@ -537,8 +543,8 @@ en:
       withdrawals:
         index:
           title: Manage Withdraws
-          approve_withdraw: Do you really want to approve this withdrawal?
-          refuse_withdraw: Do you really want to reject this withdrawal?
+          approve_withdraw: Do you really want to approve this withdraw?
+          refuse_withdraw: Do you really want to reject this withdraw?
           resend_withdrawal_confirmation_text: Do you really want to resend an email confirmation to this customer?
           resend_withdrawal_confirmation: 'Resend withdraw confirmation'
           refuse: Refuse
@@ -592,10 +598,10 @@ en:
           shippings: Shippings
       withdrawal_approvals:
         new:
-          success: Withdrawals approved successfull
+          success: Withdraws approved successfull
       withdrawal_processing:
         new:
-          success: Withdrawals processing successfull
+          success: Withdraws processing successfull
     support:
       users:
         index:
@@ -603,14 +609,14 @@ en:
           actions: Actions
           sign_in: Sign in
         show:
-          direct_users: Direct Referrals
+          direct_users: Direct Indications
       support_point_users:
         create:
           success: User updated to Support Point
     bank_accounts:
       edit:
         title: Digital Wallet
-        subtitle: This account will be used for withdrawals from the platform
+        subtitle: This account will be used for withdraws from the platform
         save: Save digital wallet
         ownership_info: We only accept digital wallets in your possession
       update:
@@ -646,7 +652,7 @@ en:
     see_cart: View Cart
     title: Cart
   mailer:
-    no-reply: Por favor, não responda.
+    no-reply: Please, do not reply.
     doubt: 'If in doubt contact us by email: %{contact_email}.'
     automatic: This email was sent automatically. Please don't answer.
                In case of doubt, contact %{contact_mail}
@@ -660,7 +666,7 @@ en:
       footer: 'Yours sincerely, <br>
               %{company_name}'
     upgrade_career:
-      subject: Title Advance
+      subject: Title Advancement
       body: 'Congratulations on this achievement, each new step you achieve in our business plan has an extraordinary meaning for us, it is the certainty that we are doing the right thing. <br>
       We are delighted to recognize your new leadership title <b>%{career_name}</b>.<br>
       From now on you will be able to enjoy your new benefits achieved with your new title achieved.'
@@ -903,7 +909,7 @@ en:
     qualification_date: Qualification Date
     user_versions: Activity Report
     no_data: No records
-    indication_link: Referral link
+    indication_link: Indication link
     filters: Filters
     my_orders: My orders
     send_email: Send us an email
@@ -913,7 +919,7 @@ en:
     pay_with_voucher: Pay with Voucher
     unauthenticate_master_password: Unauthenticated master password
     congratulations: Congratulations!
-    daily_task_successfull: Your daily task completed successfully.
+    daily_task_successfull: Your daily task has been successfully completed.
     financial_reports: Financial Reports
     balance_transferences: Balance Transferences
     financial_transactions_csv: Financial Transactions - %{datetime}
@@ -932,15 +938,15 @@ en:
     support: Support
     order_payments: Order payment
     bonus_contracts: Bonus Contracts
-    banners_clicked_today: Quantidade de banners clicados hoje
-    daily_tasks: Tarefas Diárias
+    banners_clicked_today: number of banners clicked today
+    daily_tasks: Daily tasks
     tickets: Tickets
     ticket: Ticket
     user: User
     by: by
     financial: Financial
     network: Network
-    bonus_withdrawal: Bonus withdrawal
+    bonus_withdrawal: Bonus withdraw
     others: Others
     attendant: Attendant
     no_data: No Data
@@ -981,7 +987,7 @@ en:
       user_insufficient_balance: User balance insufficient
       transfer_value_minimum: "Transfer value minimum: %{value}."
       invalid_order_quantity: Payment with balance can only be made for the first user's order.
-      user_not_direct_referral: Order user is not your direct referral
+      user_not_direct_referral: Order user is not your direct indication
       order_amount_invalid: Order amount is less than or equal to current bonus contract's order
       invalid_type_to_balance_transference: Only users %{user_types} can transfer balance.
       daily_task: 'Click at least %{quantity} banners to unlock the backoffice'
@@ -1322,9 +1328,9 @@ en:
   married: Married
   widowed: Widower
   divorced: Divorced
-  direct_indication_bonus: Direct Referral Bonus
-  direct_indication_bonus_in_percentage: Direct Referral Bonus in Percentage
-  indirect_bonus: Indirect Referral Bonus
+  direct_indication_bonus: Direct Indication Bonus
+  direct_indication_bonus_in_percentage: Direct Indication Bonus in Percentage
+  indirect_bonus: Indirect Indication Bonus
   executive_sale_bonus: Direct Selling Bonus
   binary_bonus: Binary Bonus
   reverse_binary_bonus: Binary Bonus Reversal
@@ -1424,7 +1430,7 @@ en:
   Gross amount: %{value} <br>
   Net amount: %{net_value} <br>
   Request: %{hashid}'
-  withdrawals_history: 'Your withdrawals history'
+  withdrawals_history: 'Your withdraws history'
   here: 'here'
   request_already_processed: 'Request already processed'
   close: 'Close'
@@ -1498,8 +1504,8 @@ en:
   residual_bonus: Residual
   direct_commission_bonus: 'Start Fast'
   account_earnings_limit: Account earnings limit
-  receivable_amount: Receivable amout
-  received_amount: Received amout
+  receivable_amount: Receivable amount
+  received_amount: Received amount
   unilevel_affiliates_count: Total affiliates in the unilevel tree
   unilevel_affiliates_actives_count: Active unilevel tree
   unilevel_affiliates_inactives_count: Inactive unilevel tree
@@ -1557,7 +1563,7 @@ en:
   register_thanks: THANK YOU FOR SIGNING UP WITH ME
   jorney_together: I WILL BE AT YOUR DISPOSAL ON THIS JOURNEY
   welcome_message_landing_page: 'WELCOME TO %{company_name}'
-  sponsored_by: You are being referred by
+  sponsored_by: You are being indicated by
   location: 'Location'
   company_in_numbers: '%{company_name} IN NUMBERS'
   custody_money: MILLIONS USD ON CUSTODY
@@ -1606,8 +1612,8 @@ en:
   user_edit_form: User registration editing
   must_be_admin_or_financial: 'You need to be admin or financial'
   there_are_loan_contract_active: There are active loan contract for user
-  direct_referral: Direct Referral
-  indirect_referral: Indirect Referral
+  direct_referral: Direct Indication
+  indirect_referral: Indirect Indication
   yield: Publicity
   register_date: Register Date
   sponsor: Sponsor
@@ -1673,8 +1679,8 @@ en:
   no_payment_method_selected: No payment method selected
   mininum_withdrawal_value: Minimum withdraw amount
   dashboard: Dashboard
-  direct_referral_text: "Receive 10% on all Uniclass package purchases made by your direct referrals"
-  indirect_referral_text: "Earn bonuses for referrals from your friends up to the third generation - 2% 1% 1% 1%"
+  direct_referral_text: "Receive 10% on all Uniclass package purchases made by your direct indications"
+  indirect_referral_text: "Earn bonuses for indications from your friends up to the third generation - 2% 1% 1% 1%"
   earnings_by_campaign_text: Perform your tasks and earn commissions daily
   recurring_revenue_text: Develop recurring income and earn bonuses up to the third generation of your network whenever they do their tasks - 15% 10% 5%
   campaign: Campaign
@@ -1714,10 +1720,10 @@ en:
   tasks_of_the_day: Tasks of the day
   activate_your_account_now: Activate your account now
   my_balance: 'My balance is:'
-  minimum_required_for_withdrawal: 'Minimum required for withdrawal:'
-  you_already_have_a_balance_available_for_withdrawal: You already have a balance available for withdrawal.
-  value_to_min_withdrawal_text: "There’s only <strong> %{value_to_min_withdrawal} </strong> left for you to complete the minimum of <strong> %{withdrawal_min_value} </strong> and make your withdrawal."
-  withdrawals_home_card_title: Make withdrawals in BTC whenever your available balance reaches.
+  minimum_required_for_withdrawal: 'Minimum required for withdraw:'
+  you_already_have_a_balance_available_for_withdrawal: You already have a balance available for withdraw.
+  value_to_min_withdrawal_text: "There’s only <strong> %{value_to_min_withdrawal} </strong> left for you to complete the minimum of <strong> %{withdrawal_min_value} </strong> and make your withdraw."
+  withdrawals_home_card_title: Make withdraws in BTC whenever your available balance reaches.
   you_can_accelerate_your_earnings: You can accelerate your earnings
   indicating_company_name_to_your_friends: Indicating %{company_name} to your friends.
   earn_card_title: 'Earn 10% on your direct indications and 15%
@@ -1764,8 +1770,8 @@ en:
   modal_email_confirmation_title: Confirmation email sent
   modal_already_send_email_confirmation_title: Confirmation email has already been sent
   modal_already_send_email_confirmation_text: 'Your confirmation email has already been sent, you can send another one in %{time}'
-  direct_referral_bonus: Direct referral bonus
-  indirect_referral_bonus: Indirect referral bonus
+  direct_referral_bonus: Direct indication bonus
+  indirect_referral_bonus: Indirect indication bonus
   task_performed: Task performed
   recurring_bonus: Recurring bonus
   master_leader_bonus: Master leader bonus
@@ -1804,3 +1810,36 @@ en:
   created_with_success: Created with success
   wallet: Wallet Hash
   pool_wallet: Pool Wallet
+  categorizations: Categories
+  tag: Tag
+  courses: Courses
+  language: Language
+  owner: Creator
+  approver: Supervisor
+  category: Category
+  approved?: Okay?
+  active?: Active?
+  short_description: Short description
+  countries_of_operation: Countries of operation
+  ideal_thumb_size: Ideal 500 x 300
+  add_course: Add Course
+  thumb: Thumbnail
+  price: Price
+  network_commission: Network Commission
+  you_will_receive_per_sale: You will receive per sale
+  parameterization: Parameterization
+  add_lessons: Add lessons
+  summary: Summary
+  description: Description
+  approved_course: Course successfully approved!
+  disallowed_course: Course disapproved!
+  published_by: Published by
+  anonymous: Anonymous
+  my_learning: My learning
+  this_course_includes: 'This course includes:'
+  store: Store
+  buy_now: Buy now!
+  featured_courses: Featured courses
+  success_create: Successfully created!
+  course_lesson: Course lesson
+  success_updated: Successfully updated!

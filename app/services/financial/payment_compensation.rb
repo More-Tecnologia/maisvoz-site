@@ -36,8 +36,7 @@ module Financial
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if deposit_product
         propagate_bonuses if enabled_bonification
-        propagate_course_sale_payment if course_product
-        propagate_course_bonus if course_product
+        propagate_course_payment if course_product
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product
         propagate_master_bonus unless free_product || course_product
@@ -93,9 +92,11 @@ module Financial
       MasterLeaderCreatorWorker.perform_async(order.id)
     end
 
-    def propagate_course_sale_payment
+    def propagate_course_payment
       order.order_items.each do |order_item|
-        Bonification::CourseSaleService.call(user: order.user, product: order_item.product)
+        date = Time.now + Course.days_to_cashbacks[order_item.product.course.days_to_cashback].days
+        CourseSalePaymentWorker.perform_at(date, order_item.id)
+        CourseDirectIndirectWorker.perform_at(date, order.user.id, order_item.price_cents)
       end
     end
 

@@ -59,7 +59,7 @@ module Backoffice
                    banner_store: BannerStore.ads_store,
                    premium: true,
                    active: false,
-                   status: :pendent,
+                   status: :pending,
                    order: current_ads_cart,
                    current_clicks: @product.clicks)
     end

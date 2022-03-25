@@ -38,7 +38,7 @@ module Backoffice
       params.require(:banner)
             .permit(:link, :image, :title,
                     :country_of_operation, :description)
-            .merge(status: :pendent, active: true)
+            .merge(status: :pending, active: true)
     end
   end
 end

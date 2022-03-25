@@ -1,12 +1,5 @@
 <%= form_for([:backoffice, @banner], url: backoffice_banners_path(product_id: params[:product_id]), html: { role: 'form' }) do |f| %>
   <div class="container-form-banners" style="">
-    <strong class='cell'><%= f.label :country_of_operation %></strong>
-    <div class="login-fields w-100">
-      <%= f.select :country_of_operation,
-        options_for_select(country_options, selected: f.object.country_of_operation),
-        {},
-        { multiple: true, class: "input-description", select2: 'true', data: { placeholder: t('countries_of_operation') } } %>
-    </div>
     <strong class='cell'><%= f.label :title %></strong>
     <div class="login-fields">
       <%= f.text_field :title, class: 'form-control', placeholder: t(:title) %>
@@ -23,7 +16,14 @@
     <div class="login-fields">
       <%= f.text_field :link, class: 'form-control', placeholder: t(:link) %>
     </div>
-    <%= f.submit class: 'btn btn-primary pull-right' %>
+        <strong class='cell'><%= f.label :country_of_operation %></strong>
+    <div class="login-fields">
+      <%= f.select :country_of_operation,
+        options_for_select(country_options, selected: f.object.country_of_operation),
+        {},
+        { multiple: true, class: "input-description", select2: 'true', data: { placeholder: t('countries_of_operation') } } %>
+    </div>
+        <%= f.submit class: 'btn btn-primary pull-right', class: "btn-submit-banners" %>
     <br>
   </div>
 <% end %>

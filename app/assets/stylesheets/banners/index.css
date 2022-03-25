@@ -155,7 +155,8 @@
   font-size: 16px;
 }
 
-.btn-submit-banners {
+.btn-submit-banners,
+.btn-submit-ad-edit {
   width: 85%;
   margin-top: 20px;
   background: #53f001;

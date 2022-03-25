@@ -24,10 +24,10 @@
 .container-ad {
   display: flex;
   background: #ffffff;
-  height: 300px;
+  height: auto;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
-  width: 33%;
+  width: 49%;
   padding: 20px;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -46,9 +46,10 @@
 
 .img-ad {
   width: 15rem;
-  height: auto;
+  height: 10rem;
   border-radius: 10px;
   margin-top: 10px;
+  object-fit: cover;
 }
 
 .container-counters-ad {
@@ -83,28 +84,38 @@
 .container-link-ad {
   display: flex;
   align-items: center;
+  width: 60%;
+  margin-top: 30px;
 }
 
 .input-link-ad {
   padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid rgba(118, 118, 118, 0.3);
 }
 
 .button-copy-ad {
   background: #06fa26;
   border: none;
   padding: 10px;
-  border-radius: 50%;
+  border-radius: 20px;
   cursor: pointer;
   margin-left: 5px;
   transition: 0.5s;
-  width: 40px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
 }
 
 .container-edit-ad {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  margin-top: 30px;
+  width: 25%;
+  cursor: pointer;
 }
 
 .button-edit-ad {
@@ -115,6 +126,12 @@
   border-radius: 10px;
   cursor: pointer;
   transition: 0.5s;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-copy-ad:hover,
@@ -126,6 +143,9 @@
 .container-countries-ad {
   display: flex;
   align-items: center;
+  margin-top: 30px;
+  width: 50%;
+  justify-content: center;
 }
 
 .button-countries {
@@ -137,6 +157,16 @@
   border-radius: 10px;
   cursor: pointer;
   transition: 0.5s;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.button-countries svg,
+.button-edit-ad svg {
+  margin-right: 5px;
 }
 
 .button-countries:active .button-countries:hover,
@@ -155,7 +185,82 @@
   margin-bottom: 20px;
 }
 
-@media (max-width: 880px) {
+.button-reactive-ad {
+  border: none;
+  color: white;
+  background: green;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-pause-ad {
+  border: none;
+  color: white;
+  background: red;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-reactive-ad svg,
+.button-pause-ad svg {
+  margin-right: 5px;
+}
+
+.container-ad-flex {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  width: 25%;
+  padding: 0 10px 0 0;
+}
+
+.container-status-ad {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 25%;
+}
+
+.container-status-ad span {
+  font-weight: bold;
+}
+
+.status-ad {
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.status-ad-approved {
+  background: #30da03;
+}
+
+.status-ad-pending {
+  background-color: orange;
+}
+
+.status-ad-canceled,
+.status-ad-expired,
+.status-ad-blocked,
+.status-ad-holding,
+.status-ad-finish {
+  background: red;
+}
+
+
+@media (max-width: 1050px) {
   .container-ad {
     width: 100%;
   }
@@ -163,5 +268,32 @@
   .container-title-ad span,
   .title-counter-ad {
     font-size: 12px;
+  }
+
+  .container-status-ad {
+    width: 35%;
+  }
+
+  .status-ad {
+    font-size: 12px;
+  }
+
+  .button-countries {
+    font-size: 12px;
+  }
+
+  .button-countries span,
+  .button-edit-ad span,
+  .button-pause-ad span
+   {
+    display: none;
+  }
+  
+  .counter-ad {
+    font-size: 25px;
+  }
+
+  .status-ad {
+    padding: 10px 0;
   }
 }

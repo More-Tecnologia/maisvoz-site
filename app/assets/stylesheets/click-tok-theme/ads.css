@@ -125,6 +125,7 @@
   flex-direction: column;
 }
 
+
 @media (min-width: 300px) and (max-width: 880px){
   .card-ads {
     height: 250px;

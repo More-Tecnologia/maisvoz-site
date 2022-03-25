@@ -1,10 +1,13 @@
 class Banner < ApplicationRecord
   has_attachment :image
-  
-  enum status: { pendent: 0, aproved: 1, canceled: 2, expired: 3, blocked: 4, 
+
+  enum status: { pendent: 0, aproved: 1, canceled: 2, expired: 3, blocked: 4,
                  holding: 5, finish: 6 }
 
   belongs_to :banner_store
+  belongs_to :order, optional: true
+  belongs_to :order_item, optional: true
+  belongs_to :product, optional: true
   belongs_to :user, optional: true
 
   validates :country_of_operation, length: { maximum: 255 }

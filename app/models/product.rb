@@ -21,6 +21,7 @@ class Product < ApplicationRecord
   has_many :career_trails
   has_many :shippings
   has_many :product_descriptions
+  has_many :ads, class_name: 'Banner'
 
   serialize :maturity_days, Array
 

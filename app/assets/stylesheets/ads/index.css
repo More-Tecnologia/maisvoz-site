@@ -1,0 +1,167 @@
+.main-container-ads {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+}
+
+.title-page {
+  padding: 20px 0;
+}
+
+.title-page span {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.container-ads {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-ad {
+  display: flex;
+  background: #ffffff;
+  height: 300px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  width: 33%;
+  padding: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.container-title-ad {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+}
+
+.container-title-ad span {
+  font-weight: bold;
+}
+
+.img-ad {
+  width: 15rem;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.container-counters-ad {
+  width: 33%;
+}
+
+.title-counter-ad {
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
+
+.main-title-ad {
+  font-size: 16px;
+}
+
+.container-counter {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.counter-ad {
+  font-weight: bold;
+  font-size: 35px;
+  margin-top: 20px;
+  width: auto;
+  margin: auto;
+  color: green;
+}
+
+.container-link-ad {
+  display: flex;
+  align-items: center;
+}
+
+.input-link-ad {
+  padding: 10px 0;
+}
+
+.button-copy-ad {
+  background: #06fa26;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: 0.5s;
+  width: 40px;
+}
+
+.container-edit-ad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.button-edit-ad {
+  background: #00d928;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.button-copy-ad:hover,
+.button-edit-ad:hover,
+.button-countries:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.container-countries-ad {
+  display: flex;
+  align-items: center;
+}
+
+.button-countries {
+  background: #06fa26;
+  color: white;
+  padding: 10px 5px;
+  border: none !important;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.button-countries:active .button-countries:hover,
+.button-countries:after {
+  border: none !important;
+}
+
+.back-button {
+  background: #30da03;
+  width: 50px;
+  height: 27px;
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 880px) {
+  .container-ad {
+    width: 100%;
+  }
+
+  .container-title-ad span,
+  .title-counter-ad {
+    font-size: 12px;
+  }
+}

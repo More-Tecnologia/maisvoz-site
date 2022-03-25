@@ -1,4 +1,4 @@
-<%= form_for([:backoffice, @banner], html: { role: 'form' }) do |f| %>
+<%= form_for([:backoffice, @banner], url: backoffice_banners_path(product_id: params[:product_id]), html: { role: 'form' }) do |f| %>
   <div class="container-form-banners" style="">
     <strong class='cell'><%= f.label :country_of_operation %></strong>
     <div class="login-fields w-100">

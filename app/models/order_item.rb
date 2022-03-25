@@ -28,6 +28,7 @@ class OrderItem < ApplicationRecord
 
   belongs_to :order
   belongs_to :product
+  has_one :ad, class_name: 'Banner'
 
   has_many :sim_cards
 

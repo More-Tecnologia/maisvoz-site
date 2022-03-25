@@ -3,7 +3,7 @@
 class Banner < ApplicationRecord
   has_attachment :image
 
-  enum status: { pendent: 0, approved: 1, canceled: 2, expired: 3, blocked: 4,
+  enum status: { pending: 0, approved: 1, canceled: 2, expired: 3, blocked: 4,
                  holding: 5, finish: 6 }
 
   belongs_to :banner_store
@@ -26,7 +26,7 @@ class Banner < ApplicationRecord
   scope :default, -> { where(premium: false) }
 
   def editable?
-    pendent? || aproved? || blocked? || holding?
+    pending? || aproved? || blocked? || holding?
   end
 
   def path

@@ -6,7 +6,6 @@
     <div class="cart-courses__item__id__number">
       <%= order_item.product.hashid %><br>
       <%= order_item.product.name %><br>
-      <%= order_item.product.clicks %> <%= t(:clicks) %>
     </div>
   </div>
   <div class="cart-courses__item__image">
@@ -19,6 +18,10 @@
       <p><%= order_item.ad.description %></p><br>
       <p><%= order_item.ad.link %></p>
     </div>
+  </div>
+  <div class="container-cart-clicks">
+      <span>Quantity of Clicks</span>
+      <%= order_item.product.clicks %> <%= t(:clicks) %>
   </div>
   <div class="cart-courses__item__value">
     <span><%= number_to_currency(order_item.product.price) %></span>

@@ -111,6 +111,19 @@ body {
   margin: auto;
 }
 
+.container-cart-clicks {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-cart-clicks span {
+  font-weight: bold;
+}
+
+.cart-courses__id {
+  width: 25%;
+}
+
 .card-course {
   min-width: 52%;
   width: 52%;

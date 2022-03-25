@@ -6,42 +6,41 @@ module Backoffice
       before_action :ensured_ad, only: %i[approve reprove]
 
       def index
+        params.merge!(status_eq: 0) unless params[:status_eq].present?
         @q = BannerStore.ads_store
-                        .ransack(params)
+                        .banners
+                        .includes(:user, :product, :order)
+                        .ransack(params.merge(user_username_cont: (params[:username_cont].presence || ['']).first)
+                                       .except(:username_cont))
 
         @ads = @q.result
-                 .order(:id)
+                 .order(updated_at: :desc)
                  .page(params[:page])
                  .per(10)
       end
 
       def approve
         if @ad.update(status: :approved, active: true)
-          flash[:success] = I18n.t(:success_update_banner)
-          redirect_to backoffice_admin_banners_path
+          flash[:success] = I18n.t(:successfully_approve_ad)
         else
           flash[:error] = @ad.errors.full_messages.join(', ')
-          render :edit
         end
+        redirect_to backoffice_admin_ads_path
       end
 
       def reprove
         if @ad.update(active: false)
-          flash[:success] = I18n.t(:success_inactivate_banner)
+          flash[:success] = I18n.t(:successfully_reprove_ad)
         else
           flash[:error] = @ad.errors.full_messages.join(', ')
         end
-        redirect_to backoffice_admin_banners_path
+        redirect_to backoffice_admin_ads_path
       end
 
       private
 
       def ensured_ad
         @ad = Banner.find(params[:id])
-      end
-
-      def ensured_params
-        params.require(:banner).permit(:notem)
       end
     end
   end

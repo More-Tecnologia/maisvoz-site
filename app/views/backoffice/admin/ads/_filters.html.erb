@@ -5,26 +5,25 @@
   			<h3 class="panel-title"><%= t(:filters) %></h3>
   		</div>
       <div class="panel-body">
-        <%= search_form_for @q, url: backoffice_admin_banners_path do |f| %>
+        <%= search_form_for @q, url: backoffice_admin_ads_path do |f| %>
           <div class="form-group">
             <div class="row">
               <div class="col-md-2">
-                <%= f.label t(:banner_store) %>
-                <%= select_tag :banner_store, options_for_select(banner_stores_for_select),
-                                              class: 'form-control',
-                                              include_blank: true %>
-              </div>
-              <div class="col-md-2">
                 <%= f.label t(:active) %>
-                <%= select_tag :active, options_for_select(boolean_select_options),
+                <%= select_tag :active_eq,
+                options_for_select(boolean_select_options),
                                         class: 'form-control',
                                         include_blank: true %>
               </div>
               <div class="col-md-2">
-                <%= f.label t(:premium) %>
-                <%= select_tag :premium, options_for_select(boolean_select_options),
+                <%= f.label t(:status) %>
+                <%= select_tag :status_eq, options_for_select(Banner.statuses),
                                         class: 'form-control',
                                         include_blank: true %>
+              </div>
+              <div class="col-md-2">
+                <%= f.label t(:user) %>
+                <%= search_field :username_cont, '', class: 'form-control' %>
               </div>
             </div>
           </div>

@@ -25,8 +25,16 @@ class Banner < ApplicationRecord
   scope :premium, -> { where(premium: true) }
   scope :default, -> { where(premium: false) }
 
+  def approvable?
+    pending? && !active? && paid?
+  end
+
   def editable?
     pending? || aproved? || blocked? || holding?
+  end
+
+  def paid?
+    order.completed?
   end
 
   def path

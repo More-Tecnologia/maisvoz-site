@@ -1850,3 +1850,9 @@ en:
   my_advertisements: My advertisements
   click_count: Click count
   view_count: View count
+  advertisements: Advertisements
+  paid?: Paid?
+  updated_at: Updated at
+  package: Package
+  link: Link
+  image: Image

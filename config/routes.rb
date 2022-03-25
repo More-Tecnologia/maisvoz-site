@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
   namespace :backoffice do
     namespace :admin do
+      resources :ads, only: :index do
+        member do
+          patch :approve
+          patch :reprove
+        end
+      end
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]

@@ -57,6 +57,7 @@
   width: 90%;
   display: flex;
   overflow-x: scroll;
+  justify-content: space-between;
 }
 
 .card-ads {
@@ -66,7 +67,6 @@
   background: white;
   border-radius: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  margin-right: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -125,11 +125,15 @@
   flex-direction: column;
 }
 
+.bottom-ad-package a {
+  width: 150px;
+}
 
 @media (min-width: 300px) and (max-width: 880px){
   .card-ads {
     height: 250px;
     min-width: 56%;
+    margin-right: 10px;
   }
 
   .ad-package-clicks {
@@ -192,7 +196,7 @@
   }
 
   .card-ads {
-    min-width: 24%;
+    min-width: 49%;
     height: 200px;
     margin-top: 20px;
   }

@@ -1758,8 +1758,15 @@ pt-BR:
   success_updated: Atualizado com sucesso!
   clicks: cliques
   this_pack_contains: Este pacote contém
-  on_the_ad: no anúncio 
+  on_the_ad: no anúncio
   cant_edit_this_ad: Não é possível editar este anúncio
   my_advertisements: Minhas publicidades
   clicks_count: Contagem de cliques
   view_count: Contagem de visualizações
+  advertisements: Anúncios
+  paid?: Pago?
+  updated_at: Atualizado em
+  package: Pacote
+  link: Link
+  image: Imagem
+  created_at: Criado em

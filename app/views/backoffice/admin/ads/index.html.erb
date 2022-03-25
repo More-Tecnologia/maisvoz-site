@@ -1,0 +1,83 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'click-tok-theme/dashboard' %>
+<!-- Page-Title -->
+<div class="box-orders">
+  <div class="box-second">
+    <h1 class="page-title m-b-30"><%= t(:banners) %></h1>
+  </div>
+</div>
+<%= render 'filters' %>
+<div class="row-stores margin-bottom">
+  <% BannerStore.active.each do |banner_store| %>
+    <%= link_to backoffice_admin_banners_path(banner_store_hashid: banner_store.hashid), class: "box-store" do %>
+      <img src="<%= banner_store.path %>" alt="" class="img-box-store">
+    <% end %>
+  <% end %>
+</div>
+<div class="box-orders">
+  <div class="box-second">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover m-0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th><%= t('backoffice.tickets.index.link') %></th>
+                    <th><%= t('backoffice.tickets.index.image_path') %></th>
+                    <th><%= t(:banner_store) %></th>
+                    <th><%= t('backoffice.tickets.index.created_at') %></th>
+                    <th><%= t('backoffice.tickets.index.updated_at') %></th>
+                    <th><%= t(:active?) %></th>
+                    <th><%= t(:premium?) %></th>
+                    <th><%= t('backoffice.tickets.index.action') %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @banners.each do |banner| %>
+                  <tr>
+                    <td><%= banner.id %></td>
+                    <td>
+                      <a href="<%= banner.link %>" target="_blank"><%= banner.link.truncate(90) %></a>
+                    </td>
+                    <td>
+                      <a href="<%= banner.path %>" target="_blank"><img src="<%= banner.path %>" alt="" class="image-banner-small"></a>
+                    </td>
+                    <td><%= t(banner.banner_store.try(:title)) %></td>
+                    <td><%= l(banner.created_at, format: '%B %d, %Y' ) %></td>
+                    <td><%= l(banner.updated_at, format: '%B %d, %Y' ) %></td>
+                    <td><%= t(banner.active) %></td>
+                    <td><%= t(banner.premium) %></td>
+                    <td>
+                      <%= link_to edit_backoffice_admin_banner_path(banner), class: 'action-edit' do %>
+                        <i class="fa fa-edit"></i>
+                      <% end %>
+                      <%= link_to(backoffice_admin_banner_path(banner),
+                                  class: 'action-remove',
+                                  method: :delete,
+                                  data: { confirm: t(:banner_inactivation_message) }
+                                  ) do %>
+                        <i class="fa fa-minus-circle"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+
+            </div>
+        </div>
+          <br>
+          <div class="col-md-10">
+            <%= paginate @banners %>
+          </div>
+          <div class="col-md-2">
+            <br>
+            <%= link_to t(:banner_stores), backoffice_admin_banner_stores_path, class: 'btn btn-info pull-right' %>
+            <%= link_to t(:new), new_backoffice_admin_banner_path, class: 'btn btn-success pull-right  btn-left' %>
+          </div>
+
+    </div>
+  </div>
+</div>

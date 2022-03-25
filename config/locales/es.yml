@@ -1840,6 +1840,9 @@ es:
   success_create: ¡Creado con éxito!
   course_lesson: Lección del curso
   success_update: ¡Actualizado exitosamente!
+  clicks: clics
+  this_pack_contains: Este paquete contiene
+  on_the_ad: en el anuncio
   cant_edit_this_ad: No se puede editar este anuncio 
   my_advertisements: Mis anuncios
   clicks_count: Haga clic en contar

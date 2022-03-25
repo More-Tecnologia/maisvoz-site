@@ -14,6 +14,10 @@ module Backoffice
                        .per(4)
     end
 
-    def ads; end
+    def ads
+      @packages = Product.publicity
+                         .active
+                         .order(:price_cents)
+    end
   end
 end

@@ -1843,6 +1843,9 @@ en:
   success_create: Successfully created!
   course_lesson: Course lesson
   success_updated: Successfully updated!
+  clicks: clicks
+  this_pack_contains: This pack contains
+  on_the_ad: on the ad
   cant_edit_this_ad: "Can't edit this ad"
   my_advertisements: My advertisements
   click_count: Click count

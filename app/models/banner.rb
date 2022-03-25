@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Banner < ApplicationRecord
   has_attachment :image
 
@@ -11,17 +13,21 @@ class Banner < ApplicationRecord
   belongs_to :user, optional: true
 
   validates :country_of_operation, length: { maximum: 255 }
-  validates :title, presence: true, length: { maximum: 255 }
   validates :description, length: { maximum: 1000 }
   validates :link, presence: true
   validates :order, presence: true, on: :ads
   validates :order_item, presence: true, on: :ads
   validates :product, presence: true, on: :ads
   validates :user, presence: true, on: :ads
+  validates :title, presence: true, length: { maximum: 255 }
 
   scope :active, -> { where(active: true) }
   scope :premium, -> { where(premium: true) }
   scope :default, -> { where(premium: false) }
+
+  def editable?
+    pendent? || aproved? || blocked? || holding?
+  end
 
   def path
     image.try(:fullpath)

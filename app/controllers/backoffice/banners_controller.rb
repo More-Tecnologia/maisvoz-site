@@ -16,7 +16,7 @@ module Backoffice
     end
 
     def create
-      redirect_to backoffice_banners_path
+      redirect_to backoffice_ads_carts_path
     end
 
     private
@@ -33,12 +33,15 @@ module Backoffice
       ActiveRecord::Base.transaction do
         command = Shopping::AddToCart.call(current_ads_cart, @product.id, params[:country])
         raise StandardError.new(command.errors) unless command.success?
-        @banner.order_item = current_ads_cart.order_items.last
+        @banner.order_item = current_ads_cart.order_items.reload.order(:created_at).last
         if @banner.valid?(:ads)
-          @banner.save
+          unless @banner.save && @banner.update(image: file)
+            @banner.order_item.destroy
+            Shopping::UpdateCartTotals.call(current_ads_cart, params[:country])
+          end
         end
       end
-      return if @banner.persisted? && @banner.update(image: file)
+      return if @banner.persisted?
 
       flash[:error] = @banner.errors.full_messages.join(', ')
       @banner.destroy

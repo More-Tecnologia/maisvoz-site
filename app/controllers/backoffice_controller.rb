@@ -64,6 +64,10 @@ class BackofficeController < ApplicationController
     redirect_to(request.referrer || root_path)
   end
 
+  def clean_ads_cart
+    @current_ads_cart = Order.new(user: current_user, status: :cart)
+  end
+
   def clean_courses_cart
     @current_courses_cart = Order.new(user: current_user, status: :cart)
   end

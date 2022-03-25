@@ -14,6 +14,10 @@ class Banner < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   validates :description, length: { maximum: 1000 }
   validates :link, presence: true
+  validates :order, presence: true, on: :ads
+  validates :order_item, presence: true, on: :ads
+  validates :product, presence: true, on: :ads
+  validates :user, presence: true, on: :ads
 
   scope :active, -> { where(active: true) }
   scope :premium, -> { where(premium: true) }

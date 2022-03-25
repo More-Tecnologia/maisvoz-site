@@ -18,13 +18,15 @@
   </div>
   <%= form_tag backoffice_course_checkout_path do |f| %>
     <div class="cart-courses">
-      <% current_courses_cart.order_items.map { |oi| oi.product.course }.each do |course| %>
-        <%= render 'backoffice/courses_carts/cart_item', course: course %>
+      <% current_courses_cart.order_items.each do |order_item| %>
+        <%= render 'backoffice/courses_carts/cart_item', course: order_item.product.course, order_item: order_item %>
       <% end %>
-      <div class="cart-courses__coupon">
-        <input type="text" name="" value="" class="cart-courses__coupon__input" placeholder="Código de cupom">
-        <button type="button" name="button" class="cart-courses__coupon__button">Aplicar</button>
-      </div>
+      <% if ActiveModel::Type::Boolean.new.cast(ENV['COURSE_DISCOUNT']) %>
+        <div class="cart-courses__coupon">
+          <input type="text" name="" value="" class="cart-courses__coupon__input" placeholder="Código de cupom">
+          <button type="button" name="button" class="cart-courses__coupon__button">Aplicar</button>
+        </div>
+      <% end %>
       <div class="payment-method">
         <div class="cart-courses__title">
           <span><%= t(:payment_method) %></span>

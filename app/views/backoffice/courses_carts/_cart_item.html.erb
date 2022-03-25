@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="cart-courses__item__image">
-    <%= image_tag('courses/course2.png') %>
+    <img src="<%= course_thumb(course) %>" />
   </div>
   <div class="cart-courses__item__texts">
     <%= render 'layouts/shared/reputation' %>
@@ -19,10 +19,10 @@
   <div class="cart-courses__item__value">
     <span><%= number_to_currency(course.price) %></span>
   </div>
-  <button class="cart-courses__item__delete">
+  <%= link_to backoffice_courses_carts_path(order_item_id: order_item.id), method: :delete, class: "cart-courses__item__delete" do %>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash-fill" viewbox="0 0 16 16">
       <path
         d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
     </svg>
-  </button>
+  <% end %>
 </div>

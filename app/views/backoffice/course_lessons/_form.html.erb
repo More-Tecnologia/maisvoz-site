@@ -53,6 +53,8 @@
     <span><%= t(:summary) %></span>
   </div>
   <div class="container-lessons" id="container-lessons-container">
-    <%= render @course.course_lessons %>
+    <% @course.course_lessons.each_with_index do |course_lesson, index| %>
+      <%= render 'course_lesson', course_lesson: course_lesson, index: index %>
+    <% end %>
   </div>
 <% end %>

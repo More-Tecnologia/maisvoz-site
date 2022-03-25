@@ -1756,6 +1756,7 @@ pt-BR:
   success_create: Criado com sucesso!
   course_lesson: Aula do curso
   success_updated: Atualizado com sucesso!
+  cant_edit_this_ad: Não é possível editar este anúncio
   my_advertisements: Minhas publicidades
   clicks_count: Contagem de cliques
   view_count: Contagem de visualizações

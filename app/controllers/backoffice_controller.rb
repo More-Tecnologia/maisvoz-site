@@ -39,6 +39,14 @@ class BackofficeController < ApplicationController
                                        .try(:order) || Order.new(user: current_user, status: :cart)
   end
 
+  def current_ads_cart
+    @current_ads_cart ||= OrderItem.includes(:order)
+                                   .where(product: Product.publicity, order: current_user.orders.cart)
+                                   .order(created_at: :desc)
+                                   .last
+                                   .try(:order) || Order.new(user: current_user, status: :cart)
+  end
+
   protected def clean_shopping_cart
     session.delete(:order_id)
   end

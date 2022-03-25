@@ -1,26 +1,31 @@
-<%= form_for([:backoffice, @banner], html: { role: 'form' }) do |f| %>
+<%= form_for([:backoffice, @banner], url: backoffice_banners_path(product_id: params[:product_id]), html: { role: 'form' }) do |f| %>
   <div class="container-form-banners" style="">
-        <strong class='cell'><%= f.label :country_of_operation %></strong>
-        <div class="login-fields w-100">
-          <%= f.text_field :country_of_operation, class: 'form-control', placeholder: t(:country_of_operation) %>
-        </div>
-        <strong class='cell'><%= f.label :title %></strong>
-        <div class="login-fields">
-          <%= f.text_field :title, class: 'form-control', placeholder: t(:title) %>
-        </div>
-        <strong class='cell'> <%= f.label :image %></strong>
-        <div class="login-fields">
-          <%= f.attachinary_file_field :image, class: 'form-control' %>
-        </div>
-        <strong class='cell'><%= f.label :description %></strong>
-        <div class="login-fields">
-          <%= f.text_field :description, class: 'form-control', placeholder: t(:description) %>
-        </div>
-        <strong class='cell'><%= f.label :link %></strong>
-        <div class="login-fields">
-          <%= f.text_field :link, class: 'form-control', placeholder: t(:link) %>
-        </div>
+    <strong class='cell'><%= f.label :country_of_operation %></strong>
+    <div class="login-fields w-100">
+      <%= f.select :country_of_operation,
+        options_for_select(country_options, selected: f.object.country_of_operation),
+        {},
+        { multiple: true, class: "input-description", select2: 'true', data: { placeholder: t('countries_of_operation') } } %>
+    </div>
+    <strong class='cell'><%= f.label :title %></strong>
+    <div class="login-fields">
+      <%= f.text_field :title, class: 'form-control', placeholder: t(:title) %>
+    </div>
+    <strong class='cell'> <%= f.label :image %></strong>
+    <div class="login-fields">
+      <%= f.attachinary_file_field :image, class: 'form-control' %>
+    </div>
+    <strong class='cell'><%= f.label :description %></strong>
+    <div class="login-fields">
+      <%= f.text_field :description, class: 'form-control', placeholder: t(:description) %>
+    </div>
+    <strong class='cell'><%= f.label :link %></strong>
+    <div class="login-fields">
+      <%= f.text_field :link, class: 'form-control', placeholder: t(:link) %>
+    </div>
     <%= f.submit class: 'btn btn-primary pull-right' %>
     <br>
   </div>
 <% end %>
+
+<%= javascript_include_tag('utilities/select2') %>

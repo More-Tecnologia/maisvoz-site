@@ -340,3 +340,5 @@ unless SystemConfiguration.active_config.present?
                              withdrawal_fee: ENV['WITHDRAWAL_FEE'],
                              taxable_fee: ENV['SYSTEM_FEE'])
 end
+
+BannerStore.find_or_create_by(title: 'Ads', active: true)

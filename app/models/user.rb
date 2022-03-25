@@ -53,6 +53,7 @@ class User < ApplicationRecord
   has_many :financial_transactions
   has_many :sim_cards
   has_many :banner_clicks
+  has_many :ads, class_name: 'Banner'
   has_many :supported_sim_cards, class_name: 'SimCard',
                                  foreign_key: 'support_point_user_id'
   has_many :supported_point_users, class_name: 'User',

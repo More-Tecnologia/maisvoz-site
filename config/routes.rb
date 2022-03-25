@@ -101,6 +101,8 @@ Rails.application.routes.draw do
       resource :support_point_users, only: :create
     end
 
+    resources :ads, only: [:index]
+    
     resources :dashboard, only: :index do
       collection do
         get :balances_data
@@ -191,7 +193,7 @@ Rails.application.routes.draw do
     end
     resources :subjects, only: [:show, :new]
 
-    resources :banners, only: :index
+    resources :banners, only: [:index, :new, :create, :edit, :update]
     resources :banner_clicks, only: [:index, :create]
     resources :direct_nominees_list, only: :index
     resources :home, only: :index

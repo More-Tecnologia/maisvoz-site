@@ -108,6 +108,8 @@ Rails.application.routes.draw do
     end
 
     resources :ads, only: %i[index edit update]
+    resource :ads_checkout, only: :create
+    resource :ads_carts, only: %i[show update destroy]
 
     resources :dashboard, only: :index do
       collection do

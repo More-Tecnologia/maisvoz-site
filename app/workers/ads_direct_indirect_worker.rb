@@ -3,12 +3,10 @@
 class AdsDirectIndirectWorker
   include Sidekiq::Worker
 
-  def perform(order_id, ad_id, amount)
-    order = Order.find(order_id)
+  def perform(ad_id)
     ad = Banner.find(ad_id)
+    return unless ad.order.paid? && !ad.billed? && ad.approved?
 
-    return unless order.paid? && !ad.billed? && ad.approved?
-
-    Bonification::AdsDirectIndirectCreatorService.call(ad: ad, amount: amount)
+    Bonification::AdsDirectIndirectCreatorService.call(ad: ad)
   end
 end

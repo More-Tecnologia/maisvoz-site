@@ -1772,3 +1772,7 @@ pt-BR:
   created_at: Criado em
   doesnt_have_enough_balance: Você não tem saldo suficiente
   removed_successfully: Removido com sucesso!
+  successfully_approve_ad: Anúncio aprovado com sucesso!
+  successfully_reprove_ad: Anúncio reprovado com sucesso!
+  ads_approves_message: Tem certeza de que deseja aprovar este anúncio?
+  ads_reprove_message: Tem certeza de que deseja reprovar este anúncio?

@@ -1858,3 +1858,7 @@ en:
   image: Image
   doesnt_have_enough_balance: "You doesn't have enough balance"
   removed_successfully: Removed successfully!
+  successfully_approve_ad: Ad successfully approved!
+  successfully_reprove_ad: Ad successfully reproved!
+  ads_approves_message: Are you sure you want to approve this ad?
+  ads_reprove_message: Are you sure you want to disapprove this ad?

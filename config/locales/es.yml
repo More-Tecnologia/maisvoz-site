@@ -1855,3 +1855,7 @@ es:
   image: Imagen
   doesnt_have_enough_balance: No tienes saldo suficiente
   removed_successfully: Eliminado con éxito!
+  successfully_approve_ad: ¡Anuncio aprobado con éxito!
+  successfully_reprove_ad: ¡Anuncio reprobado con éxito!
+  ads_approves_message: ¿Está seguro de que desea aprobar este anuncio?
+  ads_reprove_message: ¿Está seguro de que desea desaprobar este anuncio?

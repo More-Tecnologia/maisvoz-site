@@ -13,6 +13,7 @@ module Payment
       ActiveRecord::Base.transaction do
         create_order_payment
         @order.payment_type = :balance
+        @order.status = :pending_payment
         @order.save
 
         PaymentCompensationWorker.perform_async(@order.id)

@@ -5,5 +5,7 @@ module Backoffice
     def index; end
     
     def agreement; end
+
+    def winners; end
   end
 end

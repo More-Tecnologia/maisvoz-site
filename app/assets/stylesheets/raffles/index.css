@@ -1,0 +1,106 @@
+.banner-img-raffles {
+    display: flex;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to bottom, #0facf1, #8cdafc);
+    border-radius: 12px;
+    margin: 40px 0;
+}
+
+.raffles-page-container {
+    width: 90%;
+    margin: auto;
+}
+
+.raffles-page-title {
+    font-weight: bold;
+}
+
+.raffles-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.raffle-container {
+    width: 49.5%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.raffle-container-title {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.raffle-title,
+.raffle-value-title,
+.numbers-available-title,
+.draw-date-title,
+.type-raffle-title {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.raffle-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.numbers-available-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.raffle-container-value {
+    display: flex;
+    flex-direction: column;
+}
+
+.raffle-value,
+.numbers-available,
+.draw-date,
+.type-raffle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container-raffle-button {
+    display: flex;
+    align-items: center;
+    width: 10%;
+}
+
+.raffle-button {
+    border: none;
+    background: linear-gradient(to bottom, #58f701, #26ac00);
+    color: white;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    transition: .5s;
+}
+
+.raffle-button:hover {
+    background: linear-gradient(to bottom, #26ac00, #58f701);
+
+}
+
+.draw-date-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.type-raffle-container {
+    display: flex;
+    flex-direction: column;
+}

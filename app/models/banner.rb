@@ -21,6 +21,8 @@ class Banner < ApplicationRecord
   validates :user, presence: true, on: :ads
   validates :title, presence: true, length: { maximum: 255 }
 
+  after_update :finish_ad, if: :reached_clicks_limit?
+
   scope :active, -> { where(active: true) }
   scope :premium, -> { where(premium: true) }
   scope :default, -> { where(premium: false) }
@@ -47,5 +49,15 @@ class Banner < ApplicationRecord
 
   def path
     image.try(:fullpath)
+  end
+
+  private
+
+  def finish_ad
+    update(active: false, status: :finish)
+  end
+
+  def reached_clicks_limit?
+    current_clicks.zero?
   end
 end

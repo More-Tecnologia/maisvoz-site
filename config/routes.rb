@@ -111,10 +111,7 @@ Rails.application.routes.draw do
     resources :ads, only: %i[index edit update]
     resource :ads_checkout, only: :create
     resource :ads_carts, only: %i[show update destroy]
-
-    #Raffles
-    resources :raffles, only: %i[index]
-
+    
     resources :dashboard, only: :index do
       collection do
         get :balances_data
@@ -213,7 +210,8 @@ Rails.application.routes.draw do
       collection do
         get :games
         get :courses
-        get :ads  
+        get :ads
+        get :raffles
       end
 
       member do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Backoffice
   class BannerClicksController < BackofficeController
 
@@ -6,6 +8,7 @@ module Backoffice
     def index; end
 
     def create
+      @banner.increment_click_count
       t = Time.now
       unless t.saturday? || t.sunday?
         ActiveRecord::Base.transaction do

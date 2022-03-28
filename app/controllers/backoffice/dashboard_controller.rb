@@ -9,9 +9,9 @@ module Backoffice
       if params[:banner_store_hashid].present?
         @banner_store = BannerStore.find_by_hashid(params[:banner_store_hashid])
       else
-        @banner_store = BannerStore.active.shuffle.last
+        @banner_store = BannerStore.ads_store
       end
-      @banners = @banner_store.banners.active
+      @banners = @banner_store.banners.active.approved
       @max_task_gains = @tasks_active_contracts.sum(&:max_task_gains)
       @task_gains = @tasks_active_contracts.sum(&:task_gains)
       available = @max_task_gains - @task_gains

@@ -2,6 +2,6 @@
 
 module Backoffice
   class RafflesCheckoutController < BackofficeController
-    def index; end
+    def update; end
   end
 end

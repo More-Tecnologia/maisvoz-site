@@ -229,7 +229,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :raffles_checkout, only: :index
+    resources :raffles_checkout, only: :update
   end
 
   namespace :api do

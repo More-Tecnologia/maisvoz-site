@@ -24,7 +24,7 @@ module Payment
           .financial_transactions
           .create!(spreader: @user,
                    financial_reason: FinancialReason.order_payment_with_balance,
-                   cent_amount: @order.total_cents,
+                   cent_amount: (@order.total_cents / 100),
                    moneyflow: :debit)
     end
   end

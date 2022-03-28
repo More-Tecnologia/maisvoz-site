@@ -22,6 +22,9 @@ Rails.application.routes.draw do
           patch :reprove
         end
       end
+
+      #Raffles Admin
+      resources :raffles, only: :index
           
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -99,7 +102,8 @@ Rails.application.routes.draw do
       resources :banner_stores
       resources :system_configurations
     end
-
+    #Raffles Admin
+    resources :raffles, only: :index
     namespace :support do
       resources :users, only: [:index, :show, :edit, :update]
       resources :documents_validation, only: [:index, :update]

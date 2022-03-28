@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       end
 
       #Raffles Admin
-      resources :raffles, only: :index
+      resources :raffles, only: %i[index new]
           
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]

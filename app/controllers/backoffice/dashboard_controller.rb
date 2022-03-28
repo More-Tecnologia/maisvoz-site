@@ -23,7 +23,7 @@ module Backoffice
                                                     .today
                                                     .by_contract(@contract)
                                                     .count
-      @banners.each(&:increment_view_count)
+      @banners.each(&:increment_view_count!)
     end
 
     def balances_data

@@ -5,7 +5,7 @@ class AdsDirectIndirectWorker
 
   def perform(ad_id)
     ad = Banner.find(ad_id)
-    return unless ad.order.paid? && !ad.billed? && ad.approved?
+    return unless ad.paid? && !ad.billed?
 
     Bonification::AdsDirectIndirectCreatorService.call(ad: ad)
   end

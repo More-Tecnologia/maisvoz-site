@@ -46,7 +46,7 @@
                     <td><%= t(banner.active?) %></td>
                     <td><%= t(banner.status) %></td>
                     <td><%= banner.user.username %></td>
-                    <td><%= t(banner.order.completed?) %></td>
+                    <td><%= t(banner.paid?) %></td>
                     <td>
                       <% if banner.approvable? %>
                         <%= link_to(approve_backoffice_admin_ad_path(banner),

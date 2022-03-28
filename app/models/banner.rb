@@ -27,10 +27,12 @@ class Banner < ApplicationRecord
   scope :premium, -> { where(premium: true) }
   scope :default, -> { where(premium: false) }
 
+  delegate :paid?, to: :order, allow_nil: true
+
   def approvable?
     pending? && !active? && paid?
   end
-  
+
   def decrement_click_count!
     decrement!(:current_clicks)
   end
@@ -41,10 +43,6 @@ class Banner < ApplicationRecord
 
   def increment_view_count!
     increment!(:views)
-  end
-
-  def paid?
-    order.completed?
   end
 
   def path

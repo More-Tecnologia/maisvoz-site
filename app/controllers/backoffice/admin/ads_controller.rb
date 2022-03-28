@@ -40,8 +40,8 @@ module Backoffice
 
       private
 
-      def active_ads_proccess_bonus
-        Bonification::AdsDirectIndirectWorker.perform_async(ad_id)
+      def active_ads_process_bonus
+        Bonification::AdsDirectIndirectWorker.perform_async(@ad.id)
       end
 
       def active_banner?

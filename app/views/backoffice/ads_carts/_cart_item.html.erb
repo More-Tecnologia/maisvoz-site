@@ -9,14 +9,14 @@
     </div>
   </div>
   <div class="cart-courses__item__image">
-    <img src="<%= order_item.ad.try(:path) %>" />
+    <img src="<%= order_item.ad.path %>" />
   </div>
   <div class="cart-courses__item__texts">
     <%= render 'layouts/shared/reputation' %>
     <div class="cart-courses__item__text">
-      <p><%= order_item.ad.title %></p><br>
-      <p><%= order_item.ad.description %></p><br>
-      <p><%= order_item.ad.link %></p>
+      <p><%= order_item.ad.title.truncate(60, separator: ' ') %></p><br>
+      <p><%= order_item.ad.description.truncate(60, separator: ' ') %></p><br>
+      <p><%= order_item.ad.link.truncate(60, separator: ' ') %></p>
     </div>
   </div>
   <div class="container-cart-clicks">

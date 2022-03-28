@@ -22,6 +22,9 @@ Rails.application.routes.draw do
           patch :reprove
         end
       end
+
+      #Raffles Admin
+      resources :raffles, only: :index
           
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]

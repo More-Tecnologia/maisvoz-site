@@ -223,7 +223,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :raffles, only: :none do
+    resources :raffles, only: :index do
       collection do 
         get :agreement
       end

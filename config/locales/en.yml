@@ -1856,3 +1856,4 @@ en:
   package: Package
   link: Link
   image: Image
+  doesnt_have_enough_balance: "You doesn't have enough balance"

@@ -12,7 +12,7 @@ module Payment
       raise StandardError.new(t(:doesnt_have_enough_balance)) if @user.available_balance_cents < (@order.total_cents / 100)
       ActiveRecord::Base.transaction do
         create_order_payment
-        @order.payment_method = :balance
+        @order.payment_type = :balance
         @order.save
 
         PaymentCompensationWorker.perform_async(@order.id)

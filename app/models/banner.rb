@@ -28,6 +28,10 @@ class Banner < ApplicationRecord
   def approvable?
     pending? && !active? && paid?
   end
+  
+  def decrement_click_count!
+    decrement!(:current_clicks)
+  end
 
   def editable?
     pending? || aproved? || blocked? || holding?

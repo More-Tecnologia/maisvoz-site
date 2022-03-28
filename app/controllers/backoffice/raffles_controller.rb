@@ -2,6 +2,8 @@
 
 module Backoffice
   class RafflesController < BackofficeController
-    def index; end  
+    def index; end
+    
+    def agreement; end
   end
 end

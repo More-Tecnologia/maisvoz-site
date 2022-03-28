@@ -222,6 +222,12 @@ Rails.application.routes.draw do
         get :course
       end
     end
+    
+    resources :raffles, only: :index do
+      collection do 
+        get :agreement
+      end
+    end
   end
 
   namespace :api do

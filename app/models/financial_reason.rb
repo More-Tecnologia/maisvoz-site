@@ -184,6 +184,22 @@ class FinancialReason < ApplicationRecord
     @@course_sale ||= find_by(code: '5400')
   end
 
+  def self.ads_direct_commission_bonus
+    @@ads_direct_commission_bonus ||= find_by(code: '5500')
+  end
+
+  def self.ads_direct_commission_bonus_chargeback
+    @@ads_direct_commission_bonus_chargeack ||= find_by(code: '5600')
+  end
+
+  def self.ads_indirect_commission_bonus
+    @@ads_indirect_referral_bonus ||= find_by(code: '5700')
+  end
+
+  def self.ads_indirect_commission_bonus_chargeback
+    @@ads_indirect_referral_bonus_chargeback ||= find_by(code: '5800')
+  end
+
   def self.expense
     @@expense ||= find_by(code: '3800')
   end

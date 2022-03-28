@@ -38,7 +38,7 @@ class Banner < ApplicationRecord
   end
 
   def editable?
-    pending? || aproved? || blocked? || holding?
+    pending? || approved? || blocked? || holding?
   end
 
   def increment_view_count!

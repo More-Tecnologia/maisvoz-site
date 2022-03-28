@@ -107,7 +107,12 @@ Rails.application.routes.draw do
       resource :support_point_users, only: :create
     end
 
-    resources :ads, only: %i[index edit update]
+    resources :ads, only: %i[index edit update] do
+      member do
+        patch :holding
+        patch :restart
+      end
+    end
     resource :ads_checkout, only: :create
     resource :ads_carts, only: %i[show update destroy]
 

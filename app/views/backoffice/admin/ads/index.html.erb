@@ -51,14 +51,14 @@
                       <% if banner.approvable? %>
                         <%= link_to(approve_backoffice_admin_ad_path(banner),
                                     class: 'action-remove',
-                                    method: :put,
+                                    method: :patch,
                                     data: { confirm: t(:ads_approves_message) }
                                     ) do %>
                           <i class="fas fa-thumbs-up text-success"></i>
                         <% end %>
                         <%= link_to(reprove_backoffice_admin_ad_path(banner),
                                     class: 'action-remove',
-                                    method: :put,
+                                    method: :patch,
                                     data: { confirm: t(:ads_reprove_message) }
                                     ) do %>
                           <i class="fas fa-thumbs-down text-danger"></i>

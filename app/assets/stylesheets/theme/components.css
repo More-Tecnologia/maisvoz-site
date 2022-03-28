@@ -2762,7 +2762,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item15 {
-  background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2771,11 +2770,6 @@ a.editable-click:hover {
   font-size: 12px;
 }
 
-#dashboard .painel .item15 img{
-  width: 30px;
-  height: 30px;
-  margin-bottom: 10px;
-}
 
 #dashboard .painel .item16 {
   background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
@@ -3418,11 +3412,6 @@ a.editable-click:hover {
     font-size: 12px;
   }
 
-  #dashboard .painel .item15 img{
-    width: 30px;
-    height: 30px;
-    margin-bottom: 10px;
-  }
 
   #dashboard .painel .item16 {
     grid-column: 1;

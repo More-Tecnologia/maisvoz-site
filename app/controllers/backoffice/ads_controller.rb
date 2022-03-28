@@ -23,6 +23,10 @@ module Backoffice
 
     private
 
+    def country_of_operation
+      params[:course][:country_of_operation].reject(&:blank?)
+    end
+
     def ensure_ad
       @ad = current_user.ads.find(params[:id])
     end
@@ -38,7 +42,9 @@ module Backoffice
       params.require(:banner)
             .permit(:link, :image, :title,
                     :country_of_operation, :description)
-            .merge(status: :pending, active: true)
+            .merge(status: :pending,
+                   active: true,
+                   country_of_operation: country_of_operation)
     end
   end
 end

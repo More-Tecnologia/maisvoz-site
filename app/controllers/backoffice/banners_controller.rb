@@ -21,6 +21,10 @@ module Backoffice
 
     private
 
+    def country_of_operation
+      params[:course][:country_of_operation].reject(&:blank?)
+    end
+
     def ensure_creation
       # this step is necessary because of attachinary gem bug -
       # https://github.com/assembler/attachinary/issues/130
@@ -61,7 +65,8 @@ module Backoffice
                    active: false,
                    status: :pending,
                    order: current_ads_cart,
-                   current_clicks: @product.clicks)
+                   current_clicks: @product.clicks,
+                   country_of_operation: country_of_operation)
     end
   end
 end

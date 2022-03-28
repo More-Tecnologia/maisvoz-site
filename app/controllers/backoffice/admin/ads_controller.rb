@@ -20,11 +20,12 @@ module Backoffice
       end
 
       def approve
-        if @ad.update(status: :approved, active: true)
+        if active_banner?
           flash[:success] = I18n.t(:successfully_approve_ad)
         else
           flash[:error] = @ad.errors.full_messages.join(', ')
         end
+
         redirect_to backoffice_admin_ads_path
       end
 
@@ -38,6 +39,18 @@ module Backoffice
       end
 
       private
+
+      def active_ads_proccess_bonus
+        Bonification::AdsDirectIndirectWorker.perform_async(ad_id)
+      end
+
+      def active_banner?
+        if @ad.billed?
+          @ad.update(status: :approved, active: true)
+        else
+          active_ads_process_bonus
+        end
+      end
 
       def ensured_ad
         @ad = Banner.find(params[:id])

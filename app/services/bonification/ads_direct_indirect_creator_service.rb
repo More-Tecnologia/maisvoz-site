@@ -2,18 +2,21 @@
 
 module Bonification
   class AdsDirectIndirectCreatorService < ApplicationService
+    DIRECT_BONUS_REASON = FinancialReason.ads_direct_commission_bonus
+    INDIRECT_BONUS_REASON = FinancialReason.ads_indirect_commission_bonus
+
     PERCENTAGES = {
-                    '1': { commission: 0.15, reason: FinancialReason.ads_direct_commission_bonus },
-                    '2': { commission: 0.05, reason: FinancialReason.ads_indirect_commission_bonus },
-                    '3': { commission: 0.03, reason: FinancialReason.ads_indirect_commission_bonus },
-                    '4': { commission: 0.02, reason: FinancialReason.ads_indirect_commission_bonus },
-                    '5': { commission: 0.01, reason: FinancialReason.ads_indirect_commission_bonus }
+                    '1': { commission: 0.15, reason: DIRECT_BONUS_REASON },
+                    '2': { commission: 0.05, reason: INDIRECT_BONUS_REASON },
+                    '3': { commission: 0.03, reason: INDIRECT_BONUS_REASON },
+                    '4': { commission: 0.02, reason: INDIRECT_BONUS_REASON },
+                    '5': { commission: 0.01, reason: INDIRECT_BONUS_REASON }
                   }.freeze
 
     def initialize(params)
       @ad = params[:ad]
       @user = @ad.user
-      @amount = params[:amount]
+      @amount = @ad.order_item.total_cents
     end
 
     private

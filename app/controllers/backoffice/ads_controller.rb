@@ -24,7 +24,7 @@ module Backoffice
     private
 
     def country_of_operation
-      params[:course][:country_of_operation].reject(&:blank?)
+      params[:banner][:country_of_operation].reject(&:blank?)
     end
 
     def ensure_ad

@@ -22,7 +22,7 @@ module Backoffice
     private
 
     def country_of_operation
-      params[:course][:country_of_operation].reject(&:blank?)
+      params[:banner][:country_of_operation].reject(&:blank?)
     end
 
     def ensure_creation
@@ -51,6 +51,7 @@ module Backoffice
       @banner.destroy
       render :new
     rescue StandardError => error
+      @banner = Banner.new(ensured_params)
       flash[:error] = error.message
       render :new
     end

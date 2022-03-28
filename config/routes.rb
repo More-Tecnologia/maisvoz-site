@@ -22,6 +22,7 @@ Rails.application.routes.draw do
           patch :reprove
         end
       end
+          
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -110,7 +111,7 @@ Rails.application.routes.draw do
     resources :ads, only: %i[index edit update]
     resource :ads_checkout, only: :create
     resource :ads_carts, only: %i[show update destroy]
-
+    
     resources :dashboard, only: :index do
       collection do
         get :balances_data
@@ -210,6 +211,7 @@ Rails.application.routes.draw do
         get :games
         get :courses
         get :ads
+        get :raffles
       end
 
       member do

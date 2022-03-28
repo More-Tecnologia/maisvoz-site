@@ -19,5 +19,8 @@ module Backoffice
                          .active
                          .order(:price_cents)
     end
+
+    def raffles
+    end
   end
 end

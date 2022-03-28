@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
   namespace :backoffice do
     namespace :admin do
+      resources :ads, only: :index do
+        member do
+          patch :approve
+          patch :reprove
+        end
+      end
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -100,6 +106,10 @@ Rails.application.routes.draw do
       resources :canceled_users, only: [:update]
       resource :support_point_users, only: :create
     end
+
+    resources :ads, only: %i[index edit update]
+    resource :ads_checkout, only: :create
+    resource :ads_carts, only: %i[show update destroy]
 
     resources :dashboard, only: :index do
       collection do
@@ -191,7 +201,7 @@ Rails.application.routes.draw do
     end
     resources :subjects, only: [:show, :new]
 
-    resources :banners, only: :index
+    resources :banners, only: [:index, :new, :create, :edit, :update]
     resources :banner_clicks, only: [:index, :create]
     resources :direct_nominees_list, only: :index
     resources :home, only: :index

@@ -135,8 +135,37 @@
   font-size: 20px;
 }
 
+.container-form-banners {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.container-form-banners span,
+.container-form-banners input {
+  border: none !important;
+}
 
+.container-form-banners strong {
+  margin-top: 20px;
+}
+
+.container-form-banners label {
+  font-size: 16px;
+}
+
+.btn-submit-banners,
+.btn-submit-ad-edit {
+  width: 85%;
+  margin-top: 20px;
+  background: #53f001;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-top: 50px;
+}
 
 
 

@@ -32,7 +32,7 @@ module Shopping
     attr_reader :order, :product_id, :country
 
     def add_to_order
-      if find_order_item.present?
+      if find_order_item.present? && !product.publicity?
         update_order_item
       else
         create_order_item

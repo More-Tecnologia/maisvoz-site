@@ -2608,6 +2608,20 @@ a.editable-click:hover {
   padding: 0;
 }
 
+#dashboard .painel .item15 {
+  width: 8%;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #3f3f3f;
+  font-size: 14px;
+  height: 120px;
+  margin-left: 5px;
+  padding: 0;
+}
+
 .svg-alert {
   width: 100%;
   display: flex;
@@ -2615,6 +2629,11 @@ a.editable-click:hover {
 }
 
 .item9 svg {
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+.item15 svg {
   margin-right: 5px;
   margin-top: 2px;
 }
@@ -2635,7 +2654,21 @@ a.editable-click:hover {
   font-size: 14px;
 }
 
+#dashboard .painel .item15alert{
+  background: #F00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #FFF;
+  font-size: 14px;
+}
+
 #dashboard .painel .item9 i{
+  font-size: 20px;
+}
+
+#dashboard .painel .item15 i{
   font-size: 20px;
 }
 
@@ -2729,7 +2762,6 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item15 {
-  background-image: linear-gradient(rgb(107,219,77), rgb(77, 166, 77));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2738,11 +2770,6 @@ a.editable-click:hover {
   font-size: 12px;
 }
 
-#dashboard .painel .item15 img{
-  width: 30px;
-  height: 30px;
-  margin-bottom: 10px;
-}
 
 #dashboard .painel .item16 {
   background-image: linear-gradient(rgb(252,157,63), rgb(247, 147, 30));
@@ -3271,6 +3298,23 @@ a.editable-click:hover {
     height: 50px;
   }
 
+  #dashboard .painel .item15 {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #3f3f3f;
+    font-size: 14px;
+    height: 120px;
+    min-width: 150px;
+  }
+
+  #dashboard .painel .item15 img{
+    width: 50px;
+    height: 50px;
+  }
+
   #dashboard .painel .item10 {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     display: flex;
@@ -3368,11 +3412,6 @@ a.editable-click:hover {
     font-size: 12px;
   }
 
-  #dashboard .painel .item15 img{
-    width: 30px;
-    height: 30px;
-    margin-bottom: 10px;
-  }
 
   #dashboard .painel .item16 {
     grid-column: 1;

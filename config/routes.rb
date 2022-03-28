@@ -228,6 +228,8 @@ Rails.application.routes.draw do
         get :agreement
       end
     end
+
+    resources :raffles_checkout, only: :update
   end
 
   namespace :api do

@@ -20,8 +20,7 @@ class Banner < ApplicationRecord
   validates :product, presence: true, on: :ads
   validates :user, presence: true, on: :ads
   validates :title, presence: true, length: { maximum: 255 }
-
-  after_update :finish_ad, if: :reached_clicks_limit?
+  validates :current_clicks, numericality: { greater_than_or_equal_to: 0 }
 
   scope :active, -> { where(active: true) }
   scope :premium, -> { where(premium: true) }
@@ -34,7 +33,11 @@ class Banner < ApplicationRecord
   end
 
   def decrement_click_count!
-    decrement!(:current_clicks)
+    if reached_clicks_limit?
+      update(active: false, status: :finish, current_clicks: 0)
+    else
+      update(current_clicks: current_clicks - 1)
+    end
   end
 
   def editable?
@@ -51,11 +54,7 @@ class Banner < ApplicationRecord
 
   private
 
-  def finish_ad
-    update(active: false, status: :finish)
-  end
-
   def reached_clicks_limit?
-    current_clicks.zero?
+    current_clicks <= 1
   end
 end

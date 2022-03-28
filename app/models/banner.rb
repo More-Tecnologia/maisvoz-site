@@ -33,8 +33,8 @@ class Banner < ApplicationRecord
     pending? || aproved? || blocked? || holding?
   end
 
-  def increment_click_count
-    increment!(:clicks)
+  def decrement_click_count!
+    decrement!(:current_clicks)
   end
 
   def paid?

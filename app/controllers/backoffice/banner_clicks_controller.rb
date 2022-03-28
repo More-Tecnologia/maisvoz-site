@@ -8,7 +8,7 @@ module Backoffice
     def index; end
 
     def create
-      @banner.increment_click_count
+      @banner.decrement_click_count!
       t = Time.now
       unless t.saturday? || t.sunday?
         ActiveRecord::Base.transaction do

@@ -1770,3 +1770,4 @@ pt-BR:
   link: Link
   image: Imagem
   created_at: Criado em
+  doesnt_have_enough_balance: Você não tem saldo suficiente

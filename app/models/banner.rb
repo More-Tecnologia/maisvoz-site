@@ -33,6 +33,10 @@ class Banner < ApplicationRecord
     pending? || aproved? || blocked? || holding?
   end
 
+  def increment_view_count
+    increment!(:views)
+  end
+
   def paid?
     order.completed?
   end

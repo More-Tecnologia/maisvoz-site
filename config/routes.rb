@@ -226,6 +226,7 @@ Rails.application.routes.draw do
     resources :raffles, only: :index do
       collection do 
         get :agreement
+        get :winners
       end
     end
 

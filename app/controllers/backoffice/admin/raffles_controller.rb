@@ -3,8 +3,9 @@
 module Backoffice
   module Admin
     class RafflesController < AdminController
-      def index
-      end
+      def index; end
+      
+      def new; end
     end
   end
 end

@@ -3,7 +3,6 @@ module Payment
     def initialize(params)
       @order = params[:order]
       @user = @order.user
-      @payment_method = params[:payment_method]
     end
 
     private
@@ -16,7 +15,7 @@ module Payment
         @order.status = :pending_payment
         @order.save
 
-        PaymentCompensationWorker.perform_async(@order.id)
+        Financial::PaymentCompensation.new(@order).call
       end
     end
 

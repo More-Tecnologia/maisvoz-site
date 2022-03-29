@@ -96,7 +96,7 @@ module Financial
       order.order_items.each do |order_item|
         date = Time.now + Course.days_to_cashbacks[order_item.product.course.days_to_cashback].days
         CourseSalePaymentWorker.perform_at(date, order_item.id)
-        CourseDirectIndirectWorker.perform_at(date, order.user.id, order_item.price_cents)
+        CourseDirectIndirectWorker.perform_at(date, order.user.id, order_item.total_cents)
       end
     end
 

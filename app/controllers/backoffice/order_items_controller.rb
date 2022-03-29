@@ -2,6 +2,9 @@ module Backoffice
   class OrderItemsController < BackofficeController
 
     def create
+      clean_shopping_cart
+      clean_ads_cart
+      clean_courses_cart
       command = Shopping::AddToCart.call(current_order, product_params[:id], params[:country])
       if command.success?
         session[:order_id] = command.result.id

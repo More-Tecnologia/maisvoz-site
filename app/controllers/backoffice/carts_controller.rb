@@ -24,6 +24,11 @@ module Backoffice
         else
           redirect_back(fallback_location: backoffice_products_path)
         end
+      elsif valid_params[:payment_method] == 'balance'
+        @order = current_order
+        BalancePaymentWorker.perform_async(@order.id)
+        clean_shopping_cart
+        redirect_to backoffice_order_path(@order)
       else
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
         ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)

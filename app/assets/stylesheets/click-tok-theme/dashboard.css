@@ -6,6 +6,23 @@
   font-family: 'Lato', sans-serif;
 }
 
+.container-imgs span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.container-imgs img {
+  margin-top: 10px;
+}
+
+.t-options-box img,
+.t-options-box a {
+  width: 50px !important;
+  height: 50px !important;
+  box-shadow: inherit !important;
+  margin: 0 !important;
+}
+
 .title-tasks {
   width: 100%;
   color: #3f3f3f;
@@ -201,6 +218,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     overflow-y: hidden;
+    margin-top: 20px;
 }
 
 .container-imgs a {

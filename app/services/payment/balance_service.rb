@@ -3,20 +3,19 @@ module Payment
     def initialize(params)
       @order = params[:order]
       @user = @order.user
-      @payment_method = params[:payment_method]
     end
 
     private
 
     def call
-      raise StandardError.new(t(:doesnt_have_enough_balance)) if @user.available_balance_cents < (@order.total_cents / 100)
+      raise StandardError.new(I18n.t(:doesnt_have_enough_balance)) if @user.available_balance_cents < (@order.total_cents / 100)
       ActiveRecord::Base.transaction do
         create_order_payment
         @order.payment_type = :balance
         @order.status = :pending_payment
         @order.save
 
-        PaymentCompensationWorker.perform_async(@order.id)
+        Financial::PaymentCompensation.new(@order).call
       end
     end
 

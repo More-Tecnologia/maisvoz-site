@@ -3,10 +3,17 @@
 module Backoffice
   class CourseCheckoutsController < BackofficeController
     def create
-      @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
-      ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)
-      clean_courses_cart
-      render 'backoffice/payment_transactions/show'
+      if valid_params[:payment_method] == 'balance'
+        @order = current_courses_cart
+        Payment::BalanceService.call(valid_params)
+        clean_courses_cart
+        redirect_to backoffice_order_path(@order)
+      else
+        @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
+        ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)
+        clean_courses_cart
+        render 'backoffice/payment_transactions/show'
+      end
     rescue StandardError => error
       flash[:error] = error.message
       render 'backoffice/courses_carts/show'

@@ -9,7 +9,7 @@ module Payment
     private
 
     def call
-      raise StandardError.new(t(:doesnt_have_enough_balance)) if @user.available_balance_cents < (@order.total_cents / 100)
+      raise StandardError.new(I18n.t(:doesnt_have_enough_balance)) if @user.available_balance_cents < (@order.total_cents / 100)
       ActiveRecord::Base.transaction do
         create_order_payment
         @order.payment_type = :balance

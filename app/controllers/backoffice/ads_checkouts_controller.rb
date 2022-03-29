@@ -7,7 +7,7 @@ module Backoffice
         @order = current_ads_cart
         Payment::BalanceService.call(valid_params)
         clean_ads_cart
-        redirect_to backoffice_orders_path(@order)
+        redirect_to backoffice_order_path(@order)
       else
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
         ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)

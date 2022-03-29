@@ -14,29 +14,25 @@
     </div>
   </div>
   <div class="cards-ads">
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
-    <div class="card-ads">
-    </div>
+    <% @packages.each do |package| %>
+      <div class="card-ads">
+        <div class="header-ad" style="background-color: <%= package.details %>">
+          <span class="ad-package-title"><%= package.name %></span>
+        </div>
+        <div class="body-ad">
+          <div class="texts-ad">
+            <span style="text-align: center;"><%= t(:this_pack_contains) %></span>
+            <span class="ad-package-clicks"><%= package.clicks %> <%= t(:clicks) %></span>
+            <span style="text-align: center;"><%= t(:on_the_ad) %></span>
+          </div>
+          <div class="bottom-ad-package">
+            <span class="ad-package-value"><%= number_to_currency(package.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></span>
+            <%= link_to new_backoffice_banner_path(product_id: package.id) do %>
+              <button class="button-ads-packages"><%= t(:buy) %></button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -6,7 +6,8 @@ module Backoffice
       before_action :ensure_course, only: %i[update destroy]
 
       def index
-        @q = Course.ransack(params)
+        @q = Course.includes(:owner, :approver_user)
+                   .ransack(params)
         @courses = @q.result
                      .order(created_at: :desc)
                      .page(params[:page])

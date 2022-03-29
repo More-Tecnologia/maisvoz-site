@@ -4,7 +4,8 @@ module Backoffice
       before_action :find_product, only: %i[edit update destroy]
 
       def index
-        @products = Product.order(:id)
+        @products = Product.includes(:main_photo_attachment)
+                           .order(:id)
                            .page(params[:page])
       end
 

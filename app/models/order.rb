@@ -59,6 +59,7 @@ class Order < ApplicationRecord
   has_many :pv_activity_histories
   has_many :scores
   has_many :financial_transactions
+  has_many :ads, class_name: 'Banner'
 
   has_one :payment_transaction
   has_one :bonus_contract
@@ -127,6 +128,10 @@ class Order < ApplicationRecord
 
   def token
     Digest::MD5.hexdigest("#{id * 1337}:#{hashid}")
+  end
+
+  def paid?
+    !!paid_at
   end
 
   def products

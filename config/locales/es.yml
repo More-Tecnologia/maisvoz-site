@@ -1840,3 +1840,22 @@ es:
   success_create: ¡Creado con éxito!
   course_lesson: Lección del curso
   success_update: ¡Actualizado exitosamente!
+  clicks: clics
+  this_pack_contains: Este paquete contiene
+  on_the_ad: en el anuncio
+  cant_edit_this_ad: No se puede editar este anuncio
+  my_advertisements: Mis anuncios
+  clicks_count: Haga clic en contar
+  view_count: Recuento de vistas
+  advertisements: Anuncios
+  paid?: ¿Pagado?
+  updated_at: Actualizado en
+  package: Paquete
+  link: Enlace
+  image: Imagen
+  doesnt_have_enough_balance: No tienes saldo suficiente
+  removed_successfully: Eliminado con éxito!
+  successfully_approve_ad: ¡Anuncio aprobado con éxito!
+  successfully_reprove_ad: ¡Anuncio reprobado con éxito!
+  ads_approves_message: ¿Está seguro de que desea aprobar este anuncio?
+  ads_reprove_message: ¿Está seguro de que desea desaprobar este anuncio?

@@ -66,8 +66,7 @@ class BonusContract < ApplicationRecord
   end
 
   def gross_task_gains
-    financial_transactions.includes(:financial_reason)
-                          .where(financial_reason: task_reason)
+    financial_transactions.where(financial_reason: task_reason)
                           .sum(&:cent_amount)
   end
 

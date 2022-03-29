@@ -222,7 +222,7 @@ administrative_reasons = [{ title: 'System Fee', code: '200', company_moneyflow:
                           { title: 'Third Party Order Payment', code: '4400', active: true, company_moneyflow: :not_applicable, morenwm_moneyflow: :not_applicable },
                           { title: 'Balance Transference', code: '4500', active: true, company_moneyflow: :not_applicable, morenwm_moneyflow: :not_applicable },
                           { title: 'Balance Transference Fee', code: '4600', active: true, company_moneyflow: :credit, morenwm_moneyflow: :not_applicable },
-                          { title: 'Pagamento de Pedido com Saldo', code: '4700', active: true, company_moneyflow: :not_applicable, morenwm_moneyflow: :not_applicable},
+                          { title: 'Payment with Balance', code: '4700', active: true, company_moneyflow: :not_applicable, morenwm_moneyflow: :not_applicable},
                           { title: 'Pool Wallet Expense', code: '9999', company_moneyflow: :debit, morenwm_moneyflow: :debit }]
 administrative_reasons.each do |attributes|
   financial_reason = FinancialReason.find_by(code: attributes[:code])
@@ -269,7 +269,11 @@ bonus_reasons = [{ title: 'Bonus chargeback', code: '100', active: false, compan
                  { title: 'Chargeback Course Direct Referral Bonus By Inactivity', code: '5100', active: true, company_moneyflow: :credit },
                  { title: 'Course Indirect Referral Bonus', code: '5200', dynamic_compression: true, active: true, company_moneyflow: :debit },
                  { title: 'Chargeback Course Indirect Referral Bonus By Inactivity', code: '5300', active: true, company_moneyflow: :credit },
-                 { title: 'Course sale', code: '5400', dynamic_compression: false, active: true, company_moneyflow: :debit }]
+                 { title: 'Course sale', code: '5400', dynamic_compression: false, active: true, company_moneyflow: :debit },
+                 { title: 'Ads Direct Referral Bonus', code: '5500', active: true, company_moneyflow: :debit  },
+                 { title: 'Chargeback Ads Direct Referral Bonus By Inactivity', code: '5600', active: true, company_moneyflow: :credit },
+                 { title: 'Ads Indirect Referral Bonus', code: '5700', dynamic_compression: true, active: true, company_moneyflow: :debit },
+                 { title: 'Chargeback Ads Indirect Referral Bonus By Inactivity', code: '5800', active: true, company_moneyflow: :credit }]
 
 bonus_reasons.each do |attributes|
   financial_reason = FinancialReason.find_by(code: attributes[:code])
@@ -339,4 +343,91 @@ unless SystemConfiguration.active_config.present?
   SystemConfiguration.create(company_name: ENV['COMPANY_NAME'],
                              withdrawal_fee: ENV['WITHDRAWAL_FEE'],
                              taxable_fee: ENV['SYSTEM_FEE'])
+end
+
+BannerStore.find_or_create_by(title: 'Ads', active: true)
+
+publicity_cat = Category.find_or_create_by(name: 'Publicity')
+publicity_attributes = [{ name: 'Advestising Package',
+                        price_cents: 25_00,
+                        binary_score: 0,
+                        active: true,
+                        virtual: true,
+                        kind: :publicity,
+                        category: publicity_cat,
+                        system_taxable: false,
+                        generate_pool_points: false,
+                        quantity: 1,
+                        details: '#EF539F',
+                        task_per_day: 0,
+                        clicks: 1_000 },
+                      { name: 'Advestising Package +1',
+                        price_cents: 50_00,
+                        binary_score: 0,
+                        active: true,
+                        virtual: true,
+                        kind: :publicity,
+                        category: publicity_cat,
+                        system_taxable: true,
+                        generate_pool_points: false,
+                        quantity: 1,
+                        details: '#FFA126',
+                        task_per_day: 0,
+                        clicks: 2_000 },
+                      { name: 'Advestising Package +2',
+                        price_cents: 100_00,
+                        binary_score: 0,
+                        active: true,
+                        virtual: true,
+                        kind: :publicity,
+                        category: publicity_cat,
+                        system_taxable: true,
+                        generate_pool_points: false,
+                        quantity: 1,
+                        details: '#5DE187',
+                        task_per_day: 0,
+                        clicks: 5_000 },
+                      { name: 'Advestising Package +3',
+                        price_cents: 300_00,
+                        binary_score: 0,
+                        active: true,
+                        virtual: true,
+                        kind: :publicity,
+                        category: publicity_cat,
+                        system_taxable: true,
+                        generate_pool_points: false,
+                        quantity: 1,
+                        details: '#3CC9A5',
+                        task_per_day: 0,
+                        clicks: 10_000 },
+                      { name: 'Advestising Package +4',
+                        price_cents: 600_00,
+                        binary_score: 0,
+                        active: true,
+                        virtual: true,
+                        kind: :publicity,
+                        category: publicity_cat,
+                        system_taxable: true,
+                        generate_pool_points: false,
+                        quantity: 1,
+                        details: '#8E89DA',
+                        task_per_day: 0,
+                        clicks: 30_000 },
+                      { name: 'Advestising Package +5',
+                        price_cents: 1_000_00,
+                        binary_score: 0,
+                        active: true,
+                        virtual: true,
+                        kind: :publicity,
+                        category: publicity_cat,
+                        system_taxable: true,
+                        generate_pool_points: false,
+                        quantity: 1,
+                        details: '#3FBDF4',
+                        task_per_day: 0,
+                        clicks: 80_000 }]
+
+publicity_attributes.each do |attributes|
+  product = Product.find_by(name: attributes[:name])
+  product ? product.update!(attributes) : Product.create!(attributes)
 end

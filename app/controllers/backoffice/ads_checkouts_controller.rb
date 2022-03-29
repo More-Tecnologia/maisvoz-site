@@ -5,7 +5,7 @@ module Backoffice
     def create
       if valid_params[:payment_method] == 'balance'
         @order = current_ads_cart
-        BalancePaymentWorker.perfom_async(@order.id)
+        BalancePaymentWorker.perform_async(@order.id)
         clean_ads_cart
         redirect_to backoffice_order_path(@order)
       else

@@ -26,7 +26,7 @@ module Backoffice
         end
       elsif valid_params[:payment_method] == 'balance'
         @order = current_order
-        BalancePaymentWorker.perfom_async(@order.id)
+        BalancePaymentWorker.perform_async(@order.id)
         clean_shopping_cart
         redirect_to backoffice_order_path(@order)
       else

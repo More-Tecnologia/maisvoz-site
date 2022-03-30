@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Backoffice
-  class RafflesCartController < BackofficeController
+  class RafflesCartsController < BackofficeController
     def show; end
   end
 end

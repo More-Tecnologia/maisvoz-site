@@ -231,8 +231,8 @@ Rails.application.routes.draw do
     end
 
     resources :raffles_checkout, only: :update
-    resources :raffles_cart, only: :show
     resources :raffles_tickets, only: %i[index show create]
+    resource :raffles_carts, only: :show    
   end
 
   namespace :api do

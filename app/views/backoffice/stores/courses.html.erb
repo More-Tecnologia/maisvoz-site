@@ -3,18 +3,17 @@
 
 <div class="main-box">
   <%= render 'menu' %>
-  <div class="filter-courses">
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="grey" class="bi bi-filter-left" viewBox="0 0 16 16">
-  <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-</svg>
-     <div class="link-filters">
-      <a href="#highlights">Destaques</a>
-      <a href="#promotion">Promoções</a>
-      <a href="#most-valued">Mais Avaliados</a>
+  <div class="banner-courses">
+    <div class="banner-courses__content-left">
+      <h3><%= t(:online_courses).upcase  %></h3>
+      <h1><%= t(:wait).upcase %></h1>
+      <h2><%= t(:news_coming_soon).upcase  %></h2>
+      <p><%= t(:the_best_courses_will_be_here).upcase  %></p>
+    </div>
+    <div class="banner-courses__content-right">
+      <%= image_tag('nav-store/celular.png') %>
     </div>
   </div>
-  <%# <div class="banner-img-courses">
-  </div> %>
   <div id="highlights" class="container-online-courses">
     <span class="title-courses">
       <%= t(:featured_courses) %>

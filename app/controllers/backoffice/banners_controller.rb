@@ -22,7 +22,7 @@ module Backoffice
     private
 
     def country_of_operation
-      params[:course][:country_of_operation].reject(&:blank?)
+      params[:banner][:country_of_operation].reject(&:blank?)
     end
 
     def ensure_creation
@@ -35,6 +35,8 @@ module Backoffice
 
       @banner = @product.ads.build(new_params)
       ActiveRecord::Base.transaction do
+        clean_shopping_cart
+        clean_courses_cart
         command = Shopping::AddToCart.call(current_ads_cart, @product.id, params[:country])
         raise StandardError.new(command.errors) unless command.success?
         @banner.order_item = current_ads_cart.order_items.reload.order(:created_at).last
@@ -51,6 +53,7 @@ module Backoffice
       @banner.destroy
       render :new
     rescue StandardError => error
+      @banner = Banner.new(ensured_params)
       flash[:error] = error.message
       render :new
     end

@@ -39,7 +39,7 @@ module Bonification
 
     def create_bonus_for(sponsor, generation)
       data = PERCENTAGES[generation.to_s.to_sym]
-      cent_amount = data[:commission] * @amount
+      cent_amount = (data[:commission] * @amount) / 100
 
       if cent_amount.positive?
         sponsor.financial_transactions

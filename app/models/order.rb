@@ -130,6 +130,10 @@ class Order < ApplicationRecord
     Digest::MD5.hexdigest("#{id * 1337}:#{hashid}")
   end
 
+  def paid?
+    !!paid_at
+  end
+
   def products
     @products ||= order_items.includes(product: [:trail]).map(&:product)
   end

@@ -9,8 +9,9 @@ module Backoffice
       if params[:banner_store_hashid].present?
         @banner_store = BannerStore.find_by_hashid(params[:banner_store_hashid])
       else
-        @banner_store = BannerStore.ads_store
+        @banner_store = BannerStore.active.shuffle.last
       end
+      @premium_ads = BannerStore.ads_store.banners.active.approved
       @banners = @banner_store.banners.active.approved
       @max_task_gains = @tasks_active_contracts.sum(&:max_task_gains)
       @task_gains = @tasks_active_contracts.sum(&:task_gains)
@@ -59,7 +60,7 @@ module Backoffice
     private
 
     def ensure_contracts
-      @contracts = current_user.bonus_contracts.active.sort do |contract, other|
+      @contracts = current_user.bonus_contracts.includes([:order]).active.sort do |contract, other|
         contract.order_items.last.task_per_day.to_i <=> other.order_items.last.task_per_day.to_i
       end
       @tasks_active_contracts = @contracts.reject(&:max_gains?)

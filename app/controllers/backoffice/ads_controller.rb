@@ -2,7 +2,7 @@
 
 module Backoffice
   class AdsController < BackofficeController
-    before_action :ensure_ad, only: %i[edit update]
+    before_action :ensure_ad, only: %i[edit update holding restart]
     before_action :ensure_ad_editability, only: %i[edit update]
 
     def index
@@ -21,10 +21,30 @@ module Backoffice
       end
     end
 
+    def holding
+      if @ad.update(status: :holding)
+        flash[:success] = t(:success_updated)
+        redirect_to backoffice_ads_path
+      else
+        flash[:error] = @ad.errors.full_messages.join(', ')
+        render :edit
+      end
+    end
+
+    def restart
+      if @ad.update(status: :approved)
+        flash[:success] = t(:success_updated)
+        redirect_to backoffice_ads_path
+      else
+        flash[:error] = @ad.errors.full_messages.join(', ')
+        render :edit
+      end
+    end
+
     private
 
     def country_of_operation
-      params[:course][:country_of_operation].reject(&:blank?)
+      params[:banner][:country_of_operation].reject(&:blank?)
     end
 
     def ensure_ad

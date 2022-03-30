@@ -22,16 +22,23 @@
       <p><%= t(:premium_ads) %></p>
     </div>
     <div class="container-imgs">
-            <% @banners.premium.shuffle.last(12).each do |banner| %>
-                <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
-                        method: :post,
-                        remote: true do %>
-                  <%= image_tag(banner.path.present? ? banner.path: banner.image_path) %>
+      <div class="banner-container">
+
+            <% @premium_ads.shuffle.last(12).each do |banner| %>
+            <span>
+              <%= banner.title %>
+            </span>
+                  <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
+                          method: :post,
+                          remote: true, title: banner.title + "\n " + banner.description do %>
+                    <%= image_tag(banner.path.present? ? banner.path: banner.image_path) %>
                 <% end %>
+              </div>
+
       			<% end %>
     </div>
     <div class="container-imgs2">
-            <% @banners.default.shuffle.last(12).each do |banner| %>
+            <% @banners.shuffle.last(12).each do |banner| %>
                 <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
                         method: :post,
                         remote: true do %>

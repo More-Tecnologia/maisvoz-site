@@ -232,7 +232,7 @@ Rails.application.routes.draw do
 
     resources :raffles_checkout, only: :update
     resources :raffles_cart, only: :show
-    resources :raffles_tickets, only: %i[index create show]
+    resources :raffles_tickets, only: %i[index show create]
   end
 
   namespace :api do

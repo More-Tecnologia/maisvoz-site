@@ -22,6 +22,10 @@ Rails.application.routes.draw do
           patch :reprove
         end
       end
+
+      #Raffles Admin
+      resources :raffles, only: %i[index new]
+          
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -98,7 +102,8 @@ Rails.application.routes.draw do
       resources :banner_stores
       resources :system_configurations
     end
-
+    #Raffles Admin
+    resources :raffles, only: :index
     namespace :support do
       resources :users, only: [:index, :show, :edit, :update]
       resources :documents_validation, only: [:index, :update]
@@ -115,7 +120,7 @@ Rails.application.routes.draw do
     end
     resource :ads_checkout, only: :create
     resource :ads_carts, only: %i[show update destroy]
-
+    
     resources :dashboard, only: :index do
       collection do
         get :balances_data
@@ -215,12 +220,24 @@ Rails.application.routes.draw do
         get :games
         get :courses
         get :ads
+        get :raffles
       end
 
       member do
         get :course
       end
     end
+    
+    resources :raffles, only: :index do
+      collection do 
+        get :agreement
+        get :winners
+      end
+    end
+
+    resources :raffles_checkout, only: :update
+    resources :raffles_cart, only: :show
+    resources :raffles_tickets, only: :index
   end
 
   namespace :api do

@@ -16,6 +16,7 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :trail, optional: true
   has_one :course
+  has_one :raffle
   has_many :product_reason_scores
   has_many :product_scores, through: :product_reason_scores
   has_many :career_trails

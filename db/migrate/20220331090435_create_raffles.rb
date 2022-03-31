@@ -7,7 +7,7 @@ class CreateRaffles < ActiveRecord::Migration[5.2]
       t.integer :kind, null: false, default: 0
       t.integer :max_ticket_number, null: false, default: 0
       t.date :draw_date
-      t.string :lotto_numbers, array: true, default: ['']
+      t.string :lotto_numbers, array: true, default: []
       t.string :lotto_numbers_combination, default: ''
       t.references :product
       t.references :winner

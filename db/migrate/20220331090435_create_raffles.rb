@@ -10,8 +10,8 @@ class CreateRaffles < ActiveRecord::Migration[5.2]
       t.string :lotto_numbers, array: true, default: ['']
       t.string :lotto_numbers_combination, default: ''
       t.references :product
-      t.references :winner_id
-      t.references :winning_ticket_id
+      t.references :winner
+      t.references :winning_ticket
 
       t.timestamps
     end

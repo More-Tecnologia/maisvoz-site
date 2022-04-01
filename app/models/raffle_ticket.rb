@@ -12,6 +12,7 @@ class RaffleTicket < ApplicationRecord
             uniqueness: { scope: :raffle, message: I18n.t(:ticket_already_taken) }
   validates :raffle, presence: true
   validates :user, presence: true, if: :owned?
+  validates_associated :raffle
 
   private
 

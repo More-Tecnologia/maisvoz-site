@@ -18,6 +18,7 @@ class Raffle < ApplicationRecord
   validates :title, presence: true
   validates :winner, presence: true, if: :drawn?
   validates :winning_ticket, presence: true, if: :drawn?
+  validates :raffle_tickets, length: { maximum: :max_ticket_number }
 
   delegate :price_cents, to: :product
 

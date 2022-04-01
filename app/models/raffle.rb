@@ -15,10 +15,10 @@ class Raffle < ApplicationRecord
   validates :lotto_numbers, presence: true, if: :drawn?
   validates :lotto_numbers_combination, presence: true, if: :drawn?
   validates :max_ticket_number, numericality: { greater_than: 0 }
+  validates :raffle_tickets, length: { maximum: :max_ticket_number }
   validates :title, presence: true
   validates :winner, presence: true, if: :drawn?
   validates :winning_ticket, presence: true, if: :drawn?
-  validates :raffle_tickets, length: { maximum: :max_ticket_number }
 
   delegate :price_cents, to: :product
 

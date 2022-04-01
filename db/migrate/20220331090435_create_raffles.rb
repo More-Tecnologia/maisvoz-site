@@ -3,12 +3,14 @@
 class CreateRaffles < ActiveRecord::Migration[5.2]
   def change
     create_table :raffles do |t|
-      t.string :title, null: false
-      t.integer :kind, null: false, default: 0
-      t.integer :max_ticket_number, null: false, default: 0
       t.date :draw_date
-      t.string :lotto_numbers, array: true, default: []
-      t.string :lotto_numbers_combination, default: ''
+      t.integer :kind,                     null: false, default: 0
+      t.integer :max_ticket_number,        null: false, default: 0
+      t.integer :status,                   null: false, default: 0
+      t.string :lotto_numbers,             array: true, default: []
+      t.string :lotto_numbers_combination,              default: ''
+      t.string :title,                     null: false
+
       t.references :product
       t.references :winner
       t.references :winning_ticket

@@ -25,4 +25,8 @@ class Category < ApplicationRecord
   def self.course
     @@course ||= find_by(name: 'Course')
   end
+
+  def self.raffle
+    @@raffle ||= find_by(name: 'Raffle')
+  end
 end

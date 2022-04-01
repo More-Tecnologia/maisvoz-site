@@ -25,7 +25,8 @@ class Raffle < ApplicationRecord
   validates :winner, presence: true, if: :drawn?
   validates :winning_ticket, presence: true, if: :drawn?
 
-  delegate :description, :price_cents, :short_description, to: :product
+  delegate :description, :price, :price_cents, :short_description,
+           to: :product, allow_nil: true
 
   def path
     thumb.try(:fullpath)

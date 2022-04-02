@@ -1,0 +1,115 @@
+.raffle-cart-container {
+    width: 90%;
+    margin: auto;
+}
+
+.raffle-container {
+    width: 100%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.raffle-container-title {
+    width: 50%;
+    height: auto;
+}
+
+.raffle-title {
+    margin-bottom: 20px;
+}
+
+.raffles-numbers-container {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-numbers-table {
+    display: flex;
+    align-items: center;
+}
+
+.raffles-numbers-container h4 {
+    margin-bottom: 20px;
+}
+
+.raffles-cart-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow-y: hidden;
+    height: 350px;
+    scroll-behavior: smooth;
+}
+
+.container-scroll-numbers {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.number-raffle {
+    background: #188038;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-top: 5px;
+    height: 40px;
+}
+
+.raffle-cart-data {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.raffle-cart-data div {
+    font-size: 1rem;
+    padding-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.raffle-button-buy {
+    width: 50%;
+    background: linear-gradient(to bottom, #58f701, #26ac00);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.raffle-button-buy:hover {
+    background: linear-gradient(to bottom, #26ac00, #58f701);
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.raffle-img {
+    border-radius: 5px;
+    width: 40%;
+    height: 400px;
+    object-fit: cover;
+}
+
+@media (min-width: 300px) and (max-width: 880px){
+    
+}

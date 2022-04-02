@@ -1885,3 +1885,6 @@ es:
   ticket_price: Precio del boleto
   draw_date: Fecha del sorteo
   ticket_type: Tipo de bilhete
+  raffles_list: Lista de sorteos
+  type: Tipo
+  nothing_found: Nada encontrado

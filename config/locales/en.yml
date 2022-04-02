@@ -1889,3 +1889,6 @@ en:
   ticket_price: Ticket price
   draw_date: Draw date
   ticket_type: Ticket Type
+  raffles_list: Raffles list
+  type: Type
+  nothing_found: Nothing found

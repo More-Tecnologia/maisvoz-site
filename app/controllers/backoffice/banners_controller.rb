@@ -37,6 +37,7 @@ module Backoffice
       ActiveRecord::Base.transaction do
         clean_shopping_cart
         clean_courses_cart
+        clean_raffles_cart
         command = Shopping::AddToCart.call(current_ads_cart, @product.id, params[:country])
         raise StandardError.new(command.errors) unless command.success?
         @banner.order_item = current_ads_cart.order_items.reload.order(:created_at).last

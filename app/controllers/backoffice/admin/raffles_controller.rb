@@ -57,7 +57,7 @@ module Backoffice
 
       def valid_product_params
         params.require(:product)
-              .permit(:short_description, :description, :price_cents)
+              .permit(:short_description, :description, :price_cents, :active)
               .merge(name: valid_raffle_params[:title])
       end
 

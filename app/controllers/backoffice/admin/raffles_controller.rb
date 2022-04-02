@@ -5,7 +5,14 @@ module Backoffice
     class RafflesController < AdminController
       before_action :ensure_raffle, only: %i[edit update]
 
-      def index; end
+      def index
+        @q = Raffle.includes(:product)
+                   .ransack(params)
+        @raffles = @q.result
+                     .order(created_at: :desc)
+                     .page(params[:page])
+                     .per(10)
+      end
 
       def new
         @raffle = Raffle.new
@@ -39,7 +46,7 @@ module Backoffice
       end
 
       def ensure_raffle
-        @raffle = Raffle.find(params[:id])
+        @raffle = Raffle.find_by_hashid(params[:id])
       end
 
       def update_raffle

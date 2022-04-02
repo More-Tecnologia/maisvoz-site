@@ -1803,3 +1803,6 @@ pt-BR:
   ticket_price: Preço do bilhete
   draw_date: Data do sorteio
   ticket_type: Tipo de bilhete
+  raffles_list: Lista de sorteios
+  type: Tipo
+  nothing_found: Nada encontrado

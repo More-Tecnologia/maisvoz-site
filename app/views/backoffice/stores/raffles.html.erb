@@ -1,148 +1,52 @@
+<%= stylesheet_link_tag 'click-tok-theme/games' %>
+<%= stylesheet_link_tag 'click-tok-theme/store' %>
 <%= stylesheet_link_tag 'raffles/index' %>
-
+<div class="main-box">
+  <%= render 'menu' %>
+  <div class="banner-games">
+    <div class="banner-games__content-left">
+      <h3><%= t(:online_raffles).upcase  %></h3>
+      <h1><%= t(:wait).upcase %></h1>
+      <h2><%= t(:news_coming_soon).upcase  %></h2>
+      <p><%= t(:the_best_raffles_will_be_here).upcase  %></p>
+    </div>
+    <div class="banner-games__content-right">
+      <%= image_tag('nav-store/mulher.png') %>
+    </div>
+  </div>
+</div>
+<br><br><br>
 <div class="raffles-page-container">
-  <h3 class="raffles-page-title">Raffles</h3>
-  <div class="banner-img-raffles"></div>
   <div class="raffles-container">
-    <div class="raffle-container">
-      <div class="raffle-container-title">
-        <span class="raffle-title"> Raffle Iphone 13 Pro Max </span>
-        <img
-          class="raffle-img"
-          src="https://macmagazine.com.br/wp-content/uploads/2021/10/12-iphone13pro02-scaled.jpg"
-        />
+    <% @packages.each do |package| %>
+      <div class="raffle-container">
+        <div class="raffle-container-title">
+          <span class="raffle-title"> <%= package.name %> </span>
+          <%= image_tag(package.raffle.path, class: 'raffle-img') %>
+        </div>
+        <div class="numbers-available-container">
+          <span class="numbers-available-title"> <%= t(:tickets_available) %> </span>
+          <span class="numbers-available"> <%= package.raffle.max_ticket_number %> </span>
+        </div>
+        <div class="type-raffle-container">
+          <span class="type-raffle-title">Type of Raffle</span>
+          <span class="type-raffle"><%= package.raffle.kind %></span>
+        </div>
+        <div class="draw-date-container">
+          <span class="draw-date-title"></span>
+          <span class="draw-date"></span>
+        </div>
+        <div class="raffle-container-value">
+          <span class="raffle-value-title"> <%= t(:price) %> </span>
+          <span class="raffle-value"> <%= number_to_currency(package.price) %> </span>
+        </div>
+        <div class="container-raffle-button">
+          <%= link_to backoffice_raffles_ticket_path(package.raffle), class: 'raffle-button' do %>
+
+            <button class="raffle-button"><%= t(:select) %></button>
+          <% end %>
+        </div>
       </div>
-      <div class="numbers-available-container">
-        <span class="numbers-available-title"> Numbers Available </span>
-        <span class="numbers-available"> 256 </span>
-      </div>
-      <div class="type-raffle-container">
-        <span class="type-raffle-title">Type of Raffle</span>
-        <span class="type-raffle">Random</span>
-      </div>
-      <div class="draw-date-container">
-        <span class="draw-date-title"> Draw Date </span>
-        <span class="draw-date"> 12/12/2022 </span>
-      </div>
-      <div class="raffle-container-value">
-        <span class="raffle-value-title"> Value </span>
-        <span class="raffle-value"> US$ 10.00 </span>
-      </div>
-      <div class="container-raffle-button">
-        <button class="raffle-button">Choose</button>
-      </div>
-    </div>
-    <div class="raffle-container">
-      <div class="raffle-container-title">
-        <span class="raffle-title"> Raffle Iphone 13 Pro Max </span>
-        <img
-          class="raffle-img"
-          src="https://macmagazine.com.br/wp-content/uploads/2021/10/12-iphone13pro02-scaled.jpg"
-        />
-      </div>
-      <div class="numbers-available-container">
-        <span class="numbers-available-title"> Numbers Available </span>
-        <span class="numbers-available"> 256 </span>
-      </div>
-      <div class="type-raffle-container">
-        <span class="type-raffle-title">Type of Raffle</span>
-        <span class="type-raffle">Random</span>
-      </div>
-      <div class="draw-date-container">
-        <span class="draw-date-title"> Draw Date </span>
-        <span class="draw-date"> 12/12/2022 </span>
-      </div>
-      <div class="raffle-container-value">
-        <span class="raffle-value-title"> Value </span>
-        <span class="raffle-value"> US$ 10.00 </span>
-      </div>
-      <div class="container-raffle-button">
-        <button class="raffle-button">Choose</button>
-      </div>
-    </div>
-    <div class="raffle-container">
-      <div class="raffle-container-title">
-        <span class="raffle-title"> Raffle Iphone 13 Pro Max </span>
-        <img
-          class="raffle-img"
-          src="https://macmagazine.com.br/wp-content/uploads/2021/10/12-iphone13pro02-scaled.jpg"
-        />
-      </div>
-      <div class="numbers-available-container">
-        <span class="numbers-available-title"> Numbers Available </span>
-        <span class="numbers-available"> 256 </span>
-      </div>
-      <div class="type-raffle-container">
-        <span class="type-raffle-title">Type of Raffle</span>
-        <span class="type-raffle">Random</span>
-      </div>
-      <div class="draw-date-container">
-        <span class="draw-date-title"> Draw Date </span>
-        <span class="draw-date"> 12/12/2022 </span>
-      </div>
-      <div class="raffle-container-value">
-        <span class="raffle-value-title"> Value </span>
-        <span class="raffle-value"> US$ 10.00 </span>
-      </div>
-      <div class="container-raffle-button">
-        <button class="raffle-button">Choose</button>
-      </div>
-    </div>
-    <div class="raffle-container">
-      <div class="raffle-container-title">
-        <span class="raffle-title"> Raffle Iphone 13 Pro Max </span>
-        <img
-          class="raffle-img"
-          src="https://macmagazine.com.br/wp-content/uploads/2021/10/12-iphone13pro02-scaled.jpg"
-        />
-      </div>
-      <div class="numbers-available-container">
-        <span class="numbers-available-title"> Numbers Available </span>
-        <span class="numbers-available"> 256 </span>
-      </div>
-      <div class="type-raffle-container">
-        <span class="type-raffle-title">Type of Raffle</span>
-        <span class="type-raffle">Random</span>
-      </div>
-      <div class="draw-date-container">
-        <span class="draw-date-title"> Draw Date </span>
-        <span class="draw-date"> 12/12/2022 </span>
-      </div>
-      <div class="raffle-container-value">
-        <span class="raffle-value-title"> Value </span>
-        <span class="raffle-value"> US$ 10.00 </span>
-      </div>
-      <div class="container-raffle-button">
-        <button class="raffle-button">Choose</button>
-      </div>
-    </div>
-    <div class="raffle-container">
-      <div class="raffle-container-title">
-        <span class="raffle-title"> Raffle Iphone 13 Pro Max </span>
-        <img
-          class="raffle-img"
-          src="https://macmagazine.com.br/wp-content/uploads/2021/10/12-iphone13pro02-scaled.jpg"
-        />
-      </div>
-      <div class="numbers-available-container">
-        <span class="numbers-available-title"> Numbers Available </span>
-        <span class="numbers-available"> 256 </span>
-      </div>
-      <div class="type-raffle-container">
-        <span class="type-raffle-title">Type of Raffle</span>
-        <span class="type-raffle">Random</span>
-      </div>
-      <div class="draw-date-container">
-        <span class="draw-date-title"> Draw Date </span>
-        <span class="draw-date"> 12/12/2022 </span>
-      </div>
-      <div class="raffle-container-value">
-        <span class="raffle-value-title"> Value </span>
-        <span class="raffle-value"> US$ 10.00 </span>
-      </div>
-      <div class="container-raffle-button">
-        <button class="raffle-button">Choose</button>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

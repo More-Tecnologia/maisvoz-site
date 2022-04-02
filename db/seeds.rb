@@ -431,3 +431,5 @@ publicity_attributes.each do |attributes|
   product = Product.find_by(name: attributes[:name])
   product ? product.update!(attributes) : Product.create!(attributes)
 end
+
+Category.find_or_create_by(name: 'Raffle')

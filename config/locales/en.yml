@@ -82,6 +82,11 @@ en:
           seven: Seven
           fifteen: Fifteen
           thirty: Thirty
+      raffle:
+        kind:
+          automatic: Automatic
+          flex: Flex
+          manual: Manual
     errors:
       models:
         user:
@@ -1876,3 +1881,17 @@ en:
   my_ads: My Ads
   courses_to_sell: My courses for sale
   my_learning: My learnings
+  raffles: Raffles
+  ticket_already_taken: Raffle ticket already taken!
+  new_raffle: New raffle
+  edit_raffle: Edit raffle
+  quantity_of_tickets: Number of tickets
+  ticket_price: Ticket price
+  draw_date: Draw date
+  ticket_type: Ticket Type
+  raffles_list: Raffles list
+  type: Type
+  nothing_found: Nothing found
+  tickets_available: Tickets available
+  select: Select
+  numbers_selected: Selected Numbers

@@ -7,7 +7,8 @@ class Product < ApplicationRecord
   PHOTO_HEIGHT = '300'
 
   enum kind: %i[detached adhesion activation voucher
-                subscription deposit course publicity crypto]
+                subscription deposit course publicity crypto
+                raffle]
   enum paid_by: [:paid_by_user, :paid_by_company]
 
   has_one_attached :main_photo
@@ -16,6 +17,7 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :trail, optional: true
   has_one :course
+  has_one :raffle
   has_many :product_reason_scores
   has_many :product_scores, through: :product_reason_scores
   has_many :career_trails

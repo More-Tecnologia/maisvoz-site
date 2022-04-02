@@ -60,6 +60,8 @@ class User < ApplicationRecord
                                    foreign_key: 'support_point_user_id'
   has_many :tickets
   has_many :interactions
+  has_many :prizes_awarded, class_name: 'Raffle', foreign_key: 'winner_id'
+  has_many :raffle_tickets
 
   belongs_to :sponsor, class_name: 'User', optional: true
   belongs_to :product, optional: true

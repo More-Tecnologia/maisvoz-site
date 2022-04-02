@@ -47,6 +47,15 @@ class BackofficeController < ApplicationController
                                    .try(:order) || Order.new(user: current_user, status: :cart)
   end
 
+  def current_raffles_cart
+    @current_raffles_cart ||= OrderItem.includes(:order)
+                                       .where(product: Product.raffle,
+                                              order: current_user.orders.cart)
+                                       .order(created_at: :desc)
+                                       .last
+                                       .try(:order) || Order.new(user: current_user, status: :cart)
+  end
+
   protected def clean_shopping_cart
     session.delete(:order_id)
   end
@@ -70,5 +79,9 @@ class BackofficeController < ApplicationController
 
   def clean_courses_cart
     @current_courses_cart = Order.new(user: current_user, status: :cart)
+  end
+
+  def clean_raffles_cart
+    @current_raffles_cart = Order.new(user: current_user, status: :cart)
   end
 end

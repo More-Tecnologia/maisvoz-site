@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Raffle < ApplicationRecord
+  include Hashid::Rails
+
+  has_attachment :thumb, accept: %i[jpg png]
+
   enum kind: { automatic: 0, manual: 1, flex: 2 }
   enum status: { started: 0, awaiting_draw_date: 1, awaiting_draw: 2,
                  pending: 3, finished: 4 }
@@ -21,7 +25,12 @@ class Raffle < ApplicationRecord
   validates :winner, presence: true, if: :drawn?
   validates :winning_ticket, presence: true, if: :drawn?
 
-  delegate :description, :price_cents, :short_description, to: :product
+  delegate :description, :price, :price_cents, :short_description,
+           to: :product, allow_nil: true
+
+  def path
+    thumb.try(:fullpath)
+  end
 
   private
 

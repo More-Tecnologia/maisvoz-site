@@ -6,6 +6,16 @@
     padding: 50px 20px;
 }
 
+.cover-raffle-img_label {
+  background: #d3d3d3;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .register-raffle__title {
     font-weight: bold;
     text-align: center;
@@ -80,4 +90,14 @@
     height: 20px;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

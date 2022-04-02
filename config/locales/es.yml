@@ -82,6 +82,11 @@ es:
           seven: Siete
           fifteen: Quince
           thirty: Treinta
+      raffle:
+        kind:
+          automatic: Automático
+          flex: Flex
+          manual: Manual
     errors:
       models:
         user:
@@ -1875,3 +1880,8 @@ es:
   my_learning: Mis aprendizajes
   raffles: Sorteos
   ticket_already_taken: ¡Boleto de la rifa ya tomado!
+  new_raffle: Nuevo sorteo
+  quantity_of_tickets: Número de boletos
+  ticket_price: Precio del boleto
+  draw_date: Fecha del sorteo
+  ticket_type: Tipo de bilhete

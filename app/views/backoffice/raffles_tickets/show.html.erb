@@ -3,505 +3,90 @@
 <div class="raffle-cart-container">
   <div class="raffle-container">
     <div class="raffle-container-title">
-      <h1 class="raffle-title strong">Raffle Iphone 13 Pro Max</h1>
-      <img
-        class="raffle-img"
-        src="https://macmagazine.com.br/wp-content/uploads/2021/10/12-iphone13pro02-scaled.jpg"
-      />
+      <h1 class="raffle-title strong"><%= @raffle.title %></h1>
+
+      <%= image_tag(@raffle.path, class: 'raffle-img') %>
     </div>
 
     <div class="raffle-cart-data">
       <div class="numbers-available-container">
-        <div class="numbers-available-title">Numbers Available</div>
-        <div class="numbers-available strong">256</div>
+        <div class="numbers-available-title"><%= t(:tickets_available) %></div>
+        <div class="numbers-available strong"><%= @raffle.max_ticket_number - @raffle.raffle_tickets.owned.size %></div>
       </div>
       <div class="type-raffle-container">
-        <div class="type-raffle-title">Type of Raffle</div>
-        <div class="type-raffle strong">Random</div>
+        <div class="type-raffle-title"><%= t(:type) %></div>
+        <div class="type-raffle strong"><%= I18n.t("activerecord.enums.raffle.kind.#{@raffle.kind}").humanize %></div>
       </div>
       <div class="draw-date-container">
-        <div class="draw-date-title">Draw Date</div>
-        <div class="draw-date strong">12/12/2022</div>
+        <div class="draw-date-title"></div>
+        <div class="draw-date strong"></div>
       </div>
       <div class="raffle-container-value">
-        <div class="raffle-value-title">Value</div>
-        <div class="raffle-value strong">US$ 10.00</div>
+        <div class="raffle-value-title"><%= t(:price) %></div>
+        <div class="raffle-value strong"><%= number_to_currency(@raffle.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></div>
       </div>
       <div class="container-raffle-button">
-        <button class="raffle-button-buy">Buy</button>
+        <%= link_to backoffice_raffles_tickets_path, class: 'raffle-button-buy' do %>
+          <button class="raffle-button-buy"><%= t(:buy) %></button>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-<div class="raffles-numbers-container">
-  <h4>Choose your number</h4>
-  <div class="container-numbers-table">
-    <div class="raffles-cart-numbers">
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-      <div class="number-raffle">12</div>
-    </div>
-
-    <div class="container-scroll-numbers">
-      <div class="scroll-top-numbers">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="25"
-          height="25"
-          fill="black"
-          class="bi bi-arrow-up-circle-fill"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
-          />
-        </svg>
+<% unless @raffle.automatic? %>
+  <div class="raffles-numbers-container">
+    <h4><%= t(:select_your_number) %></h4>
+    <div class="container-numbers-table">
+      <div class="raffles-cart-numbers">
+        <% (1..@raffle.max_ticket_number).each do |number| %>
+          <div class="number-raffle" value="<%= number %>"><%= format("%0#{@raffle.max_ticket_number.to_s.size}d", number % (@raffle.max_ticket_number * 10)) %></div>
+        <% end %>
       </div>
-      <div class="scroll-bottom-numbers">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="25"
-          height="25"
-          fill="black"
-          class="bi bi-arrow-down-circle-fill"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
-          />
-        </svg>
+
+      <div class="container-scroll-numbers">
+        <div class="scroll-top-numbers">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="black"
+            class="bi bi-arrow-up-circle-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+            />
+          </svg>
+        </div>
+        <div class="scroll-bottom-numbers">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="black"
+            class="bi bi-arrow-down-circle-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  const numbersRaffle = document.querySelector(".raffles-cart-numbers");
-  const btnTop = document.querySelector(".scroll-top-numbers");
-  btnTop.addEventListener("click", function () {
-    numbersRaffle.scrollTop -= 100;
-  });
-  const btnBottom = document.querySelector(".scroll-bottom-numbers");
-  btnBottom.addEventListener("click", function () {
-    //   const num = numbersRaffle.scrollTop = scrollTop - 50;
-    numbersRaffle.scrollTop += 100;
-    console.log(numbersRaffle.scrollTop);
-  });
-</script>
+  <script>
+    const numbersRaffle = document.querySelector(".raffles-cart-numbers");
+    const btnTop = document.querySelector(".scroll-top-numbers");
+    btnTop.addEventListener("click", function () {
+      numbersRaffle.scrollTop -= 100;
+    });
+    const btnBottom = document.querySelector(".scroll-bottom-numbers");
+    btnBottom.addEventListener("click", function () {
+      //   const num = numbersRaffle.scrollTop = scrollTop - 50;
+      numbersRaffle.scrollTop += 100;
+      console.log(numbersRaffle.scrollTop);
+    });
+  </script>
+<% end %>

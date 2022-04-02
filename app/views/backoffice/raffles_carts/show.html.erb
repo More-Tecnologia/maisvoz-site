@@ -28,7 +28,7 @@
           <button type="button" class="btn-numbers-selected" data-toggle="modal" data-target="#Modal-<%= order_item.id %>-Center">
               <%= t(:numbers_selected) %>
             </button>
-          <p><%= t(:type) %>: <%= order_item.product.raffle.kind %></p>
+          <p><%= t(:type) %>: <%= I18n.t("activerecord.enums.raffle.kind.#{order_item.product.raffle.kind}").humanize %></p>
           <br />
         </div>
       </div>

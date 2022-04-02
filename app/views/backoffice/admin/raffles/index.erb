@@ -34,7 +34,7 @@
                     <th><%= raffle.hashid %></th>
                     <td><%= raffle.title %></td>
                     <td><%= raffle.price %></td>
-                    <td><%= raffle.kind %></td>
+                    <td><%= I18n.t("activerecord.enums.raffle.kind.#{raffle.kind}").humanize %></td>
                     <td><%= raffle.status %></td>
                     <td><%= t(raffle.active) %></td>
                     <td>

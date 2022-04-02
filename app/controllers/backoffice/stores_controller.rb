@@ -21,6 +21,9 @@ module Backoffice
     end
 
     def raffles
+      @packages = Product.raffle
+                         .active
+                         .order(:price_cents)
     end
   end
 end

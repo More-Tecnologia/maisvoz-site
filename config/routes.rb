@@ -120,7 +120,7 @@ Rails.application.routes.draw do
     end
     resource :ads_checkout, only: :create
     resource :ads_carts, only: %i[show update destroy]
-    
+
     resources :dashboard, only: :index do
       collection do
         get :balances_data
@@ -227,17 +227,17 @@ Rails.application.routes.draw do
         get :course
       end
     end
-    
+
     resources :raffles, only: :index do
-      collection do 
+      collection do
         get :agreement
         get :winners
       end
     end
 
-    resources :raffles_checkout, only: :update
-    resource :raffles_carts, only: :show
-    resources :raffles_tickets, only: %i[index show create]    
+    resource :raffles_checkout, only: :create
+    resource :raffles_carts, only: %i[show destroy]
+    resources :raffles_tickets, only: %i[index show create]
   end
 
   namespace :api do

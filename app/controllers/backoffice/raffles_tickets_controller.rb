@@ -2,10 +2,30 @@
 
 module Backoffice
   class RafflesTicketsController < BackofficeController
-    def index; end
+    def index
+      @q = current_user.raffle_tickets
+                       .includes(:raffle, :order_item)
+                       .ransack(params)
+      @raffle_tickets = @q.result
+                          .order(created_at: :desc)
+                          .page(params[:page])
+                          .per(10)
+    end
 
     def create
+      @raffle = Raffle.find_by_hashid(params[:id])
+      ActiveRecord::Base.transaction do
+        clean_shopping_cart
+        clean_courses_cart
+        clean_ads_cart
+        Raffles::ReserveTicketsService.call(valid_params)
+      end
+
       redirect_to backoffice_raffles_carts_path
+    rescue StandardError => error
+      flash[:error] = error.message
+
+      redirect_to backoffice_raffles_ticket_path(@raffle)
     end
 
     def show
@@ -14,36 +34,12 @@ module Backoffice
 
     private
 
-    def ensure_creation
-      # this step is necessary because of attachinary gem bug -
-      # https://github.com/assembler/attachinary/issues/130
-      # Remove this gem in favor of active storage
-      @raffle = Raffle.find_by_hashid(params[:id])
-      @product = @raffle.product
-      @tickets = @raffle.raffle_tickets.where(number: prams[:number])
-      ActiveRecord::Base.transaction do
-        clean_shopping_cart
-        clean_courses_cart
-        clean_ads_cart
-        command = Shopping::AddToCart.call(current_ads_cart, @product.id, params[:country])
-        raise StandardError.new(command.errors) unless command.success?
-        @banner.order_item = current_ads_cart.order_items.reload.order(:created_at).last
-        if @banner.valid?(:ads)
-          unless @banner.save && @banner.update(image: file)
-            @banner.order_item.destroy
-            Shopping::UpdateCartTotals.call(current_ads_cart, params[:country])
-          end
-        end
-      end
-      return if @banner.persisted?
-
-      flash[:error] = @banner.errors.full_messages.join(', ')
-      @banner.destroy
-      render :new
-    rescue StandardError => error
-      @banner = Banner.new(ensured_params)
-      flash[:error] = error.message
-      render :new
+    def valid_params
+      params.require(:raffle)
+            .permit(:numbers)
+            .merge(country: params[:country],
+                   order: current_raffles_cart,
+                   product: @raffle.product)
     end
   end
 end

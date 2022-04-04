@@ -25,7 +25,7 @@ module Raffles
     def find_raffle_ticket
       @ticket = @raffle.raffle_tickets
                        .available
-                       .find_by(number: @ticket_number)
+                       .find_by!(number: @ticket_number)
     end
 
     def order_item_attributes

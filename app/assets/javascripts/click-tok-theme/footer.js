@@ -44,7 +44,7 @@ function itemSelected() {
   let links = document.querySelectorAll(".link-nav");
   let sizeNav = document.querySelector(".list").offsetWidth;
   let firstList = list[0];
-
+  console.log(window.location)
   let footerDashboardHome = [
     "/",
     "/backoffice/admin/dashboard",
@@ -153,7 +153,9 @@ function itemSelected() {
     footerTeam.includes(window.location.pathname) == false
   ) {
     firstList.classList.add("active");
-    indicator.style.transform = `translateX(calc(${sizeNav + "px"} * 0))`;
+    indicator.style.transform = `translateX(calc(${
+      sizeNav + "px"
+    } * ${counterDashboard}))`;
     indicator.style.transition = "none";
   }
 }

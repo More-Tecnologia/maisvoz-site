@@ -1,35 +1,52 @@
 <%= stylesheet_link_tag 'raffles/tickets' %>
-
 <div class="raffle-cart-container">
   <div class="raffle-container">
     <div class="raffle-container-title">
       <h1 class="raffle-title strong"><%= @raffle.title %></h1>
-
       <%= image_tag(@raffle.path, class: 'raffle-img') %>
+      <div class="container-numbers-selected">
+          <h5>Numbers Selected</h5>
+        <div class="numbers-selected">
+        </div>
     </div>
-
+    </div>
     <div class="raffle-cart-data">
-      <div class="numbers-available-container">
-        <div class="numbers-available-title"><%= t(:tickets_available) %></div>
-        <div class="numbers-available strong"><%= @raffle.max_ticket_number - @raffle.raffle_tickets.owned.size %></div>
+      <div class="top-cart-data">
+        <div class="numbers-available-container">
+            <div class="numbers-available-title"><%= t(:tickets_available) %></div>
+            <div class="numbers-available strong"><%= @raffle.max_ticket_number - @raffle.raffle_tickets.owned.size %></div>
+        </div>
+        <div class="type-raffle-container">
+            <div class="type-raffle-title"><%= t(:type) %></div>
+            <div class="type-raffle strong"><%= I18n.t("activerecord.enums.raffle.kind.#{@raffle.kind}").humanize %></div>
+        </div>
+        <div class="draw-date-container">
+            <div class="draw-date-title">Date Draw</div>
+            <div class="draw-date strong">12/12/2022</div>
+        </div>
+        <div class="raffle-container-value">
+            <div class="raffle-value-title"><%= t(:price) %></div>
+            <div class="raffle-value strong"><%= number_to_currency(@raffle.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></div>
+        </div>
       </div>
-      <div class="type-raffle-container">
-        <div class="type-raffle-title"><%= t(:type) %></div>
-        <div class="type-raffle strong"><%= I18n.t("activerecord.enums.raffle.kind.#{@raffle.kind}").humanize %></div>
-      </div>
-      <div class="draw-date-container">
-        <div class="draw-date-title"></div>
-        <div class="draw-date strong"></div>
-      </div>
-      <div class="raffle-container-value">
-        <div class="raffle-value-title"><%= t(:price) %></div>
-        <div class="raffle-value strong"><%= number_to_currency(@raffle.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></div>
-      </div>
-      <div class="container-raffle-button">
-        <%= link_to backoffice_raffles_tickets_path, class: 'raffle-button-buy' do %>
-          <button class="raffle-button-buy"><%= t(:buy) %></button>
-        <% end %>
-      </div>
+
+      <form class="form-tickets-buy">
+        <div class="inputs-tickets">
+          <label for="quantity-tickets-selected">Quantity of Tickets</label>
+          <input type="number" id="quantity-tickets-selected">
+          <label for="quantity-aleatory-tickets">Quantity of Aleatory Tickets</label>
+          <input type="number" id="quantity-aleatory-tickets">
+        </div>
+        <div class="hidden-input">
+            <select name="raffle-numbers" class="hidden-input-tickets">
+            </select>
+        </div>
+        <div class="container-raffle-button">
+            <%= link_to backoffice_raffles_tickets_path, class: 'raffle-button-buy' do %>
+            <button class="raffle-button-buy" type="submit"><%= t(:buy) %></button>
+            <% end %>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -42,14 +59,21 @@
           <div class="number-raffle" value="<%= number %>"><%= format("%0#{@raffle.max_ticket_number.to_s.size}d", number % (@raffle.max_ticket_number * 10)) %></div>
         <% end %>
       </div>
-
       <div class="container-scroll-numbers">
+        <div class="scroll-full-top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="white" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="white" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+        </div>
         <div class="scroll-top-numbers">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
             height="25"
-            fill="black"
+            fill="#3f3f3f"
             class="bi bi-arrow-up-circle-fill"
             viewBox="0 0 16 16"
           >
@@ -63,7 +87,7 @@
             xmlns="http://www.w3.org/2000/svg"
             width="25"
             height="25"
-            fill="black"
+            fill="#3f3f3f"
             class="bi bi-arrow-down-circle-fill"
             viewBox="0 0 16 16"
           >
@@ -72,21 +96,18 @@
             />
           </svg>
         </div>
+        <div class="scroll-full-bottom">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="white" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="white" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+          </div>
       </div>
     </div>
   </div>
 
-  <script>
-    const numbersRaffle = document.querySelector(".raffles-cart-numbers");
-    const btnTop = document.querySelector(".scroll-top-numbers");
-    btnTop.addEventListener("click", function () {
-      numbersRaffle.scrollTop -= 100;
-    });
-    const btnBottom = document.querySelector(".scroll-bottom-numbers");
-    btnBottom.addEventListener("click", function () {
-      //   const num = numbersRaffle.scrollTop = scrollTop - 50;
-      numbersRaffle.scrollTop += 100;
-      console.log(numbersRaffle.scrollTop);
-    });
-  </script>
+<%= javascript_include_tag 'raffles/raffles-tickets' %>
+
 <% end %>

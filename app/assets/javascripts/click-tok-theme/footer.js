@@ -44,7 +44,6 @@ function itemSelected() {
   let links = document.querySelectorAll(".link-nav");
   let sizeNav = document.querySelector(".list").offsetWidth;
   let firstList = list[0];
-  console.log(window.location)
   let footerDashboardHome = [
     "/",
     "/backoffice/admin/dashboard",

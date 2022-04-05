@@ -7,7 +7,9 @@ module Backoffice
     end
 
     def destroy
-      current_raffles_cart.order_items.find(params[:order_item_id]).destroy
+      order_item = current_raffles_cart.order_items.find(params[:order_item_id])
+      order_item.raffle_ticket.update!(order_item_id: nil, status: :available, user_id: nil)
+      order_item.destroy
       Shopping::UpdateCartTotals.call(current_raffles_cart, params[:country])
       flash[:success] = t(:removed_successfully)
 

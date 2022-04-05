@@ -30,7 +30,7 @@
         </div>
         <div class="type-raffle-container">
           <span class="type-raffle-title"><%= t(:type) %></span>
-          <span class="type-raffle"><%= package.raffle.kind %></span>
+          <span class="type-raffle"><%= I18n.t("activerecord.enums.raffle.kind.#{package.raffle.kind}").humanize %></span>
         </div>
         <div class="draw-date-container">
           <span class="draw-date-title"></span>
@@ -38,7 +38,7 @@
         </div>
         <div class="raffle-container-value">
           <span class="raffle-value-title"> <%= t(:price) %> </span>
-          <span class="raffle-value"> <%= number_to_currency(package.price) %> </span>
+          <span class="raffle-value"> <%= number_to_currency(package.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></span>
         </div>
         <div class="container-raffle-button">
           <%= link_to backoffice_raffles_ticket_path(package.raffle), class: 'raffle-button' do %>

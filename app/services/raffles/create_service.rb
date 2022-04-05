@@ -19,6 +19,7 @@ module Raffles
         create_product
         create_raffle!
         add_thumb
+        create_raffle_tickets
       end
     end
 
@@ -28,6 +29,10 @@ module Raffles
 
     def create_raffle!
       @raffle = @product.create_raffle!(@raffle_params)
+    end
+
+    def create_raffle_tickets
+      RaffleTicketCreateService.call(@raffle)
     end
   end
 end

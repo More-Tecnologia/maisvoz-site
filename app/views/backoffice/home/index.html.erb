@@ -128,7 +128,10 @@
         <%= image_tag('courses/menu-courses4.svg') %>
         <span><%= t(:my_ads) %></span>
       <% end %>
-
+      <%= link_to backoffice_raffles_tickets_path, class:"course-card" do %>
+        <%= image_tag('header-admin-icons/raffle.svg') %>
+        <span><%= t(:my_raffles_tickets) %></span>
+      <% end %>
     </div>
     <div class="flex-lg-screen">
         <div class="home-bottom">

@@ -274,6 +274,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-right: 5px;
+}
+
+.course-card img {
+  width: 40px;
+  height: 40px;
 }
 
 .course-card span {
@@ -339,7 +345,7 @@
   }
 
   .course-card {
-    min-width: 23%;
+    min-width: 19%;
     width: 18%;
     height: 200px;
   }

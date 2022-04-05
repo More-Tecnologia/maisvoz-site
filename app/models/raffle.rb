@@ -13,7 +13,7 @@ class Raffle < ApplicationRecord
   belongs_to :winner, class_name: 'User', optional: true
   belongs_to :winning_ticket, class_name: 'RaffleTicket', optional: true
 
-  has_many :raffle_tickets
+  has_many :raffle_tickets, dependent: :destroy
 
   validates :draw_date, presence: true, if: :awaiting_draw?
   validates :lotto_numbers, presence: true, if: :drawn?

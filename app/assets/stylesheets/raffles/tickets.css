@@ -213,11 +213,37 @@
 }
 
 .ticket-bought {
-    background: blue;
+  background: #6464DC;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-top: 5px;
+  max-width: 60px;
+  height: 60px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s;
+  cursor: pointer;
 }
 
 .ticket-reserved {
-    background: red;
+  background: #FF7F7F;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-top: 5px;
+  max-width: 60px;
+  height: 60px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s;
+  cursor: pointer;
 }
 
 @media (min-width: 300px) and (max-width: 880px){

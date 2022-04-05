@@ -4,12 +4,12 @@ module Backoffice
   class RafflesTicketsController < BackofficeController
     def index
       @q = current_user.raffle_tickets
-                       .includes(:raffle, :order_item)
+                       .includes(:raffle)
                        .ransack(params)
-      @raffle_tickets = @q.result
-                          .order(created_at: :desc)
-                          .page(params[:page])
-                          .per(10)
+      @raffles_tickets = @q.result
+                           .order(created_at: :desc)
+                           .page(params[:page])
+                           .per(10)
     end
 
     def create

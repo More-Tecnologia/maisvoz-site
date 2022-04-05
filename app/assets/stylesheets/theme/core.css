@@ -73,6 +73,10 @@ html {
   max-height: 80px;
 }
 
+.page-title span {
+  font-size: 30px;
+}
+
 *,
 *:before,
 *:after {

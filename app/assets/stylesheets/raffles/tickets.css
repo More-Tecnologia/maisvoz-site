@@ -31,7 +31,7 @@
     align-items: center;
     margin: auto;
     margin-top: 30px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: app/assets/stylesheets/rafflesa(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -193,7 +193,7 @@
 
 #quantity-tickets-selected,
 #quantity-aleatory-tickets {
-    box-shadow: 1px 4px 10px 1px rgb(207 207 207);
+    box-shadow: 1px 4px 10px 1px rgb(207, 207, 207);
     background-color: #ffffff;
     border-radius: 70px;
     border: none;

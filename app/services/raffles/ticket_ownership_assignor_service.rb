@@ -4,6 +4,7 @@ module Raffles
   class TicketOwnershipAssignorService < ApplicationService
     def initialize(params)
       @product = params[:product]
+      @raffle = @product.raffle
       @ticket_number = params[:ticket_number]
       @order = params[:order]
       @country = params[:country]
@@ -25,7 +26,7 @@ module Raffles
     def find_raffle_ticket
       @ticket = @raffle.raffle_tickets
                        .available
-                       .find_or_create_by!(number: @ticket_number)
+                       .find_by(number: @ticket_number)
     end
 
     def order_item_attributes

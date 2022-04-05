@@ -14,7 +14,7 @@ module Raffles
       end
     end
 
-    def create_raffle_ticket!
+    def create_raffle_ticket!(number)
       @raffle.raffle_tickets.create!(number: number)
     end
   end

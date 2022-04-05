@@ -13,7 +13,7 @@ module Backoffice
     end
 
     def create
-      @raffle = Raffle.find_by_hashid(params[:id])
+      @raffle = Raffle.find_by_hashid(params[:raffle][:id])
       ActiveRecord::Base.transaction do
         clean_shopping_cart
         clean_courses_cart
@@ -24,8 +24,8 @@ module Backoffice
       redirect_to backoffice_raffles_carts_path
     rescue StandardError => error
       flash[:error] = error.message
-
-      redirect_to backoffice_raffles_ticket_path(@raffle)
+      @raffle = Raffle.find_by_hashid(params[:id])
+      redirect_to backoffice_raffles_tickets_path(@raffle)
     end
 
     def show
@@ -36,7 +36,7 @@ module Backoffice
 
     def valid_params
       params.require(:raffle)
-            .permit(:numbers)
+            .permit(:numbers, :random_number_quantity)
             .merge(country: params[:country],
                    order: current_raffles_cart,
                    product: @raffle.product)

@@ -124,5 +124,11 @@
     </svg>
     <%= text_field_tag :'product[price_cents]', @raffle.price_cents, class: 'input-register-raffle money-br', placeholder: t(:price) %>
   </div>
+  <div class="remember-user">
+    <div class="checkbox">
+      <%= check_box :product, :active, { checked: @raffle.active }, 'true', 'false' %>
+      <span><%= t(:active) %></span>
+    </div>
+  </div>
   <%= f.submit class: 'register-raffle__button-submit' %>
 <% end %>

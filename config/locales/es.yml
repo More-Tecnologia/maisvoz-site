@@ -1844,7 +1844,7 @@ es:
   anonymous: Anónimo
   success_create: ¡Creado con éxito!
   course_lesson: Lección del curso
-  success_update: ¡Actualizado exitosamente!
+  success_updated: ¡Actualizado exitosamente!
   clicks: clics
   this_pack_contains: Este paquete contiene
   on_the_ad: en el anuncio
@@ -1884,7 +1884,11 @@ es:
   quantity_of_tickets: Número de boletos
   ticket_price: Precio del boleto
   draw_date: Fecha del sorteo
-  ticket_type: Tipo de bilhete
+  ticket_type: Tipo de boleto
   raffles_list: Lista de sorteos
   type: Tipo
   nothing_found: Nada encontrado
+  tickets_available: Boleto disponibles
+  select: Seleccione
+  numbers_selected: Números seleccionados
+  number_of_random_tickets: Número de boletos al azar

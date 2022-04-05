@@ -23,6 +23,8 @@
                   <th><%= t(:title) %></th>
                   <th><%= t(:price) %></th>
                   <th><%= t(:type) %></th>
+                  <th><%= t(:status) %></th>
+                  <th><%= t(:active?) %></th>
                   <th><%= t(:actions) %></th>
                 </tr>
               </thead>
@@ -32,7 +34,9 @@
                     <th><%= raffle.hashid %></th>
                     <td><%= raffle.title %></td>
                     <td><%= raffle.price %></td>
-                    <td><%= raffle.kind %></td>
+                    <td><%= I18n.t("activerecord.enums.raffle.kind.#{raffle.kind}").humanize %></td>
+                    <td><%= raffle.status %></td>
+                    <td><%= t(raffle.active) %></td>
                     <td>
                       <%= link_to edit_backoffice_admin_raffle_path(raffle) do %>
                         <i class="fas fa-edit"></i>

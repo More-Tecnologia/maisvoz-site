@@ -39,7 +39,8 @@ module Financial
         propagate_course_payment if course_product
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product
-        propagate_master_bonus unless free_product || course_product
+        process_reserved_raffle_tickets if raffle_product
+        propagate_master_bonus unless free_product || course_product || raffle_product
         enroll_student_on_course if course_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         update_user_and_sponsor_types
@@ -112,6 +113,13 @@ module Financial
       Financial::CreatorSystemFeeService.call(order: order)
     end
 
+    def process_reserved_raffle_tickets
+      order.order_items.each do |order_item|
+        ProcessReservedRaffleTicketWorker.perform_async(order_item.raffle_ticket
+                                                                  .id)
+      end
+    end
+
     def update_user_purchase_flags
       attributes = {}
       attributes.merge!(bought_adhesion: true, balance_unlocked_at: Time.zone.now) if adhesion_product
@@ -177,6 +185,10 @@ module Financial
 
     def deposit_product
       @deposit_product ||= order.products.detect(&:deposit?)
+    end
+
+    def raffle_product
+      @raffle_product ||= order.products.detect(&:raffle?)
     end
 
     def free_product

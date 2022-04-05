@@ -16,6 +16,8 @@ Rails.application.config.assets.precompile += %w( raffles/index.css )
 Rails.application.config.assets.precompile += %w( raffles/cart.css )
 Rails.application.config.assets.precompile += %w( raffles/register-raffle.css )
 Rails.application.config.assets.precompile += %w( raffles/winners.css )
+Rails.application.config.assets.precompile += %w( raffles/tickets.css )
+Rails.application.config.assets.precompile += %w( raffles/raffles-tickets.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

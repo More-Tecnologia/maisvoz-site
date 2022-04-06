@@ -6,6 +6,6 @@ class RaffleTicketCreateWorker
   def perform(raffle_id)
     raffle = Raffle.find(raffle_id)
 
-    RaffleTicketCreateService.call(raffle)
+    Raffles::RaffleTicketCreateService.call(raffle: raffle)
   end
 end

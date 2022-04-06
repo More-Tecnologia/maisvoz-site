@@ -3,7 +3,7 @@
 class RemoveReservedRaffleTicketsWorker
   include Sidekiq::Worker
 
-  def perfom(order_id)
+  def perform(order_id)
     order = Order.find(order_id)
     unless order.completed?
       Raffles::RemoveReservedRaffleTicketsService.call(order: order)

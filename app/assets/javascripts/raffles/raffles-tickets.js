@@ -21,7 +21,7 @@ numbers.forEach(number => {
                     listNumbers.splice(index, 1)
                     inputNumbers.splice(index, 1)
                     numbersSelected.innerHTML = listNumbers;
-                    inputSelectedNumbers.innerHTML = inputNumbers;
+                    inputSelectedNumbers.innerHTML = `<option value="${inputNumbers}">${inputNumbers}</option>`
                 }
             })
         }
@@ -29,8 +29,8 @@ numbers.forEach(number => {
             this.classList.add('number-selected')
             listNumbers.push(`<div class="number-raffle" value="${thisValue}">${this.innerHTML}</div>`);
             numbersSelected.innerHTML = listNumbers;
-            inputNumbers.push(`<option value="${valueElement}">${valueElement}</option>`)
-            inputSelectedNumbers.innerHTML = inputNumbers;
+            inputNumbers.push(valueElement)
+            inputSelectedNumbers.innerHTML = `<option value="${inputNumbers}">${inputNumbers}</option>`
         }
     })
 })

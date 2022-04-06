@@ -10,7 +10,7 @@
 </div>
 <%= form_tag backoffice_raffles_checkout_path do |f| %>
 <div class="cart-raffles">
-  <% @current_raffles_cart.order_items.each do |order_item| %>
+  <% @current_raffles_cart.order_items.includes(:product, :raffle_ticket).each do |order_item| %>
     <div class="cart-courses__item">
       <div class="cart-courses__id" style="width: auto;">
         <div class="cart-courses__item__id__title">ID</div>
@@ -64,13 +64,7 @@
                 </button>
               </div>
               <div class="modal-body modal-flex">
-                  <div class="number-selected">15</div>
-                  <div class="number-selected">15</div>
-                  <div class="number-selected">15</div>
-                  <div class="number-selected">15</div>
-                  <div class="number-selected">15</div>
-                  <div class="number-selected">15</div>
-                  <div class="number-selected">15</div>
+                  <div class="number-selected"><%= order_item.raffle_ticket.number %></div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn-close-modal-cart-raffle" data-dismiss="modal"><%= t(:close) %></button>

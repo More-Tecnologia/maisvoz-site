@@ -5,9 +5,11 @@
       <h1 class="raffle-title strong"><%= @raffle.title %></h1>
       <%= image_tag(@raffle.path, class: 'raffle-img') %>
       <div class="container-numbers-selected">
-          <h5>Numbers Selected</h5>
-        <div class="numbers-selected">
-        </div>
+      <% unless @raffle.automatic? %>
+        <h5><%= t(:numbers_selected) %></h5>
+      <% end %>
+      <div class="numbers-selected">
+      </div>
     </div>
     </div>
     <div class="raffle-cart-data">
@@ -21,30 +23,30 @@
             <div class="type-raffle strong"><%= I18n.t("activerecord.enums.raffle.kind.#{@raffle.kind}").humanize %></div>
         </div>
         <div class="draw-date-container">
-            <div class="draw-date-title">Date Draw</div>
-            <div class="draw-date strong">12/12/2022</div>
+            <div class="draw-date-title"></div>
+            <div class="draw-date strong"></div>
         </div>
         <div class="raffle-container-value">
             <div class="raffle-value-title"><%= t(:price) %></div>
             <div class="raffle-value strong"><%= number_to_currency(@raffle.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></div>
         </div>
       </div>
-
-      <form class="form-tickets-buy">
-        <div class="inputs-tickets">
-          <label for="quantity-aleatory-tickets">Quantity of Aleatory Tickets</label>
-          <input type="number" id="quantity-aleatory-tickets">
-        </div>
+      <%= form_for(@raffle, url: backoffice_raffles_tickets_path, method: :post, html: { class: "form-tickets-buy" }) do |f| %>
+        <% unless @raffle.manual? %>
+          <div class="inputs-tickets">
+            <label for="quantity-aleatory-tickets"><%= t(:number_of_random_tickets) %></label>
+            <input type="number" id="quantity-aleatory-tickets" name="raffle[random_number_quantity]">
+          </div>
+        <% end %>
         <div class="hidden-input">
-            <select name="raffle-numbers" class="hidden-input-tickets">
-            </select>
+          <select name="raffle[numbers]" class="hidden-input-tickets">
+          </select>
+          <input type="text" name="raffle[id]" value="<%= @raffle.hashid %>">
         </div>
         <div class="container-raffle-button">
-            <%= link_to backoffice_raffles_tickets_path, class: 'raffle-button-buy' do %>
-            <button class="raffle-button-buy" type="submit"><%= t(:buy) %></button>
-            <% end %>
+          <button class="raffle-button-buy" type="submit"><%= t(:buy) %></button>
         </div>
-      </form>
+      <% end %>
     </div>
   </div>
 </div>
@@ -54,7 +56,7 @@
     <div class="container-numbers-table">
       <div class="raffles-cart-numbers">
         <% (1..@raffle.max_ticket_number).each do |number| %>
-          <div class="number-raffle" value="<%= number %>"><%= format("%0#{@raffle.max_ticket_number.to_s.size}d", number % (@raffle.max_ticket_number * 10)) %></div>
+          <div class="<%= raffle_ticket_status(@raffle, number)%>" value="<%= number %>"><%= format("%0#{@raffle.max_ticket_number.to_s.size}d", number % (@raffle.max_ticket_number * 10)) %></div>
         <% end %>
       </div>
       <div class="container-scroll-numbers">

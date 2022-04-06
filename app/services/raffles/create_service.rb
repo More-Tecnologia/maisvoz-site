@@ -32,7 +32,7 @@ module Raffles
     end
 
     def create_raffle_tickets
-      RaffleTicketCreateService.call(@raffle)
+      RaffleTicketCreateWorker.perform_async(@raffle.id)
     end
   end
 end

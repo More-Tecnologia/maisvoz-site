@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="box-orders">
+  <div class="box-second">
+    <a class="back-button" href="/">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </a>
+    <h2 class="page-title"><%= t(:my_raffles_tickets) %></h2>
+    <p class="text-muted page-title-alt"></p>
+  </div>
+  <div class="box-second">
+    <div class="card-box">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="table-responsive">
+            <table class="table table-bordered m-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th><%= t(:ticket) %></th>
+                  <th><%= t(:title) %></th>
+                  <th><%= t(:valor) %></th>
+                  <th><%= t(:status) %></th>
+                  <th><%= t(:active?) %></th>
+                  <th><%= t(:draw_date) %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @raffles_tickets.each do |raffle_ticket| %>
+                  <% raffle = raffle_ticket.raffle %>
+                  <tr>
+                    <td><%= raffle.hashid %></td>
+                    <td><%= raffle_ticket.number %></td>
+                    <td><%= raffle.title %></td>
+                    <td><%= number_to_currency(raffle.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></td>
+                    <td><%= t(raffle_ticket.status) %></td>
+                    <td><%= t(raffle.active) %></td>
+                    <td><%= raffle.draw_date %></td>
+                  </tr>
+                <% end %>
+                <% if @raffles_tickets.none? %>
+                  <tr>
+                    <td colspan="5" class="text-center"><%= t(:nothing_found) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <%= paginate @raffles_tickets %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

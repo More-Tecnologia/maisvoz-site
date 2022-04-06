@@ -26,7 +26,7 @@ function moveMenu() {
   let x = 0;
 
   if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-    x = -1;
+    x = 0;
   }
 
   list.forEach((item, i) => {
@@ -87,11 +87,11 @@ function itemSelected() {
   let counterMyTeam = 4;
 
   if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-    counterDashboard = -1;
-    counterUsers = 0;
-    counterShop = 1;
-    counterFinancial = 2;
-    counterMyTeam = 3;
+    counterDashboard = 0;
+    counterUsers = 1;
+    counterShop = 2;
+    counterFinancial = 3;
+    counterMyTeam = 4;
   }
 
   if (footerDashboardHome.includes(window.location.pathname)) {

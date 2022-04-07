@@ -108,6 +108,7 @@
 .container-data-raffles {
     width: 100%;
     display: flex;
+    justify-content: space-around;
 }
 
 @media (min-width: 300px) and (max-width: 880px) {

@@ -104,3 +104,39 @@
     display: flex;
     flex-direction: column;
 }
+
+.container-data-raffles {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+@media (min-width: 300px) and (max-width: 880px) {
+    .raffle-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .raffle-container-title {
+        width: 100%;
+    }
+
+    .numbers-available-container,
+    .type-raffle-container,
+    .draw-date-container,
+    .raffle-container-value {
+        width: 50%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .container-raffle-button {
+        width: 100%;
+    }
+
+    .container-data-raffles {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+}

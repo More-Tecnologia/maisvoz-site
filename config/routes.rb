@@ -238,6 +238,8 @@ Rails.application.routes.draw do
     resource :raffles_checkout, only: :create
     resource :raffles_carts, only: %i[show destroy]
     resources :raffles_tickets, only: %i[index show create]
+    resource :raffle_third_parties_checkout, only: :create
+    resource :raffle_third_parties_carts, only: :show
   end
 
   namespace :api do

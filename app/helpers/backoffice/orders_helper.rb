@@ -39,6 +39,16 @@ module Backoffice
       end
     end
 
+    def product_path_by_kind(product)
+      kind = product.kind
+      
+      if kind != "raffle"
+         backoffice_product_path(product)
+      else
+         backoffice_raffles_ticket_path(product.raffle)
+      end      
+    end
+
     def payment_transaction_link(order)
       return order.created_at.strftime('%d/%m/%Y %H:%M') if order.payment_transaction.blank?
 

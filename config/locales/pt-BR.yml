@@ -1814,3 +1814,4 @@ pt-BR:
   acquired: Adquirido
   reserved: Reservado
   available: Disponível
+  third_party_payment: "Cashback por ter efetuado o pagamento da fatura %{order_id} do usuário %{beneficiary}"

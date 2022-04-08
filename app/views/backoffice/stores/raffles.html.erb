@@ -26,7 +26,7 @@
         </div>
         <div class="numbers-available-container">
           <span class="numbers-available-title"> <%= t(:tickets_available) %> </span>
-          <span class="numbers-available"> <%= package.raffle.max_ticket_number %> </span>
+          <span class="numbers-available"> <%= available_raffle_tickets_count(package.raffle) %> </span>
         </div>
         <div class="type-raffle-container">
           <span class="type-raffle-title"><%= t(:type) %></span>

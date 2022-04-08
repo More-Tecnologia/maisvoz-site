@@ -8,8 +8,15 @@ module Backoffice
       acquired: "ticket-bought"
     }
 
-    def raffle_ticket_status(raffle, number)
-      ticket = raffle.raffle_tickets.find_by(number: number)
+    def available_raffle_tickets_count(raffle)
+      raffle.max_ticket_number - raffle.raffle_tickets.owned.size
+    end
+
+    def raffle_ticket_number_format(ticket)
+      format("%0#{ticket.raffle.max_ticket_number.to_s.size}d", ticket.number % (ticket.raffle.max_ticket_number * 10))
+    end
+
+    def raffle_ticket_status(ticket)
       COLOR_BY_STATUS[ticket.status.to_sym]
     end
   end

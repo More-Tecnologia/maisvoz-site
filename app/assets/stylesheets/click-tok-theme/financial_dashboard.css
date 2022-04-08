@@ -50,6 +50,28 @@
   color: white;
 }
 
+.f-third-party-area {
+  align-items: center;
+  background-color: #3F3F3F;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  height: 60px;
+  justify-content: center;
+  margin-top: 20px;
+  min-height: 60px;
+}
+
+.f-third-party-area svg {
+  margin-right: 10px;
+}
+
+.f-third-party-area a {
+  color: white;
+}
+
 .f-options-box {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     border-radius: 12px;

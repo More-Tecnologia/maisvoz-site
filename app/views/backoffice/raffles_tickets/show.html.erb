@@ -16,7 +16,7 @@
       <div class="top-cart-data">
         <div class="numbers-available-container">
             <div class="numbers-available-title"><%= t(:tickets_available) %></div>
-            <div class="numbers-available strong"><%= @raffle.max_ticket_number - @raffle.raffle_tickets.owned.size %></div>
+            <div class="numbers-available strong"><%= available_raffle_tickets_count(@raffle) %></div>
         </div>
         <div class="type-raffle-container">
             <div class="type-raffle-title"><%= t(:type) %></div>
@@ -55,8 +55,8 @@
     <h4><%= t(:select_your_number) %></h4>
     <div class="container-numbers-table">
       <div class="raffles-cart-numbers">
-        <% (1..@raffle.max_ticket_number).each do |number| %>
-          <div class="<%= raffle_ticket_status(@raffle, number)%>" value="<%= number %>"><%= format("%0#{@raffle.max_ticket_number.to_s.size}d", number % (@raffle.max_ticket_number * 10)) %></div>
+        <% @raffle.light_raffle_tickets.order(:created_at).each do |ticket| %>
+          <div class="<%= raffle_ticket_status(ticket)%>" value="<%= ticket.number %>"><%= raffle_ticket_number_format(ticket) %></div>
         <% end %>
       </div>
       <div class="container-scroll-numbers">

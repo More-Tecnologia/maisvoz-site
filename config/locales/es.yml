@@ -1897,3 +1897,4 @@ es:
   reserved: Reservado
   available: Disponible
   third_party_payment: "Cashback por haber realizado el pago de la factura %{order_id} del usuario %{beneficiary}"
+  pay_third_party_orders: 'Pagar pedidos de terceros'

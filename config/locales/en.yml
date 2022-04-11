@@ -1900,3 +1900,5 @@ en:
   acquired: Acquired
   reserved: Reserved
   available: Available
+  third_party_payment: "Cashback for having made payment of the %{beneficiary} user's %{order_id} invoice"
+  pay_third_party_orders: 'Pay third-party orders'

@@ -289,6 +289,10 @@
         margin-bottom: 5px;
     }
 
+    .raffles-cart-numbers {
+        overflow-y: scroll;
+    }
+
 }
 
 @media (min-width: 880px) and (max-width: 1280px) {

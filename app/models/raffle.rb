@@ -14,6 +14,8 @@ class Raffle < ApplicationRecord
   belongs_to :winning_ticket, class_name: 'RaffleTicket', optional: true
 
   has_many :raffle_tickets, dependent: :destroy
+  has_many :light_raffle_tickets,
+    -> { select(:number, :status, :raffle_id) }, class_name: 'RaffleTicket'
 
   validates :draw_date, presence: true, if: :awaiting_draw?
   validates :lotto_numbers, presence: true, if: :drawn?

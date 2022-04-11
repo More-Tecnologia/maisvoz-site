@@ -1,108 +1,146 @@
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track':
+'reload' %>
 
 <div class="box-orders" id="page-print">
-    <div class="box-second">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="clearfix">
-                    <div class="pull-right">
-                        <h4><%= t('invoice') %> # <br>
-                            <strong><%= @order.id %></strong>
-                            <br>
-                            <strong><%= @order.hashid %></strong>
-                        </h4>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="pull-left m-t-30">
-                            <% if !@order.billed %>
-                              <%= link_to t('bill_order'), backoffice_admin_order_mark_as_billed_path(@order),
-                                                           method: :post,
-                                                           class: 'btn btn-primary btn-sm m-t-10',
-                                                           data: { confirm: t('backoffice.orders.show.confirm_bill')} %><br><br>
-                            <% end %>
-                            <address>
-                              <strong><%= @order.user.name %></strong><br>
-                              <strong><%= @order.user.username %></strong><br>
-                              <strong><%= @order.user.product&.name %></strong><br>
-                              <strong><%= @order.user.decorate.main_document %></strong><br>
-                              <strong><%= @order.user.document_rg %> <%= @order.user.document_rg_expeditor %></strong><br>
-                              <strong><%= @order.user.zipcode %></strong><br>
-                              <%= @order.user.address %><br>
-                              <%= @order.user.address_2 %>, <%= @order.user.city %>, <%= @order.user.state %> <%= @order.user.country %><br>
-                              <abbr title="Phone">P:</abbr> <%= @order.user.phone %><br><br>
-                              <strong><%= t('attributes.dropship_links') %>:</strong><br>
-                              <% @order.products.each do |product| %>
-                                <a href=<%= product.dropship_link %> target="_blank"><%= product.dropship_link %></a><br>
-                              <% end %>
-                            </address>
-                        </div>
-                        <div class="pull-right m-t-30">
-                            <p><strong><%= Product.human_attribute_name(:order_date) %>: </strong> <%= l @order.created_at, format: '%B %d, %Y'  %></p>
-                            <p class="m-t-10"><strong><%= Product.human_attribute_name(:order_status) %>: </strong> <span class="label label-default"><%= t "defaults.#{@order.status}" %></span></p>
-                            <p class="m-t-10"><strong><%= Product.human_attribute_name(:id) %>: </strong> #<%= @order.hashid %></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-h-50"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table m-t-30">
-                                <thead>
-                                    <tr><th>#</th>
-                                    <th><%= Product.human_attribute_name(:item) %></th>
-                                    <th><%= Product.human_attribute_name(:quantity) %></th>
-                                    <th><%= OrderItem.human_attribute_name(:cellphone_number) %></th>
-                                    <th><%= Product.human_attribute_name(:unit_cost) %></th>
-                                    <th><%= Product.human_attribute_name(:total) %></th>
-                                </tr></thead>
-                                <tbody>                                    
-                                  <% @order.order_items.each do |oi| %>
-                                  <tr>
-                                  <%= oi.product %>                                 
-                                    <td><%= oi.product.id %></td>
-                                    <td><%= link_to oi.product.name, product_path_by_kind(oi.product) %></td>
-                                    <td><%= oi.quantity %></td>
-                                    <th><%= number_to_phone(oi.cellphone_number, pattern: /(\d{2})(\d{5})(\d{4})$/) if oi.cellphone_number.present? %></th>
-                                    <td><%= number_to_currency oi.unit_price %></td>
-                                    <td><%= number_to_currency oi.total %></td>
-                                  </tr>
-                                  <% end %>
-                                  <% @order.monthly_order_items.each do |oi| %>
-                                  <tr>
-                                    <td><%= oi.product.id %></td>
-                                    <td><%= link_to oi.product.name, '' %></td>
-                                    <td><%= oi.quantity %></td>
-                                    <td><%= number_to_currency oi.unit_price %></td>
-                                    <td><%= number_to_currency oi.total %></td>
-                                  </tr>
-                                  <% end %>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="border-radius: 0px;">
-                    <div class="col-md-3 col-md-offset-9">
-                        <p class="text-right"><b><%= Product.human_attribute_name(:subtotal) %>:</b> <%= @order.subtotal %></p>
-                        <p class="text-right"><%= Product.human_attribute_name(:shipping) %>: <%= @order.shipping %></p>
-                        <p class="text-right"><%= Product.human_attribute_name(:tax) %>: <%= @order.tax %></p>
-                        <hr>
-                        <h3 class="text-right"><%= number_to_currency @order.total %></h3>
-                    </div>
-                </div>
-                <hr>
-                <div class="hidden-print">
-                    <div class="pull-right">
-                        <a href="javascript:$('#page-print').printThis({importStyle: true})" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i></a>
-                    </div>
-                </div>
-            </div>
+  <div class="box-second">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="clearfix">
+          <div class="pull-right">
+            <h4>
+              <%= t('invoice') %> # <br />              
+              <strong><%= @order.id %></strong>              
+              <br />
+              <strong><%= @order.hashid %></strong>
+            </h4>
+          </div>
         </div>
-
+        <hr />
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-left m-t-30">
+              <% if !@order.billed %> <%= link_to t('bill_order'),
+              backoffice_admin_order_mark_as_billed_path(@order), method: :post,
+              class: 'btn btn-primary btn-sm m-t-10', data: { confirm:
+              t('backoffice.orders.show.confirm_bill')} %><br /><br />
+              <% end %>
+              <address>
+                <strong><%= @order.user.name %></strong><br />
+                <strong><%= @order.user.username %></strong><br />
+                <strong><%= @order.user.product&.name %></strong><br />
+                <strong><%= @order.user.decorate.main_document %></strong><br />
+                <strong
+                  ><%= @order.user.document_rg %> <%=
+                  @order.user.document_rg_expeditor %></strong
+                ><br />
+                <strong><%= @order.user.zipcode %></strong><br />
+                <%= @order.user.address %><br />
+                <%= @order.user.address_2 %>, <%= @order.user.city %>, <%=
+                @order.user.state %> <%= @order.user.country %><br />
+                <abbr title="Phone">P:</abbr> <%= @order.user.phone %><br /><br />
+                <strong><%= t('attributes.dropship_links') %>:</strong><br />
+                <% @order.products.each do |product| %>
+                <a href="<%=product.dropship_link %>"
+                  target="_blank"><%= product.dropship_link %></a
+                ><br />
+                <% end %>
+              </address>
+            </div>
+            <div class="pull-right m-t-30">
+              <p>
+                <strong
+                  ><%= Product.human_attribute_name(:order_date) %>:
+                </strong>
+                <%= l @order.created_at, format: '%B %d, %Y' %>
+              </p>
+              <p class="m-t-10">
+                <strong
+                  ><%= Product.human_attribute_name(:order_status) %>:
+                </strong>
+                <span class="label label-default"
+                  ><%= t "defaults.#{@order.status}" %></span
+                >
+              </p>
+              <p class="m-t-10">
+                <strong><%= Product.human_attribute_name(:id) %>: </strong> #<%=
+                @order.hashid %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="m-h-50"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table m-t-30">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th><%= Product.human_attribute_name(:item) %></th>
+                    <th><%= Product.human_attribute_name(:quantity) %></th>
+                    <th>
+                      <%= OrderItem.human_attribute_name(:cellphone_number) %>
+                    </th>
+                    <th><%= Product.human_attribute_name(:unit_cost) %></th>
+                    <th><%= Product.human_attribute_name(:total) %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @order.order_items.each do |oi| %>
+                  <tr>                    
+                    <td><%= oi.product.id %></td>
+                    <td><%= link_to_product_by_kind(oi.product) %></td>
+                    <td><%= oi.quantity %></td>
+                    <th>
+                      <%= number_to_phone(oi.cellphone_number, pattern:
+                      /(\d{2})(\d{5})(\d{4})$/) if oi.cellphone_number.present?
+                      %>
+                    </th>
+                    <td><%= number_to_currency oi.unit_price %></td>
+                    <td><%= number_to_currency oi.total %></td>
+                  </tr>
+                  <% end %> <% @order.monthly_order_items.each do |oi| %>
+                  <tr>
+                    <td><%= oi.product.id %></td>
+                    <td><%= link_to oi.product.name, '' %></td>
+                    <td><%= oi.quantity %></td>
+                    <td><%= number_to_currency oi.unit_price %></td>
+                    <td><%= number_to_currency oi.total %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="border-radius: 0px">
+          <div class="col-md-3 col-md-offset-9">
+            <p class="text-right">
+              <b><%= Product.human_attribute_name(:subtotal) %>:</b> <%=
+              @order.subtotal %>
+            </p>
+            <p class="text-right">
+              <%= Product.human_attribute_name(:shipping) %>: <%=
+              @order.shipping %>
+            </p>
+            <p class="text-right">
+              <%= Product.human_attribute_name(:tax) %>: <%= @order.tax %>
+            </p>
+            <hr />
+            <h3 class="text-right"><%= number_to_currency @order.total %></h3>
+          </div>
+        </div>
+        <hr />
+        <div class="hidden-print">
+          <div class="pull-right">
+            <a
+              href="javascript:$('#page-print').printThis({importStyle: true})"
+              class="btn btn-inverse waves-effect waves-light"
+              ><i class="fa fa-print"></i
+            ></a>
+          </div>
+        </div>
+      </div>
     </div>
-
+  </div>
 </div>

@@ -49,6 +49,7 @@ module Backoffice
     def product_path_list(product)
       path = PRODUCT_PATH_LIST[product.kind.to_sym]
       return unless path
+      
       path.is_a?(Array) ? send(path.first, product.send(path.last)) : send(path)
     end
 

@@ -19,7 +19,6 @@ module Raffles
         create_product
         create_raffle!
         add_thumb
-        byebug
         create_raffle_tickets
       end
     end

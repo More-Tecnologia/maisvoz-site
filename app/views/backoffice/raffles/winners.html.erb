@@ -1,42 +1,82 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+                       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+                       crossorigin="anonymous">
 
 <div class="page">
   <a class="back-button" href="/backoffice/financial_dashboard?locale=en">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+         fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-
+                                 .708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0
+                                 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
     </svg>
   </a>
-  <div class="card-order">
-    <div class="is-page-title">
-      <span class="title">
-        Winners
-      </span>
-      <div class="btn-group dropleft">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 20px;
-        background: #30da03;
-        border: none;">
-            <%= t(:filter) %>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+  <div class="is-page-title">
+    <span class="title">
+      Winners
+    </span>
+    <div class="btn-group dropleft">
+      <button class="btn btn-secondary dropdown-toggle" type="button"
+              id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" style="border-radius: 20px;"
+              background: #30da03; border: none;">
+        <%= t(:filter) %>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button"></button>
           <button class="dropdown-item" type="button"></button>
-            <button class="dropdown-item" type="button"></button>
+      </div>
+    </div>
+  </div>
+
+  <% @raffles.where(status: 4).each do |raffle| %>
+    <div class="card-order">
+      <div class="row">
+        <div class="column">
+          <img class="card-img-left" src="..." alt="Card image cap">
+        </div>
+        <div class="column">
+          <div class="row">
+            <div class="card-body">
+              <div><%= t('ID do sorteio') %></div>
+              <%= raffle.id %>
+            </div>
+            <div class="card-body">
+              <div><%= t('Numeros sorteados') %></div>
+              <%= raffle.lotto_numbers_combination %>
+            </div>
+            <div class="card-body">
+              <div><%= t('Data do sorteio') %></div>
+              <%= raffle.draw_date %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="card-body">
+              <div><%= t('ID do bilhete sorteado') %></div>
+              <%= raffle.winning_ticket_id %>
+            </div>
+            <div class="card-body">
+              <div><%= t('N do bilhete sorteado') %></div>
+              <%= raffle.lotto_numbers_combination %>
+            </div>
+            <div class="card-body">
+              <div><%= t('Nome do ganhador') %></div>
+              <%= raffle.winner_id %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <section>
-        <div class="th-history-list">
-          <span style="font-size: 15px;">
-            Bruno
-          </span>
-        </div>
-    <section>
-  </div>
+  <% end %>
+  <% if @raffles.none? %>
+    <tr>
+      <td colspan="5" class="text-center"><%= t(:nothing_found) %></td>
+    </tr>
+  <% end %>
   <div class="row">
     <div class="col-sm-12">
-        paginate Winners
+      <%= paginate @raffles.where(status: 4) %>
     </div>
   </div>
 </div>

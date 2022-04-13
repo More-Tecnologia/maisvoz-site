@@ -30,8 +30,10 @@ class Raffle < ApplicationRecord
   delegate :active, :description, :price, :price_cents, :short_description,
            to: :product, allow_nil: true
 
+  scope :finished, -> { where(Raffle.statuses == "finished") }
+
   def path
-    thumb.try(:fullpath)
+    thumb.try(:fullpath).to_s
   end
 
   private

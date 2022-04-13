@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'raffle-third-parties-cart/index.css' %>
 
 <div class="main-container">
-  <a class="back-button" href="/">
+  <a class="back-button" href="<%= backoffice_financial_dashboard_index_path %>">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
@@ -16,56 +16,70 @@
       />
     </svg>
   </a>
-  <span class="main-title">Pagamento de Terceiros</span>
-  <form action="" class="form-search-order">
-    <p>Pesquisa do pedido</p>
+  <span class="main-title"><%= t(:third_parties_payment) %></span>
+  <%= form_tag backoffice_raffle_third_parties_carts_path, method: :get, class: "form-search-order" do %>
+    <p><%= t(:order_search) %></p>
     <div class="container-form-input">
-      <input type="text" class="input-search-order" />
-      <button class="button-apply">Aplicar</button>
+      <%= text_field_tag :hashid, @order&.hashid, class: 'input-search-order' %>
+      <%= submit_tag t('datagrid.form.search'), class: 'button-apply' %>
     </div>
-  </form>
-  <div class="container-raffles-parties">
-    <div class="card-raffle-cart">
-      <img
-        class="img-raffle-parties"
-        src="https://macmagazine.com.br/wp-content/uploads/2021/10/12-iphone13pro02-scaled.jpg"
-        alt=""
-        srcset=""
-      />
-      <div class="container-raffle-cart">
-        <div class="container-raffle-top">
-          <span class="small-text">ID do bilhete</span>
-          <span class="text-bold">00001</span>
+  <% end %>
+  <% if @order.present? %>
+    <div class="container-raffles-parties">
+      <% @order.products.includes(:raffle).uniq.each do |product| %>
+        <div class="card-raffle-cart">
+          <img
+            class="img-raffle-parties"
+            src="<%= product.raffle.path %>"
+            alt="<%= t(:raffle_image) %>"
+          />
+          <div class="container-raffle-cart">
+            <div class="container-raffle-top">
+              <span class="small-text"><%= t(:id) %> </span>
+              <span class="text-bold"><%= product.raffle.hashid %></span>
+            </div>
+            <div class="container-raffle-bottom">
+              <span class="small-text"><%= t(:raffle_status) %></span>
+              <span class="text-bold raffle-status status-waiting"><%= product.raffle.status %></span>
+            </div>
+          </div>
+          <div class="container-raffle-cart">
+            <div class="container-raffle-top">
+              <span class="small-text"><%= t(:raffle_name) %></span>
+              <span class="text-bold"><%= product.raffle.title %></span>
+            </div>
+            <div class="container-raffle-bottom">
+              <span class="small-text"><%= t(:order_status) %></span>
+              <div class="raffle-status status-waiting"><%= @order.status %></div>
+            </div>
+          </div>
         </div>
-        <div class="container-raffle-bottom">
-          <span class="small-text">Comprador</span>
-          <span class="text-bold">Phineas</span>
+      <% end %>
+      <div class="cart-details">
+        <div class="detail-container">
+          <span class="cart-detail__text"> <%= t(:order_owner) %> </span>
+          <span class="cart-detail__text-bold"> <%= @order.user.username %> </span>
         </div>
+        <div class="detail-container">
+          <span class="cart-detail__text"> <%= t(:available_balance) %> </span>
+          <span class="cart-detail__text-bold"> <%= number_to_currency(current_user.available_balance).gsub('USD ', '$ ') %> </span>
+        </div>
+        <div class="detail-container">
+          <span class="cart-detail__text"> <%= t(:quantity) %> </span>
+          <span class="cart-detail__text-bold"> <%= @order.order_items.size %> </span>
+        </div>
+        <div class="detail-container">
+          <span class="cart-detail__text"> <%= t(:total) %> </span>
+          <span class="cart-detail__text-bold"> <%= number_to_currency(@order.total).gsub('USD ', '$ ') %> </span>
+        </div>
+        <div class="detail-container">
+          <span class="cart-detail__text"> <%= t(:cashback) %> </span>
+          <span class="cart-detail__text-bold"> <%= number_to_currency(@order.total/10).gsub('USD ', '$ ') %> </span>
+        </div>
+        <button class="btn-checkout">
+          <%= link_to t(:make_payment), backoffice_raffle_third_parties_checkout_path(order_id: @order.hashid), method: :post %>
+        </button>
       </div>
-      <div class="container-raffle-cart">
-        <div class="container-raffle-top">
-          <span class="small-text">Nome da Rifa</span>
-          <span class="text-bold">Iphone 13 Pro Max</span>
-        </div>
-        <div class="container-raffle-bottom">
-          <span class="small-text">Status da Rifa</span>
-          <div class="raffle-status status-waiting">Aguardando Pagamento</div>
-        </div>
-      </div>
-  </div>
-  <div class="cart-details">
-    <div class="detail-container">
-      <span class="cart-detail__text"> Saldo Disponível </span>
-      <span class="cart-detail__text-bold"> $ 260,00 </span>
     </div>
-    <div class="detail-container">
-      <span class="cart-detail__text"> Quantidade </span>
-      <span class="cart-detail__text-bold"> 1 </span>
-    </div>
-    <div class="detail-container">
-      <span class="cart-detail__text"> Total </span>
-      <span class="cart-detail__text-bold"> $ 60,00 </span>
-    </div>
-    <button class="btn-checkout">Finalizar Compra</button>
-  </div>
+  <% end %>
 </div>

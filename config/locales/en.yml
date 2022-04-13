@@ -1902,3 +1902,15 @@ en:
   available: Available
   third_party_payment: "Cashback for having made payment of the %{beneficiary} user's %{order_id} invoice"
   pay_third_party_orders: 'Pay third-party orders'
+  third_parties_payment: Third parties payment
+  order_search: Order search
+  make_payment: Make payment
+  raffle_image: Raffle image
+  raffle_name: Raffle name
+  order_status: Order status
+  raffle_status: Raffle status
+  order_owner: Order owner
+  quantity: Quantity
+  cashback: Cashback
+  raffle_order_not_found: Raffle order not found
+  successfully_paid: Successfully paid!

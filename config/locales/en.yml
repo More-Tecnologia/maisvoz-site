@@ -1910,7 +1910,7 @@ en:
   order_status: Order status
   raffle_status: Raffle status
   order_owner: Order owner
-  quantity: quantity
+  quantity: Quantity
   cashback: Cashback
   raffle_order_not_found: Raffle order not found
   successfully_paid: Successfully paid!

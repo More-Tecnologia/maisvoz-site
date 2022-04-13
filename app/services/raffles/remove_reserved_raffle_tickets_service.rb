@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Raffles
-  class RemoveReservedRaffleTicketsService
+  class RemoveReservedRaffleTicketsService < ApplicationService
     def initialize(params)
       @order = params[:order]
     end

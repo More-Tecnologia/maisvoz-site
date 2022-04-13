@@ -1898,3 +1898,15 @@ es:
   available: Disponible
   third_party_payment: "Cashback por haber realizado el pago de la factura %{order_id} del usuario %{beneficiary}"
   pay_third_party_orders: 'Pagar pedidos de terceros'
+  third_parties_payment: Pago de terceros
+  order_search: Búsqueda de pedidos
+  make_payment: Realizar pago
+  raffle_image: Imagen de la rifa
+  order_owner: Propietario de la orden
+  quantity: Cantidad
+  raffle_name: Nombre de la rifa
+  order_status: Estado del pedido
+  raffle_status: Estado de la rifa
+  cashback: Cashback
+  raffle_order_not_found: Pedido de sorteo no encontrado
+  successfully_paid: ¡Pagado exitosamente!

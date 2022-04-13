@@ -1816,3 +1816,15 @@ pt-BR:
   available: Disponível
   third_party_payment: "Cashback por ter efetuado o pagamento da fatura %{order_id} do usuário %{beneficiary}"
   pay_third_party_orders: 'Pagar pedidos de tercerios'
+  third_parties_payment: Pagamento para terceiros
+  order_search: Buscar pedido
+  make_payment: Realizar pagamento
+  raffle_image: Imagem do sorteio
+  order_owner: Proprietário do pedido
+  quantity: Quantidade
+  raffle_name: Nome do sorteio
+  order_status: Status do pedido
+  raffle_status: Status do sorteio
+  cashback: Cashback
+  raffle_order_not_found: Pedido de sorteio não encontrado
+  successfully_paid: Pago com sucesso!

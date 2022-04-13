@@ -66,6 +66,8 @@ module Financial
 
     def create_order_payment
       order.paid!
+      return if order.balance?
+
       Financial::OrderPaymentService.call(order: order,
                                           enabled_bonification: enabled_bonification)
     end

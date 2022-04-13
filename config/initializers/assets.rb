@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile += %w( charts.js recaptcha.js amount_cleasing.js utilities/select2.js flag-icon.css active-btn-tabs.js)
-Rails.application.config.assets.precompile += %w( dashboards/* landing_page/* deposits/* click-tok-theme/* adverts/*)
+Rails.application.config.assets.precompile += %w( dashboards/* landing_page/* deposits/* click-tok-theme/* adverts/* shared/* store/*  )
 Rails.application.config.assets.precompile += %w( ads/index.css )
 Rails.application.config.assets.precompile += %w( ads/index.js )
 Rails.application.config.assets.precompile += %w( raffles/index.css )
@@ -18,6 +18,7 @@ Rails.application.config.assets.precompile += %w( raffles/register-raffle.css )
 Rails.application.config.assets.precompile += %w( raffles/winners.css )
 Rails.application.config.assets.precompile += %w( raffles/tickets.css )
 Rails.application.config.assets.precompile += %w( raffles/raffles-tickets.js )
+Rails.application.config.assets.precompile += %w( raffle-third-parties-cart/index.css )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

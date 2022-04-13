@@ -200,6 +200,10 @@ class FinancialReason < ApplicationRecord
     @@ads_indirect_referral_bonus_chargeback ||= find_by(code: '5800')
   end
 
+  def self.cashback
+    @@cashback ||= find_by(code: '5900')
+  end
+
   def self.expense
     @@expense ||= find_by(code: '3800')
   end

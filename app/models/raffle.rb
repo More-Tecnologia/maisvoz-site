@@ -31,7 +31,7 @@ class Raffle < ApplicationRecord
            to: :product, allow_nil: true
 
   def path
-    thumb.try(:fullpath)
+    thumb.try(:fullpath).to_s
   end
 
   private

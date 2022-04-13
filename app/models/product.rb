@@ -24,6 +24,8 @@ class Product < ApplicationRecord
   has_many :shippings
   has_many :product_descriptions
   has_many :ads, class_name: 'Banner'
+  has_many :order_items
+  has_many :orders, through: :order_items
 
   serialize :maturity_days, Array
 

@@ -1,4 +1,6 @@
 <%= stylesheet_link_tag 'click-tok-theme/orders' %>
+<%= stylesheet_link_tag 'store/raffles/winners' %>
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
                        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
                        crossorigin="anonymous">
@@ -30,39 +32,39 @@
     </div>
   </div>
 
-  <% @raffles.where(status: 4).each do |raffle| %>
-    <div class="card-order">
+  <% @raffles.each do |raffle| %>
+    <div class="raffles-winners-card-order card-order">
       <div class="row">
         <div class="column">
-          <img class="card-img-left" src="..." alt="Card image cap">
+          <%= raffle.winner.decorate.avatar_image_tag %>
         </div>
         <div class="column">
           <div class="row">
             <div class="card-body">
-              <div><%= t('ID do sorteio') %></div>
+              <div><%= t('ID of draw') %></div>
               <%= raffle.id %>
             </div>
             <div class="card-body">
-              <div><%= t('Numeros sorteados') %></div>
+              <div><%= t('Draw numbers') %></div>
               <%= raffle.lotto_numbers_combination %>
             </div>
             <div class="card-body">
-              <div><%= t('Data do sorteio') %></div>
+              <div><%= t('Draw date') %></div>
               <%= raffle.draw_date %>
             </div>
           </div>
           <div class="row">
             <div class="card-body">
-              <div><%= t('ID do bilhete sorteado') %></div>
+              <div><%= t('ID of draw ticket') %></div>
               <%= raffle.winning_ticket_id %>
             </div>
             <div class="card-body">
-              <div><%= t('N do bilhete sorteado') %></div>
+              <div><%= t('Number draw ticket') %></div>
               <%= raffle.lotto_numbers_combination %>
             </div>
             <div class="card-body">
-              <div><%= t('Nome do ganhador') %></div>
-              <%= raffle.winner_id %>
+              <div><%= t('Winner name') %></div>
+              <%= raffle.winner.username %>
             </div>
           </div>
         </div>
@@ -76,7 +78,7 @@
   <% end %>
   <div class="row">
     <div class="col-sm-12">
-      <%= paginate @raffles.where(status: 4) %>
+      <%= paginate @raffles.finished %>
     </div>
   </div>
 </div>

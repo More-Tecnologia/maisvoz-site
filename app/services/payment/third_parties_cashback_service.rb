@@ -10,7 +10,7 @@ module Payment
     private
 
     def amount_to_cashback
-      @order.total_cents / 1000
+      @order.total_cents.to_f / 1000
     end
 
     def call
@@ -18,7 +18,7 @@ module Payment
     end
 
     def cashback_reason
-      FinancialReason.cashback_reason
+      FinancialReason.cashback
     end
 
     def create_cashback_payment

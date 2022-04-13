@@ -1,5 +1,12 @@
 module Backoffice
   module OrdersHelper
+    PRODUCT_PATH_LIST = {
+      course: [:backoffice_course_path, :course],
+      deposit: :backoffice_products_path,
+      publicity: :backoffice_admin_banner_stores_path,
+      raffle: [:backoffice_raffles_ticket_path, :raffle]
+    }
+
     def valid_deposit_options
       deposit_options.select { |d| d.second >= minimum_deposit_value }
     end
@@ -37,6 +44,18 @@ module Backoffice
                       title: t(:bill) } do
         content_tag :i, '', class: 'fas fa-stamp'
       end
+    end
+
+    def product_path_list(product)
+      path = PRODUCT_PATH_LIST[product.kind.to_sym]
+      return unless path
+      
+      path.is_a?(Array) ? send(path.first, product.send(path.last)) : send(path)
+    end
+
+    def link_to_product_by_kind(product)
+      path = product_path_list(product)
+      path ? (link_to product.name, path) : product.name
     end
 
     def payment_transaction_link(order)

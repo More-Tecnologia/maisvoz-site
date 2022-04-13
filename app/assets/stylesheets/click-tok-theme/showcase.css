@@ -1,52 +1,39 @@
 .container-showcase {
-  width: 100%;
   margin: auto;
+  min-width: 270px;
+  width: 90%;  
 }
 
-.container-showcase-video {
-  margin-top: 20px;
+.container-showcase-video {  
   display: flex;
   flex-direction: column;
+  margin-top: 20px;  
 }
 
 .title-showcase {
   font-weight: bold;
 }
 
-.video-showcase {
-  background-image: url('courses/course2.png');
-  width: 90%;
-  margin: auto;
-  height: 200px;
-  background-size: 100% 100%;
-  border-radius: 20px;
+.video-showcase {    
+  margin: 20px 0;   
 }
 
-.showcase-created-by,
-.container-reputation,
-.title-video-showcase,
-.subtitle-video-showcase,
-.title-showcase,
-.description-showcase,
-.additionals,
-.top-new-showcase {
-  width: 90%;
-  margin: auto;
+.video-showcase img{
+  aspect-ratio: 5 / 3;
+  border-radius: 20px; 
+  display: block;
+  height: 300px;
+  width: 500px;     
 }
 
 .showcase-created-by span {
-  font-size: 11px;
-  color: grey;
-}
-
-.showcase-created-by span:nth-child(2) {
-  font-weight: bold;
-  font-size: 12px;
   color: black;
+  font-size: 12px;  
+  font-weight: bold;
 }
 
 .title-video-showcase {
-  font-weight: bold;
+  font-weight: bold;    
 }
 
 .subtitle-video-showcase {
@@ -54,26 +41,26 @@
 }
 
 .container-payment-showcase {
-  width: 90%;
-  margin: auto;
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  max-width: 500px;
 }
+
 .value-payment {
-  font-weight: bold;
   font-size: 25px;
+  font-weight: bold;  
 }
 
 .btn-showcase-buy {
   background: linear-gradient(to bottom, #26ac00, #58f701);
-  color: white;
   border: none;
-  padding: 5px 0;
-  width: 100px;
   border-radius: 5px;
+  color: white;
   margin-left: 10px;
+  padding: 5px;
   transition: .5s;
+  width: 100px;
 }
 
 .btn-showcase-buy:hover {
@@ -85,8 +72,8 @@
 }
 
 .description-showcase span {
-  font-weight: bold;
   font-size: 15px;
+  font-weight: bold;  
 }
 
 .description-showcase p {
@@ -103,8 +90,8 @@
 }
 
 .title-additionals {
-  font-weight: bold;
   font-size: 15px;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
@@ -114,24 +101,14 @@
 }
 
 .title-related-videos {
-  font-weight: bold;
   font-size: 15px;
+  font-weight: bold;  
 }
 
-@media (min-width: 880px) {
-  .video-showcase {
-    height: 350px;
-  }
-
-  .container-related-videos {
-    width: 90%;
-    padding: 0;
-    margin: auto;
+@media (min-width: 880px) {  
+  .container-related-videos {    
+    padding: 0;    
   }
 }
 
-@media(min-width: 1280px){
-  .video-showcase {
-    height: 500px;
-  }
-}
+@media(min-width: 1280px){}

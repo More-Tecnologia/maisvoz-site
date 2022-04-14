@@ -21,6 +21,7 @@
   padding: 12px 20px;
   transition: all 0.5s;
 }
+
 .store-buttom:last-child {
   margin-right: 0;
 }

@@ -1,0 +1,75 @@
+.store-banner-container {
+  background: linear-gradient(to bottom, #817AC1, #adadfb);
+  border-radius: 8px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1360px;
+  min-height: 400px;
+  min-width: 460px;
+  padding: 10px;
+  width: 90%;
+}
+
+.store-banner-text {
+  color: white;
+}
+
+.store-banner-pretext{
+  background: white;
+  border-radius: 4px;
+  color: #9c9c9c;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 400;
+  margin: 30px 0 0 22px;
+  padding: 2px 12px 2px 14px;
+  position: relative;
+}
+.store-banner-pretext-icon{
+  background: gray;
+  border-radius: 50%;
+  display: block;
+  height: 26px;
+  left: -18px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 26px;
+}
+
+.store-banner-title{
+  color: white;
+  font-size: 46px;
+  font-weight: 600;
+  margin-top: 36px;
+}
+
+.store-banner-description{
+  font-size: 24px;
+}
+
+.store-banner-footer{
+display: flex;
+justify-content: space-between;
+margin-top: 24px;
+max-width: 436px;
+min-width: 270px;
+width: 60%;
+}
+
+.store-banner-footer-box{
+  display: flex;
+  flex-flow: column;
+}
+
+.store-banner-value-number, .store-banner-draw-date{
+  font-weight: 900;
+}
+
+.store-banner-img{
+  display: block;
+  height: 100%;
+  max-height: 260px;
+}

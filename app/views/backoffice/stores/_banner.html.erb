@@ -1,25 +1,28 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/banner' %>
-<% @packages.each do |package| %>
-  <div class="store-banner-container">
-    <div class="store-banner-text">
-      <span class="store-banner-pretext"><%= image_tag(banner.badge_pretext_image, class: 'store-banner-pretext-icon') %><%= banner.pretext %></span>
-      <h4 class="store-banner-title"><%= banner.title %></h4>
-      <span class="store-banner-description"><%= banner.description %></span>
-      <div class="store-banner-footer">
-        <p class="store-banner-footer-box">
-          <span class="store-banner-value">Valor</span>
-          <span class="store-banner-value-number">
-            <%= banner.price %>
-          </span>
-        </p>
-        <p class="store-banner-footer-box">
-          <span class="store-banner-draw">Sorteio</span>
-          <span class="store-banner-draw-date"><%= banner.date %></span>
-        </p>
-      </div>
-    </div>  
-    <div class="store-banner-picture-container">
-      <%= image_tag(banner.product_image, class: 'store-banner-img') %>   
+
+<div class="store-banner-container">
+  <div class="store-banner-text">
+    <span class="store-banner-pretext">
+      <%= image_tag(badge_pretext_image, class: 'store-banner-pretext-icon') %>
+      <%= pretext %>
+    </span>
+    <h4 class="store-banner-title"><%= title %></h4>
+    <span class="store-banner-description"><%= description %></span>
+    <div class="store-banner-footer">
+      <p class="store-banner-footer-box">
+        <span class="store-banner-value">Valor</span>
+        <span class="store-banner-value-number">
+          <%= price %>
+        </span>
+      </p>
+      <p class="store-banner-footer-box">
+        <span class="store-banner-draw">Sorteio</span>
+        <span class="store-banner-draw-date"><%= date %></span>
+      </p>
     </div>
+  </div>  
+  <div class="store-banner-picture-container">
+    <%= image_tag(product_image, class: 'store-banner-img') %>   
   </div>
-<% end %>
+</div>
+

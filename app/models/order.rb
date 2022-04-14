@@ -60,6 +60,7 @@ class Order < ApplicationRecord
   has_many :scores
   has_many :financial_transactions
   has_many :ads, class_name: 'Banner'
+  has_many :products, through: :order_items
 
   has_one :payment_transaction
   has_one :bonus_contract
@@ -134,9 +135,9 @@ class Order < ApplicationRecord
     !!paid_at
   end
 
-  def products
-    @products ||= order_items.includes(product: [:trail]).map(&:product)
-  end
+  # def products
+  #   @products ||= order_items.includes(product: [:trail]).map(&:product)
+  # end
 
   def detached_products_score
     items = order_items.includes(:product).select { |item| item.product.detached? }

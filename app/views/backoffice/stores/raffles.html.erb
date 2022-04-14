@@ -2,14 +2,15 @@
 
 <h3 class="page-title">Store</h3>
 <%= render 'menu' %>
-<%= render 'banner', banner = { badge_pretext_image: "stores/badge.svg",
-                                date: "13/04/2022",
-                                description: "Apple (128gb) Azul",
-                                pretext: "Últimos Numeros",
-                                price: "$ 20",
-                                product_image: "temp/phone.png",                   
-                                title: "Iphone 13 Pro" 
-                              } %>
+
+<%= render 'banner',  badge_pretext_image: "stores/badge.svg",
+                      date: "13/04/2022",
+                      description: "Apple (128gb) Azul",
+                      pretext: "Últimos Numeros",
+                      price: "$ 20",
+                      product_image: "temp/phone.png",                   
+                      title: "Iphone 13 Pro" 
+                    %>
 <div class="main-box">
   <% @packages.each do |package| %>
         <span class="raffle-title"> <%= package.name %> </span>

@@ -6,12 +6,7 @@ module Backoffice
 
     def agreement; end
 
-    def winners
-      @raffles = Raffle.finished
-                       .order(created_at: :desc)
-                       .page(params[:page])
-                       .per(10)
-    end
+    def winners; end
 
     def show; end
   end

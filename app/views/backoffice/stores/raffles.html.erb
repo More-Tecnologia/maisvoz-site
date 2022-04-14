@@ -1,52 +1,20 @@
-<%= stylesheet_link_tag 'click-tok-theme/games' %>
-<%= stylesheet_link_tag 'click-tok-theme/store' %>
-<%= stylesheet_link_tag 'raffles/index' %>
-<div class="main-box">
-  <%= render 'menu' %>
-  <div class="banner-games">
-    <div class="banner-games__content-left">
-      <h3><%= t(:online_raffles).upcase  %></h3>
-      <h1><%= t(:wait).upcase %></h1>
-      <h2><%= t(:news_coming_soon).upcase  %></h2>
-      <p><%= t(:the_best_raffles_will_be_here).upcase  %></p>
-    </div>
-    <div class="banner-games__content-right">
-      <%= image_tag('nav-store/mulher.png') %>
-    </div>
-  </div>
-</div>
-<br><br><br>
-<div class="raffles-page-container">
-  <div class="raffles-container">
-    <% @packages.each do |package| %>
-      <div class="raffle-container">
-        <div class="raffle-container-title">
-          <span class="raffle-title"> <%= package.name %> </span>
-          <%= image_tag(package.raffle.path, class: 'raffle-img') %>
-        </div>
+<%= stylesheet_link_tag 'click-tok-theme/stores/index' %>
 
-        <div class="numbers-available-container">
-          <span class="numbers-available-title"> <%= t(:tickets_available) %> </span>
-          <span class="numbers-available"> <%= available_raffle_tickets_count(package.raffle) %> </span>
-        </div>
-        <div class="type-raffle-container">
-          <span class="type-raffle-title"><%= t(:type) %></span>
-          <span class="type-raffle"><%= I18n.t("activerecord.enums.raffle.kind.#{package.raffle.kind}").humanize %></span>
-        </div>
-        <div class="draw-date-container">
-          <span class="draw-date-title"></span>
-          <span class="draw-date"></span>
-        </div>
-        <div class="raffle-container-value">
-          <span class="raffle-value-title"> <%= t(:price) %> </span>
-          <span class="raffle-value"> <%= number_to_currency(package.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></span>
-        </div>
-        <div class="container-raffle-button">
-          <%= link_to backoffice_raffles_ticket_path(package.raffle), class: 'raffle-button' do %>
-            <button class="raffle-button"><%= t(:select) %></button>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+<h3 class="page-title">Store</h3>
+<%= render 'menu' %>
+<%= render 'banner' %>
+<div class="main-box">
+  <% @packages.each do |package| %>
+        <span class="raffle-title"> <%= package.name %> </span>
+        <%= image_tag(package.raffle.path, class: 'raffle-img') %>
+        <span class="numbers-available-title"> <%= t(:tickets_available) %> </span>
+        <span class="numbers-available"> <%= available_raffle_tickets_count(package.raffle) %> </span>        
+        <span class="type-raffle-title"><%= t(:type) %></span>
+        <span class="type-raffle"><%= I18n.t("activerecord.enums.raffle.kind.#{package.raffle.kind}").humanize %></span>         
+        <span class="raffle-value-title"><%= t(:price) %></span>
+        <span class="raffle-value"> <%= number_to_currency(package.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></span>       
+        <%= link_to backoffice_raffles_ticket_path(package.raffle), class: 'raffle-button' do %>
+          <button class="raffle-button"><%= t(:select) %></button>
+        <% end %>
+  <% end %>
 </div>

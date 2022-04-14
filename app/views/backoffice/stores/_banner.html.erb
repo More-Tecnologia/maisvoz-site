@@ -1,9 +1,9 @@
-<%= stylesheet_link_tag 'click-tok-theme/store/shared/banner' %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/shared/banner' %>
 <% @packages.each do |package| %>
 
 <div class="store-banner-container">
   <div class="store-banner-text">
-    <span class="store-banner-pretext"><i class="store-banner-pretext-icon"></i>Últimos Numeros</span>
+    <span class="store-banner-pretext"><%= image_tag('store/banner-badge.svg', class: 'store-banner-pretext-icon') %>Últimos Numeros</span>
     <h4 class="store-banner-title"><%= package.name %></h4>
     <span class="store-banner-description">Apple (128GB) Azul</span>
     <div class="store-banner-footer">

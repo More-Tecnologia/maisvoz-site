@@ -9,8 +9,10 @@ module Backoffice
       recurrent_bonus: FinancialReason.matching_bonus,
       master_leader_bonus: FinancialReason.master_leader_bonus,
       chargeback_by_inactivity: FinancialReason.chargeback_by_inactivity,
-      chargeback_by_max_task_gains: FinancialReason.chargeback_by_max_gains
+      chargeback_by_max_task_gains: FinancialReason.chargeback_by_max_gains,
+      order_payment_with_balance: FinancialReason.order_payment_with_balance
     }
+    
 
     def index
       if current_user.empreendedor?

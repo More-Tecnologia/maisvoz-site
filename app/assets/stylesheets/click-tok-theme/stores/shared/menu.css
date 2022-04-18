@@ -3,7 +3,7 @@
   justify-content: flex-start;
   margin-bottom: 10px;
   max-width: 1360px;
-  overflow: scroll;
+  overflow: auto;
   padding: 20px 5%;
   width: 100%;
 }

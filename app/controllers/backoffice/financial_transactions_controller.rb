@@ -13,7 +13,6 @@ module Backoffice
       task_performed: FinancialReason.yield_bonus
     }
     
-
     def index
       if current_user.empreendedor?
         @financial_transactions =

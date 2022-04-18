@@ -110,6 +110,12 @@ module Backoffice
       return number_to_currency(-transaction.cent_amount) if transaction.financial_reason.morenwm_moneyflow_debit?
       ''
     end
+    
+    def change_color_on_debit_transaction(financial_transaction)
+      if financial_transaction.debit? && current_user != User.find_morenwm_user
+        'text-danger'
+      end
+    end
 
   end
 end

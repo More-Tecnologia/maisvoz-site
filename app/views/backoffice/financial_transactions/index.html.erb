@@ -80,7 +80,7 @@
           </div>
           <div class="earnings-status">
             <div class="wr-align">
-              <div class="wr-amount <%= 'text-danger' if financial_transaction.debit? && current_user != User.find_morenwm_user %>">
+              <div class="wr-amount <%= change_color_on_debit_transaction(financial_transaction)%>">
                 <span>
                   <%= format_cent_amount_value(financial_transaction) %>
                 </span>

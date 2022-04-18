@@ -3,7 +3,6 @@
   min-height: 100vh;
 }
 
-
 .dropdown-item a {
   color: black;
   display: inline-block;
@@ -16,115 +15,115 @@
 }
 
 .card-order {
-    background-color: rgb(255, 255, 255);
-    border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-    margin-top: 40px;
-    margin: auto;
-    padding: 20px;
-    width: 100%;
-  }
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  margin-top: 40px;
+  margin: auto;
+  padding: 20px;
+  width: 100%;
+}
 .back-button {
-    background: #30da03;
-    border-radius: 60px;
-    color: white;
-    display: flex;
-    height: 27px;
-    justify-content: center;
-    width: 50px;
-  }
+  background: #30da03;
+  border-radius: 60px;
+  color: white;
+  display: flex;
+  height: 27px;
+  justify-content: center;
+  width: 50px;
+}
 
 .th-history-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 
 .th-history-task-title {
-    color: #373737;
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-    font-weight: bold;
-    justify-content: center;
-  }
+  color: #373737;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: bold;
+  justify-content: center;
+}
 
 .th-history-task-status {
-    display: flex;
-    justify-content: space-between;
-  }
+  display: flex;
+  justify-content: space-between;
+}
 
-.th-history-task-status div{
-    display: flex;
-  }
+.th-history-task-status div {
+  display: flex;
+}
 
 .th-history-task-id {
-    color: #9B9B9B;
-    font-size: 10px;
-    font-weight: bold;
-  }
+  color: #9b9b9b;
+  font-size: 10px;
+  font-weight: bold;
+}
 
 .th-history-task-status-action {
-    align-items: center;
-    background-color: #FF0000;
-    border-radius: 25px;
-    color: white;
-    display: flex;
-    font-size: 12px;
-    height: 20px;
-    justify-content: center;
-    white-space: nowrap;
-    width: 110px;
-  }
+  align-items: center;
+  background-color: #ff0000;
+  border-radius: 25px;
+  color: white;
+  display: flex;
+  font-size: 12px;
+  height: 20px;
+  justify-content: center;
+  white-space: nowrap;
+  width: 110px;
+}
 
 .status-pending {
-    background-color: yellow;
-    color: black;
-  }
+  background-color: yellow;
+  color: black;
+}
 
 .status-success {
-    background-color: #30da03;
-  }
+  background-color: #30da03;
+}
 
 .status-waiting {
-    background-color: blue;
-  }
+  background-color: blue;
+}
 
 .status-canceled {
-    background-color: red;
-  }
+  background-color: red;
+}
 
 .task-history-sucess {
-    background-color: #20A400;
-  }
+  background-color: #20a400;
+}
 
 .task-history-process {
-    background-color:#E7A700;
-  }
+  background-color: #e7a700;
+}
 
 .th-history-task-date {
-    align-items: center;
-    display: flex;
-    font-size: 10px;
-    height: 20px;
-    margin-right: 5px;
-  }
+  align-items: center;
+  display: flex;
+  font-size: 10px;
+  height: 20px;
+  margin-right: 5px;
+}
 
 .wr-align {
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
+}
 
 .wr-amount {
-    color: #373737 !important;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    justify-content: center;
-    margin-top: 0.5rem;
-    width: 100%;
-  }
+  color: #373737 !important;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
 
 .btn-confirm-withdraw {
   background: #31db02;
@@ -143,13 +142,13 @@
 }
 
 .wr-title {
-    justify-content: space-between;
-  }
+  justify-content: space-between;
+}
 
 .is-page-title {
-    display: flex;
-    justify-content: space-between;
-  }
+  display: flex;
+  justify-content: space-between;
+}
 
 .title-withdrawal {
   text-align: center;
@@ -179,10 +178,10 @@
   width: 180px;
 }
 .is-page-title span {
-    color: #373737;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
+  color: #373737;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
 .text-danger {
   color: red !important;
@@ -199,13 +198,12 @@
 }
 
 @media (min-width: 300px) and (max-width: 1280px) {
-    
-    .card-order {
-        margin-top: 40px;
-        padding: 10px;
-        width: 100%;
-      }
-    .card-order span {
-        font-size: 12px;
-      }
+  .card-order {
+    margin-top: 40px;
+    padding: 10px;
+    width: 100%;
   }
+  .card-order span {
+    font-size: 12px;
+  }
+}

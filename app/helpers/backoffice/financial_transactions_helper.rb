@@ -112,9 +112,7 @@ module Backoffice
     end
     
     def change_color_on_debit_transaction(financial_transaction)
-      if financial_transaction.debit? && current_user != User.find_morenwm_user
-        'text-danger'
-      end
+      return 'text-danger' if financial_transaction.debit? && current_user != User.find_morenwm_user            
     end
 
   end

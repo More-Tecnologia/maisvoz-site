@@ -6,6 +6,8 @@
 
 .dropdown-item a {
   color: black;
+  display: inline-block;
+  width: 100%;
 }
 
 .dropdown-item a:hover {
@@ -14,173 +16,173 @@
 }
 
 .card-order {
-    width: 100%;
-    margin: auto;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-    padding: 20px;
-    border-radius: 20px;
     background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     margin-top: 40px;
-}
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+  }
 .back-button {
     background: #30da03;
-    width: 50px;
-    height: 27px;
     border-radius: 60px;
-    display: flex;
-    justify-content: center;
     color: white;
-}
+    display: flex;
+    height: 27px;
+    justify-content: center;
+    width: 50px;
+  }
 
 .th-history-list {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
+    margin-top: 20px;
+  }
 
 .th-history-task-title {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     color: #373737;
+    display: flex;
+    flex-direction: column;
     font-size: 14px;
     font-weight: bold;
-}
+    justify-content: center;
+  }
 
 .th-history-task-status {
     display: flex;
     justify-content: space-between;
-}
+  }
 
 .th-history-task-status div{
     display: flex;
-}
+  }
 
 .th-history-task-id {
+    color: #9B9B9B;
     font-size: 10px;
     font-weight: bold;
-    color: #9B9B9B;
-}
+  }
 
 .th-history-task-status-action {
-    width: 110px;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 25px;
-    height: 20px;
-    font-size: 12px;
     background-color: #FF0000;
+    border-radius: 25px;
     color: white;
+    display: flex;
+    font-size: 12px;
+    height: 20px;
+    justify-content: center;
     white-space: nowrap;
-}
+    width: 110px;
+  }
 
 .status-pending {
     background-color: yellow;
     color: black;
-}
+  }
 
 .status-success {
     background-color: #30da03;
-}
+  }
 
 .status-waiting {
     background-color: blue;
-}
+  }
 
 .status-canceled {
     background-color: red;
-}
+  }
 
 .task-history-sucess {
     background-color: #20A400;
-}
+  }
 
 .task-history-process {
     background-color:#E7A700;
-}
+  }
 
 .th-history-task-date {
-    display: flex;
     align-items: center;
+    display: flex;
     font-size: 10px;
     height: 20px;
     margin-right: 5px;
-}
+  }
 
 .wr-align {
     display: flex;
     flex-direction: column;
-}
+  }
 
 .wr-amount {
     color: #373737 !important;
     display: flex;
+    flex-direction: column;
+    height: auto;
     justify-content: center;
     margin-top: 0.5rem;
-    height: auto;
-    flex-direction: column;
     width: 100%;
-}
+  }
 
 .btn-confirm-withdraw {
-  color: white;
   background: #31db02;
-  padding: 5px;
   border-radius: 10px;
+  color: white;
+  padding: 5px;
   text-align: center;
 }
 
 .btn-cancel-withdraw {
-  color: white;
   background: red;
-  padding: 5px;
   border-radius: 10px;
+  color: white;
+  padding: 5px;
   text-align: center;
 }
 
 .wr-title {
     justify-content: space-between;
-}
+  }
 
 .is-page-title {
     display: flex;
     justify-content: space-between;
-}
+  }
 
 .title-withdrawal {
-  width: 100%;
   text-align: center;
+  width: 100%;
 }
 
 .withdrawal-section {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .withdrawal-card {
-  width: 90%;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   background: white;
   border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   padding: 20px;
+  width: 90%;
 }
 
 .withdrawal-history {
-  color: white;
-  width: 180px;
   background: #30da03;
-  padding: 5px;
   border-radius: 10px;
+  color: white;
+  padding: 5px;
   text-align: center;
+  width: 180px;
 }
 .is-page-title span {
-    font-weight: bold;
-    font-size: 1.5rem;
     color: #373737;
-}
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 
 .text-danger {
   color: red !important;
@@ -192,17 +194,18 @@
 
 .earnings-status {
   display: flex;
-  justify-content: flex-end;
   font-weight: bold;
+  justify-content: flex-end;
 }
 
 @media (min-width: 300px) and (max-width: 1280px) {
+    
     .card-order {
-        width: 100%;
-        padding: 10px;
         margin-top: 40px;
-    }
+        padding: 10px;
+        width: 100%;
+      }
     .card-order span {
         font-size: 12px;
-    }
-}
+      }
+  }

@@ -1782,6 +1782,7 @@ es:
   master_leader_bonus: Bono de líder maestro
   chargeback_by_inactivity: Contracargo por inactividad
   chargeback_by_max_task_gains: Contracargo por ganancias máximas de tareas
+  payment_with_balance: Pago con saldo
   approved_balance: Saldo aprobado
   processing: 'Procesando'
   export_only_wallets: Exportar solo billeteras

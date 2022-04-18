@@ -1828,3 +1828,11 @@ pt-BR:
   cashback: Cashback
   raffle_order_not_found: Pedido de sorteio não encontrado
   successfully_paid: Pago com sucesso!
+  direct_referral_bonus: Bônus de indicação direta
+  indirect_referral_bonus: Bônus de indicação indireta
+  task_performed: Tarefa realizada
+  recurring_bonus: Bônus recorrente
+  master_leader_bonus: Bônus de líder mestre
+  chargeback_by_inactivity: Estorno por inatividade
+  chargeback_by_max_task_gains: Estorno por ganhos de tarefa
+  payment_with_balance: Pagamento com saldo

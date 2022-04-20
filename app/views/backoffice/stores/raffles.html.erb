@@ -5,11 +5,11 @@
 <%= render 'menu' %>
 <%= render 'banner',  badge_pretext_image: "stores/badge.svg",
                       date: "13/04/2022",
-                      description: "Apple (128gb) Azul",
+                      description: @packages.last().short_description,
                       pretext: "Últimos Numeros",
-                      price: "$ 20,00",
+                      price: number_to_currency(@packages.last().price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$'),
                       product_image: @packages.last().raffle.path,                   
-                      title: "Iphone 13 Pro" 
+                      title: @packages.last().name 
                     %>
 <section class="store-content store-raffles-container">
   <% @packages.each do |package| %>

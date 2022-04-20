@@ -3,13 +3,12 @@
 
 <h3 class="page-title">Store</h3>
 <%= render 'menu' %>
-
 <%= render 'banner',  badge_pretext_image: "stores/badge.svg",
                       date: "13/04/2022",
                       description: "Apple (128gb) Azul",
                       pretext: "Últimos Numeros",
                       price: "$ 20,00",
-                      product_image: "temp/phone.png",                   
+                      product_image: @packages.last().raffle.path,                   
                       title: "Iphone 13 Pro" 
                     %>
 <section class="store-content store-raffles-container">

@@ -1,6 +1,6 @@
 .store-menu {
   display: flex;
-  font-size: calc(0.3rem + 1.7vw);
+  font-size: calc(0.7rem + 0.35vw);
   justify-content: flex-start;
   margin: 0 auto;
   max-width: 1360px;
@@ -11,7 +11,7 @@
 
 .store-buttom {
   align-items: center;
-  background: linear-gradient(to bottom, #58f701, #26ac00);
+  background: linear-gradient(to bottom, #58FA01, #24AA01);
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 8px;
   color: white;
@@ -60,4 +60,11 @@
 
 .store-buttom.active {
   background: #373737;
+}
+
+@media (min-width: 1500px) {
+  .store-menu {    
+    font-size: 1.03rem;
+    
+  }
 }

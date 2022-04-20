@@ -1914,3 +1914,5 @@ es:
   store_raffle_reserved: Reservado
   store_raffle_paid: Pagado
   store_raffle__choose_numbers: Elegir Números
+  store_raffle_draw: Sorteo
+  store_raffle_price: Precio

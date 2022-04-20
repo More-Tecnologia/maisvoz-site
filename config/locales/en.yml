@@ -1917,4 +1917,5 @@ en:
   store_raffle_reserved: Reserved
   store_raffle_paid: Paid
   store_raffle__choose_numbers: Choose Numbers
-  
+  store_raffle_draw: Draw
+  store_raffle_price: Price

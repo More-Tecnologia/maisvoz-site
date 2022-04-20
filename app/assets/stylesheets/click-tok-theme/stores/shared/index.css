@@ -1,0 +1,12 @@
+.store-content {
+  margin: 0 auto;
+  max-width: 1360px;
+  width: 90%;
+}
+
+.page-title {
+  margin: 40px auto 0 auto;
+  max-width: 1360px;
+  width: 90%;
+  font-size: calc(0.8rem + 1.1vw);
+}

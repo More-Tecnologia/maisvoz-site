@@ -1,15 +1,16 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
-<%= stylesheet_link_tag 'click-tok-theme/stores/raffles' %>
-
-<h3 class="page-title">Store</h3>
+<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/index' %>
+<h3 class="page-title">
+  <%= t(:store) %>
+</h3>
 <%= render 'menu' %>
-<%= render 'banner',  badge_pretext_image: "stores/badge.svg",
-                      date: "13/04/2022",
-                      description: @packages.last().short_description,
-                      pretext: "Últimos Numeros",
-                      price: number_to_currency(@packages.last().price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$'),
-                      product_image: @packages.last().raffle.path,                   
-                      title: @packages.last().name %>
+<%= render 'banner',  badge_pretext_image: 'stores/badge.svg',
+                      date: '13/04/2022',
+                      description: 'Short description',
+                      pretext: 'Últimos Numeros',
+                      price: '$20.00',
+                      product_image: 'stores/badge.svg',                   
+                      title: 'Nome de um produto' %>
 <section class="store-content store-raffles-container">
   <% @packages.each do |package| %>
     <div class="store-raffle-item">
@@ -17,26 +18,46 @@
       <div class="store-raffle-item-info">
         <ul class="store-raffle-item-score">
           <li>
-            <i><%= t(:store_raffle_available) %></i>
-            <b><%= available_raffle_tickets_count(package.raffle) %></b>
+            <i>
+              <%= t(:store_raffle_available) %>
+            </i>
+            <b>
+              <%= available_raffle_tickets_count(package.raffle) %>
+            </b>
           </li>
           <li>
-            <i><%= t(:store_raffle_reserved)%></i>
-            <b>00</b>
+            <i>
+              <%= t(:store_raffle_reserved)%>
+            </i>
+            <b>
+              <%= reserved_raffle_tickets_count(package.raffle) %>
+            </b>
           </li>
           <li>
-            <i><%= t(:store_raffle_paid) %></i>
-            <b>00</b>
+            <i>
+              <%= t(:store_raffle_paid) %>
+            </i>
+            <b>
+              <%= acquired_raffle_tickets_count(package.raffle) %>
+            </b>
           </li>
         </ul>
-        <h5><%= package.name %></h5>
+        <h5>
+          <%= package.name %>
+        </h5>
         <p>
-          <%= package.short_description %>
+          <%= package.short_description %>          
         </p>
         <div class="store-raffle-item-footer">
-          <span><%= number_to_currency(package.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></span>
+          <span>
+            <%= number_to_currency(package.price,
+              unit: ENV['CURRENT_CURRENCY'],
+              precision: 2).gsub('USD ', '$') %>
+          </span>
           <%= link_to backoffice_raffles_ticket_path(package.raffle) do %>       
-            <button><%= t(:store_raffle__choose_numbers) %></button>
+            <button>
+              <%= t(:store_raffle__choose_numbers) %>
+            </button>            
           <% end %>
         </div>
       </div>

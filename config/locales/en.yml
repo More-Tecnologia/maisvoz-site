@@ -1841,8 +1841,7 @@ en:
   published_by: Published by
   anonymous: Anonymous
   my_learning: My learning
-  this_course_includes: 'This course includes:'
-  store: Store
+  this_course_includes: 'This course includes:' 
   buy_now: Buy now!
   featured_courses: Featured courses
   success_create: Successfully created!
@@ -1913,6 +1912,7 @@ en:
   cashback: Cashback
   raffle_order_not_found: Raffle order not found
   successfully_paid: Successfully paid!
+  store: Store
   store_raffle_available: Available
   store_raffle_reserved: Reserved
   store_raffle_paid: Paid

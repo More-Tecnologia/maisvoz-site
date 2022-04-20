@@ -1,8 +1,10 @@
 .store-raffles-container {
+  align-items: baseline;
+  column-gap: 10.6%;
   display: flex;
   flex-wrap: wrap;
   font-size: calc(0.3rem + 1.7vw);
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: calc(1.2rem + 2vw);
 }
 
@@ -16,8 +18,8 @@
 .store-raffle-item-image {
   display: block;
   margin: 0 auto 1.4em auto;
-  max-width: 40%;
   max-height: 8.5em;
+  max-width: 100%;
 }
 
 .store-raffle-item-info {
@@ -93,14 +95,26 @@
   border-radius: 0.3em;
   border: none;
   color: white;
+  cursor: pointer;
   font-size: 0.7em;
   height: 1.8em;
   padding: 0 0.7em;
   width: max-content;
 }
 
+.store-raffle-item-footer button:hover,
+.store-raffle-item-footer button:active {
+  background: linear-gradient(to bottom, #52e801, #1d8501);
+}
+
+.store-raffle-item-footer button:active {
+  font-size: 0.65em;
+  margin-right: 0.3em;
+}
+
 @media (min-width: 800px) {
   .store-raffles-container {
+    column-gap: 6.5%;
     font-size: calc(0.3rem + 1.4vw);
   }
   .store-raffle-item {
@@ -112,6 +126,7 @@
 
 @media (min-width: 1260px) {
   .store-raffles-container {
+    column-gap: 5.33%;
     font-size: calc(0.3rem + 1.2vw);
   }
 

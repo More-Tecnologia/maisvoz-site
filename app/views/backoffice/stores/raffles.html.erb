@@ -9,8 +9,7 @@
                       pretext: "Últimos Numeros",
                       price: number_to_currency(@packages.last().price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$'),
                       product_image: @packages.last().raffle.path,                   
-                      title: @packages.last().name 
-                    %>
+                      title: @packages.last().name %>
 <section class="store-content store-raffles-container">
   <% @packages.each do |package| %>
     <div class="store-raffle-item">

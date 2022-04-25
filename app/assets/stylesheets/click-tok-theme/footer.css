@@ -44,10 +44,12 @@
 .shops img {
   width: 26px;
 }
+
 .shops div {
   margin-bottom: 50px;
   margin-left: 20px;
 }
+
 .nav {
   background-color: #3f3f3f;
   display: flex;

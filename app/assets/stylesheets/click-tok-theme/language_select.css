@@ -19,7 +19,7 @@
     width: 60px;
     background: whitesmoke;
     transition: 0.5s;
-    margin-right: 20px;
+    margin-right: 0;
 }
 
 .selected-language {

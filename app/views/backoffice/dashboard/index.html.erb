@@ -37,15 +37,10 @@
 
       			<% end %>
     </div>
-    <div class="container-imgs2">
-            <% @banners.shuffle.last(12).each do |banner| %>
-                <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
-                        method: :post,
-                        remote: true do %>
-                  <%= image_tag(banner.path.present? ? banner.path: banner.image_path) %>
-                <% end %>
-      			<% end %>
-    </div>
+
+
+
+    <%= render 'banners', banners = @banners %>
 
   <% data = [[t(:complete), @banners_clicked_today_quantity], [t(:available), @total_banners_per_day - @banners_clicked_today_quantity]] %>
   <% data2 = [[t(:complete_dollar), @task_gains.round(2) ], [t(:available_dollar), @available_gains.round(2) ]] %>

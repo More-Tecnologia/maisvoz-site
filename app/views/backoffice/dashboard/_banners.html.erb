@@ -1,9 +1,13 @@
-<div class="container-imgs2">
-            <% banners.shuffle.last(12).each do |banner| %>
-                <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
-                        method: :post,
-                        remote: true do %>
-                  <%= image_tag(banner.path.present? ? banner.path: banner.image_path) %>
-                <% end %>
-      			<% end %>
-    </div>
+<div class="container-imgs <%= defined?(premium) ? 'container-imgs-premium' : '' %>">
+  <% banners.shuffle.last(12).each do |banner| %>    
+    <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),              
+                method: :post,
+                remote: true,
+                title: banner.title + "\n " + banner.description do %>          
+      <% if defined? premium %>
+        <span><%= banner.title %></span> 
+      <% end %>      
+      <%= image_tag(banner.path.present? ? banner.path: banner.image_path) %>
+    <% end %>
+  <% end %>
+</div>

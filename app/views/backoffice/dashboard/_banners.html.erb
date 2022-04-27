@@ -1,13 +1,18 @@
-<div class="container-imgs <%= defined?(premium) ? 'container-imgs-premium' : '' %>">
+<%= stylesheet_link_tag 'click-tok-theme/dashboard/banners' %>
+
+<div class="dashboard-banner-container <%= defined?(premium) ? 'dashboard-banner-container-premium' : '' %>">
   <% banners.shuffle.last(12).each do |banner| %>    
-    <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),              
+    <%= link_to backoffice_banner_clicks_path(banner_id: banner.id), 
+                class: 'dashboard-banner-item',             
                 method: :post,
                 remote: true,
                 title: banner.title + "\n " + banner.description do %>          
       <% if defined? premium %>
-        <span><%= banner.title %></span> 
+        <span class="dashboard-banner-title">
+          <%= banner.title %>
+        </span> 
       <% end %>      
-      <%= image_tag(banner.path.present? ? banner.path: banner.image_path) %>
+      <%= image_tag(banner.path.present? ? banner.path: banner.image_pat, class: 'dashboard-banner-image') %>
     <% end %>
   <% end %>
 </div>

@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= stylesheet_link_tag 'click-tok-theme/dashboard' %>
 <!-- Page-Title -->
 <div class="box-orders">
   <div class="box-second">
@@ -7,7 +6,6 @@
   </div>
 </div>
 <%= render 'filters' %>
-
 <div class="box-orders">
   <div class="box-second">
     <div class="card-box">
@@ -34,7 +32,7 @@
                   <% @ads.each do |banner| %>
                   <tr>
                     <td><%= banner.id %></td>
-                    <td><%= banner.product&.name %></td>
+                    <td><%= banner.product.name %></td>
                     <td>
                       <a href="<%= banner.link %>" target="_blank"><%= banner.link.truncate(90) %></a>
                     </td>
@@ -45,7 +43,7 @@
                     <td><%= l(banner.updated_at, format: '%B %d, %Y' ) %></td>
                     <td><%= t(banner.active?) %></td>
                     <td><%= t(banner.status) %></td>
-                    <td><%= banner.user&.username %></td>
+                    <td><%= banner.user.username %></td>
                     <td><%= t(banner.paid?) %></td>
                     <td>
                       <% if banner.approvable? %>

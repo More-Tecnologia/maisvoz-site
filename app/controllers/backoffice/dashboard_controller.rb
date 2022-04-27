@@ -11,8 +11,8 @@ module Backoffice
       else
         @banner_store = BannerStore.active.shuffle.last
       end
-      @premium_ads = BannerStore.ads_store.banners.active.approved
-      @banners = @banner_store.banners.active.approved
+      @premium_ads = BannerStore.ads_store.banners.premium.active.approved
+      @banners = @banner_store.banners.default.active
       @max_task_gains = @tasks_active_contracts.sum(&:max_task_gains)
       @task_gains = @tasks_active_contracts.sum(&:task_gains)
       available = @max_task_gains - @task_gains
@@ -24,6 +24,7 @@ module Backoffice
                                                     .today
                                                     .by_contract(@contract)
                                                     .count
+      @premium_ads.each(&:increment_view_count!)
       @banners.each(&:increment_view_count!)
     end
 

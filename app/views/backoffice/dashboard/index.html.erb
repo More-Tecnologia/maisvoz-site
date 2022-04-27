@@ -21,13 +21,10 @@
       </svg>
       <p class="task-title-ads"><%= t(:premium_ads) %></p>
     </div>   
-
     <%= render 'banners', banners: @premium_ads, premium: true %>
     <%= render 'banners', banners: @banners %>
-
   <% data = [[t(:complete), @banners_clicked_today_quantity], [t(:available), @total_banners_per_day - @banners_clicked_today_quantity]] %>
   <% data2 = [[t(:complete_dollar), @task_gains.round(2) ], [t(:available_dollar), @available_gains.round(2) ]] %>
-
   <div class="products-list mt">
     <div class="t-options-box t-options-box-l">
       <div class="f-box-title">
@@ -46,7 +43,6 @@
         <label class="text-center"><%= @most_value_contract.order_items.last.name if @contract.present? %></label>
       </div>
     </div>
-
     <div class="t-options-box t-options-box-r">
       <div class="f-box-title">
         <%= t(:tasks_history) %>
@@ -72,7 +68,6 @@
         <%= number_to_currency(@available_gains, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
       </div>
     </div>
-
     <div class="t-options-box t-options-box-r">
       <div class="f-box-title">
         <%= current_user.active? ? t(:active_until) : t(:inactive) %>
@@ -88,7 +83,6 @@
     </div>
   </div>
 </div>
-
 <script>
   let canvas = document.querySelectorAll('.chartjs-render-monitor');
   let chart1 = document.querySelectorAll('#chart-1');
@@ -105,5 +99,4 @@
     chart.style = "";
   });
 </script>
-
 <%= javascript_include_tag 'click-tok-theme/tasks' %>

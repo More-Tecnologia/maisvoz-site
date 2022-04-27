@@ -1,56 +1,24 @@
 .title-task {
   font-size: 15px;
-  font-weight: bold;
-  width: 100%;
   color: #3f3f3f;
 }
 
 .p-title-task {
-  font-weight: normal;
-  font-size: 10px;
+    font-size: 10px;
 }
 
-.box-store {
-  background-image: linear-gradient(to bottom right, #53f001, #29b202);
-  width: 250px;
-  height: 70px;
-  min-width: 250px;
-  display: flex;
-  align-items: center;
- 
-}
-
-.f-tasks-quantity {
-  font-size: 14px;
+.f-tasks-quantity {  
   color: #373737;
   margin-bottom: 10px;
 }
 
-.f-tasks-product-title {
-  width: 100%;
+.f-tasks-product-title {  
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  margin-top: -5px;
+  justify-content: center;  
 }
-
-.f-tasks-product-title span {
-  display: block;
-  border: solid #34ef00;
-  width: 5px;
-  height: 2px;
-  border-radius: 50%;
-}
-
-
-
 
 .title-ads {
-  display: flex;
-  width: 90%;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  display: flex;    
   color: #3f3f3f;
 }
 
@@ -64,25 +32,20 @@
   fill: #00d928;
 }
 
+.products-list {
+  width: 100%;
+  display: flex;
+  column-gap: 8%;
+}
 
 .t-options-box {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
-  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  float: left;
+  flex-direction: column; 
   height: 10rem;
   width: 46%;
   background-color: #ffffff;
-}
-
-.t-options-box-r {
-  margin-left: 4%;
-}
-
-.t-options-box-l {
-  margin-right: 4%;
 }
 
 .f-box-title {
@@ -132,18 +95,14 @@
   margin: 0;
 }
 
-.title-tasks {
-  width: 90%;
-}
-
 .title-ads {
-  width: 90%;
+  width: 100%;
 }
 
 .container-imgs {
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   margin: 0 auto 10px auto;
   height: auto;
   overflow: auto;
@@ -193,11 +152,15 @@
 
 
 /*BOX*/
+
 .box-store {
+  background-image: linear-gradient(to bottom right, #53f001, #29b202);
   min-width: 150px;
   margin-right: 10px;
   width: 120px;
   height: 40px;  
+  display: flex;
+  align-items: center;
 }
 
 .img-box-store {
@@ -214,5 +177,5 @@
 }
 
 .mt {
-  width: 90%;  
+  width: 100%;  
 }

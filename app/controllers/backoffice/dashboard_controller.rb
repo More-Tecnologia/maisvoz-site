@@ -5,13 +5,10 @@ module Backoffice
     before_action :ensure_contracts, only: :index
     before_action :contracts_by_value, only: :index
 
-    def index
-      
-      @premium_ads = BannerStore.ads_store.banners.premium.active.approved
-      
-      #TODO: Criar escopo
+    def index      
+      @premium_ads = BannerStore.ads_store.banners.premium.active.approved      
+      #TODO: Criar escopo @banners
       @banners = BannerStore.active.where.not(id: BannerStore.ads_store.id).shuffle.last.banners.default.active.uniq
-
       @max_task_gains = @tasks_active_contracts.sum(&:max_task_gains)
       @task_gains = @tasks_active_contracts.sum(&:task_gains)
       available = @max_task_gains - @task_gains

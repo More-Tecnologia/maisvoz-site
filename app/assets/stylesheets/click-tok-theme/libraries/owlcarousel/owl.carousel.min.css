@@ -16,42 +16,44 @@
 }
 
 .owl-carousel .owl-stage {
-  position: relative;
-  -ms-touch-action: pan-Y;
-  touch-action: manipulation;
   -moz-backface-visibility: hidden;
+  -ms-touch-action: pan-Y;
+  position: relative;
+  touch-action: manipulation;
 }
 
 .owl-carousel .owl-stage:after {
+  clear: both;
   content: ".";
   display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
   height: 0;
+  line-height: 0;
+  visibility: hidden;
+
+  line-height: 0;
 }
 
 .owl-carousel .owl-stage-outer {
-  position: relative;
-  overflow: hidden;
   -webkit-transform: translate3d(0, 0, 0);
+  overflow: hidden;
+  position: relative;
 }
 
 .owl-carousel .owl-item,
 .owl-carousel .owl-wrapper {
-  -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
+  -ms-backface-visibility: hidden;
   -ms-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 .owl-carousel .owl-item {
-  min-height: 1px;
-  float: left;
   -webkit-backface-visibility: hidden;
   -webkit-touch-callout: none;
+  float: left;
+  min-height: 1px;
 }
 
 .owl-carousel .owl-item img {
@@ -72,11 +74,11 @@
 .owl-carousel .owl-dot,
 .owl-carousel .owl-nav .owl-next,
 .owl-carousel .owl-nav .owl-prev {
-  cursor: pointer;
-  -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
   user-select: none;
 }
 
@@ -84,16 +86,16 @@
 .owl-carousel .owl-nav button.owl-prev,
 .owl-carousel button.owl-dot {
   background: 0 0;
-  color: inherit;
   border: none;
-  padding: 0 !important;
-  font: inherit;
+  color: inherit;
   display: block;
+  font: inherit;
+  padding: 0 !important;
 }
 
 .owl-carousel.owl-loading {
-  opacity: 0;
   display: block;
+  opacity: 0;
 }
 
 .owl-carousel.owl-hidden {
@@ -105,17 +107,17 @@
 }
 
 .owl-carousel.owl-drag .owl-item {
-  -ms-touch-action: pan-y;
-  touch-action: pan-y;
-  -webkit-user-select: none;
   -moz-user-select: none;
+  -ms-touch-action: pan-y;
   -ms-user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
   user-select: none;
 }
 
 .owl-carousel.owl-grab {
-  cursor: move;
   cursor: grab;
+  cursor: move;
 }
 
 .owl-carousel.owl-rtl {
@@ -147,7 +149,6 @@
   0% {
     opacity: 1;
   }
-  
   100% {
     opacity: 0;
   }
@@ -172,24 +173,24 @@
 }
 
 .owl-carousel .owl-video-wrapper {
-  position: relative;
-  height: 100%;
   background: #000;
+  height: 100%;
+  position: relative;
 }
 
 .owl-carousel .owl-video-play-icon {
-  position: absolute;
-  height: 80px;
-  width: 80px;
-  left: 50%;
-  top: 50%;
-  margin-left: -40px;
-  margin-top: -40px;
+  -webkit-backface-visibility: hidden;
   background: url(owl.video.play.png) no-repeat;
   cursor: pointer;
-  z-index: 1;
-  -webkit-backface-visibility: hidden;
+  height: 80px;
+  left: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+  position: absolute;
+  top: 50%;
   transition: transform 0.1s ease;
+  width: 80px;
+  z-index: 1;
 }
 
 .owl-carousel .owl-video-play-icon:hover {
@@ -203,37 +204,37 @@
 }
 
 .owl-carousel .owl-video-tn {
-  opacity: 0;
-  height: 100%;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
+  height: 100%;
+  opacity: 0;
   transition: opacity 0.4s ease;
 }
 
 .owl-carousel .owl-video-frame {
-  position: relative;
-  z-index: 1;
   height: 100%;
+  position: relative;
   width: 100%;
+  z-index: 1;
 }
 
 .banner-left-buttom-premium,
 .banner-right-buttom-premium,
 .banner-left-buttom,
 .banner-right-buttom {
-  display: block;
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  font-size: 50px;
-  color: white;
-  height: 100%;
-  box-sizing: border-box;
-  top: 0;
-  display: flex;
   align-items: center;
+  box-sizing: border-box;
+  color: white;
+  display: block;
+  display: flex;
+  font-size: 50px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
   text-shadow: 2px 2px 2px #444;
+  top: 0;
 }
 
 .banner-left-buttom,

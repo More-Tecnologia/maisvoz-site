@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= stylesheet_link_tag 'click-tok-theme/dashboard' %>
+<%= stylesheet_link_tag 'click-tok-theme/admin/banners/index' %>
 <!-- Page-Title -->
 <div class="box-orders">
   <div class="box-second">
@@ -7,10 +7,10 @@
   </div>
 </div>
 <%= render 'filters' %>
-<div class="row-stores margin-bottom">
+<div class="row-stores margin-bottom task-store-menu-container">
   <% BannerStore.active.each do |banner_store| %>
-    <%= link_to backoffice_admin_banners_path(banner_store_hashid: banner_store.hashid), class: "box-store" do %>
-      <img src="<%= banner_store.path %>" alt="" class="img-box-store">
+    <%= link_to backoffice_admin_banners_path(banner_store_hashid: banner_store.hashid), class: "task-store-menu-item" do %>
+      <img src="<%= banner_store.path %>" alt="" class="task-store-menu-image">
     <% end %>
   <% end %>
 </div>

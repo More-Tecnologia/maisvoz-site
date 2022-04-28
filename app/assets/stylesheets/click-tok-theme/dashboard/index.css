@@ -1,0 +1,96 @@
+.tasks-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+  margin: 0 auto;
+  max-width: 1360px;
+  width: 90%;
+}
+
+.task-title-store-container {
+  margin: 20px 0 5px 0;
+  width: 100%;
+}
+
+.task-title-store-title {
+  color: #3f3f3f;
+  font-size: 15px;
+}
+
+.task-title-store-description {
+  font-size: 10px;
+}
+
+.task-title-ads-container {
+  color: #3f3f3f;
+  display: flex;
+  width: 100%;
+}
+
+.task-title-ads-icon {
+  fill: #00d928;
+}
+
+.task-title-ads-icon-basic {
+  fill: #3f3f3f;
+}
+
+.task-title-ads {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.products-list {
+  column-gap: 8%;
+  display: flex;
+  width: 100%;
+}
+
+.f-tasks-quantity,
+.text-center {
+  color: #373737;
+  font-size: 0.8rem;
+  margin-bottom: 7px;
+}
+
+.f-tasks-product-title {
+  display: flex;
+  justify-content: center;
+}
+
+.t-options-box {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  height: 10rem;
+  margin: 30px 0 10px 0;
+  width: 46%;
+}
+
+.f-box-title {
+  align-items: center;
+  background-color: #3f3f3f;
+  border-radius: 12px 12px 0 0;
+  color: white;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  min-height: 3rem;
+}
+
+.f-box-icon {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 10rem;
+  justify-content: center;
+  width: auto;
+}
+
+.mt {
+  width: 100%;
+}

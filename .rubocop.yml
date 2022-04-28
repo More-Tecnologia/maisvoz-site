@@ -1,13 +1,31 @@
+require:
+- rubocop-rails
 AllCops:
+  NewCops: enable
   TargetRubyVersion:
-    2.5.3
+    2.7.5
   Exclude:
     - 'db/schema.rb'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
 Rails:
   Enabled: true
-Documentation:
+Style/Documentation:
   Enabled: false
 Layout/EmptyLinesAroundClassBody:
+  Enabled: true
   EnforcedStyle: empty_lines
-Metrics/LineLength:
-  Max: 100
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+Metrics/BlockLength:
+  Enabled: false 
+Metrics/MethodLength:
+  Enabled: true
+  CountComments: false
+  Max: 12
+Style/FrozenStringLiteralComment:
+  Enabled: true

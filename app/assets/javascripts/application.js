@@ -43,9 +43,7 @@
 //= require users/registrations/new
 //= require credits-debits
 //= require unilevel-nodes/unilevel-node
-//= require sim-cards/new
 //= require copy-button
-//= require cellphone-reloads/new
 //= require regressive-timer
 //= require banners/index
 //= require batch-checkbox

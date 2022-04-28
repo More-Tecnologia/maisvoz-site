@@ -1,0 +1,70 @@
+.store-menu {
+  display: flex;
+  align-items: center;
+  font-size: calc(0.7rem + 0.35vw);
+  justify-content: flex-start;
+  margin: 0 auto;
+  max-width: 1360px;
+  overflow: auto;
+  padding: 10px 0 5px 0;
+  width: 90%;
+}
+
+.store-buttom {
+  align-items: center;
+  background: linear-gradient(to bottom, #58FA01, #24AA01);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 8px;
+  color: white;
+  display: flex;
+  font-weight: bold;
+  height: 3em;
+  justify-content: center;
+  margin-right: 10px;
+  min-width: max-content;
+  padding: 0 1.5em;
+  transition: box-shadow 0.5s, opacity 0.5s;
+}
+
+.store-buttom:last-child {
+  margin-right: 0;
+}
+
+.store-buttom svg {
+  fill: white;
+  height: 1.5em;
+  margin-right: 0.5em;
+  width: 1.5em;
+}
+
+.store-buttom p {
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 0.8em;
+  margin: 0;
+  padding-top: 2px;
+}
+
+.store-buttom:hover,
+.store-buttom:active {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: white;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.store-buttom:active {
+  transition: all 0.1s;
+  height: 2.8em;
+  border-radius: 8px;  
+}
+
+.store-buttom.active {
+  background: #373737;
+}
+
+@media (min-width: 1500px) {
+  .store-menu {    
+    font-size: 1.03rem;    
+  }
+}

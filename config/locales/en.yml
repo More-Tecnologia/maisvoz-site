@@ -1842,8 +1842,7 @@ en:
   published_by: Published by
   anonymous: Anonymous
   my_learning: My learning
-  this_course_includes: 'This course includes:'
-  store: Store
+  this_course_includes: 'This course includes:' 
   buy_now: Buy now!
   featured_courses: Featured courses
   success_create: Successfully created!
@@ -1892,8 +1891,7 @@ en:
   ticket_type: Ticket Type
   raffles_list: Raffles list
   type: Type
-  nothing_found: Nothing found
-  tickets_available: Tickets available
+  nothing_found: Nothing found 
   select: Select
   numbers_selected: Selected Numbers
   number_of_random_tickets: Number of random tickets
@@ -1916,3 +1914,10 @@ en:
   raffle_order_not_found: Raffle order not found
   successfully_paid: Successfully paid!
   basic_banner: Basic Ads
+  store: Store
+  store_raffle_available: Available
+  store_raffle_reserved: Reserved
+  store_raffle_paid: Paid
+  store_raffle__choose_numbers: Choose Numbers
+  store_raffle_draw: Draw
+  store_raffle_price: Price

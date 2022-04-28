@@ -1888,8 +1888,7 @@ es:
   ticket_type: Tipo de boleto
   raffles_list: Lista de sorteos
   type: Tipo
-  nothing_found: Nada encontrado
-  tickets_available: Boleto disponibles
+  nothing_found: Nada encontrado  
   select: Seleccione
   numbers_selected: Números seleccionados
   number_of_random_tickets: Número de boletos al azar
@@ -1913,3 +1912,11 @@ es:
   successfully_paid: ¡Pagado exitosamente!
   premium_ads: Anuncios Premium
   basic_banner: Anuncios Básicos
+  store: Tienda
+  store_raffle_available: Disponible
+  store_raffle_reserved: Reservado
+  store_raffle_paid: Pagado
+  store_raffle__choose_numbers: Elegir Números
+  store_raffle_draw: Sorteo
+  store_raffle_price: Precio
+

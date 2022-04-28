@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag 'click-tok-theme/stores/shared/banner' %>
+<div class="store-banner-container">
+  <div class="store-banner-text">
+    <span class="store-banner-pretext">
+      <%= image_tag(badge_pretext_image, class: 'store-banner-pretext-icon') %>
+      <%= pretext %>
+    </span>
+    <h4 class="store-banner-title">
+      <%= title %>
+    </h4>
+    <span class="store-banner-description">
+      <%= description %>
+    </span>
+    <div class="store-banner-footer">
+      <p class="store-banner-footer-box">
+        <span class="store-banner-value">
+          <%= t(:store_raffle_price) %>
+        </span>
+        <span class="store-banner-value-number">
+          <%= price %>
+        </span>
+      </p>
+      <p class="store-banner-footer-box">
+        <span class="store-banner-draw">
+          <%= t(:store_raffle_draw) %>
+        </span>
+        <span class="store-banner-draw-date">
+          <%= date %>
+        </span>
+      </p>
+    </div>
+  </div>  
+  <div class="store-banner-picture-container">
+    <%= image_tag(product_image, class: 'store-banner-img') %>   
+  </div>
+</div>
+

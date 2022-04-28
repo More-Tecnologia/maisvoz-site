@@ -14,4 +14,3 @@
   chart2.forEach((chart) => {
     chart.style = "";
   });
-  

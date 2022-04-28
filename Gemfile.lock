@@ -681,6 +681,7 @@ DEPENDENCIES
   rest-client
   rqrcode (~> 1.1, >= 1.1.1)
   rspec-rails (~> 3.6)
+  rubocop
   sass-rails (~> 5.0)
   selenium-webdriver
   shog

@@ -99,6 +99,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry-nav'
   gem 'pry'
+  gem 'rubocop', require: false
   gem 'solargraph'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring'

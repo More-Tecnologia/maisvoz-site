@@ -1,219 +1,308 @@
 .raffle-cart-container {
-    width: 90%;
-    margin: auto;
+  max-width: 1360px;
+  margin: auto;
 }
 
 .raffle-container {
-    width: 100%;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-    height: auto;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  height: auto;
+  align-items: center;
+}
+
+.top-raffles-tickets {
+  padding: 20px;
 }
 
 .raffle-container-title {
-    width: 50%;
-    height: auto;
+  width: 30%;
+  height: 145px;
 }
 
 .raffle-title {
-    margin-bottom: 20px;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+  width: 100%;
 }
 
 .raffles-numbers-container {
-    width: 90%;
-    display: flex;
-    align-items: center;
-    margin: auto;
-    margin-top: 30px;
-    box-shadow: app/assets/stylesheets/rafflesa(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .container-numbers-table {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .raffles-numbers-container h4 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.numbers-available-title span {
+  font-size: 9px;
+}
+
+.numbers-available {
+  background: #d1d1d1;
+  border-radius: 5px;
+  padding: 5px 0;
 }
 
 .raffles-cart-numbers {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    overflow-y: hidden;
-    height: 350px;
-    scroll-behavior: smooth;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .container-scroll-numbers {
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
 
 .number-raffle {
-    background: #188038;
-    color: white;
-    padding: 10px;
-    border-radius: 50%;
-    margin-right: 5px;
-    margin-top: 5px;
-    max-width: 60px;
-    height: 60px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: .5s;
-    cursor: pointer;
-    border: 2px solid #188038;
+  background: white;
+  color: #9b9b9b;
+  padding: 5px;
+  border-radius: 2px;
+  margin-right: 5px;
+  margin-top: 5px;
+  max-width: 80px;
+  min-width: 15%;
+  height: 50px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .raffle-cart-data {
-    width: 50%;
-    display: flex;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  width: 65%;
+  display: flex;
+  height: 145px;
+  max-height: 145px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.raffle-cart-data div {
-    font-size: 2rem;
-    padding-top: 10px;
-    width: 100%;
-    text-align: center;
+.raffle-text {
+  color: #b5b5b5;
+  font-size: 10px;
+}
+
+.read-more {
+  color: red;
+  font-size: 9px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.numbers-available-container,
+.type-raffle-container,
+.raffle-container-value {
+  display: flex;
+  flex-direction: column;
+  font-size: 8px;
+  width: 31%;
+  text-align: center;
+}
+
+.paid-raffle {
+  background: #00de28;
+  color: white;
+  padding: 5px 0;
+  border-radius: 5px;
+}
+
+.container-numbers-selected {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.numbers-selected__title {
+  color: #b9b9b9;
+}
+
+.numbers-selected {
+  width: 100%;
+  background: white;
+  box-shadow: 1px 4px 10px 1px rgb(207, 207, 207);
+  padding: 10px;
+  box-sizing: border-box;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.numbers-available-title,
+.reserved-raffle-title,
+.paid-raffle-title {
+  text-align: left;
+  color: #b5b5b5;
+}
+
+.reserved-raffle {
+  background-image: linear-gradient(
+    to left,
+    #e8d01c,
+    #e8cd18,
+    #e8d01c,
+    #e7c311
+  );
+  padding: 5px 0;
+  border-radius: 5px;
+  color: white;
 }
 
 .top-cart-data {
-    min-height: 200px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .raffle-button-buy {
-    width: 70%;
-    background: linear-gradient(to bottom, #58f701, #26ac00);
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
+  width: 50%;
+  background: linear-gradient(to bottom, #58f701, #26ac00);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 10px;
 }
 
 .raffle-button-buy:hover {
-    background: linear-gradient(to bottom, #26ac00, #58f701);
+  background: linear-gradient(to bottom, #26ac00, #58f701);
 }
 
 .strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .raffle-img {
-    border-radius: 5px;
-    width: 40%;
-    height: 400px;
-    object-fit: cover;
+  border-radius: 5px;
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
 }
 
 .scroll-full-bottom,
 .scroll-full-top {
-    display: flex;
-    flex-direction: column;
-    background: #3f3f3f;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 0;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  background: #3f3f3f;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 10px 0;
 }
 
 .number-selected {
-    background: white;
-    border: 2px solid #188038;
-    color: #188038;
-    font-weight: bold;
+  background: #9b9b9b;
+  border: 2px solid #9b9b9b;
+  color: white;
+  font-weight: bold;
+}
+
+.container-raffle-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .numbers-selected {
-    display: flex;
-    transition: .5s;
-    flex-wrap: wrap;
-    min-height: 100px;
-    height: auto;
+  display: flex;
+  transition: 0.5s;
+  flex-wrap: wrap;
+  min-height: 100px;
+  height: auto;
 }
 
 .numbers-selected div {
-    width: 60px;
-    margin-right: 5px;
-    transition: .5s;
+  width: 15%;
+  margin-right: 5px;
+  transition: 0.5s;
+  background: #9b9b9b !important;
+  color: white;
 }
 
 .numbers-available-container,
 .type-raffle-container,
 .draw-date-container,
-.raffle-container-value
- {
-    display: flex;
-    justify-content: space-evenly;
+.raffle-container-value {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .hidden-input {
-    display: none;
+  display: none;
 }
 
 .form-tickets-buy {
-    width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .inputs-tickets {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+  display: flex;
+  text-align: left;
 }
 
 #quantity-tickets-selected,
-#quantity-aleatory-tickets {
-    box-shadow: 1px 4px 10px 1px rgb(207, 207, 207);
-    background-color: #ffffff;
-    border-radius: 70px;
-    border: none;
-    width: 100%;
-    height: auto;
-    padding: 15px 10px;
-    margin-bottom: 20px;
+#quantity-aleatory-tickets,
+.input-search {
+  box-shadow: 1px 4px 10px 1px rgb(207, 207, 207);
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  height: auto;
+  padding: 10px 10px;
 }
 
-.inputs-tickets {
-    width: 50% !important;
-    display: flex;
+.inputs-tickets,
+.input-search-container {
+  width: 49% !important;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
-.container-numbers-selected {
-    margin-top: 20px;
+.inputs-tickets label {
+  color: #b5b5b5;
+  font-size: 10px;
 }
 
 .ticket-bought {
-  background: #6464DC;
+  background: #6464dc;
   color: white;
   padding: 10px;
   border-radius: 50%;
@@ -225,7 +314,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: .5s;
+  transition: 0.5s;
   cursor: pointer;
 }
 
@@ -242,61 +331,65 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: .5s;
+  transition: 0.5s;
   cursor: pointer;
 }
 
-@media (min-width: 300px) and (max-width: 880px){
-    .raffle-cart-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .raffle-container {
-        flex-direction: column;
-    }
-
-    .raffle-container-title {
-        width: 90%;
-    }
-
-    .raffle-img {
-        width: 100%;
-    }
-
-    .raffle-button-buy {
-        width: 100%;
-    }
-
-    .raffle-cart-data {
-        width: 90%;
-    }
-
-    .raffle-cart-data div {
-        width: 100%;
-    }
-
-    .inputs-tickets {
-        width: 90% !important;
-    }
-
-    .raffle-button-buy {
-        padding: 10px 0;
-    }
-
-    .inputs-tickets label {
-        font-size: 14px;
-        margin-bottom: 5px;
-    }
-
-    .raffles-cart-numbers {
-        overflow-y: scroll;
-    }
-
+.btn-pattern {
+  background-image: linear-gradient(to bottom, #59fa00, #26ac00);
+  border: 0;
+  color: white;
+  border-radius: 5px;
+  width: 27%;
+  height: 35px;
 }
 
-@media (min-width: 880px) and (max-width: 1280px) {
-    .raffle-img {
-        width: 80%;
-    }
+.inputs-tickets__container,
+.search-container {
+  width: 70%;
+}
+
+.container-inputs-tickets {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+@media (min-width: 880px) {
+  .raffle-container-title {
+    height: auto;
+  }
+
+  .raffle-img {
+    height: auto;
+  }
+
+  .raffle-text {
+    font-size: 15px;
+  }
+
+  .raffle-title {
+    font-size: 25px;
+  }
+
+  .numbers-available,
+  .reserved-raffle,
+  .paid-raffle {
+    padding: 15px 0;
+    font-size: 15px;
+  }
+
+  .numbers-available-title,
+  .reserved-raffle-title,
+  .paid-raffle-title {
+    font-size: 15px;
+  }
+
+  .numbers-selected__title {
+      font-size: 15px;
+  }
+
+  .number-raffle {
+      min-width: 10%;
+  }
 }

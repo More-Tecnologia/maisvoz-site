@@ -1,113 +1,130 @@
 <%= stylesheet_link_tag 'raffles/tickets' %>
 <div class="raffle-cart-container">
+  <div class="top-raffles-tickets">
+    <a class="back-button" href="/">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="white"
+        class="bi bi-arrow-left"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+        />
+      </svg>
+    </a>
+    <h4>Raffles</h4>
+  </div>
   <div class="raffle-container">
     <div class="raffle-container-title">
-      <h1 class="raffle-title strong"><%= @raffle.title %></h1>
       <%= image_tag(@raffle.path, class: 'raffle-img') %>
-      <div class="container-numbers-selected">
-      <% unless @raffle.automatic? %>
-        <h5><%= t(:numbers_selected) %></h5>
-      <% end %>
-      <div class="numbers-selected">
-      </div>
-    </div>
     </div>
     <div class="raffle-cart-data">
+      <h1 class="raffle-title strong"><%= @raffle.title %></h1>
+      <p class="raffle-text">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book.
+      </p>
+      <a class="read-more">Read More</a>
       <div class="top-cart-data">
         <div class="numbers-available-container">
-            <div class="numbers-available-title"><%= t(:tickets_available) %></div>
-            <div class="numbers-available strong"><%= available_raffle_tickets_count(@raffle) %></div>
+          <div class="numbers-available-title">Available</div>
+          <div class="numbers-available strong">
+            <%= available_raffle_tickets_count(@raffle) %>
+          </div>
         </div>
         <div class="type-raffle-container">
-            <div class="type-raffle-title"><%= t(:type) %></div>
-            <div class="type-raffle strong"><%= I18n.t("activerecord.enums.raffle.kind.#{@raffle.kind}").humanize %></div>
+          <div class="reserved-raffle-title">Reserved</div>
+          <div class="reserved-raffle strong">20</div>
         </div>
-        <div class="draw-date-container">
-            <div class="draw-date-title"></div>
-            <div class="draw-date strong"></div>
-        </div>
+
         <div class="raffle-container-value">
-            <div class="raffle-value-title"><%= t(:price) %></div>
-            <div class="raffle-value strong"><%= number_to_currency(@raffle.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></div>
+          <div class="paid-raffle-title">Paid</div>
+          <div class="paid-raffle strong">20</div>
         </div>
       </div>
-      <%= form_for(@raffle, url: backoffice_raffles_tickets_path, method: :post, html: { class: "form-tickets-buy" }) do |f| %>
-        <% unless @raffle.manual? %>
-          <div class="inputs-tickets">
-            <label for="quantity-aleatory-tickets"><%= t(:number_of_random_tickets) %></label>
-            <input type="number" id="quantity-aleatory-tickets" name="raffle[random_number_quantity]">
-          </div>
-        <% end %>
-        <div class="hidden-input">
-          <select name="raffle[numbers]" class="hidden-input-tickets">
-          </select>
-          <input type="text" name="raffle[id]" value="<%= @raffle.hashid %>">
-        </div>
-        <div class="container-raffle-button">
-          <button class="raffle-button-buy" type="submit"><%= t(:buy) %></button>
-        </div>
-      <% end %>
     </div>
   </div>
-</div>
-<% unless @raffle.automatic? %>
+  <div class="container-numbers-selected">
+    <h5 class="numbers-selected__title">Numbers Selected</h5>
+    <div class="numbers-selected">
+      <% unless @raffle.automatic? %> <% end %>
+    </div>
+  </div>
+  <div class="draw-date-container">
+    <div class="draw-date-title"></div>
+    <div class="draw-date strong"></div>
+  </div>
+  <%= form_for(@raffle, url: backoffice_raffles_tickets_path, method: :post, html:
+  { class: "form-tickets-buy" }) do |f| %> <% unless @raffle.manual? %>
+  <div class="container-raffle-button">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      fill="#30bc00"
+      class="bi bi-cart-plus"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"
+      />
+      <path
+        d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+      />
+    </svg>
+    <button class="raffle-button-buy" type="submit"><%= t(:buy) %></button>
+  </div>
+  <div class="container-inputs-tickets">
+    <div class="inputs-tickets">
+      <div class="inputs-tickets__container">
+        <label for="quantity-aleatory-tickets"
+          ><%= t(:number_of_random_tickets) %></label
+        >
+        <input
+          type="number"
+          id="quantity-aleatory-tickets"
+          name="raffle[random_number_quantity]"
+          placeholder="Quantity of numbers"
+        />
+      </div>
+      <button class="btn-pattern">Apply</button>
+    </div>
+    <div class="input-search-container">
+      <div class="search-container">
+        <input type="text" placeholder="Search" class="input-search" />
+      </div>
+      <button class="btn-pattern">Apply</button>
+    </div>
+  </div>
+  <div class="hidden-input">
+    <select name="raffle[numbers]" class="hidden-input-tickets"></select>
+    <input type="text" name="raffle[id]" value="<%= @raffle.hashid %>" />
+  </div>
+  <% end %> <% unless @raffle.automatic? %>
   <div class="raffles-numbers-container">
-    <h4><%= t(:select_your_number) %></h4>
     <div class="container-numbers-table">
       <div class="raffles-cart-numbers">
         <% @raffle.light_raffle_tickets.order(:created_at).each do |ticket| %>
-          <div class="<%= raffle_ticket_status(ticket)%>" value="<%= ticket.number %>"><%= raffle_ticket_number_format(ticket) %></div>
+        <div
+          class="<%= raffle_ticket_status(ticket)%>"
+          value="<%= ticket.number %>"
+        >
+          <%= raffle_ticket_number_format(ticket) %>
+        </div>
         <% end %>
-      </div>
-      <div class="container-scroll-numbers">
-        <div class="scroll-full-top">
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="white" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="white" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
-            </svg>
-        </div>
-        <div class="scroll-top-numbers">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
-            fill="#3f3f3f"
-            class="bi bi-arrow-up-circle-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
-            />
-          </svg>
-        </div>
-        <div class="scroll-bottom-numbers">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
-            fill="#3f3f3f"
-            class="bi bi-arrow-down-circle-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
-            />
-          </svg>
-        </div>
-        <div class="scroll-full-bottom">
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="white" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="white" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-              </svg>
-          </div>
       </div>
     </div>
   </div>
+</div>
 
-<%= javascript_include_tag 'raffles/raffles-tickets' %>
 
 <% end %>
+
+
+<%= javascript_include_tag 'raffles/raffles-tickets' %> <% end %>

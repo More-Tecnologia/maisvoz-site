@@ -63,10 +63,6 @@ class FinancialTransaction < ApplicationRecord
   validates :cent_amount, presence: true,
                           numericality: { greater_than: 0 }, on: :expense
 
-  #after_commit :debits_bonus_of_contract, on: :create,
-  #                                        if: :payment_bonus?,
-  #                                        unless: proc { chargeback? || financial_reason_yield_bonus? }
-
   after_commit :inactive_free_contract, on: :create, if: :max_contract_gains?
 
   def chargeback!
@@ -161,10 +157,6 @@ class FinancialTransaction < ApplicationRecord
                        order: order,
                        cent_amount: cent_amount,
                        moneyflow: invert_money_flow)
-  end
-
-  def debits_bonus_of_contract
-    Financial::BonusContractDistributorService.call(financial_transaction: self)
   end
 
   def inactive_free_contract

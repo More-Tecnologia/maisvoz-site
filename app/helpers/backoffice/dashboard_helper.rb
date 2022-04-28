@@ -25,7 +25,6 @@ module Backoffice
                      approved_balance: 'text-success',
                      refused: 'text-danger',
                      canceled: 'text-warning' }[withdrawal.status.to_s.to_sym]
-
       content_tag :span, t(withdrawal.status), class: text_class
     end
   end

@@ -6,13 +6,12 @@ module Backoffice
     before_action :contracts_by_value, only: :index
 
     def index
-      if params[:banner_store_hashid].present?
-        @banner_store = BannerStore.find_by_hashid(params[:banner_store_hashid])
-      else
-        @banner_store = BannerStore.active.shuffle.last
-      end
+      
       @premium_ads = BannerStore.ads_store.banners.premium.active.approved
-      @banners = @banner_store.banners.default.active
+      
+      #TODO: Criar escopo
+      @banners = BannerStore.active.where.not(id: BannerStore.ads_store.id).shuffle.last.banners.default.active.uniq
+
       @max_task_gains = @tasks_active_contracts.sum(&:max_task_gains)
       @task_gains = @tasks_active_contracts.sum(&:task_gains)
       available = @max_task_gains - @task_gains

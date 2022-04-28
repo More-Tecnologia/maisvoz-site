@@ -11,12 +11,12 @@ if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
 function activeLink() {
   list.forEach((item) => {
     item.classList.remove("active");
-    this.classList.add("active");
+    this.parentElement.classList.add("active");
   });
 }
 list.forEach((item) => {
-  item.addEventListener("click", activeLink);
-  item.addEventListener("click", moveMenu);
+  item.firstElementChild.addEventListener("click", activeLink);
+  item.firstElementChild.addEventListener("click", moveMenu);
 });
 
 function moveMenu() {

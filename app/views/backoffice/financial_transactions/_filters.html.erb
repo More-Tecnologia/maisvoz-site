@@ -24,6 +24,10 @@
                                                   { include_blank: t('all') },
                                                   { class: 'form-control', select2: true, multiple: true } %>
           </div>
+          <div class="col-md-3">
+            <%= f.label t('attributes.username') %>
+            <%= f.search_field :user_username_cont, class: 'form-control' %>
+          </div>          
         </div>
       </div>
       <%= f.submit t('datagrid.form.search'), class: 'btn btn-default' %>

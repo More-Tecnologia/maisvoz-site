@@ -9,12 +9,12 @@
                       description: 'Short description',
                       pretext: 'Últimos Numeros',
                       price: '$20.00',
-                      product_image: 'stores/banner-badge.svg',                   
+                      product_image: 'stores/banner-badge.svg',
                       title: 'Nome de um produto' %>
 <section class="store-content store-raffles-container">
   <% @packages.each do |package| %>
     <div class="store-raffle-item">
-      <%= image_tag(package.raffle.path, class: 'store-raffle-item-image') %>     
+      <%= image_tag(package.raffle.path, class: 'store-raffle-item-image') %>
       <div class="store-raffle-item-info">
         <ul class="store-raffle-item-score">
           <li>
@@ -46,7 +46,7 @@
           <%= package.name %>
         </h5>
         <p>
-          <%= package.short_description %>          
+          <%= package.short_description %>
         </p>
         <div class="store-raffle-item-footer">
           <span>
@@ -54,13 +54,13 @@
               unit: ENV['CURRENT_CURRENCY'],
               precision: 2).gsub('USD ', '$') %>
           </span>
-          <%= link_to backoffice_raffles_ticket_path(package.raffle) do %>       
+          <%= link_to backoffice_raffles_ticket_path(package.raffle) do %>
             <button>
               <%= t(:store_raffle__choose_numbers) %>
-            </button>            
+            </button>
           <% end %>
         </div>
       </div>
-    </div>      
-  <% end %> 
+    </div>
+  <% end %>
 </section>

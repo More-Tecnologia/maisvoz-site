@@ -1,10 +1,10 @@
 .back-button {
-    display: flex;
     align-items: center;
-    padding: 10px 10px 10px 15px;
-    font-size: 12.8pt;
     color: #373737;
+    display: flex;
+    font-size: 12.8pt;
     margin-top: 10px;
+    padding: 10px 10px 10px 15px;
 }
 
 .back-button img {
@@ -21,33 +21,33 @@
 }
 
 .ch-product-item {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 10rem;
-    border-radius: 12px;
-    box-sizing: border-box;
     background-color: #FFA126;
-    padding: 24px;
+    border-radius: 12px;
     box-shadow: 0 0 1px rgba(0, 0, 0, 25%), 0 3px 10px rgba(0, 0, 0, 22%);
+    box-sizing: border-box;
+    display: flex;
+    height: 10rem;
+    justify-content: space-between;
+    padding: 24px;
 }
 
 .ch-product-title span{
-    font-weight: bold;
-    font-size: 1.8rem;
     color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
 .ch-product-price {
+    align-items: flex-end;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
 }
 
 .ch-product-price label {
     color: #ffffff;
-    font-weight: bold;
     font-size: 2rem;
+    font-weight: bold;
 }
 
 .ch-product-price span {
@@ -58,7 +58,6 @@
 
 .ch-purchase-desc {
     padding: 15px 0;
-
 }
 
 .ch-purchase-desc div{
@@ -72,9 +71,9 @@
 }
 
 .ch-purchase-desc span {
-    font-weight: bold;
     color: #373737;
     font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .division {
@@ -85,9 +84,9 @@
 }
 
 .page-title {
-    font-weight: bold;
-    font-size: 1.5rem;
     color: #373737;
+    font-size: 1.5rem;
+    font-weight: bold;
     margin-top: 20px;
 }
 
@@ -99,33 +98,34 @@
 
 .ch-payment-buttons-area button,
 .ch-payment-buttons-area .btn {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    background-color: #34EF00;
+    border-radius: 70px;
+    border: none;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: flex;
     font-size: 14pt;
     font-weight: bold;
-    color: #FFFFFF;
-    width: 45%;
     height: 55px;
-    border: none;
-    border-radius: 70px;
-    cursor: pointer;
-    background-color: #34EF00;
-    border: none;
+    justify-content: center;
+    width: 45%;
+    
     &:hover {
       color: #fff;
-    }
+  }
 }
 
 .ch-payment-buttons-area img {
-    width: 25px;
     margin-right: 5px;
+    width: 25px;
 }
 
 .ch-buy-action-button {
-    width: 100%;
-    margin-top: 5px;
     height: 60px;
+    margin-top: 5px;
+    width: 100%;
 }
 
 
@@ -138,12 +138,13 @@
 }
 
 .main-box {
-  width: 100%;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
 .second-box {
+  max-width: 1360px;
   width: 90%;
 }

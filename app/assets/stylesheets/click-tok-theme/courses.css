@@ -86,6 +86,7 @@ body {
   margin: auto;
   margin-top: 40px;
   padding-left: 5%;
+  max-width: 1360px;
 }
 
 .title-courses {
@@ -359,6 +360,7 @@ body {
   height: 150px;
   background: linear-gradient(to bottom, #1db6a3, #73f1aa);
   border-radius: 12px;
+  max-width: 1360px;
 }
 
 .banner-courses__content-right {

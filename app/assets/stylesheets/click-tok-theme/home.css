@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
 
 .home-page {
-  width: 90%;
+  font-family: "Lato", sans-serif;
   height: auto;
   margin: auto;
-  font-family: 'Lato', sans-serif;
+  max-width: 1360px;
   padding-bottom: 50px;
+  width: 90%;
 }
 
 .home-page-title h3 {
@@ -267,7 +268,7 @@
   min-width: 28%;
   background: #ffffff;
   height: 120px;
-  box-shadow: rgba(99, 99, 99, 0.20) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
   font-size: 11px;
   display: flex;

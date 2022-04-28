@@ -610,6 +610,7 @@ button.close {
   margin-right: auto;
   padding-top: 0.5rem;
   width: 90%;
+  max-width: 1360px;
 }
 
 #root {

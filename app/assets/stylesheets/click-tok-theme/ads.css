@@ -6,12 +6,13 @@
 }
 
 .banner-img-courses {
-  display: flex;
-  width: 90%;
-  height: 150px;
   background: linear-gradient(to bottom, #0facf1, #8cdafc);
   border-radius: 12px;
+  display: flex;
+  height: 150px;
   margin-top: 40px;
+  max-width: 1360px;
+  width: 90%;
 }
 
 .banner-img-courses__content-right {
@@ -129,7 +130,7 @@
   width: 150px;
 }
 
-@media (min-width: 300px) and (max-width: 880px){
+@media (min-width: 300px) and (max-width: 880px) {
   .card-ads {
     height: 250px;
     min-width: 56%;
@@ -149,7 +150,7 @@
     border: 1px solid grey;
     width: 70%;
     margin-bottom: 15px;
-    content: '';
+    content: "";
   }
 
   .button-ads-packages {

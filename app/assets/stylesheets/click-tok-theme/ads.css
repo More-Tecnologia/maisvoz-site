@@ -131,7 +131,7 @@
 }
 
 @media (min-width: 300px) and (max-width: 880px) {
-  bottom-ad-package::before {
+  .bottom-ad-package::before {
     border: 1px solid grey;
     content: "";
     margin-bottom: 15px;

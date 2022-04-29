@@ -7,10 +7,9 @@
   font-size: calc(0.3rem + 1.7vw);
   height: 11em;
   justify-content: space-between;
-  margin: 10px auto 0 auto;
-  max-width: 1360px;
+  margin-top: 10px;
   padding: 1em 1.2em;
-  width: 90%;
+  width: 100%;
 }
 
 .store-banner-text {

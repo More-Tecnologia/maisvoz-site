@@ -1,140 +1,138 @@
 .back-button {
-    align-items: center;
-    color: #373737;
-    display: flex;
-    font-size: 12.8pt;
-    margin-top: 10px;
-    padding: 10px 10px 10px 15px;
+  align-items: center;
+  color: #373737;
+  display: flex;
+  font-size: 12.8pt;
+  margin-top: 10px;
+  padding: 10px 10px 10px 15px;
 }
 
 .back-button img {
-    width: 8px;
+  width: 8px;
 }
 
 .back-button a {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
-
 .ch-product-desc-area {
-    margin-top: 3rem;
+  margin-top: 3rem;
 }
 
 .ch-product-item {
-    align-items: center;
-    background-color: #FFA126;
-    border-radius: 12px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 25%), 0 3px 10px rgba(0, 0, 0, 22%);
-    box-sizing: border-box;
-    display: flex;
-    height: 10rem;
-    justify-content: space-between;
-    padding: 24px;
+  align-items: center;
+  background-color: #ffa126;
+  border-radius: 12px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 25%), 0 3px 10px rgba(0, 0, 0, 22%);
+  box-sizing: border-box;
+  display: flex;
+  height: 10rem;
+  justify-content: space-between;
+  padding: 24px;
 }
 
-.ch-product-title span{
-    color: #ffffff;
-    font-size: 1.8rem;
-    font-weight: bold;
+.ch-product-title span {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .ch-product-price {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
 }
 
 .ch-product-price label {
-    color: #ffffff;
-    font-size: 2rem;
-    font-weight: bold;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .ch-product-price span {
-    color: #ffffff;
-    font-size: 1.5rem;
-    font-weight: bold;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .ch-purchase-desc {
-    padding: 15px 0;
+  padding: 15px 0;
 }
 
-.ch-purchase-desc div{
-    display: flex;
-    justify-content: space-between;
+.ch-purchase-desc div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .ch-purchase-desc label {
-    color: #373737;
-    font-size: 1.3rem;
+  color: #373737;
+  font-size: 1.3rem;
 }
 
 .ch-purchase-desc span {
-    color: #373737;
-    font-size: 1.2rem;
-    font-weight: bold;
+  color: #373737;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .division {
 }
 
 .division div {
-    border: 0.5pt solid #707070;
+  border: 0.5pt solid #707070;
 }
 
 .page-title {
-    color: #373737;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 20px;
+  color: #373737;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
 .ch-payment-buttons-area {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
 }
 
 .ch-payment-buttons-area button,
 .ch-payment-buttons-area .btn {
-    align-items: center;
-    background-color: #34EF00;
-    border-radius: 70px;
-    border: none;
-    border: none;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: flex;
-    font-size: 14pt;
-    font-weight: bold;
-    height: 55px;
-    justify-content: center;
-    width: 45%;
-    
-    &:hover {
-      color: #fff;
+  align-items: center;
+  background-color: #34ef00;
+  border-radius: 70px;
+  border: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  font-size: 14pt;
+  font-weight: bold;
+  height: 55px;
+  justify-content: center;
+  width: 45%;
+
+  &:hover {
+    color: #fff;
   }
 }
 
 .ch-payment-buttons-area img {
-    margin-right: 5px;
-    width: 25px;
+  margin-right: 5px;
+  width: 25px;
 }
 
 .ch-buy-action-button {
-    height: 60px;
-    margin-top: 5px;
-    width: 100%;
+  height: 60px;
+  margin-top: 5px;
+  width: 100%;
 }
 
-
 .t {
-    height: 100px;
+  height: 100px;
 }
 
 .selected-button {
-    background-color: #f0c0d8 !important;
+  background-color: #f0c0d8 !important;
 }
 
 .main-box {
@@ -145,6 +143,5 @@
 }
 
 .second-box {
-  max-width: 1360px;
-  width: 90%;
+  width: 100%;
 }

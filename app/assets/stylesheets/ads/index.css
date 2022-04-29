@@ -1,8 +1,7 @@
 .main-container-ads {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: auto;
+  width: 100%;
 }
 
 .title-page {
@@ -10,28 +9,28 @@
 }
 
 .title-page span {
-  font-weight: bold;
   font-size: 22px;
+  font-weight: bold;
 }
 
 .container-ads {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .container-ad {
-  display: flex;
   background: #ffffff;
-  height: auto;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
-  width: 49%;
-  padding: 20px;
-  justify-content: space-between;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: flex;
   flex-wrap: wrap;
+  height: auto;
+  justify-content: space-between;
   margin-top: 20px;
+  padding: 20px;
+  width: 49%;
 }
 
 .container-title-ad {
@@ -45,11 +44,11 @@
 }
 
 .img-ad {
-  width: 15rem;
-  height: 10rem;
   border-radius: 10px;
+  height: 10rem;
   margin-top: 10px;
   object-fit: cover;
+  width: 15rem;
 }
 
 .container-counters-ad {
@@ -57,9 +56,9 @@
 }
 
 .title-counter-ad {
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
-  font-size: 16px;
 }
 
 .main-title-ad {
@@ -73,65 +72,65 @@
 }
 
 .counter-ad {
-  font-weight: bold;
-  font-size: 35px;
-  margin-top: 20px;
-  width: auto;
-  margin: auto;
   color: green;
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin: auto;
+  width: auto;
 }
 
 .container-link-ad {
-  display: flex;
   align-items: center;
-  width: 60%;
+  display: flex;
   margin-top: 30px;
+  width: 60%;
 }
 
 .input-link-ad {
-  padding: 10px 0;
-  width: 100%;
-  text-align: center;
   border-radius: 10px;
   border: 1px solid rgba(118, 118, 118, 0.3);
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
 }
 
 .button-copy-ad {
   background: #06fa26;
-  border: none;
-  padding: 10px;
   border-radius: 20px;
+  border: none;
   cursor: pointer;
-  margin-left: 5px;
-  transition: 0.5s;
-  width: 50px;
   display: flex;
   justify-content: center;
+  margin-left: 5px;
+  padding: 10px;
+  transition: 0.5s;
+  width: 50px;
 }
 
 .container-edit-ad {
+  align-items: center;
+  cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-top: 30px;
   width: 25%;
-  cursor: pointer;
 }
 
 .button-edit-ad {
+  align-items: center;
   background: #00d928;
+  border-radius: 10px;
   border: none;
   color: white;
-  padding: 10px;
-  border-radius: 10px;
   cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
   transition: 0.5s;
   width: 100%;
-  text-align: center;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .button-copy-ad:hover,
@@ -141,27 +140,27 @@
 }
 
 .container-countries-ad {
-  display: flex;
   align-items: center;
+  display: flex;
+  justify-content: center;
   margin-top: 30px;
   width: 50%;
-  justify-content: center;
 }
 
 .button-countries {
-  background: #06fa26;
-  color: white;
-  padding: 10px 5px;
-  border: none !important;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.5s;
-  display: flex;
   align-items: center;
-  width: 100%;
+  background: #06fa26;
+  border-radius: 10px;
+  border: none !important;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
   justify-content: center;
   margin-right: 10px;
+  padding: 10px 5px;
+  transition: 0.5s;
+  width: 100%;
 }
 
 .button-countries svg,
@@ -176,45 +175,45 @@
 
 .back-button {
   background: #30da03;
-  width: 50px;
-  height: 27px;
   border-radius: 60px;
-  display: flex;
-  justify-content: center;
   color: white;
+  display: flex;
+  height: 27px;
+  justify-content: center;
   margin-bottom: 20px;
+  width: 50px;
 }
 
 .button-reactive-ad {
+  align-items: center;
+  background: green;
+  border-radius: 10px;
   border: none;
   color: white;
-  background: green;
-  padding: 10px 10px;
-  border-radius: 10px;
   cursor: pointer;
-  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding: 10px 10px;
+  width: 100%;
 }
 
 .button-pause-ad {
+  align-items: center;
+  background: red;
+  border-radius: 10px;
   border: none;
   color: white;
-  background: red;
-  padding: 10px 10px;
-  border-radius: 10px;
   cursor: pointer;
-  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding: 10px 10px;
+  width: 100%;
 }
 
 .button-pause-ad a {
+  align-items: center;
   color: white;
   display: flex;
-  align-items: center;
 }
 
 .button-reactive-ad svg,
@@ -223,11 +222,11 @@
 }
 
 .container-ad-flex {
-  display: flex;
   align-items: center;
+  display: flex;
   margin-top: 30px;
-  width: 25%;
   padding: 0 10px 0 0;
+  width: 25%;
 }
 
 .container-status-ad {
@@ -242,11 +241,11 @@
 }
 
 .status-ad {
-  color: white;
-  padding: 5px;
   border-radius: 5px;
-  text-align: center;
+  color: white;
   font-weight: bold;
+  padding: 5px;
+  text-align: center;
 }
 
 .status-ad-approved {
@@ -289,8 +288,7 @@
 
   .button-countries span,
   .button-edit-ad span,
-  .button-pause-ad span
-   {
+  .button-pause-ad span {
     display: none;
   }
 

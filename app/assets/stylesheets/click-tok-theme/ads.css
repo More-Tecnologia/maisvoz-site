@@ -1,8 +1,8 @@
 .main-box {
-  width: 100%;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
 .banner-img-courses {
@@ -11,8 +11,7 @@
   display: flex;
   height: 150px;
   margin-top: 40px;
-  max-width: 1360px;
-  width: 90%;
+  width: 100%;
 }
 
 .banner-img-courses__content-right {
@@ -20,13 +19,13 @@
 }
 
 .banner-img-courses__content-left {
-  width: 60%;
+  align-items: center;
   color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   text-align: center;
+  width: 60%;
 }
 
 .banner-img-courses__content-left p {
@@ -36,8 +35,8 @@
 
 .banner-img-courses__content-left h1 {
   color: white;
-  font-weight: bold;
   font-size: 22px;
+  font-weight: bold;
   line-height: 25px;
   margin: 0;
 }
@@ -49,76 +48,77 @@
 
 .banner-img-courses__content-right img {
   height: 150px;
-  width: auto;
   margin-right: 5px;
+  width: auto;
 }
 
 .cards-ads {
-  margin-top: 40px;
-  width: 90%;
   display: flex;
-  overflow-x: scroll;
   justify-content: space-between;
+  margin-top: 40px;
+  margin: 0 auto;
+  overflow-x: scroll;
+  width: 100%;
 }
 
 .card-ads {
-  min-width: 32%;
-  height: 120px;
-  margin-top: 10px;
   background: white;
   border-radius: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   display: flex;
   flex-direction: column;
+  height: 120px;
+  margin-top: 10px;
+  min-width: 32%;
 }
 
 .button-ads-packages {
   background: linear-gradient(to bottom, #58f701, #26ac00);
-  color: white;
-  border: none;
-  width: 60px;
-  padding: 10px 0;
   border-radius: 10px;
+  border: none;
+  color: white;
   cursor: pointer;
+  padding: 10px 0;
   transition: 0.5s;
+  width: 60px;
 }
 
 .ad-package-title {
-  font-weight: bold;
   font-size: 16px;
+  font-weight: bold;
 }
 
 .ad-package-clicks {
-  font-weight: bold;
   font-size: 24px;
+  font-weight: bold;
 }
 
 .bottom-ad-package {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
 }
 
 .ad-package-value {
-  font-weight: bold;
   font-size: 19px;
+  font-weight: bold;
 }
 
 .header-ad {
   background: #3f3f3f;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   color: white;
   padding: 5px 0;
   text-align: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .body-ad {
-  padding: 20px;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: space-evenly;
+  padding: 20px;
 }
 
 .texts-ad {
@@ -131,10 +131,17 @@
 }
 
 @media (min-width: 300px) and (max-width: 880px) {
+  bottom-ad-package::before {
+    border: 1px solid grey;
+    content: "";
+    margin-bottom: 15px;
+    width: 70%;
+  }
+
   .card-ads {
     height: 250px;
-    min-width: 56%;
     margin-right: 10px;
+    min-width: 56%;
   }
 
   .ad-package-clicks {
@@ -146,16 +153,9 @@
     padding-top: 10px;
   }
 
-  .bottom-ad-package::before {
-    border: 1px solid grey;
-    width: 70%;
-    margin-bottom: 15px;
-    content: "";
-  }
-
   .button-ads-packages {
-    width: 100%;
     margin-top: 10px;
+    width: 100%;
   }
 
   .ad-package-value {
@@ -192,14 +192,14 @@
   }
 
   .cards-ads {
-    overflow-x: inherit;
     flex-wrap: wrap;
+    overflow-x: inherit;
   }
 
   .card-ads {
-    min-width: 49%;
     height: 200px;
     margin-top: 20px;
+    min-width: 49%;
   }
 
   .ad-package-value {
@@ -211,7 +211,7 @@
   }
 
   .ad-package-clicks {
-    text-align: center;
     font-size: 30px;
+    text-align: center;
   }
 }

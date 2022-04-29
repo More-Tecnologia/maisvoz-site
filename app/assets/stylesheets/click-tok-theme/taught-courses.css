@@ -3,19 +3,18 @@ body {
 }
 
 .container-taught-courses {
-  width: 90%;
-  margin: auto;
+  width: 100%;
 }
 
 .container-mid-taught-courses {
-  width: 100%;
-  margin-top: 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   display: flex;
   flex-direction: column;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
+  margin-top: 30px;
   padding: 20px;
+  width: 100%;
 }
 
 .box-taught-course:last-child {
@@ -23,9 +22,9 @@ body {
 }
 
 .box-taught-courses-top {
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .title-taught-courses {
@@ -33,9 +32,9 @@ body {
 }
 
 .btn-secondary {
-  color: black !important;
   background-color: transparent !important;
   border: none !important;
+  color: black !important;
   padding: 5px 10px;
 }
 
@@ -44,10 +43,10 @@ body {
 }
 
 .box-taught-course {
-  margin-top: 30px;
+  border-bottom: 1px solid grey;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid grey;
+  margin-top: 30px;
   padding-bottom: 20px;
 }
 
@@ -57,17 +56,17 @@ body {
 }
 
 .id-number {
-  font-weight: bold;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .img-course {
-  width: 60px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-radius: 10px;
   height: auto;
   object-fit: cover;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  border-radius: 10px;
+  width: 60px;
 }
 
 .details-course {
@@ -86,8 +85,8 @@ body {
 }
 
 .status-taught-course {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: column;
   justify-content: center;
 }
@@ -97,14 +96,14 @@ body {
 }
 
 .btn-status {
+  border-radius: 5px;
   border: none;
   color: white;
   font-size: 10px;
-  padding: 3px 10px;
-  width: 90px;
-  border-radius: 5px;
-  text-align: center;
   margin-top: 5px;
+  padding: 3px 10px;
+  text-align: center;
+  width: 90px;
 }
 
 .status-waiting {
@@ -134,8 +133,8 @@ body {
 
 @media (min-width: 880px) {
   .img-course {
-    width: 120px;
     height: auto;
+    width: 120px;
   }
 
   .date-course,
@@ -148,8 +147,8 @@ body {
   }
 
   .btn-status {
-    padding: 5px 10px;
     font-size: 13px;
+    padding: 5px 10px;
     width: 120px;
   }
 }

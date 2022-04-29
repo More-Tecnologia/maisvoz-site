@@ -3,9 +3,7 @@
   display: flex;
   flex-direction: column;
   font-family: "Lato", sans-serif;
-  margin: 0 auto;
-  max-width: 1360px;
-  width: 90%;
+  width: 100%;
 }
 
 .task-title-store-container {

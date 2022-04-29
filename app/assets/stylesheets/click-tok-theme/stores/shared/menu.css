@@ -1,18 +1,16 @@
 .store-menu {
-  display: flex;
   align-items: center;
+  display: flex;
   font-size: calc(0.7rem + 0.35vw);
   justify-content: flex-start;
-  margin: 0 auto;
-  max-width: 1360px;
   overflow: auto;
   padding: 10px 0 5px 0;
-  width: 90%;
+  width: 100%;
 }
 
 .store-buttom {
   align-items: center;
-  background: linear-gradient(to bottom, #58FA01, #24AA01);
+  background: linear-gradient(to bottom, #58fa01, #24aa01);
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 8px;
   color: white;
@@ -54,9 +52,9 @@
 }
 
 .store-buttom:active {
-  transition: all 0.1s;
+  border-radius: 8px;
   height: 2.8em;
-  border-radius: 8px;  
+  transition: all 0.1s;
 }
 
 .store-buttom.active {
@@ -64,7 +62,7 @@
 }
 
 @media (min-width: 1500px) {
-  .store-menu {    
-    font-size: 1.03rem;    
+  .store-menu {
+    font-size: 1.03rem;
   }
 }

@@ -1835,7 +1835,6 @@ pt-BR:
   chargeback_by_inactivity: Estorno por inatividade
   chargeback_by_max_task_gains: Estorno por ganhos de tarefa
   payment_with_balance: Pagamento com saldo
-  premium_ads: Anúncios Premium
   basic_banner: Anuncios básicos
   store: Loja
   store_raffle_available: Disponível
@@ -1844,3 +1843,5 @@ pt-BR:
   store_raffle__choose_numbers: Escolher Números
   store_raffle_draw: Sorteio
   store_raffle_price: Preço
+  premium_ads: Anúncios premium
+  basic_ads: Anúncios básicos

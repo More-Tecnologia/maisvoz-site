@@ -102,7 +102,6 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
   gem 'pry-nav'
-  gem 'rack-livereload'
   gem 'rubocop', require: false
   gem 'rubocop-rails', '2.14.2', require: false
   gem 'solargraph'

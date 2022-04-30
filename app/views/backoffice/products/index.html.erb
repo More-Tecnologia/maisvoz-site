@@ -1,6 +1,5 @@
-<%= stylesheet_link_tag 'click-tok-theme/store' %>
-<%= javascript_include_tag 'click-tok-theme/shop' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/adcash/index' %>
 <div class="store-content">
   <h3 class="page-title">Adcash</h3>
   <%= render 'backoffice/stores/menu' %>
@@ -14,7 +13,7 @@
   <div class="store--products__content">
     <% @products.each do |product| %>
       <div class="store--products-item">
-        <div class="store--products-item--header">
+        <div class="store--products-item--header" style="background: <%= product.details %>">
           <%= product.name %>
         </div>
         <ul class="store--products-item--content">

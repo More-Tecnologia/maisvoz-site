@@ -1910,7 +1910,6 @@ es:
   cashback: Cashback
   raffle_order_not_found: Pedido de sorteo no encontrado
   successfully_paid: ¡Pagado exitosamente!
-  premium_ads: Anuncios Premium
   basic_banner: Anuncios Básicos
   store: Tienda
   store_raffle_available: Disponible
@@ -1919,4 +1918,5 @@ es:
   store_raffle__choose_numbers: Elegir Números
   store_raffle_draw: Sorteo
   store_raffle_price: Precio
-
+  premium_ads: Anuncios premium
+  basic_ads: Anuncios basicos  

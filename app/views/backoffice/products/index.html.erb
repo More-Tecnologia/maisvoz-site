@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag 'click-tok-theme/store' %>
 <%= javascript_include_tag 'click-tok-theme/shop' %>
-<div class="main-box">
+<%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
+<div class="store-content">
+  <h3 class="page-title">Adcash</h3>
   <%= render 'backoffice/stores/menu' %>
   <%= render 'backoffice/stores/banner',  badge_pretext_image: 'stores/banner-badge.svg',
                       date: '13/04/2022',
@@ -9,13 +11,15 @@
                       price: '$20.00',
                       product_image: 'stores/banner-badge.svg',
                       title: 'Nome de um produto' %>
-  <div class="products-list">
+  <div class="store--products__content">
     <% @products.each do |product| %>
-      <div class="box">
-        <div class="header-box" style="background: <%= product.details %>"></div>
+      <div class="store--products-item">
+        <div class="store--products-item--header">
+          <%= product.name %>
+        </div>
         <div class="content-box">
           <div class="product-title">
-            <%= product.name %>
+            
           </div>
           <div class="content-mid">
             <div class="product-task">

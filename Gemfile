@@ -93,6 +93,8 @@ group :development do
   gem 'brakeman', require: false
   gem 'bullet'
   gem 'derailed_benchmarks'
+  gem 'guard', '~> 2.15'
+  gem 'guard-livereload', require: false
   gem 'htmlbeautifier', require: false
   gem 'i18n-tasks', '~> 0.9.19'
   gem 'letter_opener'

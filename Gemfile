@@ -93,6 +93,8 @@ group :development do
   gem 'brakeman', require: false
   gem 'bullet'
   gem 'derailed_benchmarks'
+  gem 'guard', '~> 2.15'
+  gem 'guard-livereload', require: false
   gem 'htmlbeautifier', require: false
   gem 'i18n-tasks', '~> 0.9.19'
   gem 'letter_opener'
@@ -100,6 +102,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
   gem 'pry-nav'
+  gem 'rack-livereload'
   gem 'rubocop', require: false
   gem 'rubocop-rails', '2.14.2', require: false
   gem 'solargraph'

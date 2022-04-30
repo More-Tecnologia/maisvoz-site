@@ -71,4 +71,9 @@ Rails.application.configure do
     Bullet.console = true
     Bullet.add_footer = true
   end
+
+  # Add Rack::LiveReload to the bottom of the middleware stack with the default options:
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+  config.assets.digest = false
 end
+

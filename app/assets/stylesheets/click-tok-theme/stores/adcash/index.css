@@ -154,10 +154,12 @@
   .store--products__content {
     font-size: calc(0.2rem + 1.3vw);
   }
+  
   .store--products-item {
     width: 48%;
   }
 }
+
 @media (min-width: 1500px) {
   .store--products__content {
     font-size: 1.42rem;

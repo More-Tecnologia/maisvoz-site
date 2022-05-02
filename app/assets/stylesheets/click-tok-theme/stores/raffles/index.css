@@ -72,6 +72,10 @@
 
 .store-raffle-item-info h5 {
   font-size: 0.8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 .store-raffle-item-info p {

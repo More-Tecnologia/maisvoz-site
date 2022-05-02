@@ -82,7 +82,7 @@
 }
 
 @media (min-width: 1500px) {
-  .store--products__content, .store--ads-item--content {
+  .store--products__content, .store--ads__content {
     font-size: 1.42rem;
   }
 }

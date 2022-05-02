@@ -1,21 +1,21 @@
 .store--ads-item--header {
-    text-transform: none;
+  text-transform: none;
 }
 
 .store--ads-item--description {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; 
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .store--ads-item--click {
-    font-size: 1.7em;
-    font-weight: 600;  
+  font-size: 1.7em;
+  font-weight: 600;
 }
 
 .store--ads-item--description--title {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .store--ads-item--price {
@@ -51,5 +51,5 @@
 }
 
 .store--ads-item--price--buy-button:hover {
-    opacity: 0.8;
-  }
+  opacity: 0.8;
+}

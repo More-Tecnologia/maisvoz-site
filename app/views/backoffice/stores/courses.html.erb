@@ -2,18 +2,14 @@
 <%= stylesheet_link_tag 'click-tok-theme/courses' %>
 
 <div class="main-box">
-  <%= render 'menu' %>
-  <div class="banner-courses">
-    <div class="banner-courses__content-left">
-      <h3><%= t(:online_courses).upcase  %></h3>
-      <h1><%= t(:wait).upcase %></h1>
-      <h2><%= t(:news_coming_soon).upcase  %></h2>
-      <p><%= t(:the_best_courses_will_be_here).upcase  %></p>
-    </div>
-    <div class="banner-courses__content-right">
-      <%= image_tag('nav-store/celular.png') %>
-    </div>
-  </div>
+  <%= render 'menu' %> 
+  <%= render 'banner',  badge_pretext_image: 'stores/banner-badge.svg',
+                      date: '13/04/2022',
+                      description: 'Short description',
+                      pretext: 'Últimos Numeros',
+                      price: '$20.00',
+                      product_image: 'stores/banner-badge.svg',
+                      title: 'Nome de um produto' %>
   <div id="highlights" class="container-online-courses">
     <span class="title-courses">
       <%= t(:featured_courses) %>

@@ -1,35 +1,36 @@
-<%= stylesheet_link_tag 'click-tok-theme/ads' %>
-<div class="main-box">
+<%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/ads/index' %>
+<div class="store-content">
   <%= render 'menu' %>
-  <div class="banner-img-courses">
-    <div class="banner-img-courses__content-left">
-      <p><%= t(:online_advertising) %></p>
-      <h1><%= t(:get_now) %></h1>
-      <p><%= t(:your_advertising_package) %></p>
-    </div>
-    <div class="banner-img-courses__content-right">
-      <%= image_tag('nav-store/tag.png') %>
-    </div>
-  </div>
-  <div class="cards-ads">
+  <%= render 'banner',  badge_pretext_image: 'stores/banner-badge.svg',
+                    date: '13/04/2022',
+                    description: 'Short description',
+                    pretext: 'Últimos Numeros',
+                    price: '$20.00',
+                    product_image: 'stores/banner-badge.svg',
+                    title: 'Nome de um produto' %>
+  <div class="store--ads__content">
     <% @packages.each do |package| %>
-      <div class="card-ads">
-        <div class="header-ad" style="background-color: <%= package.details %>">
-          <span class="ad-package-title"><%= package.name %></span>
+      <div class="store--ads-item">
+        <div class="store--ads-item--header" style="background: <%= package.details %>">
+          <%= package.name %>
         </div>
-        <div class="body-ad">
-          <div class="texts-ad">
-            <span style="text-align: center;"><%= t(:this_pack_contains) %></span>
-            <span class="ad-package-clicks"><%= package.clicks %> <%= t(:clicks) %></span>
-            <span style="text-align: center;"><%= t(:on_the_ad) %></span>
-          </div>
-          <div class="bottom-ad-package">
-            <span class="ad-package-value"><%= number_to_currency(package.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %></span>
-            <%= link_to new_backoffice_banner_path(product_id: package.id) do %>
-              <button class="button-ads-packages"><%= t(:buy) %></button>
+        <ul class="store--ads-item--content">
+          <li class="store--ads-item--description">
+            <span class=""><%= t(:this_pack_contains) %></span>
+            <span class=""><%= package.clicks %> <%= t(:clicks) %></span>
+            <span class=""><%= t(:on_the_ad) %></span>
+          </li>
+          <li class="store--ads-item--price">
+            <span class="store--ads-item--price--number">
+              <%= number_to_currency(package.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+            </span>
+            <%= link_to new_backoffice_banner_path(product_id: package.id),
+                class: 'store--ads-item--price--buy-button' do %>
+              <%= t(:buy) %>
             <% end %>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     <% end %>
   </div>

@@ -5,13 +5,14 @@
   flex-wrap: wrap;
   font-size: calc(0.3rem + 1.7vw);
   justify-content: flex-start;
-  margin-top: calc(1.2rem + 2vw);
+  margin-top: 2em;
 }
 
 .store-raffle-item {
   display: flex;
   flex-direction: column;
-  margin-bottom: calc(2.7rem + 2vw);
+  margin-bottom: 2em;
+  overflow: hidden;
   width: 44.7%;
 }
 
@@ -76,7 +77,9 @@
 .store-raffle-item-info p {
   color: #939393;
   font-size: 0.7em;
+  height: 2.4em;
   margin: 0.2em 0 2em 0;
+  overflow: hidden;
 }
 
 .store-raffle-item-footer {

@@ -20,49 +20,21 @@
           <%= link_to course_backoffice_store_path(course) do %>
             <img class="store--course-item--image" src="<%= course_thumb(course) %>">
           <% end %>
-          <div class="store--course-item--info--publisher">
-            <%= t(:published_by) %>
-            <b><%= course.owner_name %></b>
-          </div>
-          <%= render 'reputation' %>
-          <p class="store--course-item--title">
-            <%= course.short_description %>
-          </p>
-          <div class="store--course-item--footer">
-            <span class="store--course-item--price"><%= number_to_currency(course.price) %></span>
-            <%= link_to t(:buy),
-                      backoffice_courses_carts_path(product: { id: course.product.id },
-                      country: current_user.country),
-                      method: :put, class: "store--course-item--buy-buttom" unless course.in?(current_user.courses) %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="store--course-container">
-    <h2 class="store--course-section-title">
-      <%= t(:featured_courses) %>
-    </h2>
-    <div class="store--course-item-container">
-      <% @courses.each do |course| %>
-        <div class="store--course-item">
-          <%= link_to course_backoffice_store_path(course) do %>
-            <img class="store--course-item--image" src="<%= course_thumb(course) %>">
-          <% end %>
-          <div class="store--course-item--info--publisher">
-            <%= t(:published_by) %>
-            <b><%= course.owner_name %></b>
-          </div>
-          <%= render 'reputation' %>
-          <p class="store--course-item--title">
-            <%= course.short_description %>
-          </p>
-          <div class="store--course-item--footer">
-            <span class="store--course-item--price"><%= number_to_currency(course.price) %></span>
-            <%= link_to t(:buy),
-                      backoffice_courses_carts_path(product: { id: course.product.id },
-                      country: current_user.country),
-                      method: :put, class: "store--course-item--buy-buttom" unless course.in?(current_user.courses) %>
+          <div class="store--course-item--info">
+            <div class="store--course-item--info--publisher">
+              <%= t(:published_by) %>
+              <b><%= course.owner_name %></b>
+            </div>         
+            <p class="store--course-item--title">
+              <%= course.short_description %>
+            </p>
+            <div class="store--course-item--footer">
+              <span class="store--course-item--price"><%= number_to_currency(course.price) %></span>
+              <%= link_to t(:buy),
+                        backoffice_courses_carts_path(product: { id: course.product.id },
+                        country: current_user.country),
+                        method: :put, class: "store--course-item--buy-buttom" unless course.in?(current_user.courses) %>
+            </div>
           </div>
         </div>
       <% end %>
@@ -78,23 +50,84 @@
           <%= link_to course_backoffice_store_path(course) do %>
             <img class="store--course-item--image" src="<%= course_thumb(course) %>">
           <% end %>
-          <div class="store--course-item--info--publisher">
-            <%= t(:published_by) %>
-            <b><%= course.owner_name %></b>
-          </div>
-          <%= render 'reputation' %>
-          <p class="store--course-item--title">
-            <%= course.short_description %>
-          </p>
-          <div class="store--course-item--footer">
-            <span class="store--course-item--price"><%= number_to_currency(course.price) %></span>
-            <%= link_to t(:buy),
-                      backoffice_courses_carts_path(product: { id: course.product.id },
-                      country: current_user.country),
-                      method: :put, class: "store--course-item--buy-buttom" unless course.in?(current_user.courses) %>
+          <div class="store--course-item--info">
+            <div class="store--course-item--info--publisher">
+              <%= t(:published_by) %>
+              <b><%= course.owner_name %></b>
+            </div>         
+            <p class="store--course-item--title">
+              <%= course.short_description %>
+            </p>
+            <div class="store--course-item--footer">
+              <span class="store--course-item--price"><%= number_to_currency(course.price) %></span>
+              <%= link_to t(:buy),
+                        backoffice_courses_carts_path(product: { id: course.product.id },
+                        country: current_user.country),
+                        method: :put, class: "store--course-item--buy-buttom" unless course.in?(current_user.courses) %>
+            </div>
           </div>
         </div>
       <% end %>
     </div>
   </div>
+  <div class="store--course-container">
+    <h2 class="store--course-section-title">
+      <%= t(:featured_courses) %>
+    </h2>
+    <div class="store--course-item-container">
+      <% @courses.each do |course| %>
+        <div class="store--course-item">
+          <%= link_to course_backoffice_store_path(course) do %>
+            <img class="store--course-item--image" src="<%= course_thumb(course) %>">
+          <% end %>
+          <div class="store--course-item--info">
+            <div class="store--course-item--info--publisher">
+              <%= t(:published_by) %>
+              <b><%= course.owner_name %></b>
+            </div>         
+            <p class="store--course-item--title">
+              <%= course.short_description %>
+            </p>
+            <div class="store--course-item--footer">
+              <span class="store--course-item--price"><%= number_to_currency(course.price) %></span>
+              <%= link_to t(:buy),
+                        backoffice_courses_carts_path(product: { id: course.product.id },
+                        country: current_user.country),
+                        method: :put, class: "store--course-item--buy-buttom" unless course.in?(current_user.courses) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="store--course-container">
+    <h2 class="store--course-section-title">
+      <%= t(:featured_courses) %>
+    </h2>
+    <div class="store--course-item-container">
+      <% @courses.each do |course| %>
+        <div class="store--course-item">
+          <%= link_to course_backoffice_store_path(course) do %>
+            <img class="store--course-item--image" src="<%= course_thumb(course) %>">
+          <% end %>
+          <div class="store--course-item--info">
+            <div class="store--course-item--info--publisher">
+              <%= t(:published_by) %>
+              <b><%= course.owner_name %></b>
+            </div>         
+            <p class="store--course-item--title">
+              <%= course.short_description %>
+            </p>
+            <div class="store--course-item--footer">
+              <span class="store--course-item--price"><%= number_to_currency(course.price) %></span>
+              <%= link_to t(:buy),
+                        backoffice_courses_carts_path(product: { id: course.product.id },
+                        country: current_user.country),
+                        method: :put, class: "store--course-item--buy-buttom" unless course.in?(current_user.courses) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>    
 </div>

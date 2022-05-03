@@ -1,0 +1,99 @@
+.store--course-container {
+  font-size: calc(0.3rem + 1.7vw);
+}
+
+.store--course-section-title {
+  color: grey;
+  font-size: 1em;
+  font-weight: 600;
+  margin: 1em 0 0.2em 0;
+}
+
+.store--course-item-container {
+  column-gap: 2%;
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  width: 100%;
+}
+
+.store--course-item {
+  max-width: 23.5%;
+}
+
+.store--course-item--image {
+  align-items: center;
+  aspect-ratio: 5/3;
+  border-radius: 15px;
+  display: block;
+  justify-content: center;
+}
+
+.store--course-item--info--publisher {
+  font-size: 0.6em;
+  margin-top: 0.2em;
+}
+
+.store--course-item--title {
+  color: black;
+  font-size: 0.5em;
+  font-weight: bold;
+  margin-top: 0px;
+}
+
+.store--course-item--footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.store--course-item--price {
+  color: #3b3b3b;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.store--course-item--buy-buttom {
+  background: linear-gradient(to bottom, #58f701, #26ac00);  
+  align-items: center;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.7em;
+  font-weight: bold;
+  height: 1.3em;
+  justify-content: center;
+  opacity: 1;
+  padding: 0 2em;
+  transition: opacity 0.3s;
+  width: auto;
+}
+
+.store--course-item--buy-buttom:hover {
+  background: linear-gradient(to bottom, #26ac00, #58f701);
+  color: white;
+  
+}
+
+@media (min-width: 720px) {
+  .store--course-container {
+    font-size: calc(0.37rem + 1.6vw);
+  }
+}
+
+@media (max-width: 1000px) {
+  .store--course-item-container {
+    overflow: scroll;
+  }
+
+  .store--course-item {
+    min-width: 38%;
+    max-width: 38%;
+    width: 38%;
+  }
+}
+
+@media (min-width: 1500px) {
+  .store--course-container {
+    font-size: 1.88rem;
+  }
+}

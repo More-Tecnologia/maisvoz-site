@@ -1,12 +1,10 @@
 .container-reputation {
   display: flex;
   margin-top: 0px;
- 
 }
 
 .reputation-value {
   color: #f29100;
-  
   font-weight: bold;
 }
 
@@ -22,9 +20,8 @@
   margin-right: 5px;
 }
 
-@media (min-width: 1500px){
+@media (min-width: 1500px) {
   .container-reputation {
     font-size: 1.88rem;
   }
-  
 }

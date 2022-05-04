@@ -1,14 +1,8 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/adcash/index' %>
 <div class="store-content">
-  <%= render 'backoffice/stores/menu' %>
-  <%= render 'backoffice/stores/banner',  badge_pretext_image: 'stores/banner-badge.svg',
-                      date: '13/04/2022',
-                      description: 'Short description',
-                      pretext: 'Últimos Numeros',
-                      price: '$20.00',
-                      product_image: 'stores/banner-badge.svg',
-                      title: 'Nome de um produto' %>
+  <%= render 'backoffice/stores/menu' %>  
+  <%= render 'backoffice/stores/banner', banner: @banner %>
   <div class="store--products__content">
     <% @products.each do |product| %>
       <div class="store--products-item">

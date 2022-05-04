@@ -1,15 +1,8 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/courses/index' %>
 <div class="store-content">
-  <%= render 'menu' %>
-  <%= render 'banner',
-        badge_pretext_image: 'stores/banner-badge.svg',
-        date: '13/04/2022',
-        description: 'Short description',
-        pretext: 'Últimos Numeros',
-        price: '$20.00',
-        product_image: 'stores/banner-badge.svg',
-        title: 'Nome de um produto' %>
+  <%= render 'menu' %>  
+  <%= render 'banner', banner: @banner %>
   <div class="store--course-container">
     <h2 class="store--course-section-title">
       <%= t(:featured_courses) %>
@@ -18,7 +11,7 @@
       <% @courses.each do |course| %>
         <div class="store--course-item">
           <%= link_to course_backoffice_store_path(course) do %>
-            <img class="store--course-item--image" src="<%= course_thumb(course) %>">
+            <img class="store--course-item--image" src="<%= course.path %>">
           <% end %>
           <div class="store--course-item--info">
             <div class="store--course-item--info--publisher">
@@ -48,7 +41,7 @@
       <% @courses.each do |course| %>
         <div class="store--course-item">
           <%= link_to course_backoffice_store_path(course) do %>
-            <img class="store--course-item--image" src="<%= course_thumb(course) %>">
+            <img class="store--course-item--image" src="<%= course.path %>">
           <% end %>
           <div class="store--course-item--info">
             <div class="store--course-item--info--publisher">
@@ -78,7 +71,7 @@
       <% @courses.each do |course| %>
         <div class="store--course-item">
           <%= link_to course_backoffice_store_path(course) do %>
-            <img class="store--course-item--image" src="<%= course_thumb(course) %>">
+            <img class="store--course-item--image" src="<%= course.path %>">
           <% end %>
           <div class="store--course-item--info">
             <div class="store--course-item--info--publisher">
@@ -108,7 +101,7 @@
       <% @courses.each do |course| %>
         <div class="store--course-item">
           <%= link_to course_backoffice_store_path(course) do %>
-            <img class="store--course-item--image" src="<%= course_thumb(course) %>">
+            <img class="store--course-item--image" src="<%= course.path %>">
           <% end %>
           <div class="store--course-item--info">
             <div class="store--course-item--info--publisher">

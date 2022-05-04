@@ -12,12 +12,20 @@ module Backoffice
       @courses = Course.active
                        .page(params[:page])
                        .per(4)
+
+      @banner = Product.course
+                       .active                       
+                       .limit(4)
     end
 
     def ads
       @packages = Product.publicity
                          .active
                          .order(:price_cents)
+
+      @banner = Product.publicity
+                       .active
+                       .limit(4)
     end
 
     def raffles
@@ -25,6 +33,11 @@ module Backoffice
                          .active
                          .includes(:raffle)
                          .order(:price_cents)
+                         
+      @banner = Product.raffle
+                       .active
+                       .includes(:raffle)                       
+                       .limit(4)
     end
   end
 end

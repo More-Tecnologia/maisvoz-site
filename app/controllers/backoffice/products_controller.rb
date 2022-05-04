@@ -5,6 +5,7 @@ module Backoffice
 
     def index
       @products = Product.deposit.active.order(:price_cents)
+      @banner = Product.deposit.active.limit(4)
     end
 
     def show

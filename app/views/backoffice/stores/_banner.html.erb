@@ -4,20 +4,18 @@
   <input type="radio" name="radio-btn" id="radio2" class="radioButton">
   <input type="radio" name="radio-btn" id="radio3" class="radioButton">
   <input type="radio" name="radio-btn" id="radio4" class="radioButton">
-  <% i = 0 %>
-  <%= 4.times do %>
-    <% i += 1 %>  
-    <div class="store-banner-container banner<%= i %>">
+  <% banner.each do |banner_item| %>
+    <div class="store-banner-container banner">
       <div class="store-banner-text">
         <span class="store-banner-pretext">
-          <%= image_tag(badge_pretext_image, class: 'store-banner-pretext-icon') %>
-          <%= pretext %>
+          <%= image_tag('stores/banner-badge.svg', class: 'store-banner-pretext-icon') %>
+          Útimos Números
         </span>
         <h4 class="store-banner-title">
-          <%= title + i.to_s %>
+          <%= banner_noddle(banner_item, :title) %>
         </h4>
         <span class="store-banner-description">
-          <%= description %>
+         <%= banner_noddle(banner_item, :description) %>
         </span>
         <div class="store-banner-footer">
           <p class="store-banner-footer-box">
@@ -25,29 +23,28 @@
               <%= t(:store_raffle_price) %>
             </span>
             <span class="store-banner-value-number">
-              <%= price %>
+              <%= banner_noddle(banner_item, :price) %>
             </span>
           </p>
           <p class="store-banner-footer-box">
             <span class="store-banner-draw">
-              <%= t(:store_raffle_draw) %>
+              <% #t(:store_raffle_draw) %>
             </span>
-            <span class="store-banner-draw-date">
-              <%= date %>
+            <span class="store-banner-draw-date">              
             </span>
           </p>
         </div>
       </div>  
       <div class="store-banner-picture-container">
-        <%= image_tag(product_image, class: 'store-banner-img') %>   
+        <%= image_tag(banner_noddle(banner_item, :image), class: 'store-banner-img') %>   
       </div>
     </div>   
+  <% end %> 
     <div class="navigation-manual">
       <label for="radio1" class="manual-btn"></label>
       <label for="radio2" class="manual-btn"></label>
       <label for="radio3" class="manual-btn"></label>
       <label for="radio4" class="manual-btn"></label>
-    </div>
-  <% end %>  
+    </div>   
 </div>
 <%= javascript_include_tag('click-tok-theme/stores/shared/banner') %>

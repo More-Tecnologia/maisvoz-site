@@ -1,15 +1,83 @@
+.store-banner-wrapper {
+  border-radius: 8px;
+  display: flex;
+  font-size: calc(0.3rem + 1.7vw);
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.store-banner-wrapper input {
+  display: none;
+}
+
+#radio1:checked ~ .banner1 {
+  margin-left: 0;
+}
+
+#radio2:checked ~ .banner1 {
+  margin-left: -100%;
+}
+
+#radio3:checked ~ .banner1 {
+  margin-left: -200%;
+}
+
+#radio4:checked ~ .banner1 {
+  margin-left: -300%;
+}
+
+#radio5:checked ~ .banner1 {
+  margin-left: -400%;
+}
+
+#radio6:checked ~ .banner1 {
+  margin-left: -500%;
+}
+
+#radio7:checked ~ .banner1 {
+  margin-left: -600%;
+}
+
+#radio1:checked ~ .navigation-manual .manual-btn:nth-child(1) {
+  background: #fff;
+}
+
+#radio2:checked ~ .navigation-manual .manual-btn:nth-child(2) {
+  background: #fff;
+}
+
+#radio3:checked ~ .navigation-manual .manual-btn:nth-child(3) {
+  background: #fff;
+}
+
+#radio4:checked ~ .navigation-manual .manual-btn:nth-child(4) {
+  background: #fff;
+}
+
+#radio4:checked ~ .navigation-manual .manual-btn:nth-child(5) {
+  background: #fff;
+}
+
+#radio4:checked ~ .navigation-manual .manual-btn:nth-child(6) {
+  background: #fff;
+}
+
+#radio4:checked ~ .navigation-manual .manual-btn:nth-child(7) {
+  background: #fff;
+}
+
 .store-banner-container {
   background: linear-gradient(to bottom, #ed6998, #ff6d9c);
-  border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px;
   display: flex;
   flex-flow: row;
-  font-size: calc(0.3rem + 1.7vw);
   height: 11em;
   justify-content: space-between;
-  margin-top: 10px;
+  min-width: 100%;
   padding: 1em 1.2em;
-  width: 100%;
+  transition: margin 0.7s ease-in-out;
 }
 
 .store-banner-text {
@@ -89,6 +157,27 @@
   margin: 0 auto;
   max-height: 100%;
   max-width: 100%;
+}
+
+.navigation-manual {
+  bottom: 0.3em;
+  column-gap: 0.7em;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.manual-btn {
+  border-radius: 50px;
+  border: 2px solid #ffffff22;
+  cursor: pointer;
+  padding: 0.15em;
+  transition: border 1s;
+}
+
+.manual-btn:hover {
+  background: #fff;
 }
 
 @media (min-width: 1500px) {

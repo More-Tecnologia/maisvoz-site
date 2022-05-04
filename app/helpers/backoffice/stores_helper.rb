@@ -1,8 +1,8 @@
 module Backoffice
   module StoresHelper
     BANNER_ATTRIBUTE_LIST_BY_KIND = {
-      deposit: {description: :task_per_day, image: :main_photo_path, price: :price, title: :name},
-      course: { description: :description, image: :course_path, price: :price, title: :name },
+      deposit: { description: :task_per_day, image: :main_photo_path, price: :price, title: :name},
+      course: { description: :course_short_description, image: :course_path, price: :price, title: :name },
       publicity: { description: :clicks, image: :main_photo_path, price: :price, title: :name },
       raffle: { description: :description, image: :raffle_path, price: :price, title: :name }
     }

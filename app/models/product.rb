@@ -64,6 +64,7 @@ class Product < ApplicationRecord
 
   delegate :path, to: :course, prefix: true, allow_nil: true
   delegate :path, to: :raffle, prefix: true, allow_nil: true
+  delegate :short_description, to: :course, prefix: true, allow_nil: true
 
   def main_photo_path
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if !main_photo.attached?

@@ -4,8 +4,8 @@
   <input type="radio" name="radio-btn" id="radio2" class="radioButton">
   <input type="radio" name="radio-btn" id="radio3" class="radioButton">
   <input type="radio" name="radio-btn" id="radio4" class="radioButton">
-  <% banner.each do |banner_item| %>
-    <div class="store-banner-container banner">
+  <% banner.each do |banner_item| %>  
+    <div class="store-banner-container banner <%= banner_item.kind %>">
       <div class="store-banner-text">
         <span class="store-banner-pretext">
           <%= image_tag('stores/banner-badge.svg', class: 'store-banner-pretext-icon') %>
@@ -15,7 +15,7 @@
           <%= banner_noddle(banner_item, :title) %>
         </h4>
         <span class="store-banner-description">
-         <%= banner_noddle(banner_item, :description) %>
+          <%= banner_noddle(banner_item, :description) %>
         </span>
         <div class="store-banner-footer">
           <p class="store-banner-footer-box">
@@ -30,21 +30,21 @@
             <span class="store-banner-draw">
               <% #t(:store_raffle_draw) %>
             </span>
-            <span class="store-banner-draw-date">              
+            <span class="store-banner-draw-date">
             </span>
           </p>
         </div>
-      </div>  
-      <div class="store-banner-picture-container">
-        <%= image_tag(banner_noddle(banner_item, :image), class: 'store-banner-img') %>   
       </div>
-    </div>   
-  <% end %> 
-    <div class="navigation-manual">
-      <label for="radio1" class="manual-btn"></label>
-      <label for="radio2" class="manual-btn"></label>
-      <label for="radio3" class="manual-btn"></label>
-      <label for="radio4" class="manual-btn"></label>
-    </div>   
+      <div class="store-banner-picture-container">
+        <%= image_tag(banner_noddle(banner_item, :image), class: 'store-banner-img') %>
+      </div>
+    </div>
+  <% end %>
+  <div class="navigation-manual">
+    <label for="radio1" class="manual-btn"></label>
+    <label for="radio2" class="manual-btn"></label>
+    <label for="radio3" class="manual-btn"></label>
+    <label for="radio4" class="manual-btn"></label>
+  </div>
 </div>
 <%= javascript_include_tag('click-tok-theme/stores/shared/banner') %>

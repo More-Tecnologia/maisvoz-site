@@ -36,7 +36,7 @@
   margin-left: -500%;
 }
 
-#radio7:checked ~ .banner:first-of-type{
+#radio7:checked ~ .banner:first-of-type {
   margin-left: -600%;
 }
 
@@ -69,22 +69,39 @@
 }
 
 .store-banner-container {
-  background: linear-gradient(to bottom, #ed6998, #ff6d9c);
+  background: linear-gradient(to bottom, #9f9ffc, #8179c1);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px;
   display: flex;
   flex-flow: row;
   height: 11em;
   justify-content: space-between;
   min-width: 100%;
-  padding: 1em 1.2em;
+  padding: 0;
   transition: margin 0.7s ease-in-out;
+}
+
+.store-banner-container:nth-of-type(1) {
+  background: linear-gradient(to bottom left, #0cabf0, #72ccf2);
+}
+
+.store-banner-container:nth-of-type(2) {
+  background: linear-gradient(to bottom left, #c8054c, #fb588f);
+}
+
+.store-banner-container:nth-of-type(3) {
+  background: linear-gradient(to bottom left, #9f9ffc, #8179c1);
+}
+
+.store-banner-container:nth-of-type(4) {
+  background: linear-gradient(to bottom left, #75c150, #88ff4c);
 }
 
 .store-banner-text {
   color: white;
+  overflow: hidden;
+  padding: 1em 0 1em 1.2em;
   position: relative;
   width: 64%;
-  overflow: hidden;
 }
 
 .store-banner-pretext {
@@ -115,16 +132,21 @@
   font-size: 2em;
   font-weight: 600;
   margin-top: 0.5em;
+  overflow: hidden;
   white-space: nowrap;
+  width: 98%;
 }
 
 .store-banner-description {
+  display: block;
   font-size: 1.1em;
+  max-width: 98%;
+  overflow: hidden;
   white-space: nowrap;
 }
 
 .store-banner-footer {
-  bottom: 2%;
+  bottom: 1em;
   display: flex;
   font-size: 0.8em;
   position: absolute;
@@ -150,14 +172,26 @@
 .store-banner-picture-container {
   height: 100%;
   margin: auto 0;
+  max-width: 36%;
+  padding: 0 0.5em 0 0;
   width: 36%;
+}
+
+.course .store-banner-picture-container {
+  padding: 0;
 }
 
 .store-banner-img {
   display: block;
+  height: 15em;
   margin: 0 auto;
   max-height: 100%;
   max-width: 100%;
+  object-fit: cover;
+}
+
+.course .store-banner-img {
+  border-left: 2px solid #fff;
 }
 
 .navigation-manual {

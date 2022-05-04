@@ -14,7 +14,8 @@ module Backoffice
                        .per(4)
 
       @banner = Product.course
-                       .active                       
+                       .active
+                       .page(params[:page])
                        .limit(4)
     end
 
@@ -33,10 +34,10 @@ module Backoffice
                          .active
                          .includes(:raffle)
                          .order(:price_cents)
-                         
+
       @banner = Product.raffle
                        .active
-                       .includes(:raffle)                       
+                       .includes(:raffle)
                        .limit(4)
     end
   end

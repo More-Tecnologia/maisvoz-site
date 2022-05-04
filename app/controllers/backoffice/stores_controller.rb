@@ -25,6 +25,12 @@ module Backoffice
                          .active
                          .includes(:raffle)
                          .order(:price_cents)
+      
+      @banner = Product.raffle
+                       .active
+                       .includes(:raffle)
+                       .order(:price_cents)
+                       .per(4)
     end
   end
 end

@@ -3,18 +3,16 @@
   <input type="radio" name="radio-btn" id="radio1" class="radioButton"  checked>
   <input type="radio" name="radio-btn" id="radio2" class="radioButton">
   <input type="radio" name="radio-btn" id="radio3" class="radioButton">
-  <input type="radio" name="radio-btn" id="radio4" class="radioButton">
-  <% i = 0 %>
-  <%= 4.times do %>
-    <% i += 1 %>  
-    <div class="store-banner-container banner<%= i %>">
+  <input type="radio" name="radio-btn" id="radio4" class="radioButton">  
+  <%= 4.times do %>  
+    <div class="store-banner-container banner">
       <div class="store-banner-text">
         <span class="store-banner-pretext">
           <%= image_tag(badge_pretext_image, class: 'store-banner-pretext-icon') %>
           <%= pretext %>
         </span>
         <h4 class="store-banner-title">
-          <%= title + i.to_s %>
+          <%= title %>
         </h4>
         <span class="store-banner-description">
           <%= description %>

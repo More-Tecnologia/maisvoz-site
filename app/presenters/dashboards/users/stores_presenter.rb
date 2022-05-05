@@ -27,10 +27,6 @@ module Dashboards
 
       private
 
-      def h
-        ApplicationController.helpers
-      end
-
       def banner_attribute_by_noddle(banner_item, noddle_sym)
         BANNER_ATTRIBUTE_LIST_BY_KIND[banner_item.kind.to_sym][noddle_sym]
       end
@@ -39,28 +35,12 @@ module Dashboards
         banner_item.send(banner_attribute_by_noddle(banner_item, noddle_sym))
       end
 
-      def get_badge_image(banner_item)
-        banner_custom_attributes_by_kind(banner_item)[:image]
-      end
-
-      def get_badge_text(banner_item)
-        banner_custom_attributes_by_kind(banner_item)[:text]
-      end
-
       def banner_description(banner_item)
         banner_custom_attributes_by_kind(banner_item)[:description]
       end
 
       def banner_price(banner_item)
         format_banner_price(banner_noddle(banner_item, :price))
-      end
-
-      def format_banner_price(price)
-        if price.positive?
-          h.format_currency(price)
-        else
-          I18n.t(:free)
-        end
       end
 
       def banner_price_right(banner_item)
@@ -93,6 +73,26 @@ module Dashboards
           price_right_text: I18n.t(:earnings_by_campaign),
           text: I18n.t(:package)
         }
+      end
+
+      def format_banner_price(price)
+        if price.positive?
+          h.format_currency(price)
+        else
+          I18n.t(:free)
+        end
+      end
+
+      def get_badge_image(banner_item)
+        banner_custom_attributes_by_kind(banner_item)[:image]
+      end
+
+      def get_badge_text(banner_item)
+        banner_custom_attributes_by_kind(banner_item)[:text]
+      end
+
+      def h
+        ApplicationController.helpers
       end
 
       def publicity_banner_attributes(banner_item)

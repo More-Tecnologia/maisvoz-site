@@ -4,50 +4,41 @@
   <input type="radio" name="radio-btn" id="radio2" class="radioButton">
   <input type="radio" name="radio-btn" id="radio3" class="radioButton">
   <input type="radio" name="radio-btn" id="radio4" class="radioButton">
-  <% banner.each do |banner_item| %>  
+  <% banner.each do |banner_item| %>
+    <% banner_items = banner_items_factory(banner_item) %>
     <div class="store-banner-container banner <%= banner_item.kind %>">
       <div class="store-banner-text">
         <span class="store-banner-pretext">
-          <%= image_tag('stores/banner-badge.svg', class: 'store-banner-pretext-icon') %>
-            <% if(banner_item.kind == 'deposit')%>
-              <%= t(:package) %>
-            <% end %>
+          <%= image_tag(banner_items.badge_image, class: 'store-banner-pretext-icon') %>
+          <%= banner_items.badge_text %>
         </span>
         <h4 class="store-banner-title">
-          <%= banner_noddle(banner_item, :title) %>
+          <%= banner_items.title %>
         </h4>
-        
         <span class="store-banner-description">
-        
-          <%= banner_noddle(banner_item, :description) %>
-          <% if(banner_item.kind == 'deposit')%>
-           <%= banner_noddle(banner_item, :description) > 1 ? t(:tasks_per_day) : t(:task_per_day) %>
-          <% end %>
+          <%= banner_items.description %>
         </span>
-        
         <div class="store-banner-footer">
           <p class="store-banner-footer-box">
-            <span class="store-banner-value">
-              <%= t(:price) %>
-            </span>
             <span class="store-banner-value-number">
-              <%= banner_noddle(banner_item, :price) %>
+              <%= banner_items.price %>
+            </span>
+            <span class="store-banner-value">
+              <%= banner_items.price_text %>
             </span>
           </p>
-          <% if(banner_item.kind == 'deposit')%>
-            <p class="store-banner-footer-box">
-              <span class="store-banner-draw">
-                <%= t(:earnings_by_campaign) %>
-              </span>
-              <span class="store-banner-draw-date">
-              <%= banner_item.earnings_per_campaign %>
-              </span>
-            </p>
-          <% end %>
+          <p class="store-banner-footer-box">
+            <span class="store-banner-right-number">
+              <%= banner_items.price_right %>
+            </span>
+            <span class="store-banner-right">
+              <%= banner_items.price_right_text %>
+            </span>
+          </p>
         </div>
       </div>
       <div class="store-banner-picture-container">
-        <%= image_tag(banner_noddle(banner_item, :image), class: 'store-banner-img') %>
+        <%= image_tag(banner_items.image, class: 'store-banner-img') %>
       </div>
     </div>
   <% end %>

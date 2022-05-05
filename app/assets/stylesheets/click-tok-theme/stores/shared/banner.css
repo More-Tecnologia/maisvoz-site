@@ -1,7 +1,7 @@
 .store-banner-wrapper {
   border-radius: 8px;
   display: flex;
-  font-size: calc(0.3rem + 1.7vw);
+  font-size: calc(0.3rem + 1.4vw);
   margin-top: 10px;
   overflow: hidden;
   position: relative;
@@ -73,7 +73,7 @@
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px;
   display: flex;
   flex-flow: row;
-  height: 11em;
+  height: 12em;
   justify-content: space-between;
   min-width: 100%;
   padding: 0;
@@ -93,7 +93,7 @@
 }
 
 .store-banner-container:nth-of-type(4) {
-  background: linear-gradient(to bottom left, #75c150, #88ff4c);
+  background: linear-gradient(to bottom left, #ddc002, #baa627);
 }
 
 .store-banner-text {
@@ -113,7 +113,7 @@
   font-weight: 400;
   margin: 2% 0 0 1em;
   min-width: max-content;
-  padding: 2px 12px 2px 0.8em;
+  padding: 2px 12px 2px 1em;
   position: relative;
 }
 
@@ -146,7 +146,7 @@
 }
 
 .store-banner-footer {
-  bottom: 1em;
+  bottom: 1.5em;
   display: flex;
   font-size: 0.8em;
   position: absolute;
@@ -158,6 +158,15 @@
   display: flex;
   flex-flow: column;
   min-width: max-content;
+  justify-content: center;
+  text-align: center;
+}
+
+.store-banner-footer-box i {
+  padding-left: 2px;
+  font-size: 0.7em;
+  font-style: normal;
+  line-height: 1.5em;
 }
 
 .store-banner-footer-box:last-child {
@@ -165,17 +174,29 @@
 }
 
 .store-banner-value-number,
-.store-banner-draw-date {
-  font-size: 1em;
+.store-banner-right-number {
   font-weight: 600;
   text-align: center;
+  font-size: 1.3em;
 }
 
-.store-banner-draw-date {
+.store-banner-value,
+.store-banner-right {
+  font-size: 0.7em;
+}
+.store-banner-value {
+  text-align: left;
+  padding-left: 0.94em;
 }
 
-.store-banner-value-number {
-  
+.store-banner-value-number b,
+.store-banner-value-number i,
+.store-banner-right-number b,
+.store-banner-right-number i {
+  font-size: 0.7em;
+  line-height: 1.35em;
+  vertical-align: text-top;
+  font-weight: 400;
 }
 
 .store-banner-picture-container {
@@ -232,6 +253,6 @@
 
 @media (min-width: 1500px) {
   .store-banner-container {
-    font-size: calc(1.9rem);
+    font-size: 1.7rem;
   }
 }

@@ -5,7 +5,7 @@ module SharedHelper
     class_name if request.path == path
   end
 
-  def format_curency(value, symbol = '<b>$</b>')
+  def format_currency(value, symbol = '<b>$</b>')
     split_value = number_to_currency(value, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', symbol).split('.')
     " #{split_value[0]}<i>#{split_value[1]}</i>".html_safe
   end

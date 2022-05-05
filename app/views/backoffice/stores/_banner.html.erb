@@ -9,30 +9,41 @@
       <div class="store-banner-text">
         <span class="store-banner-pretext">
           <%= image_tag('stores/banner-badge.svg', class: 'store-banner-pretext-icon') %>
-          Útimos Números
+            <% if(banner_item.kind == 'deposit')%>
+              <%= t(:package) %>
+            <% end %>
         </span>
         <h4 class="store-banner-title">
           <%= banner_noddle(banner_item, :title) %>
         </h4>
+        
         <span class="store-banner-description">
+        
           <%= banner_noddle(banner_item, :description) %>
+          <% if(banner_item.kind == 'deposit')%>
+           <%= banner_noddle(banner_item, :description) > 1 ? t(:tasks_per_day) : t(:task_per_day) %>
+          <% end %>
         </span>
+        
         <div class="store-banner-footer">
           <p class="store-banner-footer-box">
             <span class="store-banner-value">
-              <%= t(:store_raffle_price) %>
+              <%= t(:price) %>
             </span>
             <span class="store-banner-value-number">
               <%= banner_noddle(banner_item, :price) %>
             </span>
           </p>
-          <p class="store-banner-footer-box">
-            <span class="store-banner-draw">
-              <% #t(:store_raffle_draw) %>
-            </span>
-            <span class="store-banner-draw-date">
-            </span>
-          </p>
+          <% if(banner_item.kind == 'deposit')%>
+            <p class="store-banner-footer-box">
+              <span class="store-banner-draw">
+                <%= t(:earnings_by_campaign) %>
+              </span>
+              <span class="store-banner-draw-date">
+              <%= banner_item.earnings_per_campaign %>
+              </span>
+            </p>
+          <% end %>
         </div>
       </div>
       <div class="store-banner-picture-container">

@@ -151,22 +151,31 @@
   font-size: 0.8em;
   position: absolute;
   width: 100%;
+  justify-content: space-between;
 }
 
 .store-banner-footer-box {
   display: flex;
   flex-flow: column;
-  margin-right: 40%;
+  min-width: max-content;
 }
 
 .store-banner-footer-box:last-child {
-  margin-right: 0;
+  margin-right: 10%;
 }
 
 .store-banner-value-number,
 .store-banner-draw-date {
   font-size: 1em;
   font-weight: 600;
+  text-align: center;
+}
+
+.store-banner-draw-date {
+}
+
+.store-banner-value-number {
+  
 }
 
 .store-banner-picture-container {
@@ -195,7 +204,7 @@
 }
 
 .navigation-manual {
-  bottom: 0.3em;
+  bottom: 0.1em;
   column-gap: 0.7em;
   display: flex;
   justify-content: center;
@@ -205,14 +214,20 @@
 
 .manual-btn {
   border-radius: 50px;
-  border: 2px solid #ffffff22;
+  border: 2px solid #ffffffcc;
   cursor: pointer;
-  padding: 0.15em;
+  padding: 0.12em;
   transition: border 1s;
 }
 
 .manual-btn:hover {
   background: #fff;
+}
+
+@media (max-width: 640px) {
+  .navigation-manual {
+    column-gap: 1.3em;
+  }
 }
 
 @media (min-width: 1500px) {

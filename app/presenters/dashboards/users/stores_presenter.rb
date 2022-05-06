@@ -31,12 +31,16 @@ module Dashboards
         BANNER_ATTRIBUTE_LIST_BY_KIND[banner_item.kind.to_sym][noddle_sym]
       end
 
-      def banner_noddle(banner_item, noddle_sym)
-        banner_item.send(banner_attribute_by_noddle(banner_item, noddle_sym))
+      def banner_custom_attributes_by_kind(banner_item)
+        send("#{banner_item.kind}_banner_attributes", banner_item)
       end
 
       def banner_description(banner_item)
         banner_custom_attributes_by_kind(banner_item)[:description]
+      end
+
+      def banner_noddle(banner_item, noddle_sym)
+        banner_item.send(banner_attribute_by_noddle(banner_item, noddle_sym))
       end
 
       def banner_price(banner_item)
@@ -49,10 +53,6 @@ module Dashboards
 
       def banner_price_right_text(banner_item)
         banner_custom_attributes_by_kind(banner_item)[:price_right_text]
-      end
-
-      def banner_custom_attributes_by_kind(banner_item)
-        send("#{banner_item.kind}_banner_attributes", banner_item)
       end
 
       def course_banner_attributes(banner_item)

@@ -1,7 +1,6 @@
 <%= stylesheet_link_tag 'click-tok-theme/courses' %>
 <%= stylesheet_link_tag 'click-tok-theme/showcase' %>
 <%= stylesheet_link_tag 'click-tok-theme/add-courses' %>
-
 <div class="container-showcase">
   <div class="top-new-courses top-new-showcase">
     <%= link_to courses_backoffice_stores_path, class: "btn-return" do %>    
@@ -13,7 +12,7 @@
   <div class="container-showcase-video">
     <span class="title-showcase"><%= t(:store) %></span>
     <div class="video-showcase">
-      <%= image_tag(course_thumb(@course)) %>      
+      <%= image_tag(@course.path) %>      
     </div>
     <div class="showcase-created-by">
       <span><%= t(:published_by) %></span>

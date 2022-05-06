@@ -1,13 +1,7 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/index' %>
 <%= render 'menu' %>
-<%= render 'banner',  badge_pretext_image: 'stores/banner-badge.svg',
-                      date: '13/04/2022',
-                      description: 'Short description',
-                      pretext: 'Últimos Numeros',
-                      price: '$20.00',
-                      product_image: 'stores/banner-badge.svg',
-                      title: 'Nome de um produto' %>
+<%= render 'banner',  banner: @banner %>                      
 <section class="store-content store-raffles-container">
   <% @packages.each do |package| %>
     <div class="store-raffle-item">

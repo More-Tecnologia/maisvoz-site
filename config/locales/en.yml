@@ -1922,4 +1922,9 @@ en:
   store_raffle_draw: Draw
   store_raffle_price: Price
   premium_ads: Premium ads
-  basic_ads: Basic ads  
+  basic_ads: Basic ads
+  task_per_day: Task per day
+  tasks_per_day: Tasks per day
+  top_deal: Top deal
+  last_numbers: Last numbers
+  free: Free

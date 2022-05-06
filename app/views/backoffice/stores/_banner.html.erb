@@ -1,37 +1,54 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/banner' %>
-<div class="store-banner-container">
-  <div class="store-banner-text">
-    <span class="store-banner-pretext">
-      <%= image_tag(badge_pretext_image, class: 'store-banner-pretext-icon') %>
-      <%= pretext %>
-    </span>
-    <h4 class="store-banner-title">
-      <%= title %>
-    </h4>
-    <span class="store-banner-description">
-      <%= description %>
-    </span>
-    <div class="store-banner-footer">
-      <p class="store-banner-footer-box">
-        <span class="store-banner-value">
-          <%= t(:store_raffle_price) %>
+<div class="store-banner-wrapper">
+  <input type="radio" name="radio-btn" id="radio1" class="radioButton"  checked>
+  <input type="radio" name="radio-btn" id="radio2" class="radioButton">
+  <input type="radio" name="radio-btn" id="radio3" class="radioButton">
+  <input type="radio" name="radio-btn" id="radio4" class="radioButton">
+  <% banner.each do |banner_item| %>
+    <% banner_items = banner_items_factory(banner_item) %>
+    <%= link_to banner_items.link,
+        class: "store-banner-container banner #{banner_item.kind}",
+        method: banner_items.link_method do %>
+      <div class="store-banner-text">
+        <span class="store-banner-pretext">
+          <%= image_tag(banner_items.badge_image, class: 'store-banner-pretext-icon') %>
+          <%= banner_items.badge_text %>
         </span>
-        <span class="store-banner-value-number">
-          <%= price %>
+        <h4 class="store-banner-title">
+          <%= banner_items.title %>
+        </h4>
+        <span class="store-banner-description">
+          <%= banner_items.description %>
         </span>
-      </p>
-      <p class="store-banner-footer-box">
-        <span class="store-banner-draw">
-          <%= t(:store_raffle_draw) %>
-        </span>
-        <span class="store-banner-draw-date">
-          <%= date %>
-        </span>
-      </p>
-    </div>
-  </div>  
-  <div class="store-banner-picture-container">
-    <%= image_tag(product_image, class: 'store-banner-img') %>   
+        <div class="store-banner-footer">
+          <p class="store-banner-footer-box">
+            <span class="store-banner-value-number">
+              <%= banner_items.price %>
+            </span>
+            <span class="store-banner-value">
+              <%= banner_items.price_text %>
+            </span>
+          </p>
+          <p class="store-banner-footer-box">
+            <span class="store-banner-right-number">
+              <%= banner_items.price_right %>
+            </span>
+            <span class="store-banner-right">
+              <%= banner_items.price_right_text %>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="store-banner-picture-container">
+        <%= image_tag(banner_items.image, class: 'store-banner-img') %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="navigation-manual">
+    <label for="radio1" class="manual-btn"></label>
+    <label for="radio2" class="manual-btn"></label>
+    <label for="radio3" class="manual-btn"></label>
+    <label for="radio4" class="manual-btn"></label>
   </div>
 </div>
-
+<%= javascript_include_tag('click-tok-theme/stores/shared/banner') %>

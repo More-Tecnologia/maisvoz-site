@@ -5,6 +5,7 @@ module Backoffice
 
     def index
       @products = Product.deposit.active.order(:price_cents)
+      #TODO: Create a query to get the product one level uper than the current sined by the user 
       @banner = Product.deposit.active.limit(4)
     end
 

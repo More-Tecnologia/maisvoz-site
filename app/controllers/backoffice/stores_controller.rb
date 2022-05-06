@@ -11,6 +11,7 @@ module Backoffice
       @courses = Course.active
                        .page(params[:page])
                        .per(4)
+      #TODO: Create logic for get various categories
       @banner = Product.course
                        .active
                        .page(params[:page])
@@ -21,6 +22,7 @@ module Backoffice
       @packages = Product.publicity
                          .active
                          .order(:price_cents)
+      #TODO: Create a query to get the product one level uper than the current sined by the user 
       @banner = Product.publicity
                        .active
                        .limit(4)

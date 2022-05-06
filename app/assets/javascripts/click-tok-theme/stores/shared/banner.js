@@ -4,7 +4,7 @@ const changeSlide = () => {
   document.getElementById("radio" + nextSlider).checked = true;
 }
 
-const autoChangeSlide = (seconds = 8) => {
+const autoChangeSlide = (seconds = 15) => {
   setInterval(changeSlide, seconds * 1000);
 }
 

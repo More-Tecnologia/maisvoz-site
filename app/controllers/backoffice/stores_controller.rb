@@ -4,7 +4,6 @@ module Backoffice
 
     def course
       @course = Course.find_by_hashid(params[:id])
-
       redirect_to backoffice_course_path(@course) if @course.in?(current_user.courses)
     end
 
@@ -12,7 +11,6 @@ module Backoffice
       @courses = Course.active
                        .page(params[:page])
                        .per(4)
-
       @banner = Product.course
                        .active
                        .page(params[:page])
@@ -23,7 +21,6 @@ module Backoffice
       @packages = Product.publicity
                          .active
                          .order(:price_cents)
-
       @banner = Product.publicity
                        .active
                        .limit(4)
@@ -34,7 +31,6 @@ module Backoffice
                          .active
                          .includes(:raffle)
                          .order(:price_cents)
-
       @banner = Product.raffle
                        .active
                        .includes(:raffle)

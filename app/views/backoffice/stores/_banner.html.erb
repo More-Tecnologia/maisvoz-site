@@ -6,7 +6,9 @@
   <input type="radio" name="radio-btn" id="radio4" class="radioButton">
   <% banner.each do |banner_item| %>
     <% banner_items = banner_items_factory(banner_item) %>
-    <div class="store-banner-container banner <%= banner_item.kind %>">
+    <%= link_to banner_items.link,
+        class: "store-banner-container banner #{banner_item.kind}",
+        method: banner_items.link_method do %>
       <div class="store-banner-text">
         <span class="store-banner-pretext">
           <%= image_tag(banner_items.badge_image, class: 'store-banner-pretext-icon') %>
@@ -40,7 +42,7 @@
       <div class="store-banner-picture-container">
         <%= image_tag(banner_items.image, class: 'store-banner-img') %>
       </div>
-    </div>
+    <% end %>
   <% end %>
   <div class="navigation-manual">
     <label for="radio1" class="manual-btn"></label>

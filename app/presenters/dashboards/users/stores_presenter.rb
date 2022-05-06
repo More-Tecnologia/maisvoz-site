@@ -4,8 +4,8 @@ module Dashboards
   module Users
     class StoresPresenter
       BANNER_ATTRIBUTE_LIST_BY_KIND = {
-        deposit: { description: :task_per_day, image: :main_photo_path, price: :price, title: :name },
         course: { description: :course_short_description, image: :course_path, price: :price, title: :name },
+        deposit: { description: :task_per_day, image: :main_photo_path, price: :price, title: :name },        
         publicity: { description: :clicks, image: :main_photo_path, price: :price, title: :name },
         raffle: { description: :description, image: :raffle_path, price: :price, title: :name }
       }.freeze
@@ -69,18 +69,14 @@ module Dashboards
         {
           description: "#{banner_noddle(banner_item, :description)} #{I18n.t(:tasks_per_day)}",
           image: 'stores/banner-badge.svg',
-          price_right: h.format_currency(banner_item.earnings_per_campaign),
+          price_right: helpers.format_currency(banner_item.earnings_per_campaign),
           price_right_text: I18n.t(:earnings_by_campaign),
           text: I18n.t(:package)
         }
       end
 
       def format_banner_price(price)
-        if price.positive?
-          h.format_currency(price)
-        else
-          I18n.t(:free)
-        end
+        price.positive? ? helpers.format_currency(price) : I18n.t(:free)
       end
 
       def get_badge_image(banner_item)
@@ -91,7 +87,7 @@ module Dashboards
         banner_custom_attributes_by_kind(banner_item)[:text]
       end
 
-      def h
+      def helpers
         ApplicationController.helpers
       end
 

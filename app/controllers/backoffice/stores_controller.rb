@@ -31,6 +31,7 @@ module Backoffice
                          .active
                          .includes(:raffle)
                          .order(:price_cents)
+      #TODO: Create a query to get the raffles with lass thickets available
       @banner = Product.raffle
                        .active
                        .includes(:raffle)

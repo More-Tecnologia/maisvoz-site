@@ -17,7 +17,7 @@
           </li>
           <li class="store--ads-item--price">
             <span class="store--ads-item--price--number">
-              <%= number_to_currency(package.price, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+              <%= format_currency(package.price) %>
             </span>
             <%= link_to new_backoffice_banner_path(product_id: package.id),
                 class: 'store--ads-item--price--buy-button' do %>

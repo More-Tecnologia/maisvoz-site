@@ -21,7 +21,7 @@
           <li class="store--products-item--border"></li>
           <li class="store--products-item--earnings">
             <span class="store--products-item--earnings--number">
-              <%= number_to_currency(product.earnings_per_campaign / 100.0, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+              <%= format_currency_with_separator(product.earnings_per_campaign / 100.00) %>
             </span>
             <span class="store--products-item--earnings--campaign">
               <%= t(:earnings_by_campaign) %>
@@ -29,7 +29,7 @@
           </li>
           <li class="store--products-item--price">
             <span class="store--products-item--price--number">
-              <%= product.price.zero? ? t(:free) : number_to_currency(product.price, precision: 0).gsub('USD ', '$') %>
+              <%= product.price.zero? ? t(:free) : format_currency(product.price) %>
             </span>
             <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
                   class: 'store--products-item--price--buy-button',

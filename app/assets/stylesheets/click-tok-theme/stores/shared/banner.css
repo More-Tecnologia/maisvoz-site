@@ -224,6 +224,7 @@
 
 .course .store-banner-img {
   border-left: 2px solid #fff;
+  min-height: 100%;
 }
 
 .navigation-manual {

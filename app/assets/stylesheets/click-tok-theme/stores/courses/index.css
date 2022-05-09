@@ -50,12 +50,17 @@
 }
 
 .store--course-item--title {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color: black;
+  display: -webkit-box;
   font-size: 0.5em;
   font-weight: bold;
-  height: 2.5em;
+  height: 2.2em;
+  line-clamp: 2;
   margin-top: 0px;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .store--course-item--footer {

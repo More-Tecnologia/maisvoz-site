@@ -72,17 +72,22 @@
 
 .store-raffle-item-info h5 {
   font-size: 0.8em;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .store-raffle-item-info p {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color: #939393;
+  display: -webkit-box;
   font-size: 0.7em;
   height: 2.4em;
+  line-clamp: 2;
   margin: 0.2em 0 2em 0;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .store-raffle-item-footer {

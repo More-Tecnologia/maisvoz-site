@@ -28,9 +28,9 @@
   align-items: center;
   aspect-ratio: 5/3;
   border-radius: 15px;
-  width: 100%;
   display: block;
   justify-content: center;
+  width: 100%;
 }
 
 .store--course-item--info {

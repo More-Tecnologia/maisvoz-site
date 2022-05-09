@@ -3,8 +3,8 @@
 <div class="store-content">
   <%= render 'backoffice/stores/menu' %>  
   <%= render 'backoffice/stores/banner', banner: @banner %>
-  <div class="store--products__content">
-    <% @products.each do |product| %>
+  <div class="store--products__content <%= I18n.locale.downcase %>">
+    <% @products.each do |product| %>    
       <div class="store--products-item">
         <div class="store--products-item--header" style="background: <%= product.details %>">
           <%= product.name %>

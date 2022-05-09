@@ -15,10 +15,14 @@
   display: block;
   font-size: 3em;
   height: 100%;
-  opacity: 0.1;
-  padding: 0 0.1em;
+  opacity: 0;
+  padding: 0 0.05em;
   position: absolute;
   z-index: 10;
+}
+
+.store-banner-button.active {
+  opacity: 0.2;
 }
 
 .store-banner-button:hover {

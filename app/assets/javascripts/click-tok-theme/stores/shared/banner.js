@@ -8,15 +8,21 @@ function dinamicBanner() {
   let currentBanner = 0;
 
   banner.goNext = () => {
-    currentBanner < bannerCount-2 ? currentBanner++ : currentBanner = bannerCount-1 ;  
+    if (currentBanner < bannerCount-2) {
+      currentBanner++
+    }else {
+      currentBanner = bannerCount-1
+    }
     bannerWrapper.scroll(currentBanner * bannerSize, 0);
-    console.log(currentBanner);
   };
 
   banner.goPrevious = () => {
-    currentBanner > 0 ? currentBanner-- : currentBanner = bannerCount-1 ;  
+    if(currentBanner > 0){ 
+      currentBanner--
+    }else{
+      currentBanner = 0 
+    }
     bannerWrapper.scroll(currentBanner * bannerSize, 0);
-    console.log(currentBanner);
   };
 
   buttonPrevious.addEventListener('click', banner.goPrevious);

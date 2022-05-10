@@ -15,7 +15,6 @@ module Backoffice
       @banner = Product.course
                        .active
                        .page(params[:page])
-                       .limit(4)
     end
 
     def ads

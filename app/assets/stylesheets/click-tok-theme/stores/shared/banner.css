@@ -129,20 +129,25 @@
 
 .store-banner-title {
   color: white;
-  font-size: 2em;
+  font-size: 1.7em;
   font-weight: 600;
   margin-top: 0.5em;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
   width: 98%;
 }
 
 .store-banner-description {
-  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
   font-size: 1.1em;
+  line-clamp: 2;
+  max-height: 2.5em;
   max-width: 98%;
   overflow: hidden;
-  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .store-banner-footer {
@@ -242,7 +247,7 @@
   border-radius: 50px;
   border: 2px solid #ffffffcc;
   cursor: pointer;
-  padding: 0.12em;
+  padding: 0.18em;
   transition: border 1s;
 }
 

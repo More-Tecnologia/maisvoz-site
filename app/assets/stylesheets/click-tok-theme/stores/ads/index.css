@@ -32,20 +32,33 @@
   font-weight: 600;
 }
 
+.store--ads-item--price--number b,
+.store--ads-item--price--number i {
+  font-size: 0.5em;
+  font-weight: 400;
+  line-height: 1.65em;
+  vertical-align: text-top;
+}
+
+.store--ads-item--price--number i {
+  font-style: normal;
+  line-height: 1.8em;
+  padding-left: 2px;
+}
+
 .store--ads-item--price--buy-button {
   align-items: center;
   background-color: #5cb800;
-  border-radius: 12px;
+  border-radius: 0.4em;
   border: none;
   color: white;
   cursor: pointer;
   display: flex;
   font-size: 1.4em;
   font-weight: bold;
-  height: 1.3em;
   justify-content: center;
   opacity: 1;
-  padding: 0 2em;
+  padding: 0.1em 1.5em;
   transition: opacity 0.3s;
   width: auto;
 }

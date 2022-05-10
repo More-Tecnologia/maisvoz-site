@@ -4,44 +4,46 @@
   <input type="radio" name="radio-btn" id="radio2" class="radioButton">
   <input type="radio" name="radio-btn" id="radio3" class="radioButton">
   <input type="radio" name="radio-btn" id="radio4" class="radioButton">
-  <% banner.each do |banner_item| %>
-    <% banner_items = banner_items_factory(banner_item) %>
-    <%= link_to banner_items.link,
-        class: "store-banner-container banner #{banner_item.kind}",
-        method: banner_items.link_method do %>
-      <div class="store-banner-text">
-        <span class="store-banner-pretext">
-          <%= image_tag(banner_items.badge_image, class: 'store-banner-pretext-icon') %>
-          <%= banner_items.badge_text %>
-        </span>
-        <h4 class="store-banner-title">
-          <%= banner_items.title %>
-        </h4>
-        <span class="store-banner-description">
-          <%= banner_items.description %>
-        </span>
-        <div class="store-banner-footer">
-          <p class="store-banner-footer-box">
-            <span class="store-banner-value-number">
-              <%= banner_items.price %>
-            </span>
-            <span class="store-banner-value">
-              <%= banner_items.price_text %>
-            </span>
-          </p>
-          <p class="store-banner-footer-box">
-            <span class="store-banner-right-number">
-              <%= banner_items.price_right %>
-            </span>
-            <span class="store-banner-right">
-              <%= banner_items.price_right_text %>
-            </span>
-          </p>
+  <% (banner.length > 3 ? 1 : 4).times do %>
+    <% banner.each do |banner_item| %>
+      <% banner_items = banner_items_factory(banner_item) %>
+      <%= link_to banner_items.link,
+          class: "store-banner-container banner #{banner_item.kind}",
+          method: banner_items.link_method do %>
+        <div class="store-banner-text">
+          <span class="store-banner-pretext">
+            <%= image_tag(banner_items.badge_image, class: 'store-banner-pretext-icon') %>
+            <%= banner_items.badge_text %>
+          </span>
+          <h4 class="store-banner-title">
+            <%= banner_items.title %>
+          </h4>
+          <span class="store-banner-description">
+            <%= banner_items.description %>
+          </span>
+          <div class="store-banner-footer">
+            <p class="store-banner-footer-box">
+              <span class="store-banner-value-number">
+                <%= banner_items.price %>
+              </span>
+              <span class="store-banner-value">
+                <%= banner_items.price_text %>
+              </span>
+            </p>
+            <p class="store-banner-footer-box">
+              <span class="store-banner-right-number">
+                <%= banner_items.price_right %>
+              </span>
+              <span class="store-banner-right">
+                <%= banner_items.price_right_text %>
+              </span>
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="store-banner-picture-container">
-        <%= image_tag(banner_items.image, class: 'store-banner-img') %>
-      </div>
+        <div class="store-banner-picture-container">
+          <%= image_tag(banner_items.image, class: 'store-banner-img') %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
   <div class="navigation-manual">

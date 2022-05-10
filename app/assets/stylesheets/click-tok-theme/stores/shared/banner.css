@@ -16,21 +16,17 @@
   font-size: 3em;
   height: 100%;
   opacity: 0;
-  padding: 0 0.05em;
+  padding: 0;
   position: absolute;
   z-index: 10;
   transition: opacity 0.3s;
-  pointer-events: none;
+  opacity: 0.3;
+  color: #ccc;
 }
 
-.store-banner-button.active {
-  opacity: 0.2;
-  pointer-events: all;
-}
-
-.store-banner-button.active:hover {
+.store-banner-button:hover {
   background: rgba(0, 0, 0, 0.2);
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .store-banner-button__right {

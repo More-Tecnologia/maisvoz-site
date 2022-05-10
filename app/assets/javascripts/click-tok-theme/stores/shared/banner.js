@@ -6,39 +6,39 @@ function dinamicBanner() {
   const buttonPrevious = document.querySelector(".store-banner-button__left");
   const buttonNext = document.querySelector(".store-banner-button__right");  
   let currentBanner = 0;
-
+  
   banner.goStart = () => {
     bannerWrapper.scroll(0, 0);
   }
 
   banner.goNext = () => {
-    if (currentBanner < bannerCount-2) {
+    console.log(interval);
+    clearInterval(interval);
+    console.log(interval);
+    if (currentBanner < bannerCount-1) {
       currentBanner++
-      buttonPrevious.classList.add('active');
     }else {
-      currentBanner = bannerCount-1
-      buttonNext.classList.remove('active');
-      buttonPrevious.classList.add('active');
+      currentBanner = 0
     }
     bannerWrapper.scroll(currentBanner * bannerSize, 0);
+    
   };
 
   banner.goPrevious = () => {
-    if(currentBanner > 1){ 
+    clearInterval(interval);
+    if(currentBanner > 0){ 
       currentBanner--
-      buttonNext.classList.add('active');
     }else{
-      currentBanner = 0 
-      buttonPrevious.classList.remove('active');
-      buttonNext.classList.add('active');
+      currentBanner = bannerCount-1
     }
     bannerWrapper.scroll(currentBanner * bannerSize, 0);
+    interval();
   };
-
+  
   banner.goStart();
   buttonPrevious.addEventListener('click', banner.goPrevious);
   buttonNext.addEventListener('click', banner.goNext);
-
+  const interval = setInterval(banner.goNext, 2000);
   return banner;
 }
 

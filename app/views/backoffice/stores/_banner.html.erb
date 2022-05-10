@@ -4,7 +4,7 @@
   <input type="radio" name="radio-btn" id="radio2" class="radioButton">
   <input type="radio" name="radio-btn" id="radio3" class="radioButton">
   <input type="radio" name="radio-btn" id="radio4" class="radioButton">
-  <% (banner.length > 3 ? 4 : 1).times do %>
+  <% (banner.length > 3 ? 1 : 4).times do %>
     <% banner.each do |banner_item| %>
       <% banner_items = banner_items_factory(banner_item) %>
       <%= link_to banner_items.link,

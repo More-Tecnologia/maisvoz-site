@@ -101,7 +101,7 @@ class Product < ApplicationRecord
 
   def photos_types
     photos.each do |photo|
-      if !photo.content_type.in?(%('image/jpeg image/png'))
+      if !photo.content_type.in?(%('image/jpeg image/png image/jpg'))
         errors.add(:photos, I18n.t('activerecord.errors.models.product.attributes.photos.types'))
       end
     end

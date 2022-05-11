@@ -28,9 +28,9 @@
   align-items: center;
   aspect-ratio: 5/3;
   border-radius: 15px;
-  width: 100%;
   display: block;
   justify-content: center;
+  width: 100%;
 }
 
 .store--course-item--info {
@@ -50,12 +50,17 @@
 }
 
 .store--course-item--title {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color: black;
+  display: -webkit-box;
   font-size: 0.5em;
   font-weight: bold;
-  height: 2.5em;
+  height: 2.2em;
+  line-clamp: 2;
   margin-top: 0px;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .store--course-item--footer {
@@ -72,6 +77,20 @@
   line-height: 0.7em;
 }
 
+.store--course-item--price b,
+.store--course-item--price i {
+  font-size: 0.5em;
+  font-weight: 400;
+  line-height: 1.65em;
+  vertical-align: text-top;
+}
+
+.store--course-item--price i {
+  font-style: normal;
+  line-height: 1.8em;
+  padding-left: 2px;
+}
+
 .store--course-item--buy-buttom {
   align-items: center;
   background: linear-gradient(to bottom, #58f701, #26ac00);
@@ -81,7 +100,7 @@
   font-weight: bold;
   justify-content: center;
   opacity: 1;
-  padding: 0.5em 1.5em;
+  padding: 0.5em 1.2em;
   transition: opacity 0.3s;
   width: auto;
 }

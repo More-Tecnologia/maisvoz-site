@@ -41,9 +41,7 @@
         </p>
         <div class="store-raffle-item-footer">
           <span>
-            <%= number_to_currency(package.price,
-              unit: ENV['CURRENT_CURRENCY'],
-              precision: 2).gsub('USD ', '$') %>
+            <%= format_currency(package.price) %>
           </span>
           <%= link_to backoffice_raffles_ticket_path(package.raffle) do %>
             <button>

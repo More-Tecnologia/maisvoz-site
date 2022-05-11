@@ -1,10 +1,9 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/banner' %>
+<%= javascript_include_tag('click-tok-theme/stores/shared/banner', defer: true) %>
 <div class="store-banner-wrapper">
-  <input type="radio" name="radio-btn" id="radio1" class="radioButton"  checked>
-  <input type="radio" name="radio-btn" id="radio2" class="radioButton">
-  <input type="radio" name="radio-btn" id="radio3" class="radioButton">
-  <input type="radio" name="radio-btn" id="radio4" class="radioButton">
-  <% (banner.length > 3 ? 1 : 4).times do %>
+  <button class="store-banner-button store-banner-button__left">‹</button>
+  <button class="store-banner-button store-banner-button__right active">›</button>
+  <div class="store-banner-content">
     <% banner.each do |banner_item| %>
       <% banner_items = banner_items_factory(banner_item) %>
       <%= link_to banner_items.link,
@@ -45,12 +44,5 @@
         </div>
       <% end %>
     <% end %>
-  <% end %>
-  <div class="navigation-manual">
-    <label for="radio1" class="manual-btn"></label>
-    <label for="radio2" class="manual-btn"></label>
-    <label for="radio3" class="manual-btn"></label>
-    <label for="radio4" class="manual-btn"></label>
   </div>
 </div>
-<%= javascript_include_tag('click-tok-theme/stores/shared/banner') %>

@@ -21,7 +21,7 @@
           <li class="store--products-item--border"></li>
           <li class="store--products-item--earnings">
             <span class="store--products-item--earnings--number">
-              <%= format_currency_with_separator(product.earnings_per_campaign / 100.0) %>
+              <%= format_currency(product.earnings_per_campaign / 100.0) %>
             </span>
             <span class="store--products-item--earnings--campaign">
               <%= t(:earnings_by_campaign) %>

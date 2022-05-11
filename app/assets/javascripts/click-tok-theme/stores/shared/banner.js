@@ -1,25 +1,27 @@
-function bannerConstruct() {
-  function newElement(elementName) {
+const banner = bannerElementFactory();
+banner.btnNext = banner.newElement(".store-banner-button__left");
+banner.btnPrevious = banner.newElement(".store-banner-button__right");
+banner.content = banner.newElement(".store-banner-content");
+banner.current = 0;
+banner.length = banner.newElements(".store-banner-container").length - 1;
+banner.slide = banner.newElement(".store-banner-container");
+banner.slides = banner.newElements(".store-banner-container");
+banner.width = banner.newElement(".store-banner-container").offsetWidth; 
+
+function bannerElementFactory() {
+  const bannerElement = {};
+  bannerElement.newElement = (elementName) => {
     return document.querySelector(elementName);
   }
 
-  function newElements(elementName) {
+  bannerElement.newElements = (elementName) => {
     return document.querySelectorAll(elementName);
   }
 
-  return {
-    btnNext: newElement(".store-banner-button__left"),
-    btnPrevious: newElement(".store-banner-button__right"),
-    content: newElement(".store-banner-content"),
-    current: 0,
-    length: newElements(".store-banner-container").length - 1,
-    slide: newElements(".store-banner-container"),
-    width: newElement(".store-banner-container").offsetWidth,
-  };
+  return bannerElement;
 }
 
-function dinamicBanner(delay) {
-  const banner = bannerConstruct();
+function dinamicBanner(delay, banner) {  
 
   const autoSlide = (timer = delay) => {
     clearTimeout(banner.timer);
@@ -32,16 +34,23 @@ function dinamicBanner(delay) {
 
   const mouseDownHandler = (event) => {
     banner.startPosition = event.clientX;
-    banner.isClicked = true;
+    banner.isClicked = true;    
   };
+
+  const mouseUpHandler = (event) => {
+    banner.slides.forEach(slide => {
+      slide.style.pointerEvents = 'none';
+    })
+  }
 
   const mouseMoveHandler = (event) => {
     if (banner.isClicked && event.clientX < banner.startPosition) {
       goNext();
-      banner.isClicked = false;
+      banner.isClicked = false;     
     } else if (banner.isClicked && event.clientX > banner.startPosition) {
       goPreview();
       banner.isClicked = false;
+     
     }
   };
 
@@ -70,6 +79,10 @@ function dinamicBanner(delay) {
     }
     scroll(banner.current);
     autoSlide();
+    banner.slides.forEach(slide => {
+      slide.style.pointerEvents = 'all';
+    })  
+
   };
 
   const goPreview = () => {
@@ -80,17 +93,21 @@ function dinamicBanner(delay) {
     }
     scroll(banner.current);
     autoSlide();
+    banner.slides.forEach(slide => {
+      slide.style.pointerEvents = 'all';
+    }) 
   };
 
-  banner.content.addEventListener("mousedown", mouseDownHandler);
-  banner.content.addEventListener("mousemove", mouseMoveHandler);
-  banner.content.addEventListener("touchstart", touchStartHandler, false);
-  banner.content.addEventListener("touchend", touchEndHandler, false);
-  banner.btnNext.addEventListener("click", goPreview);
-  banner.btnPrevious.addEventListener("click", goNext);
-  window.addEventListener("resize", resizeHandler);
+  banner.content.addEventListener('mousedown', mouseDownHandler);
+  banner.content.addEventListener('mousemove', mouseMoveHandler);
+  banner.content.addEventListener('touchstart', touchStartHandler, false);
+  banner.content.addEventListener('touchend', touchEndHandler, false);
+  banner.btnNext.addEventListener('click', goPreview);
+  banner.btnPrevious.addEventListener('click', goNext);
+  document.addEventListener('mouseup', mouseUpHandler);
+  window.addEventListener('resize', resizeHandler);
   autoSlide();
   scroll(0);
 }
 
-dinamicBanner(10);
+dinamicBanner(10, banner);

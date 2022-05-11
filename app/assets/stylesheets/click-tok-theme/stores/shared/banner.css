@@ -5,7 +5,7 @@
   position: relative;
   margin-top: 10px;
   overflow: hidden;
-  background-color: red;
+  user-select: none;
 }
 
 .store-banner-button {
@@ -16,21 +16,17 @@
   font-size: 3em;
   height: 100%;
   opacity: 0;
-  padding: 0 0.05em;
+  padding: 0;
   position: absolute;
   z-index: 10;
   transition: opacity 0.3s;
-  pointer-events: none;
+  opacity: 0.3;
+  color: #ccc;
 }
 
-.store-banner-button.active {
-  opacity: 0.2;
-  pointer-events: all;
-}
-
-.store-banner-button.active:hover {
+.store-banner-button:hover {
   background: rgba(0, 0, 0, 0.2);
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 .store-banner-button__right {
@@ -69,11 +65,11 @@
 }
 
 .store-banner-container:nth-of-type(3) {
-  background: linear-gradient(to bottom left, #9f9ffc, #8179c1);
+  background: linear-gradient(to bottom left, #ffa126, #e48b16);
 }
 
 .store-banner-container:nth-of-type(4) {
-  background: linear-gradient(to bottom left, #ffa126, #e48b16);
+  background: linear-gradient(to bottom left, #9f9ffc, #8179c1);
 }
 
 .store-banner-text {
@@ -109,20 +105,25 @@
 
 .store-banner-title {
   color: white;
-  font-size: 2em;
+  font-size: 1.7em;
   font-weight: 600;
   margin-top: 0.5em;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
   width: 98%;
 }
 
 .store-banner-description {
-  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
   font-size: 1.1em;
+  line-clamp: 2;
+  max-height: 2.5em;
   max-width: 98%;
   overflow: hidden;
-  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .store-banner-footer {

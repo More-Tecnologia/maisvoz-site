@@ -10,6 +10,7 @@ banner.width = banner.newElement(".store-banner-container").offsetWidth;
 
 function bannerElementFactory() {
   const bannerElement = {};
+
   bannerElement.newElement = (elementName) => {
     return document.querySelector(elementName);
   }
@@ -22,7 +23,6 @@ function bannerElementFactory() {
 }
 
 function dinamicBanner(delay, banner) {  
-
   const autoSlide = (timer = delay) => {
     clearTimeout(banner.timer);
     banner.timer = setTimeout(goNext, timer * 1000);
@@ -49,8 +49,7 @@ function dinamicBanner(delay, banner) {
       banner.isClicked = false;     
     } else if (banner.isClicked && event.clientX > banner.startPosition) {
       goPreview();
-      banner.isClicked = false;
-     
+      banner.isClicked = false;     
     }
   };
 
@@ -67,30 +66,77 @@ function dinamicBanner(delay, banner) {
   };
 
   const resizeHandler = () => {
-    banner.width = banner.slide.offsetWidth;
-    scroll(banner.current);
+    banner.width = banner.slides[banner.current].offsetWidth;
+    scroll(banner.current); 
   };
 
-  const goNext = () => {
-    if (banner.current < banner.length) {
-      banner.current++;
-    } else {
-      banner.current = 0;
+  const goStart = () => {
+    banner.current = 0;
+    banner.slides[banner.length].style.order = '1';  
+    banner.content.style.scrollBehavior = 'auto'   
+    scroll(banner.current); 
+    banner.current = 1; 
+    banner.content.style.scrollBehavior = 'smooth' 
+    banner.isLooping = true;    
+  }
+
+  const goEnd = () => {
+    banner.current = banner.length;
+    banner.slides[0].style.order = '3';  
+    banner.content.style.scrollBehavior = 'auto'   
+    scroll(banner.current); 
+    banner.current = banner.length-1; 
+    banner.content.style.scrollBehavior = 'smooth' 
+    banner.isLooping = true;    
+  }
+
+  const resetStart = () => {
+    banner.current = 0;
+    banner.slides[banner.length].style.order = '2';  
+    banner.content.style.scrollBehavior = 'auto'   
+    scroll(banner.current);
+    banner.isLooping = false; 
+    banner.content.style.scrollBehavior = 'smooth' 
+  }
+
+  const resetEnd = () => {
+    banner.current = banner.length;
+    banner.slides[0].style.order = '2';  
+    banner.content.style.scrollBehavior = 'auto'   
+    scroll(banner.current);
+    banner.isLooping = false; 
+    banner.content.style.scrollBehavior = 'smooth' 
+  }
+
+  const goNext = () => {    
+    if(banner.current === 1 && banner.isLooping === true){
+      resetStart();
     }
+    
+    if (banner.current < banner.length) {
+      banner.current++;      
+    } else {      
+      goStart();              
+    }
+
     scroll(banner.current);
     autoSlide();
     banner.slides.forEach(slide => {
       slide.style.pointerEvents = 'all';
-    })  
-
+    })    
   };
 
   const goPreview = () => {
+    if(banner.current === banner.length - 1 && banner.isLooping === true){
+      resetEnd();
+    }
+
     if (banner.current > 0) {
       banner.current--;
     } else {
-      banner.current = banner.length;
+      goEnd();
     }
+
     scroll(banner.current);
     autoSlide();
     banner.slides.forEach(slide => {

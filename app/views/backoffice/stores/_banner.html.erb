@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/banner' %>
-<div class="store-banner-wrapper"> 
+<%= javascript_include_tag('click-tok-theme/stores/shared/banner', defer: true) %>
+<div class="store-banner-wrapper">
   <button class="store-banner-button store-banner-button__left">‹</button>
   <button class="store-banner-button store-banner-button__right active">›</button>
   <div class="store-banner-content">
@@ -45,4 +46,3 @@
     <% end %>
   </div>
 </div>
-<%= javascript_include_tag('click-tok-theme/stores/shared/banner') %>

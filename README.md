@@ -21,3 +21,18 @@ payment:expired
 # Limpar pedidos no abandonados carrinho (todo dia)
 shopping:clear_cart
 ```
+# Live Reload
+  "Live reload make the rails aplication auto refresh after a edition in one of its files"
+SETUP  
+- Run the command: 
+* bundle
+START
+- Run the commands:
+* rails s
+* bundle exec guard
+DEPENDENCYS
+- Instal extension for the browser:
+* For Chrome: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
+* For Mozila Firefox: https://addons.mozilla.org/pt-BR/firefox/addon/livereload-web-extension/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search
+* For other browsers: Search for a extension named "Livereload"
+```

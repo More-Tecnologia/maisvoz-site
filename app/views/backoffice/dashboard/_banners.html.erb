@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag 'click-tok-theme/dashboard/banners' %>
+<%= stylesheet_link_tag 'click-tok-theme/libraries/owlcarousel/owl.carousel.min' %>
+
+<div class="owl-carousel dashboard-banner-container <%= defined?(premium) ? 'dashboard-banner-container-premium' : 'dashboard-banner-container-basic' %>">
+  <% banners.shuffle.last(12).each do |banner| %>    
+    <%= link_to backoffice_banner_clicks_path(banner_id: banner.id), 
+                class: 'item dashboard-banner-item',             
+                method: :post,
+                remote: true,
+                title: banner.title + "\n " + banner.description do %>          
+      <% if defined? premium %>
+        <span class="dashboard-banner-title">
+          <%= banner.title %>
+        </span> 
+      <% end %>      
+      <%= image_tag(banner.path.present? ? banner.path: banner.image_pat, class: 'dashboard-banner-image') %>
+    <% end %>    
+  <% end %>
+</div>
+
+<%= javascript_include_tag 'click-tok-theme/libraries/owlcarousel/owl.carousel.min.js' %>
+<%= javascript_include_tag 'click-tok-theme/tasks/banners' %>

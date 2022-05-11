@@ -4,7 +4,6 @@ module Backoffice
 
     def course
       @course = Course.find_by_hashid(params[:id])
-
       redirect_to backoffice_course_path(@course) if @course.in?(current_user.courses)
     end
 
@@ -12,12 +11,20 @@ module Backoffice
       @courses = Course.active
                        .page(params[:page])
                        .per(4)
+      #TODO: Create logic for get various categories
+      @banner = Product.course
+                       .active
+                       .page(params[:page])
     end
 
     def ads
       @packages = Product.publicity
                          .active
                          .order(:price_cents)
+      #TODO: Create a query to get the product one level uper than the current sined by the user 
+      @banner = Product.publicity
+                       .active
+                       .limit(4)
     end
 
     def raffles
@@ -25,6 +32,11 @@ module Backoffice
                          .active
                          .includes(:raffle)
                          .order(:price_cents)
+      #TODO: Create a query to get the raffles with lass thickets available
+      @banner = Product.raffle
+                       .active
+                       .includes(:raffle)
+                       .limit(4)
     end
   end
 end

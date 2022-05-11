@@ -1,0 +1,27 @@
+.container-reputation {
+  display: flex;
+  margin-top: 0px;
+}
+
+.reputation-value {
+  color: #f29100;
+  font-weight: bold;
+}
+
+.stars {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 0.6em;
+  width: 6em;
+}
+
+.stars svg {
+  margin-right: 5px;
+}
+
+@media (min-width: 1500px) {
+  .container-reputation {
+    font-size: 1.88rem;
+  }
+}

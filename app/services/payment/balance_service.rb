@@ -17,7 +17,7 @@ module Payment
         @order.status = :pending_payment
         @order.save
 
-        PaymentCompensationWorker.perform_async(@order.id)
+        Financial::PaymentCompensation.call(@order)
       end
     end
 

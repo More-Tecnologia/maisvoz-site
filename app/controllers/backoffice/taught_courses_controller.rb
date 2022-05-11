@@ -36,7 +36,7 @@ module Backoffice
 
     def update
       update_course
-      flash[:success] = t(:success_update)
+      flash[:success] = t(:success_updated)
       redirect_to backoffice_taught_courses_path
     rescue StandardError => e
       flash[:error] = e.message

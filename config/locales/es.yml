@@ -1782,6 +1782,7 @@ es:
   master_leader_bonus: Bono de líder maestro
   chargeback_by_inactivity: Contracargo por inactividad
   chargeback_by_max_task_gains: Contracargo por ganancias máximas de tareas
+  payment_with_balance: Pago con saldo
   approved_balance: Saldo aprobado
   processing: 'Procesando'
   export_only_wallets: Exportar solo billeteras
@@ -1867,12 +1868,12 @@ es:
   online_advertising: Publicidad en línea
   get_now: COMPRE YA
   your_advertising_package: su paquete de publicidad!
-  online_raffles: Sorteos en línea
+  online_raffles: Sorteos
   wait: espere
   news_coming_soon: noticias próximamente
   the_best_raffles_will_be_here: los mejores sorteos estaran aqui
-  online_courses: Cursos en linea
-  online_publicity: Publicidad en linea
+  online_courses: Cursos
+  online_publicity: Publicidad
   the_best_courses_will_be_here: Los mejores cursos estarán aquí
   add_courses: Agregar cursos
   my_ads: Mis anuncios
@@ -1887,8 +1888,7 @@ es:
   ticket_type: Tipo de boleto
   raffles_list: Lista de sorteos
   type: Tipo
-  nothing_found: Nada encontrado
-  tickets_available: Boleto disponibles
+  nothing_found: Nada encontrado  
   select: Seleccione
   numbers_selected: Números seleccionados
   number_of_random_tickets: Número de boletos al azar
@@ -1910,3 +1910,18 @@ es:
   cashback: Cashback
   raffle_order_not_found: Pedido de sorteo no encontrado
   successfully_paid: ¡Pagado exitosamente!
+  basic_banner: Anuncios Básicos
+  store: Tienda
+  store_raffle_available: Disponible
+  store_raffle_reserved: Reservado
+  store_raffle_paid: Pagado
+  store_raffle__choose_numbers: Elegir Números
+  store_raffle_draw: Sorteo
+  store_raffle_price: Precio
+  premium_ads: Anuncios premium
+  basic_ads: Anuncios basicos  
+  task_per_day: Tarea por dia
+  tasks_per_day: Tareas por dia
+  top_deal: Mejor oferta
+  last_numbers: Últimos números
+  free: Gratis

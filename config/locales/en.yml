@@ -1782,6 +1782,7 @@ en:
   master_leader_bonus: Master leader bonus
   chargeback_by_inactivity: Chargeback by inactivity
   chargeback_by_max_task_gains: Chargeback by max task gains
+  payment_with_balance: Payment with balance
   approved_balance: Approved balance
   processing: 'Processing'
   export_only_wallets: Export only wallets
@@ -1841,8 +1842,7 @@ en:
   published_by: Published by
   anonymous: Anonymous
   my_learning: My learning
-  this_course_includes: 'This course includes:'
-  store: Store
+  this_course_includes: 'This course includes:' 
   buy_now: Buy now!
   featured_courses: Featured courses
   success_create: Successfully created!
@@ -1870,12 +1870,12 @@ en:
   online_advertising: Online advertising
   get_now: GET NOW
   your_advertising_package: your advertising package!
-  online_raffles: Online raffles
+  online_raffles: Raffles
   wait: wait
   news_coming_soon: news comming soon
   the_best_raffles_will_be_here: the best raffles will be here
-  online_courses: Online courses
-  online_publicity: Online publicity
+  online_courses: Courses
+  online_publicity: Publicity
   the_best_courses_will_be_here: the best courses will be here
   add_courses: Add courses
   my_ads: My Ads
@@ -1891,8 +1891,7 @@ en:
   ticket_type: Ticket Type
   raffles_list: Raffles list
   type: Type
-  nothing_found: Nothing found
-  tickets_available: Tickets available
+  nothing_found: Nothing found 
   select: Select
   numbers_selected: Selected Numbers
   number_of_random_tickets: Number of random tickets
@@ -1914,3 +1913,18 @@ en:
   cashback: Cashback
   raffle_order_not_found: Raffle order not found
   successfully_paid: Successfully paid!
+  basic_banner: Basic Ads
+  store: Store
+  store_raffle_available: Available
+  store_raffle_reserved: Reserved
+  store_raffle_paid: Paid
+  store_raffle__choose_numbers: Choose Numbers
+  store_raffle_draw: Draw
+  store_raffle_price: Price
+  premium_ads: Premium ads
+  basic_ads: Basic ads
+  task_per_day: Task per day
+  tasks_per_day: Tasks per day
+  top_deal: Top deal
+  last_numbers: Last numbers
+  free: Free

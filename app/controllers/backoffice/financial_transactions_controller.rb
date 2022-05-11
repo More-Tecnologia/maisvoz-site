@@ -3,15 +3,16 @@ module Backoffice
     include Backoffice::FinancialTransactionsHelper
 
     FINANCIAL_REASONS = {
+      chargeback_by_inactivity: FinancialReason.chargeback_by_inactivity,
+      chargeback_by_max_task_gains: FinancialReason.chargeback_by_max_gains,
       direct_referral_bonus: FinancialReason.direct_commission_bonus,
       indirect_referral_bonus: FinancialReason.indirect_referral_bonus,
-      task_performed: FinancialReason.yield_bonus,
-      recurrent_bonus: FinancialReason.matching_bonus,
       master_leader_bonus: FinancialReason.master_leader_bonus,
-      chargeback_by_inactivity: FinancialReason.chargeback_by_inactivity,
-      chargeback_by_max_task_gains: FinancialReason.chargeback_by_max_gains
+      order_payment_with_balance: FinancialReason.order_payment_with_balance,
+      recurrent_bonus: FinancialReason.matching_bonus,
+      task_performed: FinancialReason.yield_bonus
     }
-
+    
     def index
       if current_user.empreendedor?
         @financial_transactions =

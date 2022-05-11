@@ -62,6 +62,10 @@ class Product < ApplicationRecord
   validate :photos_quantity_limit
   validate :photos_types
 
+  delegate :path, to: :course, prefix: true, allow_nil: true
+  delegate :path, to: :raffle, prefix: true, allow_nil: true
+  delegate :short_description, to: :course, prefix: true, allow_nil: true
+
   def main_photo_path
     return ActionController::Base.helpers.asset_path('fallback/default_product.png') if !main_photo.attached?
     Rails.application.routes.url_helpers.rails_blob_path(main_photo, only_path: true)
@@ -97,7 +101,7 @@ class Product < ApplicationRecord
 
   def photos_types
     photos.each do |photo|
-      if !photo.content_type.in?(%('image/jpeg image/png'))
+      if !photo.content_type.in?(%('image/jpeg image/png image/jpg'))
         errors.add(:photos, I18n.t('activerecord.errors.models.product.attributes.photos.types'))
       end
     end

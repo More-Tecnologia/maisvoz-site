@@ -1,7 +1,6 @@
 <%= stylesheet_link_tag 'click-tok-theme/courses' %>
 <%= stylesheet_link_tag 'click-tok-theme/add-courses' %>
 <%= stylesheet_link_tag 'click-tok-theme/my-courses' %>
-
 <div class="container-my-courses">
   <div class="top-new-courses">
     <a class="back-button" href="/backoffice/financial_dashboard?locale=en">
@@ -17,7 +16,7 @@
         <span>ID</span>
         <span><%= @course.hashid %></span>
       </div>
-      <%= image_tag(course_thumb(@course), class: 'img-course') %>
+      <%= image_tag(@course.path, class: 'img-course') %>
       <p class="course-description"><%= @course.short_description %></p>
     </div>
   </div>

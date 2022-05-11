@@ -75,7 +75,7 @@ module Dashboards
         {
           description: "#{banner_noddle(banner_item, :description)} #{I18n.t(:tasks_per_day)}",
           image: 'stores/banner-badge.svg',
-          price_right: helpers.format_currency(banner_item.earnings_per_campaign),
+          price_right: helpers.format_currency(banner_item.earnings_per_campaign / 100.0),
           price_right_text: I18n.t(:earnings_by_campaign),
           text: I18n.t(:package),
           link: backoffice_order_items_path(product: {id: banner_item.hashid}),

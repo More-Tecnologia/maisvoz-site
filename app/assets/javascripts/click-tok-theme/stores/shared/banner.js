@@ -12,7 +12,7 @@ function bannerElementFactory() {
   return bannerElement;
 }
 
-function dinamicBanner(delay) {
+function dynamicBanner(delay) {
   const banner = bannerElementFactory();
   banner.btnNext = banner.newElement(".store-banner-button__left");
   banner.btnPrevious = banner.newElement(".store-banner-button__right");
@@ -164,4 +164,4 @@ function dinamicBanner(delay) {
   }
 }
 
-dinamicBanner(10);
+dynamicBanner(10);

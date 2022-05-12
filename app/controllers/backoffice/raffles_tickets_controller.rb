@@ -30,6 +30,11 @@ module Backoffice
 
     def show
       @raffle = Raffle.find_by_hashid(params[:id])
+
+      @banner = Product.raffle
+                       .active
+                       .includes(:raffle)
+                       .limit(4)
     end
 
     private

@@ -24,13 +24,16 @@
     </div>
     <div class="raffle-cart-data">
       <h1 class="raffle-title strong"><%= @raffle.title %></h1>
-      <p class="raffle-text">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
-      </p>
-      <a class="read-more">Read More</a>
+      <div>
+        <p class="raffle-text">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </p>
+        <a class="read-more">Read More</a>
+      </div>
+
       <div class="top-cart-data">
         <div class="numbers-available-container">
           <div class="numbers-available-title">Available</div>
@@ -50,8 +53,25 @@
       </div>
     </div>
   </div>
-  <div class="container-numbers-selected">
-    <h5 class="numbers-selected__title">Numbers Selected</h5>
+  <div class="container-numbers-selected hidden">
+    <div class="container-top-numbers-selected">
+      <h5 class="numbers-selected__title">Numbers Selected</h5>
+      <button class="btn-clear">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-trash3-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
+          />
+        </svg>
+        Limpar
+      </button>
+    </div>
     <div class="numbers-selected">
       <% unless @raffle.automatic? %> <% end %>
     </div>
@@ -60,8 +80,14 @@
     <div class="draw-date-title"></div>
     <div class="draw-date strong"></div>
   </div>
-  <%= form_for(@raffle, url: backoffice_raffles_tickets_path, method: :post, html:
-  { class: "form-tickets-buy" }) do |f| %> <% unless @raffle.manual? %>
+  <%= form_for(@raffle, url: backoffice_raffles_tickets_path, method: :post,
+  html: { class: "form-tickets-buy" }) do |f| %>
+
+  <div class="hidden-input">
+    <select name="raffle[numbers]" class="hidden-input-tickets"></select>
+    <input type="text" name="raffle[id]" value="<%= @raffle.hashid %>" />
+  </div>
+
   <div class="container-raffle-button">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -99,14 +125,10 @@
       <div class="search-container">
         <input type="text" placeholder="Search" class="input-search" />
       </div>
-      <button class="btn-pattern">Apply</button>
+      <button class="btn-pattern">Search</button>
     </div>
   </div>
-  <div class="hidden-input">
-    <select name="raffle[numbers]" class="hidden-input-tickets"></select>
-    <input type="text" name="raffle[id]" value="<%= @raffle.hashid %>" />
-  </div>
-  <% end %> <% unless @raffle.automatic? %>
+  <% unless @raffle.automatic? %>
   <div class="raffles-numbers-container">
     <div class="container-numbers-table">
       <div class="raffles-cart-numbers">
@@ -123,8 +145,4 @@
   </div>
 </div>
 
-
-<% end %>
-
-
-<%= javascript_include_tag 'raffles/raffles-tickets' %> <% end %>
+<% end %> <%= javascript_include_tag 'raffles/raffles-tickets' %> <% end %>

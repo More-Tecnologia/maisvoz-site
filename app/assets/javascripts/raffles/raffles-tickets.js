@@ -8,10 +8,14 @@ const numbersSelected = document.querySelector(".numbers-selected");
 const listNumbers = [];
 const inputNumbers = [];
 const inputSelectedNumbers = document.querySelector(".hidden-input-tickets");
+const btnClear = document.querySelector(".btn-clear");
+const containerNumbersSelected = document.querySelector(
+  ".container-numbers-selected"
+);
 
 numbers.forEach((number) => {
   number.addEventListener("click", function () {
-console.log(numbersSelected.children)
+    console.log(numbersSelected.children.length);
 
     let thisValue = this.attributes.value.value;
     let valueElement = this.getAttribute("value");
@@ -31,7 +35,25 @@ console.log(numbersSelected.children)
         `<div class="number-raffle" value="${thisValue}">${this.innerHTML}</div>`
       );
       numbersSelected.innerHTML = listNumbers;
+      inputNumbers.push(
+        `<option value="${valueElement}">${valueElement}</option>`
+      );
+      inputSelectedNumbers.innerHTML = inputNumbers;
+    }
+
+    if (numbersSelected.children.length != "") {
+      containerNumbersSelected.classList.remove("hidden");
+    } else {
+      containerNumbersSelected.classList.add("hidden");
     }
   });
 });
 
+btnClear.addEventListener("click", function () {
+  containerNumbersSelected.classList.add("hidden");
+  const numberSelected = document.querySelectorAll(".number-selected");
+  numberSelected.forEach((number) => {
+    number.classList.remove("number-selected");
+  });
+  listNumbers.splice(0, listNumbers.length);
+});

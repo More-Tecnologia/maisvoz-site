@@ -1,3 +1,11 @@
+.hidden {
+  display: none;
+}
+
+.back-button {
+  margin: 0;
+}
+
 .raffle-cart-container {
   max-width: 1360px;
   margin: auto;
@@ -16,12 +24,19 @@
 }
 
 .top-raffles-tickets {
+  align-items: center;
   padding: 20px;
+  display: flex;
+}
+
+.top-raffles-tickets h4 {
+  font-weight: bold;
+  margin-left: 10px;
 }
 
 .raffle-container-title {
-  width: 30%;
-  height: 145px;
+  width: 48%;
+  height: auto;
 }
 
 .raffle-title {
@@ -65,7 +80,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-between;
+  gap: 0 10px;
 }
 
 .container-scroll-numbers {
@@ -80,7 +95,7 @@
   padding: 5px;
   border-radius: 2px;
   margin-right: 5px;
-  margin-top: 5px;
+  margin-top: 10px;
   max-width: 80px;
   min-width: 15%;
   height: 50px;
@@ -95,18 +110,18 @@
 }
 
 .raffle-cart-data {
-  width: 65%;
+  width: 48%;
   display: flex;
-  height: 145px;
-  max-height: 145px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  height: 200px;
+  min-height: 100%;
 }
 
 .raffle-text {
   color: #b5b5b5;
-  font-size: 10px;
+  font-size: 8px;
 }
 
 .read-more {
@@ -136,10 +151,12 @@
 .container-numbers-selected {
   width: 100%;
   padding: 0 20px;
+  margin: 20px 0;
 }
 
 .numbers-selected__title {
   color: #b9b9b9;
+  margin-bottom: 10px;
 }
 
 .numbers-selected {
@@ -202,7 +219,8 @@
 .raffle-img {
   border-radius: 5px;
   width: 100%;
-  height: 145px;
+  height: 200px;
+  aspect-ratio: 5/3;
   object-fit: cover;
 }
 
@@ -240,6 +258,22 @@
   flex-wrap: wrap;
   min-height: 100px;
   height: auto;
+  padding: 20px;
+}
+
+.container-top-numbers-selected {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-clear {
+  border: 0;
+  background: transparent;
+  color: red;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .numbers-selected div {
@@ -302,37 +336,43 @@
 }
 
 .ticket-bought {
-  background: #6464dc;
+  background-image: linear-gradient(to bottom, #5afa00, #3fd300, #25ac00);
   color: white;
-  padding: 10px;
-  border-radius: 50%;
+  padding: 5px;
+  border-radius: 2px;
   margin-right: 5px;
-  margin-top: 5px;
-  max-width: 60px;
-  height: 60px;
+  margin-top: 10px;
+  max-width: 80px;
+  min-width: 15%;
+  height: 50px;
   aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.5s;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .ticket-reserved {
-  background: #cd0101;
+  background-image: linear-gradient(to bottom, #e8d31c, #e8a900);
   color: white;
-  padding: 10px;
-  border-radius: 50%;
+  padding: 5px;
+  border-radius: 2px;
   margin-right: 5px;
-  margin-top: 5px;
-  max-width: 60px;
-  height: 60px;
+  margin-top: 10px;
+  max-width: 80px;
+  min-width: 15%;
+  height: 50px;
   aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.5s;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .btn-pattern {
@@ -356,12 +396,19 @@
 }
 
 @media (min-width: 880px) {
+  .raffle-container,
+  .top-raffles-tickets,
+  .container-numbers-selected,
+  .form-tickets-buy {
+    padding: 0;
+    margin: auto;
+  }
   .raffle-container-title {
     height: auto;
   }
 
   .raffle-img {
-    height: auto;
+    height: 350px;
   }
 
   .raffle-text {
@@ -386,10 +433,40 @@
   }
 
   .numbers-selected__title {
-      font-size: 15px;
+    font-size: 15px;
   }
 
-  .number-raffle {
-      min-width: 10%;
+  .number-raffle,
+  .ticket-bought,
+  .ticket-reserved {
+    min-width: 3%;
   }
+
+  .numbers-selected div {
+    width: 10%;
+  }
+
+  .container-raffle-button {
+    margin-top: 50px;
+    width: 50%;
+  }
+
+  .raffle-container {
+    margin-top: 50px;
+  }
+
+  .top-raffles-tickets {
+    margin-top: 30px;
+  }
+
+  .container-numbers-selected {
+    margin-top: 50px;
+  }
+
+  .raffle-cart-data {
+    height: 350px;
+  }
+}
+
+@media (min-width: 1680px) {
 }

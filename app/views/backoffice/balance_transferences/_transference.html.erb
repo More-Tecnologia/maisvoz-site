@@ -1,9 +1,0 @@
-<tr>
-  <td><%= transaction.hashid %></td>
-  <td><%= transaction.try(:user).try(:username) %></td>
-  <td><%= transaction.try(:user).try(:email) %></td>
-  <td class='<%= 'text-danger' if transaction.try(:source_financial_transaction).try(:debit?) %>'>
-    <%= format_cent_amount_value(transaction.try(:source_financial_transaction)) if transaction.source_financial_transaction %>
-  </td>
-  <td><%= l(transaction.created_at, format: :long) %></td>
-</tr>

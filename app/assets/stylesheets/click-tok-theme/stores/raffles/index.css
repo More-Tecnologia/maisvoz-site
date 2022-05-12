@@ -5,13 +5,14 @@
   flex-wrap: wrap;
   font-size: calc(0.3rem + 1.7vw);
   justify-content: flex-start;
-  margin-top: calc(1.2rem + 2vw);
+  margin-top: 2em;
 }
 
 .store-raffle-item {
   display: flex;
   flex-direction: column;
-  margin-bottom: calc(2.7rem + 2vw);
+  margin-bottom: 2em;
+  overflow: hidden;
   width: 44.7%;
 }
 
@@ -71,12 +72,22 @@
 
 .store-raffle-item-info h5 {
   font-size: 0.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .store-raffle-item-info p {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color: #939393;
+  display: -webkit-box;
   font-size: 0.7em;
+  height: 2.4em;
+  line-clamp: 2;
   margin: 0.2em 0 2em 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .store-raffle-item-footer {
@@ -88,6 +99,20 @@
 .store-raffle-item-footer span {
   font-size: 1.5em;
   font-weight: 600;
+}
+
+.store-raffle-item-footer span b,
+.store-raffle-item-footer span i {
+  font-size: 0.5em;
+  font-weight: 400;
+  line-height: 1.65em;
+  vertical-align: text-top;
+}
+
+.store-raffle-item-footer span i {
+  font-style: normal;
+  line-height: 1.8em;
+  padding-left: 2px;
 }
 
 .store-raffle-item-footer button {

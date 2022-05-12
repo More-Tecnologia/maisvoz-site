@@ -1784,12 +1784,12 @@ pt-BR:
   online_advertising: Publicidade on-line
   get_now: OBTENHA AGORA
   your_advertising_package: seu pacote de publicidade!
-  online_raffles: Sorteios online
+  online_raffles: Sorteios
   wait: aguarde
   news_coming_soon: novidades em breve
   the_best_raffles_will_be_here: os melhores sorteios estarão aqui
-  online_courses: Cursos online
-  online_publicity: Publicidade online
+  online_courses: Cursos
+  online_publicity: Publicidade
   the_best_courses_will_be_here: Os melhores cursos estarão aqui
   add_courses: Adicionar curso
   my_ads: Minhas publicidades
@@ -1835,6 +1835,7 @@ pt-BR:
   chargeback_by_inactivity: Estorno por inatividade
   chargeback_by_max_task_gains: Estorno por ganhos de tarefa
   payment_with_balance: Pagamento com saldo
+  basic_banner: Anuncios básicos
   store: Loja
   store_raffle_available: Disponível
   store_raffle_reserved: Reservado
@@ -1842,3 +1843,10 @@ pt-BR:
   store_raffle__choose_numbers: Escolher Números
   store_raffle_draw: Sorteio
   store_raffle_price: Preço
+  premium_ads: Anúncios premium
+  basic_ads: Anúncios básicos
+  task_per_day: Tarefa por dia
+  tasks_per_day: Tarefas por dia
+  top_deal: Melhor oferta
+  last_numbers: Últimos números
+  free: Grátis

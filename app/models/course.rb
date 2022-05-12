@@ -31,7 +31,7 @@ class Course < ApplicationRecord
   scope :waiting, -> { where(active: true, approved: false) }
 
   def path
-    thumb.try(:fullpath)
+    thumb.try(:fullpath) || 'courses/course2.png'
   end
 
   def add(category)

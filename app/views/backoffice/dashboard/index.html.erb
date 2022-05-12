@@ -1,131 +1,81 @@
 <%= javascript_include_tag 'charts' %>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css" />
-<%= stylesheet_link_tag 'click-tok-theme/dashboard' %>
-
-<div class="page page-home">
-  <div class="title-tasks">
-    <h2 class="title-task"><%= t(:select_store) %></h2>
-    <p class="p-title-task"><%= t(:tasks_title_text) %></p>
-  </div>
-    <div class="row-stores">
-      <% BannerStore.active.each do |banner_store| %>
-        <%= link_to backoffice_dashboard_index_path(banner_store_hashid: banner_store.hashid), class: "box-store" do %>
-          <img src="<%= banner_store.path %>" alt="" class="img-box-store">
-        <% end %>
-      <% end %>
-    </div>
-    <div class="title-ads">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+<%= stylesheet_link_tag 'click-tok-theme/dashboard/index' %>
+<div class="tasks-container">
+  <div class="task-title-store-container">
+    <div class="task-title-ads-container">
+      <svg class="task-title-ads-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
       </svg>
-      <p><%= t(:premium_ads) %></p>
+      <p class="task-title-ads"><%= t(:premium_ads) %></p>
     </div>
-    <div class="container-imgs">
-      <div class="banner-container">
-
-            <% @premium_ads.shuffle.last(12).each do |banner| %>
-            <span>
-              <%= banner.title %>
-            </span>
-                  <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
-                          method: :post,
-                          remote: true, title: banner.title + "\n " + banner.description do %>
-                    <%= image_tag(banner.path.present? ? banner.path: banner.image_path) %>
-                <% end %>
-              </div>
-
-      			<% end %>
+    <%= render 'banners', banners: @premium_ads, premium: true %>
+    <div class="task-title-ads-container">
+      <svg class="task-title-ads-icon task-title-ads-icon-basic" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+      </svg>
+      <p class="task-title-ads"><%= t(:basic_ads) %></p>
     </div>
-    <div class="container-imgs2">
-            <% @banners.shuffle.last(12).each do |banner| %>
-                <%= link_to backoffice_banner_clicks_path(banner_id: banner.id),
-                        method: :post,
-                        remote: true do %>
-                  <%= image_tag(banner.path.present? ? banner.path: banner.image_path) %>
-                <% end %>
-      			<% end %>
-    </div>
-
-  <% data = [[t(:complete), @banners_clicked_today_quantity], [t(:available), @total_banners_per_day - @banners_clicked_today_quantity]] %>
-  <% data2 = [[t(:complete_dollar), @task_gains.round(2) ], [t(:available_dollar), @available_gains.round(2) ]] %>
-
-  <div class="products-list mt">
-    <div class="t-options-box t-options-box-l">
-      <div class="f-box-title">
-        <%= t(:available_tasks) %>
-      </div>
-      <div class="f-box-icon">
-        <div class="t-tasks-progress">
-          <%= pie_chart data, donut: true, colors: ['#34EF00', 'white'], legend: false %>
+    <%= render 'banners', banners: @banners %>
+    <% data = [[t(:complete), @banners_clicked_today_quantity], [t(:available), @total_banners_per_day - @banners_clicked_today_quantity]] %>
+    <% data2 = [[t(:complete_dollar), @task_gains.round(2) ], [t(:available_dollar), @available_gains.round(2) ]] %>
+    <div class="products-list mt">
+      <div class="t-options-box t-options-box-l">
+        <div class="f-box-title">
+          <%= t(:available_tasks) %>
+        </div>
+        <div class="f-box-icon">
+          <div class="t-tasks-progress">
+            <%= pie_chart data, donut: true, colors: ['#34EF00', 'white'], legend: false %>
+          </div>
+        </div>
+        <div class="f-tasks-quantity text-center pink">
+          <%= "#{@banners_clicked_today_quantity}/#{@total_banners_per_day}" %>
+        </div>
+        <div class="f-tasks-product-title">
+          <span></span>
+          <label class="text-center"><%= @most_value_contract.order_items.last.name if @contract.present? %></label>
         </div>
       </div>
-      <div class="f-tasks-quantity text-center pink">
-        <%= "#{@banners_clicked_today_quantity}/#{@total_banners_per_day}" %>
-      </div>
-      <div class="f-tasks-product-title">
-        <span></span>
-        <label class="text-center"><%= @most_value_contract.order_items.last.name if @contract.present? %></label>
-      </div>
-    </div>
-
-    <div class="t-options-box t-options-box-r">
-      <div class="f-box-title">
-        <%= t(:tasks_history) %>
-      </div>
-      <div class="f-box-icon is">
+      <div class="t-options-box t-options-box-r">
+        <div class="f-box-title">
+          <%= t(:tasks_history) %>
+        </div>
+        <div class="f-box-icon is">
           <%= link_to backoffice_banners_path do %>
             <%= image_tag('icons/report.svg', class: 'icons') %>
           <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="products-list mt">
-    <div class="t-options-box t-options-box-l">
-      <div class="f-box-title">
-        <%= t(:available_tasks_bonus) %>
-      </div>
-      <div class="f-box-icon">
-        <div class="t-tasks-progress">
-          <%= pie_chart data2, donut: true, colors: ['#34EF00', 'white'], legend: false %>
         </div>
       </div>
-      <div class="f-tasks-quantity text-center pink">
-        <%= number_to_currency(@available_gains, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
-      </div>
     </div>
-
-    <div class="t-options-box t-options-box-r">
-      <div class="f-box-title">
-        <%= current_user.active? ? t(:active_until) : t(:inactive) %>
+    <div class="products-list mt">
+      <div class="t-options-box t-options-box-l">
+        <div class="f-box-title">
+          <%= t(:available_tasks_bonus) %>
+        </div>
+        <div class="f-box-icon">
+          <div class="t-tasks-progress">
+            <%= pie_chart data2, donut: true, colors: ['#34EF00', 'white'], legend: false %>
+          </div>
+        </div>
+        <div class="f-tasks-quantity text-center pink">
+          <%= number_to_currency(@available_gains, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$') %>
+        </div>
       </div>
-      <div class="f-box-icon is">
+      <div class="t-options-box t-options-box-r">
+        <div class="f-box-title">
+          <%= current_user.active? ? t(:active_until) : t(:inactive) %>
+        </div>
+        <div class="f-box-icon is">
           <%= link_to '#' do %>
             <%= image_tag((current_user.active? ? 'icons/active.svg': 'icons/inactive.svg'), class: 'icons') %>
           <% end %>
-      </div>
-      <div class="f-tasks-quantity text-center pink">
-        <%= @contracts.last.expire_at.strftime("%m/%d/%Y") if current_user.active? %>
+        </div>
+        <div class="f-tasks-quantity text-center pink">
+          <%= @contracts.last.expire_at.strftime("%m/%d/%Y") if current_user.active? %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<script>
-  let canvas = document.querySelectorAll('.chartjs-render-monitor');
-  let chart1 = document.querySelectorAll('#chart-1');
-  let chart2 = document.querySelectorAll('#chart-2');
-
-  canvas.forEach((canvas) => {
-    canvas.style.width = "56px";
-    canvas.style.height = "56px";
-  });
-  chart1.forEach((chart) => {
-    chart.style = "";
-  });
-  chart2.forEach((chart) => {
-    chart.style = "";
-  });
-</script>
-
-<%= javascript_include_tag 'click-tok-theme/tasks' %>
+  <%= javascript_include_tag 'click-tok-theme/tasks/index' %>

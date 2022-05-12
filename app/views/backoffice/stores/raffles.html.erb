@@ -1,16 +1,7 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/index' %>
-<h3 class="page-title">
-  <%= t(:store) %>
-</h3>
 <%= render 'menu' %>
-<%= render 'banner',  badge_pretext_image: 'stores/banner-badge.svg',
-                      date: '13/04/2022',
-                      description: 'Short description',
-                      pretext: 'Últimos Numeros',
-                      price: '$20.00',
-                      product_image: 'stores/banner-badge.svg',
-                      title: 'Nome de um produto' %>
+<%= render 'banner',  banner: @banner %>                      
 <section class="store-content store-raffles-container">
   <% @packages.each do |package| %>
     <div class="store-raffle-item">
@@ -50,9 +41,7 @@
         </p>
         <div class="store-raffle-item-footer">
           <span>
-            <%= number_to_currency(package.price,
-              unit: ENV['CURRENT_CURRENCY'],
-              precision: 2).gsub('USD ', '$') %>
+            <%= format_currency(package.price) %>
           </span>
           <%= link_to backoffice_raffles_ticket_path(package.raffle) do %>
             <button>

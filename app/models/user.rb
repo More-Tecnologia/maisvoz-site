@@ -245,8 +245,6 @@ class User < ApplicationRecord
 
   def activate!(active_until = 1.month.from_now)
     update!(active: true, active_until: active_until)
-    update_sponsor_type
-    update_user_type
     update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
   end
 
@@ -343,8 +341,6 @@ class User < ApplicationRecord
 
   def inactivate!
     update_attribute(:active, false)
-    update_sponsor_type
-    update_user_type
     update_sponsor_binary_qualified if ENV['ENABLED_BINARY'] == 'true'
   end
 
@@ -551,14 +547,6 @@ class User < ApplicationRecord
 
   def assign_initial_type
     self.type = Type.first
-  end
-
-  def update_sponsor_type
-    Types::QualifierService.call(user: sponsor)
-  end
-
-  def update_user_type
-    Types::QualifierService.call(user: self)
   end
 
   def assign_token

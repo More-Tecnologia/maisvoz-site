@@ -1,9 +1,5 @@
 module Backoffice
   module TaughtCoursesHelper
-    def course_thumb(course)
-      course.thumb.present? ? course.path : 'courses/course2.png'
-    end
-
     def course_status_button(course)
       if course.active? && course.approved?
         'status-active'

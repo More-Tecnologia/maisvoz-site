@@ -1870,12 +1870,12 @@ en:
   online_advertising: Online advertising
   get_now: GET NOW
   your_advertising_package: your advertising package!
-  online_raffles: Online raffles
+  online_raffles: Raffles
   wait: wait
   news_coming_soon: news comming soon
   the_best_raffles_will_be_here: the best raffles will be here
-  online_courses: Online courses
-  online_publicity: Online publicity
+  online_courses: Courses
+  online_publicity: Publicity
   the_best_courses_will_be_here: the best courses will be here
   add_courses: Add courses
   my_ads: My Ads
@@ -1922,4 +1922,9 @@ en:
   store_raffle_draw: Draw
   store_raffle_price: Price
   premium_ads: Premium ads
-  basic_ads: Basic ads  
+  basic_ads: Basic ads
+  task_per_day: Task per day
+  tasks_per_day: Tasks per day
+  top_deal: Top deal
+  last_numbers: Last numbers
+  free: Free

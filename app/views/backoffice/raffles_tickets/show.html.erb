@@ -1,149 +1,84 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffle_tickets' %>
 <%= javascript_include_tag 'raffles/raffles-tickets', defer: true %> 
-  <div class="raffle-tickets-container">
-<div class="top-raffles-tickets">
-      <%= link_to raffles_backoffice_stores_path, class: 'back-button' do%>   
-        <svg xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="white"
-            class="bi bi-arrow-left"
-            viewBox="0 0 16 16" >
-          <path fill-rule="evenodd"
-                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-        </svg>
-      <% end %>
-      <h4><%= t(:raffles) %></h4>
-    </div>
-    <%= render 'backoffice/stores/banner', banner: @banner %>    
+<div class="raffle-tickets-container">
+  <div class="raffle-tickets-header-container">
+    <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>   
+      <svg xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          fill="white"
+          class="bi bi-arrow-left"
+          viewBox="0 0 16 16" >
+        <path fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+      </svg>
+    <% end %>
+    <h4 class="raffle-tickets--page-title"><%= t(:raffles) %></h4>
+    <button class="raffle-tickets--regulation-button">
+      Regulamento do sorteio
+    </button>
   </div>
-<div class="raffle-cat-container">  
-  <div class="raffle-container">
-    <div class="raffle-container-title">
-      <%= image_tag(@raffle.path, class: 'raffle-img') %>
+  <%= render 'backoffice/stores/banner', banner: @banner %>  
+  <div class="raffle-tickets-display-container">
+    <div class="raffle-tickts-image-container">
+      <%= image_tag(@raffle.path, class: 'raffle-tickets-image') %>
     </div>
-    <div class="raffle-cart-data">
-      <h1 class="raffle-title strong"><%= @raffle.title %></h1>
-      <div>
-        <p class="raffle-text">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
-        </p>
-        <a class="read-more">Read More</a>
-      </div>
-
-      <div class="top-cart-data">
-        <div class="numbers-available-container">
-          <div class="numbers-available-title">Available</div>
-          <div class="numbers-available strong">
-            <%= available_raffle_tickets_count(@raffle) %>
-          </div>
-        </div>
-        <div class="type-raffle-container">
-          <div class="reserved-raffle-title">Reserved</div>
-          <div class="reserved-raffle strong">20</div>
-        </div>
-
-        <div class="raffle-container-value">
-          <div class="paid-raffle-title">Paid</div>
-          <div class="paid-raffle strong">20</div>
-        </div>
-      </div>
+    <div class="raffle-tickets-info-container">
+      <h1 class="raffle-tickets-title"><%= @raffle.title %></h1>
+      <p class="raffle-tickets-description">
+        <%= @raffle.description%>        
+      </p>
+      <button class="raffle-tickets-read-more">
+        Ler Mais
+      </button>      
+      <ul class="raffle-tickets-info--footer">
+        <li class="raffle-tickets-info--footer--item">
+          <span class="footer--item--info">Livre</span>
+          <span class="footer--item--number">100</span>
+        </li>
+        <li class="raffle-tickets-info--footer--item">
+          <span class="footer--item--info">Reservado</span>
+          <span class="footer--item--number">20</span>
+        </li>
+        <li class="raffle-tickets-info--footer--item">
+          <span class="footer--item--info">Pago</span>
+          <span class="footer--item--number">80</span>
+        </li>        
+      </ul>      
     </div>
   </div>
-  <div class="container-numbers-selected hidden">
-    <div class="container-top-numbers-selected">
-      <h5 class="numbers-selected__title">Numbers Selected</h5>
-      <button class="btn-clear">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-trash3-fill"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
-          />
-        </svg>
+  <div class="raffle-tickets-selected-container">
+    <div class="raffle-tickets-selected-header">
+      <span class="raffle-tickets-selected-title">
+        Números selecionados
+      </span>
+      <button class="raffle-tickets-selected-clear-button">
         Limpar
       </button>
     </div>
-    <div class="numbers-selected">
-      <% unless @raffle.automatic? %> <% end %>
-    </div>
+    <ul class="raffle-tickets-selected-box">
+      <li class="raffle-tickets-selected-number"><b>001</b></li>
+      <li class="raffle-tickets-selected-number"><b>002</b></li>
+      <li class="raffle-tickets-selected-number"><b>003</b></li>
+    </ul>
   </div>
-  <div class="draw-date-container">
-    <div class="draw-date-title"></div>
-    <div class="draw-date strong"></div>
-  </div>
-  <%= form_for(@raffle, url: backoffice_raffles_tickets_path, method: :post,
-  html: { class: "form-tickets-buy" }) do |f| %>
-
-  <div class="hidden-input">
-    <select name="raffle[numbers]" class="hidden-input-tickets"></select>
-    <input type="text" name="raffle[id]" value="<%= @raffle.hashid %>" />
-  </div>
-
-  <div class="container-raffle-button">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="25"
-      fill="#30bc00"
-      class="bi bi-cart-plus"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"
-      />
-      <path
-        d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-      />
-    </svg>
-    <button class="raffle-button-buy" type="submit"><%= t(:buy) %></button>
-  </div>
-  <div class="container-inputs-tickets">
-    <div class="inputs-tickets">
-      <div class="inputs-tickets__container">
-        <label for="quantity-aleatory-tickets"
-          ><%= t(:number_of_random_tickets) %></label
-        >
-        <input
-          type="number"
-          id="quantity-aleatory-tickets"
-          name="raffle[random_number_quantity]"
-          placeholder="Quantity of numbers"
-        />
-      </div>
-      <button class="btn-pattern">Apply</button>
-    </div>
-    <div class="input-search-container">
-      <div class="search-container">
-        <input type="text" placeholder="Search" class="input-search" />
-      </div>
-      <button class="btn-pattern">Search</button>
-    </div>
-  </div>
-  <% unless @raffle.automatic? %>
-  <div class="raffles-numbers-container">
-    <div class="container-numbers-table">
-      <div class="raffles-cart-numbers">
-        <% @raffle.light_raffle_tickets.order(:created_at).each do |ticket| %>
-        <div
-          class="<%= raffle_ticket_status(ticket)%>"
-          value="<%= ticket.number %>"
-        >
-          <%= raffle_ticket_number_format(ticket) %>
-        </div>
-        <% end %>
-      </div>
-    </div>
+  <%= form_for(@raffle,
+               url: backoffice_raffles_tickets_path,
+               method: :post,
+               html: {class: 'raffle-tickets-buy-form'}) do |f| %>
+    <%= f.submit 'Ir para pagamento', class: 'raffle-tickets-form-button' %>
+  <% end %>
+  <div class="raffle-tickets-filters">
+    <form class="raffle-tickets-random-form raffle-tickets-filters--form">
+      <label class="raffle-tickets-random-title" for="select-number">Selecionar números aleatórios</label>
+      <div class="raffle-ticktes-random-inputs">
+        <input class="raffle-tickets-random-field raffle-tickets-field" id="select-number" type="text" placeholder="Numero">
+        <button class="raffle-tickets-form-button" type="submit">Aplicar</button>
+      </div>    
+    </form>
+    <form class="raffle-tickets-search-form raffle-tickets-filters--form">    
+      <input class="raffle-tickets-search-field raffle-tickets-field" type="text" placeholder="Numero">
+      <button class="raffle-tickets-form-button" type="submit">Pesquisar</button>    
+    </form>
   </div>
 </div>
-
-<% end %> 
-<% end %>

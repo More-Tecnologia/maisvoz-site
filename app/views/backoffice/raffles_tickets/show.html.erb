@@ -56,10 +56,16 @@
         Limpar
       </button>
     </div>
-    <ul class="raffle-tickets-selected-box">
-      <li class="raffle-tickets-selected-number"><b>001</b></li>
-      <li class="raffle-tickets-selected-number"><b>002</b></li>
-      <li class="raffle-tickets-selected-number"><b>003</b></li>
+    <ul class="raffle-tickets-numbers-list">
+      <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number">
+        <b>001</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number">
+        <b>002</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number">
+        <b>003</b>
+      </li>
     </ul>
   </div>
   <%= form_for(@raffle,
@@ -72,13 +78,20 @@
     <form class="raffle-tickets-random-form raffle-tickets-filters--form">
       <label class="raffle-tickets-random-title" for="select-number">Selecionar números aleatórios</label>
       <div class="raffle-ticktes-random-inputs">
-        <input class="raffle-tickets-random-field raffle-tickets-field" id="select-number" type="text" placeholder="Numero">
+        <input class="raffle-tickets-field" id="select-number" type="text" placeholder="Numero">
         <button class="raffle-tickets-form-button" type="submit">Aplicar</button>
       </div>    
     </form>
     <form class="raffle-tickets-search-form raffle-tickets-filters--form">    
-      <input class="raffle-tickets-search-field raffle-tickets-field" type="text" placeholder="Numero">
+      <input class="raffle-tickets-field" type="text" placeholder="Numero">
       <button class="raffle-tickets-form-button" type="submit">Pesquisar</button>    
     </form>
+  </div>
+  <div class="raffle-tickets-numbers-container">
+    <ul class="raffle-tickets-numbers-list">
+      <li class="raffle-tickets-numbers-list-item">
+        <b>001</b>
+      </li>   
+    </ul>
   </div>
 </div>

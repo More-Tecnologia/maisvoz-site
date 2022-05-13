@@ -163,18 +163,37 @@
   cursor: pointer;
 }
 
-.raffle-tickets-selected-box {
-  background: white;
-  border-radius: 0.3em;
+.raffle-tickets-numbers-list {
   display: flex;
-  justify-content: center;
-  gap: 0.8em;
-  padding: 0.8em 0;
-  box-shadow: 0px 6px 8px 5px rgba(0,0,0,0.17);
+  gap: 2%;  
+  flex-wrap: wrap;
 }
 
-.raffle-tickets-selected-number {
-  background:#9B9B9B;
+.raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
+  position: relative;
+  height: auto;
+  width: 15%;
+  padding-top: 12.2%;
+  margin-bottom: 2.6%;  
+}
+
+.raffle-tickets-numbers-list .raffle-tickets-numbers-list-item b{
+  position: absolute;
+  top: 50%;
+    transform: translate(0, -50%);
+  
+}
+
+.raffle-tickets-selected-container .raffle-tickets-numbers-list {
+  background: white;
+  border-radius: 0.3em;
+  justify-content: center;  
+  padding: 0.3em 0;
+  box-shadow: 0px 6px 8px 5px rgba(0,0,0,0.10);
+}
+
+.raffle-tickets-numbers-list-item {
+  background: #fff;
   width: 5em;
   height: 4em;
   text-align: center;
@@ -182,16 +201,24 @@
   justify-content: center;
   align-items: center;
   border-radius: 0.3em;
-  color: white;
+  color: #777;
   font-weight: 600;
   position: relative;  
   cursor: pointer;
+  box-shadow: 0px 3px 5px 3px rgba(0,0,0,0.05);
+  transition: box-shadow 0.4s;
 }
 
-.raffle-tickets-selected-number:hover {
+.raffle-tickets-numbers-list-item.raffle-tickets-selected-number {
+  background:#9B9B9B;
+  color: white;
+}
+
+.raffle-tickets-numbers-list-item:hover {
   opacity: 0.9;
+  box-shadow: 0px 3px 7px 3px rgba(0,0,0,0.15);
+  color: #333;
 }
-
 
 .raffle-tickets-buy-form {
   display: flex;
@@ -233,6 +260,7 @@
 .raffle-tickets-filters .raffle-tickets-form-button {
   font-size: 0.7em;
   height: 3em;
+  padding: 0.5em 1em;
 }
 
 .raffle-tickets-filters--form {
@@ -241,8 +269,6 @@
  
  
 }
-
-
 
 .raffle-tickets-random-form {
   display: flex;
@@ -263,8 +289,8 @@
   column-gap: 0.5em;
 }
 
-.raffle-tickets-random-field {
-  width: 7em;
+.raffle-tickets-random-form .raffle-tickets-field {
+  width: 5em;
   text-align: center;
 }
 
@@ -273,9 +299,101 @@
   justify-content: flex-start;
 }
 
-.raffle-tickets-search-field {
-  width: 7em;
+.raffle-tickets-search-form .raffle-tickets-field {
+  width: 5em;
   text-align: center;
+}
+
+.raffle-tickets-numbers-container .raffle-tickets-numbers-list {
+  display: flex;
+  gap: 2%;  
+  flex-wrap: wrap;
+  margin-top: 2em;
+
+}
+
+.raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
+  position: relative;
+  height: auto;
+  width: 15%;
+  padding-top: 12.2%;
+  margin: 1.3% 0 1.3% 0;  
+}
+
+.raffle-tickets-numbers-list .raffle-tickets-numbers-list-item b{
+  position: absolute;
+  top: 50%;
+    transform: translate(0, -50%);  
+}
+
+@media (min-width: 780px) {
+  .raffle-tickets-numbers-list {
+    gap: 1.4%;
+  }
+
+  .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
+    width: 13.08%;
+    padding-top: 10%; 
+    margin: 1.1% 0 1.1% 0; 
+  }
+}
+
+@media (min-width: 980px) {
+  .raffle-tickets-numbers-list {
+    gap: 1.3%;
+  }
+
+  .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
+    width: 11.36%;
+    padding-top: 9.3%; 
+    margin: 0.9% 0 0.9% 0;  
+  }
+}
+
+@media (min-width: 1080px) {
+  .raffle-tickets-numbers-list {
+    gap: 1.3%;
+  }
+
+  .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
+    width: 9.95%;
+    padding-top: 8.2%;
+    margin: 0.8% 0 0.8% 0;  
+  }
+}
+
+@media (min-width: 1180px) {
+  .raffle-tickets-numbers-list {
+    gap: 1.2%;
+  }
+
+  .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
+    width: 8.92%;
+    padding-top: 7.5%; 
+    margin: 0.8% 0 0.8% 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .raffle-tickets-numbers-list {
+    gap: 1.1%;
+  }
+
+  .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
+    width: 8.09%;
+    padding-top: 6.8%; 
+  }
+}
+
+@media (min-width: 1380px) {
+  .raffle-tickets-numbers-list {
+    gap: 1%;
+  }
+
+  .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
+    width: 7.41%;
+    padding-top: 6.2%; 
+  }
 }
 
 @media (min-width: 1500px) {

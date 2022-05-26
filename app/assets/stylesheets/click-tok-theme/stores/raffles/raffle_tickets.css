@@ -305,12 +305,17 @@
 }
 
 .raffle-tickets-numbers-container .raffle-tickets-numbers-list {
-  display: flex;
-  gap: 2%;  
+  display: flex; 
   flex-wrap: wrap;
   margin-top: 2em;
 
 }
+
+.raffle-tickets-numbers-list {
+  gap: 2%;
+}
+
+
 
 .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
   position: relative;

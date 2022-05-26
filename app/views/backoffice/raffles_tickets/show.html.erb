@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffle_tickets' %>
-<%= javascript_include_tag 'raffles/raffles-tickets', defer: true %> 
+<%= javascript_include_tag 'raffles/raffles-tickets', defer: true %>
 <div class="raffle-tickets-container">
   <div class="raffle-tickets-header-container">
-    <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>   
+    <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>
       <svg xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -18,7 +18,7 @@
       Regulamento do sorteio
     </button>
   </div>
-  <%= render 'backoffice/stores/banner', banner: @banner %>  
+  <%= render 'backoffice/stores/banner', banner: @banner %>
   <div class="raffle-tickets-display-container">
     <div class="raffle-tickts-image-container">
       <%= image_tag(@raffle.path, class: 'raffle-tickets-image') %>
@@ -26,11 +26,11 @@
     <div class="raffle-tickets-info-container">
       <h1 class="raffle-tickets-title"><%= @raffle.title %></h1>
       <p class="raffle-tickets-description">
-        <%= @raffle.description%>        
+        <%= @raffle.description%>
       </p>
       <button class="raffle-tickets-read-more">
         Ler Mais
-      </button>      
+      </button>
       <ul class="raffle-tickets-info--footer">
         <li class="raffle-tickets-info--footer--item">
           <span class="footer--item--info">Livre</span>
@@ -43,8 +43,8 @@
         <li class="raffle-tickets-info--footer--item">
           <span class="footer--item--info">Pago</span>
           <span class="footer--item--number">80</span>
-        </li>        
-      </ul>      
+        </li>
+      </ul>
     </div>
   </div>
   <div class="raffle-tickets-selected-container">
@@ -80,18 +80,33 @@
       <div class="raffle-ticktes-random-inputs">
         <input class="raffle-tickets-field" id="select-number" type="text" placeholder="Numero">
         <button class="raffle-tickets-form-button" type="submit">Aplicar</button>
-      </div>    
+      </div>
     </form>
-    <form class="raffle-tickets-search-form raffle-tickets-filters--form">    
+    <form class="raffle-tickets-search-form raffle-tickets-filters--form">
       <input class="raffle-tickets-field" type="text" placeholder="Numero">
-      <button class="raffle-tickets-form-button" type="submit">Pesquisar</button>    
+      <button class="raffle-tickets-form-button" type="submit">Pesquisar</button>
     </form>
   </div>
   <div class="raffle-tickets-numbers-container">
     <ul class="raffle-tickets-numbers-list">
+      <%
+      i = 000      
+      555.times do
+      if (i < 10)
+        number = '00' + i.to_s
+      elsif(i < 100)
+        number = '0' + i.to_s
+      else
+        number = i
+      end
+      %>
       <li class="raffle-tickets-numbers-list-item">
-        <b>001</b>
-      </li>   
+        <b><%=number%></b>
+      </li>
+      <% 
+    i += 1
+    end 
+    %>
     </ul>
   </div>
 </div>

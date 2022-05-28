@@ -31,10 +31,16 @@ module Backoffice
     def show
       @raffle = Raffle.find_by_hashid(params[:id])
 
+      @raffle_number = Raffle.find_by_hashid(params[:id]).light_raffle_tickets
+
       @banner = Product.raffle
                        .active
                        .includes(:raffle)
                        .limit(4)
+    end
+
+    def tickets
+      render json: { data: Raffle.find_by_hashid(params[:id]).light_raffle_tickets.map(&:number)}
     end
 
     private

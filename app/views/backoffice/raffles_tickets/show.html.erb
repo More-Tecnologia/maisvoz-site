@@ -1,5 +1,12 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffle_tickets' %>
 <%= javascript_include_tag 'raffles/raffles-tickets', defer: true %>
+<%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
+<script>
+  fetch(window.location.pathname + '/tickets')
+  .then(response => response.json())
+  .then(tickets => console.log(tickets))  
+  .catch(error => console.log(error))
+</script>
 <div class="raffle-tickets-container">
   <div class="raffle-tickets-header-container">
     <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>
@@ -13,8 +20,10 @@
               d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
       </svg>
     <% end %>
+
     <h4 class="raffle-tickets--page-title"><%= t(:raffles) %></h4>
     <button class="raffle-tickets--regulation-button">
+      <i class="fa-solid fa-file-lines"></i>
       Regulamento do sorteio
     </button>
   </div>
@@ -53,6 +62,7 @@
         Números selecionados
       </span>
       <button class="raffle-tickets-selected-clear-button">
+        <i class="fa-regular fa-trash-can"></i>
         Limpar
       </button>
     </div>
@@ -60,53 +70,98 @@
       <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number">
         <b>001</b>
       </li>
-      <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number">
-        <b>002</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number">
-        <b>003</b>
-      </li>
+      <%# <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number message">
+        <b>Escolha um número</b>
+      </li> %>
     </ul>
   </div>
+  <div class>
+  
   <%= form_for(@raffle,
                url: backoffice_raffles_tickets_path,
                method: :post,
                html: {class: 'raffle-tickets-buy-form'}) do |f| %>
+    <div class="raffle-tickets-form-button-container">           
+    <i class="fa-solid fa-cart-plus"></i>
     <%= f.submit 'Ir para pagamento', class: 'raffle-tickets-form-button' %>
+    </div>
   <% end %>
   <div class="raffle-tickets-filters">
-    <form class="raffle-tickets-random-form raffle-tickets-filters--form">
-      <label class="raffle-tickets-random-title" for="select-number">Selecionar números aleatórios</label>
-      <div class="raffle-ticktes-random-inputs">
-        <input class="raffle-tickets-field" id="select-number" type="text" placeholder="Numero">
-        <button class="raffle-tickets-form-button" type="submit">Aplicar</button>
+    <form class="raffle-tickets-filters--form">
+      <div class="raffle-ticktes-search-inputs">
+        <button class="raffle-tickets-form-button__random" type="submit">
+          <i class="fa-solid fa-shuffle"></i>
+          Aleatório
+        </button>
+        <div class="raffle-tickets-search-numbers-container">
+          <input class="raffle-tickets-field" type="text" placeholder="Numero">
+          <button class="raffle-tickets-form-button" type="submit"><i class="fa-solid fa-plus"></i> Adicionar</button>
+        </div>
       </div>
     </form>
-    <form class="raffle-tickets-search-form raffle-tickets-filters--form">
-      <input class="raffle-tickets-field" type="text" placeholder="Numero">
-      <button class="raffle-tickets-form-button" type="submit">Pesquisar</button>
-    </form>
-  </div>
+  </div>  
   <div class="raffle-tickets-numbers-container">
     <ul class="raffle-tickets-numbers-list">
-      <%
-      i = 000      
-      555.times do
-      if (i < 10)
-        number = '00' + i.to_s
-      elsif(i < 100)
-        number = '0' + i.to_s
-      else
-        number = i
-      end
-      %>
       <li class="raffle-tickets-numbers-list-item">
-        <b><%=number%></b>
+        <b>000</b>
       </li>
-      <% 
-    i += 1
-    end 
-    %>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>001</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>002</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item reserved">
+        <b>003</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>004</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>005</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item selected">
+        <b>006</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>007</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>008</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item purched">
+        <b>009</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>010</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>011</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>012</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>013</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>014</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>015</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>016</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>017</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>018</b>
+      </li>
+      <li class="raffle-tickets-numbers-list-item">
+        <b>019</b>
+      </li>
     </ul>
   </div>
 </div>

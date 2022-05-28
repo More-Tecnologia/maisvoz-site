@@ -19,7 +19,7 @@
 
 header {
   align-items: center;
-  background-color: #3f3f3f;
+  background-color: #222;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   display: flex;
@@ -27,7 +27,6 @@ header {
   font-family: "Montserrat", sans-serif;
   height: 105px;
   justify-content: space-between;
-  min-height: 105px;
   min-height: 105px;
   width: 100%;
 }

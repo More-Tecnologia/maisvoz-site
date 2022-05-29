@@ -215,19 +215,19 @@
   transition: box-shadow 0.4s;
 }
 
-.raffle-tickets-numbers-list-item.raffle-tickets-selected-number {
+.selected-tickets-container .raffle-tickets-numbers-list-item {
   background: #9b9b9b;
   color: white;
 }
 
-.raffle-tickets-numbers-list-item.raffle-tickets-selected-number.message {
+.selected-tickets-container .raffle-tickets-numbers-list-item.message {
  background: none;
  box-shadow: none;
  width: 100%;
 
 }
 
-.raffle-tickets-numbers-list-item.raffle-tickets-selected-number.message b{
+.selected-tickets-container .raffle-tickets-numbers-list-item.message b{
   color: #BBB;
   font-weight: 400;
   font-size: 0.7em;
@@ -392,6 +392,7 @@
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
+  pointer-events: none;
 }
 
 .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item.reserved {

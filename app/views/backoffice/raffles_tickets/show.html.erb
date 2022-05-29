@@ -1,11 +1,14 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffle_tickets' %>
-<%= javascript_include_tag 'raffles/raffles-tickets', defer: true %>
+<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets.js', defer: true %>
 <%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
+
 <script>
-  fetch(window.location.pathname + '/tickets')
-  .then(response => response.json())
-  .then(tickets => console.log(tickets))  
-  .catch(error => console.log(error))
+//document.body.insertAdjacentHTML( 'afterbegin', '<div id="myID">...</div>' );
+
+// fetch(window.location.pathname + '/tickets')
+// .then(response => response.json())
+// .then(tickets => console.log(tickets))
+// .catch(error => console.log(error))
 </script>
 <div class="raffle-tickets-container">
   <div class="raffle-tickets-header-container">
@@ -20,7 +23,6 @@
               d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
       </svg>
     <% end %>
-
     <h4 class="raffle-tickets--page-title"><%= t(:raffles) %></h4>
     <button class="raffle-tickets--regulation-button">
       <i class="fa-solid fa-file-lines"></i>
@@ -66,102 +68,38 @@
         Limpar
       </button>
     </div>
-    <ul class="raffle-tickets-numbers-list">
-      <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number">
-        <b>001</b>
-      </li>
-      <%# <li class="raffle-tickets-numbers-list-item raffle-tickets-selected-number message">
+    <ul class="raffle-tickets-numbers-list selected-tickets-container">
+      <li class="raffle-tickets-numbers-list-item message">
         <b>Escolha um número</b>
-      </li> %>
+      </li>
     </ul>
   </div>
   <div class>
-  
-  <%= form_for(@raffle,
+    <%= form_for(@raffle,
                url: backoffice_raffles_tickets_path,
                method: :post,
                html: {class: 'raffle-tickets-buy-form'}) do |f| %>
-    <div class="raffle-tickets-form-button-container">           
-    <i class="fa-solid fa-cart-plus"></i>
-    <%= f.submit 'Ir para pagamento', class: 'raffle-tickets-form-button' %>
-    </div>
-  <% end %>
-  <div class="raffle-tickets-filters">
-    <form class="raffle-tickets-filters--form">
-      <div class="raffle-ticktes-search-inputs">
-        <button class="raffle-tickets-form-button__random" type="submit">
-          <i class="fa-solid fa-shuffle"></i>
-          Aleatório
-        </button>
-        <div class="raffle-tickets-search-numbers-container">
-          <input class="raffle-tickets-field" type="text" placeholder="Numero">
-          <button class="raffle-tickets-form-button" type="submit"><i class="fa-solid fa-plus"></i> Adicionar</button>
-        </div>
+      <div class="raffle-tickets-form-button-container">
+        <i class="fa-solid fa-cart-plus"></i>
+        <%= f.submit 'Ir para pagamento', class: 'raffle-tickets-form-button' %>
       </div>
-    </form>
-  </div>  
-  <div class="raffle-tickets-numbers-container">
-    <ul class="raffle-tickets-numbers-list">
-      <li class="raffle-tickets-numbers-list-item">
-        <b>000</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>001</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>002</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item reserved">
-        <b>003</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>004</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>005</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item selected">
-        <b>006</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>007</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>008</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item purched">
-        <b>009</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>010</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>011</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>012</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>013</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>014</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>015</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>016</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>017</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>018</b>
-      </li>
-      <li class="raffle-tickets-numbers-list-item">
-        <b>019</b>
-      </li>
-    </ul>
+    <% end %>
+    <div class="raffle-tickets-filters">
+      <form class="raffle-tickets-filters--form">
+        <div class="raffle-ticktes-search-inputs">
+          <button class="raffle-tickets-form-button__random" type="submit">
+            <i class="fa-solid fa-shuffle"></i>
+            Aleatório
+          </button>
+          <div class="raffle-tickets-search-numbers-container">
+            <input class="raffle-tickets-field" type="text" placeholder="Numero">
+            <button class="raffle-tickets-form-button" type="submit"><i class="fa-solid fa-plus"></i> Adicionar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="raffle-tickets-numbers-container">
+      <ul class="raffle-tickets-numbers-list ticket-container">
+      </ul>
+    </div>
   </div>
-</div>

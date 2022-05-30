@@ -54,33 +54,37 @@ const DUMMYTickets = [
 const ticketsData = DUMMYTickets;
 
 // Helpers
-const addTicket = (element) => {
-  element.classList.remove('available');
-  element.classList.add('selected');
-}
-const removeTicket = (element) => {
-  element.classList.remove('selected');
-  element.classList.add('available');
-}
-const clearHTML = (targetElement) => {
+const formatNumber = (number) => {
+  if (number < 10) return "00" + number;
+  else if (number < 100) return "0" + number;
+  else return number;
+};
+
+const HTMLClear = (targetElement) => {
   targetElement.innerHTML = "";
 };
+
+const HTMLReder = (targetElement, HTMLCode) => {
+  targetElement.insertAdjacentHTML("afterbegin", HTMLCode);
+};
+
 const getElement = (elementName, all = false) => {
   if (all) return document.querySelectorAll(elementName);
   else return document.querySelector(elementName);
 };
+
 const getClickedNumber = (event) => {
   return parseInt(event.target.firstElementChild.textContent);
 };
-const renderHTML = (targetElement, HTMLCode) => {
-  targetElement.insertAdjacentHTML("afterbegin", HTMLCode);
-};
-
 
 // Objects
 const containers = {
-  tickets: getElement(".ticket-container"),
+  tickets: getElement(".tickets-container"),
   ticketsSelect: getElement(".selected-tickets-container"),
+};
+
+const buttons = {
+  clearTickets: getElement(".raffle-tickets-selected-clear-button"),
 };
 
 const ticketList = {
@@ -89,18 +93,26 @@ const ticketList = {
   available: filterTickets(ticketsData, 0),
   reserved: filterTickets(ticketsData, 1),
   purched: filterTickets(ticketsData, 2),
-  selected: filterTickets(ticketsData, 3),
+  selected: [],
 };
 
 renderTicketList(ticketList.initial.slice().reverse(), containers.tickets);
 
-const ticketItems = getElement(".raffle-tickets-numbers-list-item.available", true);
-
-ticketItems.forEach(ticketItem => {
-  ticketItem.addEventListener('click', ticketItemHandler);
-});
+const renderedTickets = getElement(
+  ".raffle-tickets-numbers-list-item.available",
+  true
+);
 
 //  F  U  N  C  T  I  O  N  S
+function addTicket(ticketNumber) {
+  ticketList.selected.push(ticketNumber);
+  ticketList.selected.sort().reverse();
+}
+
+function removeTicket(arrayPosition) {
+  ticketList.selected.splice(arrayPosition, 1);
+}
+
 function filterTickets(ticketsArray, stateNumber) {
   const filteredArray = ticketsArray.filter(checkState);
 
@@ -111,22 +123,40 @@ function filterTickets(ticketsArray, stateNumber) {
   return filteredArray;
 }
 
+function renderSelectedTickets() {
+  const targetElement = containers.ticketsSelect;
+  const ticketsArray = ticketList.selected;
+
+  HTMLClear(targetElement);
+
+  if (ticketsArray.length === 0) {
+    HTMLReder(
+      targetElement,
+      `<li class="raffle-tickets-numbers-list-item message">
+         <b>Escolha um número</b>
+       </li>`
+    );
+  } else {
+    ticketsArray.map((ticket) => {
+      const ticketNumber = formatNumber(ticket);
+      HTMLReder(
+        targetElement,
+        `<li class="raffle-tickets-numbers-list-item">
+           <b>${ticketNumber}</b>
+         </li>`
+      );
+    });
+  }
+}
+
 function renderTicketList(ticketsArray, targetElement) {
   const state = ["available", "reserved", "purched", "selected"];
-  clearHTML(targetElement);
+  HTMLClear(targetElement);
 
   ticketsArray.map((ticket) => {
-    let ticketNumber;
-    
-    if (ticket[0] < 10) {
-      ticketNumber = "00" + ticket[0];
-    } else if (ticket[0] < 100) {
-      ticketNumber = "0" + ticket[0];
-    } else {
-      ticketNumber = ticket[0];
-    }
+    const ticketNumber = formatNumber(ticket[0]);
 
-    renderHTML(
+    HTMLReder(
       targetElement,
       `<li class="raffle-tickets-numbers-list-item ${state[ticket[1]]}">
          <b>${ticketNumber}</b>
@@ -135,13 +165,90 @@ function renderTicketList(ticketsArray, targetElement) {
   });
 }
 
-function ticketItemHandler(event){
-  const {target} = event; 
-  
-  if(target.classList.contains('selected')){
-    removeTicket(target)
-  }else{
-    addTicket(target)
+function clickedTicketHandler(event) {
+  const ticketNumber = getClickedNumber(event);
+  const selected = ticketList.selected.indexOf(ticketNumber);
+
+  selectTicket(ticketNumber);
+
+  if (selected > -1) {
+    removeTicket(selected);
+  } else {
+    addTicket(ticketNumber);
   }
-  
+  renderSelectedTickets();
+
+  const renderedSelectedTickets = getElement(
+    ".selected-tickets-container .raffle-tickets-numbers-list-item",
+    true
+  );
+
+  renderedSelectedTickets.forEach((ticketItem) => {
+    ticketItem.addEventListener("click", clickedSelectedTicketHandler);
+  });
+
+  selectTicket(ticketNumber);
+
+  console.log(ticketNumber);
+}
+
+function clickedSelectedTicketHandler(event) {
+  const ticketNumber = getClickedNumber(event);
+  const selected = ticketList.selected.indexOf(ticketNumber);
+
+  removeTicket(selected);
+  deleteTicket(ticketNumber);
+  renderSelectedTickets();
+}
+
+//EventListners
+renderedTickets.forEach((ticketItem) => {
+  ticketItem.addEventListener("click", clickedTicketHandler);
+});
+
+buttons.clearTickets.addEventListener("click", clearTicketsHandler);
+
+//Ready Functions
+function clearTicketsHandler() {
+  ticketList.selected = [];
+  renderedTickets.forEach((ticketItem) => {
+    ticketItem.classList.remove("selected");
+  });
+
+  renderSelectedTickets();
+}
+
+function deleteTicket(ticketNumber) {
+  const selectedTickets = getElement(
+    ".selected-tickets-container .raffle-tickets-numbers-list-item",
+    true
+  );
+  const element = getTicket(ticketNumber, selectedTickets);
+  if (element) element.remove();
+}
+
+function getTicket(ticketNumber, elementCollection) {
+  elementCollection.forEach((element) => {
+    const elementNumber = parseInt(element.innerText);
+
+    if (elementNumber === ticketNumber) {
+      return element;      
+    }
+    return false;
+  });
+}
+
+function selectTicket(ticketNumber) {
+  const ticketCollection = getElement(
+    ".tickets-container .raffle-tickets-numbers-list-item",
+    true
+  );
+  const element = getTicket(ticketNumber, ticketCollection);
+
+
+  if (element) {
+    
+    element.classList.remove("available");
+    element.classList.add("selected");
+  }
 }

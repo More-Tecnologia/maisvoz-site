@@ -74,6 +74,18 @@ const filterTickets = (ticketsArray, stateNumber) => {
   return filteredArray;
 };
 
+function getTicket(ticketNumber, elementCollection) {
+  let ticketElement = false;
+  elementCollection.forEach((element) => {
+    const elementNumber = parseInt(element.getAttribute("data-ticket"));
+
+    if (elementNumber === ticketNumber) {
+      ticketElement = element;
+    }
+  });
+  return ticketElement;
+}
+
 // Objects
 const containers = {
   tickets: getElement(".tickets-container"),
@@ -92,18 +104,6 @@ const ticketList = {
 
 // Functions
 renderTickets(ticketList.initial, containers.tickets);
-
-function getTicket(ticketNumber, elementCollection) {
-  let ticketElement = false;
-  elementCollection.forEach((element) => {
-    const elementNumber = parseInt(element.getAttribute("data-ticket"));
-console.log(element);
-    if (elementNumber === ticketNumber) {
-      ticketElement = element;
-    }
-  });
-  return ticketElement;
-}
 
 function addTicket(ticketNumber) {
   const ticketCollection = getElement(".ticket-list .ticket-item", true);
@@ -134,7 +134,9 @@ function renderTickets(ticketsArray, targetElement) {
   ticketsArray.map((ticket) => {
     const onClickFunction =
       ticket[1] === 0 ? `onclick="ticketHandler(${ticket[0]})"` : "";
-    const HTMLTicket = `<li ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${state[ticket[1]]}" data-ticket="${ticket[0]}">
+    const HTMLTicket = `<li ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
+      state[ticket[1]]
+    }" data-ticket="${ticket[0]}">
                           <b>${formatNumber(ticket[0])}</b>
                         </li>`;
 

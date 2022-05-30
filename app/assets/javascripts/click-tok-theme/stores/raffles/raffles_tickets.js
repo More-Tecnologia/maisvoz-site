@@ -98,7 +98,8 @@ const buttons = {
 
 const ticketList = {
   initial: ticketsData.sort((a, b) => a - b),
-  available: filterTickets(ticketsData, 0),
+  available: filterTickets(ticketsData, 0).map(item => item[0]),
+  currentAvailable: filterTickets(ticketsData, 0).map(item => item[0]),
   selected: [],
 };
 
@@ -128,6 +129,8 @@ function changeTicket(action, ticketNumber = false) {
       break;
   }
   renderSelectedTickets();
+  ticketList.currentAvailable = ticketList.available.filter(( item ) => !ticketList.selected.includes( item ) );
+  console.log(ticketList.currentAvailable);
 }
 
 function clearTickets(element) {

@@ -96,8 +96,8 @@ renderTickets(ticketList.initial, containers.tickets);
 function getTicket(ticketNumber, elementCollection) {
   let ticketElement = false;
   elementCollection.forEach((element) => {
-    const elementNumber = parseInt(element.innerText);
-
+    const elementNumber = parseInt(element.getAttribute("data-ticket"));
+console.log(element);
     if (elementNumber === ticketNumber) {
       ticketElement = element;
     }
@@ -134,9 +134,7 @@ function renderTickets(ticketsArray, targetElement) {
   ticketsArray.map((ticket) => {
     const onClickFunction =
       ticket[1] === 0 ? `onclick="ticketHandler(${ticket[0]})"` : "";
-    const HTMLTicket = `<li ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
-      state[ticket[1]]
-    }">
+    const HTMLTicket = `<li ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${state[ticket[1]]}" data-ticket="${ticket[0]}">
                           <b>${formatNumber(ticket[0])}</b>
                         </li>`;
 
@@ -155,7 +153,7 @@ function renderSelectedTickets() {
     containers.ticketsSelect.insertAdjacentHTML("afterbegin", HTMLMessage);
   } else {
     ticketList.selected.map((ticket) => {
-      const HTMLTicket = `<li onclick="selectedTicketHandler(${ticket})" class="raffle-tickets-numbers-list-item">
+      const HTMLTicket = `<li onclick="selectedTicketHandler(${ticket})" class="raffle-tickets-numbers-list-item" data-ticket="${ticket}">
                             <b>${formatNumber(ticket)}</b>
                           </li>`;
 

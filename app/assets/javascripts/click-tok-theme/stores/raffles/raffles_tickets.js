@@ -65,8 +65,13 @@ const getElement = (elementName, all = false) => {
   else return document.querySelector(elementName);
 };
 
-const getClickedNumber = (event) => {
-  return parseInt(event.target.firstElementChild.textContent);
+const filterTickets = (ticketsArray, stateNumber) => {
+  const filteredArray = ticketsArray.filter(checkState);
+
+  function checkState(ticket) {
+    return ticket[1] === stateNumber;
+  }
+  return filteredArray;
 };
 
 // Objects
@@ -80,138 +85,13 @@ const buttons = {
 };
 
 const ticketList = {
-  initial: ticketsData,
-  current: ticketsData,
+  initial: ticketsData.sort((a, b) => a - b),
   available: filterTickets(ticketsData, 0),
-  reserved: filterTickets(ticketsData, 1),
-  purched: filterTickets(ticketsData, 2),
   selected: [],
 };
 
-renderTicketList(ticketList.initial.slice().reverse(), containers.tickets);
-
-const renderedTickets = getElement(
-  ".raffle-tickets-numbers-list-item.available",
-  true
-);
-
-//  F  U  N  C  T  I  O  N  S
-function addTicketToArray(ticketNumber) {
-  ticketList.selected.push(ticketNumber);
-  ticketList.selected.sort().reverse();
-}
-
-function removeTicketOfArray(arrayPosition) {
-  ticketList.selected.splice(arrayPosition, 1);
-}
-
-function filterTickets(ticketsArray, stateNumber) {
-  const filteredArray = ticketsArray.filter(checkState);
-
-  function checkState(ticket) {
-    return ticket[1] === stateNumber;
-  }
-
-  return filteredArray;
-}
-
-function renderSelectedTickets() {
-  const targetElement = containers.ticketsSelect;
-  const ticketsArray = ticketList.selected;
-  const HTMLMessage = `<li class="raffle-tickets-numbers-list-item message">
-                         <b>Escolha um número</b>
-                       </li>`;
-
-  targetElement.innerHTML = "";
-
-  if (ticketsArray.length === 0) {
-    targetElement.insertAdjacentHTML("afterbegin", HTMLMessage);
-  } else {
-    ticketsArray.map((ticket) => {
-      const HTMLTicket = `<li class="raffle-tickets-numbers-list-item">
-                            <b>${formatNumber(ticket)}</b>
-                          </li>`;
-
-      targetElement.insertAdjacentHTML("afterbegin", HTMLTicket);
-    });
-  }
-}
-
-function renderTicketList(ticketsArray, targetElement) {
-  const state = ["available", "reserved", "purched", "selected"];
-  targetElement.innerHTML = "";
-
-  ticketsArray.map((ticket) => {
-    const HTMLTicket = `<li class="raffle-tickets-numbers-list-item ${
-      state[ticket[1]]
-    }">
-                          <b>${formatNumber(ticket[0])}</b>
-                        </li>`;
-
-    targetElement.insertAdjacentHTML("afterbegin", HTMLTicket);
-  });
-}
-
-function clickedTicketHandler(event) {
-  const ticketNumber = getClickedNumber(event);
-  const selected = ticketList.selected.indexOf(ticketNumber);
-  console.log("Clicked");
-  selectTicket(ticketNumber);
-
-  if (selected > -1) {
-    removeTicketOfArray(selected);
-  } else {
-    addTicketToArray(ticketNumber);
-  }
-  renderSelectedTickets();
-
-  const renderedSelectedTickets = getElement(
-    ".selected-tickets-container .raffle-tickets-numbers-list-item",
-    true
-  );
-
-  renderedSelectedTickets.forEach((ticketItem) => {
-    ticketItem.addEventListener("click", clickedSelectedTicketHandler);
-  });
-}
-
-function clickedSelectedTicketHandler(event) {
-  const ticketNumber = getClickedNumber(event);
-  const selected = ticketList.selected.indexOf(ticketNumber);
-  
-  
-  removeTicketOfArray(selected);  
-  deleteTicket(ticketNumber);
-  renderSelectedTickets();
-  selectTicket(ticketNumber);
-  
-}
-
-//EventListners
-renderedTickets.forEach((ticketItem) => {
-  ticketItem.addEventListener("click", clickedTicketHandler);
-});
-
-buttons.clearTickets.addEventListener("click", clearTicketsHandler);
-
-//Ready Functions
-function clearTicketsHandler() {
-  ticketList.selected = [];
-  renderedTickets.forEach((ticketItem) => {
-    ticketItem.classList.remove("selected");
-  });
-
-  renderSelectedTickets();
-}
-
-function deleteTicket(ticketNumber) {
-  const selectedTickets = getElement(
-    ".selected-tickets-container .raffle-tickets-numbers-list-item",
-    true
-  );
-  const element = getTicket(ticketNumber, selectedTickets);
-  if (element) element.remove();
-}
+// Functions
+renderTickets(ticketList.initial, containers.tickets);
 
 function getTicket(ticketNumber, elementCollection) {
   let ticketElement = false;
@@ -225,17 +105,87 @@ function getTicket(ticketNumber, elementCollection) {
   return ticketElement;
 }
 
-function selectTicket(ticketNumber) {
-  const ticketCollection = getElement(
-    ".tickets-container .raffle-tickets-numbers-list-item",
-    true
-  );
+function addTicket(ticketNumber) {
+  const ticketCollection = getElement(".ticket-list .ticket-item", true);
   const element = getTicket(ticketNumber, ticketCollection);
-  if (ticketList.selected.indexOf(ticketNumber) === -1) {
-    element.classList.remove("available");
-    element.classList.add("selected");
-  }else{
-    element.classList.remove("selected");
-    element.classList.add("available");
+
+  ticketList.selected.push(ticketNumber);
+  ticketList.selected.sort((a, b) => b - a);
+  element.classList.remove("available");
+  element.classList.add("selected");
+  renderSelectedTickets();
+}
+
+function removeTicket(ticketNumber) {
+  const ticketCollection = getElement(".ticket-list .ticket-item", true);
+  const element = getTicket(ticketNumber, ticketCollection);
+  const arrayPosition = ticketList.selected.indexOf(ticketNumber);
+
+  ticketList.selected.splice(arrayPosition, 1);
+  element.classList.add("available");
+  element.classList.remove("selected");
+  renderSelectedTickets();
+}
+
+function renderTickets(ticketsArray, targetElement) {
+  const state = ["available", "reserved", "purched", "selected"];
+  targetElement.innerHTML = "";
+
+  ticketsArray.map((ticket) => {
+    const onClickFunction =
+      ticket[1] === 0 ? `onclick="ticketHandler(${ticket[0]})"` : "";
+    const HTMLTicket = `<li ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
+      state[ticket[1]]
+    }">
+                          <b>${formatNumber(ticket[0])}</b>
+                        </li>`;
+
+    targetElement.insertAdjacentHTML("afterbegin", HTMLTicket);
+  });
+}
+
+function renderSelectedTickets() {
+  const HTMLMessage = `<li class="raffle-tickets-numbers-list-item message">
+                         <b>Escolha um número</b>
+                       </li>`;
+
+  containers.ticketsSelect.innerHTML = "";
+
+  if (ticketList.selected.length === 0) {
+    containers.ticketsSelect.insertAdjacentHTML("afterbegin", HTMLMessage);
+  } else {
+    ticketList.selected.map((ticket) => {
+      const HTMLTicket = `<li onclick="selectedTicketHandler(${ticket})" class="raffle-tickets-numbers-list-item">
+                            <b>${formatNumber(ticket)}</b>
+                          </li>`;
+
+      containers.ticketsSelect.insertAdjacentHTML("afterbegin", HTMLTicket);
+    });
   }
 }
+
+// Handlers
+function clearTicketsHandler() {
+  const ticketCollection = getElement(".ticket-list .ticket-item", true);
+  ticketList.selected = [];
+  ticketCollection.forEach((ticketItem) => {
+    ticketItem.classList.remove("selected");
+  });
+
+  renderSelectedTickets();
+}
+
+function selectedTicketHandler(ticketNumber) {
+  removeTicket(ticketNumber);
+}
+
+function ticketHandler(ticketNumber) {
+  if (ticketList.selected.indexOf(ticketNumber) === -1) {
+    addTicket(ticketNumber);
+  } else {
+    removeTicket(ticketNumber);
+  }
+}
+
+// EventListeners
+buttons.clearTickets.addEventListener("click", clearTicketsHandler);

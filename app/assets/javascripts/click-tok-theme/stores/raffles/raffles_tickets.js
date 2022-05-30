@@ -105,26 +105,44 @@ const ticketList = {
 // Functions
 renderTickets(ticketList.initial, containers.tickets);
 
-function addTicket(ticketNumber) {
-  const ticketCollection = getElement(".ticket-list .ticket-item", true);
-  const element = getTicket(ticketNumber, ticketCollection);
-
+function addTicket(ticketNumber, element) {
   ticketList.selected.push(ticketNumber);
   ticketList.selected.sort((a, b) => b - a);
   element.classList.remove("available");
   element.classList.add("selected");
+}
+
+function changeTicket(action, ticketNumber = false) {
+  const ticketCollection = getElement(".ticket-list .ticket-item", true);
+  const element = ticketNumber && getTicket(ticketNumber, ticketCollection);
+
+  switch (action) {
+    case 'ADD':
+      addTicket(ticketNumber, element);
+      break;
+    case 'CLEAR':
+      clearTickets(ticketCollection);
+      break;    
+    case 'REMOVE':
+      removeTicket(ticketNumber, element);
+      break;
+  }
   renderSelectedTickets();
 }
 
-function removeTicket(ticketNumber) {
-  const ticketCollection = getElement(".ticket-list .ticket-item", true);
-  const element = getTicket(ticketNumber, ticketCollection);
+function clearTickets(element) {
+  ticketList.selected = [];
+  element.forEach((ticketItem) => {
+    ticketItem.classList.remove("selected");
+  });
+}
+
+function removeTicket(ticketNumber, element) {
   const arrayPosition = ticketList.selected.indexOf(ticketNumber);
 
   ticketList.selected.splice(arrayPosition, 1);
   element.classList.add("available");
   element.classList.remove("selected");
-  renderSelectedTickets();
 }
 
 function renderTickets(ticketsArray, targetElement) {
@@ -166,24 +184,18 @@ function renderSelectedTickets() {
 
 // Handlers
 function clearTicketsHandler() {
-  const ticketCollection = getElement(".ticket-list .ticket-item", true);
-  ticketList.selected = [];
-  ticketCollection.forEach((ticketItem) => {
-    ticketItem.classList.remove("selected");
-  });
-
-  renderSelectedTickets();
+  changeTicket('CLEAR');
 }
 
 function selectedTicketHandler(ticketNumber) {
-  removeTicket(ticketNumber);
+  changeTicket('REMOVE', ticketNumber);
 }
 
 function ticketHandler(ticketNumber) {
   if (ticketList.selected.indexOf(ticketNumber) === -1) {
-    addTicket(ticketNumber);
+    changeTicket('ADD', ticketNumber);
   } else {
-    removeTicket(ticketNumber);
+    changeTicket('REMOVE', ticketNumber);
   }
 }
 

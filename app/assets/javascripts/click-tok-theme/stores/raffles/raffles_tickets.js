@@ -49,7 +49,6 @@ const DUMMYTickets = [
   [47, 0],
   [48, 0],
   [49, 0],
-  [50, 1],
 ];
 const ticketsData = DUMMYTickets;
 
@@ -93,8 +92,13 @@ const containers = {
 };
 
 const buttons = {
+  addSearchTicket: getElement(".add-searched"),
   clearTickets: getElement(".raffle-tickets-selected-clear-button"),
-  randomTickets: getElement(".raffle-tickets-form-button__random"),
+  randomTicket: getElement(".raffle-tickets-form-button__random"),
+};
+
+const inputs = {
+  searchTicket: getElement(".search-ticket"),
 };
 
 const ticketList = {
@@ -196,6 +200,15 @@ function renderSelectedTickets() {
 }
 
 // Handlers
+function addSearchedTicketHandler(event) {
+  event.preventDefault();
+  const searchedNumber = parseInt(inputs.searchTicket.value);
+  const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
+  if (ticketList.currentAvailable[searchedIndex] !== undefined)
+    changeTicket("ADD", ticketList.currentAvailable[searchedIndex]);
+  else console.log("Indisponivel");
+}
+
 function clearTicketsHandler() {
   changeTicket("CLEAR");
 }
@@ -206,6 +219,24 @@ function randomTicketHandler(event) {
   if (ticketList.currentAvailable.length > 0) {
     const ticketNumber = genRandomTicket();
     changeTicket("ADD", ticketNumber);
+  }
+}
+
+function searchTicketHandler(event) {
+  const searchedNumber = parseInt(inputs.searchTicket.value);
+  const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
+
+  if (searchedNumber >= 0) {
+    if (ticketList.currentAvailable[searchedIndex] !== undefined) {
+      buttons.addSearchTicket.classList.remove("denied");
+      buttons.addSearchTicket.classList.remove("disabled");
+    } else {
+      buttons.addSearchTicket.classList.remove("disabled");
+      buttons.addSearchTicket.classList.add("denied");
+    }
+  } else {
+    buttons.addSearchTicket.classList.remove("denied");
+    buttons.addSearchTicket.classList.add("disabled");
   }
 }
 
@@ -222,5 +253,7 @@ function ticketHandler(ticketNumber) {
 }
 
 // EventListeners
+buttons.addSearchTicket.addEventListener("click", addSearchedTicketHandler);
 buttons.clearTickets.addEventListener("click", clearTicketsHandler);
-buttons.randomTickets.addEventListener("click", randomTicketHandler);
+buttons.randomTicket.addEventListener("click", randomTicketHandler);
+inputs.searchTicket.addEventListener("input", searchTicketHandler);

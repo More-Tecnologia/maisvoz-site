@@ -362,7 +362,15 @@
 }
 
 .raffle-tickets-search-numbers-container .raffle-tickets-form-button.denied {
-  background: linear-gradient(to bottom, #cd0303, #a70000);
+  background: linear-gradient(to bottom, #942626, #821c1c);
+  color: #FFF;
+  cursor: auto;
+}
+
+.raffle-tickets-search-numbers-container .raffle-tickets-form-button.disabled {
+  background: linear-gradient(to bottom, #ab9bb2, #ab9bb2);
+  color: #FFF;
+  cursor: auto;
 }
 
 .raffle-tickets-search-numbers-container .raffle-tickets-form-button i {

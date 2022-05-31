@@ -37,7 +37,7 @@
     <div class="raffle-tickets-info-container">
       <h1 class="raffle-tickets-title"><%= @raffle.title %></h1>
       <p class="raffle-tickets-description">
-        <%= @raffle.description%>
+        <%= @raffle.description %>
       </p>
       <button class="raffle-tickets-read-more">
         Ler Mais
@@ -85,18 +85,18 @@
       </div>
     <% end %>
     <div class="raffle-tickets-filters">
-      <form class="raffle-tickets-filters--form">
+      <div class="raffle-tickets-filters--form">
         <div class="raffle-ticktes-search-inputs">
           <button class="raffle-tickets-form-button__random">
             <i class="fa-solid fa-shuffle"></i>
             Aleatório
           </button>
           <div class="raffle-tickets-search-numbers-container">
-            <input class="raffle-tickets-field" type="text" placeholder="Numero">
-            <button class="raffle-tickets-form-button"><i class="fa-solid fa-plus"></i> Adicionar</button>
+            <input class="raffle-tickets-field search-ticket" type="text" placeholder="Numero">
+            <button class="raffle-tickets-form-button add-searched disabled"><i class="fa-solid fa-plus"></i> Adicionar</button>
           </div>
         </div>
-      </form>
+      </div>
     </div>
     <div class="raffle-tickets-numbers-container">
       <ul class="raffle-tickets-numbers-list tickets-container ticket-list">

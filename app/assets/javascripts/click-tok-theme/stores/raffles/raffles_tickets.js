@@ -94,13 +94,13 @@ const containers = {
 
 const buttons = {
   clearTickets: getElement(".raffle-tickets-selected-clear-button"),
-  randomTickets: getElement(".raffle-tickets-form-button__random")
+  randomTickets: getElement(".raffle-tickets-form-button__random"),
 };
 
 const ticketList = {
   initial: ticketsData.sort((a, b) => a - b),
-  available: filterTickets(ticketsData, 0).map(item => item[0]),
-  currentAvailable: filterTickets(ticketsData, 0).map(item => item[0]),
+  available: filterTickets(ticketsData, 0).map((item) => item[0]),
+  currentAvailable: filterTickets(ticketsData, 0).map((item) => item[0]),
   selected: [],
 };
 
@@ -110,28 +110,31 @@ renderTickets(ticketList.initial, containers.tickets);
 function addTicket(ticketNumber, element) {
   ticketList.selected.push(ticketNumber);
   ticketList.selected.sort((a, b) => b - a);
+
   element.classList.remove("available");
   element.classList.add("selected");
 }
 
 function changeTicket(action, ticketNumber = false) {
   const ticketCollection = getElement(".ticket-list .ticket-item", true);
-  const element = ticketNumber && getTicket(ticketNumber, ticketCollection);
+  const element =
+    ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
 
   switch (action) {
-    case 'ADD':
+    case "ADD":
       addTicket(ticketNumber, element);
       break;
-    case 'CLEAR':
+    case "CLEAR":
       clearTickets(ticketCollection);
-      break;    
-    case 'REMOVE':
+      break;
+    case "REMOVE":
       removeTicket(ticketNumber, element);
       break;
   }
   renderSelectedTickets();
-  ticketList.currentAvailable = ticketList.available.filter(( item ) => !ticketList.selected.includes( item ) );
-  console.log(ticketList.currentAvailable);
+  ticketList.currentAvailable = ticketList.available.filter(
+    (item) => !ticketList.selected.includes(item)
+  );
 }
 
 function clearTickets(element) {
@@ -141,11 +144,10 @@ function clearTickets(element) {
   });
 }
 
-function genRandomTicket(){
-  randomNumber = Math.round(Math.random() * ticketList.currentAvailable.length);
+function genRandomTicket() {
+  randomNumber = Math.floor(Math.random() * ticketList.currentAvailable.length);
 
   return ticketList.currentAvailable[randomNumber];
-
 }
 
 function removeTicket(ticketNumber, element) {
@@ -195,27 +197,27 @@ function renderSelectedTickets() {
 
 // Handlers
 function clearTicketsHandler() {
-  changeTicket('CLEAR');
+  changeTicket("CLEAR");
 }
 
-function randomTicketHandler(event) { 
-  const ticketNumber = genRandomTicket();
-  
+function randomTicketHandler(event) {
   event.preventDefault();
-  changeTicket('ADD', ticketNumber);
 
-  console.log(ticketNumber);
+  if (ticketList.currentAvailable.length > 0) {
+    const ticketNumber = genRandomTicket();
+    changeTicket("ADD", ticketNumber);
+  }
 }
 
 function selectedTicketHandler(ticketNumber) {
-  changeTicket('REMOVE', ticketNumber);
+  changeTicket("REMOVE", ticketNumber);
 }
 
 function ticketHandler(ticketNumber) {
   if (ticketList.selected.indexOf(ticketNumber) === -1) {
-    changeTicket('ADD', ticketNumber);
+    changeTicket("ADD", ticketNumber);
   } else {
-    changeTicket('REMOVE', ticketNumber);
+    changeTicket("REMOVE", ticketNumber);
   }
 }
 

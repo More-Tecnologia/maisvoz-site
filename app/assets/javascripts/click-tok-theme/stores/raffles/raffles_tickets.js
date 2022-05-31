@@ -94,7 +94,7 @@ const containers = {
 const buttons = {
   addSearchTicket: getElement(".add-searched"),
   clearTickets: getElement(".raffle-tickets-selected-clear-button"),
-  randomTicket: getElement(".raffle-tickets-form-button__random"),
+  randomTicket: getElement(".random-ticket"),
 };
 
 const inputs = {
@@ -104,6 +104,8 @@ const inputs = {
 const ticketList = {
   initial: ticketsData.sort((a, b) => a - b),
   available: filterTickets(ticketsData, 0).map((item) => item[0]),
+  reserved: filterTickets(ticketsData, 1).map((item) => item[0]),
+  purched: filterTickets(ticketsData, 2).map((item) => item[0]),
   currentAvailable: filterTickets(ticketsData, 0).map((item) => item[0]),
   selected: [],
 };
@@ -206,7 +208,6 @@ function addSearchedTicketHandler(event) {
   const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
   if (ticketList.currentAvailable[searchedIndex] !== undefined)
     changeTicket("ADD", ticketList.currentAvailable[searchedIndex]);
-  else console.log("Indisponivel");
 }
 
 function clearTicketsHandler() {
@@ -222,22 +223,43 @@ function randomTicketHandler(event) {
   }
 }
 
-function searchTicketHandler(event) {
+function searchTicketHandler() {
   const searchedNumber = parseInt(inputs.searchTicket.value);
-  const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
-  buttons.addSearchTicket.classList.remove("denied");
-  buttons.addSearchTicket.classList.remove("allowed");
-  buttons.addSearchTicket.classList.add("transition");
-  buttons.addSearchTicket.classList.add("disabled");
-
-  if (searchedNumber >= 0) {
-    if (ticketList.currentAvailable[searchedIndex] !== undefined) {
-      buttons.addSearchTicket.classList.add("allowed");  
-      buttons.addSearchTicket.classList.remove("disabled");    
-    } else {
-      buttons.addSearchTicket.classList.add("denied");
-      buttons.addSearchTicket.classList.remove("disabled"); 
+  let state;
+  for (ticketArray in ticketList) {
+    if (ticketArray != "initial" && ticketArray != "available") {
+      if (ticketList[ticketArray].indexOf(searchedNumber) >= 0) {
+        state = ticketArray;
+        break;
+      }
     }
+  }
+
+  state = state === "currentAvailable" ? "available" : state;
+  state = state === undefined ? "disabled" : state;
+  const availableIndex = ticketList.currentAvailable.indexOf(searchedNumber);
+  buttons.addSearchTicket.classList.remove("denied", "allowed");
+  buttons.addSearchTicket.classList.add("disabled");
+  inputs.searchTicket.classList.remove(
+    "purched",
+    "reserved",
+    "available",
+    "denied",
+    "selected"
+  );
+
+  inputs.searchTicket.classList.add(state);
+  buttons.addSearchTicket.classList.add(state);
+
+  if (availableIndex >= 0) {
+    if (ticketList.currentAvailable[availableIndex] !== undefined) {
+      buttons.addSearchTicket.classList.add("allowed");
+      buttons.addSearchTicket.classList.remove("disabled");
+    } else {
+      buttons.addSearchTicket.classList.remove("disabled");
+    }
+  } else if (state === "purched" || state === "reserved") {
+    buttons.addSearchTicket.classList.add("denied");
   }
 }
 

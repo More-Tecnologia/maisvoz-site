@@ -826,6 +826,8 @@ en:
       coinpayments: 'Error on create transaction: %{error}.'
       payment_gateway_transaction: 'Error on create payment transaction: %{error}.'
       duplicated_free_product: FREE product already purchased
+      pagstar:
+        token: 'The following errors were encountered when requesting the connection: %{error}'
     financial: Financial
     financial_entries: Financial History
     manage_withdrawals: Manage Withdraws

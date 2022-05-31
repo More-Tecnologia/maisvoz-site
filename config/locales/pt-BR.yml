@@ -835,6 +835,8 @@ pt-BR:
       coinpayments: 'Erro ao criar transação: %{error}.'
       payment_gateway_transaction: 'Erro ao criar transação de pagamento: %{error}.'
       duplicated_free_product: Produto FREE ja compro
+      pagstar:
+        token: 'Os seguintes erros foram encontrados ao solicitar a conexão: %{error}'
     financial: Financeiro
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques

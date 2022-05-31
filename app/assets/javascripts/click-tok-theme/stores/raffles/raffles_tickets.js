@@ -225,18 +225,19 @@ function randomTicketHandler(event) {
 function searchTicketHandler(event) {
   const searchedNumber = parseInt(inputs.searchTicket.value);
   const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
+  buttons.addSearchTicket.classList.remove("denied");
+  buttons.addSearchTicket.classList.remove("allowed");
+  buttons.addSearchTicket.classList.add("transition");
+  buttons.addSearchTicket.classList.add("disabled");
 
   if (searchedNumber >= 0) {
     if (ticketList.currentAvailable[searchedIndex] !== undefined) {
-      buttons.addSearchTicket.classList.remove("denied");
-      buttons.addSearchTicket.classList.remove("disabled");
+      buttons.addSearchTicket.classList.add("allowed");  
+      buttons.addSearchTicket.classList.remove("disabled");    
     } else {
-      buttons.addSearchTicket.classList.remove("disabled");
       buttons.addSearchTicket.classList.add("denied");
+      buttons.addSearchTicket.classList.remove("disabled"); 
     }
-  } else {
-    buttons.addSearchTicket.classList.remove("denied");
-    buttons.addSearchTicket.classList.add("disabled");
   }
 }
 

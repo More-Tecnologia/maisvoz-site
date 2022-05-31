@@ -94,6 +94,7 @@ const containers = {
 
 const buttons = {
   clearTickets: getElement(".raffle-tickets-selected-clear-button"),
+  randomTickets: getElement(".raffle-tickets-form-button__random")
 };
 
 const ticketList = {
@@ -138,6 +139,13 @@ function clearTickets(element) {
   element.forEach((ticketItem) => {
     ticketItem.classList.remove("selected");
   });
+}
+
+function genRandomTicket(){
+  randomNumber = Math.round(Math.random() * ticketList.currentAvailable.length);
+
+  return ticketList.currentAvailable[randomNumber];
+
 }
 
 function removeTicket(ticketNumber, element) {
@@ -190,6 +198,15 @@ function clearTicketsHandler() {
   changeTicket('CLEAR');
 }
 
+function randomTicketHandler(event) { 
+  const ticketNumber = genRandomTicket();
+  
+  event.preventDefault();
+  changeTicket('ADD', ticketNumber);
+
+  console.log(ticketNumber);
+}
+
 function selectedTicketHandler(ticketNumber) {
   changeTicket('REMOVE', ticketNumber);
 }
@@ -204,3 +221,4 @@ function ticketHandler(ticketNumber) {
 
 // EventListeners
 buttons.clearTickets.addEventListener("click", clearTicketsHandler);
+buttons.randomTickets.addEventListener("click", randomTicketHandler);

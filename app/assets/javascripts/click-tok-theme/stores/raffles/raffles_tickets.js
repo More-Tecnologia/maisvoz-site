@@ -53,6 +53,7 @@ const DUMMYTickets = [
 const ticketsData = DUMMYTickets;
 
 // Helpers
+
 const formatNumber = (number) => {
   if (number < 10) return "00" + number;
   else if (number < 100) return "0" + number;
@@ -62,15 +63,6 @@ const formatNumber = (number) => {
 const getElement = (elementName, all = false) => {
   if (all) return document.querySelectorAll(elementName);
   else return document.querySelector(elementName);
-};
-
-const getTicketByState = (ticketsArray, stateNumber) => {
-  const filteredArray = ticketsArray.filter(checkState);
-
-  function checkState(ticket) {
-    return ticket[1] === stateNumber;
-  }
-  return filteredArray;
 };
 
 function getTicket(ticketNumber, elementCollection) {
@@ -85,7 +77,17 @@ function getTicket(ticketNumber, elementCollection) {
   return ticketElement;
 }
 
+const getTicketByState = (ticketsArray, stateNumber) => {
+  const filteredArray = ticketsArray.filter(checkState);
+
+  function checkState(ticket) {
+    return ticket[1] === stateNumber;
+  }
+  return filteredArray;
+};
+
 // Objects
+
 const containers = {
   tickets: getElement(".tickets-container"),
   ticketsSelect: getElement(".selected-tickets-container"),
@@ -116,8 +118,10 @@ const ticketList = {
   selected: [],
 };
 
-// Functions
+// Start
 renderTickets(ticketList.initial, containers.tickets);
+
+// Functions
 
 function addTicket(ticketNumber, element) {
   ticketList.selected.push(ticketNumber);
@@ -125,10 +129,6 @@ function addTicket(ticketNumber, element) {
 
   element.classList.remove("available");
   element.classList.add("selected");
-}
-
-function filterTickets() {
-  
 }
 
 function changeTicket(action, ticketNumber = false) {
@@ -164,6 +164,8 @@ function clearTickets(element) {
     ticketItem.classList.remove("selected");
   });
 }
+
+function filterTickets() {}
 
 function genRandomTicket() {
   randomNumber = Math.floor(Math.random() * ticketList.currentAvailable.length);
@@ -234,6 +236,7 @@ function setPaymentButton(numberOfTickets) {
 }
 
 // Handlers
+
 function addSearchedTicketHandler(event) {
   event.preventDefault();
   const searchedNumber = parseInt(inputs.searchTicket.value);
@@ -308,6 +311,7 @@ function ticketHandler(ticketNumber) {
 }
 
 // EventListeners
+
 buttons.addSearchTicket.addEventListener("click", addSearchedTicketHandler);
 buttons.clearTickets.addEventListener("click", clearTicketsHandler);
 buttons.randomTicket.addEventListener("click", randomTicketHandler);

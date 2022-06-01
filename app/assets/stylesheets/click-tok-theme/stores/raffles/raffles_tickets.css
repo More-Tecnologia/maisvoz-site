@@ -186,6 +186,13 @@ input[type="number"] {
   gap: 2%;
 }
 
+.ticket-loading{
+  width: 100%;
+  text-align: center;
+  margin: 40px 0 200px 0;
+  color: #888;
+}
+
 .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
   height: auto;
   margin-bottom: 2.6%;

@@ -39,7 +39,10 @@ module Backoffice
 
     def tickets
       render json: { 
-        data: Raffle.find_by_hashid(params[:id]).light_raffle_tickets.map { |ticket| [ticket.number, RaffleTicket.statuses[ticket.status]] }
+        data: Raffle.find_by_hashid(params[:id])
+                    .light_raffle_tickets
+                    .sort_by { |ticket| ticket.number.to_i }
+                    .map { |ticket| [ticket.number.to_i, RaffleTicket.statuses[ticket.status]] }
       }
     end
 

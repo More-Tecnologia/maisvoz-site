@@ -186,11 +186,11 @@ input[type="number"] {
   gap: 2%;
 }
 
-.ticket-loading{
-  width: 100%;
-  text-align: center;
-  margin: 40px 0 200px 0;
+.ticket-loading {
   color: #888;
+  margin: 40px 0 200px 0;
+  text-align: center;
+  width: 100%;
 }
 
 .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {

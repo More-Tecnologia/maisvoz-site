@@ -24,10 +24,10 @@ module Payment
       end
 
       def payment_transaction(response)
-        order.create_payment_transaction!(amount: response['value'],
-                                          transaction_id: response['transaction_id'],
-                                          wallet_address: response['wallet_address'],
-                                          provider_response: response)
+        @order.create_payment_transaction!(amount: response['value'],
+                                           transaction_id: response['external_reference'],
+                                           wallet_address: response['pix_key'],
+                                           provider_response: response)
       end
     end
   end

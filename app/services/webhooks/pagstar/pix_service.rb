@@ -22,7 +22,7 @@ module Webhooks
   
         raise response.code.to_s unless response.success?
   
-        response.parsed_response
+        response.parsed_response['data']
       end
 
       def get_access_token
@@ -38,7 +38,7 @@ module Webhooks
 
       def params
         {
-          "value": @order.total,
+          "value": (@order.total_cents * ENV['REAL_USD_FACTOR'].to_i) / 100,
           "callback": CALLBACK,
           "name": @order.user.username,
           "document": @order.user.document_cpf,

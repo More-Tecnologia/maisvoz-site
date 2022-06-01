@@ -84,12 +84,15 @@
     <div class="ch-payment-buttons-area">
       <div class="btn btn-tab" onclick="showBalanceInput()">
         <%= image_tag('icons/troca1.png', class: 'icons') %>
-        Balance
+        <%= t(:balance) %>
       </div>
-
+      <div class="btn btn-tab" onclick="showPixInput()">
+        <%= image_tag('icons/pix-p.svg', class: 'icons') %>
+        <%= t(:pix) %>
+      </div>
       <div class="btn btn-tab" onclick="showBitCoinInput()">
         <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
-        BTC
+        <%= t(:btc) %>
       </div>
       <input type="hidden" name="payment_method" id="payment_method" value='btc'>
     </div>

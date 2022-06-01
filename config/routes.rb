@@ -155,6 +155,7 @@ Rails.application.routes.draw do
     resource :cart, only: %i[show create]
     resource :checkout, only: :update
     resources :order_items, only: [:create, :update, :destroy]
+    resource :pagstar_pix_notifications, only: [:create]
     resources :payment_transactions, only: [:show]
     resource :payment_block_checkout, only: [:new]
     resource :payment_block_notification, only: [:create]

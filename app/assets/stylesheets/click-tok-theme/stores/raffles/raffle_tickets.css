@@ -262,13 +262,14 @@ input[type="number"] {
 }
 
 .raffle-tickets-form-button-container .cart-icon {
+  transition: color 0.5s;
   color: #ccc;
   position: absolute;
   left: -1.5em;
 }
 
-.raffle-tickets-form-button-container .cart-icon.active{
-  color:#01bf04;
+.raffle-tickets-form-button-container .cart-icon.active {
+  color: #01bf04;
 }
 
 .raffle-tickets-form-button-container .cart-icon .cart-icon-number {
@@ -278,13 +279,14 @@ input[type="number"] {
 
 .raffle-tickets-form-button-container .cart-icon.active .cart-icon-number {
   position: absolute;
+  transition: opacity 0.5s;
   top: 3px;
   left: 60%;
   min-width: 12px;
   text-align: center;
   transform: translate(-50%, 0);
   color: white;
-  background: #01bf04;  
+  background: #01bf04;
   font-size: 0.35em;
   opacity: 1;
 }
@@ -297,6 +299,12 @@ input[type="number"] {
   font-size: 0.8em;
   color: white;
   cursor: pointer;
+}
+
+.raffle-tickets-form-buttod:disabled,
+.raffle-tickets-form-button[disabled] {
+  background: #ccc;
+  cursor: auto;
 }
 
 .raffle-tickets-filters {

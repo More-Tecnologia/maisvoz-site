@@ -94,6 +94,7 @@ const containers = {
 const buttons = {
   addSearchTicket: getElement(".add-searched"),
   clearTickets: getElement(".raffle-tickets-selected-clear-button"),
+  pay: getElement(".raffle-tickets-form-button"),
   randomTicket: getElement(".random-ticket"),
 };
 
@@ -126,7 +127,7 @@ function addTicket(ticketNumber, element) {
   element.classList.add("selected");
 }
 
-function changeTicket(action, ticketNumber = false) {
+function changeTicket(action, ticketNumber = false) {  
   const ticketCollection = getElement(".ticket-list .ticket-item", true);
   const element =
     ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
@@ -146,7 +147,11 @@ function changeTicket(action, ticketNumber = false) {
   ticketList.currentAvailable = ticketList.available.filter(
     (item) => !ticketList.selected.includes(item)
   );
-  renderCartIconNumber(ticketList.selected.length);
+
+  const selectedLength = ticketList.selected.length;
+  
+  renderCartIconNumber(selectedLength);
+  setPaymentButton(selectedLength);
 }
 
 function clearTickets(element) {
@@ -215,6 +220,11 @@ function renderSelectedTickets() {
       containers.ticketsSelect.insertAdjacentHTML("afterbegin", HTMLTicket);
     });
   }
+}
+
+function setPaymentButton(numberOfTickets) {
+  if (numberOfTickets > 0) buttons.pay.disabled = false;
+  else buttons.pay.disabled = true;
 }
 
 // Handlers

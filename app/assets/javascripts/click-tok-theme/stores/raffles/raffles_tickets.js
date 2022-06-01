@@ -132,7 +132,7 @@ function addTicket(ticketNumber, element) {
 }
 
 function changeTicket(action, ticketNumber = false) {
-  if(action === "ADD" && ticketList.selected.length >= 10) return
+  if (action === "ADD" && ticketList.selected.length >= 10) return;
 
   const ticketCollection = getElement(".ticket-list .ticket-item", true);
   const element =
@@ -149,6 +149,7 @@ function changeTicket(action, ticketNumber = false) {
       removeTicket(ticketNumber, element);
       break;
   }
+
   renderSelectedTickets();
   ticketList.currentAvailable = ticketList.available.filter(
     (item) => !ticketList.selected.includes(item)

@@ -1,15 +1,6 @@
-<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffle_tickets' %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets' %>
 <%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets.js', defer: true %>
 <%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
-
-<script>
-//document.body.insertAdjacentHTML( 'afterbegin', '<div id="myID">...</div>' );
-
-// fetch(window.location.pathname + '/tickets')
-// .then(response => response.json())
-// .then(tickets => console.log(tickets))
-// .catch(error => console.log(error))
-</script>
 <div class="raffle-tickets-container">
   <div class="raffle-tickets-header-container">
     <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>
@@ -79,17 +70,19 @@
                url: backoffice_raffles_tickets_path,
                method: :post,
                html: {class: 'raffle-tickets-buy-form'}) do |f| %>
+      <input type="hidden" name="raffle[numbers]" class="ticket-numbers-array" />
+      <input type="hidden" name="raffle[id]" value="<%= @raffle.hashid %>" />
       <div class="raffle-tickets-form-button-container">
-        <i class="fa-solid fa-cart-shopping cart-icon"><b class="cart-icon-number"></b></i>      
+        <i class="fa-solid fa-cart-shopping cart-icon"><b class="cart-icon-number"></b></i>
         <%= f.submit 'Ir para pagamento', class: 'raffle-tickets-form-button', disabled: true %>
       </div>
     <% end %>
     <div class="raffle-tickets-filters">
       <div class="raffle-tickets-filters--form">
         <div class="raffle-ticktes-search-inputs">
-          <button class="raffle-tickets-form-button__random">            
+          <button class="raffle-tickets-form-button__random">
             <span class="random-ticket">
-            <i class="fa-solid fa-shuffle"></i>
+              <i class="fa-solid fa-shuffle"></i>
               Aleatório
             </span>
           </button>

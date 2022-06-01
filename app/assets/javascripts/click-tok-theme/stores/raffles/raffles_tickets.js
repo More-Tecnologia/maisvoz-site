@@ -97,6 +97,11 @@ const buttons = {
   randomTicket: getElement(".random-ticket"),
 };
 
+const genericElement = {
+  cartIcon: getElement(".cart-icon"),
+  cartIconNumber: getElement(".cart-icon-number"),
+};
+
 const inputs = {
   searchTicket: getElement(".search-ticket"),
 };
@@ -141,6 +146,7 @@ function changeTicket(action, ticketNumber = false) {
   ticketList.currentAvailable = ticketList.available.filter(
     (item) => !ticketList.selected.includes(item)
   );
+  renderCartIconNumber(ticketList.selected.length);
 }
 
 function clearTickets(element) {
@@ -162,6 +168,16 @@ function removeTicket(ticketNumber, element) {
   ticketList.selected.splice(arrayPosition, 1);
   element.classList.add("available");
   element.classList.remove("selected");
+}
+
+function renderCartIconNumber(numberOfTickets) {
+  if (numberOfTickets > 0) {
+    genericElement.cartIcon.classList.add("active");
+    genericElement.cartIconNumber.innerHTML = numberOfTickets;
+  } else {
+    genericElement.cartIcon.classList.remove("active");
+    genericElement.cartIconNumber.innerHTML = numberOfTickets;
+  }
 }
 
 function renderTickets(ticketsArray, targetElement) {

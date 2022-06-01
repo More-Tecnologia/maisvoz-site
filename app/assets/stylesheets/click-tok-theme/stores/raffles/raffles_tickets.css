@@ -39,8 +39,9 @@ input[type="number"] {
 
 .raffle-tickets--regulation-button {
   background: none;
-  border-bottom: 1px solid #00000000;
-  border: none;
+  border-bottom: 1px dashed #00000000;
+  border-top: none;
+  border-right: none;
   color: #999;
   cursor: pointer;
   display: block;

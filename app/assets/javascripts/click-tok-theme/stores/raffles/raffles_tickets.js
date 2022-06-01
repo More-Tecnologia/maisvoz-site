@@ -64,7 +64,7 @@ const getElement = (elementName, all = false) => {
   else return document.querySelector(elementName);
 };
 
-const filterTickets = (ticketsArray, stateNumber) => {
+const getTicketByState = (ticketsArray, stateNumber) => {
   const filteredArray = ticketsArray.filter(checkState);
 
   function checkState(ticket) {
@@ -109,10 +109,10 @@ const inputs = {
 
 const ticketList = {
   initial: ticketsData.sort((a, b) => a - b),
-  available: filterTickets(ticketsData, 0).map((item) => item[0]),
-  reserved: filterTickets(ticketsData, 1).map((item) => item[0]),
-  purched: filterTickets(ticketsData, 2).map((item) => item[0]),
-  currentAvailable: filterTickets(ticketsData, 0).map((item) => item[0]),
+  available: getTicketByState(ticketsData, 0).map((item) => item[0]),
+  reserved: getTicketByState(ticketsData, 1).map((item) => item[0]),
+  purched: getTicketByState(ticketsData, 2).map((item) => item[0]),
+  currentAvailable: getTicketByState(ticketsData, 0).map((item) => item[0]),
   selected: [],
 };
 
@@ -127,7 +127,11 @@ function addTicket(ticketNumber, element) {
   element.classList.add("selected");
 }
 
-function changeTicket(action, ticketNumber = false) {  
+function filterTickets() {
+  
+}
+
+function changeTicket(action, ticketNumber = false) {
   const ticketCollection = getElement(".ticket-list .ticket-item", true);
   const element =
     ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
@@ -149,7 +153,7 @@ function changeTicket(action, ticketNumber = false) {
   );
 
   const selectedLength = ticketList.selected.length;
-  
+
   renderCartIconNumber(selectedLength);
   setPaymentButton(selectedLength);
 }
@@ -192,7 +196,9 @@ function renderTickets(ticketsArray, targetElement) {
   ticketsArray.map((ticket) => {
     const onClickFunction =
       ticket[1] === 0 ? `onclick="ticketHandler(${ticket[0]})"` : "";
-    const HTMLTicket = `<li ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
+    const HTMLTicket = `<li style="order: ${formatNumber(
+      ticket[0]
+    )}" ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
       state[ticket[1]]
     }" data-ticket="${ticket[0]}">
                           <b>${formatNumber(ticket[0])}</b>

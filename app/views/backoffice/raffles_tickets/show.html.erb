@@ -80,10 +80,8 @@
                method: :post,
                html: {class: 'raffle-tickets-buy-form'}) do |f| %>
       <div class="raffle-tickets-form-button-container">
-        <i class="fa-solid fa-cart-plus cart-icon"><b class="cart-icon-number"></b></i>
-        <%= f.submit 'Ir para pagamento', class: 'raffle-tickets-form-button', disabled: true do %>
-          <i>TESTE</i>
-        <% end %>
+        <i class="fa-solid fa-cart-shopping cart-icon"><b class="cart-icon-number"></b></i>      
+        <%= f.submit 'Ir para pagamento', class: 'raffle-tickets-form-button', disabled: true %>
       </div>
     <% end %>
     <div class="raffle-tickets-filters">

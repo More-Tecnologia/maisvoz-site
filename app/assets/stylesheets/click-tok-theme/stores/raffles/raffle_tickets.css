@@ -265,7 +265,7 @@ input[type="number"] {
   transition: color 0.5s;
   color: #ccc;
   position: absolute;
-  left: -1.5em;
+  left: -1.5em;  
 }
 
 .raffle-tickets-form-button-container .cart-icon.active {
@@ -280,13 +280,11 @@ input[type="number"] {
 .raffle-tickets-form-button-container .cart-icon.active .cart-icon-number {
   position: absolute;
   transition: opacity 0.5s;
-  top: 3px;
+  top: 30%;
   left: 60%;
-  min-width: 12px;
   text-align: center;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
   color: white;
-  background: #01bf04;
   font-size: 0.35em;
   opacity: 1;
 }

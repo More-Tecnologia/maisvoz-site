@@ -132,6 +132,8 @@ function addTicket(ticketNumber, element) {
 }
 
 function changeTicket(action, ticketNumber = false) {
+  if(action === "ADD" && ticketList.selected.length >= 10) return
+
   const ticketCollection = getElement(".ticket-list .ticket-item", true);
   const element =
     ticketNumber !== false && getTicket(ticketNumber, ticketCollection);

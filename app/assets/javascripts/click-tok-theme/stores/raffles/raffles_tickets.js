@@ -36,9 +36,8 @@ const containers = {
   ticketsSelect: getElement(".selected-tickets-container"),
 };
 
-// 
+//
 function raffleTickets(ticketsData) {
-  
   // Objects
   const buttons = {
     addSearchTicket: getElement(".add-searched"),
@@ -54,6 +53,7 @@ function raffleTickets(ticketsData) {
 
   const inputs = {
     searchTicket: getElement(".search-ticket"),
+    hiddenTicketArray: getElement(".ticket-numbers-array"),
   };
 
   const ticketList = {
@@ -106,6 +106,7 @@ function raffleTickets(ticketsData) {
 
     renderCartIconNumber(selectedLength);
     setPaymentButton(selectedLength);
+    setFormData();
   }
 
   function clearTickets(element) {
@@ -187,6 +188,11 @@ function raffleTickets(ticketsData) {
     else buttons.pay.disabled = true;
   }
 
+  function setFormData() {
+    if (ticketList.selected.length > 0)
+      inputs.hiddenTicketArray.value = ticketList.selected;
+  }
+
   // Handlers
   handlers = {};
 
@@ -212,20 +218,17 @@ function raffleTickets(ticketsData) {
   }
 
   function searchTicketHandler() {
-    
     const searchedNumber = parseInt(inputs.searchTicket.value);
     let state;
     for (ticketArray in ticketList) {
-      
-      if (ticketArray != "initial" && ticketArray != "available") {   
+      if (ticketArray != "initial" && ticketArray != "available") {
         if (ticketList[ticketArray].indexOf(searchedNumber) >= 0) {
-          
           state = ticketArray;
           break;
         }
       }
     }
-    
+
     state = state === "currentAvailable" ? "available" : state;
     state = state === undefined ? "disabled" : state;
     const availableIndex = ticketList.currentAvailable.indexOf(searchedNumber);
@@ -278,7 +281,7 @@ function raffleTickets(ticketsData) {
   return handlers;
 }
 
-containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`
+containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;
 
 fetch(window.location.pathname + "/tickets")
   .then((response) => response.json())

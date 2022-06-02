@@ -36,15 +36,15 @@
       <ul class="raffle-tickets-info--footer">
         <li class="raffle-tickets-info--footer--item">
           <span class="footer--item--info">Livre</span>
-          <span class="footer--item--number available">100</span>
+          <span data-filter="available" class="footer--item--number filter-button available">100</span>
         </li>
         <li class="raffle-tickets-info--footer--item">
           <span class="footer--item--info">Reservado</span>
-          <span class="footer--item--number reserved">20</span>
+          <span data-filter="reserved" class="footer--item--number filter-button reserved">20</span>
         </li>
         <li class="raffle-tickets-info--footer--item">
           <span class="footer--item--info">Pago</span>
-          <span class="footer--item--number purched">80</span>
+          <span data-filter="purched" class="footer--item--number filter-button purched">80</span>
         </li>
       </ul>
     </div>
@@ -77,20 +77,20 @@
         <%= f.submit 'Ir para pagamento', class: 'raffle-tickets-form-button', disabled: true %>
       </div>
     <% end %>
-    <div class="raffle-tickets-filters">
-      <div class="raffle-tickets-filters--form">
-        <div class="raffle-ticktes-search-inputs">
-          <button class="raffle-tickets-form-button__random">
-            <span class="random-ticket">
-              <i class="fa-solid fa-shuffle"></i>
-              Aleatório
-            </span>
-          </button>
-          <div class="raffle-tickets-search-numbers-container">
-            <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">
-            <span class="raffle-tickets-form-button add-searched disabled"><span><i class="fa-solid fa-plus"></i> Adicionar</span></span>
-          </div>
-        </div>
+    <div class="raffle-tickets-header">
+      <span class="footer--item--number filter-tag"></span>
+      <button class="raffle-tickets-form-button__random">
+        <span class="random-ticket">
+          <i class="fa-solid fa-shuffle"></i>
+          Random
+        </span>
+      </button>
+      <span class="raffle-tickets-number">
+      <b>10000</b><i>Números</i>
+      </span>
+      <div class="raffle-tickets-search-numbers-container">
+        <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">
+        <span class="raffle-tickets-form-button add-searched disabled"><span><i class="fa-solid fa-plus"></i> Adicionar</span></span>
       </div>
     </div>
     <div class="raffle-tickets-numbers-container">

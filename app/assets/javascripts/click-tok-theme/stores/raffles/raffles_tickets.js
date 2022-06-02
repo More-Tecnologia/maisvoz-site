@@ -329,7 +329,6 @@ function raffleTickets(ticketsData) {
   handlers.ticketHandler = function ticketHandler(ticketNumber) {
     if (ticketList.selected.indexOf(ticketNumber) === -1) {
       changeTicket("ADD", ticketNumber);
-      console.log("here");
     } else {
       changeTicket("REMOVE", ticketNumber);
     }

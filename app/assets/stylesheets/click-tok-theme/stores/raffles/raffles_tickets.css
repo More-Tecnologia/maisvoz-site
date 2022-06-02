@@ -159,11 +159,13 @@ input[type="number"] {
   width: auto;
 }
 
-.footer--item--number.available, .footer--item--number.purched,.footer--item--number.reserved {
+.footer--item--number.available,
+.footer--item--number.purched,
+.footer--item--number.reserved {
   display: block;
 }
 
-.footer--item--number.filter-tag i{
+.footer--item--number.filter-tag i {
   font-style: normal;
 }
 
@@ -173,7 +175,7 @@ input[type="number"] {
 
 .footer--item--number.filter-tag::after {
   color: #fff;
-  content: '✕';
+  content: "✕";
   font-size: 1.2em;
   position: absolute;
   right: 5%;
@@ -612,7 +614,6 @@ input[type="number"] {
 }
 
 @media (min-width: 780px) {
-  
   .raffle-tickets-header {
     font-size: 1.3em;
   }
@@ -634,7 +635,6 @@ input[type="number"] {
 }
 
 @media (min-width: 980px) {
-  
   .raffle-tickets-header {
     font-size: 1.1em;
   }
@@ -651,7 +651,6 @@ input[type="number"] {
 }
 
 @media (min-width: 1080px) {
-  
   .raffle-tickets-numbers-list {
     gap: 1.3%;
   }
@@ -664,7 +663,6 @@ input[type="number"] {
 }
 
 @media (min-width: 1180px) {
-  
   .raffle-tickets-numbers-list {
     gap: 1.2%;
   }
@@ -677,7 +675,6 @@ input[type="number"] {
 }
 
 @media (min-width: 1280px) {
-  
   .raffle-tickets-numbers-list {
     gap: 1.1%;
   }
@@ -689,7 +686,6 @@ input[type="number"] {
 }
 
 @media (min-width: 1380px) {
-  
   .raffle-tickets-numbers-list {
     gap: 1%;
   }
@@ -701,7 +697,6 @@ input[type="number"] {
 }
 
 @media (min-width: 1500px) {
-  
   .raffle-tickets-container {
     font-size: 1.92rem;
   }

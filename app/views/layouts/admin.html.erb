@@ -20,9 +20,9 @@
           <div class="main-app">
             <%= render 'layouts/top_bar' %>
             <div class="main-app-content">
-              <%= render 'layouts/shared/admin_header' if (current_user.admin? || current_user.financeiro? || current_user.suporte?) %>
-              <% if current_user.refused_verification? %>
-                <div class="alert alert-danger"><%= current_user.document_refused_reason %></div>
+              <%= render 'layouts/shared/admin_header' if (current_user&.admin? || current_user&.financeiro? || current_user&.suporte?) %>
+              <% if current_user&.refused_verification? %>
+                <div class="alert alert-danger"><%= current_user&.document_refused_reason %></div>
               <% end %>
               <%= render 'layouts/flash-messages' %>
               <%= render 'layouts/notification' %>
@@ -32,7 +32,7 @@
               <div class="t">
               </div>
             </div>
-            <%= render 'layouts/shared/footer' %>
+            <%= render 'layouts/shared/footer' if current_user.present? %>
           </div>
         </div>
       </div>

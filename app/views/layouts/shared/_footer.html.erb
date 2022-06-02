@@ -2,7 +2,7 @@
 <div class="bottom-menu">
   <nav class="nav">
     <ul class="main-list">
-      <% if current_user.empreendedor? %>
+      <% if current_user&.empreendedor? %>
           <li class="list active">
             <%= link_to root_path, class:"link-nav", onclick:"navigate('/')"  do %>
               <div class="svg">
@@ -172,7 +172,7 @@
           </li>
         <% end %>
           <li class="list">
-            <%= link_to backoffice_products_path, class:"link-nav",
+            <%= link_to main_store_path, class:"link-nav",
               onclick:"navigate(`/backoffice/products?locale=en`)" do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

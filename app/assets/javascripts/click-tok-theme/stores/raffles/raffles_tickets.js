@@ -1,5 +1,4 @@
 // Helpers
-
 const formatNumber = (number) => {
   if (number < 10) return "00" + number;
   else if (number < 100) return "0" + number;
@@ -56,8 +55,9 @@ const buttons = {
   filterPurched: getElement(".filter-button.purched"),
   filterTag: getElement(".footer--item--number.filter-tag"),
 };
+
 const handlers = {};
-//
+
 function raffleTickets(ticketsData) {
   // Objects
   const ticketList = {
@@ -320,7 +320,6 @@ function raffleTickets(ticketsData) {
   }
 
   // Exposed Handlers
-
   handlers.selectedTicketHandler = function selectedTicketHandler(
     ticketNumber
   ) {

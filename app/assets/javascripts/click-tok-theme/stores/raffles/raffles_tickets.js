@@ -36,26 +36,30 @@ const containers = {
   ticketsSelect: getElement(".selected-tickets-container"),
 };
 
+const inputs = {
+  searchTicket: getElement(".search-ticket"),
+  hiddenTicketArray: getElement(".ticket-numbers-array"),
+};
+
+const genericElement = {
+  cartIcon: getElement(".cart-icon"),
+  cartIconNumber: getElement(".cart-icon-number"),
+};
+
+const buttons = {
+  addSearchTicket: getElement(".add-searched"),
+  clearTickets: getElement(".raffle-tickets-selected-clear-button"),
+  pay: getElement(".raffle-tickets-form-button"),
+  randomTicket: getElement(".random-ticket"),
+  filterAvailable: getElement(".filter-button.available"),
+  filterReserved: getElement(".filter-button.reserved"),
+  filterPurched: getElement(".filter-button.purched"),
+  filterTag: getElement(".footer--item--number.filter-tag"),
+};
+const handlers = {};
 //
 function raffleTickets(ticketsData) {
   // Objects
-  const buttons = {
-    addSearchTicket: getElement(".add-searched"),
-    clearTickets: getElement(".raffle-tickets-selected-clear-button"),
-    pay: getElement(".raffle-tickets-form-button"),
-    randomTicket: getElement(".random-ticket"),
-  };
-
-  const genericElement = {
-    cartIcon: getElement(".cart-icon"),
-    cartIconNumber: getElement(".cart-icon-number"),
-  };
-
-  const inputs = {
-    searchTicket: getElement(".search-ticket"),
-    hiddenTicketArray: getElement(".ticket-numbers-array"),
-  };
-
   const ticketList = {
     initial: ticketsData.sort((a, b) => a - b),
     available: getTicketByState(ticketsData, 0).map((item) => item[0]),
@@ -65,8 +69,17 @@ function raffleTickets(ticketsData) {
     selected: [],
   };
 
+  const state = {
+    filter: null,
+  };
+
+  const baseSettings = {
+    filterOptions: { available: 0, reserved: 1, purched: 2 },
+    maxSelectedTickets: 10,
+  };
+
   // Start
-  renderTickets(ticketList.initial, containers.tickets);
+  renderTickets(ticketList.initial);
 
   // Functions
   function addTicket(ticketNumber, element) {
@@ -78,7 +91,11 @@ function raffleTickets(ticketsData) {
   }
 
   function changeTicket(action, ticketNumber = false) {
-    if (action === "ADD" && ticketList.selected.length >= 10) return;
+    if (
+      action === "ADD" &&
+      ticketList.selected.length >= baseSettings.maxSelectedTickets
+    )
+      return;
 
     const ticketCollection = getElement(".ticket-list .ticket-item", true);
     const element =
@@ -116,7 +133,13 @@ function raffleTickets(ticketsData) {
     });
   }
 
-  function filterTickets() {}
+  function filterTickets(filter) {
+    let filteredTickets = ticketList.initial;
+    if (filter !== false)
+      filteredTickets = getTicketByState(ticketList.initial, filter);
+
+    renderTickets(filteredTickets);
+  }
 
   function genRandomTicket() {
     randomNumber = Math.floor(
@@ -144,9 +167,9 @@ function raffleTickets(ticketsData) {
     }
   }
 
-  function renderTickets(ticketsArray, targetElement) {
+  function renderTickets(ticketsArray) {
     const state = ["available", "reserved", "purched", "selected"];
-    targetElement.innerHTML = "";
+    containers.tickets.innerHTML = "";
 
     ticketsArray.map((ticket) => {
       const onClickFunction =
@@ -159,7 +182,7 @@ function raffleTickets(ticketsData) {
                           <b>${formatNumber(ticket[0])}</b>
                         </li>`;
 
-      targetElement.insertAdjacentHTML("afterbegin", HTMLTicket);
+      containers.tickets.insertAdjacentHTML("afterbegin", HTMLTicket);
     });
   }
 
@@ -194,8 +217,6 @@ function raffleTickets(ticketsData) {
   }
 
   // Handlers
-  handlers = {};
-
   function addSearchedTicketHandler(event) {
     event.preventDefault();
     const searchedNumber = parseInt(inputs.searchTicket.value);
@@ -206,6 +227,47 @@ function raffleTickets(ticketsData) {
 
   function clearTicketsHandler() {
     changeTicket("CLEAR");
+  }
+
+  function filterHandler(event) {
+    const filter = event.target.dataset.filter;
+    const capFilter = filter.charAt(0).toUpperCase() + filter.slice(1);
+    let filterNumber = false;
+
+    if (baseSettings.filterOptions[filter] !== state.filter) {
+      filterNumber = state.filter = baseSettings.filterOptions[filter];
+
+      for (option in baseSettings.filterOptions) {
+        const capitalOption = option.charAt(0).toUpperCase() + option.slice(1);
+        const clickedButton = buttons["filter" + capitalOption];
+
+        clickedButton.classList.remove("active");
+        buttons.filterTag.classList.remove(option);
+
+        if (option == filter) clickedButton.classList.add("active");
+      }
+      buttons.filterTag.dataset.filter = filter;
+      buttons.filterTag.innerHTML = `<i>${capFilter}</i>`;
+      buttons.filterTag.classList.add(filter);
+    } else {
+      state.filter = null;
+      buttons.filterTag.innerHTML = "";
+
+      for (option in baseSettings.filterOptions) {
+        const capitalOption = option.charAt(0).toUpperCase() + option.slice(1);
+        const clickedButton = buttons["filter" + capitalOption];
+        clickedButton.classList.remove("active");
+        buttons.filterTag.classList.remove(option);
+      }
+    }
+
+    filterTickets(filterNumber);
+  }
+
+  function filterTagHandler() {
+    buttons.filterTag.classList.remove("available", "purched", "reserved");
+    buttons.filterTag.innerHTML = "";
+    filterTickets(false);
   }
 
   function randomTicketHandler(event) {
@@ -257,6 +319,8 @@ function raffleTickets(ticketsData) {
     }
   }
 
+  // Exposed Handlers
+
   handlers.selectedTicketHandler = function selectedTicketHandler(
     ticketNumber
   ) {
@@ -266,19 +330,21 @@ function raffleTickets(ticketsData) {
   handlers.ticketHandler = function ticketHandler(ticketNumber) {
     if (ticketList.selected.indexOf(ticketNumber) === -1) {
       changeTicket("ADD", ticketNumber);
+      console.log("here");
     } else {
       changeTicket("REMOVE", ticketNumber);
     }
   };
 
   // EventListeners
-
   buttons.addSearchTicket.addEventListener("click", addSearchedTicketHandler);
   buttons.clearTickets.addEventListener("click", clearTicketsHandler);
   buttons.randomTicket.addEventListener("click", randomTicketHandler);
+  buttons.filterAvailable.addEventListener("click", filterHandler);
+  buttons.filterReserved.addEventListener("click", filterHandler);
+  buttons.filterPurched.addEventListener("click", filterHandler);
+  buttons.filterTag.addEventListener("click", filterTagHandler);
   inputs.searchTicket.addEventListener("input", searchTicketHandler);
-
-  return handlers;
 }
 
 containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;

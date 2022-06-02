@@ -1,0 +1,42 @@
+.regulation-backdrop {
+  background: rgba(0, 0, 0, 0.9);
+  height: 100vh;
+  position: fixed;
+  width: 100vw;
+  z-index: 100;
+}
+
+body.backdrop {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.modal-regulation {
+  border-radius: 25px;
+  display: none;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  z-index: 101;
+  background: white;
+  overflow: hidden;
+  height: 90%;
+  width: 80%;
+  max-width: 1000px;
+  padding: 5% 5% 12% 5%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-regulation-header{
+  margin-bottom: 50px;
+}
+
+.modal-regulation.open {
+  display: block;
+}
+
+.modal-regulation-text {
+  height: 100%;
+  overflow-y: scroll; 
+}

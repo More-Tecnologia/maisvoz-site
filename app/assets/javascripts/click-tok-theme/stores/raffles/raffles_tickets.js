@@ -43,6 +43,7 @@ const inputs = {
 const genericElement = {
   cartIcon: getElement(".cart-icon"),
   cartIconNumber: getElement(".cart-icon-number"),
+  raffleNumber: getElement(".raffle-tickets-number b")
 };
 
 const buttons = {
@@ -170,6 +171,7 @@ function raffleTickets(ticketsData) {
   function renderTickets(ticketsArray) {
     const state = ["available", "reserved", "purched", "selected"];
     containers.tickets.innerHTML = "";
+    showTicketCount();
 
     ticketsArray.map((ticket) => {
       const onClickFunction =
@@ -216,6 +218,12 @@ function raffleTickets(ticketsData) {
       inputs.hiddenTicketArray.value = ticketList.selected;
   }
 
+  function showTicketCount(){
+    genericElement.raffleNumber.innerHTML = ticketList.initial.length;
+    buttons.filterAvailable.innerHTML = ticketList.available.length;
+    buttons.filterPurched.innerHTML = ticketList.purched.length;
+    buttons.filterReserved.innerHTML = ticketList.reserved.length;
+  }
   // Handlers
   function addSearchedTicketHandler(event) {
     event.preventDefault();
@@ -266,6 +274,9 @@ function raffleTickets(ticketsData) {
 
   function filterTagHandler() {
     buttons.filterTag.classList.remove("available", "purched", "reserved");
+    buttons.filterAvailable.classList.remove("active");
+    buttons.filterPurched.classList.remove("active");
+    buttons.filterReserved.classList.remove("active");
     buttons.filterTag.innerHTML = "";
     filterTickets(false);
   }

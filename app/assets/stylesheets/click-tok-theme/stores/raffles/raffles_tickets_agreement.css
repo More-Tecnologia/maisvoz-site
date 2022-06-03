@@ -1,5 +1,5 @@
 .regulation-backdrop {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(50, 50, 50, 0.6);
   height: 100vh;
   position: fixed;
   width: 100vw;
@@ -13,6 +13,7 @@ body.backdrop {
 }
 
 .modal-regulation {
+  filter: none;
   background: white;
   border-radius: 25px;
   display: none;
@@ -67,14 +68,37 @@ body.backdrop {
   font-size: 1em;
   font-weight: 800;
   line-height: 1em;
-  padding: 0.6em 0 0.65em 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   width: 100%;
 }
 
 .modal-regulation-text {
-  font-size: 0.8em;
+  font-size: 0.9em;
   height: 70%;
   overflow-y: scroll;
   padding-bottom: 20%;
+  color: #999;
+}
+
+.modal-regulation-text p {
+  margin-bottom: 20px;
+}
+
+.modal-regulation-text ol{
+  margin: 0 0 0.3em 4em;
+  list-style: decimal;
+}
+
+.modal-regulation-text li {
+  margin-bottom: 0.1em;
+}
+
+@media (min-width: 1500px){
+  .modal-regulation { 
+    font-size: 1rem;
+  }
 }

@@ -9,7 +9,7 @@ const publicRegulation = {};
     close: document.querySelector(".modal-close-button"),
   };
 
-  function openModalHendler() {
+  function openModalHendler() { 
     containers.body.insertAdjacentHTML(
       "afterbegin",
       '<div onclick="publicRegulation.closeModalHandler()" class="regulation-backdrop"></div>'

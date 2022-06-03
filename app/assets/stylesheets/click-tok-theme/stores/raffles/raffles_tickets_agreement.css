@@ -13,10 +13,10 @@ body.backdrop {
 }
 
 .modal-regulation {
-  filter: none;
   background: white;
   border-radius: 25px;
   display: none;
+  filter: none;
   font-size: calc(0.7rem + 0.5vw);
   height: 90%;
   left: 50%;
@@ -62,43 +62,43 @@ body.backdrop {
 }
 
 .modal-regulation-title {
+  align-items: center;
   background: linear-gradient(to bottom, #00de2c, #00de28);
   border-radius: 10px;
   color: white;
+  display: flex;
   font-size: 1em;
   font-weight: 800;
-  line-height: 1em;
   height: 50px;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  line-height: 1em;
   text-align: center;
   width: 100%;
 }
 
 .modal-regulation-text {
+  color: #999;
   font-size: 0.9em;
   height: 70%;
   overflow-y: scroll;
   padding-bottom: 20%;
-  color: #999;
 }
 
 .modal-regulation-text p {
   margin-bottom: 20px;
 }
 
-.modal-regulation-text ol{
-  margin: 0 0 0.3em 4em;
+.modal-regulation-text ol {
   list-style: decimal;
+  margin: 0 0 0.3em 4em;
 }
 
 .modal-regulation-text li {
   margin-bottom: 0.1em;
 }
 
-@media (min-width: 1500px){
-  .modal-regulation { 
+@media (min-width: 1500px) {
+  .modal-regulation {
     font-size: 1rem;
   }
 }

@@ -18,7 +18,7 @@
 
 .store-raffle-item-image {
   display: block;
-  margin: 0 auto 1.4em auto;
+  margin: 0 auto 1em auto;
   max-height: 8.5em;
   max-width: 100%;
 }
@@ -30,7 +30,7 @@
 .store-raffle-item-score {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.4em;
+  margin-bottom: 1em;
 }
 
 .store-raffle-item-score li {
@@ -135,6 +135,19 @@
 .store-raffle-item-footer button:active {
   font-size: 0.65em;
   margin-right: 0.3em;
+}
+
+@media (max-width: 430px) {
+  .store-raffles-container {
+    column-gap: 6.5%;
+    font-size: calc(0.9rem + 1.4vw);
+    justify-content: center;
+  }
+  .store-raffle-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 @media (min-width: 800px) {

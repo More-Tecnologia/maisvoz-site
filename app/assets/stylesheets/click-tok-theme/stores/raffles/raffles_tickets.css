@@ -42,6 +42,7 @@ input[type="number"] {
   border-bottom: 1px dashed #00000000;
   border-right: none;
   border-top: none;
+  border-left: none;
   color: #999;
   cursor: pointer;
   display: block;

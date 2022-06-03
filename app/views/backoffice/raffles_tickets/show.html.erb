@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets' %>
 <%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets.js', defer: true %>
 <%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
+<%= render 'agreement' %>
 <div class="raffle-tickets-container">
   <div class="raffle-tickets-header-container">
     <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>
@@ -15,7 +16,7 @@
       </svg>
     <% end %>
     <h4 class="raffle-tickets--page-title"><%= t(:raffles) %></h4>
-    <button class="raffle-tickets--regulation-button">
+    <button class="raffle-tickets--regulation-button regulation-button">
       <i class="fa-solid fa-file-lines"></i>
       <%= t(:draw_regulation) %>
     </button>
@@ -65,7 +66,7 @@
       </li>
     </ul>
   </div>
-  <div class>
+  <div>
     <%= form_for(@raffle,
                url: backoffice_raffles_tickets_path,
                method: :post,
@@ -86,7 +87,7 @@
         </span>
       </button>
       <span class="raffle-tickets-number">
-        <b>...</b><i><%= t(:numbers) %></i>
+        <b>...</b><i><%= t(:raffle_numbers) %></i>
       </span>
       <div class="raffle-tickets-search-numbers-container">
         <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">

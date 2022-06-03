@@ -1712,7 +1712,7 @@ en:
   success_create_configuration: The configuration was successfully created
   success_update_configuration: The configuration was successfully updated
   configs: System Configurations
-  company_name: Company Name
+  company_name: Admoney
   direct_nominees_list: Direct nominees list
   products: Products
   active?: Active?
@@ -1930,95 +1930,96 @@ en:
   top_deal: Top deal
   last_numbers: Last numbers
   free: Free
-  raffles_agreement_contract_html: ' <p>
-                                  WinEasy is a fully digital RAFFLE platform, where you can buy the RAFFLE of
-                                  the product you want, with daily raffles.
-                                </p>
-                                <p>
-                                  Get your quotas now at WinEasy RIFAS and make your dream come true with the
-                                  various products available for raffle.
-                                </p>
-                                <p>Each number selected and paid within the RIFA is called a <b>SHARES</b>.</p>
-                                <b>RIFAS</b> are generated according to the following shares:
-                                <ol>
-                                  <li>100 shares - numbered from 00 to 99</li>
-                                  <li>1,000 shares - numbered from 000 to 999</li>
-                                  <li>10,000 shares - numbered from 0,000 to 9,999</li>
-                                  <li>100,000 shares - numbered from 00,000 to 99,999</li>
-                                </ol>
-                                <p>
-                                  CHOICE OF NUMBERS AND PAYMENT<br />
-                                  After choosing the numbers you prefer, make the payment via credit card or
-                                  Pix, as soon as the payment is confirmed, your quotas will be confirmed, now
-                                  just wait for the RIFA to close to define the date of the draw and good luck.
-                                </p>
-                                <p>
-                                  THE RAFFLE<br />
-                                  The draws for extractions are carried out by the QUINA contest, one of the
-                                  Caixa Econômica Federal Lotteries. The RIFA will be available for drawing
-                                  whenever 100% of its quotas are sold. The system automatically closes the RIFA
-                                  and sends an email to each participant with the date and time of the draw.
-                                </p>
-                                <p>
-                                  QUINA carries out the draws for extractions, six days a week, from Monday to
-                                  Saturday, with the exception of Sundays. If there is an important holiday on
-                                  the date of the draw, the draw is held on the following day, with the
-                                  exception of Sundays, if the holiday falls on a Saturday, the draw is held on
-                                  the following Monday.
-                                </p>
-                                <p>
-                                  The draws can be followed through the website:
-                                  https://loterias.caixa.gov.br/Paginas/Quina.aspx
-                                </p>
-                                <p>HOW IS THE RAFFLE GIVEAWAY DONE BY QUINA?</p>
-                                <p>
-                                  At QUINA, the draws range from ten 01 to 80, the RIFA draw in this case is
-                                  carried out by selecting the second digit of the ten drawn always from left to
-                                  right as follows:
-                                </p>
-                                RIFAS with 100 shares<br />
-                                <img class="raffles-preview" src="%{img1_path}" />
-                                <p>
-                                  Looking from left to right, the second digit of the first two tens generates
-                                  the ten 78, so in this example the number drawn was 78.
-                                </p>
-                                RIFAS with 1,000 shares<br />
-                                <img class="raffles-preview" src="%{img2_path}" />
-                                <p>
-                                  Looking from left to right, the second digit of the first three tens generates
-                                  the hundred 783, so in this example the number drawn was 783.
-                                </p>
-                                Using 10,000 shares<br />
-                                <img class="raffles-preview" src="%{img3_path}" />
-                                <p>
-                                  Looking from left to right, the second digit of the first four tens generates
-                                  the thousand 7,834, so in this example the odds drawn were 7,834.
-                                </p>
-                                RIFAS with 100,000 shares<br />
-                                <img class="raffles-preview" src="%{img4_path}" />
-                                <p>
-                                  Looking from left to right, the second digit of the tens generates the tens of
-                                  thousands 78,345, so in this example the quota drawn was the number 78,345.
-                                </p>
-                                <p>
-                                  WITHDRAWAL AND REFUND OF VALUES<br />
-                                  After acquiring the shares, the participant will no longer be able to withdraw
-                                  or request a refund. At the time of purchase, on the checkout screen, there is
-                                  in its footer the information of non-return of values.
-                                </p>
-                                <p>
-                                  DECLASSIFICATION<br />
-                                  This raffle CANNOT be sold (bought or sold) by persons under 18 years of age
-                                  or legally incapable.
-                                </p>
-                                <p>
-                                  Participants may be automatically disqualified from this RIFA in case of
-                                  justified suspicion of fraud or proven fraud, and may also respond in the
-                                  criminal and civil spheres. Participants who do not meet any of the
-                                  requirements, terms and conditions set forth in this Regulation will be
-                                  disqualified, such as, for example, providing untrue, incorrect, incomplete or
-                                  misleading information.
-                                </p>'
+  raffles_agreement_contract_html: |
+                                    <p>
+                                      %{company_name} is a fully digital DRAW platform, with daily draws, where you can buy a ticket of
+                                      the product you want.
+                                    </p>
+                                    <p>
+                                      Get your share now at %{company_name}'s DRAWS and make your dream come true with the
+                                      various prizes available to draw.
+                                    </p>
+                                    <p>Each selected and paid number within the DRAW is called a <b>SHARE</b>.</p>
+                                    <b>DRAWS</b> are generated according to the following shares:
+                                    <ol>
+                                      <li>100 shares - numbered from 00 to 99</li>
+                                      <li>1,000 shares - numbered from 000 to 999</li>
+                                      <li>10,000 shares - numbered from 0,000 to 9,999</li>
+                                      <li>100,000 shares - numbered from 00,000 to 99,999</li>
+                                    </ol>
+                                    <p>
+                                      CHOICE OF NUMBERS AND PAYMENT<br />
+                                      After choosing the numbers you want, make the payment by credit card or
+                                      PIX, as soon as the payment is confirmed, your shares will be sorted out, now
+                                      just wait for the DRAW to close, define the date of draw and good luck.
+                                    </p>
+                                    <p>
+                                      THE DRAW<br />
+                                      The draws for extractions are carried out by the QUINA lottery, one of the
+                                      lotteries from Caixa Econômica Federal. The DRAW will be available to be drawn
+                                      whenever 100% of its shares are sold. The system automatically closes the DRAW
+                                      and sends an email to each participant with the date and time of the drawing.
+                                    </p>
+                                    <p>
+                                      QUINA carries out the draws for extractions, six days a week, from Monday to
+                                      Saturday, with the exception of Sundays. If there is an important holiday on
+                                      the date of the draw, it is held on the following day, with the
+                                      exception of Sundays, if the holiday falls on a Saturday, the draw is held on
+                                      the following Monday.
+                                    </p>
+                                    <p>
+                                      The draws can be followed through the website:
+                                      https://loterias.caixa.gov.br/Paginas/Quina.aspx
+                                    </p>
+                                    <p>HOW IS THE DRAW DONE BY THE QUINA?</p>
+                                    <p>
+                                      At QUINA, the draws range from ten 01 to 80, the DRAW draw in this case is
+                                      carried out by selecting the second digit of the tens drawn, always from left to
+                                      right as follows:
+                                    </p>
+                                    DRAWS with 100 shares<br />
+                                    <img class='raffles-preview' src='%{img1_path}' />
+                                    <p>
+                                      Looking from left to right, the second digit of the first two tens generates
+                                      the ten 78, so in this example the number drawn was 78.
+                                    </p>
+                                    DRAWS with 1,000 shares<br />
+                                    <img class='raffles-preview' src='%{img2_path}' />
+                                    <p>
+                                      Looking from left to right, the second digit of the first three tens generates
+                                      the hundred 783, so in this example the number drawn was 783.
+                                    </p>
+                                    Using 10,000 shares<br />
+                                    <img class='raffles-preview' src='%{img3_path}' />
+                                    <p>
+                                      Looking from left to right, the second digit of the first four tens generates
+                                      the thousand 7,834, so in this example the odds drawn were 7,834.
+                                    </p>
+                                    RAFFLE with 100,000 shares<br />
+                                    <img class='raffles-preview' src='%{img4_path}' />
+                                    <p>
+                                      Looking from left to right, the second digit of the tens generates the tens of
+                                      thousands 78,345, so in this example the share drawn was the number 78,345.
+                                    </p>
+                                    <p>
+                                      WITHDRAWAL AND REFUND OF VALUES<br />
+                                      After acquiring the shares, the participant will no longer be able to withdraw
+                                      or request a refund. At the time of purchase, on the checkout screen, there is
+                                      in its footer the information of non-return of values.
+                                    </p>
+                                    <p>
+                                      DECLASSIFICATION<br />
+                                      This DRAW CANNOT be sold (bought or sold) by persons under 18 years of age
+                                      or legally incapable.
+                                    </p>
+                                    <p>
+                                      Participants may be automatically disqualified from this DRAWS in case of
+                                      justified suspicion of fraud or proven fraud, and may also respond in the
+                                      criminal and civil spheres. Participants who do not meet any of the
+                                      requirements, terms and conditions set forth in this regulation will be
+                                      disqualified, such as, for example, providing untrue, incorrect, incomplete or
+                                      misleading information.
+                                    </p>
   draw_regulation: Draw regulation                            
   read_more: Read more
   available: Available
@@ -2028,7 +2029,7 @@ en:
   clear: Clear
   choose_one_number: Choose one number
   random: Random
-  number: Number
-  numbers: Numbers
+  raffle_number: Number
+  raffle_numbers: Numbers
   add: Add
   go_to_payment: Go to payment

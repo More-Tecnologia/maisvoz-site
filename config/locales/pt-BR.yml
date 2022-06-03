@@ -1853,8 +1853,8 @@ pt-BR:
   free: Grátis
   raffles_agreement_contract_html: | 
                                     <p>
-                                      A %{company_name} trata-se de uma plataforma de RIFAS totalmente digital, onde você
-                                      pode comprar a RIFA do produto que desejar, com sorteios diários.
+                                      A %{company_name} trata-se de uma plataforma de RIFAS totalmente digital, com sorteios diários onde você
+                                      pode comprar o ticket do produto que desejar.
                                     </p>
                                     <p>
                                       Adquira já suas cotas nas RIFAS da %{company_name} e realize seu sonho com os diversos

@@ -465,6 +465,7 @@ en:
       show:
         title: Payment
         transfer_note_html: "Transfer <strong>%{value}</strong> to the address below"
+        transfer_note_pix_html: "Transfer <strong>%{value}</strong> to the pix below"
         transfer_rate_warning_html: 'To speed up payment identification, we recommend using the <strong>Express Rate<strong>'
     order_items:
       update:

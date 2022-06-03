@@ -465,6 +465,7 @@ es:
       show:
         title: Pago
         transfer_note_html: "Transferir <strong>%{value}</strong> a la siguiente dirección"
+        transfer_note_pix_html: "Transferir <strong>%{value}</strong> a la siguiente pix"
         transfer_rate_warning_html: 'Para agilizar la identificación del pago, recomendamos utilizar el <strong>Express Rate<strong>'
     order_items:
       update:

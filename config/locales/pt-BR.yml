@@ -464,6 +464,7 @@ pt-BR:
       show:
         title: Pagamento
         transfer_note_html: "Transfira <strong>%{value}</strong> para o endereço abaixo"
+        transfer_note_pix_html: "Transfira <strong>%{value}</strong> para o pix abaixo"
         transfer_rate_warning_html: 'Para agilizar a identificação do pagamento, recomendamos utilizar a <strong>Taxa Expressa<strong>'
     order_items:
       update:

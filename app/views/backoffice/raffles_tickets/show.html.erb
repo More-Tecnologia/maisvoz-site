@@ -17,7 +17,7 @@
     <h4 class="raffle-tickets--page-title"><%= t(:raffles) %></h4>
     <button class="raffle-tickets--regulation-button">
       <i class="fa-solid fa-file-lines"></i>
-      <%= t(:draw_regulation)%>
+      <%= t(:draw_regulation) %>
     </button>
   </div>
   <%= render 'backoffice/stores/banner', banner: @banner %>
@@ -31,19 +31,19 @@
         <%= @raffle.description %>
       </p>
       <button class="raffle-tickets-read-more">
-        <%= t(:read_more)%>
+        <%= t(:read_more) %>
       </button>
       <ul class="raffle-tickets-info--footer">
         <li class="raffle-tickets-info--footer--item">
-          <span class="footer--item--info"><%= t(:available)%></span>
+          <span class="footer--item--info"><%= t(:available) %></span>
           <span data-filter="available" class="footer--item--number filter-button available">...</span>
         </li>
         <li class="raffle-tickets-info--footer--item">
-          <span class="footer--item--info"><%= t(:reserved)%></span>
+          <span class="footer--item--info"><%= t(:reserved) %></span>
           <span data-filter="reserved" class="footer--item--number filter-button reserved">...</span>
         </li>
         <li class="raffle-tickets-info--footer--item">
-          <span class="footer--item--info"><%= t(:purchased)%></span>
+          <span class="footer--item--info"><%= t(:purchased) %></span>
           <span data-filter="purched" class="footer--item--number filter-button purched">...</span>
         </li>
       </ul>
@@ -52,16 +52,16 @@
   <div class="raffle-tickets-selected-container">
     <div class="raffle-tickets-selected-header">
       <span class="raffle-tickets-selected-title">
-        <%= t(:selected_numbers)%>
+        <%= t(:selected_numbers) %>
       </span>
       <button class="raffle-tickets-selected-clear-button">
         <i class="fa-regular fa-trash-can"></i>
-        <%= t(:clear)%>
+        <%= t(:clear) %>
       </button>
     </div>
     <ul class="raffle-tickets-numbers-list selected-tickets-container">
       <li class="raffle-tickets-numbers-list-item message">
-        <b><%= t(:choose_one_number)%></b>
+        <b><%= t(:choose_one_number) %></b>
       </li>
     </ul>
   </div>
@@ -86,7 +86,7 @@
         </span>
       </button>
       <span class="raffle-tickets-number">
-      <b>...</b><i><%= t(:numbers)%></i>
+        <b>...</b><i><%= t(:numbers) %></i>
       </span>
       <div class="raffle-tickets-search-numbers-container">
         <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">

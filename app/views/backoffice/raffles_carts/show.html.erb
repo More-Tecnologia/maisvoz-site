@@ -1,10 +1,9 @@
 <%= stylesheet_link_tag 'click-tok-theme/add-courses' %>
 <%= stylesheet_link_tag 'click-tok-theme/courses-cart' %>
-<%= stylesheet_link_tag 'click-tok-theme/courses' %>
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
 <%= stylesheet_link_tag 'raffles/cart' %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_carts/show' %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 <div class="title-cart-raffle">
     <h3>
       <%= t(:cart) %>
@@ -21,92 +20,71 @@
             <%= product.raffle.hashid %><br />
           </div>
         </div>
-          <div class="cart-courses__item__image" style="display: flex; flex-direction: column;">
-            <span class="raffle-cart-name" >
-              <%= product.name %>
-            </span>
-            <%= image_tag(product.raffle.path, style: "margin-left: 0;") %>
-          </div>
-        <div class="cart-courses__item__texts">
-          <div class="cart-courses__item__text">
-            <button type="button" class="btn-numbers-selected" data-toggle="modal" data-target="#Modal-<%= product.id %>-Center">
-                <%= t(:numbers_selected) %>
-              </button>
-            <br />
-          </div>
+      </div>
+      <div class="cart-item">
+        <div class="cart-courses__item__image" style="display: flex; flex-direction: column;">
+          <span class="raffle-cart-name" >
+            <%= product.name %>
+          </span>
+          <%= image_tag(product.raffle.path, style: "margin-left: 0;") %>
         </div>
-        <div class="" id="Modal-<%= product.id %>-Center" tabindex="-1" role="dialog" aria-labelledby="Modal-<%= product.id %>-CenterTitle" aria-hidden="true">
-            <div class="modal-dialog modupdateal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="Modal-<%= product.id %>-LongTitle"><%= t(:numbers_selected) %></h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body modal-flex">
-                <% order_items.each do |order_item| %>
-                    <div class="number-selected"><%= order_item.raffle_ticket.number %></div>
-                          < <%= link_to backoffice_raffles_carts_path(order_item_id: order_item.id), method: :delete do %>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="red"
-            class="bi bi-trash-fill"
-            viewbox="0 0 16 16"
-          >
-            <path
-              d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
-            />
-          </svg> %>
-        <% end %>
-                <% end %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn-close-modal-cart-raffle" data-dismiss="modal"><%= t(:close) %></button>
-                </div>
-              </div>
+        <div class="cart-selected-numbers">
+          <div class="cart-courses__item__texts">
+            <div class="cart-courses__item__text">
+              <button type="button" class="btn-numbers-selected" data-toggle="modal" data-target="#Modal-<%= product.id %>-Center">
+                <%= t(:numbers_selected) %>
+              </button><br />
             </div>
           </div>
-        <div class="container-cart-clicks" style="font-weight: bold;">
-          <p></p>
-          <p></p>
+          <div id="Modal-<%= product.id %>-Center" tabindex="-1" role="dialog" aria-labelledby="Modal-<%= product.id %>-CenterTitle" aria-hidden="true">                
+            <h5 class="modal-title" id="Modal-<%= product.id %>-LongTitle">
+              <%= t(:numbers_selected) %>
+            </h5>                
+            <div class="modal-body modal-flex">
+              <% order_items.each do |order_item| %>
+                <div class="number-selected">
+                  <%= order_item.raffle_ticket.number %>
+                </div>
+                <%= link_to 'X', backoffice_raffles_carts_path(order_item_id: order_item.id), method: :delete %>
+              <% end %>
+            </div>
+            <div class="container-cart-clicks" style="font-weight: bold;">
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+          <div class="cart-courses__item__value">
+            <span><%= number_to_currency(product.price * order_items.size) %></span>
+          </div>
         </div>
-        <div class="cart-courses__item__value">
-          <span><%= number_to_currency(product.price * order_items.size) %></span>
-        </div>
-
-
-        
-
       </div>
-    <% end %>
-    <div class="payment-method">
-      <div class="cart-courses__title">
-        <span><%= t(:payment_method) %></span>
-      </div>
-      <div class="ch-payment-buttons-area">
-        <div class="btn btn-tab" onclick="showBalanceInput()">
-          <%= image_tag('icons/troca1.png', class: 'icons') %>
-          <%= t(:balance) %>
-        </div>
-        <div class="btn btn-tab" onclick="showPixInput()">
-          <%= image_tag('icons/pix-p.svg', class: 'icons') %>
-          <%= t(:pix) %>
-        </div>
-        <div class="btn btn-tab" onclick="showBitCoinInput()">
-          <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
-          <%= t(:btc) %>
-        </div>
-        <input type="hidden" name="payment_method" id="payment_method" value='btc'>
-      </div>
-      <div class="ch-buy-action-button">
-        <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
-      </div>
+    <% end %>    
+  </div>  
+  <div class="payment-method">
+    <div class="cart-courses__title">
+      <span>
+        <%= t(:payment_method) %>
+      </span>
     </div>
+    <div class="ch-payment-buttons-area">
+      <div class="btn btn-tab" onclick="showBalanceInput()">
+        <%= image_tag('icons/troca1.png', class: 'icons') %>
+        <%= t(:balance) %>
+      </div>
+      <div class="btn btn-tab" onclick="showPixInput()">
+        <%= image_tag('icons/pix-p.svg', class: 'icons') %>
+        <%= t(:pix) %>
+      </div>
+      <div class="btn btn-tab" onclick="showBitCoinInput()">
+        <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
+        <%= t(:btc) %>
+      </div>
+      <input type="hidden" name="payment_method" id="payment_method" value='btc'>
+    </div>
+    <div class="ch-buy-action-button">
+      <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
+    </div>    
   </div>
 <% end %>
-
 <%= javascript_include_tag 'click-tok-theme/cart' %>
 <%= javascript_include_tag 'click-tok-theme/active-btn-tabs' %>

@@ -13,20 +13,20 @@ body.backdrop {
 }
 
 .modal-regulation {
+  background: white;
   border-radius: 25px;
   display: none;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  z-index: 101;
-  background: white;
-  overflow: hidden;
-  height: 90%;
-  width: 80%;
-  max-width: 800px;
-  padding: 50px;
-  transform: translate(-50%, -50%);
   font-size: calc(0.7rem + 0.5vw);
+  height: 90%;
+  left: 50%;
+  max-width: 800px;
+  overflow: hidden;
+  padding: 50px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: 101;
 }
 
 .modal-regulation.open {
@@ -36,45 +36,45 @@ body.backdrop {
 .modal-close-button {
   background: none;
   border: none;
-  position: absolute;
+  color: #999;
+  cursor: pointer;
   font-size: 1em;
   font-weight: 800;
+  position: absolute;
   right: 2em;
   top: 2em;
-  cursor: pointer;  
-  color: #999;
 }
 
 .modal-close-button:hover {
   color: #333;
 }
 
-.modal-regulation-header{
+.modal-regulation-header {
   margin-bottom: 30px;
 }
 
-.modal-regulation-image{
-  width: 50%;
+.modal-regulation-image {
   display: block;
   margin: 0 auto;
   margin: 30px auto 50px auto;
+  width: 50%;
 }
 
-.modal-regulation-title{
-  background: linear-gradient(to bottom, #00DE2C, #00DE28);
-  width: 100%;
-  padding: 0.6em 0 0.65em 0;
-  color: white;
-  font-weight: 800;
-  font-size: 1em;
-  line-height: 1em;
+.modal-regulation-title {
+  background: linear-gradient(to bottom, #00de2c, #00de28);
   border-radius: 10px;
+  color: white;
+  font-size: 1em;
+  font-weight: 800;
+  line-height: 1em;
+  padding: 0.6em 0 0.65em 0;
   text-align: center;
+  width: 100%;
 }
 
 .modal-regulation-text {
-  overflow-y: scroll; 
-  height:70%;
-  padding-bottom: 20%;
   font-size: 0.8em;
+  height: 70%;
+  overflow-y: scroll;
+  padding-bottom: 20%;
 }

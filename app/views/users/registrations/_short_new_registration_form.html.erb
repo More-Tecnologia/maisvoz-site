@@ -9,16 +9,25 @@
     <%= f.hidden_field :registration_type %>
     <%= f.hidden_field :g_recaptcha_response %>
     <%= f.hidden_field :token %>
-    <div class="login-fields">
-      <div class="field-icon">
-        <%= image_tag('icons/sponsor.svg', alt: t(:sponsor)) %>
+     <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+         <%= f.input_field :sponsor_username, autofocus: true,
+                                            class: "input-description",
+                                            placeholder: t(:sponsor),
+                                            style: 'display: none;',
+                                            readonly: @form.token.present?,
+                                            value: User.find_morenwm_customer_user.username %>
+     <% else %>
+      <div class="login-fields">
+        <div class="field-icon">
+          <%= image_tag('icons/sponsor.svg', alt: t(:sponsor)) %>
+        </div>
+        <%= f.input_field :sponsor_username, autofocus: true,
+                                            class: "input-description",
+                                            placeholder: t(:sponsor),
+                                            readonly: @form.token.present?,
+                                            value: @form.token.present? ? @form.sponsor.try(:username).to_s.gsub(/.{5}$/, '*****') : @form.sponsor_username %>
       </div>
-      <%= f.input_field :sponsor_username, autofocus: true,
-                                           class: "input-description",
-                                           placeholder: t(:sponsor),
-                                           readonly: @form.token.present?,
-                                           value: @form.token.present? ? @form.sponsor.try(:username).to_s.gsub(/.{5}$/, '*****') : @form.sponsor_username %>
-    </div>
+    <% end %>
     <div class="login-fields">
       <div class="field-icon">
         <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>

@@ -287,11 +287,19 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'backoffice/home#index'
+      if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+        root 'backoffice/stores#raffles'
+      else
+        root 'backoffice/home#index'
+      end
     end
 
     unauthenticated do
-      root 'users/sessions#new'
+      if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+        root 'backoffice/stores#raffles'
+      else
+        root 'users/sessions#new'
+      end
     end
   end
 end

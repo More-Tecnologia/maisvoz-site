@@ -2020,3 +2020,15 @@ en:
                                   misleading information.
                                 </p>'
   draw_regulation: Draw regulation                            
+  read_more: Read more
+  available: Available
+  reserved: Reserved
+  purchased: Purchased
+  selected_numbers: Selected numbers
+  clear: Clear
+  choose_one_number: Choose one number
+  random: Random
+  number: Number
+  numbers: Numbers
+  add: Add
+  go_to_payment: Go to payment

@@ -23,7 +23,7 @@ module Webhooks
   
         raise response.code.to_s unless response.success?
   
-        response.parsed_response
+        response.parsed_response['data']['access_token']
       end
 
       def raise_error_on_login(message)

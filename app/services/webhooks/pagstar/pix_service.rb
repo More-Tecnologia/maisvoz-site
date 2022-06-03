@@ -4,7 +4,7 @@ module Webhooks
   module Pagstar
     class PixService < ApplicationService
       CALLBACK = ENV['PAGSTAR_CALLBACK'].freeze
-      ENDPOINT = (ENV['PAGSTAR_API_URL'] + '/wallet/partner/transactions/payments').freeze
+      ENDPOINT = (ENV['PAGSTAR_API_URL'] + '/wallet/partner/transactions/generate-anonymous-pix').freeze
       TENANT_ID = ENV['PAGSTAR_TENANT_ID']
 
       def initialize(params)
@@ -25,24 +25,24 @@ module Webhooks
         response.parsed_response['data']
       end
 
-      def get_access_token
+      def access_token
         GetAccessTokenService.call
       end
 
       def headers
         {
-          'BearerToken':  get_access_token,
-          'Content-Type': 'application/json'
+          'Authorization' =>  'Bearer ' + access_token,
+          'Content-Type' => 'application/json'
         }
       end
 
       def params
         {
-          "value": (@order.total_cents * ENV['REAL_USD_FACTOR'].to_i) / 100,
-          "callback": CALLBACK,
-          "name": @order.user.username,
-          "document": @order.user.document_cpf,
-          "tenant_id": TENANT_ID
+          value: (@order.total_cents * ENV['REAL_USD_FACTOR'].to_i) / 100,
+          email: @order.user.email,
+          name: @order.user.username,
+          document: @order.user.document_cpf,
+          tenant_id: TENANT_ID
         }
       end
     end

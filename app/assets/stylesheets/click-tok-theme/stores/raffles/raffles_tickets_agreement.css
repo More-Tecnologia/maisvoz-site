@@ -23,20 +23,58 @@ body.backdrop {
   overflow: hidden;
   height: 90%;
   width: 80%;
-  max-width: 1000px;
-  padding: 5% 5% 12% 5%;
+  max-width: 800px;
+  padding: 50px;
   transform: translate(-50%, -50%);
-}
-
-.modal-regulation-header{
-  margin-bottom: 50px;
+  font-size: calc(0.7rem + 0.5vw);
 }
 
 .modal-regulation.open {
   display: block;
 }
 
+.modal-close-button {
+  background: none;
+  border: none;
+  position: absolute;
+  font-size: 1em;
+  font-weight: 800;
+  right: 2em;
+  top: 2em;
+  cursor: pointer;  
+  color: #999;
+}
+
+.modal-close-button:hover {
+  color: #333;
+}
+
+.modal-regulation-header{
+  margin-bottom: 30px;
+}
+
+.modal-regulation-image{
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  margin: 30px auto 50px auto;
+}
+
+.modal-regulation-title{
+  background: linear-gradient(to bottom, #00DE2C, #00DE28);
+  width: 100%;
+  padding: 0.6em 0 0.65em 0;
+  color: white;
+  font-weight: 800;
+  font-size: 1em;
+  line-height: 1em;
+  border-radius: 10px;
+  text-align: center;
+}
+
 .modal-regulation-text {
-  height: 100%;
   overflow-y: scroll; 
+  height:70%;
+  padding-bottom: 20%;
+  font-size: 0.8em;
 }

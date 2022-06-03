@@ -38,7 +38,7 @@ module Webhooks::PaymentGateway
         current_currency: @current_currency,
         payment_currency: @payment_currency,
         payment_method: @payment_method
-      }
+      }.to_json
     end
   end
 end

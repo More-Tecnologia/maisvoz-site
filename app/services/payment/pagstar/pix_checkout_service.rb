@@ -8,7 +8,7 @@ module Payment
         ActiveRecord::Base.transaction do
           checkout = pix_transaction_request
           transaction = payment_transaction(checkout)
-          order.update!(status: :pending_payment, payment_type: :pix)
+          @order.update!(status: :pending_payment, payment_type: :pix)
         end
         transaction
       end
@@ -27,6 +27,7 @@ module Payment
         @order.create_payment_transaction!(amount: response['value'],
                                            transaction_id: response['external_reference'],
                                            wallet_address: response['pix_key'],
+                                           qr_code_url: response['qr_code_url'],
                                            provider_response: response)
       end
     end

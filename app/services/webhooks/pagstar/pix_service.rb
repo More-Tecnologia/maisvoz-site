@@ -19,7 +19,7 @@ module Webhooks
 
       def generate_pix_transaction
         response = HTTParty.post(ENDPOINT, headers: headers, body: params)
-  
+        byebug
         raise response.code.to_s unless response.success?
   
         response.parsed_response['data']
@@ -40,10 +40,10 @@ module Webhooks
         {
           value: (@order.total_cents * ENV['REAL_USD_FACTOR'].to_i) / 100,
           email: @order.user.email,
-          name: @order.user.username,
+          name: (@order.user.name.presence || @order.user.username),
           document: @order.user.document_cpf,
           tenant_id: TENANT_ID
-        }
+        }.to_json
       end
     end
   end

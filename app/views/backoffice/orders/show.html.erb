@@ -38,36 +38,63 @@
         <% end %>
 
       </div>
-      <% if @order.payment_type.in?(['btc']) %>
+      <% if @order.payment_type.in?(['btc', 'pix']) %>
         <div class="box-bottom">
           <div class='row text-center'>
             <div class='col-md-12'>
               <h5 class="purple">
-                <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@order.payment_transaction.amount)) %>
+                <% if @order.btc? %>
+                  <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@order.payment_transaction.amount)) %>
+                <% elsif @order.pix? %>
+                  <%= t('backoffice.payment_transactions.show.transfer_note_pix_html', value: format_whitelabel_currency(@order.payment_transaction.amount)) %>
+                <% end %>
               </h5>
-              <h6 class='text-click pink'>
-                <i class="fas fa-exclamation-triangle"></i>
-                <%= t('backoffice.payment_transactions.show.transfer_rate_warning_html') %>
-              </h6>
+              <% if @order.btc? %>
+                <h6 class='text-click pink'>
+                  <i class="fas fa-exclamation-triangle"></i>
+                  <%= t('backoffice.payment_transactions.show.transfer_rate_warning_html') %>
+                </h6>
+              <% end %>
             </div>
           </div>
           <div class='row text-center'>
             <span class="text-center">
-              <%= render_qr_code_img(@order.payment_transaction.provider_response['wallet_address']) if @order.payment_transaction.provider_response['wallet_address'].present? %>
+            <% if @order.btc? %>
+              <%= render_qr_code_img(@order.payment_transaction.wallet_address) if @order.payment_transaction.wallet_address.present? %>
+            <% elsif @order.pix? %>
+              <%= image_tag(@order.payment_transaction.qr_code_url) %>
+            <% end %>
             </span> <br>
-            <span class="purple text-center" id="wallet-address"><%= @order.payment_transaction.provider_response['wallet_address'] %></span>
+            <% if @order.btc? %>
+              <span class="purple text-center" id="wallet-address"><%= @order.payment_transaction.provider_response['wallet_address'] %></span>
+            <% elsif @order.pix? %> 
+              <span class="purple text-center" id="wallet-address"><%= @order.payment_transaction.provider_response['pix_key'] %></span>
+            <% end %>
           </div>
           <div class="row text-center">
             <div class="">
+            <% if @order.btc? %>
               <%= copier_button(@order.payment_transaction.provider_response['wallet_address'], '#wallet-address') %>
+            <% elsif @order.pix? %>
+              <%= copier_button(@order.payment_transaction.provider_response['pix_key'], '#wallet-address') %>
+            <% end %>
             </div>
           </div>
           <br>
-          <div class="row text-center">
-            <h6 class="">
-              <%= t(:order_expire_warning, time: seconds_to_hms((@order.created_at + 5.hours) - Time.now)) %>
-            </h6>
-          </div>
+          <% if @order.payment_type.in?(['btc', 'pix']) %>
+            <div class="row text-center">
+              <% btc = (@order.created_at + 5.hours) - Time.now %>
+              <% pix = (@order.created_at + 1.hours) - Time.now %>
+              <% order = @order.btc? ?  btc : pix %>
+              <h6 class="">
+                <% if order > 0 %>
+                  <%= t(:order_expire_warning, time: seconds_to_hms(order)) %>
+                <% elsif @order.payment_type.in?(['btc', 'pix']) && order <= 0 %>
+                  <%= t(:order_expired) %>
+                <% end %>
+              </h6>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>

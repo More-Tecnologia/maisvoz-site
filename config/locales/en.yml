@@ -1930,7 +1930,7 @@ en:
   top_deal: Top deal
   last_numbers: Last numbers
   free: Free
-  raffles_agreement_contract: ' <p>
+  raffles_agreement_contract_html: ' <p>
                                   WinEasy is a fully digital RAFFLE platform, where you can buy the RAFFLE of
                                   the product you want, with daily raffles.
                                 </p>
@@ -1977,25 +1977,25 @@ en:
                                   right as follows:
                                 </p>
                                 RIFAS with 100 shares<br />
-                                <img src="dasda.jpg" />
+                                <img class="raffles-preview" src="%{img1_path}" />
                                 <p>
                                   Looking from left to right, the second digit of the first two tens generates
                                   the ten 78, so in this example the number drawn was 78.
                                 </p>
                                 RIFAS with 1,000 shares<br />
-                                <img src="dasda.jpg" />
+                                <img class="raffles-preview" src="%{img2_path}" />
                                 <p>
                                   Looking from left to right, the second digit of the first three tens generates
                                   the hundred 783, so in this example the number drawn was 783.
                                 </p>
                                 Using 10,000 shares<br />
-                                <img src="dasda.jpg" />
+                                <img class="raffles-preview" src="%{img3_path}" />
                                 <p>
                                   Looking from left to right, the second digit of the first four tens generates
                                   the thousand 7,834, so in this example the odds drawn were 7,834.
                                 </p>
                                 RIFAS with 100,000 shares<br />
-                                <img src="dasda.jpg" />
+                                <img class="raffles-preview" src="%{img4_path}" />
                                 <p>
                                   Looking from left to right, the second digit of the tens generates the tens of
                                   thousands 78,345, so in this example the quota drawn was the number 78,345.
@@ -2019,3 +2019,4 @@ en:
                                   disqualified, such as, for example, providing untrue, incorrect, incomplete or
                                   misleading information.
                                 </p>'
+  draw_regulation: Draw regulation                            

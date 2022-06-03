@@ -22,7 +22,7 @@ body.backdrop {
   left: 50%;
   max-width: 800px;
   overflow: hidden;
-  padding: 50px;
+  padding: 1.5em;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -86,6 +86,10 @@ body.backdrop {
 
 .modal-regulation-text p {
   margin-bottom: 20px;
+}
+
+.modal-regulation-text .raffles-preview{
+  width: 40%;
 }
 
 .modal-regulation-text ol {

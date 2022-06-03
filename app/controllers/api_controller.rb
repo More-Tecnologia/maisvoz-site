@@ -9,7 +9,7 @@ class ApiController < ActionController::API
   private
 
   def authenticate_request
-    api_key = request.headers['Authorization']
+    api_key = request.headers['Authorization'].presence || params[:api_key]
 
     render json: { status: 'ERROR' }, status: :unauthorized if api_key != authorization
   end

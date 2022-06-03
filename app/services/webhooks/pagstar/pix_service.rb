@@ -19,7 +19,7 @@ module Webhooks
 
       def generate_pix_transaction
         response = HTTParty.post(ENDPOINT, headers: headers, body: params)
-        byebug
+
         raise response.code.to_s unless response.success?
   
         response.parsed_response['data']

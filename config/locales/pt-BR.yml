@@ -1957,9 +1957,10 @@ pt-BR:
   reserved: Reservado
   purchased: Comprado
   selected_numbers: Números selecionados
+  clear: Limpar
   choose_one_number: Escolha um número
   random: Aleatório
-  numbers: Números
-  number: Número
+  raffle_numbers: Números
+  raffle_number: Número
   add: Adicionar
   go_to_payment: Ir para pagamento

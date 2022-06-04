@@ -23,8 +23,8 @@
       </div>
     </div>
   </div>
-      <div class="header-container align-center">
-  <% if current_user.present? %>
+  <div class="header-container align-center">
+    <% if current_user.present? %>
       <div class="user-details">
         <% unless (params[:controller] == "users/registrations" && params[:action] == 'edit') || (params[:controller] == "users/display" && (params[:action] == 'edit_password' || params[:action] == 'index' ||  params[:action] == 'update_profile')) %>
           <%= link_to users_display_index_path do %>
@@ -36,9 +36,7 @@
             </div>
           <% end %>
         <% end %>
-        <div class="invisible">
-          ⠀⠀⠀⠀⠀⠀⠀
-        </div>
+        <div class="invisible"></div>
         <div class="link-share">
           <% if user_masquerade? %>
             <%= link_to back_masquerade_path(current_user), class: 'hyperlink' do %>
@@ -58,10 +56,9 @@
             <% end %>
           <% end %>
         </div>
-     
-    <% else %>
-      <%= link_to t('users.sessions.new.login'), new_user_session_path, class: 'header-login-button' %>
-    <% end %>
-     </div>
+      <% else %>
+        <%= link_to t('users.sessions.new.login'), new_user_session_path, class: 'header-login-button' %>
+      <% end %>
+    </div>
   </div>
 </header>

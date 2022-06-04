@@ -14,7 +14,6 @@
       </svg>
     <% end %>
     <h4 class="raffle-tickets--page-title"><%= t(:cart) %></h4>
-
   </div>
 <%= form_tag backoffice_raffles_checkout_path do |f| %>
   <div class="cart-raffles-container">
@@ -38,7 +37,7 @@
           <div class="ticket-container">
             <% order_items.each do |order_item| %>
               <div class="ticket-number">
-                <%= order_item.raffle_ticket.number %>
+                <%= raffle_ticket_number_format(order_item.raffle_ticket) %>
                 <%= link_to '✖', backoffice_raffles_carts_path(order_item_id: order_item.id), method: :delete, class: 'remove-ticket' %>
               </div>
             <% end %>

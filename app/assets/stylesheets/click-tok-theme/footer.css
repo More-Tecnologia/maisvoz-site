@@ -190,6 +190,11 @@
   width: 55px;
 }
 
+.footer-copyright {
+  color: black;
+  padding-bottom: 12px;
+}
+
 /*.indicator::before {
     background: var(--mainColor);
     border-top-right-radius: 17px;

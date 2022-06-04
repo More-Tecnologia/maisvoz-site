@@ -1,14 +1,13 @@
 <%= stylesheet_link_tag 'click-tok-theme/header' %>
-
 <script>
-function myFunction() {
-  var x = document.getElementById("myLinks");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
+  function myFunction() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
   }
-}
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <header>
@@ -24,8 +23,8 @@ function myFunction() {
       </div>
     </div>
   </div>
+      <div class="header-container align-center">
   <% if current_user.present? %>
-    <div class="header-container align-center">
       <div class="user-details">
         <% unless (params[:controller] == "users/registrations" && params[:action] == 'edit') || (params[:controller] == "users/display" && (params[:action] == 'edit_password' || params[:action] == 'index' ||  params[:action] == 'update_profile')) %>
           <%= link_to users_display_index_path do %>
@@ -40,7 +39,6 @@ function myFunction() {
         <div class="invisible">
           ⠀⠀⠀⠀⠀⠀⠀
         </div>
-      
         <div class="link-share">
           <% if user_masquerade? %>
             <%= link_to back_masquerade_path(current_user), class: 'hyperlink' do %>
@@ -60,7 +58,10 @@ function myFunction() {
             <% end %>
           <% end %>
         </div>
-      </div>
+     
+    <% else %>
+      <%= link_to t('users.sessions.new.login'), new_user_session_path, class: 'header-login-button' %>
     <% end %>
+     </div>
   </div>
 </header>

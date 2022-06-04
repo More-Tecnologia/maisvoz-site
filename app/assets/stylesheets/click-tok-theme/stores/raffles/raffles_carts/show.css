@@ -92,7 +92,7 @@
   flex-grow: 2;
   flex-wrap: wrap;
   gap: 5% 2%;
-  justify-content: flex-start;
+  justify-content: center;
   overflow: auto;
   padding: 0.5em 0;
   width: 100%;
@@ -106,7 +106,8 @@
   height: fit-content;
   padding: 0.3em 1.3em 0.3em 0.3em;
   position: relative;
-  width: 4.5em;
+  text-align: center;
+  width: 5em;
 }
 
 .cart-item .ticket-number .remove-ticket {
@@ -178,6 +179,10 @@
 
   .cart-item .ticket-container {
     justify-content: center;
+  }
+
+  .cart-courses__item__value.total-price {
+    font-size: 1em;
   }
 }
 

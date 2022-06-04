@@ -18,7 +18,11 @@
       </div>
       <div class="logo">
         <a href="/">
-          <%= image_tag('logo-white.png') %>
+          <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+            <%= image_tag('logo-white-white-label.png') %>
+          <% else %>
+            <%= image_tag('logo-white.png') %>
+        <% end %>
         </a>
       </div>
     </div>

@@ -44,6 +44,7 @@ header {
   display: flex;
   height: 100%;
   justify-content: center;
+  position: relative;
 }
 
 .logo {
@@ -53,15 +54,18 @@ header {
   justify-content: center;
   margin-top: 0;
   max-height: 35px;
+  position: relative;
 }
 
 .logo a {
-  margin-right: 25px;
-  width: 180px;
+  bottom: -50%;
+  display: block;
+  position: absolute;
+  transform: translate(0, 35%);
 }
 
 .logo a img {
-  margin-top: 30px;
+  max-width: 150px;
 }
 
 .user-details {
@@ -157,11 +161,17 @@ header {
   top: 0;
 }
 
-@media (max-width: 400px) {
-  .logo a img {
-    margin-top: 0;
+@media (max-width: 550px) {
+  .logo a {
+    transform: translate(0, 10%);
   }
 
+  .logo a img {
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 400px) {
   .link-share .hyperlink {
     font-size: 8px;
   }

@@ -14,13 +14,13 @@
       </svg>
     <% end %>
     <h4 class="raffle-tickets--page-title"><%= t(:cart) %></h4>
- 
+
   </div>
 <%= form_tag backoffice_raffles_checkout_path do |f| %>
   <div class="cart-raffles-container">
     <% cart_price = 0 %>
-    <% @current_raffles_cart.products.uniq.each do |product| %>
-      <% order_items = product.order_items.where(order: @current_raffles_cart) %>      
+    <% @current_raffles_cart.products.includes(:raffle).uniq.each do |product| %>
+      <% order_items = product.order_items.includes(:raffle_ticket).where(order: @current_raffles_cart) %>
       <div class="cart-item">
         <div class="cart-courses__item__image" style="display: flex; flex-direction: column;">
           <span title="<%= product.name %>" class="raffle-cart-name" >
@@ -28,32 +28,32 @@
           </span>
           <div class="cart-courses__id" style="width: auto;">
             <span class="cart-courses__item__id">ID: <b><%= product.raffle.hashid %></b></span>
-          </div>          
+          </div>
           <%= image_tag(product.raffle.path, style: "margin-left: 0;") %>
         </div>
-        <div class="middle-container">          
+        <div class="middle-container">
           <h5 class="numbers-title">
             <%= t(:numbers_selected) %>
-          </h5>                
+          </h5>
           <div class="ticket-container">
             <% order_items.each do |order_item| %>
               <div class="ticket-number">
                 <%= order_item.raffle_ticket.number %>
                 <%= link_to '✖', backoffice_raffles_carts_path(order_item_id: order_item.id), method: :delete, class: 'remove-ticket' %>
-              </div>              
+              </div>
             <% end %>
-          </div>             
+          </div>
         </div>
         <div class="cart-courses__item__value">
-          <% 
+          <%
           raffle_price = product.price * order_items.size
           cart_price = cart_price + raffle_price
           %>
           <span><%= format_currency(raffle_price) %></span>
         </div>
-      </div>     
-    <% end %>    
-  </div>  
+      </div>
+    <% end %>
+  </div>
     <div class="cart-courses__item__value total-price">
       <span class="total-text"><%= t(:total) %>: </span>
       <span><%= format_currency(cart_price) %></span>
@@ -81,6 +81,9 @@
     </div>
     <div class="ch-buy-action-button">
       <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
-    </div>    
+    </div>
   </div>
 <% end %>
+
+<%= javascript_include_tag 'click-tok-theme/cart' %>
+<%= javascript_include_tag 'click-tok-theme/active-btn-tabs' %>

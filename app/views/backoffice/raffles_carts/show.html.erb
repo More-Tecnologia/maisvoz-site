@@ -1,12 +1,8 @@
-<%= stylesheet_link_tag 'click-tok-theme/add-courses' %>
-<%= stylesheet_link_tag 'click-tok-theme/courses-cart' %>
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
-<%= stylesheet_link_tag 'raffles/cart' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_carts/show' %>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<div class="return-button-container">
-  <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do %>
+  <div class="raffle-tickets-header-container">
+    <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>
       <svg xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -17,18 +13,14 @@
               d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
       </svg>
     <% end %>
-</div>
-
-
-<h3 class="page-title">
-  <%= t(:cart) %>
-</h3>
-
+    <h4 class="raffle-tickets--page-title"><%= t(:cart) %></h4>
+ 
+  </div>
 <%= form_tag backoffice_raffles_checkout_path do |f| %>
   <div class="cart-raffles-container">
+    <% cart_price = 0 %>
     <% @current_raffles_cart.products.uniq.each do |product| %>
-      <% order_items = product.order_items.where(order: @current_raffles_cart) %>
-      
+      <% order_items = product.order_items.where(order: @current_raffles_cart) %>      
       <div class="cart-item">
         <div class="cart-courses__item__image" style="display: flex; flex-direction: column;">
           <span title="<%= product.name %>" class="raffle-cart-name" >
@@ -36,8 +28,7 @@
           </span>
           <div class="cart-courses__id" style="width: auto;">
             <span class="cart-courses__item__id">ID: <b><%= product.raffle.hashid %></b></span>
-          </div>
-          
+          </div>          
           <%= image_tag(product.raffle.path, style: "margin-left: 0;") %>
         </div>
         <div class="middle-container">          
@@ -49,17 +40,24 @@
               <div class="ticket-number">
                 <%= order_item.raffle_ticket.number %>
                 <%= link_to '✖', backoffice_raffles_carts_path(order_item_id: order_item.id), method: :delete, class: 'remove-ticket' %>
-              </div>
-              
+              </div>              
             <% end %>
           </div>             
         </div>
         <div class="cart-courses__item__value">
-          <span><%= format_currency(product.price * order_items.size) %></span>
+          <% 
+          raffle_price = product.price * order_items.size
+          cart_price = cart_price + raffle_price
+          %>
+          <span><%= format_currency(raffle_price) %></span>
         </div>
-      </div>
+      </div>     
     <% end %>    
   </div>  
+    <div class="cart-courses__item__value total-price">
+      <span class="total-text"><%= t(:total) %>: </span>
+      <span><%= format_currency(cart_price) %></span>
+    </div>
   <div class="payment-method">
     <div class="cart-courses__title">
       <span>
@@ -86,5 +84,3 @@
     </div>    
   </div>
 <% end %>
-<%= javascript_include_tag 'click-tok-theme/cart' %>
-<%= javascript_include_tag 'click-tok-theme/active-btn-tabs' %>

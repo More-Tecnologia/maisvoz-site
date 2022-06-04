@@ -35,6 +35,7 @@ header {
   height: 50%;
   margin: auto;
   max-width: 1360px;
+  position: relative;
   width: 90%;
 }
 
@@ -164,4 +165,18 @@ header {
   .link-share .hyperlink {
     font-size: 8px;
   }
+}
+
+.header-login-button {
+  border-bottom: 1px solid transparent;
+  bottom: 20px;
+  color: #ddd;
+  font-size: 1rem;
+  left: 0;
+  padding-bottom: 2px;
+  position: absolute;
+}
+
+.header-login-button:hover {
+  border-bottom: 1px solid white;
 }

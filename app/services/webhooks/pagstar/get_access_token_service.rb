@@ -20,7 +20,7 @@ module Webhooks
 
       def login_request
         response = HTTParty.post(ENDPOINT, headers: HEADERS, body: PARAMS)
-  
+        
         raise response.code.to_s unless response.success?
   
         response.parsed_response['data']['access_token']

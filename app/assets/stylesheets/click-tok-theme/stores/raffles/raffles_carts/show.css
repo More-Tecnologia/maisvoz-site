@@ -1,193 +1,224 @@
 .raffle-tickets-return-button {
-  align-items: center;
-  background: #30da03;
-  border-radius: 0.5em;
-  color: white;
-  display: flex;
-  font-size: 2rem;
-  height: 1em;
-  justify-content: center;
-  margin-top: 0.5em;
-  width: 2em;
+    align-items: center;
+    background: #30da03;
+    border-radius: 0.5em;
+    color: white;
+    display: flex;
+    font-size: 2rem;
+    height: 1em;
+    justify-content: center;
+    margin-top: 0.5em;
+    width: 2em;
 }
 
 .raffle-tickets-header-container {
-  align-items: center;
-  display: flex;
-  margin: 0.3em 0 0.6em 0;
-  position: relative;
+    align-items: center;
+    display: flex;
+    margin: 0.3em 0 0.6em 0;
+    position: relative;
 }
 
 .raffle-tickets--page-title {
-  display: flex;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-left: 0.8em;
-  margin-top: 0.6em;
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 0.8em;
+    margin-top: 0.6em;
 }
 
 .cart-item {
-  align-items: center;
-  border-top: 1px solid #ddd;
-  display: flex;
-  font-size: 1rem;
-  font-size: calc(0.8rem + 0.4vw);
-  justify-content: space-between;
-  overflow: hidden;
-  padding: 1em 0;
-  width: 100%;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    display: flex;
+    font-size: 1rem;
+    font-size: calc(0.8rem + 0.4vw);
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 1em 0;
+    width: 100%;
 }
 
 .cart-courses__item__image {
-  max-width: 150px;
-  min-width: 150px;
+    max-width: 150px;
+    min-width: 150px;
 }
 
 .cart-courses__item__image .raffle-cart-name {
-  display: block;
-  font-size: 1em;
-  margin: 6px 0 2px 0;
-  overflow: hidden;
-  text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
+    display: block;
+    font-size: 1em;
+    margin: 6px 0 2px 0;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
 }
 
 .cart-courses__item__image .cart-courses__item__id {
-  color: #999;
-  display: block;
-  font-size: 0.7em;
-  text-align: center;
+    color: #999;
+    display: block;
+    font-size: 0.7em;
+    text-align: center;
 }
 
 .cart-courses__item__image img {
-  height: auto;
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    width: auto;
 }
 
 .cart-item .middle-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 4;
-  height: 150px;
-  justify-content: flex-start;
-  padding: 0 5%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 4;
+    height: 150px;
+    justify-content: flex-start;
+    padding: 0 5%;
 }
 
 .middle-container .numbers-title {
-  color: #999;
-  font-size: 0.9em;
-  margin-bottom: 1em;
+    color: #999;
+    font-size: 0.9em;
+    margin-bottom: 1em;
 }
 
 .cart-item .ticket-container {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-grow: 2;
-  flex-wrap: wrap;
-  gap: 5% 2%;
-  justify-content: center;
-  overflow: auto;
-  padding: 0.5em 0;
-  width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 2;
+    flex-wrap: wrap;
+    gap: 5% 2%;
+    justify-content: center;
+    overflow: auto;
+    padding: 0.5em 0;
+    width: 100%;
 }
 
 .cart-item .ticket-number {
-  background: #fefefe;
-  border-radius: 8px;
-  box-shadow: 0px 3px 5px 3px rgba(0, 0, 0, 0.08);
-  font-size: 0.9em;
-  height: fit-content;
-  padding: 0.3em 1.3em 0.3em 0.3em;
-  position: relative;
-  text-align: center;
-  width: 5em;
+    background: #fefefe;
+    border-radius: 8px;
+    box-shadow: 0px 3px 5px 3px rgba(0, 0, 0, 0.08);
+    font-size: 0.9em;
+    height: fit-content;
+    padding: 0.3em 1.3em 0.3em 0.3em;
+    position: relative;
+    text-align: center;
+    width: 5em;
 }
 
 .cart-item .ticket-number .remove-ticket {
-  color: #999;
-  font-size: 0.9em;
-  font-weight: 800;
-  position: absolute;
-  right: 0.4em;
-  top: 50%;
-  transform: translate(0, -50%);
+    color: #999;
+    font-size: 0.9em;
+    font-weight: 800;
+    position: absolute;
+    right: 0.4em;
+    top: 50%;
+    transform: translate(0, -50%);
 }
 
 .cart-item .ticket-number .remove-ticket:hover {
-  color: #f30;
+    color: #f30;
 }
 
 .cart-item .cart-selected-numbers .modal-title {
-  text-align: center;
+    text-align: center;
 }
 
 .cart-courses__item__value b,
 .cart-courses__item__value i {
-  font-size: 0.5em;
-  font-weight: 400;
-  line-height: 1.65em;
-  vertical-align: text-top;
+    font-size: 0.5em;
+    font-weight: 400;
+    line-height: 1.65em;
+    vertical-align: text-top;
 }
 
 .cart-courses__item__value i {
-  font-style: normal;
-  line-height: 1.8em;
-  padding-left: 2px;
+    font-style: normal;
+    line-height: 1.8em;
+    padding-left: 2px;
 }
 
 .cart-courses__item__value {
-  font-size: 1.5em;
-  font-weight: 600;
+    font-size: 1.5em;
+    font-weight: 600;
 }
 
 .cart-courses__item__value.total-price {
-  border-top: 1px solid #ddd;
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 0.5em;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 0.5em;
 }
 
 .cart-courses__item__value .total-text {
-  color: #999;
-  margin-right: 1em;
+    color: #999;
+    margin-right: 1em;
 }
 
 .payment-method .cart-courses__title {
-  border-top: 1px solid #ddd;
-  color: #999;
-  font-weight: 800;
-  margin-top: 10px;
-  padding-top: 2em;
+    border-top: 1px solid #ddd;
+    color: #999;
+    font-weight: 800;
+    margin-top: 10px;
+    padding-top: 2em;
+}
+
+.container-inputs-raffle {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+}
+
+.input-raffle-field {
+    -moz-box-shadow: 1px 4px 10px 1px rgba(207, 207, 207, 1);
+    -webkit-box-shadow: 1px 4px 10px 1px rgb(207 207 207);
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 70px;
+    border: none;
+    box-shadow: 1px 4px 10px 1px rgb(207 207 207);
+    display: flex;
+    height: 60px;
+    margin-top: 15px;
+    padding: 15px 15px 15px 23px;
+    width: 100%;
+}
+
+.input-raffle {
+    border: 0;
+    width: 100%;
+}
+
+.container-input-raffle {
+    width: 49%;
+}
+
+.label-input-raffle {
+    color: #999999;
 }
 
 @media (max-width: 560px) {
-  .cart-item {
-    flex-direction: column;
-  }
-
-  .cart-courses__item__image {
-    max-width: 200px;
-    min-width: 200px;
-  }
-
-  .cart-item .ticket-container {
-    justify-content: center;
-  }
-
-  .cart-courses__item__value.total-price {
-    font-size: 1em;
-  }
+    .cart-item {
+        flex-direction: column;
+    }
+    .cart-courses__item__image {
+        max-width: 200px;
+        min-width: 200px;
+    }
+    .cart-item .ticket-container {
+        justify-content: center;
+    }
+    .cart-courses__item__value.total-price {
+        font-size: 1em;
+    }
 }
 
 @media (min-width: 1500px) {
-  .cart-item {
-    font-size: 1.2rem;
-  }
+    .cart-item {
+        font-size: 1.2rem;
+    }
 }

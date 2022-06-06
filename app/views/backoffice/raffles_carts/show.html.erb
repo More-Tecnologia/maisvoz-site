@@ -78,6 +78,24 @@
       </div>
       <input type="hidden" name="payment_method" id="payment_method" value='btc'>
     </div>
+    <div class="container-inputs-raffle">
+      <div class="container-input-raffle">
+        <label class="label-input-raffle">
+          <%= t(:document_id) %>
+        </label>
+        <div class="input-raffle-field">
+          <input class="input-raffle" type="text" name="document_id" id="document_id" value='<%= current_user.document_cpf %>'>
+        </div>
+      </div>
+      <div class="container-input-raffle">
+        <label class="label-input-raffle">
+          <%= t(:name) %>
+        </label>
+        <div class="input-raffle-field">
+          <input class="input-raffle" type="text" name="user_name" id="user_name" value='<%= current_user.name %>'>
+        </div>
+      </div>
+    </div>
     <div class="ch-buy-action-button">
       <%= button_tag t(:checkout), class: 'login', data: { disable_with: '<i class="fas fa-spinner fa-spin"></i>'  } %>
     </div>

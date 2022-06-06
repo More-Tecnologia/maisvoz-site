@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
                          Ticket.where(user: current_user)
                                .active
                                .answered.any?
-    request.env['omniauth.origin'] || stored_location_for(resource) || dashboard_direction(current_user)
+    if params[:raffle].present?
+      redirect_to raffle_tickets_path(params[:raffle][:id])
+    else
+      dashboard_direction(current_user)
+    end
   end
 
   def set_locale

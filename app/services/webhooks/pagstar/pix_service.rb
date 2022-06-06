@@ -3,9 +3,8 @@
 module Webhooks
   module Pagstar
     class PixService < ApplicationService
-      CALLBACK = ENV['PAGSTAR_CALLBACK'].freeze
-      ENDPOINT = (ENV['PAGSTAR_API_URL'] + '/wallet/partner/transactions/generate-anonymous-pix').freeze
-      TENANT_ID = ENV['PAGSTAR_TENANT_ID']
+      ENDPOINT = "#{ENV['PAGSTAR_API_URL']}/wallet/partner/transactions/generate-anonymous-pix".freeze
+      TENANT_ID = ENV['PAGSTAR_TENANT_ID'].freeze
 
       def initialize(params)
         @order = params[:order]
@@ -21,7 +20,7 @@ module Webhooks
         response = HTTParty.post(ENDPOINT, headers: headers, body: params)
 
         raise response.code.to_s unless response.success?
-  
+
         response.parsed_response['data']
       end
 
@@ -31,7 +30,7 @@ module Webhooks
 
       def headers
         {
-          'Authorization' =>  'Bearer ' + access_token,
+          'Authorization' => "Bearer #{access_token}",
           'Content-Type' => 'application/json'
         }
       end

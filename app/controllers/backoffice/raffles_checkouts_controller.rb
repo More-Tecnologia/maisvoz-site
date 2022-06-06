@@ -13,6 +13,7 @@ module Backoffice
       elsif valid_params[:payment_method] == 'pix'
         @payment_transaction = Payment::Pagstar::PixCheckoutService.call(valid_params)
         ExpireOrderWorker.perform_at(Time.now + 1.hour, valid_params[:order].id)
+        RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 1.hour, valid_params[:order].id)
         current_raffles_cart
         render 'backoffice/payment_transactions/show'
       else

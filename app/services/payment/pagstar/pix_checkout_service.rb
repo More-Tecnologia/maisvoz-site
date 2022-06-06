@@ -9,6 +9,7 @@ module Payment
           checkout = pix_transaction_request
           transaction = payment_transaction(checkout)
           @order.update!(status: :pending_payment, payment_type: :pix)
+          ShoppingMailer.with(order: @order).order_made.deliver_later
         end
         transaction
       end

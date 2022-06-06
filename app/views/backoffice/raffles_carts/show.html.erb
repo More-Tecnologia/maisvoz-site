@@ -35,7 +35,7 @@
             <%= t(:numbers_selected) %>
           </h5>
           <div class="ticket-container">
-            <% order_items.each do |order_item| %>
+            <% order_items.includes(raffle_ticket: :raffle).each do |order_item| %>
               <div class="ticket-number">
                 <%= raffle_ticket_number_format(order_item.raffle_ticket) %>
                 <%= link_to '✖', backoffice_raffles_carts_path(order_item_id: order_item.id), method: :delete, class: 'remove-ticket' %>

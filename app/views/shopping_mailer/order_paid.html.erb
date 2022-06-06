@@ -105,7 +105,7 @@
     Seus bilhetes
   </h1>
   <p>
-    Olá, <%= @user %>!
+    Olá, <%= @user.name %>!
   </p>
   <p>
     Segue a seguir os números de seus bilhetes, confira abaixo.
@@ -115,7 +115,7 @@
     <% order_items = product.order_items.includes(:raffle_ticket).where(order: @order) %>
     <div class="product-info">
       <span>ID: <%= product.hashid %></span>
-      <h4><%= product %></h4>
+      <h4><%= product.name %></h4>
     </div>
     <div class="draw-container">
       <ul>

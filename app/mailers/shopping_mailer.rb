@@ -14,7 +14,7 @@ class ShoppingMailer < ApplicationMailer
 
     @order = params[:order]
     @user = @order.user
-
+    @products = @order.products.includes(:raffle).uniq
     mail to: @user.email, subject: "#{SystemConfiguration.company_name} - #{t(:purchased_product)}"
   end
 

@@ -6,6 +6,7 @@ module Payment
         checkout = payment_transaction_request
         transaction = payment_transaction(checkout)
         order.update!(status: :pending_payment, payment_type: @payment_method)
+        ShoppingMailer.with(order: order).order_made.deliver_later
       end
       transaction
     end

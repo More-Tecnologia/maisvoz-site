@@ -3,7 +3,7 @@
 <div class="simple-header">
   <%= render 'layouts/shared/language_select' %>
   <div class="simple-header-logo">
-    <%= link_to  root_path do %>
+    <%= link_to root_path do %>
       <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
         <%= image_tag('white-label-logo.png', alt: SystemConfiguration.company_name, 'stroke-width' => '2' ) %>
       <% else %>

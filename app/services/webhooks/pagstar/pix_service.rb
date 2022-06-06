@@ -38,7 +38,7 @@ module Webhooks
 
       def params
         {
-          value: (@order.total_cents * ENV['REAL_USD_FACTOR'].to_i) / 100,
+          value: (@order.total_cents * ENV['BRL_USD_FACTOR'].to_i) / 100,
           email: @order.user.email,
           name: (@order.user.name.presence || @order.user.username),
           document: @order.user.document_cpf,

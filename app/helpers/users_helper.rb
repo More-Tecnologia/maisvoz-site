@@ -23,7 +23,11 @@ module UsersHelper
     if user.admin?
       backoffice_admin_dashboard_index_path
     else
-      backoffice_dashboard_index_path
+      if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+        backoffice_raffles_tickets_path
+      else
+        backoffice_dashboard_index_path
+      end
     end
   end
 

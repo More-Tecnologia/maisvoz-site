@@ -109,17 +109,17 @@
         Seus bilhetes
       </h1>
       <p>
-        Olá, <%= @user.name %>!
+        Olá, <%= @user %>!
       </p>
       <p>
         Segue a seguir os números de seus bilhetes, confira abaixo.
       </p>
       <h6><b>01</b> <%= link_to 'Meus bilhetes', backoffice_orders_url %></h6>
-      <% @order.products.includes(:raffle).uniq.each do |product| %>
+      <% @products.each do |product| %>
       <% order_items = product.order_items.includes(:raffle_ticket).where(order: @order) %>
       <div class="product-info">
         <span><%= product.hashid %></span>
-        <h4><%= product.name %></h4>
+        <h4><%= product %></h4>
       </div>
       <div class="draw-container">
         <ul>

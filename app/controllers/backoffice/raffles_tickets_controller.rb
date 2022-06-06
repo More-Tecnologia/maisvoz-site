@@ -2,6 +2,8 @@
 
 module Backoffice
   class RafflesTicketsController < BackofficeController
+    skip_before_action :authenticate_user!, only: %i[show tickets]
+
     def index
       @q = current_user.raffle_tickets
                        .includes(:raffle)

@@ -1,6 +1,5 @@
 <% @user = current_user %>
 <% @order = Order.last %>
-
 <style>
   .p-orders-email a{
     text-decoration: none;
@@ -17,21 +16,16 @@
         height="100%"
         valign="top">
       <h2 style="text-align: center;">
-        <span> <%= t('user_mailer.welcome.call', name: @user.name) %></span>
+        <span> <%= t('user_mailer.welcome.call', name: @user.name) %> </span>
       </h2>
       <br>
       <div style="font-size: 16px;text-indent: 30px;">
         <span>
           <%= t('.body', product_name: @order.order_items.last.name, company_name: SystemConfiguration.company_name).html_safe %>
         </span>
-        <div class="tickets-container">
-        <% @order.order_items.each do |item| %>
-          <%= item.raffle_ticket.number %> - 
-        <% end%>
-        <div>
       </div>
       <br>
-      <p class="p-orders-email"> <%= link_to t('my_orders'), backoffice_orders_url %></p>
+      <p class="p-orders-email"> <%= link_to t('my_orders'), backoffice_orders_url %> </p>
       <br>
       <span>
         <%= t(:financial_department_footer, company_name: SystemConfiguration.company_name).html_safe %>

@@ -1,33 +1,142 @@
-<style>
-.p-orders-email a{
-  text-decoration: none;
-  color: white;
-  background: #53f001;
-  padding: 10px;
-  border-radius: 10px;
-}
-</style>
+<% @user = current_user %>
+<% @order = Order.last %>
+<html>
+  <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
+      .mail-container {
+        font-family: sans-serif;
+        font-size: calc(0.6rem + 0.3vw);
+        margin: 0 auto;
+        max-width: 800px;
+        width: 80%;
+      }
 
-<table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
-  <tr>
-    <td style="padding:18px 0px 18px 0px;line-height:22px;text-align:inherit;"
-        height="100%"
-        valign="top"
-        bgcolor="">
-      <h2 style="text-align: center;">
-        <span> <%= t('user_mailer.welcome.call', name: @user.name) %> </span>
-      </h2><br>
-      <div style="font-size: 16px;text-indent: 30px;">
-        <span>
-          <%= t('.body', order_value: number_to_currency(@order.total), company_name: SystemConfiguration.company_name).html_safe %><br>
-        </span>
-      </div><br>
+      h1 {
+        color: #00de28;
+        font-size: 3.3em;
+        font-weight: 800;
+        margin: 2em 0 1em 0;
+        text-align: center;
+        text-transform: uppercase;
+      }
 
-      <p class="p-orders-email"> <%= link_to t('my_orders'), backoffice_orders_url %> </p><br>
-      <span>
+      p {
+        color: #888;
+        font-size: 1.4em;
+        margin: 0 0 1em 0;
+      }
+
+      h4 {
+        font-size: 1.4em;
+        margin-bottom: 1.2em;
+      }
+
+      h6 {
+        align-items: center;
+        color: #888;
+        column-gap: 8px;
+        display: flex;
+        font-size: 1.5em;
+        font-weight: 400;
+        margin-bottom: 1em;
+      }
+
+      h6 b {
+        align-items: center;
+        background: #00de28;
+        border-radius: 50%;
+        color: #fff;
+        display: flex;
+        font-size: 0.8em;
+        font-weight: 400;
+        height: 30px;
+        justify-content: center;
+        width: 30px;
+      }
+
+      h6 a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+
+      h6 a:hover{
+        text-decoration: underline;
+      }
+
+      .draw-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 4em;
+        position: relative;
+        row-gap: 1.5em;
+      }
+
+      .draw-container ul {
+        column-gap: 0.4em;
+        display: flex;
+        list-style: none;
+      }
+
+      .draw-container ul::before {
+        color: #00de28;
+        content: "➜";
+        font-size: 22px;
+      }
+
+      .draw-container li {
+        background: #e5e5e5;
+        border-radius: 5px;
+        color: #222;
+        font-weight: 800;
+        padding: 0.6em;
+      }
+
+      hr {
+        color: #00de28;
+        margin-bottom: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mail-container">
+      <div class="image-container">
+      </div>
+      <h1>
+        Seus bilhetes
+      </h1>
+      <p>
+        Olá, <%= @user.name %>!
+      </p>
+      <p>
+        Segue a seguir os números de seus bilhetes, confira abaixo.
+      </p>
+      <h6><b>01</b> <%= link_to 'Meus bilhetes', backoffice_orders_url %></h6>
+      <% @order.products.includes(:raffle).uniq.each do |product| %>
+      <% order_items = product.order_items.includes(:raffle_ticket).where(order: @order) %>
+      <div class="product-info">
+        <span><%= product.hashid %></span>
+        <h4><%= product.name %></h4>
+      </div>
+      <div class="draw-container">
+        <ul>
+          <% order_items.each do |item| %>
+            <li><%= item.raffle_ticket.number %></li>
+          <% end%>
+        </ul>
+      </div>
+      <% end %>      
+      <hr>
+      <p>
         <%= t(:financial_department_footer, company_name: SystemConfiguration.company_name).html_safe %>
-      </span>
-    </td>
-  </tr>
-</table>
+      <p>
+      <div class="logo-container">
+      </div>
+      <div>
+  </body>
+</html>

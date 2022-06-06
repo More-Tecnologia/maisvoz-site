@@ -1965,3 +1965,5 @@ pt-BR:
   add: Adicionar
   go_to_payment: Ir para pagamento
   request_withdraw: Solicitar saque
+  document_id: CPF
+  id_or_name_blank: Nome ou CPF está em branco

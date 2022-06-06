@@ -114,7 +114,7 @@
   <% @products.each do |product| %>
     <% order_items = product.order_items.includes(:raffle_ticket).where(order: @order) %>
     <div class="product-info">
-      <span><%= product.hashid %></span>
+      <span>ID: <%= product.hashid %></span>
       <h4><%= product %></h4>
     </div>
     <div class="draw-container">

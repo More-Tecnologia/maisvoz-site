@@ -5,7 +5,7 @@
   <%= f.error_notification %>
   <div class="credentials-box">
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to t('.sign_up'), new_registration_path(resource_name), class: 'sign-up-log-in_button' %>
+    <%= link_to t('users.shared.links.sign_up'), new_registration_path(resource_name), class: 'sign-up-log-in_button' %>
   <% end -%>
   <div class="container-login">
     <div class="login-fields w-100">

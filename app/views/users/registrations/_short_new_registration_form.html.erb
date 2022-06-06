@@ -29,7 +29,7 @@
       </div>
     <% end %>
     <%- if controller_name != 'sessions' %>
-      <%= link_to t('.login'), new_session_path(resource_name), class: 'sign-up-log-in_button' %>
+      <%= link_to t('users.sessions.new.login'), new_session_path(resource_name), class: 'sign-up-log-in_button' %>
     <% end -%>
     <div class="login-fields">
       <div class="field-icon">

@@ -25,6 +25,7 @@ module Webhooks::PaymentGateway
       headers = { Authorization: ENV['PAYMENT_BLOCK_AUTHORIZATION_KEY'] }
 
       response = HTTParty.post(ENDPOINT, headers: headers, body: params)
+
       return response.parsed_response.dig('data') if response.success?
 
       raise(response.parsed_response.dig('message'))
@@ -38,7 +39,7 @@ module Webhooks::PaymentGateway
         current_currency: @current_currency,
         payment_currency: @payment_currency,
         payment_method: @payment_method
-      }.to_json
+      }
     end
   end
 end

@@ -14,7 +14,7 @@
         <div class="request-box">
             <h4>
             <p><strong><%= t(:package_value) %></strong></p>
-              <i class="fas fa-dollar-sign"></i>
+              R<i class="fas fa-dollar-sign"></i>
               <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
               <br>
               <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>

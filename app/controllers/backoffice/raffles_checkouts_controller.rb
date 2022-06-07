@@ -2,6 +2,7 @@
 
 module Backoffice
   class RafflesCheckoutsController < BackofficeController
+    before_action :format_document_id
     before_action :ensure_name_and_id
 
     def create
@@ -30,13 +31,17 @@ module Backoffice
 
     private
 
+    def format_document_id
+      @document_id = params[:document_id].gsub(/\D+/, '')
+    end
+
     def ensure_name_and_id
-      if params[:document_id].blank? || params[:user_name].blank?
+      if @document_id.blank? || params[:user_name].blank?
         flash[:error] =I18n.t(:id_or_name_blank)
         redirect_to backoffice_raffles_carts_path
       end
 
-      current_user.update(document_cpf: params[:document_id], name: params[:user_name])
+      current_user.update(document_cpf: @document_id, name: params[:user_name])
     end
 
     def valid_params

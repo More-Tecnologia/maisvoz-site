@@ -108,7 +108,7 @@
     Olá, <%= @user.name %>!
   </p>
   <p>
-    Segue a seguir os números de seus bilhetes, confira abaixo.
+    Seus bilhetes estão a seguir, confira abaixo.
   </p>
   <h6><b>01</b> <%= link_to 'Meus bilhetes', backoffice_orders_url %></h6>
   <% @products.each do |product| %>
@@ -124,10 +124,7 @@
         <% end%>
       </ul>
     </div>
-  <% end %>  
-  <p>
-    <%= t(:financial_department_footer, company_name: SystemConfiguration.company_name).html_safe %>
-  </p>
+  <% end %>   
   <div class="logo-container">
   </div>
 </div>

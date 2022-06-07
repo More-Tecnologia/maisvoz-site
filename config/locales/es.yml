@@ -2039,3 +2039,8 @@ es:
   go_to_payment: ir al pago
   document_id: Identidad
   id_or_name_blank: El nombre o identidad está en blanco
+  your_tickets: Tus entradas
+  hello: Hola
+  order_made_message: A adelante se encuentran los números de sus boletos, debe pagar para garantizar los números.
+  order_paid_message: A adelante se encuentran los números de sus boletos, échales un vistazo a continuación. Ahora solo espera el día del sorteo.
+  my_tickets: Mis entradas

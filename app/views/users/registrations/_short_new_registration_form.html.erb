@@ -15,7 +15,7 @@
                                             placeholder: t(:sponsor),
                                             style: 'display: none;',
                                             readonly: @form.token.present?,
-                                            value: (@form.sponsor_username || User.find_morenwm_customer_user.username) %>
+                                            value: (@form.sponsor_username.presence || User.find_morenwm_customer_user.username) %>
      <% else %>
       <div class="login-fields">
         <div class="field-icon">

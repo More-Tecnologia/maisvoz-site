@@ -2036,3 +2036,8 @@ en:
   go_to_payment: Go to payment
   document_id: ID
   id_or_name_blank: Name or ID is blank
+  your_tickets: Your tickets
+  hello: Hello
+  order_made_message: Below are your ticket numbers, you need to pay to guarantee the numbers.
+  order_paid_message: Below are your ticket numbers, check them out below. Now just wait for the day of the draw.
+  my_tickets: My tickets

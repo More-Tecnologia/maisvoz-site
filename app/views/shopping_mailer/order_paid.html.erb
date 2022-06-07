@@ -102,15 +102,15 @@
   <div class="image-container">
   </div>
   <h1>
-    Seus bilhetes
+    <%= t(:your_tickets)%>
   </h1>
   <p>
-    Olá, <%= @user.name %>!
+    <%= t(:hello)%>, <%= @user.name %>!
   </p>
   <p>
-    Seus bilhetes estão a seguir, confira abaixo.
+    <%= t(:order_paid_message) %>
   </p>
-  <h6><b>01</b> <%= link_to 'Meus bilhetes', backoffice_orders_url %></h6>
+  <h6><b>01</b> <%= link_to t(:my_tickets), backoffice_orders_url %></h6>
   <% @products.each do |product| %>
     <% order_items = product.order_items.includes(:raffle_ticket).where(order: @order) %>
     <div class="product-info">

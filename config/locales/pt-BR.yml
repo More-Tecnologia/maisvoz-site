@@ -1967,3 +1967,8 @@ pt-BR:
   request_withdraw: Solicitar saque
   document_id: CPF
   id_or_name_blank: Nome ou CPF está em branco
+  your_tickets: Seus bilhites
+  hello: Olá
+  order_made_message: Segue a seguir os números de seus bilhetes, você precisa pagar para garantir os numeros.
+  order_paid_message: Segue a seguir os números de seus bilhetes, confira abaixo. Agora é só esperar o dia do sorteio.
+  my_tickets: Meus bilhetes

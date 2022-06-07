@@ -42,7 +42,9 @@ class ShortNewRegistrationForm < Form
   private
 
   def normalize_usernames
-    @sponsor_username = I18n.transliterate(sponsor_username.to_s.gsub(/\D+/, '').downcase)
+    if (token.present? || ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']))
+     @sponsor_username = I18n.transliterate(sponsor_username.to_s.gsub(/\D+/, '').downcase)
+    end
     @username = I18n.transliterate(username.to_s.gsub(/\D+/, '').downcase)
   end
 

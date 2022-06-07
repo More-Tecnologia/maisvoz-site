@@ -40,9 +40,9 @@ input[type="number"] {
 .raffle-tickets--regulation-button {
   background: none;
   border-bottom: 1px dashed #00000000;
+  border-left: none;
   border-right: none;
   border-top: none;
-  border-left: none;
   color: #999;
   cursor: pointer;
   display: block;
@@ -87,6 +87,26 @@ input[type="number"] {
   white-space: nowrap;
 }
 
+.raffle-tickets-price {
+  color: #333;
+  display: block;
+  font-size: 0.7em;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.raffle-tickets-price b,
+.raffle-tickets-price i {
+  font-size: 0.5em;
+  font-weight: 400;
+  vertical-align: text-top;
+}
+
+.raffle-tickets-price i {
+  font-style: normal;
+  padding-left: 2px;
+}
+
 .raffle-tickets-description {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
@@ -96,7 +116,7 @@ input[type="number"] {
   font-weight: 300;
   line-clamp: 5;
   line-height: 1.6em;
-  margin: 0.5em 0 0 0;
+  margin: 0.2em 0 0 0;
   max-height: 10em;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -297,8 +317,8 @@ input[type="number"] {
   background: none;
   border: none;
   box-shadow: none;
-  width: 100%;
   cursor: auto;
+  width: 100%;
 }
 
 .selected-tickets-container .raffle-tickets-numbers-list-item.message b {

@@ -28,6 +28,9 @@
                                             value: @form.token.present? ? @form.sponsor.try(:username).to_s.gsub(/.{5}$/, '*****') : @form.sponsor_username %>
       </div>
     <% end %>
+    <%- if controller_name != 'sessions' %>
+      <%= link_to t('users.sessions.new.login'), new_session_path(resource_name), class: 'sign-up-log-in_button' %>
+    <% end -%>
     <div class="login-fields">
       <div class="field-icon">
         <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>

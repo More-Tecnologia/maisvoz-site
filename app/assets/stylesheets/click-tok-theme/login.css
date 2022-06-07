@@ -1,0 +1,15 @@
+.credentials-box .sign-up-log-in_button {
+  background: #ddd;
+  border-radius: 40px;
+  border: 1px solid #bcbcbc;
+  color: #444;
+  display: block;
+  font-size: 0.9rem;
+  margin: 0 auto;
+  padding: 4px 20px;
+}
+
+.credentials-box .sign-up-log-in_button:hover {
+  background: #555;
+  color: #ccc;
+}

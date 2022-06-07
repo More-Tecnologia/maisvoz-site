@@ -10,12 +10,7 @@
     <%= f.hidden_field :g_recaptcha_response %>
     <%= f.hidden_field :token %>
      <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
-         <%= f.input_field :sponsor_username, autofocus: true,
-                                            class: "input-description",
-                                            placeholder: t(:sponsor),
-                                            style: 'display: none;',
-                                            readonly: @form.token.present?,
-                                            value: (@form.sponsor_username.presence || User.find_morenwm_customer_user.username) %>
+         <%= f.hidden_field :sponsor_username, value: (@form.sponsor_username.presence || User.find_morenwm_customer_user.username) %>
      <% else %>
       <div class="login-fields">
         <div class="field-icon">

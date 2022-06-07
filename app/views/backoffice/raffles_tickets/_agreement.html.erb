@@ -3,7 +3,11 @@
 <section class="modal-regulation">
   <button class="modal-close-button">✕</button>
   <div class="modal-regulation-header">
-    <%= image_tag('logo.png', class: 'modal-regulation-image') %>
+    <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <%= image_tag('white-label-logo.png', class: 'modal-regulation-image') %>
+    <% else %>
+      <%= image_tag('logo.png', class: 'modal-regulation-image') %>
+    <% end %>
     <h4 class="modal-regulation-title"><%= t(:draw_regulation) %></h4>
   </div>
   <article class="modal-regulation-text">

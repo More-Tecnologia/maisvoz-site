@@ -4,7 +4,7 @@
 <%= render 'agreement' %>
 <div class="raffle-tickets-container">
   <div class="raffle-tickets-header-container">
-    <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>
+    <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do %>
       <svg xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -28,11 +28,12 @@
     </div>
     <div class="raffle-tickets-info-container">
       <h1 class="raffle-tickets-title"><%= @raffle.title %></h1>
+      <span class="raffle-tickets-price"><%= format_currency(@raffle.price) %></span>
       <p class="raffle-tickets-description">
         <%= @raffle.description %>
       </p>
       <button class="raffle-tickets-read-more">
-        <%= t(:read_more) %>
+        <%# <%= t(:read_more) %>
       </button>
       <ul class="raffle-tickets-info--footer">
         <li class="raffle-tickets-info--footer--item">

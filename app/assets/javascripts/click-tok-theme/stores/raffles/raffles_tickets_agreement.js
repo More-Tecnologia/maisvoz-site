@@ -6,7 +6,7 @@ const publicRegulation = {};
   };
   const buttons = {
     regulation: document.querySelector(".regulation-button"),
-    close: document.querySelector(".modal-close-button"),
+    close: document.querySelector(".modal-regulation .modal-close-button"),
   };
 
   function openModalHendler() { 

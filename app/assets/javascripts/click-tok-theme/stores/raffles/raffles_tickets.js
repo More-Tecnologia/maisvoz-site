@@ -81,6 +81,7 @@ function raffleTickets(ticketsData) {
 
   // Start
   renderTickets(ticketList.initial);
+  resetElements();  
 
   // Functions
   function addTicket(ticketNumber, element) {
@@ -171,6 +172,7 @@ function raffleTickets(ticketsData) {
   function renderTickets(ticketsArray) {
     const state = ["available", "reserved", "purched", "selected"];
     containers.tickets.innerHTML = "";
+    let HTMLObject = '';
     showTicketCount();
 
     ticketsArray.map((ticket) => {
@@ -183,9 +185,9 @@ function raffleTickets(ticketsData) {
       }" data-ticket="${ticket[0]}">
                           <b>${formatNumber(ticket[0])}</b>
                         </li>`;
-
-      containers.tickets.insertAdjacentHTML("afterbegin", HTMLTicket);
+      HTMLObject += HTMLTicket;
     });
+    containers.tickets.innerHTML = HTMLObject;
   }
 
   function renderSelectedTickets() {
@@ -206,6 +208,10 @@ function raffleTickets(ticketsData) {
         containers.ticketsSelect.insertAdjacentHTML("afterbegin", HTMLTicket);
       });
     }
+  }
+
+  function resetElements(){
+    buttons.pay.disabled = true;
   }
 
   function setPaymentButton(numberOfTickets) {

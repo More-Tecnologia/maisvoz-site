@@ -1,0 +1,69 @@
+<%= stylesheet_link_tag 'click-tok-theme/shared/login_register' %>
+<%= javascript_include_tag 'click-tok-theme/shared/login_register', defer: true %>
+<section class="modal-login-register login">
+  <button class="modal-close-button">✕</button>
+  <div class="modal-logo">
+    <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <%= image_tag 'white-label-logo.png' %>
+    <% else %>
+      <%= image_tag 'logo.png' %>
+    <% end %>
+  </div>
+  <div class="form-container">
+  <ul class="form-menu">
+    <li class="login-toggle-button form-title">
+      Entre    
+    </li>
+    <li class="register-toggle-button form-title">
+      Cadastre-se    
+    </li>
+  </ul>
+    <div class="modal-login-container">
+      <span class="form-title">Entre</span>
+      <span class="form-subtitle">Já possui conta?</span>
+      <form class="login-form">
+        <label for="login-user" class="field-container">
+          <input id="login-user" type="text" placeholder="Usuario" />
+        </label>
+        <label for="login-password" class="field-container">
+          <input id="login-password" type="password" placeholder="Senha" />
+        </label>
+        <%# <label for="keep-logged">
+          <input id="keep-logged" type="checkbox" />
+          Salvar acesso
+        </label> %>
+        <button type="submit">
+          Entrar
+        </button>
+      </form>
+      <div class="form-links-container">
+        <a href="#">Esqueceu sua senha?</a>
+      </div>
+    </div>    
+    <div class="modal-register-container">
+      <span class="form-title">Cadastre-se</span>
+      <span class="form-subtitle">Crie sua conta agora mesmo!</span>
+      <form class="register-form">
+        <select class="field-container" type="text" required>          
+          <option value="" disabled selected>País</option>
+          <option>Other coutry</option>
+        </select>            
+        <label for="register-user" class="field-container">      
+          <input id="register-user" type="text" placeholder="Usuario" />
+        </label>
+        <label for="register-email" class="field-container">      
+          <input id="register-email" type="email" placeholder="Email" />
+        </label>
+        <label for="register-password" class="field-container">      
+          <input id="register-password" type="password" placeholder="Senha" />
+        </label>
+        <label for="register-repeat-password" class="field-container">          
+          <input id="register-repeat-password" type="password" placeholder="Confirme a senha" />
+        </label>    
+        <button type="submit">
+          Cadastrar
+        </button>
+      </form>
+    </div>
+  </div>  
+</section>

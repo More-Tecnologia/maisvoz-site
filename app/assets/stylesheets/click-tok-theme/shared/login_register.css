@@ -1,0 +1,244 @@
+.regulation-backdrop {
+  background: rgba(10, 10, 10, 0.6);
+  height: 100vh;
+  position: fixed;
+  width: 100vw;
+  z-index: 100;
+}
+
+body.backdrop {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.modal-login-register {
+  background: #efefef;
+  border-radius: 15px;
+  cursor: auto;
+  display: flex;
+  display: flex;
+  display: none;
+  flex-direction: column;
+  font-size: calc(0.6rem + 0.3vw);
+  height: auto;
+  left: 50%;
+  max-height: 95%;
+  max-width: 900px;
+  padding-bottom: 2%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: 999;  
+  overflow-y: scroll;
+}
+
+.modal-login-register.open {
+  display: block;
+}
+
+.modal-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 4%;
+  padding-bottom: 12%;
+  width: 100%;
+}
+
+.modal-logo img {
+  width: 30%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;  
+}
+
+.form-menu {
+  display: none;
+  justify-content: space-between;
+  width: 86%;
+}
+
+.form-menu li {
+  display: flex;
+  margin-bottom: 0;
+  width: auto;
+}
+
+.form-title {
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: #777;
+  color: transparent;
+  font-size: 2em;
+  font-weight: 800;
+  line-height: 1em;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+  width: 86%;
+}
+
+.form-subtitle {
+  color: #000;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  padding-left: 2px;
+  width: 86%;
+}
+
+.login-toggle-button {
+  font-size: 1.8em;
+}
+
+.register-toggle-button {
+  font-size: 1.8em;
+}
+
+.modal-login-container,
+.modal-register-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 50%;
+}
+
+.modal-register-container::after {
+  background: #e5e5e5;
+  content: "";
+  display: block;
+  height: 98%;
+  left: 0;
+  position: absolute;
+  top: 1%;
+  width: 4px;
+}
+
+.modal-login-register form {
+  display: flex;
+  flex-direction: column;
+  width: 86%;
+}
+
+.modal-login-register form input,
+.modal-login-register form select,
+.modal-login-register form button {
+  border: none;
+  font-size: 1.2em;
+}
+
+.modal-login-register form select:required:invalid {
+  color: #bbb;
+}
+.modal-login-register form option[value=""][disabled] {
+  display: none;
+}
+.modal-login-register form option {
+  color: black;
+}
+
+.modal-login-register .field-container {
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  margin-bottom: 4%;
+  overflow: hidden;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.modal-login-register .field-container > * {
+  width: 100%;
+}
+
+.modal-login-register form button {
+  background: #3f3f3f;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-weight: 800;
+  height: 50px;
+  margin-top: 8%;
+}
+
+.modal-login-register form button:hover {
+  background: #000;
+}
+
+.form-links-container {
+  margin-top: 3%;
+  width: 86%;
+}
+
+.form-links-container a {
+  color: #777;
+}
+
+@media (max-width: 740px) {
+  .form-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .modal-register-container::after {
+    display: none;
+  }
+
+  .modal-login-container,
+  .modal-register-container {
+    width: 100%;
+  }
+
+  .modal-login-register .field-container {
+    height: 40px;
+  }
+
+  .modal-login-register form button {
+    height: 40px;
+  }
+
+  .form-menu {
+    display: flex;
+    margin-bottom: 10%;
+  }
+
+  .form-menu .form-title{
+    cursor: pointer;
+  }
+
+  .modal-login-container .form-title,
+  .modal-register-container .form-title,
+  .modal-login-container .form-subtitle,
+  .modal-register-container .form-subtitle {
+    display: none;
+  }
+
+  .modal-login-register.login .modal-register-container {
+    display: none;
+  }
+
+  .modal-login-register.register .modal-login-container {
+    display: none;
+  }
+
+  .modal-login-register.login .login-toggle-button {
+    background-color: #000;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+  }
+
+  .modal-login-register.register .register-toggle-button {
+    background-color: #000;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
+  }
+
+  .modal-login-register .form-menu .form-title:hover {
+    background-color: #333;
+  }
+}

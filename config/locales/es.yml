@@ -2044,3 +2044,5 @@ es:
   order_made_message: A adelante se encuentran los números de sus boletos, debe pagar para garantizar los números.
   order_paid_message: A adelante se encuentran los números de sus boletos, échales un vistazo a continuación. Ahora solo espera el día del sorteo.
   my_tickets: Mis entradas
+  already_have_account: ¿Ya tienes una cuenta?
+  create_your_account: ¡Crea tu cuenta ahora mismo!

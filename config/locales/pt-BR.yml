@@ -1173,7 +1173,7 @@ pt-BR:
         didnt_receive_instructions: Não recebeu instruções de confirmação?
         forgot_password: Esqueceu sua senha?
         login: Login
-        sign_up: Cadastrar
+        sign_up: Cadastre-se
         unlock_instructions: Não recebeu as instruções de desbloqueio?
     registrations:
       edit:
@@ -1972,3 +1972,5 @@ pt-BR:
   order_made_message: Segue a seguir os números de seus bilhetes, você precisa pagar para garantir os numeros.
   order_paid_message: Segue a seguir os números de seus bilhetes, confira abaixo. Agora é só esperar o dia do sorteio.
   my_tickets: Meus bilhetes
+  already_have_account: Já possui conta?
+  create_your_account: Crie sua conta agora mesmo!

@@ -32,16 +32,18 @@ module Backoffice
     private
 
     def format_document_id
-      @document_id = params[:document_id].gsub(/\D+/, '')
+      @document_id = params[:document_id]&.gsub(/\D+/, '')
     end
 
     def ensure_name_and_id
+      return if current_user.document_cpf.present? && current_user.name.present?
+
       if @document_id.blank? || params[:user_name].blank?
         flash[:error] =I18n.t(:id_or_name_blank)
         redirect_to backoffice_raffles_carts_path
+      else
+        current_user.update(document_cpf: @document_id, name: params[:user_name])
       end
-
-      current_user.update(document_cpf: @document_id, name: params[:user_name])
     end
 
     def valid_params

@@ -19,8 +19,8 @@ module Backoffice
         render 'backoffice/payment_transactions/show'
       else
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
-        ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)
-        RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 24.hour, valid_params[:order].id)
+        ExpireOrderWorker.perform_at(Time.now + 3.hour, valid_params[:order].id)
+        RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 3.hour, valid_params[:order].id)
         current_raffles_cart
         render 'backoffice/payment_transactions/show'
       end

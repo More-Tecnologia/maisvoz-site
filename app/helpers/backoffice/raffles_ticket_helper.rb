@@ -13,7 +13,7 @@ module Backoffice
     end
 
     def available_raffle_tickets_count(raffle)
-      raffle.max_ticket_number - raffle.raffle_tickets.owned.size
+      raffle.raffle_tickets.available.size
     end
     
     def raffle_ticket_number_format(ticket)

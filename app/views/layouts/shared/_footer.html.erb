@@ -2,7 +2,7 @@
 <div class="bottom-menu">
   <nav class="nav">
     <ul class="main-list">
-      <% if current_user.present? %>
+      <% if user_signed_in? %>
         <% if current_user&.empreendedor? %>
           <li class="list active">
             <%= link_to root_path, class:"link-nav", onclick:"navigate('/')"  do %>

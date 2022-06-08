@@ -1,0 +1,15 @@
+if (<%= @user.present? %>) {
+  let toggle = () => {
+    let elem = document.querySelector("#payment-ticket-button")
+    elem.dataset.logged = true;
+    publicLoginRegister.closeModalHandler()
+  }
+  toggle();
+} else {
+    let toggle = () => {
+    let elem = document.querySelector("#error-msg")
+    elem.innerHTML = ''
+    elem.insertAdjacentHTML('afterbegin', "<div class='alert alert-danger alert-dismissible'><%= @error %><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+  }
+  toggle();
+}

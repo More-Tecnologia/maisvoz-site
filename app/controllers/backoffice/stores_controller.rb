@@ -6,7 +6,7 @@ module Backoffice
 
     def course
       @course = Course.find_by_hashid(params[:id])
-      return unless current_user.present? && @course.in?(current_user.courses)
+      return unless user_signed_in? && @course.in?(current_user.courses)
 
       redirect_to backoffice_course_path(@course)
     end

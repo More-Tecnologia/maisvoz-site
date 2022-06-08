@@ -52,7 +52,7 @@ module Backoffice
 
     def valid_params
       params.require(:raffle)
-            .permit(:numbers, :random_number_quantity)
+            .permit(:numbers)
             .merge(country: params[:country],
                    order: current_raffles_cart,
                    product: @raffle.product)

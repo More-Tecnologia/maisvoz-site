@@ -3,6 +3,7 @@ if (<%= @user.present? %>) {
     let elem = document.querySelector("#payment-ticket-button")
     elem.dataset.logged = true;
     publicLoginRegister.closeModalHandler()
+    elem.click();
   }
   toggle();
 } else {

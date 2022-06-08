@@ -4,6 +4,7 @@ module Backoffice
   class RafflesCheckoutsController < BackofficeController
     before_action :format_document_id
     before_action :ensure_name_and_id
+    before_action :ensure_payment_method
 
     def create
       if valid_params[:payment_method] == 'balance'
@@ -44,6 +45,13 @@ module Backoffice
       else
         current_user.update(document_cpf: @document_id, name: params[:user_name])
       end
+    end
+
+    def ensure_payment_method
+      return if params[:payment_method].present?
+
+      flash[:error] =I18n.t(:payment_method_blank)
+      redirect_to backoffice_raffles_carts_path
     end
 
     def valid_params

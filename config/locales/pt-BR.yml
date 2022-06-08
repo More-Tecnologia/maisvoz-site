@@ -1975,3 +1975,4 @@ pt-BR:
   already_have_account: Já possui conta?
   create_your_account: Crie sua conta agora mesmo!
   wrong_user_or_password: O usuário e/ou senha estão incorretos
+  payment_method_blank: Selecione um método de pagamento para continuar

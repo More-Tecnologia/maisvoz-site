@@ -2039,3 +2039,4 @@ en:
   already_have_account: Already have account
   create_your_account: Create your account right now!
   wrong_user_or_password: Username and/or password are incorrect
+  payment_method_blank: Please select a payment method to continue

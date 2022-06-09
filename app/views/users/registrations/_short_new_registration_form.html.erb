@@ -30,7 +30,7 @@
       <div class="field-icon">
         <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>
       </div>
-      <%= f.input_field :country, class: "input-description", prompt: t('attributes.country'), format: :with_country_code %>
+      <%= f.input_field :country, class: "input-description", prompt: t('attributes.country'), format: :with_country_code, priority: priority_countries %>
     </div>
     <div class="login-fields">
       <div class="field-icon">

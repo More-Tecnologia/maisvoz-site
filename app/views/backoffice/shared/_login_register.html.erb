@@ -47,10 +47,9 @@
       <span class="form-title"><%= t('users.shared.links.sign_up') %></span>
       <span class="form-subtitle"><%= t('create_your_account') %></span>
       <%= simple_form_for(:user, url: users_path, html: { class: 'register-form', remote: true}) do |f| %>
-
-        <%= f.input_field :country, class: "field-container", prompt: t('attributes.country'), format: :with_country_code %>
-        <label for="register-user" class="field-container">      
-          <%= f.input_field :username, id: "register-user", placeholder: t(:phone) %>
+        <%= f.input_field :country, id: "user_country", class: "field-container", prompt: t('attributes.country'), format: :with_country_code, priority: priority_countries %>
+        <label for="user_username" class="field-container">      
+          <%= f.input_field :username, id: "user_username", placeholder: t(:phone) %>
         </label>
         <label for="register-email" class="field-container">      
           <%= f.input_field :email, id: "register-email", placeholder: t(:email) %>

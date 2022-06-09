@@ -140,13 +140,13 @@ function raffleTickets(ticketsData) {
     });
   }
 
-  function filterTickets(filter) {   
+  function filterTickets(filter) {
     if (filter !== false) {
       ticketList.rendered = getTicketByState(ticketList.initial, filter);
       containers.tickets.innerHTML = "";
-    }else{
+    } else {
       ticketList.rendered = ticketList.initial;
-    }  
+    }
     state.ticketPosition = 0;
     renderTicketsFilterLazy();
   }
@@ -204,7 +204,7 @@ function raffleTickets(ticketsData) {
     let HTMLObject = "";
     showTicketCount();
 
-    ticketList.rendered.slice(...ticketRange).map((ticket) => {     
+    ticketList.rendered.slice(...ticketRange).map((ticket) => {
       const ticketClass = ticketList.selected.includes(ticket[0])
         ? state[3]
         : state[ticket[1]];
@@ -225,7 +225,7 @@ function raffleTickets(ticketsData) {
 
   function renderTicketsLazy() {
     if (state.ticketPosition > ticketList.rendered.length) return;
-    
+
     state.ticketPosition += baseSettings.paginationSize;
     const ticketRange = [
       state.ticketPosition,
@@ -237,7 +237,6 @@ function raffleTickets(ticketsData) {
 
   function renderTicketsFilterLazy() {
     if (state.ticketPosition > ticketList.rendered.length) return;
-    
 
     const ticketRange = [
       state.ticketPosition,

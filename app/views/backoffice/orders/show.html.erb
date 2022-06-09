@@ -2,42 +2,43 @@
                         integrity: 'sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU',
                         crossorigin: 'anonymous' %>
 <%= stylesheet_link_tag 'click-tok-theme/app' %>
-
 <div class="main-box">
   <div class="d-flex flex-column align-items-center">
     <div class="card-box">
       <div class="box-top">
         <div class="request-box">
-            <h1><strong><%= t(:request_number) %></strong></h1>
-            <span class="pull-right" style="float: right;"> <%= @order.hashid %></span>
+          <h1><strong><%= t(:request_number) %></strong></h1>
+          <span class="pull-right" style="float: right;"> <%= @order.hashid %></span>
         </div>
         <div class="request-box">
-            <h4>
+          <h4>
             <p><strong><%= t(:package_value) %></strong></p>
-              R<i class="fas fa-dollar-sign"></i>
-              <%= number_to_currency(@order.total, unit: '') %>
-              <br>
-              <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? && @order.payment_type.in?(['btc'])%>
-                <i class="fab fa-btc"></i>
-                <%= format_digital_currency(@order.payment_transaction.amount) %>
-              <% end %>
-            </h4>
+            R<i class="fas fa-dollar-sign"></i>
+            <%= number_to_currency(@order.total, unit: '') %>
+            <br>
+            <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? && @order.payment_type.in?(['btc'])%>
+              <i class="fab fa-btc"></i>
+              <%= format_digital_currency(@order.payment_transaction.amount) %>
+            <% end %>
+          </h4>
         </div>
       </div>
       <div class="row m-t-30">
         <% if @order.shipping > 0 %>
-        <div class="col-md-12">
-          <div class="col-md-1">
-            <h3> <%= Order.human_attribute_name(:shipping) %> </h3>
-          </div>
-          <div class="col-md-11">
-            <h3> <%= number_to_currency(@order.shipping,
+          <div class="col-md-12">
+            <div class="col-md-1">
+              <h3> <%= Order.human_attribute_name(:shipping) %> </h3>
+            </div>
+            <div class="col-md-11">
+              <h3> <%= number_to_currency(@order.shipping,
                                         unit: ENV['CURRENT_CURRENCY']) %> </h3>
+            </div>
           </div>
-        </div>
         <% end %>
-
       </div>
+      <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+        <%= render 'backoffice/shared/ticket_numbers', orders: @order %>
+      <% end %>
       <% if @order.payment_type.in?(['btc', 'pix']) %>
         <div class="box-bottom">
           <div class='row text-center'>
@@ -59,25 +60,25 @@
           </div>
           <div class='row text-center'>
             <span class="text-center">
-            <% if @order.btc? %>
-              <%= render_qr_code_img(@order.payment_transaction.wallet_address) if @order.payment_transaction.wallet_address.present? %>
-            <% elsif @order.pix? %>
-              <%= image_tag(@order.payment_transaction.qr_code_url) %>
-            <% end %>
+              <% if @order.btc? %>
+                <%= render_qr_code_img(@order.payment_transaction.wallet_address) if @order.payment_transaction.wallet_address.present? %>
+              <% elsif @order.pix? %>
+                <%= image_tag(@order.payment_transaction.qr_code_url) %>
+              <% end %>
             </span> <br>
             <% if @order.btc? %>
               <span class="purple text-center" id="wallet-address"><%= @order.payment_transaction.provider_response['wallet_address'] %></span>
-            <% elsif @order.pix? %> 
+            <% elsif @order.pix? %>
               <span class="purple text-center" id="wallet-address"><%= @order.payment_transaction.provider_response['pix_key'] %></span>
             <% end %>
           </div>
           <div class="row text-center">
             <div class="">
-            <% if @order.btc? %>
-              <%= copier_button(@order.payment_transaction.provider_response['wallet_address'], '#wallet-address') %>
-            <% elsif @order.pix? %>
-              <%= copier_button(@order.payment_transaction.provider_response['pix_key'], '#wallet-address') %>
-            <% end %>
+              <% if @order.btc? %>
+                <%= copier_button(@order.payment_transaction.provider_response['wallet_address'], '#wallet-address') %>
+              <% elsif @order.pix? %>
+                <%= copier_button(@order.payment_transaction.provider_response['pix_key'], '#wallet-address') %>
+              <% end %>
             </div>
           </div>
           <br>

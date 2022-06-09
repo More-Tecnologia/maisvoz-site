@@ -1,13 +1,17 @@
 // Helpers
-const formatNumber = (number) => {
-  if (number < 10) return "00" + number;
-  else if (number < 100) return "0" + number;
-  else return number;
+const formatNumber = (number, numberArray) => {
+  const lastArrayNumber = numberArray[numberArray.length - 1][0];
+  const size = lastArrayNumber.toString().length;
+  number = number.toString();
+
+  while (number.length < size) number = "0" + number;
+
+  return number;
 };
 
 const getElement = (elementName, all = false) => {
   if (all) return document.querySelectorAll(elementName);
-  else return document.querySelector(elementName);
+  return document.querySelector(elementName);
 };
 
 function getTicket(ticketNumber, elementCollection) {
@@ -33,6 +37,7 @@ const getTicketByState = (ticketsArray, stateNumber) => {
 const containers = {
   tickets: getElement(".tickets-container"),
   ticketsSelect: getElement(".selected-tickets-container"),
+  stickyBar: getElement(".raffle-tickets-bar"),
 };
 
 const inputs = {
@@ -43,7 +48,7 @@ const inputs = {
 const genericElement = {
   cartIcon: getElement(".cart-icon"),
   cartIconNumber: getElement(".cart-icon-number"),
-  raffleNumber: getElement(".raffle-tickets-number b")
+  raffleNumber: getElement(".raffle-tickets-number b"),
 };
 
 const buttons = {
@@ -61,60 +66,60 @@ const handlers = {};
 
 function raffleTickets(ticketsData) {
   // Objects
+  const baseSettings = {
+    filterOptions: { available: 0, reserved: 1, purched: 2 },
+    maxSelectedTickets: 10,
+    paginationSize: 200,
+  };
+
   const ticketList = {
     initial: ticketsData.sort((a, b) => a - b),
     available: getTicketByState(ticketsData, 0).map((item) => item[0]),
     reserved: getTicketByState(ticketsData, 1).map((item) => item[0]),
     purched: getTicketByState(ticketsData, 2).map((item) => item[0]),
     currentAvailable: getTicketByState(ticketsData, 0).map((item) => item[0]),
+    rendered: ticketsData.sort((a, b) => a - b),
     selected: [],
   };
 
   const state = {
     filter: null,
-  };
-
-  const baseSettings = {
-    filterOptions: { available: 0, reserved: 1, purched: 2 },
-    maxSelectedTickets: 10,
+    ticketPosition: 0,
   };
 
   // Start
-  renderTickets(ticketList.initial);
-  resetElements();  
+  containers.tickets.innerHTML = "";
+  renderTicketsRange();
+  resetElements();
 
   // Functions
   function addTicket(ticketNumber, element) {
     ticketList.selected.push(ticketNumber);
     ticketList.selected.sort((a, b) => b - a);
 
-    element.classList.remove("available");
-    element.classList.add("selected");
+    toggleClass(element, "available", "selected");
   }
 
-  function changeTicket(action, ticketNumber = false) {
-    if (
-      action === "ADD" &&
-      ticketList.selected.length >= baseSettings.maxSelectedTickets
-    )
-      return;
-
+  function crud(setAction, ticketNumber) {
     const ticketCollection = getElement(".ticket-list .ticket-item", true);
     const element =
       ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
 
-    switch (action) {
-      case "ADD":
-        addTicket(ticketNumber, element);
-        break;
-      case "CLEAR":
-        clearTickets(ticketCollection);
-        break;
-      case "REMOVE":
-        removeTicket(ticketNumber, element);
-        break;
-    }
+    const actions = {
+      add: () => addTicket(ticketNumber, element),
+      clear: () => clearTickets(ticketCollection),
+      remove: () => removeTicket(ticketNumber, element),
+    };
 
+    return actions[setAction]();
+  }
+
+  function changeTicket(setAction, ticketNumber = false) {
+    const stopAdd =
+      ticketList.selected.length >= baseSettings.maxSelectedTickets;
+    if (setAction === "add" && stopAdd) return;
+
+    crud(setAction, ticketNumber);
     renderSelectedTickets();
 
     ticketList.currentAvailable = ticketList.available.filter(
@@ -136,11 +141,14 @@ function raffleTickets(ticketsData) {
   }
 
   function filterTickets(filter) {
-    let filteredTickets = ticketList.initial;
-    if (filter !== false)
-      filteredTickets = getTicketByState(ticketList.initial, filter);
-
-    renderTickets(filteredTickets);
+    if (filter !== false) {
+      ticketList.rendered = getTicketByState(ticketList.initial, filter);
+      containers.tickets.innerHTML = "";
+    } else {
+      ticketList.rendered = ticketList.initial;
+    }
+    state.ticketPosition = 0;
+    renderTicketsFilterLazy();
   }
 
   function genRandomTicket() {
@@ -155,8 +163,7 @@ function raffleTickets(ticketsData) {
     const arrayPosition = ticketList.selected.indexOf(ticketNumber);
 
     ticketList.selected.splice(arrayPosition, 1);
-    element.classList.add("available");
-    element.classList.remove("selected");
+    toggleClass(element, "selected", "available");
   }
 
   function renderCartIconNumber(numberOfTickets) {
@@ -172,22 +179,73 @@ function raffleTickets(ticketsData) {
   function renderTickets(ticketsArray) {
     const state = ["available", "reserved", "purched", "selected"];
     containers.tickets.innerHTML = "";
-    let HTMLObject = '';
+    let HTMLObject = "";
     showTicketCount();
 
     ticketsArray.map((ticket) => {
       const onClickFunction =
         ticket[1] === 0 ? `onclick="handlers.ticketHandler(${ticket[0]})"` : "";
       const HTMLTicket = `<li style="order: ${formatNumber(
-        ticket[0]
+        ticket[0],
+        ticketList.initial
       )}" ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
         state[ticket[1]]
       }" data-ticket="${ticket[0]}">
-                          <b>${formatNumber(ticket[0])}</b>
+                          <b>${formatNumber(ticket[0], ticketList.initial)}</b>
                         </li>`;
       HTMLObject += HTMLTicket;
     });
     containers.tickets.innerHTML = HTMLObject;
+  }
+
+  function renderTicketsRange(ticketRange = [0, baseSettings.paginationSize]) {
+    const state = ["available", "reserved", "purched", "selected"];
+
+    let HTMLObject = "";
+    showTicketCount();
+
+    ticketList.rendered.slice(...ticketRange).map((ticket) => {
+      const ticketClass = ticketList.selected.includes(ticket[0])
+        ? state[3]
+        : state[ticket[1]];
+
+      const onClickFunction =
+        ticket[1] === 0 ? `onclick="handlers.ticketHandler(${ticket[0]})"` : "";
+      const HTMLTicket = `<li style="order: ${formatNumber(
+        ticket[0],
+        ticketList.initial
+      )}" ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${ticketClass}" data-ticket="${
+        ticket[0]
+      }">
+                          <b>${formatNumber(ticket[0], ticketList.initial)}</b>
+                        </li>`;
+      containers.tickets.insertAdjacentHTML("beforeend", HTMLTicket);
+    });
+  }
+
+  function renderTicketsLazy() {
+    if (state.ticketPosition > ticketList.rendered.length) return;
+
+    state.ticketPosition += baseSettings.paginationSize;
+    const ticketRange = [
+      state.ticketPosition,
+      state.ticketPosition + baseSettings.paginationSize,
+    ];
+
+    renderTicketsRange(ticketRange);
+  }
+
+  function renderTicketsFilterLazy() {
+    if (state.ticketPosition > ticketList.rendered.length) return;
+
+    const ticketRange = [
+      state.ticketPosition,
+      state.ticketPosition + baseSettings.paginationSize,
+    ];
+
+    state.ticketPosition += baseSettings.paginationSize;
+
+    renderTicketsRange(ticketRange);
   }
 
   function renderSelectedTickets() {
@@ -202,7 +260,7 @@ function raffleTickets(ticketsData) {
     } else {
       ticketList.selected.map((ticket) => {
         const HTMLTicket = `<li onclick="handlers.selectedTicketHandler(${ticket})" class="raffle-tickets-numbers-list-item" data-ticket="${ticket}">
-                            <b>${formatNumber(ticket)}</b>
+                            <b>${formatNumber(ticket, ticketList.initial)}</b>
                           </li>`;
 
         containers.ticketsSelect.insertAdjacentHTML("afterbegin", HTMLTicket);
@@ -210,7 +268,7 @@ function raffleTickets(ticketsData) {
     }
   }
 
-  function resetElements(){
+  function resetElements() {
     buttons.pay.disabled = true;
   }
 
@@ -224,11 +282,18 @@ function raffleTickets(ticketsData) {
       inputs.hiddenTicketArray.value = ticketList.selected;
   }
 
-  function showTicketCount(){
+  function showTicketCount() {
     genericElement.raffleNumber.innerHTML = ticketList.initial.length;
     buttons.filterAvailable.innerHTML = ticketList.available.length;
     buttons.filterPurched.innerHTML = ticketList.purched.length;
     buttons.filterReserved.innerHTML = ticketList.reserved.length;
+  }
+
+  function toggleClass(element, classToRemove, classToAdd) {
+    if (!element) return;
+
+    element.classList.remove(classToRemove);
+    element.classList.add(classToAdd);
   }
   // Handlers
   function addSearchedTicketHandler(event) {
@@ -236,11 +301,11 @@ function raffleTickets(ticketsData) {
     const searchedNumber = parseInt(inputs.searchTicket.value);
     const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
     if (ticketList.currentAvailable[searchedIndex] !== undefined)
-      changeTicket("ADD", ticketList.currentAvailable[searchedIndex]);
+      changeTicket("add", ticketList.currentAvailable[searchedIndex]);
   }
 
   function clearTicketsHandler() {
-    changeTicket("CLEAR");
+    changeTicket("clear");
   }
 
   function filterHandler(event) {
@@ -292,7 +357,7 @@ function raffleTickets(ticketsData) {
 
     if (ticketList.currentAvailable.length > 0) {
       const ticketNumber = genRandomTicket();
-      changeTicket("ADD", ticketNumber);
+      changeTicket("add", ticketNumber);
     }
   }
 
@@ -336,18 +401,27 @@ function raffleTickets(ticketsData) {
     }
   }
 
+  function windowScrollHandler() {
+    setStyckyBar();
+
+    const scrollFinished =
+      window.scrollY + window.innerHeight >=
+      document.documentElement.scrollHeight;
+    if (scrollFinished) renderTicketsLazy();
+  }
+
   // Exposed Handlers
   handlers.selectedTicketHandler = function selectedTicketHandler(
     ticketNumber
   ) {
-    changeTicket("REMOVE", ticketNumber);
+    changeTicket("remove", ticketNumber);
   };
 
   handlers.ticketHandler = function ticketHandler(ticketNumber) {
     if (ticketList.selected.indexOf(ticketNumber) === -1) {
-      changeTicket("ADD", ticketNumber);
+      changeTicket("add", ticketNumber);
     } else {
-      changeTicket("REMOVE", ticketNumber);
+      changeTicket("remove", ticketNumber);
     }
   };
 
@@ -360,6 +434,19 @@ function raffleTickets(ticketsData) {
   buttons.filterPurched.addEventListener("click", filterHandler);
   buttons.filterTag.addEventListener("click", filterTagHandler);
   inputs.searchTicket.addEventListener("input", searchTicketHandler);
+  window.addEventListener("scroll", windowScrollHandler);
+
+  // Get the offset position of the navbar
+  var sticky = containers.stickyBar.offsetTop;
+
+  // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+  function setStyckyBar() {
+    if (window.pageYOffset >= sticky) {
+      containers.stickyBar.classList.add("sticky");
+    } else {
+      containers.stickyBar.classList.remove("sticky");
+    }
+  }
 }
 
 containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;

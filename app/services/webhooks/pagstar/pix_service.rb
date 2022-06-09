@@ -8,6 +8,7 @@ module Webhooks
 
       def initialize(params)
         @order = params[:order]
+        @value = (@order.total_cents * ENV['BRL_USD_FACTOR'].to_i) / 100
       end
 
       private
@@ -19,9 +20,9 @@ module Webhooks
       def generate_pix_transaction
         response = HTTParty.post(ENDPOINT, headers: headers, body: params)
 
-        raise (response['message'] .presence || response.code.to_s) unless response.success?
+        raise (response['message'].presence || response.code.to_s) unless response.success?
 
-        response.parsed_response['data']
+        response.parsed_response['data'].merge(value: @value)
       end
 
       def access_token
@@ -37,7 +38,7 @@ module Webhooks
 
       def params
         {
-          value: (@order.total_cents * ENV['BRL_USD_FACTOR'].to_i) / 100,
+          value: @value,
           email: @order.user.email,
           name: (@order.user.name.presence || @order.user.username),
           document: @order.user.document_cpf,

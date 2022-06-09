@@ -1,17 +1,23 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class RegisterController < ApplicationController
+  before_action :sanitaze_username
+
   def create
     user = User.new(valid_params)
     if user.save
       sign_in(user)
       @user = user
     else
-      @error = user.errors.full_messages.join(', ')
+      @error = user.errors.full_messages.join("  <br> ").html_safe
     end
   end
 
   private
+
+  def sanitaze_username
+    params[:user][:username] = I18n.transliterate(params[:user][:username].to_s.gsub(/\D+/, '').downcase)
+  end
 
   def valid_params
     params.require(:user)

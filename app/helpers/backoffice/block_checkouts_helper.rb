@@ -8,7 +8,7 @@ module Backoffice
 
     def format_whitelabel_currency(amount)
       unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
-        amount = amount * ENV['REAL_USD_FACTOR']
+        amount = amount * ENV['BRL_USD_FACTOR']
       end
 
       ENV['CURRENT_CURRENCY'] + ' ' + amount.to_s

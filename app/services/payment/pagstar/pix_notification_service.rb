@@ -27,7 +27,7 @@ module Payment
       end
 
       def register_notification_error(error_message)
-        payment_transaction.update(:provider_response, error_message)
+        @payment_transaction.update(:provider_response, error_message)
       end
     end
   end

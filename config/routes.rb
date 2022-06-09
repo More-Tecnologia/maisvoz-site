@@ -277,7 +277,7 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: :create
-  resources :users, only: :create
+  resources :register, only: :create
 
   devise_for(:users,
              controllers: {

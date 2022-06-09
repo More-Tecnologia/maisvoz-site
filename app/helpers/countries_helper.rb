@@ -246,4 +246,12 @@ module CountriesHelper
      ["Zambia", "ZM"],
      ["Zimbabwe", "ZW"]]
   end
+
+  def priority_countries
+    if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+      ['BR']
+    else
+      []
+    end
+  end
 end

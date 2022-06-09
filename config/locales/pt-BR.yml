@@ -95,7 +95,7 @@ pt-BR:
         user:
           attributes:
             email:
-              taken: Este email já está sendo utilizado
+              taken: já está sendo utilizado
             password_confirmation:
               confirmation: Senhas diferentes
             registration_type:
@@ -1976,3 +1976,4 @@ pt-BR:
   create_your_account: Crie sua conta agora mesmo!
   wrong_user_or_password: O usuário e/ou senha estão incorretos
   payment_method_blank: Selecione um método de pagamento para continuar
+  order_expire_warning: O pedido expirará em %{time}

@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag 'click-tok-theme/shared/ticket_numbers' %>
+<div class="ticket-container">
+  <%  orders.products.includes(:raffle).uniq.each do |product| %>
+    <% order_items = product.order_items.includes(:raffle_ticket).where(order: orders) %>
+    <hr>
+    <h4><%= product.name %></h4>
+    <div class="draw-container">
+      <ul>
+        <% order_items.includes(raffle_ticket: :raffle).each do |order_item| %>
+          <li>
+            <%= raffle_ticket_number_format(order_item.raffle_ticket) if order_item.raffle_ticket  %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

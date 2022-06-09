@@ -1,0 +1,80 @@
+.card-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket-container {
+  background: white;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  font-family: sans-serif;
+  font-size: calc(0.6rem + 0.3vw);
+  width: 78%;
+}
+
+.ticket-container hr {
+  width: 80%;
+  background: #999;
+  margin: 10px auto 0 auto;
+}
+
+.ticket-container hr:first-of-type {
+  display: none;
+}
+
+.full-size .ticket-container {
+  width: 97.8%;
+  margin-top: 30px;
+}
+
+.ticket-container h4 {
+  color: #333;
+  font-size: 1.2em;
+  margin: 0;
+  padding-top: 1em;
+  text-align: center;
+}
+
+.draw-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  row-gap: 1.5em;
+}
+
+.draw-container ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  list-style: none;
+  margin: 0;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+.draw-container li {
+  background: #e5e5e5;
+  border-radius: 5px;
+  color: #222;
+  font-weight: 800;
+  padding: 0.6em;
+}
+
+@media (max-width: 679px) {
+  .card-box {
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .ticket-container {
+    width: 100%;
+  }
+
+  .full-size .ticket-container {
+    width: 100%;
+    margin-top: 0;
+  }
+}

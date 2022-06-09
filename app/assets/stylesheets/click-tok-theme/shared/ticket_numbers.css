@@ -13,9 +13,9 @@
 }
 
 .ticket-container hr {
-  width: 80%;
   background: #999;
   margin: 10px auto 0 auto;
+  width: 80%;
 }
 
 .ticket-container hr:first-of-type {
@@ -23,8 +23,8 @@
 }
 
 .full-size .ticket-container {
-  width: 97.8%;
   margin-top: 30px;
+  width: 97.8%;
 }
 
 .ticket-container h4 {
@@ -45,14 +45,14 @@
 }
 
 .draw-container ul {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 0.4em;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 1em;
-  justify-content: center;
-  align-items: center;
 }
 
 .draw-container li {
@@ -74,7 +74,7 @@
   }
 
   .full-size .ticket-container {
-    width: 100%;
     margin-top: 0;
+    width: 100%;
   }
 }

@@ -37,6 +37,7 @@ const getTicketByState = (ticketsArray, stateNumber) => {
 const containers = {
   tickets: getElement(".tickets-container"),
   ticketsSelect: getElement(".selected-tickets-container"),
+  stickyBar: getElement(".raffle-tickets-bar"),
 };
 
 const inputs = {
@@ -106,7 +107,7 @@ function raffleTickets(ticketsData) {
       clear: () => clearTickets(ticketCollection),
       remove: () => removeTicket(ticketNumber, element),
     };
-        
+
     return actions[setAction]();
   }
 
@@ -361,6 +362,22 @@ function raffleTickets(ticketsData) {
   buttons.filterPurched.addEventListener("click", filterHandler);
   buttons.filterTag.addEventListener("click", filterTagHandler);
   inputs.searchTicket.addEventListener("input", searchTicketHandler);
+
+
+  // When the user scrolls the page, execute myFunction
+window.onscroll = function() {setStyckyBar()};
+
+// Get the offset position of the navbar
+var sticky = containers.stickyBar.offsetTop;
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function setStyckyBar() {
+  if (window.pageYOffset >= sticky) {
+    containers.stickyBar.classList.add("sticky")
+  } else {
+    containers.stickyBar.classList.remove("sticky");
+  }
+} 
 }
 
 containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;

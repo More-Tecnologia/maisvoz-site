@@ -232,10 +232,32 @@ input[type="number"] {
   opacity: 0.8;
 }
 
+.raffle-tickets-bar {
+  margin-top: 2em;
+  padding: 0.5em 0 1em 0;
+}
+
+.raffle-tickets-bar.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #E8E8E9;
+  z-index: 999;
+  margin-top: 0;
+  box-shadow: 0px 6px 8px 5px rgba(0, 0, 0, 0.1);
+}
+
+.raffle-tickets-bar-container{
+  margin: 0 auto;
+  max-width: 1360px;  
+  width: 90%;
+}
+
 .raffle-tickets-selected-container {
   display: flex;
-  flex-direction: column;
-  margin-top: 2em;
+  flex-direction: column;  
+  position:sticky;
 }
 
 .raffle-tickets-selected-header {

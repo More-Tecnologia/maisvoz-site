@@ -2,41 +2,42 @@
                         integrity: 'sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU',
                         crossorigin: 'anonymous' %>
 <%= stylesheet_link_tag 'click-tok-theme/app' %>
-
 <div class="row">
   <div class="d-flex flex-column align-items-center">
     <div class="card-box">
       <div class="box-top">
+     
         <div class="request-box">
-            <h1><strong><%= t(:request_number) %></strong></h1>
-            <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
+          <h1><strong><%= t(:request_number) %></strong></h1>
+          <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
         </div>
+         <% unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
         <div class="request-box">
-            <h4>
+          <h4>
             <p><strong><%= t(:package_value) %></strong></p>
-              R<i class="fas fa-dollar-sign"></i>
-              <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
-              <br>
-              <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
-                <i class="fab fa-btc"></i>
-                <%= format_digital_currency(@payment_transaction.amount) %>
-              <% end %>
-            </h4>
+            R<i class="fas fa-dollar-sign"></i>
+            <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
+            <br>
+            <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+              <i class="fab fa-btc"></i>
+              <%= format_digital_currency(@payment_transaction.amount) %>
+            <% end %>
+          </h4>
         </div>
+        <% end %> 
       </div>
       <div class="row m-t-30">
         <% if @payment_transaction.order.shipping > 0 %>
-        <div class="col-md-12">
-          <div class="col-md-1">
-            <h3> <%= Order.human_attribute_name(:shipping) %> </h3>
-          </div>
-          <div class="col-md-11">
-            <h3> <%= number_to_currency(@payment_transaction.order.shipping,
+          <div class="col-md-12">
+            <div class="col-md-1">
+              <h3> <%= Order.human_attribute_name(:shipping) %> </h3>
+            </div>
+            <div class="col-md-11">
+              <h3> <%= number_to_currency(@payment_transaction.order.shipping,
                                         unit: ENV['CURRENT_CURRENCY']) %> </h3>
+            </div>
           </div>
-        </div>
         <% end %>
-
       </div>
       <div class="box-bottom">
         <div class='row text-center'>
@@ -66,31 +67,34 @@
           </span> <br>
           <span class="purple text-center" id="wallet-address"><%= @payment_transaction.wallet_address %></span>
         </div>
-          <div class="row text-center">
-            <div class="">
+        <div class="row text-center">
+          <div class="">
             <% if @payment_transaction.order.btc? %>
               <%= copier_button(@payment_transaction.provider_response['wallet_address'], '#wallet-address') %>
             <% elsif @payment_transaction.order.pix? %>
               <%= copier_button(@payment_transaction.provider_response['pix_key'], '#wallet-address') %>
             <% end %>
-            </div>
           </div>
+        </div>
         <br>
-          <% if @payment_transaction.order.payment_type.in?(['btc', 'pix']) %>
-            <div class="row text-center">
-              <% btc = (@payment_transaction.order.created_at + 5.hours) - Time.now %>
-              <% pix = (@payment_transaction.order.created_at + 1.hours) - Time.now %>
-              <% order = @payment_transaction.order.btc? ?  btc : pix %>
-              <h6 class="">
-                <% if order > 0 %>
-                  <%= t(:order_expire_warning, time: seconds_to_hms(order)) %>
-                <% else %>
-                  <%= t(:order_expired) %>
-                <% end %>
-              </h6>
-            </div>
-          <% end %>
+        <% if @payment_transaction.order.payment_type.in?(['btc', 'pix']) %>
+          <div class="row text-center">
+            <% btc = (@payment_transaction.order.created_at + 5.hours) - Time.now %>
+            <% pix = (@payment_transaction.order.created_at + 1.hours) - Time.now %>
+            <% order = @payment_transaction.order.btc? ?  btc : pix %>
+            <h6 class="">
+              <% if order > 0 %>
+                <%= t(:order_expire_warning, time: seconds_to_hms(order)) %>
+              <% else %>
+                <%= t(:order_expired) %>
+              <% end %>
+            </h6>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
+<div class="full-size">
+  <%= render 'backoffice/shared/ticket_numbers', orders: @current_raffles_cart %>
 </div>

@@ -77,7 +77,7 @@
       <input type="hidden" name="raffle[id]" value="<%= @raffle.hashid %>" />
       <div class="raffle-tickets-form-button-container">
         <i class="fa-solid fa-cart-shopping cart-icon"><b class="cart-icon-number"></b></i>
-        <%= f.submit t(:go_to_payment), class: 'raffle-tickets-form-button', disabled: true, data: {logged: true}%>
+        <%= f.submit t(:go_to_payment), id: 'payment-ticket-button', class: 'raffle-tickets-form-button', disabled: true, data: { logged: user_signed_in? } %>
       </div>
     <% end %>
     <div class="raffle-tickets-header">

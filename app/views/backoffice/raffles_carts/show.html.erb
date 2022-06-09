@@ -76,7 +76,7 @@
         <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
         <%= t(:btc) %>
       </div>
-      <input type="hidden" name="payment_method" id="payment_method" value='btc'>
+      <input type="hidden" name="payment_method" id="payment_method" value=''>
     </div>
     <% if current_user.document_cpf.blank? && current_user.name.blank? %>
       <div class="container-inputs-raffle">
@@ -85,7 +85,7 @@
             <%= t(:document_id) %>
           </label>
           <div class="input-raffle-field">
-            <input class="input-raffle" type="text" name="document_id" id="document_id" value='<%= current_user.document_cpf %>'>
+            <input class="input-raffle cpf-mask" type="text" name="document_id" id="document_id" value='<%= current_user.document_cpf %>'>
           </div>
         </div>
         <div class="container-input-raffle">

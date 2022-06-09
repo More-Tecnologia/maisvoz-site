@@ -2046,3 +2046,5 @@ es:
   my_tickets: Mis entradas
   already_have_account: ¿Ya tienes una cuenta?
   create_your_account: ¡Crea tu cuenta ahora mismo!
+  wrong_user_or_password: El nombre de usuario y/o la contraseña son incorrectos
+  payment_method_blank: Seleccione un método de pago para continuar

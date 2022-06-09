@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="header-container align-center">
-    <% if current_user.present? %>
+    <% if user_signed_in? %>
       <div class="user-details">
         <% unless (params[:controller] == "users/registrations" && params[:action] == 'edit') || (params[:controller] == "users/display" && (params[:action] == 'edit_password' || params[:action] == 'index' ||  params[:action] == 'update_profile')) %>
           <%= link_to users_display_index_path do %>

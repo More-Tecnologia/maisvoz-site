@@ -1,13 +1,17 @@
 // Helpers
-const formatNumber = (number) => {
-  if (number < 10) return "00" + number;
-  else if (number < 100) return "0" + number;
-  else return number;
+const formatNumber = (number, numberArray) => {
+  const lastArrayNumber = numberArray[numberArray.length - 1][0];
+  const size = lastArrayNumber.toString().length;
+  number = number.toString();
+
+  while (number.length < size) number = "0" + number;
+
+  return number;
 };
 
 const getElement = (elementName, all = false) => {
   if (all) return document.querySelectorAll(elementName);
-  else return document.querySelector(elementName);
+  return document.querySelector(elementName);
 };
 
 function getTicket(ticketNumber, elementCollection) {
@@ -43,7 +47,7 @@ const inputs = {
 const genericElement = {
   cartIcon: getElement(".cart-icon"),
   cartIconNumber: getElement(".cart-icon-number"),
-  raffleNumber: getElement(".raffle-tickets-number b")
+  raffleNumber: getElement(".raffle-tickets-number b"),
 };
 
 const buttons = {
@@ -61,6 +65,11 @@ const handlers = {};
 
 function raffleTickets(ticketsData) {
   // Objects
+  const baseSettings = {
+    filterOptions: { available: 0, reserved: 1, purched: 2 },
+    maxSelectedTickets: 10,
+  };
+
   const ticketList = {
     initial: ticketsData.sort((a, b) => a - b),
     available: getTicketByState(ticketsData, 0).map((item) => item[0]),
@@ -74,14 +83,9 @@ function raffleTickets(ticketsData) {
     filter: null,
   };
 
-  const baseSettings = {
-    filterOptions: { available: 0, reserved: 1, purched: 2 },
-    maxSelectedTickets: 10,
-  };
-
   // Start
   renderTickets(ticketList.initial);
-  resetElements();  
+  resetElements();
 
   // Functions
   function addTicket(ticketNumber, element) {
@@ -92,29 +96,25 @@ function raffleTickets(ticketsData) {
     element.classList.add("selected");
   }
 
-  function changeTicket(action, ticketNumber = false) {
-    if (
-      action === "ADD" &&
-      ticketList.selected.length >= baseSettings.maxSelectedTickets
-    )
-      return;
-
+  function crud (setAction, ticketNumber) {
     const ticketCollection = getElement(".ticket-list .ticket-item", true);
     const element =
-      ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
+    ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
 
-    switch (action) {
-      case "ADD":
-        addTicket(ticketNumber, element);
-        break;
-      case "CLEAR":
-        clearTickets(ticketCollection);
-        break;
-      case "REMOVE":
-        removeTicket(ticketNumber, element);
-        break;
-    }
+    const actions = {
+      add: () => addTicket(ticketNumber, element),
+      clear: () => clearTickets(ticketCollection),
+      remove: () => removeTicket(ticketNumber, element),
+    };
+        
+    return actions[setAction]();
+  }
 
+  function changeTicket(setAction, ticketNumber = false) {
+    const stopAdd = ticketList.selected.length >= baseSettings.maxSelectedTickets;
+    if (setAction === "add" && stopAdd) return;
+  
+    crud(setAction, ticketNumber);
     renderSelectedTickets();
 
     ticketList.currentAvailable = ticketList.available.filter(
@@ -172,18 +172,19 @@ function raffleTickets(ticketsData) {
   function renderTickets(ticketsArray) {
     const state = ["available", "reserved", "purched", "selected"];
     containers.tickets.innerHTML = "";
-    let HTMLObject = '';
+    let HTMLObject = "";
     showTicketCount();
 
     ticketsArray.map((ticket) => {
       const onClickFunction =
         ticket[1] === 0 ? `onclick="handlers.ticketHandler(${ticket[0]})"` : "";
       const HTMLTicket = `<li style="order: ${formatNumber(
-        ticket[0]
+        ticket[0],
+        ticketList.initial
       )}" ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
         state[ticket[1]]
       }" data-ticket="${ticket[0]}">
-                          <b>${formatNumber(ticket[0])}</b>
+                          <b>${formatNumber(ticket[0], ticketList.initial)}</b>
                         </li>`;
       HTMLObject += HTMLTicket;
     });
@@ -202,7 +203,7 @@ function raffleTickets(ticketsData) {
     } else {
       ticketList.selected.map((ticket) => {
         const HTMLTicket = `<li onclick="handlers.selectedTicketHandler(${ticket})" class="raffle-tickets-numbers-list-item" data-ticket="${ticket}">
-                            <b>${formatNumber(ticket)}</b>
+                            <b>${formatNumber(ticket, ticketList.initial)}</b>
                           </li>`;
 
         containers.ticketsSelect.insertAdjacentHTML("afterbegin", HTMLTicket);
@@ -210,7 +211,7 @@ function raffleTickets(ticketsData) {
     }
   }
 
-  function resetElements(){
+  function resetElements() {
     buttons.pay.disabled = true;
   }
 
@@ -224,7 +225,7 @@ function raffleTickets(ticketsData) {
       inputs.hiddenTicketArray.value = ticketList.selected;
   }
 
-  function showTicketCount(){
+  function showTicketCount() {
     genericElement.raffleNumber.innerHTML = ticketList.initial.length;
     buttons.filterAvailable.innerHTML = ticketList.available.length;
     buttons.filterPurched.innerHTML = ticketList.purched.length;
@@ -236,11 +237,11 @@ function raffleTickets(ticketsData) {
     const searchedNumber = parseInt(inputs.searchTicket.value);
     const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
     if (ticketList.currentAvailable[searchedIndex] !== undefined)
-      changeTicket("ADD", ticketList.currentAvailable[searchedIndex]);
+      changeTicket("add", ticketList.currentAvailable[searchedIndex]);
   }
 
   function clearTicketsHandler() {
-    changeTicket("CLEAR");
+    changeTicket("clear");
   }
 
   function filterHandler(event) {
@@ -292,7 +293,7 @@ function raffleTickets(ticketsData) {
 
     if (ticketList.currentAvailable.length > 0) {
       const ticketNumber = genRandomTicket();
-      changeTicket("ADD", ticketNumber);
+      changeTicket("add", ticketNumber);
     }
   }
 
@@ -340,14 +341,14 @@ function raffleTickets(ticketsData) {
   handlers.selectedTicketHandler = function selectedTicketHandler(
     ticketNumber
   ) {
-    changeTicket("REMOVE", ticketNumber);
+    changeTicket("remove", ticketNumber);
   };
 
   handlers.ticketHandler = function ticketHandler(ticketNumber) {
     if (ticketList.selected.indexOf(ticketNumber) === -1) {
-      changeTicket("ADD", ticketNumber);
+      changeTicket("add", ticketNumber);
     } else {
-      changeTicket("REMOVE", ticketNumber);
+      changeTicket("remove", ticketNumber);
     }
   };
 

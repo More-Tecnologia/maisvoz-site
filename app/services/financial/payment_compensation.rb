@@ -116,8 +116,16 @@ module Financial
 
     def process_reserved_raffle_tickets
       order.order_items.each do |order_item|
-        ProcessReservedRaffleTicketWorker.perform_async(order_item.raffle_ticket
-                                                                  .id)
+        if order_item.raffle_ticket.present?
+          ProcessReservedRaffleTicketWorker.perform_async(order_item.raffle_ticket
+                                                                    .id)
+        else
+          user.financial_transactions
+              .create(spreader: User.find_morenwm_customer_admin,
+                      financial_reason: FinancialReason.credit_for_payment_of_expired_order,
+                      cent_amount: (order_item.total_cents / 100),
+                      moneyflow: :credit)
+        end
       end
     end
 

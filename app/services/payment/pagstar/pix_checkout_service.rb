@@ -25,7 +25,7 @@ module Payment
       end
 
       def payment_transaction(response)
-        @order.create_payment_transaction!(amount: response['value'],
+        @order.create_payment_transaction!(amount: (@order.total_cents / 100),
                                            transaction_id: response['external_reference'],
                                            wallet_address: response['pix_key'],
                                            qr_code_url: response['qr_code_url'],

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class RegisterController < ApplicationController
   before_action :sanitaze_username
 
   def create
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       sign_in(user)
       @user = user
     else
-      @error = user.errors.full_messages.join(', ')
+      @error = user.errors.full_messages.join("  <br> ").html_safe
     end
   end
 

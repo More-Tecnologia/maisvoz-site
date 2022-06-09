@@ -1,5 +1,4 @@
 class PaymentCompensationWorker
-
   include Sidekiq::Worker
 
   def perform(order_id)
@@ -7,5 +6,4 @@ class PaymentCompensationWorker
     order.pending_payment! if order.expired?
     Financial::PaymentCompensation.new(order).call
   end
-
 end

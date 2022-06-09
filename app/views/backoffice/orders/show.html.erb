@@ -34,11 +34,11 @@
                                         unit: ENV['CURRENT_CURRENCY']) %> </h3>
             </div>
           </div>
-        <% end %>       
+        <% end %>
       </div>
-       <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
-          <%= render 'backoffice/shared/ticket_numbers', orders: @order %>
-        <% end %>     
+      <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+        <%= render 'backoffice/shared/ticket_numbers', orders: @order %>
+      <% end %>
       <% if @order.payment_type.in?(['btc', 'pix']) %>
         <div class="box-bottom">
           <div class='row text-center'>
@@ -101,9 +101,3 @@
     </div>
   </div>
 </div>
-
-
-     
-     
-
-

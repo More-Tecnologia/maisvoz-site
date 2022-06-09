@@ -66,7 +66,7 @@
 }
 
 .store-raffle-item-score li:last-child b {
-  background: linear-gradient(to bottom, #00de28, #07cd2b);
+  background: linear-gradient(to bottom, #006fde, #0777cd);
   color: white;
 }
 

@@ -69,6 +69,7 @@ function raffleTickets(ticketsData) {
   const baseSettings = {
     filterOptions: { available: 0, reserved: 1, purched: 2 },
     maxSelectedTickets: 10,
+    paginationSize: 200,
   };
 
   const ticketList = {
@@ -82,10 +83,11 @@ function raffleTickets(ticketsData) {
 
   const state = {
     filter: null,
+    ticketPosition: 0,
   };
 
   // Start
-  renderTickets(ticketList.initial);
+  renderTicketsRange(ticketList.initial);
   resetElements();
 
   // Functions
@@ -97,10 +99,10 @@ function raffleTickets(ticketsData) {
     element.classList.add("selected");
   }
 
-  function crud (setAction, ticketNumber) {
+  function crud(setAction, ticketNumber) {
     const ticketCollection = getElement(".ticket-list .ticket-item", true);
     const element =
-    ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
+      ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
 
     const actions = {
       add: () => addTicket(ticketNumber, element),
@@ -112,9 +114,10 @@ function raffleTickets(ticketsData) {
   }
 
   function changeTicket(setAction, ticketNumber = false) {
-    const stopAdd = ticketList.selected.length >= baseSettings.maxSelectedTickets;
+    const stopAdd =
+      ticketList.selected.length >= baseSettings.maxSelectedTickets;
     if (setAction === "add" && stopAdd) return;
-  
+
     crud(setAction, ticketNumber);
     renderSelectedTickets();
 
@@ -190,6 +193,41 @@ function raffleTickets(ticketsData) {
       HTMLObject += HTMLTicket;
     });
     containers.tickets.innerHTML = HTMLObject;
+  }
+
+  function renderTicketsRange(
+    ticketsArray,
+    ticketRange = [0, baseSettings.paginationSize]
+  ) {
+    const state = ["available", "reserved", "purched", "selected"];
+  
+    let HTMLObject = "";
+    showTicketCount();
+
+    ticketsArray.slice(...ticketRange).map((ticket) => {
+      console.log(state.ticketPosition);
+      const onClickFunction =
+        ticket[1] === 0 ? `onclick="handlers.ticketHandler(${ticket[0]})"` : "";
+      const HTMLTicket = `<li style="order: ${formatNumber(
+        ticket[0],
+        ticketList.initial
+      )}" ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
+        state[ticket[1]]
+      }" data-ticket="${ticket[0]}">
+                          <b>${formatNumber(ticket[0], ticketList.initial)}</b>
+                        </li>`;
+                        containers.tickets.insertAdjacentHTML('beforeend', HTMLTicket);
+     
+    });
+    
+  }
+
+  function renderTicketsLazy() {
+    const ticketRange = [state.ticketPosition, state.ticketPosition + baseSettings.paginationSize];
+
+    renderTicketsRange(ticketList.initial, ticketRange);
+
+    state.ticketPosition += baseSettings.paginationSize;
   }
 
   function renderSelectedTickets() {
@@ -338,6 +376,13 @@ function raffleTickets(ticketsData) {
     }
   }
 
+  function windowScrollHandler() {
+    const scrollFinished =
+      window.scrollY + window.innerHeight >=
+      document.documentElement.scrollHeight;
+    if (scrollFinished) renderTicketsLazy();
+  }
+
   // Exposed Handlers
   handlers.selectedTicketHandler = function selectedTicketHandler(
     ticketNumber
@@ -362,22 +407,24 @@ function raffleTickets(ticketsData) {
   buttons.filterPurched.addEventListener("click", filterHandler);
   buttons.filterTag.addEventListener("click", filterTagHandler);
   inputs.searchTicket.addEventListener("input", searchTicketHandler);
-
+  window.addEventListener("scroll", windowScrollHandler);
 
   // When the user scrolls the page, execute myFunction
-window.onscroll = function() {setStyckyBar()};
+  window.onscroll = function () {
+    setStyckyBar();
+  };
 
-// Get the offset position of the navbar
-var sticky = containers.stickyBar.offsetTop;
+  // Get the offset position of the navbar
+  var sticky = containers.stickyBar.offsetTop;
 
-// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-function setStyckyBar() {
-  if (window.pageYOffset >= sticky) {
-    containers.stickyBar.classList.add("sticky")
-  } else {
-    containers.stickyBar.classList.remove("sticky");
+  // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+  function setStyckyBar() {
+    if (window.pageYOffset >= sticky) {
+      containers.stickyBar.classList.add("sticky");
+    } else {
+      containers.stickyBar.classList.remove("sticky");
+    }
   }
-} 
 }
 
 containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;

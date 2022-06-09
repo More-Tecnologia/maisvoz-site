@@ -248,10 +248,11 @@ input[type="number"] {
   box-shadow: 0px 6px 8px 5px rgba(0, 0, 0, 0.1);
 }
 
-.raffle-tickets-bar-container{
+.raffle-tickets-bar.sticky .raffle-tickets-bar-container{
   margin: 0 auto;
   max-width: 1360px;  
   width: 90%;
+  font-size: 0.7em;
 }
 
 .raffle-tickets-selected-container {
@@ -363,7 +364,7 @@ input[type="number"] {
 .raffle-tickets-form-button-container {
   align-items: center;
   display: flex;
-  margin-top: 2em;
+  margin-top: 1em;
   position: relative;
 }
 

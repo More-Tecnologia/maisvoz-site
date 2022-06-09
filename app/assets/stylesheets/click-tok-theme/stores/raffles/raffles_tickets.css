@@ -248,6 +248,10 @@ input[type="number"] {
   box-shadow: 0px 6px 8px 5px rgba(0, 0, 0, 0.1);
 }
 
+.raffle-tickets-bar.sticky + .raffle-tickets-numbers-container {
+  padding-top: 160px;
+}
+
 .raffle-tickets-bar.sticky .raffle-tickets-bar-container{
   margin: 0 auto;
   max-width: 1360px;  
@@ -277,6 +281,7 @@ input[type="number"] {
   color: red;
   cursor: pointer;
   font-size: 1.1em;
+  font-weight: 400;
 }
 
 .raffle-tickets-numbers-list {
@@ -450,6 +455,7 @@ input[type="number"] {
   position: absolute;
   transform: translate(-16%, 0);
   transition: color 0.2s;
+  user-select: none;
 }
 
 .raffle-tickets-form-button__random .random-ticket {

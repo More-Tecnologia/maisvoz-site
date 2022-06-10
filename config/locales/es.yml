@@ -688,6 +688,7 @@ es:
             Complete el pago y espere a que se procese.
   devise_mailer:
     reset_password_instructions:
+      title: Instrucciones para restablecer la contraseña
       order_link: Ha solicitado un enlace para cambiar su contraseña. Puedes cambiarlo a través del siguiente enlace.
       password_reset: Cambiar mi contraseña
       order_alert: Si no lo solicitó, ignore este correo electrónico.<br>
@@ -696,8 +697,6 @@ es:
       title: Instrucciones de confirmación
     unlock_instructions:
       title: Instrucciones de desbloqueo
-    reset_password_instructions:
-      title: Instrucciones para restablecer la contraseña
     email_change:
       title: Cambio de correo electrónico
   date:

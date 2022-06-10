@@ -705,6 +705,7 @@ pt-BR:
               %{company_name}'
   devise_mailer:
     reset_password_instructions:
+      title: Redefinir instruções de senha
       order_link: Você solicitou um link para alterar sua senha. Você pode alterá-la através do link abaixo.
       password_reset: Alterar minha senha
       order_alert: Se não foi você que solicitou, por favor ignore este e-mail.<br>
@@ -713,8 +714,6 @@ pt-BR:
       title: Instruções de confirmação
     unlock_instructions:
       title: Instruções de desbloqueio
-    reset_password_instructions:
-      title: Redefinir instruções de senha
     email_change:
       title: Mudança de email
   date:

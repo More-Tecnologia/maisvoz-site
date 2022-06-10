@@ -688,6 +688,7 @@ en:
             Complete payment and wait for processing.
   devise_mailer:
     reset_password_instructions:
+      title: Reset password instructions
       order_link: You requested a link to change your password. You can change it via the link below.
       password_reset: Change my password
       order_alert: If you did not request it, please ignore this email.<br>
@@ -696,8 +697,6 @@ en:
       title: Confirmation Instructions
     unlock_instructions:
       title: Unlock Instructions
-    reset_password_instructions:
-      title: Reset password instructions
     email_change:
       title: Email change
   date:

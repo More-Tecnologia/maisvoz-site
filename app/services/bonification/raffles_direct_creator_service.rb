@@ -5,7 +5,7 @@ module Bonification
     DIRECT_BONUS_REASON = FinancialReason.raffles_direct_commission_bonus
 
     PERCENTAGES = { 
-      '1': { commission: 0.10, reason: DIRECT_BONUS_REASON } 
+      '1': { commission: 0.20, reason: DIRECT_BONUS_REASON } 
     }.freeze
 
     def call

@@ -1718,6 +1718,7 @@ es:
   master_leader: Líder maestro
   congratulations: Felicidades!!
   account_ready_text: Tu cuenta está lista para ganar dólares todos los días.
+  account_ready_text_white_label: Tu cuenta está lista para jugar todos los días.
   almost_done: Casi termino!!
   account_inactive_text: Activa tu cuenta para empezar a ganar dinero con ADmoney
   active_account: Cuenta activa
@@ -1733,6 +1734,7 @@ es:
   indicating_company_name_to_your_friends: Indicando %{company_name} a tus amigos.
   earn_card_title: 'Gana un 10% en tus indicaciones directas y un 15%
                     en sus ganancias de las tareas.'
+  earn_card_title_white_label: 'Gane un 20% en boletos de rifa comprados por su nominado y un 10% en el monto del premio que ganó.'
   copy_indication_card_text: 'Copie el enlace de su indicación en el botón lateral
                               y envíelo a tantos amigos como sea posible.'
   support_card_title: 'Si necesitas algo<br>
@@ -2047,3 +2049,4 @@ es:
   create_your_account: ¡Crea tu cuenta ahora mismo!
   wrong_user_or_password: El nombre de usuario y/o la contraseña son incorrectos
   payment_method_blank: Seleccione un método de pago para continuar
+  premium_account: "Cuenta privilegiada"

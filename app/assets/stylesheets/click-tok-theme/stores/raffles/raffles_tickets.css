@@ -1,5 +1,5 @@
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.raffle-tickets-headerinput::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -232,33 +232,6 @@ input[type="number"] {
   opacity: 0.8;
 }
 
-.raffle-tickets-bar {
-  margin-top: 2em;
-  padding: 0.5em 0 1em 0;
-}
-
-.raffle-tickets-bar.sticky {
-  background: #e8e8e9;
-  box-shadow: 0px 6px 8px 5px rgba(0, 0, 0, 0.1);
-  left: 0;
-  margin-top: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-}
-
-.raffle-tickets-bar.sticky + .raffle-tickets-numbers-container {
-  padding-top: 160px;
-}
-
-.raffle-tickets-bar.sticky .raffle-tickets-bar-container {
-  font-size: 0.7em;
-  margin: 0 auto;
-  max-width: 1360px;
-  width: 90%;
-}
-
 .raffle-tickets-selected-container {
   display: flex;
   flex-direction: column;
@@ -273,15 +246,6 @@ input[type="number"] {
   font-weight: 600;
   justify-content: space-between;
   margin-bottom: 0.6em;
-}
-
-.raffle-tickets-selected-clear-button {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-  font-size: 1.1em;
-  font-weight: 400;
 }
 
 .raffle-tickets-numbers-list {
@@ -311,13 +275,6 @@ input[type="number"] {
   transform: translate(0, -50%);
 }
 
-.raffle-tickets-selected-container .raffle-tickets-numbers-list {
-  background: white;
-  border-radius: 0.3em;
-  box-shadow: 0px 6px 8px 5px rgba(0, 0, 0, 0.1);
-  justify-content: center;
-  padding: 0.3em 0;
-}
 
 .raffle-tickets-numbers-list-item {
   align-items: center;
@@ -336,48 +293,30 @@ input[type="number"] {
   width: 5em;
 }
 
-.selected-tickets-container .raffle-tickets-numbers-list-item {
-  background: #9b9b9b;
-  color: white;
-}
-
-.selected-tickets-container .raffle-tickets-numbers-list-item.message {
-  background: none;
-  border: none;
-  box-shadow: none;
-  cursor: auto;
-  width: 100%;
-}
-
-.selected-tickets-container .raffle-tickets-numbers-list-item.message b {
-  color: #bbb;
-  font-size: 0.7em;
-  font-weight: 400;
-}
-
 .raffle-tickets-numbers-list-item:hover {
   box-shadow: 0px 3px 7px 3px rgba(0, 0, 0, 0.15);
   color: #333;
   opacity: 0.9;
 }
 
-.raffle-tickets-buy-form {
-  display: flex;
-  justify-content: center;
-}
 
-.raffle-tickets-form-button-container {
-  align-items: center;
-  display: flex;
-  margin-top: 1em;
-  position: relative;
+
+.raffle-tickets-form-button {
+  background: linear-gradient(to bottom, #5afa00, #22a700);
+  border-radius: 0.5em;
+  border: none;
+  color: white;
+  cursor: pointer;
+
+  font-size: 0.8em;
+  padding: 0.5em 2em;
 }
 
 .raffle-tickets-form-button-container .cart-icon {
   color: #ccc;
-  left: -1.5em;
-  position: absolute;
+  margin-right: 20px;  
   transition: color 0.5s;
+  font-size: 1.5em;
 }
 
 .raffle-tickets-form-button-container .cart-icon.active {
@@ -401,14 +340,27 @@ input[type="number"] {
   transition: opacity 0.5s;
 }
 
-.raffle-tickets-form-button {
-  background: linear-gradient(to bottom, #5afa00, #22a700);
-  border-radius: 0.5em;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 0.8em;
-  padding: 0.5em 2em;
+.raffle-tickets-buy-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  bottom: -30%;
+  padding-bottom: 20px;
+  border-radius: 0 0 20px 20px;
+  transform: translate(-50%, 0);
+  background: #E9E9E9;
+  width: 40%;
+  z-index: 1;
+}
+
+.raffle-tickets-form-button-container {
+  align-items: center;
+  display: flex;
+  margin-top: 1em;
+  position: relative;
+  justify-content: center;
 }
 
 .raffle-tickets-form-buttod:disabled,
@@ -418,13 +370,12 @@ input[type="number"] {
 }
 
 .raffle-tickets-header {
-  align-items: center;
   display: flex;
   font-size: 1.3em;
-  justify-content: center;
-  margin-top: 50px;
+  justify-content: space-between; 
   min-height: 2em;
   position: relative;
+  
   width: 100%;
 }
 
@@ -446,16 +397,56 @@ input[type="number"] {
   color: #0c3a00;
 }
 
-.raffle-tickets-header .raffle-tickets-form-button__random {
+.raffle-tickets-bar.sticky {
+  left: 0;
+  margin-top: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.raffle-tickets-bar.sticky + .raffle-tickets-numbers-container {
+  padding-top: 160px;
+}
+
+.raffle-tickets-bar {
+  margin-top: 2em;  
+}
+
+.raffle-tickets-bar .raffle-tickets-bar-container {
+ background: #E9E9E9;
+ box-shadow: 0 6px 8px 5px rgba(0, 0, 0, 0.1);
+ border-radius: 0 0 10px 10px;
+ position: relative;
+}
+
+.raffle-tickets-bar.sticky .raffle-tickets-bar-container {  
+  margin: 0 auto;
+  max-width: 1360px;
+  width: 90%;  
+}
+
+.raffle-tickets-selected-random-clear {
+  width: 100%;
+  display: flex;  
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+
+}
+
+.raffle-tickets-form-button__random {
   background: none;
   border: none;
-  color: #777;
-  font-size: 0.8em;
-  left: 26%;
-  position: absolute;
-  transform: translate(-16%, 0);
+  color: #22a700;
+  font-size: 2em;  
   transition: color 0.2s;
   user-select: none;
+  width: 10%;
+  box-shadow: 0 6px 8px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px 4px 4px 10px;
+  z-index: 1;
 }
 
 .raffle-tickets-form-button__random .random-ticket {
@@ -467,8 +458,43 @@ input[type="number"] {
   color: #22a700;
 }
 
-.raffle-tickets-number {
-  position: absolute;
+.selected-tickets-container .raffle-tickets-numbers-list-item {
+  background: #9b9b9b;
+  color: white;
+}
+
+.selected-tickets-container .raffle-tickets-numbers-list-item.message {
+  background: none;
+  border: none;
+  box-shadow: none;
+  cursor: auto;
+  width: 100%;
+}
+
+.selected-tickets-container .raffle-tickets-numbers-list-item.message b {
+  color: #bbb;
+  font-size: 0.7em;
+  font-weight: 400;
+}
+
+.raffle-tickets-selected-container .raffle-tickets-numbers-list {
+  border-radius: 0.3em;  
+  justify-content: center;
+  padding: 0.3em 0;
+}
+
+.raffle-tickets-numbers-list.selected-tickets-container {
+  width: 80%;  
+}
+
+.raffle-tickets-selected-clear-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 2em;
+  font-weight: 400; 
+  width: 10%; 
 }
 
 .raffle-tickets-number b {
@@ -519,9 +545,7 @@ input[type="number"] {
   height: 2em;
   line-height: 2em;
   overflow: hidden;
-  position: absolute;
-  right: 6%;
-  transform: translate(6%, 0);
+ 
 }
 
 .raffle-tickets-search-numbers-container .raffle-tickets-field {

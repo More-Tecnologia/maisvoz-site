@@ -58,20 +58,40 @@
         <div class="raffle-tickets-selected-header">
           <span class="raffle-tickets-selected-title">
             <%= t(:selected_numbers) %>
-          </span>
-          <button class="raffle-tickets-selected-clear-button">
-            <i class="fa-regular fa-trash-can"></i>
-            <%= t(:clear) %>
+          </span>          
+        </div>
+        <div class="raffle-tickets-selected-random-clear">
+          <button class="raffle-tickets-form-button__random" title="<%= t(:random) %>">
+            <span class="random-ticket">
+              <i class="fa-solid fa-shuffle"></i>              
+            </span>
+          </button>
+          <ul class="raffle-tickets-numbers-list selected-tickets-container">
+            <li class="raffle-tickets-numbers-list-item message">
+              <b><%= t(:choose_one_number) %></b>
+            </li>
+          </ul>
+          <button class="raffle-tickets-selected-clear-button" title="<%= t(:clear) %>">
+            <i class="fa-regular fa-trash-can"></i>            
           </button>
         </div>
-        <ul class="raffle-tickets-numbers-list selected-tickets-container">
-          <li class="raffle-tickets-numbers-list-item message">
-            <b><%= t(:choose_one_number) %></b>
-          </li>
-        </ul>
       </div>
-      <div>
-        <%= form_for(@raffle,
+      
+           
+        <div class="raffle-tickets-header">
+          <span class="footer--item--number filter-tag"></span>
+          <div class="raffle-tickets-search-numbers-container">
+            <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">
+            <span class="raffle-tickets-form-button add-searched disabled"><span><i class="fa-solid fa-plus"></i> <%= t(:add) %></span></span>
+          </div>
+
+                    
+          <span class="raffle-tickets-number">
+            <b>...</b><i><%= t(:raffle_numbers) %></i>
+          </span>
+        </div>        
+     
+      <%= form_for(@raffle,
                   url: backoffice_raffles_tickets_path,
                   method: :post,
                   html: {class: 'raffle-tickets-buy-form'}) do |f| %>
@@ -82,23 +102,6 @@
             <%= f.submit t(:go_to_payment), id: 'payment-ticket-button', class: 'raffle-tickets-form-button', disabled: true, data: { logged: user_signed_in? } %>
           </div>
         <% end %>
-        <div class="raffle-tickets-header">
-          <span class="footer--item--number filter-tag"></span>
-          <button class="raffle-tickets-form-button__random">
-            <span class="random-ticket">
-              <i class="fa-solid fa-shuffle"></i>
-              <%= t(:random) %>
-            </span>
-          </button>
-          <span class="raffle-tickets-number">
-            <b>...</b><i><%= t(:raffle_numbers) %></i>
-          </span>
-          <div class="raffle-tickets-search-numbers-container">
-            <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">
-            <span class="raffle-tickets-form-button add-searched disabled"><span><i class="fa-solid fa-plus"></i> <%= t(:add) %></span></span>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <div class="raffle-tickets-numbers-container">

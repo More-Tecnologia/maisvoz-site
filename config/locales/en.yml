@@ -688,6 +688,7 @@ en:
             Complete payment and wait for processing.
   devise_mailer:
     reset_password_instructions:
+      title: Reset password instructions
       order_link: You requested a link to change your password. You can change it via the link below.
       password_reset: Change my password
       order_alert: If you did not request it, please ignore this email.<br>
@@ -696,8 +697,6 @@ en:
       title: Confirmation Instructions
     unlock_instructions:
       title: Unlock Instructions
-    reset_password_instructions:
-      title: Reset password instructions
     email_change:
       title: Email change
   date:
@@ -1720,9 +1719,9 @@ en:
   country: Country
   master_leader: Master Leader
   congratulations: Congratulations!!
-  account_ready_text: Your account is ready to earn dollars every day.
+  account_ready_text: Your account is ready to play every day.
   almost_done: Almost done!!
-  account_inactive_text: Activate your account to start earning money with ADmoney
+  account_inactive_text: Activate your account to start earning with %{company_name}
   active_account: Active Account
   validated_account: Validated account
   tasks_of_the_day: Tasks of the day
@@ -1734,8 +1733,8 @@ en:
   withdrawals_home_card_title: Make withdraws in BTC whenever your available balance reaches.
   you_can_accelerate_your_earnings: You can accelerate your earnings
   indicating_company_name_to_your_friends: Indicating %{company_name} to your friends.
-  earn_card_title: 'Earn 10% on your direct indications and 15%
-                    on their earnings from tasks.'
+  earn_card_title: 'Earn 10% on your direct indications and 15% on their earnings from tasks.'
+  earn_card_title_white_label: 'Earn 20% on raffle tickets purchased by your nominee and 10% on the prize amount they won.'
   copy_indication_card_text: 'Copy your indication link on the button on the side
                               and send it to as many friends as possible.'
   support_card_title: 'If you need something<br>
@@ -2041,3 +2040,4 @@ en:
   wrong_user_or_password: Username and/or password are incorrect
   payment_method_blank: Please select a payment method to continue
   home: "Home"
+  premium_account: "Premium account"

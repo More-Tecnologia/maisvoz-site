@@ -705,6 +705,7 @@ pt-BR:
               %{company_name}'
   devise_mailer:
     reset_password_instructions:
+      title: Redefinir instruções de senha
       order_link: Você solicitou um link para alterar sua senha. Você pode alterá-la através do link abaixo.
       password_reset: Alterar minha senha
       order_alert: Se não foi você que solicitou, por favor ignore este e-mail.<br>
@@ -713,8 +714,6 @@ pt-BR:
       title: Instruções de confirmação
     unlock_instructions:
       title: Instruções de desbloqueio
-    reset_password_instructions:
-      title: Redefinir instruções de senha
     email_change:
       title: Mudança de email
   date:
@@ -1994,3 +1993,34 @@ pt-BR:
   mail_unlock_account: Desbloquear minha conta
   tickets: "Bilhetes"
   home: "Home"
+  earn_card_title: "Ganhe 20% sobre as rifas compradas por seu indicado e 10% sobre o valor do prêmio que eles ganharem."
+  tasks_of_the_day: "Tarefas do Dia"
+  account_activated: "Conta ativada"
+  activate_your_account_now: "Ative sua conta agora"
+  validated_account: "Conta validada"
+  validate_your_account: "Valide sua conta"
+  modal_email_confirmation_text: "Oi. Enviamos-lhe um e-mail para concluir a validação da sua conta. Por favor, clique no link para concluir o processo.
+                                  Se nosso e-mail foi para a caixa de SPAM, marque-o como confiável. Assim, você será o primeiro a receber novidades sobre nossa plataforma."
+  congratulations: "Parabéns!!"
+  almost_done: "Quase pronto!"
+  modal_already_send_email_confirmation_title: "O email de confirmação já foi enviado"
+  modal_already_send_email_confirmation_text: "Seu e-mail de confirmação já foi enviado, você pode enviar outro em %{time}"
+  modal_email_confirmation_title: "Email de confirmação enviado"
+  my_balance: "Meu saldo é:"
+  minimum_required_for_withdrawal: "Mínimo necessário para retirada:"
+  withdraw: "Sacar"
+  withdrawals_home_card_title: "Faça saques em BTC sempre que seu saldo disponível atingir 100%."
+  value_to_min_withdrawal_text: "Restam apenas <strong> %{value_to_min_withdrawal} </strong> para você completar o mínimo de <strong> %{withdrawal_min_value} </strong> e fazer seu saque."
+  you_already_have_a_balance_available_for_withdrawal: "Você já tem um saldo disponível para saque."
+  premium_account: "Conta premium"
+  account_ready_text: "Sua conta está pronta para ganhar dolares todos os dias."
+  account_ready_text_white_label: "Sua conta está pronta para jogar todos os dias."
+  you_can_accelerate_your_earnings: "Você pode acelerar seus ganhos"
+  indicating_company_name_to_your_friends: "Indicando %{company_name} para seus amigos"
+  copy_indication_card_text: 'Copie seu link de indicação no botão ao lado
+                              e envie para o maior número de amigos possíveis.'
+  support_card_title: 'Se você precisar de algo<br>
+                       estamos disponíveis para ajudá-lo.'
+  just_send_us_a_message: "Basta nos enviar uma mensagem."
+  earn_card_title_white_label: 'Ganhe 20% nas rifas compradas pelo seu indicado e 10% no valor do prêmio que ele ganhou.'
+  account_inactive_text: Ative sua conta para começar a ganhar com %{company_name}

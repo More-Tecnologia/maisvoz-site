@@ -1,10 +1,12 @@
 # frozen_string_lditeral: true
 
 class SystemConfiguration < ApplicationRecord
-  has_attachment :banner_email, accept: %i[jpg png svg]
-  has_attachment :external_logo, accept: %i[jpg png svg]
-  has_attachment :logo, accept: %i[jpg png svg]
-  has_attachment :favico, accept: %i[ico]
+  if ENV['ENABLE_ATTACHMENT']
+    has_attachment :banner_email, accept: %i[jpg png svg]
+    has_attachment :external_logo, accept: %i[jpg png svg]
+    has_attachment :logo, accept: %i[jpg png svg]
+    has_attachment :favico, accept: %i[ico]
+  end
 
   validates :company_name, presence: true
 

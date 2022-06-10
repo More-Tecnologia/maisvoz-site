@@ -1720,7 +1720,7 @@ en:
   country: Country
   master_leader: Master Leader
   congratulations: Congratulations!!
-  account_ready_text: Your account is ready to earn dollars every day.
+  account_ready_text: Your account is ready to play every day.
   almost_done: Almost done!!
   account_inactive_text: Activate your account to start earning money with ADmoney
   active_account: Active Account
@@ -2040,3 +2040,4 @@ en:
   create_your_account: Create your account right now!
   wrong_user_or_password: Username and/or password are incorrect
   payment_method_blank: Please select a payment method to continue
+  premium_account: "Premium account"

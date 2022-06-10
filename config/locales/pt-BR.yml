@@ -1992,3 +1992,31 @@ pt-BR:
   mail_locked_text: Sua conta foi bloqueada devido a um número excessivo de tentativas de login sem sucesso
   mail_locked_ins: "Clique no link abaixo para desbloquear sua conta:"
   mail_unlock_account: Desbloquear minha conta
+  earn_card_title: "Ganhe 20% sobre as rifas compradas por seu indicado e 10% sobre o valor do prêmio que eles ganharem."
+  tasks_of_the_day: "Tarefas do Dia"
+  account_activated: "Conta ativada"
+  activate_your_account_now: "Ative sua conta agora"
+  validated_account: "Conta validada"
+  validate_your_account: "Valide sua conta"
+  modal_email_confirmation_text: "Oi. Enviamos-lhe um e-mail para concluir a validação da sua conta. Por favor, clique no link para concluir o processo.
+                                  Se nosso e-mail foi para a caixa de SPAM, marque-o como confiável. Assim, você será o primeiro a receber novidades sobre nossa plataforma."
+  congratulations: "Parabéns!!"
+  almost_done: "Quase pronto!"
+  modal_already_send_email_confirmation_title: "O email de confirmação já foi enviado"
+  modal_already_send_email_confirmation_text: "Seu e-mail de confirmação já foi enviado, você pode enviar outro em %{time}"
+  modal_email_confirmation_title: "Email de confirmação enviado"
+  my_balance: "Meu saldo é:"
+  minimum_required_for_withdrawal: "Mínimo necessário para retirada:"
+  withdraw: "Sacar"
+  withdrawals_home_card_title: "Faça saques em BTC sempre que seu saldo disponível atingir 100%."
+  value_to_min_withdrawal_text: "Restam apenas <strong> %{value_to_min_withdrawal} </strong> para você completar o mínimo de <strong> %{withdrawal_min_value} </strong> e fazer seu saque."
+  you_already_have_a_balance_available_for_withdrawal: "Você já tem um saldo disponível para saque."
+  premium_account: "Conta premium"
+  account_ready_text: "Sua conta está pronta para jogar todos os dias."
+  you_can_accelerate_your_earnings: "Você pode acelerar seus ganhos"
+  indicating_company_name_to_your_friends: "Indicando %{company_name} para seus amigos"
+  copy_indication_card_text: 'Copie seu link de indicação no botão ao lado
+                              e envie para o maior número de amigos possíveis.'
+  support_card_title: 'Se você precisar de algo<br>
+                       estamos disponíveis para ajudá-lo.'
+  just_send_us_a_message: "Basta nos enviar uma mensagem."

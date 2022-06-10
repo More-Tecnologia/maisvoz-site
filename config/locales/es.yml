@@ -1718,7 +1718,7 @@ es:
   country: País
   master_leader: Líder maestro
   congratulations: Felicidades!!
-  account_ready_text: Tu cuenta está lista para ganar dólares todos los días.
+  account_ready_text: Tu cuenta está lista para jugar todos los días.
   almost_done: Casi termino!!
   account_inactive_text: Activa tu cuenta para empezar a ganar dinero con ADmoney
   active_account: Cuenta activa
@@ -2048,3 +2048,4 @@ es:
   create_your_account: ¡Crea tu cuenta ahora mismo!
   wrong_user_or_password: El nombre de usuario y/o la contraseña son incorrectos
   payment_method_blank: Seleccione un método de pago para continuar
+  premium_account: "Cuenta privilegiada"

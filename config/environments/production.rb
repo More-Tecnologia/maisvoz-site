@@ -113,9 +113,9 @@ Rails.application.configure do
     address: ENV['SMTP_HOST'],
     user_name: ENV['SMTP_USER'],
     password: ENV['SMTP_PASS'],
-    domain: SystemConfiguration.base_host,
+    domain: ENV['BASE_HOST'],
     authentication: :plain,
     enable_starttls_auto: true
   }
-  config.action_mailer.default_url_options = { host: SystemConfiguration.base_host, protocol: ENV['BASE_HOST_PROTOCOL'] }
+  config.action_mailer.default_url_options = { host: ENV['BASE_HOST'], protocol: ENV['BASE_HOST_PROTOCOL'] }
 end

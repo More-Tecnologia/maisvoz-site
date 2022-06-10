@@ -1788,8 +1788,6 @@ es:
   approved_balance: Saldo aprobado
   processing: 'Procesando'
   export_only_wallets: Exportar solo billeteras
-
-
   total_requests: Solicitudes totales
   open_requests: Solicitudes abiertas
   sales_amount: Cantidad de ventas
@@ -2049,4 +2047,5 @@ es:
   create_your_account: ¡Crea tu cuenta ahora mismo!
   wrong_user_or_password: El nombre de usuario y/o la contraseña son incorrectos
   payment_method_blank: Seleccione un método de pago para continuar
+  home: "Home"
   premium_account: "Cuenta privilegiada"

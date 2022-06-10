@@ -1,6 +1,6 @@
 const list = document.querySelectorAll(".list");
 let local = window.location.pathname;
-console.log(local)
+
 function itemSelected() {
   if (local.includes("/backoffice/home") || local.includes("/backoffice/admin/dashboard")) {
     list[0].classList.add("menu-selected");

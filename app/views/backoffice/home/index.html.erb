@@ -6,7 +6,7 @@
         <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>    
           <p><%= current_user.active? ? t(:account_ready_text_white_label) : t(:account_inactive_text) %></p>
         <% else %>
-          <p><%= current_user.active? ? t(:account_ready_text) : t(:account_inactive_text) %></p>
+          <p><%= current_user.active? ? t(:account_ready_text) : t(:account_inactive_text, company_name: SystemConfiguration;company_name) %></p>
         <% end %>
     </div>
     <div class="cards-account">

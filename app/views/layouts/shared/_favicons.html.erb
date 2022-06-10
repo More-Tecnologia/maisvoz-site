@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
 <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
-  <link rel="icon" href="<%= image_path('favicon-whitelabel.ico') %>" />
+  <link rel="icon" href="<%= image_path(SystemConfiguration.favico) %>" />
 <% else %>
   <link rel="icon" href="<%= image_path('favicon.ico') %>" />
 <% end %>

@@ -3,6 +3,7 @@
 module Backoffice
   module Admin
     class SystemConfigurationsController < AdminController
+      before_action :ensure_creation, only: :create
       before_action :ensure_configuration, only: %i[edit update destroy]
 
       def index
@@ -48,13 +49,34 @@ module Backoffice
 
       private
 
+      def ensure_creation
+        # this step is necessary because of attachinary gem bug -
+        # https://github.com/assembler/attachinary/issues/130
+        # Remove this gem in favor of active storage
+        new_params = ensured_params
+        logo = new_params.delete(:logo)
+
+        @config = SystemConfiguration.new(new_params)
+        @config.save
+        return if @config.persisted? && @config.update(logo: logo)
+
+        flash[:error] = @config.errors.full_messages.join(', ')
+        @config.destroy
+        render :new
+      end
+
       def ensure_configuration
         @config = SystemConfiguration.find(params[:id])
       end
 
       def ensured_params
         params.require(:system_configuration)
-              .permit(:company_name,
+              .permit(:banner_email,
+                      :base_host,
+                      :company_name,
+                      :external_logo,
+                      :favico,
+                      :logo,
                       :taxable_fee,
                       :withdrawal_fee,
                       :active,

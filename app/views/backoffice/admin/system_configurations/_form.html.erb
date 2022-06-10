@@ -2,6 +2,26 @@
   <div class="text-left m-t-30">
     <table class="table table-striped">
       <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :banner_email %></strong></td>
+        <td><%= f.attachinary_file_field :banner_email, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :external_logo %></strong></td>
+        <td><%= f.attachinary_file_field :external_logo, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :logo %></strong></td>
+        <td><%= f.attachinary_file_field :logo, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :favico %></strong></td>
+        <td><%= f.attachinary_file_field :favico, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label :base_host %></strong></td>
+        <td><%= f.text_field :base_host, class: 'form-control', placeholder: t(:base_host) %></td>
+      </tr>
+      <tr>
         <td class="table-valign"><strong class='cell'><%= f.label :company_name %></strong></td>
         <td><%= f.text_field :company_name, class: 'form-control', placeholder: t(:company_name) %></td>
       </tr>

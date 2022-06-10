@@ -5,7 +5,7 @@
   <div class="simple-header-logo">
     <%= link_to root_path do %>
       <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
-        <%= image_tag('white-label-logo.png', alt: SystemConfiguration.company_name, 'stroke-width' => '2' ) %>
+        <%= image_tag(SystemConfiguration.external_logo, alt: SystemConfiguration.company_name, 'stroke-width' => '2' ) %>
       <% else %>
         <%= image_tag('logo.png', alt: SystemConfiguration.company_name, 'stroke-width' => '2' ) %>
       <% end %>

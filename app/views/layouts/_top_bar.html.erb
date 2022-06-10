@@ -19,7 +19,7 @@
       <div class="logo">
         <a href="/">
           <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
-            <%= image_tag('logo-white-white-label.png') %>
+            <%= image_tag(SystemConfiguration.logo) %>
           <% else %>
             <%= image_tag('logo-white.png') %>
         <% end %>

@@ -3,9 +3,9 @@
   <nav class="nav">
     <ul class="main-list">
       <% if user_signed_in? %>
-        <% if current_user&.empreendedor? %>
+        <% if current_user.empreendedor? || current_user.consumidor? %>
           <li class="list active">
-            <%= link_to root_path, class:"link-nav", onclick:"navigate('/')"  do %>
+            <%= link_to backoffice_home_index_path, class:"link-nav", onclick:"navigate('/')"  do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 46 46" xml:space="preserve" class="svg-footer" >

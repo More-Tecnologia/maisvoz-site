@@ -1720,7 +1720,7 @@ es:
   account_ready_text: Tu cuenta está lista para ganar dólares todos los días.
   account_ready_text_white_label: Tu cuenta está lista para jugar todos los días.
   almost_done: Casi termino!!
-  account_inactive_text: Activa tu cuenta para empezar a ganar dinero con ADmoney
+  account_inactive_text: Activa tu cuenta para empezar a ganar con %{company_name}
   active_account: Cuenta activa
   validated_account: Cuenta validada
   tasks_of_the_day: Tareas del dia

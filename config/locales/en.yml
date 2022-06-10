@@ -1721,7 +1721,7 @@ en:
   congratulations: Congratulations!!
   account_ready_text: Your account is ready to play every day.
   almost_done: Almost done!!
-  account_inactive_text: Activate your account to start earning money with ADmoney
+  account_inactive_text: Activate your account to start earning with %{company_name}
   active_account: Active Account
   validated_account: Validated account
   tasks_of_the_day: Tasks of the day

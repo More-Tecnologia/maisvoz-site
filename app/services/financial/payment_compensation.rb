@@ -40,6 +40,7 @@ module Financial
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product
         process_reserved_raffle_tickets if raffle_product
+        propagate_raffle_bonus_payment if raffle_product
         propagate_master_bonus unless free_product || course_product || raffle_product
         enroll_student_on_course if course_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
@@ -99,6 +100,14 @@ module Financial
         date = Time.now + Course.days_to_cashbacks[order_item.product.course.days_to_cashback].days
         CourseSalePaymentWorker.perform_at(date, order_item.id)
         CourseDirectIndirectWorker.perform_at(date, order.user.id, order_item.total_cents)
+      end
+    end
+
+    def propagate_raffle_bonus_payment
+      order.order_items.each do |order_item|
+        if order_item.raffle_ticket.present?
+         RafflesDirectWorker.perform_async(order_item.raffle_ticket.id)
+        end
       end
     end
 

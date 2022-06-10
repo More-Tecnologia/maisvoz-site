@@ -1718,7 +1718,8 @@ es:
   country: País
   master_leader: Líder maestro
   congratulations: Felicidades!!
-  account_ready_text: Tu cuenta está lista para jugar todos los días.
+  account_ready_text: Tu cuenta está lista para ganar dólares todos los días.
+  account_ready_text_white_label: Tu cuenta está lista para jugar todos los días.
   almost_done: Casi termino!!
   account_inactive_text: Activa tu cuenta para empezar a ganar dinero con ADmoney
   active_account: Cuenta activa
@@ -1732,7 +1733,9 @@ es:
   withdrawals_home_card_title: Realice retiros en BTC siempre que alcance su saldo disponible.
   you_can_accelerate_your_earnings: Puedes acelerar tus ganancias
   indicating_company_name_to_your_friends: Indicando %{company_name} a tus amigos.
-  earn_card_title: 'Gane un 20 % en boletos de rifa comprados por su nominado y un 10 % en el monto del premio que ganó.'
+  earn_card_title: 'Gana un 10% en tus indicaciones directas y un 15%
+                    en sus ganancias de las tareas.'
+  earn_card_title_white_label: 'Gane un 20% en boletos de rifa comprados por su nominado y un 10% en el monto del premio que ganó.'
   copy_indication_card_text: 'Copie el enlace de su indicación en el botón lateral
                               y envíelo a tantos amigos como sea posible.'
   support_card_title: 'Si necesitas algo<br>

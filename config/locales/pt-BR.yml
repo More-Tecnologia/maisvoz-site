@@ -2011,7 +2011,8 @@ pt-BR:
   value_to_min_withdrawal_text: "Restam apenas <strong> %{value_to_min_withdrawal} </strong> para você completar o mínimo de <strong> %{withdrawal_min_value} </strong> e fazer seu saque."
   you_already_have_a_balance_available_for_withdrawal: "Você já tem um saldo disponível para saque."
   premium_account: "Conta premium"
-  account_ready_text: "Sua conta está pronta para jogar todos os dias."
+  account_ready_text: "Sua conta está pronta para ganhar dolares todos os dias."
+  account_ready_text_white_label: "Sua conta está pronta para jogar todos os dias."
   you_can_accelerate_your_earnings: "Você pode acelerar seus ganhos"
   indicating_company_name_to_your_friends: "Indicando %{company_name} para seus amigos"
   copy_indication_card_text: 'Copie seu link de indicação no botão ao lado

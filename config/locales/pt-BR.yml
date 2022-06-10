@@ -1992,3 +1992,5 @@ pt-BR:
   mail_locked_text: Sua conta foi bloqueada devido a um número excessivo de tentativas de login sem sucesso
   mail_locked_ins: "Clique no link abaixo para desbloquear sua conta:"
   mail_unlock_account: Desbloquear minha conta
+  tickets: "Bilhetes"
+  home: "Home"

@@ -4,7 +4,7 @@
     <ul class="main-list">
       <% if user_signed_in? %>
         <% if current_user.empreendedor? || current_user.consumidor? %>
-          <li class="list active">
+          <li class="list menu-selected">
             <%= link_to backoffice_home_index_path, class:"link-nav", onclick:"navigate('/')"  do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -23,7 +23,7 @@
             <% end %>
           </li>
         <% else %>
-          <li class="list active">
+          <li class="list">
             <%= link_to dashboard_direction(current_user), class:"link-nav" do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -248,7 +248,6 @@
             <%= t(:my_team) %>
           <% end %>
         </li>
-        <div class="indicator"></div>
       <% else %>
         <div class="footer-copyright">
           © <%= t('defaults.copyright', company_name: SystemConfiguration.company_name) %> - <%= Time.new.year %>

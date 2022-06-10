@@ -16,8 +16,6 @@ body.backdrop {
   background: #efefef;
   border-radius: 15px;
   cursor: auto;
-  display: flex;
-  display: flex;
   display: none;
   flex-direction: column;
   font-size: calc(0.6rem + 0.3vw);
@@ -31,7 +29,7 @@ body.backdrop {
   transform: translate(-50%, -50%);
   width: 80%;
   z-index: 999;  
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .modal-login-register.open {

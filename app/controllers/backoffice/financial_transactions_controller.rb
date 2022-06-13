@@ -10,11 +10,12 @@ module Backoffice
       master_leader_bonus: FinancialReason.master_leader_bonus,
       order_payment_with_balance: FinancialReason.order_payment_with_balance,
       recurrent_bonus: FinancialReason.matching_bonus,
-      task_performed: FinancialReason.yield_bonus
+      task_performed: FinancialReason.yield_bonus,
+      raffles_direct_commission_bonus: FinancialReason.raffles_direct_commission_bonus
     }
     
     def index
-      if current_user.empreendedor?
+      if current_user.empreendedor? || current_user.consumidor?
         @financial_transactions =
           FinancialTransaction.by_current_user(current_user)
                               .to_empreendedor

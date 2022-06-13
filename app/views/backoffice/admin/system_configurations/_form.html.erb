@@ -26,6 +26,14 @@
         <td><%= f.text_field :company_name, class: 'form-control', placeholder: t(:company_name) %></td>
       </tr>
       <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :raffle_license_number %></strong></td>
+        <td><%= f.text_field :raffle_license_number, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label :raffles_direct_commission_bonus %></strong></td>
+        <td><%= f.text_field :raffles_direct_commission_bonus, class: 'form-control' %></td>
+      </tr>
+      <tr>
         <td class="table-valign"><strong class='cell'> <%= f.label :withdrawal_fee %></strong></td>
         <td><%= f.number_field :withdrawal_fee, class: 'form-control' %></td>
       </tr>

@@ -40,7 +40,7 @@ module Financial
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product
         process_reserved_raffle_tickets if raffle_product
-        propagate_raffle_bonus_payment if raffle_product
+        propagate_raffle_bonus_payment if raffle_product && SystemConfiguration.whitelabel?
         propagate_master_bonus unless free_product || course_product || raffle_product
         enroll_student_on_course if course_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification

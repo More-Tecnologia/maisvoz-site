@@ -290,7 +290,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+      if SystemConfiguration.whitelabel?
         root 'backoffice/stores#raffles'
       else
         root 'backoffice/home#index'
@@ -298,7 +298,7 @@ Rails.application.routes.draw do
     end
 
     unauthenticated do
-      if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+      if SystemConfiguration.whitelabel?
         root 'backoffice/stores#raffles'
       else
         root 'users/sessions#new'

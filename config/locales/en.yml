@@ -1712,7 +1712,7 @@ en:
   success_create_configuration: The configuration was successfully created
   success_update_configuration: The configuration was successfully updated
   configs: System Configurations
-  company_name: Admoney
+  company_name: Company Name
   direct_nominees_list: Direct nominees list
   products: Products
   active?: Active?
@@ -1936,8 +1936,12 @@ en:
                                       the product you want.
                                     </p>
                                     <p>
-                                      Get your share now at %{company_name}'s DRAWS and make your dream come true with the
-                                      various prizes available to draw.
+                                      %{company_name}'s is a company with its administrative headquarters in Uruguay License
+                                      International Draw No. %{raffle_license_number}.
+                                    </p>
+                                    <p>
+                                      Get your shares in the Perform Dream RAFFLES now and make your dream come true with the various
+                                      products available for raffle.
                                     </p>
                                     <p>Each selected and paid number within the DRAW is called a <b>SHARE</b>.</p>
                                     <b>DRAWS</b> are generated according to the following shares:
@@ -2002,6 +2006,45 @@ en:
                                       thousands 78,345, so in this example the share drawn was the number 78,345.
                                     </p>
                                     <p>
+                                      RESERVED NUMBERS
+                                    </p>
+                                    <p>
+                                      The RESERVED numbers are all the ones that are in yellow color on the numbers screen
+                                      of the draw. These numbers are not available for purchase by a certain
+                                      time, this time varies according to the payment method of the order
+                                      selected by the participant.
+                                    </p>
+                                    <p>
+                                      PIX payment method: the participant, when choosing this payment method,
+                                      payment for your order, keep the numbers selected in RESERVED on
+                                      one hour period. If payment for the order is not executed within that time, the
+                                      numbers selected for the order, returned to AVAILABLE, thus being able to
+                                      be selected again. At any time during that time when the
+                                      participant execute the payment and the same, is duly confirmed, the numbers
+                                      selected for the order go from RESERVED to PURCHASED and the
+                                      participant receives an email with the order code, and the numbers that were
+                                      selected.
+                                    </p>
+                                    <p>
+                                      Reserved numbers with BITCOIN payments: the participant when choosing
+                                      this method of payment for your order, you keep the numbers selected in
+                                      RESERVED within three hours. If payment for the order is not
+                                      executed in that time, the numbers selected for the order, returned to
+                                      AVAILABLE, so they can be selected again. At any time
+                                      of that time in which the participant executes the payment and the same is duly
+                                      confirmed, the numbers selected for the order change from RESERVED to
+                                      PURCHASED and the participant receives an email with the order code, and the
+                                      that were selected.
+                                    </p>
+                                    <p>
+                                      PURCHASED NUMBERS
+                                    </p>
+                                    <p>
+                                      The PURCHASED numbers are all the ones that are in blue color on the number screen of the
+                                      prize draw. These numbers are considered SHARE and are found in an order
+                                      acquired by a participant.
+                                    </p>
+                                    <p>
                                       WITHDRAWAL AND REFUND OF VALUES<br />
                                       After acquiring the shares, the participant will no longer be able to withdraw
                                       or request a refund. At the time of purchase, on the checkout screen, there is
@@ -2050,3 +2093,17 @@ en:
   raffle_name: Raffle Name
   raffle_status: Raffle Status
   my_numbers: My numbers
+  raffles_direct_commission_bonus: Direct raffle commission bonuses
+  base_host: Base host
+  success_create_configuration: Configuration created successfully
+  success_update_configuration: Configuration updated successfully
+  success_inactivate_configuration: Configuration disabled successfully
+  banner_email: Email Banner
+  external_logo: External logo
+  logo: Logo
+  base_host: Base host
+  raffle_license_number: Raffle license number
+  raffles_direct_commission_bonus: Direct raffle commission percentage
+  reputation: Reputation
+  taxable_fee: Taxable fee
+  whitelabel: Whitelabel

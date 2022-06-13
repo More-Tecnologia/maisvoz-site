@@ -5,7 +5,7 @@ module Backoffice
     end
 
     def main_store_path
-      if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+      if SystemConfiguration.whitelabel?
         raffles_backoffice_stores_path
       else
         backoffice_products_path

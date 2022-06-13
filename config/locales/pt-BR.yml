@@ -1865,6 +1865,10 @@ pt-BR:
                                       pode comprar o ticket do produto que desejar.
                                     </p>
                                     <p>
+                                      %{company_name} é uma empresa com sua sede administrativa no Uruguai Licença 
+                                      Internacional de Sorteios N° %{raffle_license_number}.
+                                    </p>
+                                    <p>
                                       Adquira já suas cotas nas RIFAS da %{company_name} e realize seu sonho com os diversos
                                       produtos disponíveis para sorteio.
                                     </p>
@@ -1938,6 +1942,42 @@ pt-BR:
                                       Observando da esquerda para a direita o segundo algarismo das dezenas é gerado
                                       a dezena de milhar 78.345, assim nesse exemplo a cota sorteada foi a de número
                                       78.345.
+                                    </p>
+                                    <p>
+                                      NÚMEROS RESERVADO
+                                    </p>
+                                    <p>
+                                      Os números RESERVADO, são todos os que estão na cor amarela na tela de números 
+                                      do sorteio. Esses números não estão disponíveis para compra por um determinado 
+                                      tempo, esse tempo varia de acordo com a modalidade de pagamento do pedido 
+                                      selecionado pelo participante.
+                                    </p>
+                                    <p>
+                                      Modalidade de pagamento PIX: o participante ao escolher essa modalidade de 
+                                      pagamento para seu pedido, fica com os números selecionados em RESERVADO no 
+                                      período de uma hora. Caso o pagamento do pedido não seja executado nesse tempo, os 
+                                      números selecionados para o pedido, voltaram para DISPONÍVEL, podendo assim 
+                                      serem selecionados novamente. Em qualquer momento desse tempo em que o 
+                                      participante executar o pagamento e o mesmo, for devidamente confirmado, os números
+                                      selecionados para o pedido passam de RESERVADO para COMPRADO e o 
+                                      participante recebe um e-mail com o código do pedido, e os números que foram 
+                                      selecionados.
+                                    </p>
+                                    <p>
+                                      Os números COMPRADO, são todos os que estão na cor azul na tela de números do 
+                                      sorteio. Esses números são considerados COTAS e encontram-se em um pedido 
+                                      adquirido por um participante.
+                                    </p>
+                                    <p>
+                                      Números reservados com pagamentos em BITICOIN:  o participante ao escolher
+                                      essa modalidade de pagamento para seu pedido, fica com os números selecionados em 
+                                      RESERVADO no período de três horas. Caso o pagamento do pedido não seja 
+                                      executado nesse tempo, os números selecionados para o pedido, voltaram para 
+                                      DISPONÍVEL, podendo assim serem selecionados novamente. Em qualquer momento 
+                                      desse tempo em que o participante executar o pagamento e o mesmo, for devidamente 
+                                      confirmado, os números selecionados para o pedido passam de RESERVADO para 
+                                      COMPRADO e o participante recebe um e-mail com o código do pedido, e os números 
+                                      que foram selecionados.
                                     </p>
                                     <p>
                                       DESISTÊNCIA E DEVOLUÇÃO DE VALORES<br />
@@ -2033,3 +2073,17 @@ pt-BR:
   raffle_name: Nome da rifa
   raffle_status: Status da rifa
   my_numbers: Meus números
+  raffles_direct_commission_bonus: Bônus de comissão direta de sorteios
+  company_name: Nome da empresa
+  success_create_configuration: Configuração criada com sucesso
+  success_update_configuration: Configuração atualizada com sucesso
+  success_inactivate_configuration: Configuração inativada com sucesso
+  banner_email: Banner do email
+  external_logo: Logo externa
+  logo: Logo
+  base_host: Base host
+  raffle_license_number: Número de licensa da Rifa
+  raffles_direct_commission_bonus: Porcentagem de comissão direta das rifas
+  reputation: Reputação
+  taxable_fee: Taxa do sistema
+  whitelabel: Whitelabel

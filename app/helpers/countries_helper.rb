@@ -248,7 +248,7 @@ module CountriesHelper
   end
 
   def priority_countries
-    if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+    if SystemConfiguration.whitelabel?
       ['BR']
     else
       []

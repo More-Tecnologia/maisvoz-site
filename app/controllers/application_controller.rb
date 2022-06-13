@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
     if user.admin?
       backoffice_admin_dashboard_index_path
     else
-      if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+      if SystemConfiguration.whitelabel?
         raffles_backoffice_stores_path
       else
         backoffice_dashboard_index_path

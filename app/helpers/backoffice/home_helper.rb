@@ -15,7 +15,7 @@ module Backoffice
     end
 
     def home_active_condition?
-      if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+      if SystemConfiguration.whitelabel?
         current_user.raffle_tickets
                     .acquired
                     .includes(:raffle)

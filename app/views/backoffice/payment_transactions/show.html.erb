@@ -10,7 +10,7 @@
           <h1><strong><%= t(:request_number) %></strong></h1>
           <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
         </div>
-         <% unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+         <% unless SystemConfiguration.whitelabel? %>
         <div class="request-box">
           <h4>
             <p><strong><%= t(:package_value) %></strong></p>

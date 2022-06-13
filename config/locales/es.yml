@@ -1927,94 +1927,137 @@ es:
   free: Gratis
   raffles_agreement_contract_html: | 
                                     <p>
-                                      A %{company_name} trata-se de uma plataforma de RIFAS totalmente digital, onde você
-                                      pode comprar a RIFA do produto que desejar, com sorteios diários.
+                                      %{company_name} es una plataforma RIFAS totalmente digital, con sorteos diarios donde puedes
+                                      Puedes comprar el ticket del producto que quieras.
                                     </p>
                                     <p>
-                                      Adquira já suas cotas nas RIFAS da %{company_name} e realize seu sonho com os diversos
-                                      produtos disponíveis para sorteio.
+                                      %{company_name} es una empresa con sede administrativa en Uruguay Licencia
+                                      Sorteo Internacional N° %{raffle_license_number}.
                                     </p>
                                     <p>
-                                      Cada número selecionado e pago dentro na RIFA, passa a ser chamado de
-                                      <b>COTA</b>.
+                                      Compra tus acciones en %{company_name} RIFA y haz tu sueño realidad con las diversas
+                                      Productos disponibles para sorteo.
                                     </p>
-                                    As <b>RIFAS</b> são geradas de acordo com as seguintes cotas:
+                                    <p>
+                                      Cada número seleccionado y pagado dentro de la RIFA ahora se llama
+                                      <b>CUOTA</b>.
+                                    </p>
+                                      Los <b>RIFAS</b> se generan según las siguientes cuotas:
                                     <ol>
-                                      <li>100 cotas - numeradas de 00 a 99</li>
-                                      <li>1.000 cotas - numeradas de 000 a 999</li>
-                                      <li>10.000 cotas - numeradas de 0.000 a 9.999</li>
-                                      <li>100.000 cotas - numeradas de 00.000 a 99.999</li>
+                                      <li>100 cuotas - numeradas del 00 al 99</li>
+                                      <li>1000 acciones - numeradas del 000 al 999</li>
+                                      <li>10.000 acciones - numeradas del 0.000 al 9.999</li>
+                                      <li>100.000 acciones - numeradas del 00.000 al 99.999</li>
                                     </ol>
                                     <p>
-                                      ESCOLHA DE NUMEROS E PAGAMENTO<br />
-                                      Após escolher os números de sua preferência, efetue o pagamento via cartão de
-                                      crédito ou Pix, assim que o pagamento for confirmado, suas cotas estarão
-                                      confirmadas, agora só aguardar o fechamento da RIFA para a definição da data
-                                      do sorteio e boa sorte.
+                                      ELECCIÓN DE NÚMEROS Y PAGO<br />
+                                      Después de elegir los números de su preferencia, realice el pago con tarjeta de crédito.
+                                      crédito o Pix, una vez confirmado el pago, sus cuotas serán
+                                      confirmado, ahora solo queda esperar el cierre de la RIFA para definir la fecha
+                                      del sorteo y mucha suerte.
                                     </p>
                                     <p>
-                                      O SORTEIO<br />
-                                      Os sorteios das extrações são realizados pelo concurso da QUINA uma das
-                                      Loterias da Caixa Econômica Federal. A RIFA estará disponível para sorteio
-                                      toda vez que tiver 100% de suas cotas vendidas. O sistema automaticamente
-                                      fecha a RIFA envia um e-mail para cada participante com data e hora do
-                                      sorteio.
+                                      EL SORTEO<br />
+                                      Los sorteos de extracciones los realiza el certamen QUINA, uno de los
+                                      Loterías Caixa Econômica Federal. RIFA estará disponible para rifa
+                                      cada vez que tengas el 100% de tus cuotas vendidas. El sistema automáticamente
+                                      cierra la RIFA envía un correo electrónico a cada participante con la fecha y hora de la
+                                      sorteo de premios.
                                     </p>
                                     <p>
-                                      A QUINA realiza os sorteios das extrações, seis dias da semana, de segunda a
-                                      sábado, tendo como exceção os domingos. Caso haja algum feriado importante na
-                                      data do sorteio, o mesmo é realizado no dia subsequente com exceção dos
-                                      domingos, caso o feriado caia em um sábado o sorteio é realizado na
-                                      segunda-feira subsequente.
+                                      QUINA realiza sorteos de extracciones, seis días a la semana, de lunes a
+                                      sábado, a excepción de los domingos. Si hay alguna festividad importante en
+                                      fecha del sorteo, el mismo se realiza al día siguiente, a excepción de
+                                      Los domingos, si el día festivo cae en sábado, el sorteo se realizará el
+                                      lunes siguiente.
                                     </p>
                                     <p>
-                                      Os sorteios podem ser acompanhados através do site:
+                                      El sorteo se podrá seguir a través de la página web:
                                       https://loterias.caixa.gov.br/Paginas/Quina.aspx
                                     </p>
-                                    <p>COMO É FEITO O SORTEIO DAS RIFAS PELA QUINA?</p>
+                                    <p>¿CÓMO SE REALIZA EL SORTEO DE LA RIFA POR QUINA?</p>
                                     <p>
-                                      Na QUINA os sorteios variam da dezena 01 a 80, o sorteio da RIFA nesse caso é
-                                      realizado selecionando o segundo algarismo da dezena sorteada sempre da
-                                      esquerda para direita como segue abaixo:
+                                      En QUINA los sorteos van desde diez 01 hasta 80, el sorteo de RIFA en este caso es
+                                      se realiza seleccionando la segunda cifra de las diez extraídas siempre de la
+                                      de izquierda a derecha de la siguiente manera:
                                     </p>
-                                    RIFAS com 100 cotas<br />
+                                    RIFAS con 100 quotas<br />
                                     <img class="raffles-preview" src="%{img1_path}" />
                                     <p>
-                                      Observando da esquerda para a direita o segundo algarismo das duas primeiras
-                                      dezenas é gerado a dezena 78, assim nesse exemplo a cota sorteada foi a de
-                                      número 78.
+                                      Mirando de izquierda a derecha el segundo dígito de los dos primeros
+                                      decenas se genera a diez 78, por lo que en este ejemplo la cuota extraída fue
+                                      numero 78
                                     </p>
-                                    RIFAS com 1.000 cotas<br />
+                                    RIFAS con 1.000 quotas<br />
                                     <img class="raffles-preview" src="%{img2_path}" />
                                     <p>
-                                      Observando da esquerda para a direita o segundo algarismo das três primeiras
-                                      dezenas é gerado a centena 783, assim nesse exemplo a cota sorteada foi a de
+                                      Mirando de izquierda a derecha el segundo dígito de los tres primeros
+                                      decenas se genera una centena 783, por lo que en este ejemplo la cuota extraída fue
                                       número 783.
                                     </p>
-                                    Utilizando 10.000 cotas<br />
+                                    Usando 10,000 cuotas<br />
                                     <img class="raffles-preview" src="%{img3_path}" />
                                     <p>
-                                      Observando da esquerda para a direita o segundo algarismo das quatro primeiras
-                                      dezenas é gerado a milhar 7.834, assim nesse exemplo a cota sorteada foi a de
+                                      Mirando de izquierda a derecha el segundo dígito de los cuatro primeros
+                                      decenas se genera a 7.834 mil, por lo que en este ejemplo las probabilidades sorteadas fueron
                                       número 7.834.
                                     </p>
-                                    RIFAS com 100.000 cotas<br />
+                                    RIFAS con 100.000 quotas<br />
                                     <img class="raffles-preview" src="%{img4_path}" />
                                     <p>
-                                      Observando da esquerda para a direita o segundo algarismo das dezenas é gerado
-                                      a dezena de milhar 78.345, assim nesse exemplo a cota sorteada foi a de número
-                                      78.345.
+                                      Mirando de izquierda a derecha se genera el segundo dígito de las decenas
+                                      los diez mil 78.345, por lo que en este ejemplo la cuota sorteada fue el número
+                                      78,345.
                                     </p>
                                     <p>
-                                      DESISTÊNCIA E DEVOLUÇÃO DE VALORES<br />
-                                      AApós a aquisição das cotas, o participante não poderá mais desistir ou
-                                      solicitar devolução de valores. No momento da compra na tela de checkout há em
-                                      seu rodapé a informação de não devolução de valores.
+                                      NÚMEROS RESERVADOS
                                     </p>
                                     <p>
-                                      DESCLASSIFICAÇÃO<br />
-                                      Está rifa NÃO poderá ser comercializada (comprada ou vendida) por menores de
-                                      18 anos e ou incapazes legalmente.
+                                      Los números RESERVADOS son todos los que están en color amarillo en la pantalla de números
+                                      del sorteo Estos números no están disponibles para la compra por un determinado
+                                      tiempo, este tiempo varía según el método de pago del pedido
+                                      seleccionado por el participante.
+                                    </p>
+                                    <p>
+                                      Modalidade de pagamento PIX: o participante ao escolher essa modalidade de 
+                                      pagamento para seu pedido, fica com os números selecionados em RESERVADO no 
+                                      período de uma hora. Caso o pagamento do pedido não seja executado nesse tempo, os 
+                                      números selecionados para o pedido, voltaram para DISPONÍVEL, podendo assim 
+                                      serem selecionados novamente. Em qualquer momento desse tempo em que o 
+                                      participante executar o pagamento e o mesmo, for devidamente confirmado, os números
+                                      selecionados para o pedido passam de RESERVADO para COMPRADO e o 
+                                      participante recebe um e-mail com o código do pedido, e os números que foram 
+                                      selecionados.
+                                    </p>
+                                    <p>
+                                      Forma de pago PIX: el participante, al elegir esta forma de pago,
+                                      pago de su pedido, mantenga los números seleccionados en RESERVADO el
+                                      período de una hora. Si el pago de la orden no se ejecuta dentro de ese tiempo, el
+                                      números seleccionados para el pedido, devueltos a DISPONIBLE, pudiendo así
+                                      ser seleccionado de nuevo. En cualquier momento durante ese tiempo cuando el
+                                      participante ejecuta el pago y el mismo, es debidamente confirmado, los números
+                                      seleccionados para el pedido van de RESERVADO a COMPRADO y el
+                                      participante recibe un correo electrónico con el código de pedido y los números que fueron
+                                      seleccionado.
+                                    </p>
+                                    <p>
+                                      NÚMEROS COMPRADOS
+                                    </p>
+                                    <p>
+                                      Los números COMPRADOS son todos aquellos en color azul en la pantalla de números del
+                                      sorteo de premios. Estos números se consideran CUOTAS y se encuentran en un pedido
+                                      adquirida por un participante.
+                                    </p>
+                                    <p>
+                                      RETIRO Y DEVOLUCIÓN DE VALORES<br />
+                                      Después de adquirir las acciones, el partícipe ya no podrá retirar ni
+                                      solicitar un reembolso. En el momento de la compra en la pantalla de pago hay
+                                      su pie de página la información de no devolución de valores.
+                                    </p>
+                                    <p>
+                                      DESCLASIFICACIÓN<br />
+                                      Este sorteo NO puede ser vendido (comprado o vendido) por menores de edad
+                                      18 años y/o incapacitado legalmente.
                                     </p>
                                     <p>
                                       Os Participantes poderão ser desclassificados automaticamente desta RIFA em
@@ -2058,3 +2101,16 @@ es:
   raffle_name: Nombre de la rifa
   raffle_status: Estado de la rifa
   my_numbers: Mis numeros
+  raffles_direct_commission_bonus: Bonos de comisión de sorteo directo
+  success_create_configuration: Configuración creada con éxito
+  success_update_configuration: Configuración actualizada exitosamente
+  success_inactivate_configuration: Configuración deshabilitada con éxito
+  banner_email: Banner de correo electrónico
+  external_logo: Logotipo externo
+  logo: Logo
+  base_host: Base host
+  raffle_license_number: Número de licencia de la rifa
+  raffles_direct_commission_bonus: Porcentaje de comisión de sorteo directo
+  reputation: Reputación
+  taxable_fee: Tarifa del sistema
+  whitelabel: Whitelabel

@@ -1866,7 +1866,7 @@ pt-BR:
                                     </p>
                                     <p>
                                       %{company_name} é uma empresa com sua sede administrativa no Uruguai Licença 
-                                      Internacional de Sorteios N° 4062001118327.
+                                      Internacional de Sorteios N° %{raffle_license_number}.
                                     </p>
                                     <p>
                                       Adquira já suas cotas nas RIFAS da %{company_name} e realize seu sonho com os diversos
@@ -2064,3 +2064,4 @@ pt-BR:
   just_send_us_a_message: "Basta nos enviar uma mensagem."
   earn_card_title_white_label: 'Ganhe 20% nas rifas compradas pelo seu indicado e 10% no valor do prêmio que ele ganhar.'
   account_inactive_text: Ative sua conta para começar a ganhar com %{company_name}
+  raffles_direct_commission_bonus: Bônus de comissão direta de sorteios

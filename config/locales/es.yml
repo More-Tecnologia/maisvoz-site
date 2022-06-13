@@ -1925,14 +1925,14 @@ es:
   top_deal: Mejor oferta
   last_numbers: Últimos números
   free: Gratis
-    raffles_agreement_contract_html: | 
+  raffles_agreement_contract_html: | 
                                     <p>
                                       %{company_name} es una plataforma RIFAS totalmente digital, con sorteos diarios donde puedes
                                       Puedes comprar el ticket del producto que quieras.
                                     </p>
                                     <p>
                                       %{company_name} es una empresa con sede administrativa en Uruguay Licencia
-                                      Sorteo Internacional N° 40620011118327.
+                                      Sorteo Internacional N° %{raffle_license_number}.
                                     </p>
                                     <p>
                                       Compra tus acciones en %{company_name} RIFA y haz tu sueño realidad con las diversas

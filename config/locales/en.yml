@@ -1937,7 +1937,7 @@ en:
                                     </p>
                                     <p>
                                       %{company_name}'s is a company with its administrative headquarters in Uruguay License
-                                      International Draw No. 40620011118327.
+                                      International Draw No. %{raffle_license_number}.
                                     </p>
                                     <p>
                                       Get your shares in the Perform Dream RAFFLES now and make your dream come true with the various

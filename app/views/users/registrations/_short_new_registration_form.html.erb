@@ -9,7 +9,7 @@
     <%= f.hidden_field :registration_type %>
     <%= f.hidden_field :g_recaptcha_response %>
     <%= f.hidden_field :token %>
-     <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) && @form.token.blank? %>
+     <% if SystemConfiguration.whitelabel? && @form.token.blank? %>
          <%= f.hidden_field :sponsor_username, value: (@form.sponsor_username.presence || User.find_morenwm_customer_user.username) %>
      <% else %>
         <%= f.hidden_field :sponsor_username,

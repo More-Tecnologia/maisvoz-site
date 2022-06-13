@@ -12,7 +12,7 @@
         }
       </style>
     </head>
-    <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+    <% if SystemConfiguration.whitelabel? %>
       <div class="container"
           style=" display: flex;
             justify-content: space-around;

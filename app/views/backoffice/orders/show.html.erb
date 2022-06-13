@@ -36,7 +36,7 @@
           </div>
         <% end %>
       </div>
-      <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <% if SystemConfiguration.whitelabel? %>
         <%= render 'backoffice/shared/ticket_numbers', orders: @order %>
       <% end %>
       <% if @order.payment_type.in?(['btc', 'pix']) %>

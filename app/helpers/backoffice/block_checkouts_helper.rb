@@ -7,7 +7,7 @@ module Backoffice
     end
 
     def format_whitelabel_currency(amount)
-      unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
+      unless SystemConfiguration.whitelabel?
         amount = amount * ENV['BRL_USD_FACTOR']
       end
 

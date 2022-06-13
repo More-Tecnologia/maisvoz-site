@@ -24,7 +24,7 @@
       <%=  link_to backoffice_admin_expenses_path, class: 'item5 card-menu-admin'  do%>
         <%= image_tag("header-admin-icons/expenses.svg") %> <%= t('defaults.expenses') %>
       <% end %>
-      <% unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <% unless SystemConfiguration.whitelabel? %>
         <%= link_to backoffice_admin_bonus_contracts_path, class: 'item6 card-menu-admin'  do%>
           <%= image_tag("header-admin-icons/bonus-contracts.svg") %> <%= t('defaults.unilevel') %>
         <% end %>
@@ -54,13 +54,13 @@
           <%= image_tag("header-admin-icons/support.svg") %> <%= t('defaults.support') %>
         <% end %>
       <% end %>
-      <% unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <% unless SystemConfiguration.whitelabel? %>
         <%= link_to backoffice_admin_products_path, class: 'item10 card-menu-admin' do %>
           <%= image_tag("header-admin-icons/products.svg") %> <%= t('defaults.products') %>
         <% end %>
       <% end %>
 
-      <% unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <% unless SystemConfiguration.whitelabel? %>
         <%= link_to backoffice_admin_banners_path, class: 'item11 card-menu-admin' do %>
           <%= image_tag("header-admin-icons/banners.svg") %> <%= t(:banners) %>
         <% end %>
@@ -70,19 +70,19 @@
         <%= image_tag("header-admin-icons/settings.svg") %> <%= t(:configs) %>
       <% end %>     
 
-      <% unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <% unless SystemConfiguration.whitelabel? %>
         <%= link_to backoffice_admin_categorizations_path, class: 'item13 card-menu-admin' do %>
           <%= image_tag("header-admin-icons/categories.svg") %> <%= t(:categorizations) %>
         <% end %>
       <% end %>
 
-      <% unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <% unless SystemConfiguration.whitelabel? %>
         <%= link_to backoffice_admin_courses_path, class: 'item14 card-menu-admin' do %>
           <%= image_tag('courses/menu-courses1.svg') %> <%= t(:courses) %>
         <% end %>
       <% end %>
 
-      <% unless ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+      <% unless SystemConfiguration.whitelabel? %>
         <% if any_active_waiting_ad? %>
           <%= link_to  backoffice_admin_ads_path, class: 'item15 card-menu-admin' do %>
             <div class="svg-alert">

@@ -82,6 +82,7 @@ module Backoffice
                       :raffles_direct_commission_bonus,
                       :reputation,
                       :taxable_fee,
+                      :whitelabel,
                       :withdrawal_fee)
       end
     end

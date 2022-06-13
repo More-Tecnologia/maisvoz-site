@@ -40,7 +40,7 @@ class SystemConfiguration < ApplicationRecord
     def base_host
       return ENV['BASE_HOST'] unless table_exists?
 
-      active_config.base_host
+      active_config&.base_host
     rescue ActiveRecord::NoDatabaseError
       false
     end
@@ -48,7 +48,7 @@ class SystemConfiguration < ApplicationRecord
     def company_name
       return ENV['COMPANY_NAME'] unless table_exists?
 
-      active_config.try(:company_name).presence
+      active_config&.company_name
     rescue ActiveRecord::NoDatabaseError
       false
     end
@@ -104,21 +104,29 @@ class SystemConfiguration < ApplicationRecord
     def reputation?
       return ActiveModel::Type::Boolean.new.cast(ENV['REPUTATION']) unless table_exists?
 
-      active_config.reputation
+      active_config&.reputation
     rescue ActiveRecord::NoDatabaseError
       false
     end
 
     def taxable_fee
-      return (active_config.taxable_fee / 100) if table_exists? && active_config.taxable_fee.present?
+      return (active_config&.taxable_fee / 100) if table_exists? && active_config.taxable_fee.present?
 
       ENV['SYSTEM_FEE']
     rescue ActiveRecord::NoDatabaseError
       false
     end
 
+    def whitelabel?
+      return unless table_exists?
+
+      active_config.whitelabel
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
     def withdrawal_fee
-      return active_config.withdrawal_fee if table_exists? && active_config.withdrawal_fee.present?
+      return active_config&.withdrawal_fee if table_exists? && active_config.withdrawal_fee.present?
 
       ENV['WITHDRAWAL_FEE']
     rescue ActiveRecord::NoDatabaseError

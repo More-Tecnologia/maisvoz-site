@@ -1712,7 +1712,7 @@ en:
   success_create_configuration: The configuration was successfully created
   success_update_configuration: The configuration was successfully updated
   configs: System Configurations
-  company_name: Admoney
+  company_name: Company Name
   direct_nominees_list: Direct nominees list
   products: Products
   active?: Active?
@@ -2085,3 +2085,14 @@ en:
   home: "Home"
   premium_account: "Premium account"
   raffles_direct_commission_bonus: Direct raffle commission bonuses
+  base_host: Base host
+  success_create_configuration: Configuration created successfully
+  success_update_configuration: Configuration updated successfully
+  success_inactivate_configuration: Configuration disabled successfully
+  banner_email: Email Banner
+  external_logo: External logo
+  logo: Logo
+  base_host: Base host
+  raffle_license_number: Raffle license number
+  raffles_direct_commission_bonus: Direct raffle commission percentage
+  reputation: Reputation

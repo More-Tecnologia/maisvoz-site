@@ -2065,3 +2065,14 @@ pt-BR:
   earn_card_title_white_label: 'Ganhe 20% nas rifas compradas pelo seu indicado e 10% no valor do prêmio que ele ganhar.'
   account_inactive_text: Ative sua conta para começar a ganhar com %{company_name}
   raffles_direct_commission_bonus: Bônus de comissão direta de sorteios
+  company_name: Nome da empresa
+  success_create_configuration: Configuração criada com sucesso
+  success_update_configuration: Configuração atualizada com sucesso
+  success_inactivate_configuration: Configuração inativada com sucesso
+  banner_email: Banner do email
+  external_logo: Logo externa
+  logo: Logo
+  base_host: Base host
+  raffle_license_number: Número de licensa da Rifa
+  raffles_direct_commission_bonus: Porcentagem de comissão direta das rifas
+  reputation: Reputação

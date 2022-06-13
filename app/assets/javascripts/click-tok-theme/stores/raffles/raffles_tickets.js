@@ -53,8 +53,8 @@ const genericElement = {
 
 const buttons = {
   addSearchTicket: getElement(".add-searched"),
-  clearTickets: getElement(".raffle-tickets-selected-clear-button"),
-  pay: getElement(".raffle-tickets-form-button"),
+  clearTickets: getElement(".clear-tickets-button"),
+  pay: getElement(".raffle-tickets-buy-form .buy-tickets-button"),
   randomTicket: getElement(".random-ticket"),
   filterAvailable: getElement(".filter-button.available"),
   filterReserved: getElement(".filter-button.reserved"),

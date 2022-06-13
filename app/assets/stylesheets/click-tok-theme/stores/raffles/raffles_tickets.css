@@ -22,12 +22,12 @@ input[type="number"] {
 .raffle-tickets-return-button {
   align-items: center;
   background: #30da03;
-  border-radius: 0.5em;
+  border-radius: 60px;
   color: white;
   display: flex;
-  height: 1em;
+  height: 40px;
   justify-content: center;
-  width: 2em;
+  width: 40px;
 }
 
 .raffle-tickets--page-title {
@@ -664,6 +664,213 @@ input[type="number"] {
   color: white;
 }
 
+.box-tickets {
+  align-items: center;
+  display: flex;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.status-filter {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.btn-filter {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  font-size: 15px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 100px;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.btn-filter:hover {
+  color: black;
+}
+
+.btn-filter svg {
+  margin-left: 5px;
+}
+
+.tickets-title {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 0 10px;
+}
+
+.tickets-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-container-sm,
+.input-container-lg {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.container-sm {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.container-lg {
+  width: 100%;
+}
+
+.input-container-sm {
+  width: 49%;
+}
+
+.input-container-lg {
+  width: 100%;
+}
+
+.input-filter {
+  border: 0;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 15px 10px;
+}
+
+.tickets-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+
+.raffle-ticket-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  min-height: 170px;
+  padding: 20px;
+  width: 100%;
+}
+
+.ticket-image {
+  object-fit: scale-down;
+  max-width: 300px;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.raffle-ticket-card-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+  padding: 0 10px;
+  width: 50%;
+}
+
+.raffle-ticket-second-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.card-label {
+  color: #9b9b9b;
+  font-size: 13px;
+}
+
+.strong-item {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.numbers-raffle-selected-container {
+  display: flex;
+}
+
+.number-raffle-selected {
+  background: #e5e5e5;
+  border-radius: 5px;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  padding: 10px 0;
+  text-align: center;
+  width: 19%;
+}
+
+.numbers {
+  width: 100%;
+}
+
+.numbers-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
+  width: 100%;
+}
+
+.raffle-status {
+  background: red;
+  border-radius: 5px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.waiting {
+  background: #0b74d4;
+}
+
+.not-awarded {
+  background: red;
+}
+
+.awarded {
+  background: linear-gradient(to bottom, #59fa00, #27af00);
+}
+
+.btn-submit-filter {
+  background: linear-gradient(to bottom, #59fa00, #27af00);
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 40px;
+  padding: 10px;
+  transition: 0.5s;
+}
+
+.btn-submit-filter:hover {
+  background: linear-gradient(to top, #59fa00, #27af00);
+  box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
+  transform: scale(1.03);
+}
+
 @media (min-width: 780px) {
   .raffle-tickets-header {
     font-size: 1.3em;
@@ -683,6 +890,25 @@ input[type="number"] {
     padding-top: 10%;
     width: 13.08%;
   }
+
+  .container-sm {
+    flex-direction: column;
+    width: 24%;
+  }
+
+  .container-lg {
+    width: 75%;
+  }
+
+  .input-container-sm {
+    width: 100%;
+  }
+
+  .raffle-ticket-card {
+    margin-bottom: 20px;
+    width: 49%;
+  }
+
 }
 
 @media (min-width: 980px) {
@@ -733,6 +959,10 @@ input[type="number"] {
   .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
     padding-top: 6.8%;
     width: 8.09%;
+  }
+
+  .number-raffle-selected {
+    width: 9%;
   }
 }
 

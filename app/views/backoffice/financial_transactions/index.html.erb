@@ -1,4 +1,4 @@
-<% if current_user.empreendedor? %>
+<% if current_user.empreendedor? || current_user.consumidor? %>
   <%= stylesheet_link_tag 'click-tok-theme/orders' %>
   <link rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -61,13 +61,17 @@
               <%= link_to t(:payment_with_balance),
                 backoffice_financial_transactions_path(financial_reason: 'order_payment_with_balance') %>
             </button>            
+            <button class="dropdown-item" type="button">
+              <%= link_to t(:raffles_direct_commission_bonus),
+                backoffice_financial_transactions_path(financial_reason: 'raffles_direct_commission_bonus') %>
+            </button>            
           </div>
         </div>
     </div>
     <% if @financial_transactions.length > 0 %>
       <%= render 'as_morenwm_user' if current_user.morenwm_user? %>
     <% end %>
-    <% if current_user.empreendedor? %>
+    <% if current_user.empreendedor? || current_user.consumidor? %>
       <% @financial_transactions.each do |financial_transaction| %>
         <div class="th-history-list">
           <div class="th-history-task-title wr-title">
@@ -92,7 +96,7 @@
     <% end %>
     <div class="row">
       <div class="col-sm-12">
-        <%= paginate @financial_transactions %>
+        <%= paginate @financial_transactions if !@financial_transactions.empty? %>
       </div>
     </div>
   </div>

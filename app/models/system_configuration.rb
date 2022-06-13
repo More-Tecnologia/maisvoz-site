@@ -77,10 +77,26 @@ class SystemConfiguration < ApplicationRecord
       false
     end
 
+    def raffle_license_number
+      return unless table_exists?
+
+      active_config&.raffle_license_number || ENV['RAFFLE_LICENSE_NUMBER']
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
     def logo
       return unless table_exists?
 
       active_config&.logo&.fullpath.presence || 'logo-white-white-label.png'
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
+    def raffles_direct_commission_bonus
+      return unless table_exists?
+
+      active_config&.raffles_direct_commission_bonus || ENV['RAFFLE_DIRECT_COMMISSION_BONUS']
     rescue ActiveRecord::NoDatabaseError
       false
     end

@@ -120,7 +120,7 @@ class SystemConfiguration < ApplicationRecord
     def whitelabel?
       return unless table_exists?
 
-      active_config&.whitelabel
+      active_config&.whitelabel || ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL'])
     rescue ActiveRecord::NoDatabaseError
       false
     end

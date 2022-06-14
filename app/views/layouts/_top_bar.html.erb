@@ -18,7 +18,7 @@
       </div>
       <div class="logo">
         <a href="/">
-          <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+          <% if SystemConfiguration.whitelabel? %>
             <%= image_tag(SystemConfiguration.logo) %>
           <% else %>
             <%= image_tag('logo-white.png') %>

@@ -9,19 +9,12 @@
     <%= f.hidden_field :registration_type %>
     <%= f.hidden_field :g_recaptcha_response %>
     <%= f.hidden_field :token %>
-     <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+     <% if SystemConfiguration.whitelabel? && @form.token.blank? %>
          <%= f.hidden_field :sponsor_username, value: (@form.sponsor_username.presence || User.find_morenwm_customer_user.username) %>
      <% else %>
-      <div class="login-fields">
-        <div class="field-icon">
-          <%= image_tag('icons/sponsor.svg', alt: t(:sponsor)) %>
-        </div>
-        <%= f.input_field :sponsor_username, autofocus: true,
-                                            class: "input-description",
-                                            placeholder: t(:sponsor),
+        <%= f.hidden_field :sponsor_username,
                                             readonly: @form.token.present?,
                                             value: @form.token.present? ? @form.sponsor.try(:username).to_s.gsub(/.{5}$/, '*****') : @form.sponsor_username %>
-      </div>
     <% end %>
     <%- if controller_name != 'sessions' %>
       <%= link_to t('users.sessions.new.login'), new_session_path(resource_name), class: 'sign-up-log-in_button' %>

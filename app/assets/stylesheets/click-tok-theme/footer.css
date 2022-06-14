@@ -85,6 +85,26 @@
   color: #3f3f3f;
 }
 
+.menu-selected a,
+.menu-selected svg {
+  color: #53f001;
+  fill: #53f001;
+}
+
+.link-nav {
+  color: white;
+  font-size: 15px;
+}
+
+.link-nav:hover,
+.link-nav:active {
+  color: #53f001;
+}
+
+.link-nav:hover svg {
+  fill: #53f001;
+}
+
 .title-btn-shop {
   color: white;
   height: 10px;
@@ -130,7 +150,6 @@
 
 .main-list li a {
   align-items: center;
-  color: var(--secondColor);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -166,7 +185,7 @@
   z-index: 5;
 }
 
-.svg svg {
+.svg {
   fill: white;
   height: 20px;
   width: 20px;

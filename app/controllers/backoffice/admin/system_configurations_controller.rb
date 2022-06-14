@@ -71,16 +71,19 @@ module Backoffice
 
       def ensured_params
         params.require(:system_configuration)
-              .permit(:banner_email,
+              .permit(:active,
+                      :banner_email,
                       :base_host,
                       :company_name,
                       :external_logo,
                       :favico,
                       :logo,
+                      :raffle_license_number,
+                      :raffles_direct_commission_bonus,
+                      :reputation,
                       :taxable_fee,
-                      :withdrawal_fee,
-                      :active,
-                      :reputation)
+                      :whitelabel,
+                      :withdrawal_fee)
       end
     end
   end

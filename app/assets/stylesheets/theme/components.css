@@ -2424,7 +2424,7 @@ a.editable-click:hover {
   flex-direction: column;
 }
 #dashboard{
-  width: 90%;
+  width: 100%;
   height: auto;
   display: flex;
   justify-content: space-between;
@@ -2455,7 +2455,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item1 {
-  width: 8%;
+  width: 9%;
   box-shadow:rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2471,7 +2471,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item2 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2488,7 +2488,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item3 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2505,7 +2505,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item4 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2522,7 +2522,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item5 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2544,7 +2544,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item6 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2561,7 +2561,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item7 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2578,7 +2578,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item8 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2595,7 +2595,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item9 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2609,7 +2609,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item15 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2673,7 +2673,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item10 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2686,7 +2686,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item11 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2705,7 +2705,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item12 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2724,7 +2724,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item13 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2743,7 +2743,7 @@ a.editable-click:hover {
 }
 
 #dashboard .painel .item14 {
-  width: 8%;
+  width: 9%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   justify-content: center;
@@ -2753,7 +2753,6 @@ a.editable-click:hover {
   font-size: 14px;
   margin-left: 5px;
   height: 120px;
-  min-width: 150px;
 }
 
 #dashboard .painel .item14 img{

@@ -5,7 +5,7 @@
 <section class="modal-login-register login">
   <button class="modal-close-button">✕</button>
   <div class="modal-logo">
-    <% if ActiveModel::Type::Boolean.new.cast(ENV['WHITELABEL']) %>
+    <% if SystemConfiguration.whitelabel? %>
       <%= image_tag 'white-label-logo.png' %>
     <% else %>
       <%= image_tag 'logo.png' %>

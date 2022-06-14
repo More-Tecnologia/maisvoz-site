@@ -667,34 +667,37 @@ input[type="number"] {
 .box-tickets {
   align-items: center;
   display: flex;
-  margin-top: 30px;
+  justify-content: space-between;
+  margin: 15px 0;
   width: 100%;
+}
+
+.box-title {
+  align-items: center;
+  display: flex;
 }
 
 .status-filter {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  width: auto;
 }
 
 .btn-filter {
   align-items: center;
-  background: transparent;
+  background: #30da03;
   border: 0;
+  border-radius: 20px;
+  color: white;
   font-size: 15px;
   display: flex;
   justify-content: flex-end;
-  margin-right: 100px;
+  padding: 10px;
   transition: 0.5s;
-  width: 100%;
 }
 
 .btn-filter:hover {
   color: black;
-}
-
-.btn-filter svg {
-  margin-left: 5px;
 }
 
 .tickets-title {
@@ -719,8 +722,28 @@ input[type="number"] {
   margin-top: 20px;
 }
 
+.dropdown-filter {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-filter-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown-filter:hover .dropdown-content {
+  display: block;
+}
+
 .container-sm {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 }
@@ -735,6 +758,10 @@ input[type="number"] {
 
 .input-container-lg {
   width: 100%;
+}
+
+.dropdown-menu {
+  margin-right: 75px;
 }
 
 .input-filter {
@@ -762,6 +789,7 @@ input[type="number"] {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 10px;
   min-height: 170px;
@@ -777,15 +805,16 @@ input[type="number"] {
 }
 
 .content-container {
+  align-items: center;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 100%;
 }
 
 .raffle-ticket-card-container {
   display: flex;
   flex-direction: column;
-  margin: 5px 0;
+  margin: 10px 0;
   padding: 0 10px;
   width: 50%;
 }
@@ -867,15 +896,22 @@ input[type="number"] {
   border-radius: 5px;
   color: white;
   font-weight: bold;
-  margin-bottom: 40px;
+  margin: 20px 0 20px 0;
   padding: 10px;
   transition: 0.5s;
+  width: 100%;
 }
 
 .btn-submit-filter:hover {
   background: linear-gradient(to top, #59fa00, #27af00);
   box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
   transform: scale(1.03);
+}
+
+.raffle-data {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 @media (min-width: 780px) {
@@ -899,21 +935,52 @@ input[type="number"] {
   }
 
   .container-sm {
-    flex-direction: column;
-    width: 24%;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
   }
 
   .container-lg {
-    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
   }
 
-  .input-container-sm {
-    width: 100%;
+  .input-container-sm,
+  .input-container-lg {
+    width: 24%;
+  }
+
+  .tickets-filter {
+    align-items: flex-end;
+    flex-wrap: inherit;
+    margin-bottom: 50px;
+  }
+
+  .content-container {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .btn-submit-filter {
+    height: 50px;
+    margin: 0;
+    width: 9%;
   }
 
   .raffle-ticket-card {
+    flex-direction: column;
     margin-bottom: 20px;
     width: 49%;
+  }
+
+  .raffle-ticket-card-container {
+    width: 100%;
+  }
+
+  .ticket-image,
+  .raffle-data {
+    width: 50%;
   }
 }
 

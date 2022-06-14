@@ -2,22 +2,22 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets' %>
 <div class="box-orders">
   <div class="box-tickets">
-    <a class="back-button" href="/">
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-      </svg>
-    </a>
-    <p class="tickets-title"><%= t(:my_raffles_tickets) %></p>
-    <p class="text-muted page-title-alt"></p>
-  </div>
-  <form class="form-filter">
+    <div class="box-title">
+      <a class="back-button" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+      </a>
+      <p class="tickets-title"><%= t(:my_raffles_tickets) %></p>
+      <p class="text-muted page-title-alt"></p>
+    </div>
     <div class="status-filter">
       <div class="btn-group">
         <button class="btn-filter dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= t(:filter)%>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
           </svg>
+          <%= t(:filter)%>
         </button>
         <div class="dropdown-menu">
           <a class="dropdown-item"><%= t(:awaiting_draw)%></a>
@@ -26,8 +26,16 @@
         </div>
       </div>
     </div>
+  </div>
+  <form class="form-filter">
     <div class="tickets-filter">
       <div class="container-sm">
+        <div class="input-container-lg">
+          <label>
+            <%= t(:raffle_name)%>
+          </label>
+          <input class="input-filter" type="text"/>
+        </div>
         <div class="input-container-sm">
           <label>
             <%= t(:raffle_id)%>
@@ -40,66 +48,61 @@
           </label>
           <input class="input-filter" type="number"/>
         </div>
-      </div>
-      <div class="container-lg">
         <div class="input-container-lg">
           <label>
             <%= t(:draw_date)%>
           </label>
           <input class="input-filter" type="date"/>
         </div>
-        <div class="input-container-lg">
-          <label>
-            <%= t(:raffle_name)%>
-          </label>
-          <input class="input-filter" type="text"/>
-        </div>
       </div>
+      <button class="btn-submit-filter">
+        <%= t(:filter)%>
+      </button>
     </div>
-    <button class="btn-submit-filter">
-      <%= t(:filter)%>
-    </button>
   <form>
   <div class="tickets-container">
     <% @raffles_tickets.each do |raffle_ticket| %>
       <% raffle = raffle_ticket.raffle %>
         <div class="raffle-ticket-card">
             <div class="content-container">
-              <div class="raffle-ticket-card-container">
-                  <span class="card-label">
-                    <%= t(:raffle_id)%>
-                  </span>
-                  <span class="strong-item">
-                    <%= raffle.hashid %>
-                  </span>
+              <div class="raffle-data">
+                <div class="raffle-ticket-card-container">
+                    <span class="card-label">
+                      <%= t(:raffle_id)%>
+                    </span>
+                    <span class="strong-item">
+                      <%= raffle.hashid %>
+                    </span>
+                </div>
+                <div class="raffle-ticket-card-container">
+                    <span class="card-label">
+                      <%= t(:raffle_name) %>
+                    </span>
+                    <span class="strong-item" title="<%= raffle.title %>">
+                      <%= raffle.title %>
+                    </span>
+                </div>
+                <div class="raffle-ticket-card-container">
+                    <span class="card-label">
+                      <%= t(:draw_date)%>
+                    </span>
+                    <span class="strong-item">
+                      10/04/2022
+                      <%= raffle.draw_date %>
+                    </span>
+                </div>
+                <div class="raffle-ticket-card-container">
+                    <span class="card-label">
+                      <%= t(:raffle_status)%>
+                    </span>
+                    <span class="raffle-status awarded">
+                      <%= t(raffle_ticket.status) %>
+                    </span>
+                </div>
               </div>
-              <div class="raffle-ticket-card-container">
-                  <span class="card-label">
-                    <%= t(:raffle_name) %>
-                  </span>
-                  <span class="strong-item" title="<%= raffle.title %>">
-                    <%= raffle.title %>
-                  </span>
-              </div>
-              <div class="raffle-ticket-card-container">
-                  <span class="card-label">
-                    <%= t(:draw_date)%>
-                  </span>
-                  <span class="strong-item">
-                    10/04/2022
-                    <%= raffle.draw_date %>
-                  </span>
-              </div>
-              <div class="raffle-ticket-card-container">
-                  <span class="card-label">
-                    <%= t(:raffle_status)%>
-                  </span>
-                  <span class="raffle-status awarded">
-                    <%= t(raffle_ticket.status) %>
-                  </span>
-              </div>
-            <%= image_tag(raffle.path, class: "ticket-image")%>
-              <div class="raffle-ticket-card-container numbers">
+              <%= image_tag(raffle.path, class: "ticket-image")%>
+            </div>
+             <div class="raffle-ticket-card-container numbers">
                   <span class="card-label">
                     <%= t(:my_numbers)%>
                   </span>
@@ -136,7 +139,6 @@
                     </span>
                   </div>
               </div>
-            </div>
         </div>
       <% end %>
       <% if @raffles_tickets.none? %>

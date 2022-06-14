@@ -2,6 +2,11 @@
   margin-top: 2em; 
 }
 
+.raffle-tickets-bar * {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 
 .raffle-tickets-bar .raffle-tickets-bar-container { 
  border-radius: 10px;
@@ -13,11 +18,11 @@
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -1.5em;
-  border-radius: 0 0 20px 20px;
+  bottom: -2.7em;
+  border-radius: 0 0 30px 30px;
   transform: translate(-50%, 0);  
-  width: 40%;
-  height: 1.5em;  
+  width: 60%;
+  height: 2.7em;  
   box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.1);  
 }
 
@@ -32,23 +37,15 @@
   padding-left: 0.5em;
 }
 
-.raffle-tickets-bar .raffle-tickets-numbers-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2%;
-}
-
 .raffle-tickets-bar .raffle-tickets-buy-form {
   display: flex;
   justify-content: center;
   flex-direction: column;
   position: absolute;
   left: 50%;
-  bottom: -40px;
-  padding-bottom: 20px;
-  border-radius: 0 0 20px 20px;
+  bottom: -2.2em;  
   transform: translate(-50%, 0);
-  width: 40%;
+  width: auto;
   z-index: 1;
 }
 
@@ -57,8 +54,49 @@
   border-radius: 0.5em;
   border: none;
   cursor: pointer;  
-  font-size: 0.8em;
-  padding: 0.5em 2em;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  color: rgb(18, 104, 18);
+}
+
+.raffle-tickets-bar .buy-tickets-button:disabled{
+  color: #777;
+}
+
+
+.raffle-tickets-bar .raffle-tickets-search-numbers-container {
+  display: none;
+}
+
+.raffle-tickets-bar .raffle-tickets-search-numbers-container
+  .raffle-tickets-form-button.denied::before {
+  background: linear-gradient(to bottom, #d93838, #b11919);
+  opacity: 1;  
+}
+
+.raffle-tickets-bar .raffle-tickets-search-numbers-container
+  .raffle-tickets-form-button.allowed::before {
+  background: linear-gradient(to bottom, #53d20a, #308019);
+  opacity: 1;
+}
+
+.raffle-tickets-bar .raffle-tickets-bar .raffle-tickets-search-numbers-container .raffle-tickets-form-button.allowed {
+  color: #fff;
+  cursor: pointer;
+}
+
+.raffle-tickets-bar .raffle-tickets-search-numbers-container .raffle-tickets-form-button.disabled {
+  cursor: auto;
+  pointer-events: none;
+}
+
+.raffle-tickets-bar .raffle-tickets-search-numbers-container
+  .raffle-tickets-form-button.disabled:hover {
+  color: #999;
+}
+
+.raffle-tickets-bar .raffle-tickets-search-numbers-container .raffle-tickets-form-button i {
+  margin-right: 2px;
 }
 
 .raffle-tickets-bar .raffle-tickets-search-numbers-container .add-searched {
@@ -88,34 +126,36 @@
   margin-top: 1em;
   position: relative;
   justify-content: center;
-  flex-direction: column;
+  column-gap: 1em; 
 }
 
 .raffle-tickets-bar .raffle-tickets-form-button-container .cart-icon {
+  position: relative;
   color: #ccc;  
   transition: color 0.5s;  
-  margin-bottom: 0.3em;
+  font-size: 1.6em;
+  
 }
 
 .raffle-tickets-bar .raffle-tickets-form-button-container .cart-icon.active {
-  color: #01bf04;
+  color: rgb(119, 190, 141);
 }
 
 .raffle-tickets-bar .raffle-tickets-form-button-container .cart-icon .cart-icon-number {
   opacity: 0;
   user-select: none;
-}
-
-.raffle-tickets-bar .raffle-tickets-form-button-container .cart-icon.active .cart-icon-number {
   color: white;
   font-size: 0.35em;
-  left: 60%;
-  opacity: 1;
+  left: 60%; 
   position: absolute;
   text-align: center;
   top: 30%;
   transform: translate(-50%, -50%);
   transition: opacity 0.5s;
+}
+
+.raffle-tickets-bar .raffle-tickets-form-button-container .cart-icon.active .cart-icon-number {
+  opacity: 1;
 }
 
 .raffle-tickets-bar .buy-tickets-button:disabled,
@@ -141,11 +181,69 @@
 .raffle-tickets-bar .raffle-tickets-selected-random-clear {
   width: 100%;
   display: flex;  
-  height: 3em;
   background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px; 
+  height: 4em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.raffle-tickets-bar .selected-tickets-container {
+  height: 85%;
+  width: 80%;
+  display: flex;
+  column-gap: 1.55%;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+.raffle-tickets-bar .selected-tickets-container::-webkit-scrollbar {
+  display: none;
+}
+
+.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item {
+  background: #9b9b9b;
+  height: 100%;
+  color: white;
+  border-radius: 5px;
+  width: 16%;
+  min-width: 16%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item:first-of-type{
+  margin-left: 2%;
+}
+
+.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item:last-of-type{
+  margin-right: 2%;
+}
+
+.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item b {
+  font-size: 1em;
+}
+
+.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item.message {
+  width: 100%;
+  background: none;
+  border: none;
+  box-shadow: none;
+  cursor: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item.message b {
+  color: #bbb;
+  font-size: 0.em;
+  font-weight: 400;
 }
 
 .raffle-tickets-bar .raffle-tickets-selected-random-clear .select-button {
@@ -156,62 +254,29 @@
   transition: color 0.2s;
   user-select: none;
   width: 10%;
-  box-shadow: 0 6px 8px 5px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  z-index: 1;
-  overflow: hidden;  
+  z-index: 1;  
   justify-content: center;
   align-items: center;
   cursor: pointer; 
+  height: 100%;
+  position: relative;
+  padding-top: 2px; 
 }
 
-.raffle-tickets-bar .raffle-tickets-selected-random-clear .select-button:hover i {
-  color: #22a700;
-  font-size: 1.2em;
+.raffle-tickets-bar .raffle-tickets-selected-random-clear .select-button:active i {
+  font-size: 1.4em;
   transition: font-size 0.2s;
 }
 
 .raffle-tickets-bar .raffle-tickets-selected-random-clear .clear-tickets-button.select-button i{
-  color: red;
-}
-
-.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item {
-  background: #9b9b9b;
-  color: white;
-}
-
-.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item.message {
-  background: none;
-  border: none;
-  box-shadow: none;
-  cursor: auto;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: ce;
-}
-
-.raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item.message b {
-  color: #bbb;
-  font-size: 0.7em;
-  font-weight: 400;
-}
-
-.raffle-tickets-bar .raffle-tickets-selected-container .raffle-tickets-numbers-list {
-  border-radius: 0.3em;  
-  justify-content: center;
-  padding: 0.3em 0;
-}
-
-.raffle-tickets-bar .raffle-tickets-numbers-list.selected-tickets-container {
-  width: 80%;  
+  color: red;  
 }
 
 .raffle-tickets-bar .raffle-tickets-header {
   display: flex;
   font-size: 1.3em;
   justify-content: space-between; 
-  min-height: 2em;
   position: relative;  
   width: 100%;  
   margin-top: 0.5em;  
@@ -260,37 +325,6 @@
   transform: translate(-50%, 0%);
 }
 
-.raffle-tickets-bar .raffle-tickets-search-numbers-container
-  .raffle-tickets-form-button.denied::before {
-  background: linear-gradient(to bottom, #d93838, #b11919);
-  opacity: 1;
-}
-
-.raffle-tickets-bar .raffle-tickets-search-numbers-container
-  .raffle-tickets-form-button.allowed::before {
-  background: linear-gradient(to bottom, #53d20a, #308019);
-  opacity: 1;
-}
-
-.raffle-tickets-bar .raffle-tickets-search-numbers-container .raffle-tickets-form-button.allowed {
-  color: #fff;
-  cursor: pointer;
-}
-
-.raffle-tickets-bar .raffle-tickets-search-numbers-container .raffle-tickets-form-button.disabled {
-  cursor: auto;
-  pointer-events: none;
-}
-
-.raffle-tickets-bar .raffle-tickets-search-numbers-container
-  .raffle-tickets-form-button.disabled:hover {
-  color: #999;
-}
-
-.raffle-tickets-bar .raffle-tickets-search-numbers-container .raffle-tickets-form-button i {
-  margin-right: 2px;
-}
-
 .raffle-tickets-bar.sticky {
   left: 0;
   margin-top: 0;
@@ -308,6 +342,14 @@
   width: 90%;  
 }
 
+.raffle-tickets-bar.sticky .raffle-tickets-selected-header {
+  display: none;
+}
+
+.raffle-tickets-bar.sticky .raffle-tickets-number {
+  display: none;
+}
+
 .raffle-tickets-bar.sticky + .raffle-tickets-numbers-container {
   padding-top: 160px;
 }
@@ -317,7 +359,48 @@
   background: white;
 }
 
+.raffle-tickets-bar .raffle-tickets-selected-random-clear .select-button::after {
+  content: '';
+  width: 100.3em;
+  height: 3em;  
+  bottom: -0.3em;
+  display: block;
+  position: absolute;  
+}
+
+.raffle-tickets-bar .raffle-tickets-selected-random-clear .random-ticket::after {
+  right: 0;
+}
+
 @media(min-width: 780px){
+  .raffle-tickets-bar{
+    font-size: 0.8em;
+  }
+
+  .raffle-tickets-bar .raffle-tickets-selected-random-clear {    
+    height: 3em;   
+  }
+
+
+  .raffle-tickets-bar .raffle-tickets-selected-random-clear .select-button:hover {
+    border: 1px dashed #ccc;
+  }
+
+  .raffle-tickets-bar .raffle-tickets-selected-random-clear .select-button:hover i {
+    color: #22a700;
+    font-size: 1.2em;
+    transition: font-size 0.2s;
+  }
+  
+  .raffle-tickets-bar .raffle-tickets-selected-random-clear .select-button::after {
+    display: none;
+  }
+
+  .raffle-tickets-bar .selected-tickets-container .raffle-tickets-numbers-list-item {
+    width: 8.2%;
+    min-width: 8.2%;
+  }
+  
   .raffle-tickets-bar .ticket-search-button {
     display: none;  
   }

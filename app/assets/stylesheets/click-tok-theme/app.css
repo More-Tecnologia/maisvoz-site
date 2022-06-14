@@ -32,8 +32,8 @@ html body {
   background-color: #e9e9e9 !important;
   font-family: "Montserrat", sans-serif;
   margin: 0;
-  touch-action: manipulation;
   min-width: 340px;
+  touch-action: manipulation;
 }
 
 .main-app-content {
@@ -366,6 +366,7 @@ input:focus {
   border: 5px solid #f3f3f3;
   height: 30px;
   width: 30px;
+  
   /* Light grey */
   /* Blue */
 }
@@ -380,6 +381,7 @@ input:focus {
 }
 
 @keyframes spin {
+  
   0% {
     transform: rotate(0deg);
   }
@@ -391,6 +393,7 @@ a {
   text-decoration: none;
 }
 @media (min-width: 200px) {
+  
   .main-app-content {
     min-height: 600px;
   }
@@ -417,6 +420,7 @@ a {
   }
 }
 @media (min-width: 1024px) and (max-width: 2560px) {
+  
   .input-description {
     display: flex;
     width: 100%;
@@ -631,36 +635,36 @@ button.close {
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
+  background-clip: padding-box;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0,0,0,.15);
+  color: #212529;
   display: none;
   float: left;
+  font-size: 1rem;
+  left: 0;
+  list-style: none;
+  margin: 0.125rem 0 0;
   min-width: 10rem;
   padding: 0.5rem 0;
-  margin: 0.125rem 0 0;
-  font-size: 1rem;
-  color: #212529;
+  position: absolute;
   text-align: left;
-  list-style: none;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.15);
-  border-radius: 0.25rem;
+  top: 100%;
+  z-index: 1000;
 }
 
 .dropdown-item {
-  display: block;
-  width: 100%;
-  padding: 0.25rem 1.5rem;
-  clear: both;
-  font-weight: 400;
-  color: #212529;
-  text-align: inherit;
-  white-space: nowrap;
   background-color: transparent;
   border: 0;
+  clear: both;
+  color: #212529;
+  display: block;
+  font-weight: 400;
+  padding: 0.25rem 1.5rem;
+  text-align: inherit;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .back-button img {
@@ -784,6 +788,7 @@ button.close {
 }
 
 @media (min-width: 680px) {
+  
   .card-box {
     display: flex;
     flex-direction: row;
@@ -846,6 +851,7 @@ button.close {
 }
 
 @media (min-width: 600px) {
+  
   .box-user-top {
     display: flex;
     justify-content: space-around;
@@ -945,6 +951,7 @@ button.close {
 }
 
 @media (min-width: 800px) {
+  
   .box-user-top {
     align-items: center;
     display: flex;
@@ -1061,6 +1068,7 @@ button.close {
 }
 
 @media (min-width: 1200px) {
+  
   .btn-green {
     width: 20%;
   }

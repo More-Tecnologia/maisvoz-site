@@ -788,7 +788,6 @@ button.close {
 }
 
 @media (min-width: 680px) {
-  
   .card-box {
     display: flex;
     flex-direction: row;
@@ -851,7 +850,6 @@ button.close {
 }
 
 @media (min-width: 600px) {
-  
   .box-user-top {
     display: flex;
     justify-content: space-around;
@@ -951,7 +949,6 @@ button.close {
 }
 
 @media (min-width: 800px) {
-  
   .box-user-top {
     align-items: center;
     display: flex;
@@ -1067,8 +1064,7 @@ button.close {
   }
 }
 
-@media (min-width: 1200px) {
-  
+@media (min-width: 1200px) { 
   .btn-green {
     width: 20%;
   }

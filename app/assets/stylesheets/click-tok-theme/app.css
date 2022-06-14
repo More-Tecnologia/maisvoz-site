@@ -366,9 +366,6 @@ input:focus {
   border: 5px solid #f3f3f3;
   height: 30px;
   width: 30px;
-  
-  /* Light grey */
-  /* Blue */
 }
 .input-disable {
   background: #3f3f3f;
@@ -381,7 +378,6 @@ input:focus {
 }
 
 @keyframes spin {
-  
   0% {
     transform: rotate(0deg);
   }
@@ -393,7 +389,6 @@ a {
   text-decoration: none;
 }
 @media (min-width: 200px) {
-  
   .main-app-content {
     min-height: 600px;
   }
@@ -420,7 +415,6 @@ a {
   }
 }
 @media (min-width: 1024px) and (max-width: 2560px) {
-  
   .input-description {
     display: flex;
     width: 100%;

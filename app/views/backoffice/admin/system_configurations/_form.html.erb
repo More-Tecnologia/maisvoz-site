@@ -35,11 +35,11 @@
       </tr>
       <tr>
         <td class="table-valign"><strong class='cell'> <%= f.label t(:withdrawal_fee) %></strong></td>
-        <td><%= f.number_field :withdrawal_fee, class: 'form-control' %></td>
+        <td><%= f.number_field :withdrawal_fee, class: 'form-control', step: :any %></td>
       </tr>
       <tr>
         <td class="table-valign"><strong class='cell'> <%= f.label t(:taxable_fee) %></strong></td>
-        <td><%= f.number_field :taxable_fee, class: 'form-control' %></td>
+        <td><%= f.number_field :taxable_fee, class: 'form-control', step: :any %></td>
       </tr>
       <tr>
         <td style="vertical-align: middle; text-align: center;">

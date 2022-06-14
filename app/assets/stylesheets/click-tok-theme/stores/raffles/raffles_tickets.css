@@ -14,7 +14,7 @@ input[type="number"] {
 }
 
 .raffle-tickets-container {
-  font-size: calc(0.3rem + 1.7vw);
+  font-size: calc(0.3rem + 1.7vw); 
 }
 
 .raffle-tickets-header-container {

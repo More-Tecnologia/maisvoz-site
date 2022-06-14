@@ -3,7 +3,6 @@
 module Backoffice
   module Admin
     class SystemConfigurationsController < AdminController
-      before_action :ensure_creation, only: :create
       before_action :ensure_configuration, only: %i[edit update destroy]
 
       def index
@@ -16,14 +15,21 @@ module Backoffice
       end
 
       def create
-        @config = SystemConfiguration.new(ensured_params)
-        if @config.save
-          flash[:success] = I18n.t(:success_create_configuration)
-          redirect_to backoffice_admin_system_configurations_path
-        else
-          flash[:error] = I18n.t('defaults.saving_error')
-          render :new
+          # this step is necessary because of attachinary gem bug -
+        # https://github.com/assembler/attachinary/issues/130
+        # Remove this gem in favor of active storage
+        new_params = ensured_params
+        logo = new_params.delete(:logo)
+
+        @config = SystemConfiguration.new(new_params)
+        @config.save
+        if @config.persisted? && @config.update(logo: logo)
+          redirect_to backoffice_admin_system_configurations_path 
         end
+
+        flash[:error] = @config.errors.full_messages.join(', ')
+        @config.destroy
+        render :new
       end
 
       def edit; end
@@ -48,22 +54,6 @@ module Backoffice
       end
 
       private
-
-      def ensure_creation
-        # this step is necessary because of attachinary gem bug -
-        # https://github.com/assembler/attachinary/issues/130
-        # Remove this gem in favor of active storage
-        new_params = ensured_params
-        logo = new_params.delete(:logo)
-
-        @config = SystemConfiguration.new(new_params)
-        @config.save
-        return if @config.persisted? && @config.update(logo: logo)
-
-        flash[:error] = @config.errors.full_messages.join(', ')
-        @config.destroy
-        render :new
-      end
 
       def ensure_configuration
         @config = SystemConfiguration.find(params[:id])

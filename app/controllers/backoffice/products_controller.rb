@@ -1,5 +1,6 @@
 module Backoffice
   class ProductsController < BackofficeController
+    skip_before_action :authenticate_user!, only: :index
     before_action :ensure_user_consumidor, only: :show
     before_action :redirect_back_if_deposit_product, only: :show
 

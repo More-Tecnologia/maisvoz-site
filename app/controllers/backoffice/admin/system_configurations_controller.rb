@@ -15,7 +15,7 @@ module Backoffice
       end
 
       def create
-          # this step is necessary because of attachinary gem bug -
+        # this step is necessary because of attachinary gem bug -
         # https://github.com/assembler/attachinary/issues/130
         # Remove this gem in favor of active storage
         new_params = ensured_params
@@ -23,9 +23,7 @@ module Backoffice
 
         @config = SystemConfiguration.new(new_params)
         @config.save
-        if @config.persisted? && @config.update(logo: logo)
-          redirect_to backoffice_admin_system_configurations_path 
-        end
+        redirect_to backoffice_admin_system_configurations_path if @config.persisted? && @config.update(logo: logo)
 
         flash[:error] = @config.errors.full_messages.join(', ')
         @config.destroy
@@ -61,19 +59,19 @@ module Backoffice
 
       def ensured_params
         params.require(:system_configuration)
-              .permit(:active,
-                      :banner_email,
-                      :base_host,
-                      :company_name,
-                      :external_logo,
-                      :favico,
-                      :logo,
-                      :raffle_license_number,
-                      :raffles_direct_commission_bonus,
-                      :reputation,
-                      :taxable_fee,
-                      :whitelabel,
-                      :withdrawal_fee)
+              .permit(:active, :banner_email, :base_host, :company_name,
+                      :external_logo, :favico, :logo, :raffle_license_number,
+                      :raffles_direct_commission_bonus, :reputation, :uptime,
+                      :taxable_fee, :whitelabel, :withdrawal_fee,
+                      :max_ticket_per_order, :payment_block_checkout_url,
+                      :payment_block_authorization_key, :gateway_wallet_url,
+                      :pagstar_api_url, :pagstar_login, :pagstar_access_key,
+                      :pagstar_tenant_id, :pagstar_callback, :sender_email,
+                      :financial_email, :company_domain_site, :contact_email,
+                      :withdraw_minimum_value, :morenwm_customer_admin,
+                      :morenwm_customer_username, :morenwm_username,
+                      :current_currency, :current_digital_currency,
+                      :cloudinary_url, :authorization_key)
       end
     end
   end

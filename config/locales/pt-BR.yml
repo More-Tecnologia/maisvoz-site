@@ -2079,3 +2079,25 @@ pt-BR:
   taxable_fee: Taxa do sistema
   whitelabel: Whitelabel
   favico: Favico
+  authorization_key: Chave de autorização do Sistema
+  cloudinary_url: URL da cloudinary
+  company_domain_site: Site da empresa
+  contact_email: Email de contato
+  current_currency: Moeda atual
+  current_digital_currency: Moeda cripto atual
+  financial_email: Email financeiro
+  gateway_wallet_url: URL de notificação do gateway
+  pagstar_access_key: Chave de acesso da Pagstar
+  pagstar_api_url: URL da api da Pagstar
+  pagstar_callback: URL de notificação da Pagstar
+  pagstar_login: Login da Pagstar
+  pagstar_tenant_id: Tenant ID da Pagstar
+  payment_block_authorization_key: Chave de acesso do Gateway Plisio
+  payment_block_checkout_url: URL do Gateway Plisio
+  max_ticket_per_order: Número máximo de bilhetes por pedido
+  morenwm_customer_admin: Nome de usuário do Sistema
+  morenwm_customer_username: Nome de usuário do Administrador
+  morenwm_username: Nome do usuário principal
+  sender_email: Email de envio
+  uptime: Sistema ativo
+  withdraw_minimum_value: Valor mínimo de saque

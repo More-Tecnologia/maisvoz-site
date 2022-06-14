@@ -878,16 +878,25 @@ input[type="number"] {
   width: 100%;
 }
 
-.waiting {
+.started {
+  background: linear-gradient(to bottom, #59fa00, #27af00);
+}
+
+.awaiting-draw-date {
+  background: #c7c7c7;
+}
+
+.awaiting-draw {
   background: #0b74d4;
 }
 
-.not-awarded {
-  background: red;
+.pending {
+  background: yellow;
+  color: black;
 }
 
-.awarded {
-  background: linear-gradient(to bottom, #59fa00, #27af00);
+.finished {
+  background: red;
 }
 
 .btn-submit-filter {

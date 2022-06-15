@@ -83,7 +83,6 @@ html body {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
   width: 48%;
 }
 
@@ -751,6 +750,31 @@ button.close {
   width: 100% !important;
 }
 
+.request-strip,
+.package-strip {
+  align-items: center;
+  background: #0b74d4;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.request-strip h1,
+.package-strip p {
+  font-size: 15px;
+  margin: 0;
+}
+
+.request-number {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
 @media (min-width: 680px) {
   .card-box {
     display: flex;
@@ -768,7 +792,6 @@ button.close {
   }
   .request-box {
     height: 45%;
-    padding-top: 50px;
     text-align: center;
     width: 100%;
   }

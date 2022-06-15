@@ -7,20 +7,21 @@
     <div class="card-box">
       <div class="box-top">
         <div class="request-box">
-          <h1><strong><%= t(:request_number) %></strong></h1>
-          <span class="pull-right" style="float: right;"> <%= @order.hashid %></span>
+          <div class="request-strip">
+            <h1><strong><%= t(:request_number) %></strong></h1>
+          </div>
+          <span class="pull-right request-number" style="float: right;"> <%= @order.hashid %></span>
         </div>
         <div class="request-box">
-          <h4>
+          <div class="package-strip">
             <p><strong><%= t(:package_value) %></strong></p>
-            R<i class="fas fa-dollar-sign"></i>
-            <%= number_to_currency(@order.total, unit: '') %>
+          </div>
+            <span class="request-number">R$<%= number_to_currency(@order.total, unit: '') %></span>
             <br>
             <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? && @order.payment_type.in?(['btc'])%>
               <i class="fab fa-btc"></i>
               <%= format_digital_currency(@order.payment_transaction.amount) %>
             <% end %>
-          </h4>
         </div>
       </div>
       <div class="row m-t-30">

@@ -23,14 +23,15 @@
   padding: 20px;
   width: 100%;
 }
+
 .back-button {
   background: #30da03;
   border-radius: 60px;
   color: white;
   display: flex;
-  height: 27px;
+  height: 40px;
   justify-content: center;
-  width: 50px;
+  width: 40px;
 }
 
 .th-history-list {

@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_carts/show' %>
   <div class="raffle-tickets-header-container">
-    <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do%>
+    <%= link_to raffles_backoffice_stores_path, class: 'back-button' do%>
       <svg xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -68,10 +68,12 @@
         <%= image_tag('icons/troca1.png', class: 'icons') %>
         <%= t(:balance) %>
       </div>
-      <div class="btn btn-tab" onclick="showPixInput()">
-        <%= image_tag('icons/pix-p.svg', class: 'icons') %>
-        <%= t(:pix) %>
-      </div>
+      <% if ActiveModel::Type::Boolean.new.cast(ENV['PAGSTAR_ACTIVE']) %>
+        <div class="btn btn-tab" onclick="showPixInput()">
+          <%= image_tag('icons/pix-p.svg', class: 'icons') %>
+          <%= t(:pix) %>
+        </div>
+      <% end %>
       <div class="btn btn-tab" onclick="showBitCoinInput()">
         <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
         <%= t(:btc) %>

@@ -145,7 +145,6 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
-  margin-top: 50px;
   padding-top: 20px;
   padding: 10px;
   width: 100%;
@@ -157,6 +156,12 @@
   }
 
   .congratulations {
+    font-size: 12px;
+  }
+
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
     font-size: 12px;
   }
 }
@@ -187,6 +192,12 @@
   .request-btc {
     font-size: 20px;
   }
+
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 679px) {
@@ -213,7 +224,7 @@
 
   .box-top-btc-pix {
     flex-direction: row;
-    margin: 30px 0;
+    margin: 0 0 30px 0;
     width: 100%;
   }
 
@@ -225,6 +236,12 @@
   .request-number,
   .request-btc {
     font-size: 15px;
+  }
+
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 12px;
   }
 }
 
@@ -249,7 +266,7 @@
   .request-strip h1,
   .package-strip p,
   .request-strip p {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 

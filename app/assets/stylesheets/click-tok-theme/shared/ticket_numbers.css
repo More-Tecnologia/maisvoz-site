@@ -33,7 +33,7 @@
 
 .full-size .ticket-container {
   margin-top: 30px;
-  width: 97.8%;
+  width: 100%;
 }
 
 .ticket-container h4 {
@@ -73,7 +73,7 @@
   margin-top: 5px;
   padding: 0.6em;
   text-align: center;
-  width: 19%;
+  width: 9%;
 }
 
 .ticket-image {
@@ -83,15 +83,23 @@
 
 .strip {
   align-items: center;
-  background: linear-gradient(to bottom, #59fa00, #27af00);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   color: white;
   font-weight: bold;
   display: flex;
   justify-content: center;
+  min-height: 35px;
   padding: 10px;
   width: 100%;
+}
+
+.finished {
+  background: linear-gradient(to bottom, #59fa00, #27af00);
+}
+
+.waiting {
+  background: red;
 }
 
 .body-container {
@@ -99,7 +107,86 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  width: 40%;
+  width: 100%;
+}
+
+.box-btc-pix {
+  flex-direction: row;
+}
+
+.request-btc {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btc-pix-package-value {
+  display: flex;
+  flex-direction: column;
+}
+
+.btc-pix-package-value span {
+  margin: 0;
+}
+
+.btc-pix-package-value span:nth-child(1) {
+  margin: 10px 0 0 0;
+}
+
+.content-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: center;
+}
+
+.box-payment {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+  margin-top: 50px;
+  padding-top: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .body-container {
+    width: 100%;
+  }
+
+  .congratulations {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .ticket-container {
+    width: 65%;
+  }
+
+  .box-top {
+    width: 30%;
+  }
+
+  .congratulations {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 770px) {
+  .congratulations {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .btc-pix-package-value span,
+  .request-number,
+  .request-btc {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 679px) {
@@ -114,5 +201,62 @@
   .full-size .ticket-container {
     margin-top: 0;
     width: 100%;
+  }
+
+  .congratulations {
+    font-size: 10px;
+  }
+
+  .box-top {
+    width: 100%;
+  }
+
+  .box-top-btc-pix {
+    flex-direction: row;
+    margin: 30px 0;
+    width: 100%;
+  }
+
+  .request-box-btc-pix {
+    width: 48%;
+  }
+
+  .btc-pix-package-value span,
+  .request-number,
+  .request-btc {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .congratulations {
+    font-size: 12px;
+    text-align: center;
+}
+
+.draw-container li {
+  width: 19%;
+}
+
+.btc-pix-package-value span,
+.request-number,
+.request-btc {
+  font-size: 14px;
+}
+}
+
+@media (max-width: 420px) {
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 10px;
   }
 }

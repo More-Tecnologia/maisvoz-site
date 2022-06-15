@@ -4,26 +4,31 @@
 <%= stylesheet_link_tag 'click-tok-theme/app' %>
 <div class="row">
   <div class="d-flex flex-column align-items-center">
-    <div class="card-box">
-      <div class="box-top">     
-        <div class="request-box">
-          <h1><strong><%= t(:request_number) %></strong></h1>
-          <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
+    <div class="card-box box-btc-pix">
+      <div class="box-top-btc-pix">     
+        <div class="request-box-btc-pix">
+          <div class="request-strip">
+            <h1><strong><%= t(:request_number) %></strong></h1>
+          </div>
+          <div class="content-box">
+            <span class="pull-right request-number" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
+          </div>
         </div>
-         <% unless SystemConfiguration.whitelabel? %>
-        <div class="request-box">
-          <h4>
-            <p><strong><%= t(:package_value) %></strong></p>
-            R<i class="fas fa-dollar-sign"></i>
-            <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
-            <br>
-            <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
-              <i class="fab fa-btc"></i>
-              <%= format_digital_currency(@payment_transaction.amount) %>
-            <% end %>
-          </h4>
+        <div class="request-box-btc-pix">
+            <div class="request-strip">
+              <h1><strong><%= t(:package_value) %></strong></h1>
+            </div>
+            <div class="content-box">
+              <span class="request-number">R$<%= number_to_currency(@payment_transaction.order.total, unit: '') %></span>
+              <br>
+              <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+                <span class="request-btc">
+                  <i class="fab fa-btc"></i>
+                  <%= format_digital_currency(@payment_transaction.amount) %>
+                </span>
+              <% end %>
+            </div>
         </div>
-        <% end %> 
       </div>
       <div class="row m-t-30">
         <% if @payment_transaction.order.shipping > 0 %>

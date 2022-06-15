@@ -63,7 +63,12 @@ html body {
 }
 
 .main-box {
+  margin-top: 50px;
   width: 100%;
+}
+
+.main-box .box-payment {
+  margin-bottom: 30px;
 }
 
 .card-box {
@@ -84,6 +89,16 @@ html body {
   display: flex;
   flex-direction: column;
   width: 48%;
+}
+
+.request-box-btc-pix {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 100%;
 }
 
 .request-box h1,
@@ -753,18 +768,29 @@ button.close {
 .request-strip,
 .package-strip {
   align-items: center;
-  background: #0b74d4;
+  background: linear-gradient(to bottom, #59fa00, #27af00);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   color: white;
   display: flex;
   justify-content: center;
+  max-height: 35px;
+  min-height: 35px;
   padding: 10px;
   width: 100%;
 }
 
+.request-strip p {
+  margin: 0;
+}
+
+.main-box strong {
+  width: 100%;
+}
+
 .request-strip h1,
-.package-strip p {
+.package-strip p,
+.request-strip p {
   font-size: 15px;
   margin: 0;
 }
@@ -772,7 +798,14 @@ button.close {
 .request-number {
   font-size: 30px;
   font-weight: bold;
-  margin-top: 50px;
+  text-align: center;
+}
+
+.box-top-btc-pix {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
 }
 
 @media (min-width: 680px) {
@@ -780,24 +813,23 @@ button.close {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 100px;
   }
   .btns-box-top a {
     font-size: 16px;
   }
   .box-top {
     flex-direction: column;
+    justify-content: space-between;
     margin: 0;
     width: 20%;
   }
   .request-box {
-    height: 45%;
     text-align: center;
     width: 100%;
   }
   .box-bottom {
     margin-bottom: 0;
-    width: 75%;
+    width: 65%;
   }
   .alert-success {
     margin-left: 30px;

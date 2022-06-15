@@ -168,7 +168,7 @@
                   </g>
                 </svg>
               </div>
-              <%= t(:tickets)%>
+              <%= t(SystemConfiguration.whitelabel? ? :tickets : :tasks) %>
             <% end %>
           </li>
         <% end %>

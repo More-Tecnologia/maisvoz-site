@@ -301,7 +301,7 @@ Rails.application.routes.draw do
       if SystemConfiguration.whitelabel?
         root 'backoffice/stores#raffles'
       else
-        root 'users/sessions#new'
+        root 'backoffice/products#index'
       end
     end
   end

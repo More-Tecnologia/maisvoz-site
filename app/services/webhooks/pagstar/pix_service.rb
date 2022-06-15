@@ -3,8 +3,10 @@
 module Webhooks
   module Pagstar
     class PixService < ApplicationService
-      ENDPOINT = "#{ENV['PAGSTAR_API_URL']}/wallet/partner/transactions/generate-anonymous-pix".freeze
-      TENANT_ID = ENV['PAGSTAR_TENANT_ID'].freeze
+      if ActiveModel::Type::Boolean.new.cast(ENV['PAGSTAR_ACTIVE'])
+        ENDPOINT = "#{ENV['PAGSTAR_API_URL']}/wallet/partner/transactions/generate-anonymous-pix".freeze
+        TENANT_ID = ENV['PAGSTAR_TENANT_ID'].freeze
+      end
 
       def initialize(params)
         @order = params[:order]

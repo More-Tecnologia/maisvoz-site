@@ -14,11 +14,11 @@
       <div class="ch-product-desc-area" >
         <div class="ch-product-item" style='background-color:#5cb802;'>
           <div class="ch-product-title">
-            <span><%= order_item.product.name %></span>
+            <span><%= order_item&.product&.name %></span>
           </div>
           <div class="ch-product-price">
             <label><%= t(:price) %></label>
-            <span><%= number_to_currency order_item.product.price %></span>
+            <span><%= number_to_currency order_item&.product&.price.to_f %></span>
           </div>
         </div>
       </div>

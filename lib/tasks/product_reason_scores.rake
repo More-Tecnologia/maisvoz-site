@@ -42,7 +42,7 @@ namespace :product_reason_scores do
     end
 
     indirect_referral_bonus = [[000],
-                               [200],
+                               [400],
                                [100],
                                [100],
                                [100]]

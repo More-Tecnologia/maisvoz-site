@@ -83,6 +83,7 @@ module Backoffice
                       :price_cents, :binary_score, :advance_score, :active, :virtual,
                       :paid_by, :binary_bonus, :main_photo, :category_id,
                       :system_taxable, :shipping, :dropship_link, :details,
+                      :task_per_day, :earnings_per_campaign,
                       :direct_indication_bonus, :direct_indication_bonus_in_percentage,
                       product_descriptions_attributes: [:id, :photo, :description, :position],
                       photos: [])

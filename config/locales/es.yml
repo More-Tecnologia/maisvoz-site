@@ -2092,6 +2092,15 @@ es:
   payment_method_blank: Seleccione un método de pago para continuar
   home: "Home"
   premium_account: "Cuenta privilegiada"
+  raffle_id: ID de la rifa
+  ticket_number: Numero de ticket
+  awaiting_draw: Sorteo pendiente
+  not_awarded: No adjudicado
+  awarded: Galardonado
+  draw_date: Fecha del sorteo
+  raffle_name: Nombre de la rifa
+  raffle_status: Estado de la rifa
+  my_numbers: Mis numeros
   raffles_direct_commission_bonus: Bonos de comisión de sorteo directo
   success_create_configuration: Configuración creada con éxito
   success_update_configuration: Configuración actualizada exitosamente

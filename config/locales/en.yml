@@ -2084,6 +2084,15 @@ en:
   payment_method_blank: Please select a payment method to continue
   home: "Home"
   premium_account: "Premium account"
+  raffle_id: Raffle ID
+  ticket_number: Ticket Number
+  awaiting_draw: Awaiting draw
+  not_awarded: Not awarded
+  awarded: Awarded
+  draw_date: Draw date
+  raffle_name: Raffle Name
+  raffle_status: Raffle Status
+  my_numbers: My numbers
   raffles_direct_commission_bonus: Direct raffle commission bonuses
   base_host: Base host
   success_create_configuration: Configuration created successfully

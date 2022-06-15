@@ -23,7 +23,7 @@
             </p>
             <div class="store--course-item--footer">
               <span class="store--course-item--price"><%= format_currency(course.price) %></span>
-              <% unless user_signed_in? && course.in?(current_user.courses) %>
+              <% if user_signed_in? && !course.in?(current_user.courses) %>
                 <%= link_to t(:buy),
                           backoffice_courses_carts_path(product: { id: course.product.id },
                           country: current_user.country),

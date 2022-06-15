@@ -1,49 +1,54 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets_select_bar' %>
+<div class="sticky-bar-limit"></div>
 <div class="raffle-tickets-bar">
-    <div class="raffle-tickets-bar-container">
-      <div class="raffle-tickets-selected-container">
-        <div class="raffle-tickets-selected-header">
-          <span class="raffle-tickets-selected-title">
-            <%= t(:selected_numbers) %>
-          </span>
-        </div>
-        <div class="raffle-tickets-selected-random-clear">
-          <button class="random-ticket select-button" title="<%= t(:random) %>">
-            <i class="fa-solid fa-shuffle"></i>            
-          </button>          
-          <ul class="selected-tickets-container">
-            <li class="raffle-tickets-numbers-list-item message">
-              <b><%= t(:choose_one_number) %></b>
-            </li>
-          </ul>
-          <button class="clear-tickets-button select-button" title="<%= t(:clear) %>">
-            <i class="fa-regular fa-trash-can"></i>
-          </button>
-        </div>
+  <div class="raffle-tickets-bar-container">
+    <div class="raffle-tickets-selected-container">
+      <div class="raffle-tickets-selected-header">
+        <span class="raffle-tickets-selected-title">
+          <%= t(:selected_numbers) %>
+        </span>
       </div>
-      <div class="raffle-tickets-header">
+      <div class="raffle-tickets-selected-random-clear">
+        <button class="random-ticket select-button" title="<%= t(:random) %>">
+          <i class="fa-solid fa-shuffle"></i>
+        </button>
+        <ul class="selected-tickets-container">
+          <li class="raffle-tickets-numbers-list-item message">
+            <b><%= t(:choose_one_number) %></b>
+          </li>
+        </ul>
+        <button class="clear-tickets-button select-button" title="<%= t(:clear) %>">
+          <i class="fa-regular fa-trash-can"></i>
+        </button>
+      </div>
+    </div>
+    <div class="raffle-tickets-header">
       <button class="ticket-search-button">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
-        <span class="footer--item--number filter-tag"></span>
-        <div class="raffle-tickets-search-numbers-container">
-          <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">
-          <span class="add-searched disabled"><span><i class="fa-solid fa-plus"></i> <%= t(:add) %></span></span>
-        </div>
-        <span class="raffle-tickets-number">
-          <b>...</b><i><%= t(:raffle_numbers) %></i>
+      <div class="raffle-tickets-search-numbers-container">
+        <span class="search-box-close"><i class="fa-solid fa-angles-right"></i></span>
+        <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">
+        <span data-purchased="<%= t(:store_raffle_paid) %>" data-reserved="<%= t(:reserved) %>" data-available="<%= t(:available) %>" add="<%= t(:add) %>" class="add-searched disabled">
+          <span>
+            <i class="fa-solid fa-plus"></i> <%= t(:add) %>
+          </span>
         </span>
       </div>
-      <%= form_for(@raffle,
+      <span class="raffle-tickets-number">
+        <b>...</b><i><%= t(:raffle_numbers) %></i>
+      </span>
+    </div>
+    <%= form_for(@raffle,
                   url: backoffice_raffles_tickets_path,
                   method: :post,
                   html: {class: 'raffle-tickets-buy-form'}) do |f| %>
-        <input type="hidden" name="raffle[numbers]" class="ticket-numbers-array" />
-        <input type="hidden" name="raffle[id]" value="<%= @raffle.hashid %>" />
-        <div class="raffle-tickets-form-button-container">
-          <i class="fa-solid fa-cart-shopping cart-icon"><b class="cart-icon-number"></b></i>
-          <%= f.submit t(:go_to_payment), id: 'payment-ticket-button', class: 'buy-tickets-button', disabled: true, data: { logged: user_signed_in? } %>
-        </div>
-      <% end %>
-    </div>
+      <input type="hidden" name="raffle[numbers]" class="ticket-numbers-array" />
+      <input type="hidden" name="raffle[id]" value="<%= @raffle.hashid %>" />
+      <div class="raffle-tickets-form-button-container">
+        <i class="fa-solid fa-cart-shopping cart-icon"><b class="cart-icon-number"></b></i>
+        <%= f.submit t(:go_to_payment), id: 'payment-ticket-button', class: 'buy-tickets-button', disabled: true, data: { logged: user_signed_in? } %>
+      </div>
+    <% end %>
   </div>
+</div>

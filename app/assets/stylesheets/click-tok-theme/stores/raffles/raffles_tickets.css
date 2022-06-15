@@ -913,7 +913,7 @@ input[type="number"] {
 
 .btn-submit-filter:hover {
   background: linear-gradient(to top, #59fa00, #27af00);
-  box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transform: scale(1.03);
 }
 

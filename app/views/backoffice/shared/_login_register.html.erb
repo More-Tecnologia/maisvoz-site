@@ -6,21 +6,21 @@
   <button class="modal-close-button">✕</button>
   <div class="modal-logo">
     <% if SystemConfiguration.whitelabel? %>
-      <%= image_tag 'white-label-logo.png' %>
+      <%= image_tag(SystemConfiguration.external_logo, alt: SystemConfiguration.company_name) %>
     <% else %>
-      <%= image_tag 'logo.png' %>
+      <%= image_tag('logo.png', alt: SystemConfiguration.company_name) %>
     <% end %>
   </div>
   <div id="error-msg"></div>
   <div class="form-container">
-  <ul class="form-menu">
-    <li class="login-toggle-button form-title">
-      <%= t('users.sessions.new.login') %>    
-    </li>
-    <li class="register-toggle-button form-title">
-      <%= t('users.shared.links.sign_up') %>    
-    </li>
-  </ul>
+    <ul class="form-menu">
+      <li class="login-toggle-button form-title">
+        <%= t('users.sessions.new.login') %>
+      </li>
+      <li class="register-toggle-button form-title">
+        <%= t('users.shared.links.sign_up') %>
+      </li>
+    </ul>
     <div class="modal-login-container">
       <span class="form-title"><%= t('users.sessions.new.login') %></span>
       <span class="form-subtitle"><%= t('already_have_account') %></span>
@@ -42,28 +42,28 @@
       <div class="form-links-container">
         <a href="#"><%= t('users.shared.links.forgot_password') %></a>
       </div>
-    </div>    
+    </div>
     <div class="modal-register-container">
       <span class="form-title"><%= t('users.shared.links.sign_up') %></span>
       <span class="form-subtitle"><%= t('create_your_account') %></span>
       <%= simple_form_for(:user, url: register_index_path, html: { class: 'register-form', remote: true}) do |f| %>
         <%= f.input_field :country, id: "user_country", class: "field-container", prompt: t('attributes.country'), format: :with_country_code, priority: priority_countries %>
-        <label for="user_username" class="field-container">      
+        <label for="user_username" class="field-container">
           <%= f.input_field :username, id: "user_username", placeholder: t(:phone) %>
         </label>
-        <label for="register-email" class="field-container">      
+        <label for="register-email" class="field-container">
           <%= f.input_field :email, id: "register-email", placeholder: t(:email) %>
         </label>
-        <label for="register-password" class="field-container">      
+        <label for="register-password" class="field-container">
           <%= f.input_field :password, id: "register-password", placeholder: t(:password) %>
         </label>
-        <label for="register-repeat-password" class="field-container">          
+        <label for="register-repeat-password" class="field-container">
           <%= f.input_field :password_confirmation, id: "register-repeat-password", placeholder: t(:password_confirmation) %>
-        </label>    
+        </label>
         <button type="submit">
           <%= t('users.shared.links.sign_up') %>
         </button>
       <% end %>
     </div>
-  </div>  
+  </div>
 </section>

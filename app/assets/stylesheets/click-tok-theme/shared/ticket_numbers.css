@@ -4,12 +4,21 @@
 }
 
 .ticket-container {
+  align-items: center;
   background: white;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  display: flex;
+  flex-direction: column;
   font-family: sans-serif;
   font-size: calc(0.6rem + 0.3vw);
+  justify-content: space-between;
   width: 78%;
+}
+
+.congratulations {
+  font-size: 16px;
+  margin: 0;
 }
 
 .ticket-container hr {
@@ -24,35 +33,36 @@
 
 .full-size .ticket-container {
   margin-top: 30px;
-  width: 97.8%;
+  width: 100%;
 }
 
 .ticket-container h4 {
   color: #333;
   font-size: 1.2em;
+  font-weight: bold;
   margin: 0;
-  padding-top: 1em;
   text-align: center;
 }
 
 .draw-container {
-  align-items: center;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-  row-gap: 1.5em;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 100%;
 }
 
 .draw-container ul {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4em;
-  justify-content: center;
+  gap: 1%;
   list-style: none;
   margin: 0;
-  padding: 1em;
+  padding: 0;
+}
+
+.draw-container p {
+  margin: 0;
 }
 
 .draw-container li {
@@ -60,7 +70,133 @@
   border-radius: 5px;
   color: #222;
   font-weight: 800;
+  margin-top: 5px;
   padding: 0.6em;
+  text-align: center;
+  width: 9%;
+}
+
+.ticket-image {
+  margin-top: 30px;
+  max-width: 300px;
+}
+
+.strip {
+  align-items: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  min-height: 35px;
+  padding: 10px;
+  width: 100%;
+}
+
+.finished {
+  background: linear-gradient(to bottom, #59fa00, #27af00);
+}
+
+.waiting {
+  background: red;
+}
+
+.body-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+}
+
+.box-btc-pix {
+  flex-direction: row;
+}
+
+.request-btc {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btc-pix-package-value {
+  display: flex;
+  flex-direction: column;
+}
+
+.btc-pix-package-value span {
+  margin: 0;
+}
+
+.btc-pix-package-value span:nth-child(1) {
+  margin: 10px 0 0 0;
+}
+
+.content-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: center;
+}
+
+.box-payment {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  padding: 10px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .body-container {
+    width: 100%;
+  }
+
+  .congratulations {
+    font-size: 12px;
+  }
+
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .ticket-container {
+    width: 65%;
+  }
+
+  .box-top {
+    width: 30%;
+  }
+
+  .congratulations {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 770px) {
+  .congratulations {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .btc-pix-package-value span,
+  .request-number,
+  .request-btc {
+    font-size: 20px;
+  }
+
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 679px) {
@@ -75,5 +211,68 @@
   .full-size .ticket-container {
     margin-top: 0;
     width: 100%;
+  }
+
+  .congratulations {
+    font-size: 10px;
+  }
+
+  .box-top {
+    width: 100%;
+  }
+
+  .box-top-btc-pix {
+    flex-direction: row;
+    margin: 0 0 30px 0;
+    width: 100%;
+  }
+
+  .request-box-btc-pix {
+    width: 48%;
+  }
+
+  .btc-pix-package-value span,
+  .request-number,
+  .request-btc {
+    font-size: 15px;
+  }
+
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .congratulations {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .draw-container li {
+    width: 19%;
+  }
+
+  .btc-pix-package-value span,
+  .request-number,
+  .request-btc {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 350px) {
+  .request-strip h1,
+  .package-strip p,
+  .request-strip p {
+    font-size: 10px;
   }
 }

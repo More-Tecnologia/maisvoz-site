@@ -2131,3 +2131,4 @@ en:
   uptime: Uptime
   withdraw_minimum_value: Minimum withdraw amount
   earnings_per_campaign: Earnings per campaign (Cents)
+  acquired_shares: You have purchased %{quantity} raffle quota(s)

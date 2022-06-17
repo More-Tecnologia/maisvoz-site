@@ -646,7 +646,7 @@ button.close {
   background-clip: padding-box;
   background-color: #fff;
   border-radius: 0.25rem;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #212529;
   display: none;
   float: left;
@@ -1117,7 +1117,7 @@ button.close {
   }
 }
 
-@media (min-width: 1200px) { 
+@media (min-width: 1200px) {
   .btn-green {
     width: 20%;
   }

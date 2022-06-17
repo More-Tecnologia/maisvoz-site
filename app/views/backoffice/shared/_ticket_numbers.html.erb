@@ -4,14 +4,14 @@
     <% order_items = product.order_items.includes(:raffle_ticket).where(order: orders) %>
     <div class="strip finished">
       <!--<p class="congratulations"><%= t(:congratulations_payment_approved)%></p> -->
-      <p class="congratulations"><%= t(:waiting_payment)%></p>
+      <p class="congratulations"><%= t(:waiting_payment) %></p>
     </div>
     <div class="body-container">
-      <p><%= t(:acquired_shares, quantity: order_items.count)%></p>
+      <p><%= t(:acquired_shares, quantity: order_items.count) %></p>
       <h4><%= product.name %></h4>
       <%= image_tag(product.raffle.path, class: "ticket-image") %>
       <div class="draw-container">
-      <p><%= t(:numbers_selected)%></p>
+      <p><%= t(:numbers_selected) %></p>
         <ul>
           <% order_items.includes(raffle_ticket: :raffle).each do |order_item| %>
             <li>

@@ -250,15 +250,15 @@
     text-align: center;
 }
 
-.draw-container li {
-  width: 19%;
-}
+  .draw-container li {
+    width: 19%;
+  }
 
-.btc-pix-package-value span,
-.request-number,
-.request-btc {
-  font-size: 14px;
-}
+  .btc-pix-package-value span,
+  .request-number,
+  .request-btc {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 420px) {

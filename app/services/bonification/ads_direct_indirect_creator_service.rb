@@ -6,11 +6,11 @@ module Bonification
     INDIRECT_BONUS_REASON = FinancialReason.ads_indirect_commission_bonus
 
     PERCENTAGES = {
-                    '1': { commission: 0.15, reason: DIRECT_BONUS_REASON },
+                    '1': { commission: 0.20, reason: DIRECT_BONUS_REASON },
                     '2': { commission: 0.05, reason: INDIRECT_BONUS_REASON },
-                    '3': { commission: 0.03, reason: INDIRECT_BONUS_REASON },
-                    '4': { commission: 0.02, reason: INDIRECT_BONUS_REASON },
-                    '5': { commission: 0.01, reason: INDIRECT_BONUS_REASON }
+                    '3': { commission: 0.04, reason: INDIRECT_BONUS_REASON },
+                    '4': { commission: 0.03, reason: INDIRECT_BONUS_REASON },
+                    '5': { commission: 0.02, reason: INDIRECT_BONUS_REASON }
                   }.freeze
 
     def initialize(params)

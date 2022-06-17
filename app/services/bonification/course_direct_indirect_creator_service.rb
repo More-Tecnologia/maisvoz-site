@@ -15,10 +15,10 @@ module Bonification
     private
 
     PERCENTAGES = {
-                    '1': { commission: 0.30, reason: FinancialReason.course_direct_commission_bonus },
-                    '2': { commission: 0.02, reason: FinancialReason.course_indirect_commission_bonus },
-                    '3': { commission: 0.01, reason: FinancialReason.course_indirect_commission_bonus },
-                    '4': { commission: 0.01, reason: FinancialReason.course_indirect_commission_bonus },
+                    '1': { commission: 0.15, reason: FinancialReason.course_direct_commission_bonus },
+                    '2': { commission: 0.04, reason: FinancialReason.course_indirect_commission_bonus },
+                    '3': { commission: 0.03, reason: FinancialReason.course_indirect_commission_bonus },
+                    '4': { commission: 0.02, reason: FinancialReason.course_indirect_commission_bonus },
                     '5': { commission: 0.01, reason: FinancialReason.course_indirect_commission_bonus }
                   }.freeze
 

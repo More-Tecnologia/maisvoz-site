@@ -24,7 +24,7 @@ namespace :product_reason_scores do
     ActiveRecord::Base.transaction do
       reason = FinancialReason.direct_commission_bonus
       reason.product_reason_scores.destroy_all
-      products = Product.all
+      products = Product.deposit
       products.each do |product|
         next if ProductReasonScore.exists?(product: product, financial_reason: reason)
 
@@ -42,7 +42,7 @@ namespace :product_reason_scores do
     end
 
     indirect_referral_bonus = [[000],
-                               [200],
+                               [400],
                                [100],
                                [100],
                                [100]]
@@ -50,7 +50,7 @@ namespace :product_reason_scores do
     ActiveRecord::Base.transaction do
       reason = FinancialReason.indirect_referral_bonus
       reason.product_reason_scores.destroy_all
-      products = Product.all
+      products = Product.deposit
       products.each do |product|
         next if ProductReasonScore.exists?(product: product, financial_reason: reason)
 

@@ -36,10 +36,12 @@
             <%= image_tag('icons/troca1.png', class: 'icons') %>
             <%= t(:balance) %>
           </div>
-          <div class="btn btn-tab" onclick="showPixInput()">
-            <%= image_tag('icons/pix-p.svg', class: 'icons') %>
-            <%= t(:pix) %>
-          </div>
+          <% if ActiveModel::Type::Boolean.new.cast(ENV['PAGSTAR_ACTIVE']) %>
+            <div class="btn btn-tab" onclick="showPixInput()">
+              <%= image_tag('icons/pix-p.svg', class: 'icons') %>
+              <%= t(:pix) %>
+            </div>
+          <% end %>
           <div class="btn btn-tab" onclick="showBitCoinInput()">
             <%= image_tag('icons/bitcoin.svg', class: 'icons') %>
             <%= t(:btc) %>

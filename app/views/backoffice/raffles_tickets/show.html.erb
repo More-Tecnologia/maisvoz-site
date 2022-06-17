@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets' %>
-<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets.js', defer: true %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets/show' %>
+<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets/show.js', defer: true %>
 <%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
 <%= render 'agreement' %>
 <%= render 'backoffice/shared/login_register' %>
@@ -21,8 +21,7 @@
       <i class="fa-solid fa-file-lines"></i>
       <%= t(:draw_regulation) %>
     </button>
-  </div>
-  <%= render 'backoffice/stores/banner', banner: @banner %>
+  </div> 
   <div class="raffle-tickets-display-container">
     <div class="raffle-tickts-image-container">
       <%= image_tag(@raffle.path, class: 'raffle-tickets-image') %>

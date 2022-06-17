@@ -3,12 +3,14 @@
 module Webhooks
   module Pagstar
     class GetAccessTokenService < ApplicationService
-      ENDPOINT = ENV['PAGSTAR_API_URL'] + '/identity/partner/login'
-      HEADERS = { 'Content-Type': 'application/json' }.freeze
-      PARAMS = {
-        email: ENV['PAGSTAR_LOGIN'],
-        access_key: ENV['PAGSTAR_ACCESS_KEY']
-      }.to_json.freeze
+      if ActiveModel::Type::Boolean.new.cast(ENV['PAGSTAR_ACTIVE'])
+        ENDPOINT = ENV['PAGSTAR_API_URL'] + '/identity/partner/login'
+        HEADERS = { 'Content-Type': 'application/json' }.freeze
+        PARAMS = {
+          email: ENV['PAGSTAR_LOGIN'],
+          access_key: ENV['PAGSTAR_ACCESS_KEY']
+        }.to_json.freeze
+      end
 
       private
 

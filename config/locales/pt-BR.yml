@@ -1693,7 +1693,7 @@ pt-BR:
   n_of_campaign: Nº de campanhas
   payment_method: Forma de pagamento
   pix: Pix
-  filter: Filtro
+  filter: Filtrar
   new_phone: Novo telefone
   withdrawal_value: Digite o valor do saque
   select_receive_form: Selecione a forma de recebimento
@@ -2064,6 +2064,15 @@ pt-BR:
   just_send_us_a_message: "Basta nos enviar uma mensagem."
   earn_card_title_white_label: 'Ganhe 20% nas rifas compradas pelo seu indicado e 10% no valor do prêmio que ele ganhar.'
   account_inactive_text: Ative sua conta para começar a ganhar com %{company_name}
+  raffle_id: ID da rifa
+  ticket_number: Número do bilhete
+  awaiting_draw: Aguardando sorteio
+  not_awarded: Não premiado
+  awarded: Premiado
+  draw_date: Data do sorteio
+  raffle_name: Nome da rifa
+  raffle_status: Status da rifa
+  my_numbers: Meus números
   raffles_direct_commission_bonus: Bônus de comissão direta de sorteios
   company_name: Nome da empresa
   success_create_configuration: Configuração criada com sucesso
@@ -2079,3 +2088,31 @@ pt-BR:
   taxable_fee: Taxa do sistema
   whitelabel: Whitelabel
   favico: Favico
+  authorization_key: Chave de autorização do Sistema
+  cloudinary_url: URL da cloudinary
+  company_domain_site: Site da empresa
+  contact_email: Email de contato
+  current_currency: Moeda atual
+  current_digital_currency: Moeda cripto atual
+  financial_email: Email financeiro
+  gateway_wallet_url: URL de notificação do gateway
+  pagstar_access_key: Chave de acesso da Pagstar
+  pagstar_api_url: URL da api da Pagstar
+  pagstar_callback: URL de notificação da Pagstar
+  pagstar_login: Login da Pagstar
+  pagstar_tenant_id: Tenant ID da Pagstar
+  payment_block_authorization_key: Chave de acesso do Gateway Plisio
+  payment_block_checkout_url: URL do Gateway Plisio
+  max_ticket_per_order: Número máximo de bilhetes por pedido
+  morenwm_customer_admin: Nome de usuário do Sistema
+  morenwm_customer_username: Nome de usuário do Administrador
+  morenwm_username: Nome do usuário principal
+  sender_email: Email de envio
+  uptime: Sistema ativo
+  withdraw_minimum_value: Valor mínimo de saque
+  earnings_per_campaign: Ganhos por campanha (Centavos)
+  congratulations_payment_approved: Parabéns, agora é só aguardar o sorteio e torcer para que a seu número seja o premiado!
+  request_number: Número da solicitação
+  package_value: Valor do pacote
+  acquired_shares: Você adquiriu %{quantity} cota(s) da rifa
+  waiting_payment: Aguardando pagamento

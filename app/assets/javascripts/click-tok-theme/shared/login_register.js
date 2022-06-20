@@ -5,7 +5,7 @@ const publicLoginRegister = {};
     loginRegister: document.querySelector(".modal-login-register"),
   };
   const buttons = {
-    goToPaiment: document.querySelector(".raffle-tickets-form-button"),
+    goToPaiment: document.querySelector(".buy-tickets-button"),
     close: document.querySelector(".modal-login-register .modal-close-button"),
     loginToggle: document.querySelector(".login-toggle-button"),
     registerToggle: document.querySelector(".register-toggle-button"),

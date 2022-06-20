@@ -46,20 +46,30 @@ const inputs = {
 };
 
 const genericElement = {
+  addSearchTicketText: getElement(".add-searched span"),
   cartIcon: getElement(".cart-icon"),
   cartIconNumber: getElement(".cart-icon-number"),
   raffleNumber: getElement(".raffle-tickets-number b"),
+  stickyBarLimit: getElement(".sticky-bar-limit"),
+  floatSearchBox: getElement(".raffle-tickets-search-numbers-container"),
 };
 
 const buttons = {
   addSearchTicket: getElement(".add-searched"),
-  clearTickets: getElement(".raffle-tickets-selected-clear-button"),
-  pay: getElement(".raffle-tickets-form-button"),
+  addSearchTicketSpan: getElement(".add-searched span"),
+  clearTickets: getElement(".clear-tickets-button"),
+  closeSearch: getElement(".search-box-close"),
+  openSearch: getElement(".ticket-search-button"),
+  pay: getElement(".raffle-tickets-buy-form .buy-tickets-button"),
   randomTicket: getElement(".random-ticket"),
   filterAvailable: getElement(".filter-button.available"),
   filterReserved: getElement(".filter-button.reserved"),
   filterPurched: getElement(".filter-button.purched"),
   filterTag: getElement(".footer--item--number.filter-tag"),
+};
+
+const sizes = {
+  stickyBar: containers.stickyBar.offsetTop,
 };
 
 const handlers = {};
@@ -176,28 +186,6 @@ function raffleTickets(ticketsData) {
     }
   }
 
-  function renderTickets(ticketsArray) {
-    const state = ["available", "reserved", "purched", "selected"];
-    containers.tickets.innerHTML = "";
-    let HTMLObject = "";
-    showTicketCount();
-
-    ticketsArray.map((ticket) => {
-      const onClickFunction =
-        ticket[1] === 0 ? `onclick="handlers.ticketHandler(${ticket[0]})"` : "";
-      const HTMLTicket = `<li style="order: ${formatNumber(
-        ticket[0],
-        ticketList.initial
-      )}" ${onClickFunction} class="raffle-tickets-numbers-list-item ticket-item ${
-        state[ticket[1]]
-      }" data-ticket="${ticket[0]}">
-                          <b>${formatNumber(ticket[0], ticketList.initial)}</b>
-                        </li>`;
-      HTMLObject += HTMLTicket;
-    });
-    containers.tickets.innerHTML = HTMLObject;
-  }
-
   function renderTicketsRange(ticketRange = [0, baseSettings.paginationSize]) {
     const state = ["available", "reserved", "purched", "selected"];
 
@@ -300,8 +288,22 @@ function raffleTickets(ticketsData) {
     event.preventDefault();
     const searchedNumber = parseInt(inputs.searchTicket.value);
     const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
-    if (ticketList.currentAvailable[searchedIndex] !== undefined)
+    if (ticketList.currentAvailable[searchedIndex] !== undefined) {
       changeTicket("add", ticketList.currentAvailable[searchedIndex]);
+      closeSearchHandler();
+    }
+  }
+
+  function clearSearchBox() {
+    inputs.searchTicket.value = "";
+    buttons.addSearchTicket.classList.remove("denied", "allowed");
+    inputs.searchTicket.classList.remove(
+      "purched",
+      "reserved",
+      "available",
+      "denied",
+      "selected"
+    );
   }
 
   function clearTicketsHandler() {
@@ -376,7 +378,14 @@ function raffleTickets(ticketsData) {
     state = state === "currentAvailable" ? "available" : state;
     state = state === undefined ? "disabled" : state;
     const availableIndex = ticketList.currentAvailable.indexOf(searchedNumber);
-    buttons.addSearchTicket.classList.remove("denied", "allowed");
+    buttons.addSearchTicket.classList.remove(
+      "denied",
+      "allowed",
+      "purched",
+      "reserved",
+      "available",
+      "selected"
+    );
     buttons.addSearchTicket.classList.add("disabled");
     inputs.searchTicket.classList.remove(
       "purched",
@@ -385,6 +394,10 @@ function raffleTickets(ticketsData) {
       "denied",
       "selected"
     );
+
+    const buttonText = buttons.addSearchTicket.dataset[state];
+
+    buttons.addSearchTicketSpan.innerHTML = buttonText;
 
     inputs.searchTicket.classList.add(state);
     buttons.addSearchTicket.classList.add(state);
@@ -401,13 +414,65 @@ function raffleTickets(ticketsData) {
     }
   }
 
+  function searchTicketOnKeyHandler(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      addSearchedTicketHandler(event);
+    }
+  }
+
+  function openSearchHandler() {
+    genericElement.floatSearchBox.classList.add("open");
+    buttons.openSearch.classList.add("close");
+    inputs.searchTicket.focus();
+  }
+
+  function closeSearchHandler() {
+    genericElement.floatSearchBox.classList.remove("open");
+    buttons.openSearch.classList.remove("close");
+    inputs.searchTicket.blur();
+    clearSearchBox();
+  }
+
+  function windowResizeHandler() {
+    sizes.stickyBar = containers.stickyBar.offsetTop;
+  }
+
+  function setStickyBar(stickyBarOnTop) {
+    stickyBarOnTop
+      ? containers.stickyBar.classList.remove("sticky")
+      : containers.stickyBar.classList.add("sticky");
+  }
+
+  function setFloatSearchBox(ticketsOnView) {
+    ticketsOnView
+      ? containers.stickyBar.classList.add("search-float")
+      : containers.stickyBar.classList.remove("search-float");
+  }
+
   function windowScrollHandler() {
-    setStyckyBar();
+    const stickyBarOnTop = isTouchingTopViewPort(genericElement.stickyBarLimit);
+    const ticketsOnView = isInViewport(containers.tickets);
+
+    setFloatSearchBox(ticketsOnView);
+    setStickyBar(stickyBarOnTop);
 
     const scrollFinished =
       window.scrollY + window.innerHeight >=
       document.documentElement.scrollHeight;
     if (scrollFinished) renderTicketsLazy();
+  }
+
+  function isTouchingTopViewPort(element) {
+    const bounding = element.getBoundingClientRect();
+
+    if (bounding.top >= 0) return true;
+    else return false;
+  }
+
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top - window.innerHeight <= -100;
   }
 
   // Exposed Handlers
@@ -433,27 +498,63 @@ function raffleTickets(ticketsData) {
   buttons.filterReserved.addEventListener("click", filterHandler);
   buttons.filterPurched.addEventListener("click", filterHandler);
   buttons.filterTag.addEventListener("click", filterTagHandler);
+  buttons.openSearch.addEventListener("click", openSearchHandler);
+  buttons.closeSearch.addEventListener("click", closeSearchHandler);
   inputs.searchTicket.addEventListener("input", searchTicketHandler);
+  inputs.searchTicket.addEventListener("keypress", searchTicketOnKeyHandler);
+  window.addEventListener("resize", windowResizeHandler);
   window.addEventListener("scroll", windowScrollHandler);
-
-  // Get the offset position of the navbar
-  var sticky = containers.stickyBar.offsetTop;
-
-  // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-  function setStyckyBar() {
-    if (window.pageYOffset >= sticky) {
-      containers.stickyBar.classList.add("sticky");
-    } else {
-      containers.stickyBar.classList.remove("sticky");
-    }
-  }
 }
 
-containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;
+(function fetchData() {
+  containers.tickets.innerHTML = `<li class="ticket-loading">${containers.tickets.dataset.loadingMessage}</li>`;
+ 
+  fetch(window.location.pathname + "/tickets")
+    .then((response) => response.json())
+    .then((tickets) => {
+      return raffleTickets(tickets.data);
+    })
+    .catch((error) => console.log(error));
+})();
 
-fetch(window.location.pathname + "/tickets")
-  .then((response) => response.json())
-  .then((tickets) => {
-    return raffleTickets(tickets.data);
-  })
-  .catch((error) => console.log(error));
+//RaffleGalleryDesktop
+function raffleGalleryDesktop() {
+  const elements = {
+    stage: getElement(".raffle-tickets-image"),
+    thumbs: getElement(".raffle-tickets-image-list img", true),
+  };
+
+  //Event Handlers
+
+  function thumbMouseOverHandler(event) {
+    elements.stage.src = event.target.src;
+
+    elements.thumbs.forEach((thumb) => thumb.classList.remove("active"));
+
+    event.target.classList.add("active");
+  }
+
+  //Event Listeners
+
+  elements.thumbs.forEach((thumb) => {
+    thumb.addEventListener("mouseover", thumbMouseOverHandler);
+  });
+}
+raffleGalleryDesktop();
+
+//RaffleGalleryMoblie
+function raffleGalleryMobile() {
+  const elements = {
+    stage: getElement(".raffle-tickets-image"),
+    thumbs: getElement(".raffle-tickets-image-list img", true),
+  };
+
+  const imageList = (() => {
+    const srcList = [];
+    elements.thumbs.forEach((thumb) => srcList.push(thumb.src));
+
+    return srcList;
+  })();
+}
+
+raffleGalleryMobile();

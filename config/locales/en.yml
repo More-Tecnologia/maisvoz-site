@@ -2138,3 +2138,4 @@ en:
   draw_ticket_id: Draw Ticket ID
   number_draw_ticket: Draw Ticket Number
   winner_name: Winner name
+  loading_message: Loading...

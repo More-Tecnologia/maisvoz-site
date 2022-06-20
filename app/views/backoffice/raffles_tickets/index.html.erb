@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets' %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets/index' %>
 <div class="box-orders">
   <div class="box-tickets">
     <div class="box-title">
@@ -11,6 +11,7 @@
       <p class="tickets-title"><%= t(:my_raffles_tickets) %></p>
       <p class="text-muted page-title-alt"></p>
     </div>
+    <!--
     <div class="status-filter">
       <div class="btn-group">
         <button class="btn-filter dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,43 +27,44 @@
         </div>
       </div>
     </div>
+    -->
   </div>
-  <form class="form-filter">
+  <%= search_form_for @q, url: backoffice_raffles_tickets_path, class: 'form-filter' do |f| %>
     <div class="tickets-filter">
       <div class="container-sm">
         <div class="input-container-lg">
           <label>
-            <%= t(:raffle_name)%>
+            <%= t(:raffle_name) %>
           </label>
-          <input class="input-filter" type="text"/>
+          <%= f.search_field :title_cont, class: 'input-filter' %>
         </div>
         <div class="input-container-sm">
           <label>
-            <%= t(:raffle_id)%>
+            <%= t(:raffle_id) %>
           </label>
-          <input class="input-filter" type="text"/>
+          <%= f.search_field :id_eq, class: 'input-filter' %>
         </div>
         <div class="input-container-sm">
           <label>
-            <%= t(:ticket_number)%>
+            <%= t(:ticket_number) %>
           </label>
-          <input class="input-filter" type="number"/>
+          <%= f.search_field :raffle_tickets_number_eq, class: 'input-filter' %>
         </div>
         <div class="input-container-lg">
           <label>
-            <%= t(:draw_date)%>
+            <%= t(:draw_date) %>
           </label>
-          <input class="input-filter" type="date"/>
+            <%= f.search_field :draw_date_eq, class: 'input-filter',
+                                      type: 'date' %>
         </div>
       </div>
       <button class="btn-submit-filter">
-        <%= t(:filter)%>
+        <%= t(:search) %>
       </button>
     </div>
-  <form>
+  <% end %>
   <div class="tickets-container">
-    <% @raffles_tickets.each do |raffle_ticket| %>
-      <% raffle = raffle_ticket.raffle %>
+    <% @raffles.each do |raffle| %>
         <div class="raffle-ticket-card">
             <div class="content-container">
               <div class="raffle-data">
@@ -71,7 +73,7 @@
                       <%= t(:raffle_id)%>
                     </span>
                     <span class="strong-item">
-                      <%= raffle.hashid %>
+                      <%= raffle.id %>
                     </span>
                 </div>
                 <div class="raffle-ticket-card-container">
@@ -87,8 +89,7 @@
                       <%= t(:draw_date)%>
                     </span>
                     <span class="strong-item">
-                      10/04/2022
-                      <%= raffle.draw_date %>
+                      <%= raffle.draw_date.presence || t(:awaiting_draw) %>
                     </span>
                 </div>
                 <div class="raffle-ticket-card-container">
@@ -96,7 +97,7 @@
                       <%= t(:raffle_status)%>
                     </span>
                     <span class="raffle-status started">
-                      <%= t(raffle_ticket.status) %>
+                      <%= t(raffle.status) %>
                     </span>
                 </div>
               </div>
@@ -107,48 +108,23 @@
                     <%= t(:my_numbers)%>
                   </span>
                   <div class="numbers-raffle-selected-container numbers-container">
-                    <span class="number-raffle-selected">
-                      99999
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
-                    <span class="number-raffle-selected">
-                      <%= raffle_ticket.number %>
-                    </span>
+                    <% raffle.raffle_tickets.where(user: current_user).each do |raffle_ticket| %>
+                      <span class="number-raffle-selected">
+                        <%= raffle_ticket.number %>
+                      </span>
+                    <% end %>
                   </div>
               </div>
         </div>
       <% end %>
-      <% if @raffles_tickets.none? %>
+      <% if @raffles.none? %>
         <tr>
             <td colspan="5" class="text-center"><%= t(:nothing_found) %></td>
         </tr>
       <% end %>
       <div class="row">
         <div class="col-lg-12">
-          <%= paginate @raffles_tickets %>
+          <%= paginate @raffles %>
         </div>
       </div>
   </div>

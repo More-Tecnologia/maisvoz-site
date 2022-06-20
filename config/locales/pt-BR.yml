@@ -2122,3 +2122,4 @@ pt-BR:
   draw_ticket_id: ID do Bilhete Sorteado
   number_draw_ticket: Nº do Bilhete Sorteado
   winner_name: Nome do ganhador
+  loading_message: Carregando...

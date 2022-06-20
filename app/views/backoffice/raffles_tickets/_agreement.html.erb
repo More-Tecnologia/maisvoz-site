@@ -1,12 +1,12 @@
-<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets_agreement' %>
-<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets_agreement.js', defer: true %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets/show_agreement' %>
+<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets/show_agreement', defer: true %>
 <section class="modal-regulation">
   <button class="modal-close-button">✕</button>
   <div class="modal-regulation-header">
     <% if SystemConfiguration.whitelabel? %>
-      <%= image_tag('white-label-logo.png', class: 'modal-regulation-image') %>
+      <%= image_tag(SystemConfiguration.external_logo, alt: SystemConfiguration.company_name, class: 'modal-regulation-image') %>
     <% else %>
-      <%= image_tag('logo.png', class: 'modal-regulation-image') %>
+      <%= image_tag('logo.png', alt: SystemConfiguration.company_name, class: 'modal-regulation-image') %>
     <% end %>
     <h4 class="modal-regulation-title"><%= t(:draw_regulation) %></h4>
   </div>

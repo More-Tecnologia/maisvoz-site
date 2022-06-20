@@ -2145,3 +2145,4 @@ es:
   draw_ticket_id: ID de boleto de sorteo
   number_draw_ticket: Número de boleto de sorteo
   winner_name: Nombre del ganador
+  loading_message: Cargando...

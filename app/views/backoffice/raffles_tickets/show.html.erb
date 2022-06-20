@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets' %>
-<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets.js', defer: true %>
+<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets/show' %>
+<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets/show.js', defer: true %>
 <%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
 <%= render 'agreement' %>
 <%= render 'backoffice/shared/login_register' %>
@@ -22,13 +22,25 @@
       <%= t(:draw_regulation) %>
     </button>
   </div>
-  <%= render 'backoffice/stores/banner', banner: @banner %>
   <div class="raffle-tickets-display-container">
-    <div class="raffle-tickts-image-container">
-      <%= image_tag(@raffle.path, class: 'raffle-tickets-image') %>
+    <div class="raffle-tickets-thumb-container">
+      <!-- <div class="raffle-tickets-image-list">
+        <button class="scroll-back">
+          <i class="fa-solid fa-angles-up"></i>
+        </button>        
+        <%= image_tag('http://placeimg.com//500/300/any') %>
+        <button class="scroll-forward">
+          <i class="fa-solid fa-angles-down"></i>
+        </button>
+      </div>  -->
     </div>
+    <ul class="raffle-tickets-image-container">
+      <li>
+        <%= image_tag(@raffle.path, class: 'raffle-tickets-image') %>
+      </li>
+    </ul>
     <div class="raffle-tickets-info-container">
-      <h1 class="raffle-tickets-title"><%= @raffle.title %></h1>
+      <h1 class="raffle-tickets-title" title="<%= @raffle.title %>"><%= @raffle.title %></h1>
       <span class="raffle-tickets-price"><%= format_currency(@raffle.price) %></span>
       <p class="raffle-tickets-description">
         <%= @raffle.description %>
@@ -52,57 +64,10 @@
       </ul>
     </div>
   </div>
-  <div class="raffle-tickets-bar">
-    <div class="raffle-tickets-bar-container">
-      <div class="raffle-tickets-selected-container">
-        <div class="raffle-tickets-selected-header">
-          <span class="raffle-tickets-selected-title">
-            <%= t(:selected_numbers) %>
-          </span>
-          <button class="raffle-tickets-selected-clear-button">
-            <i class="fa-regular fa-trash-can"></i>
-            <%= t(:clear) %>
-          </button>
-        </div>
-        <ul class="raffle-tickets-numbers-list selected-tickets-container">
-          <li class="raffle-tickets-numbers-list-item message">
-            <b><%= t(:choose_one_number) %></b>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <%= form_for(@raffle,
-                  url: backoffice_raffles_tickets_path,
-                  method: :post,
-                  html: {class: 'raffle-tickets-buy-form'}) do |f| %>
-          <input type="hidden" name="raffle[numbers]" class="ticket-numbers-array" />
-          <input type="hidden" name="raffle[id]" value="<%= @raffle.hashid %>" />
-          <div class="raffle-tickets-form-button-container">
-            <i class="fa-solid fa-cart-shopping cart-icon"><b class="cart-icon-number"></b></i>
-            <%= f.submit t(:go_to_payment), id: 'payment-ticket-button', class: 'raffle-tickets-form-button', disabled: true, data: { logged: user_signed_in? } %>
-          </div>
-        <% end %>
-        <div class="raffle-tickets-header">
-          <span class="footer--item--number filter-tag"></span>
-          <button class="raffle-tickets-form-button__random">
-            <span class="random-ticket">
-              <i class="fa-solid fa-shuffle"></i>
-              <%= t(:random) %>
-            </span>
-          </button>
-          <span class="raffle-tickets-number">
-            <b>...</b><i><%= t(:raffle_numbers) %></i>
-          </span>
-          <div class="raffle-tickets-search-numbers-container">
-            <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">
-            <span class="raffle-tickets-form-button add-searched disabled"><span><i class="fa-solid fa-plus"></i> <%= t(:add) %></span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render 'select_bar' %>
   <div class="raffle-tickets-numbers-container">
-    <ul class="raffle-tickets-numbers-list tickets-container ticket-list">
+    <span class="footer--item--number filter-tag"></span>
+    <ul data-loading-message="<%= t(:loading_message) %>" class="raffle-tickets-numbers-list tickets-container ticket-list">
     </ul>
   </div>
-  </div>
+</div>

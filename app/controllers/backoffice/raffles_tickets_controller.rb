@@ -5,13 +5,12 @@ module Backoffice
     skip_before_action :authenticate_user!, only: %i[show tickets]
 
     def index
-      @q = current_user.raffle_tickets
-                       .includes(:raffle)
-                       .ransack(params)
-      @raffles_tickets = @q.result
-                           .order(created_at: :desc)
-                           .page(params[:page])
-                           .per(10)
+      @q = Raffle.where(raffle_tickets: { id: current_user.raffle_tickets })
+                 .ransack(params[:q])
+      @raffles = @q.result
+                   .order(created_at: :desc)
+                   .page(params[:page])
+                   .per(10)
     end
 
     def create

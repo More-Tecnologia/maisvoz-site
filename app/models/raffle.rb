@@ -4,6 +4,7 @@ class Raffle < ApplicationRecord
   include Hashid::Rails
 
   has_attachment :thumb, accept: %i[jpg png]
+  has_attachments :images, accept: %i[jpg png]
 
   enum kind: { automatic: 0, manual: 1, flex: 2 }
   enum status: { started: 0, awaiting_draw_date: 1, awaiting_draw: 2,

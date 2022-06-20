@@ -2116,3 +2116,4 @@ pt-BR:
   package_value: Valor do pacote
   acquired_shares: Você adquiriu %{quantity} cota(s) da rifa
   waiting_payment: Aguardando pagamento
+  loading_message: Carregando...

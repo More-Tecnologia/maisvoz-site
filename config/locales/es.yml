@@ -2139,3 +2139,4 @@ es:
   withdraw_minimum_value: Cantidad mínima de retiro
   earnings_per_campaign: Ganancias por campaña (Céntimos)
   acquired_shares: Ha comprado %{quantity} cupo(s) de rifa
+  loading_message: Cargando...

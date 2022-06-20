@@ -507,8 +507,8 @@ function raffleTickets(ticketsData) {
 }
 
 (function fetchData() {
-  containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;
-
+  containers.tickets.innerHTML = `<li class="ticket-loading">${containers.tickets.dataset.loadingMessage}</li>`;
+ 
   fetch(window.location.pathname + "/tickets")
     .then((response) => response.json())
     .then((tickets) => {

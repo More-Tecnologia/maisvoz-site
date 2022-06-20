@@ -16,9 +16,18 @@
   width: 44.7%;
 }
 
-.store-raffle-item-image {
+.store-raffle-item-image-container{
   display: block;
   margin: 0 auto 1em auto;
+}
+
+.store-raffle-item-image-container:hover{
+  opacity: .8;
+}
+
+.store-raffle-item-image {
+  display: block;  
+  margin: 0;
   max-height: 8.5em;
   max-width: 100%;
 }

@@ -51,7 +51,7 @@ const genericElement = {
   cartIconNumber: getElement(".cart-icon-number"),
   raffleNumber: getElement(".raffle-tickets-number b"),
   stickyBarLimit: getElement(".sticky-bar-limit"),
-  floatSearchBox: getElement(".raffle-tickets-search-numbers-container")
+  floatSearchBox: getElement(".raffle-tickets-search-numbers-container"),
 };
 
 const buttons = {
@@ -288,14 +288,14 @@ function raffleTickets(ticketsData) {
     event.preventDefault();
     const searchedNumber = parseInt(inputs.searchTicket.value);
     const searchedIndex = ticketList.currentAvailable.indexOf(searchedNumber);
-    if (ticketList.currentAvailable[searchedIndex] !== undefined){
-      changeTicket("add", ticketList.currentAvailable[searchedIndex]);  
-      closeSearchHandler();    
+    if (ticketList.currentAvailable[searchedIndex] !== undefined) {
+      changeTicket("add", ticketList.currentAvailable[searchedIndex]);
+      closeSearchHandler();
     }
-    }
+  }
 
   function clearSearchBox() {
-    inputs.searchTicket.value = ''; 
+    inputs.searchTicket.value = "";
     buttons.addSearchTicket.classList.remove("denied", "allowed");
     inputs.searchTicket.classList.remove(
       "purched",
@@ -304,12 +304,11 @@ function raffleTickets(ticketsData) {
       "denied",
       "selected"
     );
-
   }
 
   function clearTicketsHandler() {
     changeTicket("clear");
-  } 
+  }
 
   function filterHandler(event) {
     const filter = event.target.dataset.filter;
@@ -375,12 +374,18 @@ function raffleTickets(ticketsData) {
         }
       }
     }
-   
 
     state = state === "currentAvailable" ? "available" : state;
     state = state === undefined ? "disabled" : state;
     const availableIndex = ticketList.currentAvailable.indexOf(searchedNumber);
-    buttons.addSearchTicket.classList.remove("denied", "allowed", 'purched', 'reserved', 'available', 'selected');
+    buttons.addSearchTicket.classList.remove(
+      "denied",
+      "allowed",
+      "purched",
+      "reserved",
+      "available",
+      "selected"
+    );
     buttons.addSearchTicket.classList.add("disabled");
     inputs.searchTicket.classList.remove(
       "purched",
@@ -388,15 +393,14 @@ function raffleTickets(ticketsData) {
       "available",
       "denied",
       "selected"
-    );      
-  
+    );
+
     const buttonText = buttons.addSearchTicket.dataset[state];
 
     buttons.addSearchTicketSpan.innerHTML = buttonText;
 
     inputs.searchTicket.classList.add(state);
     buttons.addSearchTicket.classList.add(state);
-    
 
     if (availableIndex >= 0) {
       if (ticketList.currentAvailable[availableIndex] !== undefined) {
@@ -410,25 +414,25 @@ function raffleTickets(ticketsData) {
     }
   }
 
-  function searchTicketOnKeyHandler(event){
+  function searchTicketOnKeyHandler(event) {
     if (event.keyCode === 13) {
-      event.preventDefault();  
+      event.preventDefault();
       addSearchedTicketHandler(event);
     }
   }
 
-  function openSearchHandler(){
-   genericElement.floatSearchBox.classList.add("open");
-   buttons.openSearch.classList.add("close");
-   inputs.searchTicket.focus();
+  function openSearchHandler() {
+    genericElement.floatSearchBox.classList.add("open");
+    buttons.openSearch.classList.add("close");
+    inputs.searchTicket.focus();
   }
 
-  function closeSearchHandler(){
+  function closeSearchHandler() {
     genericElement.floatSearchBox.classList.remove("open");
-    buttons.openSearch.classList.remove('close');
+    buttons.openSearch.classList.remove("close");
     inputs.searchTicket.blur();
     clearSearchBox();
-  }  
+  }
 
   function windowResizeHandler() {
     sizes.stickyBar = containers.stickyBar.offsetTop;
@@ -440,7 +444,7 @@ function raffleTickets(ticketsData) {
       : containers.stickyBar.classList.add("sticky");
   }
 
-  function setFloatSearchBox(ticketsOnView){
+  function setFloatSearchBox(ticketsOnView) {
     ticketsOnView
       ? containers.stickyBar.classList.add("search-float")
       : containers.stickyBar.classList.remove("search-float");
@@ -449,7 +453,7 @@ function raffleTickets(ticketsData) {
   function windowScrollHandler() {
     const stickyBarOnTop = isTouchingTopViewPort(genericElement.stickyBarLimit);
     const ticketsOnView = isInViewport(containers.tickets);
-        
+
     setFloatSearchBox(ticketsOnView);
     setStickyBar(stickyBarOnTop);
 
@@ -467,7 +471,7 @@ function raffleTickets(ticketsData) {
   }
 
   function isInViewport(element) {
-    const rect = element.getBoundingClientRect();    
+    const rect = element.getBoundingClientRect();
     return rect.top - window.innerHeight <= -100;
   }
 
@@ -495,14 +499,14 @@ function raffleTickets(ticketsData) {
   buttons.filterPurched.addEventListener("click", filterHandler);
   buttons.filterTag.addEventListener("click", filterTagHandler);
   buttons.openSearch.addEventListener("click", openSearchHandler);
-  buttons.closeSearch.addEventListener("click", closeSearchHandler)
+  buttons.closeSearch.addEventListener("click", closeSearchHandler);
   inputs.searchTicket.addEventListener("input", searchTicketHandler);
   inputs.searchTicket.addEventListener("keypress", searchTicketOnKeyHandler);
   window.addEventListener("resize", windowResizeHandler);
-  window.addEventListener("scroll", windowScrollHandler); 
+  window.addEventListener("scroll", windowScrollHandler);
 }
 
-(function fetchData(){
+(function fetchData() {
   containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;
 
   fetch(window.location.pathname + "/tickets")
@@ -511,25 +515,46 @@ function raffleTickets(ticketsData) {
       return raffleTickets(tickets.data);
     })
     .catch((error) => console.log(error));
-})()
+})();
 
 //RaffleGalleryDesktop
-function raffleGalleryDesktop(){
+function raffleGalleryDesktop() {
   const elements = {
-    stage: getElement('.raffle-tickets-image'),     
-    thumbs: getElement('.raffle-tickets-image-list img', true),      
+    stage: getElement(".raffle-tickets-image"),
+    thumbs: getElement(".raffle-tickets-image-list img", true),
   };
 
   //Event Handlers
 
-  function thumbMouseOverHandler(event){      
+  function thumbMouseOverHandler(event) {
     elements.stage.src = event.target.src;
+
+    elements.thumbs.forEach((thumb) => thumb.classList.remove("active"));
+
+    event.target.classList.add("active");
   }
 
   //Event Listeners
 
-  elements.thumbs.forEach((thumb)=>{
-    thumb.addEventListener('mouseover', thumbMouseOverHandler)
-  })
+  elements.thumbs.forEach((thumb) => {
+    thumb.addEventListener("mouseover", thumbMouseOverHandler);
+  });
 }
 raffleGalleryDesktop();
+
+//RaffleGalleryMoblie
+function raffleGalleryMobile() {
+  const elements = {
+    stage: getElement(".raffle-tickets-image"),
+    thumbs: getElement(".raffle-tickets-image-list img", true),
+  };
+
+  const imageList = (() => {
+    const srcList = [];
+    elements.thumbs.forEach((thumb) => srcList.push(thumb.src));
+
+    return srcList;
+  })();
+}
+
+raffleGalleryMobile();

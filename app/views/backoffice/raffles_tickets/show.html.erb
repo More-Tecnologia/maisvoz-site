@@ -22,33 +22,23 @@
       <%= t(:draw_regulation) %>
     </button>
   </div>
-  <div class="raffle-tickets-display-container">  
+  <div class="raffle-tickets-display-container">
     <div class="raffle-tickets-thumb-container">
-      <div class="raffle-tickets-image-list">
+      <!-- <div class="raffle-tickets-image-list">
         <button class="scroll-back">
           <i class="fa-solid fa-angles-up"></i>
-        </button>
-        <%= image_tag(@raffle.path) %>
+        </button>        
         <%= image_tag('http://placeimg.com//500/300/any') %>
-        <%= image_tag('http://placeimg.com//500/203/any') %>
-        <%= image_tag('http://placeimg.com//500/302/any') %>
-        <%= image_tag('http://placeimg.com//500/501/any') %>
-        <%= image_tag('http://placeimg.com//501/501/any') %>
-        <%= image_tag('http://placeimg.com//502/601/any') %>
         <button class="scroll-forward">
           <i class="fa-solid fa-angles-down"></i>
         </button>
-      </div>  
-    </div>  
-    <div class="raffle-tickets-image-container">
-      <button class="go-back">
-        <i class="fa-solid fa-angles-left"></i>
-      </button>
-      <%= image_tag(@raffle.path, class: 'raffle-tickets-image') %>
-      <button class="go-forward">
-        <i class="fa-solid fa-angles-right"></i>
-      </button>
+      </div>  -->
     </div>
+    <ul class="raffle-tickets-image-container">
+      <li>
+        <%= image_tag(@raffle.path, class: 'raffle-tickets-image') %>
+      </li>
+    </ul>
     <div class="raffle-tickets-info-container">
       <h1 class="raffle-tickets-title" title="<%= @raffle.title %>"><%= @raffle.title %></h1>
       <span class="raffle-tickets-price"><%= format_currency(@raffle.price) %></span>

@@ -29,9 +29,9 @@
       <div class="raffle-tickets-search-numbers-container">
         <span class="search-box-close"><i class="fa-solid fa-angles-right"></i></span>
         <input class="raffle-tickets-field search-ticket" type="number" placeholder="Numero">
-        <span data-purchased="<%= t(:store_raffle_paid) %>" data-reserved="<%= t(:reserved) %>" data-available="<%= t(:available) %>" add="<%= t(:add) %>" class="add-searched disabled">
+        <span data-purched="<%= t(:store_raffle_paid) %>" data-reserved="<%= t(:reserved) %>" data-available="+ <%= t(:add) %>" data-disabled="+ <%= t(:add) %>" class="add-searched disabled">
           <span>
-            <i class="fa-solid fa-plus"></i> <%= t(:add) %>
+           + <%= t(:add) %>
           </span>
         </span>
       </div>

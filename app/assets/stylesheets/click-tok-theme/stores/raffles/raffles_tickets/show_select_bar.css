@@ -306,18 +306,6 @@ input[type=number] {
   position: relative;
   transition: color 1s;
   user-select: none;
-}
-
-.raffle-tickets-bar .raffle-tickets-header .add-searched {
-  font-size: 0.8em;
-  transition: color 0.3s;
-}
-.raffle-tickets-bar .add-searched {
-  background: linear-gradient(to bottom, #5afa00, #22a700);
-  border-radius: 0.5em;
-  border: none;
-  color: white;
-  cursor: pointer;
   font-size: 0.8em;
   padding: 0.5em 2em;
 }
@@ -387,10 +375,30 @@ input[type=number] {
   opacity: 1;
 }
 
+
 .raffle-tickets-bar
   .raffle-tickets-search-numbers-container
-  .add-searched.denied::before {
-  background: linear-gradient(to bottom, #d93838, #b11919);
+  .add-searched.denied.reserved {
+  color: white;
+}
+
+.raffle-tickets-bar
+  .raffle-tickets-search-numbers-container
+  .add-searched.denied.reserved::before {
+  background: linear-gradient(to bottom, #e8d41e, #e7ae05);
+  opacity: 1;
+}
+
+.raffle-tickets-bar
+  .raffle-tickets-search-numbers-container
+  .add-searched.denied.purched  {
+  color: white;
+}
+
+.raffle-tickets-bar
+  .raffle-tickets-search-numbers-container
+  .add-searched.denied.purched::before {
+  background: linear-gradient(to bottom, #006fde, #0777cd);
   opacity: 1;
 }
 

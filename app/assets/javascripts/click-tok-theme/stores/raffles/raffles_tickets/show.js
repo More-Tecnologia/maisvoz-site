@@ -56,6 +56,7 @@ const genericElement = {
 
 const buttons = {
   addSearchTicket: getElement(".add-searched"),
+  addSearchTicketSpan: getElement(".add-searched span"),
   clearTickets: getElement(".clear-tickets-button"),
   closeSearch: getElement(".search-box-close"),
   openSearch: getElement(".ticket-search-button"),
@@ -379,7 +380,7 @@ function raffleTickets(ticketsData) {
     state = state === "currentAvailable" ? "available" : state;
     state = state === undefined ? "disabled" : state;
     const availableIndex = ticketList.currentAvailable.indexOf(searchedNumber);
-    buttons.addSearchTicket.classList.remove("denied", "allowed");
+    buttons.addSearchTicket.classList.remove("denied", "allowed", 'purched', 'reserved', 'available', 'selected');
     buttons.addSearchTicket.classList.add("disabled");
     inputs.searchTicket.classList.remove(
       "purched",
@@ -387,11 +388,15 @@ function raffleTickets(ticketsData) {
       "available",
       "denied",
       "selected"
-    );
-    console.log(state);
+    );      
+  
+    const buttonText = buttons.addSearchTicket.dataset[state];
+
+    buttons.addSearchTicketSpan.innerHTML = buttonText;
 
     inputs.searchTicket.classList.add(state);
     buttons.addSearchTicket.classList.add(state);
+    
 
     if (availableIndex >= 0) {
       if (ticketList.currentAvailable[availableIndex] !== undefined) {
@@ -464,7 +469,7 @@ function raffleTickets(ticketsData) {
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();    
     return rect.top - window.innerHeight <= -100;
-}
+  }
 
   // Exposed Handlers
   handlers.selectedTicketHandler = function selectedTicketHandler(
@@ -494,25 +499,37 @@ function raffleTickets(ticketsData) {
   inputs.searchTicket.addEventListener("input", searchTicketHandler);
   inputs.searchTicket.addEventListener("keypress", searchTicketOnKeyHandler);
   window.addEventListener("resize", windowResizeHandler);
-  window.addEventListener("scroll", windowScrollHandler);
-  $(window).on("navigate", function (event, data) {
-    var direction = data.state.direction;
-    if (direction == 'back') {
-      // do something
-      closeSearchHandler()
-    }
-    if (direction == 'forward') {
-      // do something else
-      
-    }
-  });
+  window.addEventListener("scroll", windowScrollHandler); 
 }
 
-containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;
+(function fetchData(){
+  containers.tickets.innerHTML = `<li class="ticket-loading">Carregando...</li>`;
 
-fetch(window.location.pathname + "/tickets")
-  .then((response) => response.json())
-  .then((tickets) => {
-    return raffleTickets(tickets.data);
+  fetch(window.location.pathname + "/tickets")
+    .then((response) => response.json())
+    .then((tickets) => {
+      return raffleTickets(tickets.data);
+    })
+    .catch((error) => console.log(error));
+})()
+
+//RaffleGalleryDesktop
+function raffleGalleryDesktop(){
+  const elements = {
+    stage: getElement('.raffle-tickets-image'),     
+    thumbs: getElement('.raffle-tickets-image-list img', true),      
+  };
+
+  //Event Handlers
+
+  function thumbMouseOverHandler(event){      
+    elements.stage.src = event.target.src;
+  }
+
+  //Event Listeners
+
+  elements.thumbs.forEach((thumb)=>{
+    thumb.addEventListener('mouseover', thumbMouseOverHandler)
   })
-  .catch((error) => console.log(error));
+}
+raffleGalleryDesktop();

@@ -3,81 +3,70 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
                        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
                        crossorigin="anonymous">
+<%= stylesheet_link_tag 'click-tok-theme/app' %>
+<%= stylesheet_link_tag 'click-tok-theme/shared/winners' %>
 
 <div class="page">
-  <a class="back-button" href="/backoffice/financial_dashboard?locale=en">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-         fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-
-                                 .708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0
-                                 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-    </svg>
-  </a>
-  <div class="is-page-title">
-    <span class="title">
-      Winners
-    </span>
-    <div class="btn-group dropleft">
-      <button class="btn btn-secondary dropdown-toggle" type="button"
-              id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" style="border-radius: 20px;"
-              background: #30da03; border: none;">
-        <%= t(:filter) %>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button"></button>
-          <button class="dropdown-item" type="button"></button>
-      </div>
+  <div class="winners-container-top">
+    <div class="back-button-container">
+      <a class="back-button" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+      </a>
+      <span class="winners-title">
+        Winners
+      </span>
     </div>
   </div>
-
-  <% @raffles.each do |raffle| %>
-    <div class="raffles-winners-card-order card-order">
-      <div class="row">
-        <div class="column">
-          <%= raffle.winner.decorate.avatar_image_tag %>
-        </div>
-        <div class="column">
-          <div class="row">
-            <div class="card-body">
-              <div><%= t('ID of draw') %></div>
-              <%= raffle.id %>
+  <div class="cards-container">
+    <div class="card-container">
+        <div class="winner-container">
+          <img src="https://m.media-amazon.com/images/I/41vm9e97XZL._AC_SX522_.jpg" class="image-winner"/>
+          <div class="winner-content">
+            <div class="winner-card-body">
+              <span><%= t('raffle_name') %></span>
+              <p class="hide-big-phrase" title="Raffle Name">Iphone 13 Pro max</p>
             </div>
-            <div class="card-body">
-              <div><%= t('Draw numbers') %></div>
-              <%= raffle.lotto_numbers_combination %>
+            <div class="winner-card-body">
+              <span><%= t('draw_id') %></span>
+              <p>00001</p>
             </div>
-            <div class="card-body">
-              <div><%= t('Draw date') %></div>
-              <%= raffle.draw_date %>
+            <div class="winner-card-body">
+              <span><%= t('draw_date') %></span>
+              <p>10/04/2022</p>
+            </div>
+            <div class="winner-card-body">
+              <span><%= t('draw_ticket_id') %></span>
+              <p>00651</p>
+            </div>
+            <div class="winner-card-body">
+              <span><%= t('number_draw_ticket') %></span>
+              <p>548</p>
+            </div>
+            <div class="winner-card-body">
+              <span><%= t('winner_name') %></span>
+              <p class="hide-big-phrase" title="Winner Name">Bruno Teófilo</p>
+            </div>
+            <div class="numbers-container">
+            <span><%= t('draw_numbers') %></span>
+              <div class="selected-numbers-container">
+                <div class="selected-number">01</div>
+                <div class="selected-number">02</div>
+                <div class="selected-number">03</div>
+                <div class="selected-number">04</div>
+                <div class="selected-number">05</div>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="card-body">
-              <div><%= t('ID of draw ticket') %></div>
-              <%= raffle.winning_ticket_id %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Number draw ticket') %></div>
-              <%= raffle.lotto_numbers_combination %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Winner name') %></div>
-              <%= raffle.winner.username %>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  <% end %>
-  <% if @raffles.none? %>
+  </div>
     <tr>
       <td colspan="5" class="text-center"><%= t(:nothing_found) %></td>
     </tr>
-  <% end %>
   <div class="row">
     <div class="col-sm-12">
-      <%= paginate @raffles.finished %>
     </div>
   </div>
 </div>

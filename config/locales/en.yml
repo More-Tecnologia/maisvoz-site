@@ -2132,3 +2132,9 @@ en:
   withdraw_minimum_value: Minimum withdraw amount
   earnings_per_campaign: Earnings per campaign (Cents)
   acquired_shares: You have purchased %{quantity} raffle quota(s)
+  draw_id: Draw ID
+  draw_numbers: Drawn numbers
+  draw_date: Draw date
+  draw_ticket_id: Draw Ticket ID
+  number_draw_ticket: Draw Ticket Number
+  winner_name: Winner name

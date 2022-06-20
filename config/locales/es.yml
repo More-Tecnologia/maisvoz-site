@@ -2139,3 +2139,9 @@ es:
   withdraw_minimum_value: Cantidad mínima de retiro
   earnings_per_campaign: Ganancias por campaña (Céntimos)
   acquired_shares: Ha comprado %{quantity} cupo(s) de rifa
+  draw_id: ID de la rifa
+  draw_numbers: Números sorteados
+  draw_date: Fecha del sorteo
+  draw_ticket_id: ID de boleto de sorteo
+  number_draw_ticket: Número de boleto de sorteo
+  winner_name: Nombre del ganador

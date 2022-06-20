@@ -52,14 +52,8 @@
     justify-content: flex-end;
     margin-right: 10px;
     text-align: center;
-    margin-top: 110px;
     transition: 0.5s;
     padding: 10px;
-}
-
-.change-language a {
-
-
 }
 
 .change-language img {

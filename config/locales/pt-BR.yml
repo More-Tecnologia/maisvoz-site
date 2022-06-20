@@ -2111,3 +2111,8 @@ pt-BR:
   uptime: Sistema ativo
   withdraw_minimum_value: Valor mínimo de saque
   earnings_per_campaign: Ganhos por campanha (Centavos)
+  congratulations_payment_approved: Parabéns, agora é só aguardar o sorteio e torcer para que a seu número seja o premiado!
+  request_number: Número da solicitação
+  package_value: Valor do pacote
+  acquired_shares: Você adquiriu %{quantity} cota(s) da rifa
+  waiting_payment: Aguardando pagamento

@@ -3,27 +3,39 @@
                         crossorigin: 'anonymous' %>
 <%= stylesheet_link_tag 'click-tok-theme/app' %>
 <div class="row">
+  <div class="back-button-container">
+    <a class="back-button" href="/">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </a>
+  </div>
   <div class="d-flex flex-column align-items-center">
-    <div class="card-box">
-      <div class="box-top">     
-        <div class="request-box">
-          <h1><strong><%= t(:request_number) %></strong></h1>
-          <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
+    <div class="card-box box-btc-pix">
+      <div class="box-top-btc-pix">     
+        <div class="request-box-btc-pix">
+          <div class="request-strip">
+            <h1><strong><%= t(:request_number) %></strong></h1>
+          </div>
+          <div class="content-box">
+            <span class="pull-right request-number" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
+          </div>
         </div>
-         <% unless SystemConfiguration.whitelabel? %>
-        <div class="request-box">
-          <h4>
-            <p><strong><%= t(:package_value) %></strong></p>
-            R<i class="fas fa-dollar-sign"></i>
-            <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
-            <br>
-            <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
-              <i class="fab fa-btc"></i>
-              <%= format_digital_currency(@payment_transaction.amount) %>
-            <% end %>
-          </h4>
+        <div class="request-box-btc-pix">
+            <div class="request-strip">
+              <h1><strong><%= t(:package_value) %></strong></h1>
+            </div>
+            <div class="content-box">
+              <span class="request-number">R$<%= number_to_currency(@payment_transaction.order.total, unit: '') %></span>
+              <br>
+              <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+                <span class="request-btc">
+                  <i class="fab fa-btc"></i>
+                  <%= format_digital_currency(@payment_transaction.amount) %>
+                </span>
+              <% end %>
+            </div>
         </div>
-        <% end %> 
       </div>
       <div class="row m-t-30">
         <% if @payment_transaction.order.shipping > 0 %>

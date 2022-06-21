@@ -106,9 +106,7 @@
           </div>
         <% end %>
       </div>
-      <% if SystemConfiguration.whitelabel? %>
-        <%= render 'backoffice/shared/ticket_numbers', orders: @order %>
-      <% end %>
+      <%= render('backoffice/shared/ticket_numbers', orders: @order) if @order.products.raffle.any? %>
     </div>
   </div>
 </div>

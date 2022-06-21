@@ -107,5 +107,5 @@
   </div>
 </div>
 <div class="full-size">
-  <%= render 'backoffice/shared/ticket_numbers', orders: @payment_transaction.order %>
+  <%= render('backoffice/shared/ticket_numbers', orders: @payment_transaction.order) if @payment_transaction.order.products.raffle.any? %>
 </div>

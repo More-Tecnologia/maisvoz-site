@@ -112,8 +112,7 @@ function raffleTickets(ticketsData) {
 
   function crud(setAction, ticketNumber) {
     const ticketCollection = getElement(".ticket-list .ticket-item", true);
-    const element =
-      ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
+    const element = ticketNumber !== false && getTicket(ticketNumber, ticketCollection);
 
     const actions = {
       add: () => addTicket(ticketNumber, element),
@@ -125,16 +124,13 @@ function raffleTickets(ticketsData) {
   }
 
   function changeTicket(setAction, ticketNumber = false) {
-    const stopAdd =
-      ticketList.selected.length >= baseSettings.maxSelectedTickets;
+    const stopAdd = ticketList.selected.length >= baseSettings.maxSelectedTickets;
     if (setAction === "add" && stopAdd) return;
 
     crud(setAction, ticketNumber);
     renderSelectedTickets();
 
-    ticketList.currentAvailable = ticketList.available.filter(
-      (item) => !ticketList.selected.includes(item)
-    );
+    ticketList.currentAvailable = ticketList.available.filter((item) => !ticketList.selected.includes(item));
 
     const selectedLength = ticketList.selected.length;
 
@@ -155,6 +151,7 @@ function raffleTickets(ticketsData) {
       ticketList.rendered = getTicketByState(ticketList.initial, filter);
       containers.tickets.innerHTML = "";
     } else {
+      containers.tickets.innerHTML = "";
       ticketList.rendered = ticketList.initial;
     }
     state.ticketPosition = 0;
@@ -162,9 +159,7 @@ function raffleTickets(ticketsData) {
   }
 
   function genRandomTicket() {
-    randomNumber = Math.floor(
-      Math.random() * ticketList.currentAvailable.length
-    );
+    randomNumber = Math.floor(Math.random() * ticketList.currentAvailable.length);
 
     return ticketList.currentAvailable[randomNumber];
   }
@@ -193,12 +188,9 @@ function raffleTickets(ticketsData) {
     showTicketCount();
 
     ticketList.rendered.slice(...ticketRange).map((ticket) => {
-      const ticketClass = ticketList.selected.includes(ticket[0])
-        ? state[3]
-        : state[ticket[1]];
+      const ticketClass = ticketList.selected.includes(ticket[0]) ? state[3] : state[ticket[1]];
 
-      const onClickFunction =
-        ticket[1] === 0 ? `onclick="handlers.ticketHandler(${ticket[0]})"` : "";
+      const onClickFunction = ticket[1] === 0 ? `onclick="handlers.ticketHandler(${ticket[0]})"` : "";
       const HTMLTicket = `<li style="order: ${formatNumber(
         ticket[0],
         ticketList.initial
@@ -215,10 +207,7 @@ function raffleTickets(ticketsData) {
     if (state.ticketPosition > ticketList.rendered.length) return;
 
     state.ticketPosition += baseSettings.paginationSize;
-    const ticketRange = [
-      state.ticketPosition,
-      state.ticketPosition + baseSettings.paginationSize,
-    ];
+    const ticketRange = [state.ticketPosition, state.ticketPosition + baseSettings.paginationSize];
 
     renderTicketsRange(ticketRange);
   }
@@ -226,10 +215,7 @@ function raffleTickets(ticketsData) {
   function renderTicketsFilterLazy() {
     if (state.ticketPosition > ticketList.rendered.length) return;
 
-    const ticketRange = [
-      state.ticketPosition,
-      state.ticketPosition + baseSettings.paginationSize,
-    ];
+    const ticketRange = [state.ticketPosition, state.ticketPosition + baseSettings.paginationSize];
 
     state.ticketPosition += baseSettings.paginationSize;
 
@@ -266,8 +252,7 @@ function raffleTickets(ticketsData) {
   }
 
   function setFormData() {
-    if (ticketList.selected.length > 0)
-      inputs.hiddenTicketArray.value = ticketList.selected;
+    if (ticketList.selected.length > 0) inputs.hiddenTicketArray.value = ticketList.selected;
   }
 
   function showTicketCount() {
@@ -297,13 +282,7 @@ function raffleTickets(ticketsData) {
   function clearSearchBox() {
     inputs.searchTicket.value = "";
     buttons.addSearchTicket.classList.remove("denied", "allowed");
-    inputs.searchTicket.classList.remove(
-      "purched",
-      "reserved",
-      "available",
-      "denied",
-      "selected"
-    );
+    inputs.searchTicket.classList.remove("purched", "reserved", "available", "denied", "selected");
   }
 
   function clearTicketsHandler() {
@@ -350,6 +329,7 @@ function raffleTickets(ticketsData) {
     buttons.filterAvailable.classList.remove("active");
     buttons.filterPurched.classList.remove("active");
     buttons.filterReserved.classList.remove("active");
+    state.filter = null;
     buttons.filterTag.innerHTML = "";
     filterTickets(false);
   }
@@ -378,22 +358,9 @@ function raffleTickets(ticketsData) {
     state = state === "currentAvailable" ? "available" : state;
     state = state === undefined ? "disabled" : state;
     const availableIndex = ticketList.currentAvailable.indexOf(searchedNumber);
-    buttons.addSearchTicket.classList.remove(
-      "denied",
-      "allowed",
-      "purched",
-      "reserved",
-      "available",
-      "selected"
-    );
+    buttons.addSearchTicket.classList.remove("denied", "allowed", "purched", "reserved", "available", "selected");
     buttons.addSearchTicket.classList.add("disabled");
-    inputs.searchTicket.classList.remove(
-      "purched",
-      "reserved",
-      "available",
-      "denied",
-      "selected"
-    );
+    inputs.searchTicket.classList.remove("purched", "reserved", "available", "denied", "selected");
 
     const buttonText = buttons.addSearchTicket.dataset[state];
 
@@ -439,9 +406,7 @@ function raffleTickets(ticketsData) {
   }
 
   function setStickyBar(stickyBarOnTop) {
-    stickyBarOnTop
-      ? containers.stickyBar.classList.remove("sticky")
-      : containers.stickyBar.classList.add("sticky");
+    stickyBarOnTop ? containers.stickyBar.classList.remove("sticky") : containers.stickyBar.classList.add("sticky");
   }
 
   function setFloatSearchBox(ticketsOnView) {
@@ -457,9 +422,7 @@ function raffleTickets(ticketsData) {
     setFloatSearchBox(ticketsOnView);
     setStickyBar(stickyBarOnTop);
 
-    const scrollFinished =
-      window.scrollY + window.innerHeight >=
-      document.documentElement.scrollHeight;
+    const scrollFinished = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight;
     if (scrollFinished) renderTicketsLazy();
   }
 
@@ -476,9 +439,7 @@ function raffleTickets(ticketsData) {
   }
 
   // Exposed Handlers
-  handlers.selectedTicketHandler = function selectedTicketHandler(
-    ticketNumber
-  ) {
+  handlers.selectedTicketHandler = function selectedTicketHandler(ticketNumber) {
     changeTicket("remove", ticketNumber);
   };
 
@@ -508,7 +469,7 @@ function raffleTickets(ticketsData) {
 
 (function fetchData() {
   containers.tickets.innerHTML = `<li class="ticket-loading">${containers.tickets.dataset.loadingMessage}</li>`;
- 
+
   fetch(window.location.pathname + "/tickets")
     .then((response) => response.json())
     .then((tickets) => {

@@ -72,7 +72,7 @@ input[type="number"] {
   row-gap: 1em;
 }
 
-.raffle-tickets-display-container .raffle-tickets-image-list{
+.raffle-tickets-display-container .raffle-tickets-image-list {
   display: none;
 }
 
@@ -98,7 +98,6 @@ input[type="number"] {
   width: 100%;
 }
 
-
 .raffle-tickets-display-container .raffle-tickets-image {
   bottom: 0;
   height: 100%;
@@ -106,7 +105,7 @@ input[type="number"] {
   max-width: 100%;
   object-fit: cover;
   object-position: bottom;
-  
+
   max-height: 100%;
 }
 
@@ -250,9 +249,7 @@ input[type="number"] {
   background: linear-gradient(to bottom, #006fde, #0777cd);
 }
 
-.raffle-tickets-display-container
-  .raffle-tickets-info--footer--item
-  .footer--item--number.active::after {
+.raffle-tickets-display-container .raffle-tickets-info--footer--item .footer--item--number.active::after {
   bottom: -80%;
   color: #ccc;
   content: "❭";
@@ -264,9 +261,7 @@ input[type="number"] {
   transform: translate(-50%, 0) rotate(-90deg);
 }
 
-.raffle-tickets-display-container
-  .raffle-tickets-info--footer--item
-  .footer--item--number:hover {
+.raffle-tickets-display-container .raffle-tickets-info--footer--item .footer--item--number:hover {
   opacity: 0.8;
 }
 
@@ -392,42 +387,42 @@ input[type="number"] {
 
   .raffle-tickets-return-button {
     height: 40px;
-    width: 40px;    
+    width: 40px;
   }
 
-  .raffle-tickets-display-container{ 
-    align-items: stretch;   
+  .raffle-tickets-display-container {
+    align-items: stretch;
     column-gap: 1%;
-    flex-direction: row;    
-    font-size: 1em;      
+    flex-direction: row;
+    font-size: 1em;
   }
 
-  .raffle-tickets-display-container .raffle-tickets-thumb-container {    
+  .raffle-tickets-display-container .raffle-tickets-thumb-container {
     height: 14em;
     position: relative;
     width: 4%;
   }
 
-  .raffle-tickets-display-container .raffle-tickets-image-list {       
+  .raffle-tickets-display-container .raffle-tickets-image-list {
     display: flex;
     flex-direction: column;
-    height: 14em;      
-    overflow-y: hidden;       
+    height: 14em;
+    overflow-y: hidden;
     padding: 0 2px;
-    row-gap: 5px; 
+    row-gap: 5px;
     width: 100%;
   }
 
-  .raffle-tickets-display-container .raffle-tickets-image-list button {       
+  .raffle-tickets-display-container .raffle-tickets-image-list button {
     background: none;
     border: none;
     color: #aaa;
     cursor: pointer;
-    display: none;   
-    font-size: 0.8em;      
-    position: absolute; 
-    transition:  color 0.5s;
-    width: 100%;    
+    display: none;
+    font-size: 0.8em;
+    position: absolute;
+    transition: color 0.5s;
+    width: 100%;
   }
 
   .raffle-tickets-display-container .raffle-tickets-image-list button.active {
@@ -447,30 +442,31 @@ input[type="number"] {
   }
 
   .raffle-tickets-display-container .raffle-tickets-image-list img {
-    display: block;        
+    display: block;
     border: 1px solid #444;
     border-radius: 2px;
-    cursor: pointer;  
+    cursor: pointer;
     max-height: 1.8em;
-    object-fit: cover; 
-    transition: opacity 0.2s;   
+    object-fit: cover;
+    transition: opacity 0.2s;
   }
 
-  .raffle-tickets-display-container .raffle-tickets-image-list img.active {    
+  .raffle-tickets-display-container .raffle-tickets-image-list img.active {
     border: 1px solid #30da03;
     box-shadow: 0px 0px 0 2px rgba(105, 255, 60, 0.5);
-    opacity: .8;
+    opacity: 0.8;
   }
 
   .raffle-tickets-display-container .raffle-tickets-image-list img:hover {
-    opacity: .8;
+    opacity: 0.8;
   }
 
   .raffle-tickets-display-container .raffle-tickets-image-container {
     display: flex;
-    height: 12em;
+    height: 14em;
+    min-height: 14em;
     justify-content: center;
-    width: 44%;      
+    width: 44%;
   }
 
   .raffle-tickets-display-container .raffle-tickets-image-container li {
@@ -481,7 +477,7 @@ input[type="number"] {
     display: none;
   }
 
-  .raffle-tickets-display-container .raffle-tickets-info-container {    
+  .raffle-tickets-display-container .raffle-tickets-info-container {
     width: 50%;
   }
 
@@ -494,9 +490,7 @@ input[type="number"] {
     position: absolute;
   }
 
-  .raffle-tickets-numbers-container
-    .raffle-tickets-numbers-list
-    .raffle-tickets-numbers-list-item {
+  .raffle-tickets-numbers-container .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
     margin: 1.1% 0 1.1% 0;
     padding-top: 12%;
     width: 15%;
@@ -512,9 +506,7 @@ input[type="number"] {
     gap: 1.4%;
   }
 
-  .raffle-tickets-numbers-container
-    .raffle-tickets-numbers-list
-    .raffle-tickets-numbers-list-item {
+  .raffle-tickets-numbers-container .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
     margin: 1.1% 0 1.1% 0;
     padding-top: 10%;
     width: 13.08%;
@@ -530,9 +522,7 @@ input[type="number"] {
     gap: 1.3%;
   }
 
-  .raffle-tickets-numbers-container
-    .raffle-tickets-numbers-list
-    .raffle-tickets-numbers-list-item {
+  .raffle-tickets-numbers-container .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
     margin: 0.9% 0 0.9% 0;
     padding-top: 9.3%;
     width: 11.36%;
@@ -544,9 +534,7 @@ input[type="number"] {
     gap: 1.3%;
   }
 
-  .raffle-tickets-numbers-container
-    .raffle-tickets-numbers-list
-    .raffle-tickets-numbers-list-item {
+  .raffle-tickets-numbers-container .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
     margin: 0.8% 0 0.8% 0;
     padding-top: 8.2%;
     width: 9.95%;
@@ -558,9 +546,7 @@ input[type="number"] {
     gap: 1.2%;
   }
 
-  .raffle-tickets-numbers-container
-    .raffle-tickets-numbers-list
-    .raffle-tickets-numbers-list-item {
+  .raffle-tickets-numbers-container .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
     margin: 0.8% 0 0.8% 0;
     padding-top: 7.5%;
     width: 8.92%;
@@ -572,9 +558,7 @@ input[type="number"] {
     gap: 1.1%;
   }
 
-  .raffle-tickets-numbers-container
-    .raffle-tickets-numbers-list
-    .raffle-tickets-numbers-list-item {
+  .raffle-tickets-numbers-container .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
     padding-top: 6.8%;
     width: 8.09%;
   }
@@ -585,9 +569,7 @@ input[type="number"] {
     gap: 1%;
   }
 
-  .raffle-tickets-numbers-container
-    .raffle-tickets-numbers-list
-    .raffle-tickets-numbers-list-item {
+  .raffle-tickets-numbers-container .raffle-tickets-numbers-list .raffle-tickets-numbers-list-item {
     padding-top: 6.2%;
     width: 7.41%;
   }
@@ -598,4 +580,3 @@ input[type="number"] {
     font-size: 1.92rem;
   }
 }
-

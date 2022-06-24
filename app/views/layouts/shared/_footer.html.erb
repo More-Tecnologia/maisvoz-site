@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'click-tok-theme/footer' %>
-<div class="bottom-menu">
+<div class="bottom-menu<%= ' unlogged' unless user_signed_in? %>">
   <nav class="nav">
     <ul class="main-list">
       <% if user_signed_in? %>

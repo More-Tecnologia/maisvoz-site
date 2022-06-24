@@ -4,15 +4,20 @@
   background-color: #3f3f3f;
   bottom: 0;
   left: 0;
+  max-height: 55px;
+  min-height: 55px;
+  padding: 0;
+  position: fixed;
+  right: 0;
+  z-index: 2;
+}
+
+.unlogged.bottom-menu {
   max-height: 20px;
   min-height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  position: fixed;
-  right: 0;
-  z-index: 2;
 }
 
 .float-icon {
@@ -57,6 +62,10 @@
 .nav {
   background-color: #3f3f3f;
   display: flex;
+  min-height: 55px;
+}
+
+.unlogged .nav{
   min-height: 100%;
   align-items: center;
 }
@@ -133,7 +142,7 @@
   background: var(--mainColor);
   display: flex;
   font-family: "Lato", sans-serif;
-  height: 100%;  
+  height: 70px;
   justify-content: space-around;
   list-style: none;
   margin: auto;
@@ -141,6 +150,10 @@
   padding-left: 0;
   position: relative;
   width: 100%;
+}
+
+.unlogged .main-list {
+  height: 100%;  
 }
 
 .main-list li {
@@ -215,7 +228,12 @@
 }
 
 .footer-copyright {
-  color: #aaa;  
+  color: #aaa;
+  padding-bottom: 12px;  
+}
+
+.unlogged .footer-copyright {
+  padding-bottom: 0;
 }
 
 /*.indicator::before {

@@ -35,12 +35,13 @@ module Financial
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if deposit_product
+        add_promotional_bonus if deposit_product
         propagate_bonuses if enabled_bonification
         propagate_course_payment if course_product
         create_vouchers if voucher_product
         create_bonus_contract if deposit_product
         process_reserved_raffle_tickets if raffle_product
-        propagate_raffle_bonus_payment if raffle_product
+        propagate_raffle_bonus_payment if raffle_product && enabled_bonification
         propagate_master_bonus unless free_product || course_product || raffle_product
         enroll_student_on_course if course_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
@@ -169,6 +170,11 @@ module Financial
 
     def create_next_activation_order
       Financial::CreatorActivationOrderService.call(user: user)
+    end
+
+    def add_promotional_bonus
+      user.increment(:brute_promotional_balance, (@order.total_cents / 100))
+      user.increment(:promotional_balance, (@order.total_cents / 100)).save!
     end
 
     def add_product_bonus_to_order

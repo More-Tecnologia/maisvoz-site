@@ -17,7 +17,7 @@ class FinancialTransaction < ApplicationRecord
   has_many :children_financial_transactions, class_name: 'FinancialTransaction',
                                              foreign_key: 'source_financial_transaction_id'
 
-  enum moneyflow: [:credit, :debit]
+  enum moneyflow: [:credit, :debit, :not_applicable]
 
   monetize :cent_amount, as: :amount_cents
 

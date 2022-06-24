@@ -223,7 +223,8 @@ administrative_reasons = [{ title: 'System Fee', code: '200', company_moneyflow:
                           { title: 'Balance Transference', code: '4500', active: true, company_moneyflow: :not_applicable, morenwm_moneyflow: :not_applicable },
                           { title: 'Balance Transference Fee', code: '4600', active: true, company_moneyflow: :credit, morenwm_moneyflow: :not_applicable },
                           { title: 'Payment with Balance', code: '4700', active: true, company_moneyflow: :credit, morenwm_moneyflow: :not_applicable},
-                          { title: 'Pool Wallet Expense', code: '9999', company_moneyflow: :debit, morenwm_moneyflow: :debit }]
+                          { title: 'Pool Wallet Expense', code: '9999', company_moneyflow: :debit, morenwm_moneyflow: :debit },
+                          { title: 'Payment with Promotional Balance', code: '7300', company_moneyflow: :not_applicable, morenwm_moneyflow: :not_applicable}]
 administrative_reasons.each do |attributes|
   financial_reason = FinancialReason.find_by(code: attributes[:code])
   if financial_reason

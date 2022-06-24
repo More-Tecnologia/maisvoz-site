@@ -37,12 +37,16 @@ module Payment
       @user.decrement!(:promotional_balance, @amount)
     end
 
+    def helpers
+      ApplicationController.helpers
+    end
+
     def max_ticket_value_verification
       raffle_by_being_purchased_value.each do |raffle, value|
         if previous_quantity_purchased_by_promotional_credit_reached?(raffle)
-          raise StandardError.new(I18n.t(:current_maximum_amount_of_tickets_reached_by_promotional_payment, raffle: raffle.product.name + ' ' + raffle.id.to_s)) 
+          raise StandardError.new(I18n.t(:current_maximum_amount_of_tickets_reached_by_promotional_payment_html, raffle: raffle.product.name + ' ID: ' + raffle.id.to_s)) 
         elsif quantity_purchased_by_promotional_credit_reached?(raffle, value)
-          raise StandardError.new(I18n.t(:amount_of_tickets_by_promotional_payment_left, raffle: (raffle.product.name + ' ' + raffle.id.to_s), ticket_values: (@user.brute_promotional_balance / 10) - product_quantity_purchased_with_promotional_credit(raffle))) 
+          raise StandardError.new(I18n.t(:amount_of_tickets_by_promotional_payment_left_html, raffle: (raffle.product.name + ' ID: ' + raffle.id.to_s), ticket_values: helpers.number_to_currency((@user.brute_promotional_balance / 10) - product_quantity_purchased_with_promotional_credit(raffle)))) 
         end
       end
     end

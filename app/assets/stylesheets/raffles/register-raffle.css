@@ -84,6 +84,17 @@
   margin-top: 50px;
 }
 
+h3.gallery-title {
+  margin-top: 30px;
+}
+
+.gallery-thumbs{
+  display: flex;
+  column-gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .login-fields img,
 .login-fields svg {
   width: 20px;

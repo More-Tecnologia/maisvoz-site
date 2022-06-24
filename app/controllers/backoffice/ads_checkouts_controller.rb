@@ -3,7 +3,7 @@
 module Backoffice
   class AdsCheckoutsController < BackofficeController
     def create
-      if valid_params[:payment_method] == 'balance'
+      if valid_params[:payment_method] == 'balance' && current_user.orders.completed.includes(order_items: :product).where(order_items: { products: { kind: :deposit }}).any?
         @order = current_ads_cart
         Payment::BalanceService.call(order: @order)
         clean_ads_cart

@@ -7,7 +7,7 @@ module Backoffice
     before_action :ensure_payment_method
 
     def create
-      if valid_params[:payment_method] == 'balance'
+      if valid_params[:payment_method] == 'balance' && current_user.orders.completed.includes(order_items: :product).where(order_items: { products: { kind: :deposit }}).any?
         @order = current_raffles_cart
         Payment::BalanceService.call(order: @order)
         current_raffles_cart

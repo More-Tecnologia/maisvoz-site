@@ -20,7 +20,6 @@
   }
 
   //Event Listeners
-
   elements.thumbs.forEach((thumb) => {
     thumb.addEventListener("mouseover", thumbMouseOverHandler);
   });

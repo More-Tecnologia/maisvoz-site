@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets/show_gallery' %>
+<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets/show_gallery', defer: true %>
+<div class="raffle-tickets-thumb-container">
+  <div class="raffle-tickets-image-list">
+    <%= image_tag(@raffle.path) %>
+    <% @raffle.images.each do |image| %>
+      <%= image_tag(image.fullpath) %>
+    <% end %>
+  </div>
+</div>
+<ul class="raffle-tickets-image-container desktop">
+</ul>
+<div class="slide-container">
+  <ul class="raffle-tickets-image-container slide"></ul>
+</div>
+<ul class="circle-list">
+</ul>

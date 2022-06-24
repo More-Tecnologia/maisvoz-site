@@ -63,7 +63,7 @@ module Backoffice
 
       def valid_raffle_params
         params.require(:raffle)
-              .permit(:title, :max_ticket_number, :thumb)
+              .permit(:title, :max_ticket_number, :thumb, images: [])
               .merge(kind: :flex)
       end
     end

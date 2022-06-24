@@ -2067,7 +2067,7 @@ es:
                                       previstos neste Regulamento, como, por exemplo, a prestação de informações
                                       inverídicas, incorretas, incompletas ou equivocadas.
                                     </p>
-  draw_regulation: Regulación Del sorteo
+  draw_regulation: Regulación
   read_more: Lee mas
   available: Disponible
   reserved: Reservada
@@ -2140,3 +2140,4 @@ es:
   earnings_per_campaign: Ganancias por campaña (Céntimos)
   acquired_shares: Ha comprado %{quantity} cupo(s) de rifa
   loading_message: Cargando...
+  gallery: Galería

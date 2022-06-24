@@ -2063,7 +2063,7 @@ en:
                                       disqualified, such as, for example, providing untrue, incorrect, incomplete or
                                       misleading information.
                                     </p>
-  draw_regulation: Draw regulation                            
+  draw_regulation: Regulation                            
   read_more: Read more
   available: Available
   reserved: Reserved
@@ -2133,3 +2133,4 @@ en:
   earnings_per_campaign: Earnings per campaign (Cents)
   acquired_shares: You have purchased %{quantity} raffle quota(s)
   loading_message: Loading...
+  gallery: Gallery

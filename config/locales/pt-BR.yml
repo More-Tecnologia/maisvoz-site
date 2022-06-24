@@ -1998,7 +1998,7 @@ pt-BR:
                                       previstos neste Regulamento, como, por exemplo, a prestação de informações
                                       inverídicas, incorretas, incompletas ou equivocadas.
                                     </p>
-  draw_regulation: Regulamento do sorteio
+  draw_regulation: Regulamento
   read_more: Ler mais
   available: Disponivel
   reserved: Reservado
@@ -2117,3 +2117,4 @@ pt-BR:
   acquired_shares: Você adquiriu %{quantity} cota(s) da rifa
   waiting_payment: Aguardando pagamento
   loading_message: Carregando...
+  gallery: Galeria

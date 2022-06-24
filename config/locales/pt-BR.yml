@@ -2118,3 +2118,5 @@ pt-BR:
   waiting_payment: Aguardando pagamento
   loading_message: Carregando...
   gallery: Galeria
+  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: O máximo atual de bilhetes adquiridos com saldo promocional já foi atingido para a rifa %{raffle}
+  amount_of_tickets_by_promotional_payment_left_html: O valor de bilhetes restantes para a rifa %{raffle} é de apenas %{ticket_values}

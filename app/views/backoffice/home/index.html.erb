@@ -99,7 +99,9 @@
                     <%= t(:my_balance) %>
                     </h3>
                     <h2> <%= number_to_currency(current_user.available_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %></h2>
-                </div>
+                    <h2> <%= number_to_currency(current_user.promotional_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %></h2>
+
+                  </div>
                 <div class="content-left-bottom">
                     <p><%= t(:minimum_required_for_withdrawal) %> <%= number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %> </p>
                 </div>

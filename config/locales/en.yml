@@ -2133,3 +2133,5 @@ en:
   earnings_per_campaign: Earnings per campaign (Cents)
   acquired_shares: You have purchased %{quantity} raffle quota(s)
   loading_message: Loading...
+  current_maximum_amount_of_tickets_reached_by_promotional_payment: The current maximum number of tickets purchased with a promotional balance has already been reached for the %{raffle} raffle
+  amount_of_tickets_by_promotional_payment_left: The value of tickets remaining for the %{raffle} raffle is only %{ticket_values}

@@ -12,13 +12,18 @@ module Backoffice
         Payment::BalanceService.call(order: @order)
         current_raffles_cart
         redirect_to backoffice_order_path(@order)
+      elsif valid_params[:payment_method] == 'promotional_balance'
+        @order = current_raffles_cart
+        Payment::PromotionalBalanceService.call(order: @order)
+        current_raffles_cart
+        redirect_to backoffice_order_path(@order)
       elsif valid_params[:payment_method] == 'pix'
         @payment_transaction = Payment::Pagstar::PixCheckoutService.call(valid_params)
         ExpireOrderWorker.perform_at(Time.now + 1.hour, valid_params[:order].id)
         RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 1.hour, valid_params[:order].id)
         current_raffles_cart
         render 'backoffice/payment_transactions/show'
-      else
+      elsif valid_params[:payment_method] == 'btc'
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
         ExpireOrderWorker.perform_at(Time.now + 3.hour, valid_params[:order].id)
         RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 3.hour, valid_params[:order].id)

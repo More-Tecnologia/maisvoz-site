@@ -51,7 +51,8 @@ class Order < ApplicationRecord
                        eth: 'eth',
                        usdt: 'usdt',
                        pix: 'pix',
-                       free: 'free' }
+                       free: 'free',
+                       promotional_balance: 'promotional_balance' }
 
   has_many :order_items, dependent: :destroy
   has_many :pv_histories

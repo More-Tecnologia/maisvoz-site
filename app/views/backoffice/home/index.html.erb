@@ -1,132 +1,133 @@
 <%= stylesheet_link_tag 'click-tok-theme/home' %>
 <%= stylesheet_link_tag 'https://www.w3schools.com/w3css/4/w3.css' %>
 <div class="home-page">
-    <div class="home-page-title">
-        <h3><%= current_user.active? ? t(:congratulations) : t(:almost_done)%></h3>
-        <% if SystemConfiguration.whitelabel? %>    
-          <p><%= current_user.active? ? t(:account_ready_text_white_label) : t(:account_inactive_text, company_name: SystemConfiguration.company_name) %></p>
+  <div class="home-page-title">
+    <h3><%= current_user.active? ? t(:congratulations) : t(:almost_done)%></h3>
+    <% if SystemConfiguration.whitelabel? %>
+      <p><%= current_user.active? ? t(:account_ready_text_white_label) : t(:account_inactive_text, company_name: SystemConfiguration.company_name) %></p>
+    <% else %>
+      <p><%= current_user.active? ? t(:account_ready_text) : t(:account_inactive_text, company_name: SystemConfiguration.company_name) %></p>
+    <% end %>
+  </div>
+  <div class="cards-account">
+    <div class="card-account">
+      <div class="content-card-account">
+        <% if current_user.confirmed_at.present? %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00d928" class="bi bi-check-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+          </svg>
         <% else %>
-          <p><%= current_user.active? ? t(:account_ready_text) : t(:account_inactive_text, company_name: SystemConfiguration.company_name) %></p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
         <% end %>
-    </div>
-    <div class="cards-account">
-        <div class="card-account">
-            <div class="content-card-account">
-              <% if current_user.confirmed_at.present? %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00d928" class="bi bi-check-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                </svg>
-              <% else %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              <% end %>
-              <% if current_user.confirmed? %>
-                <div class="btn-green"><%= t(:validated_account) %></div>
-              <% else %>
-                <% if confirmation_email_sent_in_less_than_24_hours? %>
-                <a href="#" class='btn-red' id="already-send-email-confirmation-btn" title='<%= t(:modal_already_send_email_confirmation_title) %>' message='<%= t(:modal_already_send_email_confirmation_text, time: activation_email_time) %>'><%= t(:validate_your_account) %></a>
-                <% else %>
-                  <%= link_to t(:validate_your_account), backoffice_valid_accounts_path, method: :post, class: 'btn-red', id: "email-confirmation-btn", title: t(:modal_email_confirmation_title),
+        <% if current_user.confirmed? %>
+          <div class="btn-green"><%= t(:validated_account) %></div>
+        <% else %>
+          <% if confirmation_email_sent_in_less_than_24_hours? %>
+            <a href="#" class='btn-red' id="already-send-email-confirmation-btn" title='<%= t(:modal_already_send_email_confirmation_title) %>' message='<%= t(:modal_already_send_email_confirmation_text, time: activation_email_time) %>'><%= t(:validate_your_account) %></a>
+          <% else %>
+            <%= link_to t(:validate_your_account), backoffice_valid_accounts_path, method: :post, class: 'btn-red', id: "email-confirmation-btn", title: t(:modal_email_confirmation_title),
                   message: t(:modal_email_confirmation_text), next_message: t(:validate_your_account) %>
-                <% end %>
-              <% end %>
-            </div>
-        </div>
-        <div class="card-account">
-            <div class="content-card-account">
-              <% if home_active_condition? %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00d928" class="bi bi-check-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                </svg>
-              <% else %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              <% end %>
-              <% if home_active_condition? %>
-                 <div class="btn-green"> <%= t(:account_activated) %> </div>
-              <% else %>
-                <%= link_to main_store_path, class: "btn-red" do %>
-                  <%= t(:activate_your_account_now) %>
-                <% end %>
-              <% end %>
-            </div>
-        </div>
-        <div class="card-account">
-            <div class="content-card-account">
-            <% if SystemConfiguration.whitelabel? %>
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00d928" class="bi bi-check-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-              </svg>
-            <% else %>              
-              <% if @tasks_done %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00d928" class="bi bi-check-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                </svg>
-              <% else %>
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              <% end %>
-            <% end %>
-            <% if SystemConfiguration.whitelabel? %>
-                <div class="btn-green"> <%= t(:premium_account)%> </div>
-            <% else %>
-              <% if @tasks_done %>
-                <div class="btn-green"> <%= t(:tasks_of_the_day)%> </div>
-              <% else %>
-                <%= link_to dashboard_direction(current_user), class: 'btn-red' do %>
-                  <%= t(:tasks_of_the_day)%>
-                <% end %>
-              <% end %>
-            <% end %>
-            </div>
-        </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <div class="balance">
-        <div class="balance-box">
-            <div class="content-left">
-                <div class="content-left-top balance-left-top">
-                    <h3>
-                    <%= t(:my_balance) %>
-                    </h3>
-                    <h2> <%= number_to_currency(current_user.available_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %></h2>
-                    <h2> <%= number_to_currency(current_user.promotional_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %></h2>
-
-                  </div>
-                <div class="content-left-bottom">
-                    <p><%= t(:minimum_required_for_withdrawal) %> <%= number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %> </p>
-                </div>
-            </div>
-            <div class="content-right">
-                <%= link_to new_backoffice_withdrawal_path, class: "btn-balance" do %>
-                    <%= t(:withdrawal) %>
-                <% end %>
-            </div>
-        </div>
-        <div class="progress-bar-balance">
-            <p><%= t(:withdrawals_home_card_title) %></p>
-            <div class="">
-                <div class="w3-light-grey w3-round-xlarge" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; margin-bottom: 30px; margin-top:30px;">
-                <div class="w3-container w3-round-xlarge" style="width:<%= @net_task_gains_percentage %>%; background-color:#00d928; color: white;"><%= @net_task_gains_percentage %>%</div>
-            </div>
-            </div>
-            <% if @net_task_gains_percentage < 100 %>
-            <p><%= t(:value_to_min_withdrawal_text, value_to_min_withdrawal: (number_to_currency((ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f - @net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')), withdrawal_min_value: number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')).html_safe %></p>
-            <% elsif @net_task_gains_percentage == 100 %>
-              <p class="title-bottom-bar"><%= t(:you_already_have_a_balance_available_for_withdrawal) %></p>
-            <% end %>
-        </div>
+    <div class="card-account">
+      <div class="content-card-account">
+        <% if home_active_condition? %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00d928" class="bi bi-check-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+          </svg>
+        <% else %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+        <% end %>
+        <% if home_active_condition? %>
+          <div class="btn-green"> <%= t(:account_activated) %> </div>
+        <% else %>
+          <%= link_to main_store_path, class: "btn-red" do %>
+            <%= t(:activate_your_account_now) %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <% unless SystemConfiguration.whitelabel? %>
+    <div class="card-account">
+      <div class="content-card-account">
+        <% if SystemConfiguration.whitelabel? %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00d928" class="bi bi-check-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+          </svg>
+        <% else %>
+          <% if @tasks_done %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#00d928" class="bi bi-check-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          <% else %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          <% end %>
+        <% end %>
+        <% if SystemConfiguration.whitelabel? %>
+          <div class="btn-green"> <%= t(:premium_account)%> </div>
+        <% else %>
+          <% if @tasks_done %>
+            <div class="btn-green"> <%= t(:tasks_of_the_day)%> </div>
+          <% else %>
+            <%= link_to dashboard_direction(current_user), class: 'btn-red' do %>
+              <%= t(:tasks_of_the_day)%>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="balance">
+    <div class="balance-box">
+      <div class="content-left">
+        <div class="content-left-top balance-left-top">
+          <h3>
+            <%= t(:my_balance) %>
+          </h3>
+          <h2><%= number_to_currency(current_user.available_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %></h2>
+          <% unless SystemConfiguration.whitelabel? %>
+            <h2><%= number_to_currency(current_user.promotional_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %>4,49<b><%=t(:promotional_balance)%></b></h2>
+          <% end %>
+        </div>
+        <div class="content-left-bottom">
+          <p><%= t(:minimum_required_for_withdrawal) %> <%= number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %> </p>
+        </div>
+      </div>
+      <div class="content-right">
+        <%= link_to new_backoffice_withdrawal_path, class: "btn-balance" do %>
+          <%= t(:withdrawal) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="progress-bar-balance">
+      <p><%= t(:withdrawals_home_card_title) %></p>
+      <div class="">
+        <div class="w3-light-grey w3-round-xlarge" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; margin-bottom: 30px; margin-top:30px;">
+          <div class="w3-container w3-round-xlarge" style="width:<%= @net_task_gains_percentage %>%; background-color:#00d928; color: white;"><%= @net_task_gains_percentage %>%</div>
+        </div>
+      </div>
+      <% if @net_task_gains_percentage < 100 %>
+        <p><%= t(:value_to_min_withdrawal_text, value_to_min_withdrawal: (number_to_currency((ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f - @net_task_gains), unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')), withdrawal_min_value: number_to_currency(ENV['WITHDRAWAL_MINIMUM_VALUE'].to_f, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ')).html_safe %></p>
+      <% elsif @net_task_gains_percentage == 100 %>
+        <p class="title-bottom-bar"><%= t(:you_already_have_a_balance_available_for_withdrawal) %></p>
+      <% end %>
+    </div>
+  </div>
+  <% unless SystemConfiguration.whitelabel? %>
     <div class="courses-container">
       <%= link_to backoffice_courses_path, class:"course-card" do %>
         <%= image_tag('courses/menu-courses1.svg') %>
@@ -149,59 +150,59 @@
         <span><%= t(:my_raffles_tickets) %></span>
       <% end %>
     </div>
-    <% end %>
-    <div class="flex-lg-screen">
-        <div class="home-bottom">
-            <div class="home-bottom-titles">
-                <h3><%= t(:you_can_accelerate_your_earnings) %></h3>
-                <p><%= t(:indicating_company_name_to_your_friends, company_name: SystemConfiguration.company_name) %></p>
-            </div>
-            <div class="bottom-box">
-                <div class="content-left">
-                    <div class="content-left-top bottom-left-top">
-                        <h3>
-                          <% if SystemConfiguration.whitelabel? %>
-                            <%= t(:earn_card_title_white_label) %>
-                          <% else %>
-                            <%= t(:earn_card_title) %>
-                          <% end %>
-                        </h3>
-                    </div>
-                    <div class="content-left-bottom left-bottom">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
-                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                        </svg>
-                        <p>
-                            <%= t(:copy_indication_card_text) %>
-                        </p>
-                    </div>
-                </div>
-                <div class="content-right">
-                    <a href="#"
+  <% end %>
+  <div class="flex-lg-screen">
+    <div class="home-bottom">
+      <div class="home-bottom-titles">
+        <h3><%= t(:you_can_accelerate_your_earnings) %></h3>
+        <p><%= t(:indicating_company_name_to_your_friends, company_name: SystemConfiguration.company_name) %></p>
+      </div>
+      <div class="bottom-box">
+        <div class="content-left">
+          <div class="content-left-top bottom-left-top">
+            <h3>
+              <% if SystemConfiguration.whitelabel? %>
+                <%= t(:earn_card_title_white_label) %>
+              <% else %>
+                <%= t(:earn_card_title) %>
+              <% end %>
+            </h3>
+          </div>
+          <div class="content-left-bottom left-bottom">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+              <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            <p>
+              <%= t(:copy_indication_card_text) %>
+            </p>
+          </div>
+        </div>
+        <div class="content-right">
+          <a href="#"
                        sponsor-link="<%= new_user_registration_url(token: current_user.token) %>"
                        id="sponsor-link"
                        class="btn-sponsor-link"
                        title='<%= t(:copied_sponsor_link) %>'
                        message='<%= t(:copied_sponsor_link_message) %>'>
-                      <%= t(:sponsor_link) %>
-                    </a>
-                </div>
-            </div>
+            <%= t(:sponsor_link) %>
+          </a>
         </div>
-        <div class="support-home">
-            <div class="content-left">
-                <h3><%= t(:support_card_title).html_safe %></h3>
-                <p>
-                    <%= t(:just_send_us_a_message) %>
-                </p>
-            </div>
-            <div class="content-right">
-                <%= link_to backoffice_tickets_path, class: "btn-sponsor-link" do %>
-                  <%= t('defaults.support') %>
-                <% end %>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="support-home">
+      <div class="content-left">
+        <h3><%= t(:support_card_title).html_safe %></h3>
+        <p>
+          <%= t(:just_send_us_a_message) %>
+        </p>
+      </div>
+      <div class="content-right">
+        <%= link_to backoffice_tickets_path, class: "btn-sponsor-link" do %>
+          <%= t('defaults.support') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 <%= javascript_include_tag 'click-tok-theme/email_activation', 'data-turbolinks-track': 'reload' %>

@@ -96,6 +96,15 @@
   width: 100%;
 }
 
+.bottom-box.sponsor-container {
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.bottom-box.sponsor-container > * {
+  width: 100%;
+}
+
 .content-left {
   width: 60%;
 }
@@ -143,6 +152,10 @@
   margin: auto;
   padding: 5px;
   width: 90%;
+}
+
+.btn-sponsor-link:hover {
+  opacity: 0.8;
 }
 
 .btn-balance.buy {
@@ -227,8 +240,15 @@
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   display: flex;
+  flex-direction: column;
   margin-top: 30px;
   padding: 20px;
+  row-gap: 10px;
+  width: 100%;
+}
+
+.support-home .content-left {
+  text-align: center;
   width: 100%;
 }
 
@@ -241,6 +261,10 @@
 .support-home .content-left p {
   color: #3f3f3f;
   font-size: 12px;
+}
+
+.support-home .content-right {
+  width: 100%;
 }
 
 .btn-red {
@@ -269,10 +293,16 @@
 }
 
 .courses-container {
+  -ms-overflow-style: none;
   display: flex;
-  margin-top: 40px;
+  margin-top: 50px;
   overflow-x: scroll;
+  scrollbar-width: none;
   width: 100%;
+}
+
+.courses-container::-webkit-scrollbar {
+  display: none;
 }
 
 .course-card {
@@ -286,7 +316,8 @@
   height: 120px;
   justify-content: center;
   margin-right: 5px;
-  min-width: 28%;
+  min-width: 120px;
+  padding: 0 10px;
 }
 
 .course-card img {
@@ -370,12 +401,33 @@
     padding: 20px;
   }
 
+  .support-home {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    padding: 20px;
+    row-gap: 0px;
+    width: 100%;
+  }
+
+  .support-home .content-left {
+    text-align: left;
+    width: 50%;
+  }
+
   .support-home .content-left h3 {
     font-size: 18px;
   }
 
   .support-home .content-left p {
     font-size: 14px;
+  }
+
+  .support-home .content-right {
+    width: 50%;
   }
 
   .btn-red {
@@ -387,14 +439,25 @@
   }
 
   .courses-container {
+    -ms-overflow-style: none;
     justify-content: space-between;
     overflow-x: inherit;
+    scrollbar-width: none;    
+  }
+
+  .courses-container::-webkit-scrollbar {
+    display: none;
   }
 
   .course-card {
     height: 200px;
     min-width: 19%;
-    width: 18%;
+    min-width: fit-content;
+    width: 19%;
+  }
+
+  .bottom-box.sponsor-container {
+    flex-direction: row;
   }
 }
 

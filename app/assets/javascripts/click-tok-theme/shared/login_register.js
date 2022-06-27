@@ -6,6 +6,7 @@ const publicLoginRegister = {};
   };
   const buttons = {
     goToPaiment: document.querySelector(".buy-tickets-button"),
+    mainLogin: document.querySelector(".header-login-button.open-modal"),
     close: document.querySelector(".modal-login-register .modal-close-button"),
     loginToggle: document.querySelector(".login-toggle-button"),
     registerToggle: document.querySelector(".register-toggle-button"),
@@ -23,30 +24,35 @@ const publicLoginRegister = {};
     }
   }
 
-  function selectRegisterHandler(){
-    containers.loginRegister.classList.remove('login');
-    containers.loginRegister.classList.add('register');
+  function openMainModalHendler(event) {
+    event.preventDefault();
+    containers.body.insertAdjacentHTML(
+      "afterbegin",
+      '<div onclick="publicLoginRegister.closeModalHandler()" class="regulation-backdrop"></div>'
+    );
+    containers.body.classList.add("backdrop");
+    containers.loginRegister.classList.add("open");
   }
 
-  function selectLoginHandler(){
-    containers.loginRegister.classList.remove('register');
-    containers.loginRegister.classList.add('login');
+  function selectRegisterHandler() {
+    containers.loginRegister.classList.remove("login");
+    containers.loginRegister.classList.add("register");
   }
 
-  
+  function selectLoginHandler() {
+    containers.loginRegister.classList.remove("register");
+    containers.loginRegister.classList.add("login");
+  }
 
   publicLoginRegister.closeModalHandler = function closeModalHandler() {
-    getElement(".regulation-backdrop").remove();
+    document.querySelector(".regulation-backdrop").remove();
     containers.body.classList.remove("backdrop");
     containers.loginRegister.classList.remove("open");
   };
 
-
   buttons.loginToggle.addEventListener("click", selectLoginHandler);
   buttons.registerToggle.addEventListener("click", selectRegisterHandler);
-  buttons.goToPaiment.addEventListener("click", openModalHendler);
-  buttons.close.addEventListener(
-    "click",
-    publicLoginRegister.closeModalHandler
-  );
+  buttons.goToPaiment?.addEventListener("click", openModalHendler);
+  buttons.mainLogin.addEventListener("click", openMainModalHendler);
+  buttons.close.addEventListener("click", publicLoginRegister.closeModalHandler);
 })();

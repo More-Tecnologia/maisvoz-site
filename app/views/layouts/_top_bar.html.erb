@@ -61,7 +61,7 @@
           <% end %>
         </div>
       <% else %>
-        <%= link_to t('users.sessions.new.login'), new_user_session_path, class: 'header-login-button' %>
+        <span class="header-login-button open-modal"><%= t('users.sessions.new.login') %></span>
       <% end %>
     </div>
   </div>

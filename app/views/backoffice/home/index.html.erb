@@ -100,7 +100,7 @@
           </h3>
           <h2><%= number_to_currency(current_user.available_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %></h2>
           <% unless SystemConfiguration.whitelabel? %>
-            <h2><%= number_to_currency(current_user.promotional_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %>4,49<b><%=t(:promotional_balance)%></b></h2>
+            <h2 class="promotional"><%= number_to_currency(current_user.promotional_balance, unit: ENV['CURRENT_CURRENCY'], precision: 2).gsub('USD ', '$ ') %><b><%=t(:promotional_balance)%></b></h2>
           <% end %>
         </div>
         <div class="content-left-bottom">
@@ -110,6 +110,11 @@
       <div class="content-right">
         <%= link_to new_backoffice_withdrawal_path, class: "btn-balance" do %>
           <%= t(:withdrawal) %>
+        <% end %>
+        <% unless SystemConfiguration.whitelabel? %>
+          <%= link_to raffles_backoffice_stores_path, class: "btn-balance buy" do %>
+            <%= t(:buy) %>
+          <% end %>
         <% end %>
       </div>
     </div>

@@ -128,8 +128,8 @@
 }
 
 .balance-box .content-right {
-  width: 30%;
   flex-direction: column;
+  width: 30%;
 }
 
 .btn-balance,
@@ -318,7 +318,7 @@
 }
 
 .balance-left-top h2.promotional {
-  color: #e7ae05;  
+  color: #e7ae05;
 }
 
 .btn-balance:hover {

@@ -123,6 +123,14 @@
   width: 40%;
 }
 
+.balance-box {
+  justify-content: space-between;
+}
+
+.balance-box .content-right {
+  width: 30%;
+}
+
 .btn-balance,
 .btn-sponsor-link {
   align-items: center;
@@ -285,6 +293,23 @@
   margin-top: 10px;
 }
 
+.content-left-top h2 {
+  align-items: center;
+  column-gap: 10px;
+  display: flex;
+  font-size: 25px;
+}
+
+.content-left-top h2 b {
+  font-size: 1rem;
+}
+
+.balance-left-top h2 {
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
 @media (min-width: 250px) and (max-width: 550px) {
   .content-card-account {
     max-height: 150px;
@@ -296,16 +321,24 @@
     min-height: 200px;
   }
 
-  .balance-left-top {
-    margin-top: 40px;
-  }
-
   .content-left-top h3 {
     font-size: 18px;
   }
 
   .content-left-top h2 {
-    font-size: 40px;
+    align-items: center;
+    column-gap: 10px;
+    display: flex;
+    font-size: 30px;
+  }
+
+  .balance-left-top h2 {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .content-left-top h2 b {
+    font-size: 1rem;
   }
 
   .content-left-bottom p {
@@ -367,16 +400,12 @@
     min-height: 200px;
   }
 
-  .balance-left-top {
-    margin-top: 20px;
-  }
-
   .content-left-top h3 {
     font-size: 18px;
   }
 
   .content-left-top h2 {
-    font-size: 40px;
+    font-size: 30px;
   }
 
   .progress-bar-balance p {
@@ -445,9 +474,8 @@
   .support-home {
     height: 200px;
     max-height: 200px;
-    width: 48%;
-
     max-height: 200px;
+    width: 48%;
   }
 
   .support-home .content-left h3 {

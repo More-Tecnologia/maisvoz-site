@@ -2143,3 +2143,4 @@ es:
   gallery: Galería
   current_maximum_amount_of_tickets_reached_by_promotional_payment_html: Ya se ha alcanzado el número máximo actual de boletos comprados con un saldo promocional para el sorteo de %{raffle}
   amount_of_tickets_by_promotional_payment_left_html: El valor de los boletos restantes para el sorteo de %{raffle} es solo %{ticket_values}
+  promotional_balance: Saldo promocional

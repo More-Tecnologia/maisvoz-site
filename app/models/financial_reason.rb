@@ -253,7 +253,7 @@ class FinancialReason < ApplicationRecord
   end
 
   def self.master_leader_bonus
-    @@master_leader_bonus ||= find_by(code: '5000')
+    @@master_leader_bonus ||= find_by(code: '7400')
   end
 
   def self.credit_for_payment_of_expired_order

@@ -42,7 +42,7 @@ module Financial
         create_bonus_contract if deposit_product
         process_reserved_raffle_tickets if raffle_product
         propagate_raffle_bonus_payment if raffle_product && enabled_bonification
-        propagate_master_bonus unless free_product || course_product || raffle_product
+        propagate_master_bonus if deposit_product
         enroll_student_on_course if course_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         remove_user_from_free_product_list if order.total_cents.positive? && user.interspire_code.present?

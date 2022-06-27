@@ -10,6 +10,7 @@ module Backoffice
                                      .from_depth(@current_node.depth)
                                      .includes(user: %i[sponsor career])
                                      .where.not(id: @current_node.user.id)
+                                     .uniq
       @unilevel_nodes = @unilevel_nodes.joins(:user).where("users.name LIKE :search OR users.username LIKE :search", search: "%#{params[:q]}%") if params[:q]
     end
 

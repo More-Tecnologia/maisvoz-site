@@ -110,6 +110,14 @@ module ApplicationHelper
     check_box_tag :select, withdrawal.id, false, class: 'child'
   end
 
+  def pagstar_active?
+    ActiveModel::Type::Boolean.new.cast(ENV['PAGSTAR_ACTIVE'])
+  end
+
+  def promotional_balance?
+    ActiveModel::Type::Boolean.new.cast(ENV['PROMOTIONAL_BALANCE'])
+  end
+
   private
 
   def currency_cents origin_currency, cents, target_currency = ENV['CURRENT_CURRENCY']

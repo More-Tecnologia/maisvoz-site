@@ -168,7 +168,7 @@
                   </g>
                 </svg>
               </div>
-              <%= t(SystemConfiguration.whitelabel? ? :tickets : :tasks) %>
+              <%= t((SystemConfiguration.whitelabel? || !admoney?) ? :tickets : :tasks) %>
             <% end %>
           </li>
         <% end %>

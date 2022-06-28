@@ -25,10 +25,12 @@
       <span class="form-title"><%= t('users.sessions.new.login') %></span>
       <span class="form-subtitle"><%= t('already_have_account') %></span>
       <%= simple_form_for(User.new, as: :user, url: sessions_path, class: 'login-form', remote: true) do |f| %>
-        <label for="login-user" class="field-container">
+        <label for="login-user" class="field-container">         
+            <%= image_tag('icons/phone.svg', alt: t(:phone) ) %>          
           <%= f.input_field :login, id: 'login-user', placeholder: t(:phone) %>
         </label>
         <label for="login-password" class="field-container">
+          <%= image_tag('icons/locker.svg', alt: t(:locker) ) %> 
           <%= f.input_field :password, id: "login-password", placeholder: t(:password) %>
         </label>
         <%# <label for="keep-logged">
@@ -47,17 +49,24 @@
       <span class="form-title"><%= t('users.shared.links.sign_up') %></span>
       <span class="form-subtitle"><%= t('create_your_account') %></span>
       <%= simple_form_for(:user, url: register_index_path, html: { class: 'register-form', remote: true}) do |f| %>
-        <%= f.input_field :country, id: "user_country", class: "field-container", prompt: t('attributes.country'), format: :with_country_code, priority: priority_countries %>
+        <label for="user_country" class="field-container">
+          <%= image_tag('icons/globe.svg', alt: t(:globe) ) %>
+          <%= f.input_field :country, id: "user_country", class: "field-country", prompt: t('attributes.country'), format: :with_country_code, priority: priority_countries %>
+        </label>
         <label for="user_username" class="field-container">
+          <%= image_tag('icons/phone.svg', alt: t(:phone) ) %>
           <%= f.input_field :username, id: "user_username", placeholder: t(:phone) %>
         </label>
         <label for="register-email" class="field-container">
+          <%= image_tag('icons/email.svg', alt: t(:email) ) %>
           <%= f.input_field :email, id: "register-email", placeholder: t(:email) %>
         </label>
         <label for="register-password" class="field-container">
+          <%= image_tag('icons/locker.svg', alt: t(:locker) ) %>
           <%= f.input_field :password, id: "register-password", placeholder: t(:password) %>
         </label>
         <label for="register-repeat-password" class="field-container">
+          <%= image_tag('icons/locker.svg', alt: t(:locker) ) %>
           <%= f.input_field :password_confirmation, id: "register-repeat-password", placeholder: t(:password_confirmation) %>
         </label>
         <button type="submit">

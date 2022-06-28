@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def admoney?
+    ActiveModel::Type::Boolean.new.cast(ENV['ADMONEY'])
+  end
+
   def flash_class(level)
     case level
     when 'notice' then 'info'

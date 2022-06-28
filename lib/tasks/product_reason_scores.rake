@@ -19,7 +19,11 @@ namespace :product_reason_scores do
       end
     end
 
-    direct_referral_bonus = [[1000]]
+    direct_referral_bonus = if ActiveModel::Type::Boolean.new.cast(ENV['ADMONEY'])
+                              [[1000]]
+                            else
+                              [[3000]]
+                            end
 
     ActiveRecord::Base.transaction do
       reason = FinancialReason.direct_commission_bonus
@@ -41,11 +45,24 @@ namespace :product_reason_scores do
       end
     end
 
-    indirect_referral_bonus = [[000],
-                               [400],
-                               [100],
-                               [100],
-                               [100]]
+    indirect_referral_bonus = if ActiveModel::Type::Boolean.new.cast(ENV['ADMONEY'])
+                                [[000],
+                                 [400],
+                                 [100],
+                                 [100],
+                                 [100]]
+                              else
+                                [[000],
+                                 [500],
+                                 [200],
+                                 [100],
+                                 [050],
+                                 [050],
+                                 [050],
+                                 [050],
+                                 [050],
+                                 [050]]
+                              end
 
     ActiveRecord::Base.transaction do
       reason = FinancialReason.indirect_referral_bonus

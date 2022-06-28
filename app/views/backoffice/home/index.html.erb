@@ -108,7 +108,7 @@
         </div>
       </div>
       <div class="content-right">
-        <%= link_to new_backoffice_withdrawal_path, class: "btn-balance" do %>
+        <%= link_to new_backoffice_withdrawal_path, class: "btn-balance withdraw" do %>
           <%= t(:withdrawal) %>
         <% end %>
         <% unless SystemConfiguration.whitelabel? %>
@@ -162,7 +162,7 @@
         <h3><%= t(:you_can_accelerate_your_earnings) %></h3>
         <p><%= t(:indicating_company_name_to_your_friends, company_name: SystemConfiguration.company_name) %></p>
       </div>
-      <div class="bottom-box">
+      <div class="bottom-box sponsor-container">
         <div class="content-left">
           <div class="content-left-top bottom-left-top">
             <h3>

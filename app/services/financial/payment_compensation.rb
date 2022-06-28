@@ -25,9 +25,9 @@ module Financial
         update_user_purchase_flags
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user if deposit_product
+        activate_user if (deposit_product || crypto_product)
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
-        user.empreendedor! if deposit_product && user.consumidor?
+        user.empreendedor! if (deposit_product || crypto_product) && user.consumidor?
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
         create_pool_point_for_user if enabled_bonification
@@ -39,7 +39,7 @@ module Financial
         propagate_bonuses if enabled_bonification
         propagate_course_payment if course_product
         create_vouchers if voucher_product
-        create_bonus_contract if deposit_product
+        create_bonus_contract if deposit_product || crypto_product
         process_reserved_raffle_tickets if raffle_product
         propagate_raffle_bonus_payment if raffle_product && enabled_bonification
         propagate_master_bonus if deposit_product
@@ -209,6 +209,10 @@ module Financial
 
     def deposit_product
       @deposit_product ||= order.products.detect(&:deposit?)
+    end
+
+    def crypto_product
+      @crypto_product ||= order.products.detect(&:crypto?)
     end
 
     def raffle_product

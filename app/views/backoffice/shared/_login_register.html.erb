@@ -39,8 +39,8 @@
           <%= t('users.sessions.new.login') %>
         </button>
       <% end %>
-      <div class="form-links-container">
-        <a href="#"><%= t('users.shared.links.forgot_password') %></a>
+      <div class="form-links-container">   
+        <%= link_to t('users.shared.links.forgot_password'), new_password_path(User.to_s.downcase), target: '_blank' %>
       </div>
     </div>
     <div class="modal-register-container">

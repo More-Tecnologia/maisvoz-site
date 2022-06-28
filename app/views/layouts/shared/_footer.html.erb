@@ -5,7 +5,7 @@
       <% if user_signed_in? %>
         <% if current_user.empreendedor? || current_user.consumidor? %>
           <li class="list menu-selected">
-            <%= link_to backoffice_home_index_path, class:"link-nav"  do %>
+            <%= link_to backoffice_home_index_path, class:"link-nav" do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 46 46" xml:space="preserve" class="svg-footer" >

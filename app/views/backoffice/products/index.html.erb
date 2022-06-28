@@ -33,6 +33,7 @@
             </span>
             <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
                   class: 'store--products-item--price--buy-button',
+                  onclick: 'publicLoginRegister.buyAdcashHandler()',
                   method: :post do %>
               <%= t(:buy) %>
             <% end %>

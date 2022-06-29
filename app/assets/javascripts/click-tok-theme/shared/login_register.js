@@ -33,8 +33,12 @@ const publicLoginRegister = {};
     containers.loginRegister.classList.add("open");
   }
 
-  publicLoginRegister.buyAdcashHandler = function buyAdcashHandler(event){
-    event.preventDefault();
+  publicLoginRegister.buyAdcashHandler = function buyAdcashHandler(product){
+    const productList = document.querySelectorAll(".store--products-item");
+    productList.forEach(product => product.classList.remove('selected'));
+
+    const clickedButton = document.querySelector(`.store--products-item.${product} .store--products-item--price--buy-button`);
+    clickedButton.classList.add('selected');
     openModal();
   }
 

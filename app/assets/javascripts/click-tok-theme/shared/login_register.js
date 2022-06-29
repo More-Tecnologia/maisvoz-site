@@ -36,9 +36,8 @@ const publicLoginRegister = {};
   publicLoginRegister.buyAdcashHandler = function buyAdcashHandler(product){
     const productList = document.querySelectorAll(".store--products-item");
     productList.forEach(product => product.classList.remove('selected'));
-
-    const clickedButton = document.querySelector(`.store--products-item.${product} .store--products-item--price--buy-button`);
-    clickedButton.classList.add('selected');
+    const clickedCard = document.querySelector(`.store--products-item.${product}`);
+    clickedCard.classList.add('selected-card');
     openModal();
   }
 
@@ -55,8 +54,14 @@ const publicLoginRegister = {};
   publicLoginRegister.closeModalHandler = function closeModalHandler() {
     document.querySelector(".regulation-backdrop").remove();
     containers.body.classList.remove("backdrop");
-    containers.loginRegister.classList.remove("open");
+    containers.loginRegister.classList.remove("open"); 
+    cleanCardClasses()   
   };
+
+  function cleanCardClasses () {
+    const selectedCard = document.querySelector('.selected-card');
+    if(selectedCard) selectedCard.classList.remove('selected-card');
+  }
 
   buttons.loginToggle.addEventListener("click", selectLoginHandler);
   buttons.registerToggle.addEventListener("click", selectRegisterHandler);

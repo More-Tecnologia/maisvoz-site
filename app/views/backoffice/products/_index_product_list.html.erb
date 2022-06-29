@@ -1,6 +1,6 @@
 <% product_number = 0 %>
 <% @products.each do |product| %>
-  <div class="store--products-item product-<%= product_number %>">
+  <div class="store--products-item product-<%= product_number %>" data-product="<%= product_number %>">
     <div class="store--products-item--header" style="background: <%= product.details %>">
       <%= product.name %>
     </div>

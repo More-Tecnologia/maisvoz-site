@@ -187,6 +187,7 @@ header {
   left: 0;
   padding-bottom: 2px;
   position: absolute;
+  cursor: pointer;
 }
 
 .header-login-button:hover {

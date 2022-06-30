@@ -258,7 +258,7 @@
 
 .btn-submit-filter:hover {
   background: linear-gradient(to top, #59fa00, #27af00);
-  box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
+  box-shadow: 0px 15px 25px -5px rgba(30, 144, 255, 0.4);
   transform: scale(1.03);
 }
 

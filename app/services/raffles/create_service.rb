@@ -6,19 +6,20 @@ module Raffles
       @raffle_params = params[:raffle_params]
       @product_params = params[:product_params]
       @thumb = @raffle_params.delete(:thumb)
+      @images = @raffle_params.delete(:images)
     end
 
     private
 
-    def add_thumb
-      @raffle.update(thumb: @thumb)
+    def add_images
+      @raffle.update(thumb: @thumb, images: @images)
     end
 
     def call
       ActiveRecord::Base.transaction do
         create_product
         create_raffle!
-        add_thumb
+        add_images
         create_raffle_tickets
       end
     end

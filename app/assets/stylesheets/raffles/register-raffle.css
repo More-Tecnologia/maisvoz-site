@@ -1,9 +1,9 @@
 .register-raffle__container {
-    width: 90%;
-    margin: auto;
-    background-color: #ffffff;
-    border-radius: 5px;
-    padding: 50px 20px;
+  width: 90%;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 50px 20px;
 }
 
 .cover-raffle-img_label {
@@ -17,77 +17,88 @@
 }
 
 .register-raffle__title {
-    font-weight: bold;
-    text-align: center;
+  font-weight: bold;
+  text-align: center;
 }
 
 .register-raffle__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
 }
 
 .input-register-raffle {
-    width: 100%;
-    border: none;
+  width: 100%;
+  border: none;
 }
 
 .register-rafle__form__label {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .register-raffle__form strong {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .register-raffle__label__image {
-    background: #d3d3d3;
-    width: 130px;
-    height: 130px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    cursor: pointer;
+  background: #d3d3d3;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  cursor: pointer;
 }
 
 .register-raffle__input__image {
-    display: none !important;
+  display: none !important;
 }
 
 .register-raffle__size-image {
-    font-size: 12px;
-    margin-bottom: 20px;
+  font-size: 12px;
+  margin-bottom: 20px;
 }
 
 .textarea-register-raffle {
-    border: none;
-    width: 100%;
-    border-radius: 10px;
-    padding: 10px 20px;
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .register-raffle__button-submit {
-    background: #1d1d1b;
-    color: white;
-    border: none;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 20px 0;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    margin-top: 30px;
-    cursor: pointer;
-    width: 85%;
-    margin-top: 50px;
+  background: #1d1d1b;
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 20px 0;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-top: 30px;
+  cursor: pointer;
+  width: 85%;
+  margin-top: 50px;
+}
+
+h3.gallery-title {
+  margin-top: 30px;
+}
+
+.gallery-thumbs{
+  display: flex;
+  column-gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .login-fields img,
 .login-fields svg {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -98,6 +109,6 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }

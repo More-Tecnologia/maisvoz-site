@@ -12,6 +12,14 @@
   z-index: 2;
 }
 
+.unlogged.bottom-menu {
+  max-height: 20px;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .float-icon {
   align-items: center;
   border: solid;
@@ -55,6 +63,11 @@
   background-color: #3f3f3f;
   display: flex;
   min-height: 55px;
+}
+
+.unlogged .nav{
+  min-height: 100%;
+  align-items: center;
 }
 
 .icons {
@@ -139,6 +152,10 @@
   width: 100%;
 }
 
+.unlogged .main-list {
+  height: 100%;  
+}
+
 .main-list li {
   align-items: center;
   display: flex;
@@ -211,8 +228,12 @@
 }
 
 .footer-copyright {
-  color: black;
-  padding-bottom: 12px;
+  color: #aaa;
+  padding-bottom: 12px;  
+}
+
+.unlogged .footer-copyright {
+  padding-bottom: 0;
 }
 
 /*.indicator::before {

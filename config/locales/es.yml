@@ -2067,7 +2067,7 @@ es:
                                       previstos neste Regulamento, como, por exemplo, a prestação de informações
                                       inverídicas, incorretas, incompletas ou equivocadas.
                                     </p>
-  draw_regulation: Regulación Del sorteo
+  draw_regulation: Regulación
   read_more: Lee mas
   available: Disponible
   reserved: Reservada
@@ -2139,10 +2139,9 @@ es:
   withdraw_minimum_value: Cantidad mínima de retiro
   earnings_per_campaign: Ganancias por campaña (Céntimos)
   acquired_shares: Ha comprado %{quantity} cupo(s) de rifa
-  draw_id: ID de la rifa
-  draw_numbers: Números sorteados
-  draw_date: Fecha del sorteo
-  draw_ticket_id: ID de boleto de sorteo
-  number_draw_ticket: Número de boleto de sorteo
-  winner_name: Nombre del ganador
   loading_message: Cargando...
+  gallery: Galería
+  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: Ya se ha alcanzado el número máximo actual de boletos comprados con un saldo promocional para el sorteo de %{raffle}
+  amount_of_tickets_by_promotional_payment_left_html: El valor de los boletos restantes para el sorteo de %{raffle} es solo %{ticket_values}
+  promotional_balance: Saldo promocional
+  doesnt_have_enough_promotional_balance: "No tengo suficiente saldo promocional"

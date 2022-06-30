@@ -8,7 +8,7 @@ module Backoffice
 
     def format_whitelabel_currency(amount)
       unless SystemConfiguration.whitelabel?
-        amount = amount * ENV['BRL_USD_FACTOR']
+        amount = amount * ENV['BRL_USD_FACTOR'].to_i
       end
 
       ENV['CURRENT_CURRENCY'] + ' ' + amount.to_s

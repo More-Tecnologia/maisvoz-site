@@ -1,8 +1,6 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_tickets/show' %>
-<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets/show.js', defer: true %>
+<%= javascript_include_tag 'click-tok-theme/stores/raffles/raffles_tickets/show', defer: true %>
 <%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
-<%= render 'agreement' %>
-<%= render 'backoffice/shared/login_register' %>
 <div class="raffle-tickets-container">
   <div class="raffle-tickets-header-container">
     <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do %>
@@ -23,22 +21,7 @@
     </button>
   </div>
   <div class="raffle-tickets-display-container">
-    <div class="raffle-tickets-thumb-container">
-      <!-- <div class="raffle-tickets-image-list">
-        <button class="scroll-back">
-          <i class="fa-solid fa-angles-up"></i>
-        </button>        
-        <%= image_tag('http://placeimg.com//500/300/any') %>
-        <button class="scroll-forward">
-          <i class="fa-solid fa-angles-down"></i>
-        </button>
-      </div>  -->
-    </div>
-    <ul class="raffle-tickets-image-container">
-      <li>
-        <%= image_tag(@raffle.path, class: 'raffle-tickets-image') %>
-      </li>
-    </ul>
+    <%= render 'gallery' %>
     <div class="raffle-tickets-info-container">
       <h1 class="raffle-tickets-title" title="<%= @raffle.title %>"><%= @raffle.title %></h1>
       <span class="raffle-tickets-price"><%= format_currency(@raffle.price) %></span>
@@ -71,3 +54,4 @@
     </ul>
   </div>
 </div>
+<%= render 'agreement' %>

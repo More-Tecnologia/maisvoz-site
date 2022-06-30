@@ -1998,7 +1998,7 @@ pt-BR:
                                       previstos neste Regulamento, como, por exemplo, a prestação de informações
                                       inverídicas, incorretas, incompletas ou equivocadas.
                                     </p>
-  draw_regulation: Regulamento do sorteio
+  draw_regulation: Regulamento
   read_more: Ler mais
   available: Disponivel
   reserved: Reservado
@@ -2116,10 +2116,9 @@ pt-BR:
   package_value: Valor do pacote
   acquired_shares: Você adquiriu %{quantity} cota(s) da rifa
   waiting_payment: Aguardando pagamento
-  draw_id: ID do Sorteio
-  draw_numbers: Nºs sorteados
-  draw_date: Data do sorteio
-  draw_ticket_id: ID do Bilhete Sorteado
-  number_draw_ticket: Nº do Bilhete Sorteado
-  winner_name: Nome do ganhador
   loading_message: Carregando...
+  gallery: Galeria
+  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: O máximo atual de bilhetes adquiridos com saldo promocional já foi atingido para a rifa %{raffle}
+  amount_of_tickets_by_promotional_payment_left_html: O valor de bilhetes restantes para a rifa %{raffle} é de apenas %{ticket_values}
+  promotional_balance: Saldo promocional
+  doesnt_have_enough_promotional_balance: Não tem saldo promocional suficiente

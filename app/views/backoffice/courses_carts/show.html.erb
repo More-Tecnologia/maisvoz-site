@@ -32,11 +32,13 @@
           <span><%= t(:payment_method) %></span>
         </div>
         <div class="ch-payment-buttons-area">
-          <div class="btn btn-tab" onclick="showBalanceInput()">
-            <%= image_tag('icons/troca1.png', class: 'icons') %>
-            <%= t(:balance) %>
-          </div>
-          <% if ActiveModel::Type::Boolean.new.cast(ENV['PAGSTAR_ACTIVE']) %>
+          <% if package_buyer?(current_user) %>
+            <div class="btn btn-tab" onclick="showBalanceInput()">
+              <%= image_tag('icons/troca1.png', class: 'icons') %>
+              <%= t(:balance) %>
+            </div>
+          <% end %>
+          <% if pagstar_active? %>
             <div class="btn btn-tab" onclick="showPixInput()">
               <%= image_tag('icons/pix-p.svg', class: 'icons') %>
               <%= t(:pix) %>

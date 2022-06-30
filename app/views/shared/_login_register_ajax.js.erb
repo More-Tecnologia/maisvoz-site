@@ -1,0 +1,36 @@
+const login_register_ajax = () => {
+  const setPaymentButton = () => {
+    const paymentButton = document.querySelector("#payment-ticket-button");
+    if(paymentButton){
+      paymentButton.dataset.logged = true;      
+      paymentButton.click();
+    }
+  }
+
+  const displayError = () => {
+    const errorElement = document.querySelector("#error-msg");
+    errorElement.innerHTML = '';
+    errorElement.insertAdjacentHTML('afterbegin',
+      `<div class='alert alert-danger alert-dismissible'>
+        <%= @error %>
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>`);
+  }
+
+  const renderAJAX = (containerSelector, partial, partialSelector, position = 'afterbegin') => {
+    const container = document.querySelector(containerSelector);
+    document.querySelector(partialSelector).remove();        
+    container.insertAdjacentHTML(position, partial);
+  }
+
+  if (<%= @user.present? %>) {
+    setPaymentButton();
+    renderAJAX('.main-app', '<%= j render 'layouts/top_bar' %>', 'header');
+    renderAJAX('.main-app', '<%= j render 'layouts/shared/footer' %>', '.bottom-menu', 'beforeend');
+    publicLoginRegister.closeModalHandler();  
+  } else {
+    displayError();
+  }
+}

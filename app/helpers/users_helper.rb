@@ -1,4 +1,8 @@
 module UsersHelper
+  def package_buyer?(user)
+    user.orders.completed.includes(order_items: :product).where(order_items: { products: { kind: :deposit }}).any?
+  end
+
   def render_blocked_user_attribute_link(user)
     html_class = user.blocked ? 'fa fa-thumbs-up text-danger' : 'fa fa-thumbs-down'
     link_to( backoffice_support_blocked_user_path(user, blocked: !user.blocked),
@@ -23,7 +27,7 @@ module UsersHelper
     if user.admin?
       backoffice_admin_dashboard_index_path
     else
-      if SystemConfiguration.whitelabel?
+      if SystemConfiguration.whitelabel? || !admoney?
         backoffice_raffles_tickets_path
       else
         backoffice_dashboard_index_path

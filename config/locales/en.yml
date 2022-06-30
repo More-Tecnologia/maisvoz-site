@@ -2063,7 +2063,7 @@ en:
                                       disqualified, such as, for example, providing untrue, incorrect, incomplete or
                                       misleading information.
                                     </p>
-  draw_regulation: Draw regulation                            
+  draw_regulation: Regulation                            
   read_more: Read more
   available: Available
   reserved: Reserved
@@ -2132,10 +2132,9 @@ en:
   withdraw_minimum_value: Minimum withdraw amount
   earnings_per_campaign: Earnings per campaign (Cents)
   acquired_shares: You have purchased %{quantity} raffle quota(s)
-  draw_id: Draw ID
-  draw_numbers: Drawn numbers
-  draw_date: Draw date
-  draw_ticket_id: Draw Ticket ID
-  number_draw_ticket: Draw Ticket Number
-  winner_name: Winner name
   loading_message: Loading...
+  gallery: Gallery
+  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: The current maximum number of tickets purchased with a promotional balance has already been reached for the %{raffle} raffle
+  amount_of_tickets_by_promotional_payment_left_html: The value of tickets remaining for the %{raffle} raffle is only %{ticket_values}
+  promotional_balance: Promotional balance
+  doesnt_have_enough_promotional_balance: "Don't have enough promotional balance"

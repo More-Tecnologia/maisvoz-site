@@ -2067,12 +2067,124 @@ es:
                                       previstos neste Regulamento, como, por exemplo, a prestação de informações
                                       inverídicas, incorretas, incompletas ou equivocadas.
                                     </p>
+  raffles_agreement_contract_admoney_html: | 
+                                            <p>
+                                              %{company_name} tiene en su plataforma, una ficha de sorteos, totalmente 
+                                              digital, con varios productos. 
+                                            </p>
+                                            <p>
+                                              La plataforma %{company_name} cuenta con sede administrativa en Uruguay y 
+                                              Licencia de Sorteo Internacional en Costa Rica con el número %{raffle_license_number}.
+                                            </p>
+                                            <p>
+                                              Cada número seleccionado y pagado en %{company_name} se llama COTA <b>COTA</b>.
+                                            </p>
+                                            <p>
+                                              Consigue ya tus participaciones en los distintos premios %{company_name}y haz realidad 
+                                              tus sueños con los distintos productos disponibles en la plataforma.
+                                            </p>
+                                            Los sorteos se generan de acuerdo con las siguientes probabilidades:
+                                            <ol>
+                                              <li>100 acciones - numeradas del 00 al 99</li>
+                                              <li>1.000 acciones - numeradas del 000 al 999</li>
+                                              <li>10.000 acciones - numeradas del 0000 al 9.999</li>
+                                              <li>100.000 acciones - numeradas del 00000 al 99.999</li>
+                                            </ol><br />
+                                            <p>
+                                              ELECCIÓN DE NÚMEROS Y PAGO<br />
+                                              Luego de elegir los números de tu preferencia, realiza el pago con tu crédito, en cuanto 
+                                              se confirme el pago, tus cupos estarán disponibles para participar en el sorteo. Ahora 
+                                              solo queda esperar a la venta de todas las acciones para definir la fecha del 
+                                              sorteo y mucha suerte.
+                                            </p>                                    
+                                            LA RIFA<br />
+                                            Los sorteos los lleva a cabo el concurso American PowerBall, una de las loterías más grandes 
+                                            y respetadas del mundo, con sorteos todos los lunes, miércoles y sábados en USA, a las 22:59 
+                                            (hora local, EDT) que, debido a la diferencia horaria, es equivalente a:<br />                                 
+                                            <ol>
+                                              <li>21:59 – Colombia, Perú, Ecuador, México.</li>
+                                              <li>22:59 – Paraguay, Chile, Venezuela, Bolivia.</li>
+                                              <li>23:59 – Uruguay, Argentina, Brasil.</li>
+                                              <li>04:59 – África</li>
+                                            </ol>
+                                            <p>
+                                              El producto estará disponible para sorteo siempre que se venda el 100% de sus cuotas. 
+                                              El sistema genera automáticamente el concurso el cual será extraído y envía un correo 
+                                              electrónico a cada participante con la información del concurso. 
+                                            </p>
+                                            <p>
+                                              El sorteo se podrá seguir a través de la página web: https://www.powerball.com/
+                                            </p>
+                                            <p>¿CÓMO SE REALIZA EL SORTEO DE LA RIFA POR POWERBALL?</p>
+                                            <p>
+                                              En POWERBALL los sorteos varían desde diez 01 hasta 69, el sorteo en este caso se realiza 
+                                              seleccionando el segundo dígito de los diez sorteados siempre de izquierda a derecha 
+                                              de la siguiente manera:
+                                            </p>
+                                            Sorteo con 100 participaciones<br />
+                                            <img class="raffles-preview" src="%{img1_path}" />
+                                            <p>
+                                              Mirando de izquierda a derecha, el segundo dígito de las dos primeras decenas genera 
+                                              la decena 78, por lo que en este ejemplo el número extraído fue 78.
+                                            </p>
+                                            Sorteo con 1.000 acciones<br />
+                                            <img class="raffles-preview" src="%{img2_path}" />
+                                            <p>
+                                              Mirando de izquierda a derecha, el segundo dígito de las tres primeras decenas genera 
+                                              la centena 783, por lo que en este ejemplo el número extraído fue 783. 
+                                            </p>
+                                            Sorteo con 10.000 acciones<br />
+                                            <img class="raffles-preview" src="%{img3_path}" />
+                                            <p>
+                                              Mirando de izquierda a derecha, el segundo dígito de las primeras cuatro decenas genera 
+                                              el mil 7.834, por lo que en este ejemplo las probabilidades sorteadas fueron 7.834.
+                                            </p>
+                                            Sorteo con 100.000 acciones<br />
+                                            <img class="raffles-preview" src="%{img4_path}" />
+                                            <p>
+                                              Mirando de izquierda a derecha, el segundo dígito de las decenas genera las decenas de 
+                                              mil 78.345, por lo que en este ejemplo la cuota extraída fue el número 78.345.
+                                            </p>
+                                            <p>
+                                              NÚMEROS DISPONIBLES
+                                            </p>
+                                            <p>
+                                              Los números disponibles son todos los que están en color blanco en la pantalla de números 
+                                              del sorteo. Estos números están disponibles para reserva y compra.
+                                            </p>
+                                            <p>
+                                              NÚMEROS RESERVADOS
+                                            </p>
+                                            <p>
+                                              Los números RESERVADOS son todos los que están en color amarillo en la pantalla de números 
+                                              del sorteo. Estos números no están disponibles para la compra por un tiempo determinado, este 
+                                              tiempo varía según el método de pago del pedido seleccionado por el participante.
+                                            </p>
+                                            <p>
+                                              NÚMEROS COMPRADOS
+                                            </p>
+                                            <p>
+                                              Los números COMPRADOS son todos los que aparecen en color azul en la pantalla de números del 
+                                              sorteo. Estos números se consideran CUOTAS y se encuentran en un pedido comprado por un participante.
+                                            </p>
+                                            <p>
+                                              DESCLASIFICACIÓN
+                                            </p>
+                                            <p>
+                                              Las cuotas NO pueden ser negociadas (compradas o vendidas) por personas menores de 18 años o incapacitadas 
+                                              legalmente. Los participantes podrán ser automáticamente excluidos del sorteo en caso de 
+                                              sospecha justificada de fraude o fraude probado, pudiendo responder también en los ámbitos 
+                                              penal y civil. Los participantes que no cumplan con alguno de los requisitos, términos y condiciones 
+                                              establecidos en este Reglamento serán descalificados, como por ejemplo, proporcionando información 
+                                              falsa, incorrecta, incompleta o engañosa.
+                                            </p>                                    
   draw_regulation: Regulación
   read_more: Lee mas
   available: Disponible
   reserved: Reservada
   purchased: Comprado
   selected_numbers: Números seleccionados
+  clear: Eliminar
   choose_one_number: Elige un número
   random: Aleatorio
   number: Número

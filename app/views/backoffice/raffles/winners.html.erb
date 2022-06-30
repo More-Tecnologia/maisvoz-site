@@ -1,72 +1,41 @@
-<%= stylesheet_link_tag 'click-tok-theme/orders' %>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-                       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-                       crossorigin="anonymous">
-<%= stylesheet_link_tag 'click-tok-theme/app' %>
-<%= stylesheet_link_tag 'click-tok-theme/shared/winners' %>
-
-<div class="page">
-  <div class="winners-container-top">
-    <div class="back-button-container">
-      <a class="back-button" href="/">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-arrow-left" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-        </svg>
-      </a>
-      <span class="winners-title">
-        Winners
-      </span>
-    </div>
-  </div>
-  <div class="cards-container">
-    <div class="card-container">
-        <div class="winner-container">
-          <img src="https://m.media-amazon.com/images/I/41vm9e97XZL._AC_SX522_.jpg" class="image-winner"/>
-          <div class="winner-content">
-            <div class="winner-card-body">
-              <span><%= t('raffle_name') %></span>
-              <p class="hide-big-phrase" title="Raffle Name">Iphone 13 Pro max</p>
-            </div>
-            <div class="winner-card-body">
-              <span><%= t('draw_id') %></span>
-              <p>00001</p>
-            </div>
-            <div class="winner-card-body">
-              <span><%= t('draw_date') %></span>
-              <p>10/04/2022</p>
-            </div>
-            <div class="winner-card-body">
-              <span><%= t('draw_ticket_id') %></span>
-              <p>00651</p>
-            </div>
-            <div class="winner-card-body">
-              <span><%= t('number_draw_ticket') %></span>
-              <p>548</p>
-            </div>
-            <div class="winner-card-body">
-              <span><%= t('winner_name') %></span>
-              <p class="hide-big-phrase" title="Winner Name">Bruno Teófilo</p>
-            </div>
-            <div class="numbers-container">
-            <span><%= t('draw_numbers') %></span>
-              <div class="selected-numbers-container">
-                <div class="selected-number">01</div>
-                <div class="selected-number">02</div>
-                <div class="selected-number">03</div>
-                <div class="selected-number">04</div>
-                <div class="selected-number">05</div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-    <tr>
-      <td colspan="5" class="text-center"><%= t(:nothing_found) %></td>
-    </tr>
-  <div class="row">
-    <div class="col-sm-12">
-    </div>
-  </div>
+<%= stylesheet_link_tag 'click-tok-theme/raffles/winners' %>
+<div class="raffle-tickets-header-container">
+  <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do %>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+    </svg>
+  <% end %>
+  <h4 class="raffle-tickets--page-title"><%= t(:winners) %></h4>
+</div>
+<div class="winners-card-container">
+<% 7.times do %>
+  <ul class="card-item">
+    <li>
+      <span class="draw-date">10/07/2022</span>
+      <span class="draw-number">039</span>
+      <p class="avatar-container">
+        <img src="https://i.pravatar.cc/300" class="avatar-image" />
+      </p>
+      <span class="winners-name">João Jubileu</span>
+    </li>
+    <li>
+      <span>Clique para ir ao site</span>
+      <a href="#">Powerball - 052627</a>
+      <ul class="result-ticket-list">
+        <li>02</li>
+        <li>09</li>
+        <li>31</li>
+        <li>38</li>
+        <li>45</li>
+      </ul>
+      <span class="wining-ticket-number"><i></i>291</span>
+    </li>
+    <li>
+      <p class="product-container">
+        <img src="https://picsum.photos/500/400" class="product-image" />
+      </p>
+      <h3>iPhone GTMDF</h3>
+    </li>
+  </ul>
+<% end%>  
 </div>

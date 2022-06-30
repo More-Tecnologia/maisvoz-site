@@ -2138,3 +2138,4 @@ en:
   amount_of_tickets_by_promotional_payment_left_html: The value of tickets remaining for the %{raffle} raffle is only %{ticket_values}
   promotional_balance: Promotional balance
   doesnt_have_enough_promotional_balance: "Don't have enough promotional balance"
+  winners: Winners

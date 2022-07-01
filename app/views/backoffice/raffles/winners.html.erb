@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag 'click-tok-theme/raffles/winners' %>
+<%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
 <div class="raffle-tickets-header-container">
   <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do %>
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
@@ -8,34 +9,35 @@
   <h4 class="raffle-tickets--page-title"><%= t(:winners) %></h4>
 </div>
 <div class="winners-card-container">
-<% 7.times do %>
-  <ul class="card-item">
-    <li>
-      <span class="draw-date">10/07/2022</span>
-      <span class="draw-number">039</span>
-      <p class="avatar-container">
-        <img src="https://i.pravatar.cc/300" class="avatar-image" />
-      </p>
-      <span class="winners-name">João Jubileu</span>
-    </li>
-    <li>
-      <span>Clique para ir ao site</span>
-      <a href="#">Powerball - 052627</a>
-      <ul class="result-ticket-list">
-        <li>02</li>
-        <li>09</li>
-        <li>31</li>
-        <li>38</li>
-        <li>45</li>
-      </ul>
-      <span class="wining-ticket-number"><i></i>291</span>
-    </li>
-    <li>
-      <p class="product-container">
-        <img src="https://picsum.photos/500/400" class="product-image" />
-      </p>
-      <h3>iPhone GTMDF</h3>
-    </li>
-  </ul>
-<% end%>  
+  <% 7.times do %>
+    <ul class="card-item">
+      <li>
+        <span class="draw-date">10/07/<i>20</i>22</span>
+        <span class="draw-number">Nº039</span>
+        <p class="avatar-container">
+          <img src="https://i.pravatar.cc/300" class="avatar-image" />
+        </p>
+        <span class="winners-name">João Jubileu da Silva Sauro</span>
+      </li>
+      <li>
+        <!--<span>Clique para ir ao site</span>-->
+        <a class="draw-link" href="https://www.powerball.com/" target="_blank">Powerball - jun 29, 2022</a>
+        <ul class="result-ticket-list">
+          <li class="has-arrow">0<b>2</b></li>
+          <li class="has-arrow">0<b>9</b></li>
+          <li class="has-arrow">3<b>1</b></li>
+          <li>38</li>
+          <li>45</li>
+          <li>49</li>
+        </ul>
+        <span class="wining-ticket-number"><b>2</b><b>9</b><b>1</b><i class="fa-solid fa-trophy"></i></span>
+      </li>
+      <li>
+        <p class="product-container">
+          <%= image_tag('https://res.cloudinary.com/admoney-online/image/upload/v1652290292/ileudsxeqedxm598tabd.png', class: 'product-image') %>
+        </p>
+        <h3 class="raffle-name">Moto PPK</h3>
+      </li>
+    </ul>
+  <% end%>
 </div>

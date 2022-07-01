@@ -2063,6 +2063,117 @@ en:
                                       disqualified, such as, for example, providing untrue, incorrect, incomplete or
                                       misleading information.
                                     </p>
+  raffles_agreement_contract_admoney_html: | 
+                                            <p>
+                                              %{company_name} has on it's platform, a sweepstakes tab, totally 
+                                              digital, with several products. 
+                                            </p>
+                                            <p>
+                                              The %{company_name} platform has administrative headquarters in Uruguay 
+                                              and an International Sweepstakes License in Costa Rica under the 
+                                              number %{raffle_license_number}.
+                                            </p>
+                                            <p>
+                                              Each selected and paid number on %{company_name} is called <b>COTA</b>.
+                                            </p>
+                                            <p>
+                                              Get your shares now in the many %{company_name} awards and make 
+                                              your dreams come true with the various products available on the platform. 
+                                            </p>
+                                            Sweepstakes are generated according to the following odds:
+                                            <ol>
+                                              <li>100 shares - numbered from 00 to 99</li>
+                                              <li>1,000 shares - numbered from 000 to 999</li>
+                                              <li>10,000 shares - numbered from 0000 to 9,999</li>
+                                              <li>100,000 shares - numbered from 00000 to 99,999</li>
+                                            </ol><br />
+                                            <p>
+                                              CHOICE OF NUMBERS AND PAYMENT<br />
+                                              After choosing the numbers of your preference, make the payment with your credit, 
+                                              as soon as the payment is confirmed, your quotas will be available for participation 
+                                              in the draw. Now just wait for the sale of all shares to define the date of the draw 
+                                              and good luck. 
+                                            </p>                                    
+                                            THE RAFFLE<br />
+                                            The draws are carried out by the American PowerBall contest, one of the largest and most 
+                                            respected lotteries in the world, with draws every Monday, Wednesday and Saturday in 
+                                            the USA, at 22:59 (local time, EDT) which, due to the time difference, is equivalent to 
+                                            the:  <br />                                 
+                                            <ol>
+                                              <li>21:59 – Colombia, Peru, Ecuador, Mexico.</li>
+                                              <li>22:59 – Paraguay, Chile, Venezuela, Bolivia.</li>
+                                              <li>23:59 – Uruguay, Argentina, Brazil.</li>
+                                              <li>04:59 – Africa</li>
+                                            </ol>
+                                            <p>
+                                              The product will be available for drawing whenever 100% of its quotas are sold. 
+                                              The system automatically generates the contest which will be extracted and sends 
+                                              an email to each participant with the contest information. 
+                                            </p>
+                                            <p>
+                                              The sweepstakes can be followed through the website: https://www.powerball.com/
+                                            </p>
+                                            <p>HOW IS THE RAFFLE GIVEAWAY DONE BY POWERBALL?</p>
+                                            <p>
+                                              At POWERBALL, the draws vary from ten 01 to 69, the draw in this case is carried 
+                                              out by selecting the second digit of the ten drawn always from left to right as follows:
+                                            </p>
+                                            Raffle with 100 shares<br />
+                                            <img class="raffles-preview" src="%{img1_path}" />
+                                            <p>
+                                              Looking from left to right, the second digit of the first two tens generates the ten 78, 
+                                              so in this example the number drawn was 78.
+                                            </p>
+                                            Raffle with 1,000 shares<br />
+                                            <img class="raffles-preview" src="%{img2_path}" />
+                                            <p>
+                                              Looking from left to right, the second digit of the first three tens generates the hundred 
+                                              783, so in this example the number drawn was 783. 
+                                            </p>
+                                            Raffle with 10,000 shares<br />
+                                            <img class="raffles-preview" src="%{img3_path}" />
+                                            <p>
+                                              Looking from left to right, the second digit of the first four tens generates the 
+                                              thousand 7,834, so in this example the odds drawn were 7,834.
+                                            </p>
+                                            Raffle with 100,000 shares<br />
+                                            <img class="raffles-preview" src="%{img4_path}" />
+                                            <p>
+                                              Looking from left to right, the second digit of the tens generates the tens of thousands 
+                                              78,345, so in this example the quota drawn was the number 78,345. 
+                                            </p>
+                                            <p>
+                                              AVAILABLE NUMBERS
+                                            </p>
+                                            <p>
+                                              The available numbers are all the ones that are in white color on the draw numbers screen. 
+                                              These numbers are available for reservation and purchase.
+                                            </p>
+                                            <p>
+                                              RESERVED NUMBERS
+                                            </p>
+                                            <p>
+                                              The RESERVED numbers are all the ones that are in yellow color on the draw numbers screen. 
+                                              These numbers are not available for purchase for a certain time, this time varies according 
+                                              to the payment method of the order selected by the participant.
+                                            </p>
+                                            <p>
+                                              NUMBERS PURCHASED
+                                            </p>
+                                            <p>
+                                              The PURCHASED numbers are all those in blue color on the draw numbers screen. These numbers 
+                                              are considered QUOTAS and are found in an order purchased by a participant.
+                                            </p>
+                                            <p>
+                                              DECLASSIFICATION
+                                            </p>
+                                            <p>
+                                              Quotas can NOT be traded (bought or sold) by persons under 18 years of age or legally incapable. 
+                                              Participants may be automatically disqualified from the draw in case of justified suspicion of 
+                                              fraud or proven fraud, and may also respond in the criminal and civil spheres. Participants who 
+                                              do not meet any of the requirements, terms and conditions set forth in this Regulation will be 
+                                              disqualified, such as, for example, providing untrue, incorrect, incomplete or misleading information.
+                                            </p>
   draw_regulation: Regulation                            
   read_more: Read more
   available: Available

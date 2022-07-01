@@ -12,11 +12,22 @@
   </div>
   <article class="modal-regulation-text">
     <% partial_img_path = "click-tok-theme/stores/raffles/raffles_tickets/agreement" %>
-    <%= t(:raffles_agreement_contract_html, img1_path: image_path(partial_img_path + '1.png'),
-                                            img2_path: image_path(partial_img_path + '2.png'),
-                                            img3_path: image_path(partial_img_path + '3.png'),
-                                            img4_path: image_path(partial_img_path + '4.png'),
-                                            company_name: SystemConfiguration.company_name,
-                                            raffle_license_number: SystemConfiguration.raffle_license_number) %>
+    <% if SystemConfiguration.whitelabel? %>
+      <%= t(:raffles_agreement_contract_html, 
+            img1_path: image_path(partial_img_path + '1.png'),
+            img2_path: image_path(partial_img_path + '2.png'),
+            img3_path: image_path(partial_img_path + '3.png'),
+            img4_path: image_path(partial_img_path + '4.png'),
+            company_name: SystemConfiguration.company_name,
+            raffle_license_number: SystemConfiguration.raffle_license_number) %>
+    <% else %>
+      <%= t(:raffles_agreement_contract_admoney_html,
+            img1_path: image_path(partial_img_path + '1.png'),
+            img2_path: image_path(partial_img_path + '2.png'),
+            img3_path: image_path(partial_img_path + '3.png'),
+            img4_path: image_path(partial_img_path + '4.png'),
+            company_name: SystemConfiguration.company_name,
+            raffle_license_number: SystemConfiguration.raffle_license_number) %>
+    <% end %>
   </article>
 </section>

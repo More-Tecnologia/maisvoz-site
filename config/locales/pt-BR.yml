@@ -1998,6 +1998,122 @@ pt-BR:
                                       previstos neste Regulamento, como, por exemplo, a prestação de informações
                                       inverídicas, incorretas, incompletas ou equivocadas.
                                     </p>
+  raffles_agreement_contract_admoney_html: | 
+                                    <p>
+                                      A %{company_name} possui em sua plataforma, uma aba de sorteios, totalmente digital, 
+                                      com diversos produtos. 
+                                    </p>
+                                    <p>
+                                      A plataforma %{company_name} possui sede administrativa no Uruguai e Licença Internacional 
+                                      de Sorteios na Costa Rica sob o número %{raffle_license_number}.
+                                    </p>
+                                    <p>
+                                      Cada número selecionado e pago na %{company_name}, passa a ser chamado <b>COTA</b>.
+                                    </p>
+                                    <p>
+                                      Adquira já suas cotas nos diversos prêmios da %{company_name} e realize seus
+                                      sonhos com os diversos produtos disponíveis na plataforma. 
+                                    </p>
+                                    Os sorteios são gerados de acordo com as seguintes cotas:
+                                    <ol>
+                                      <li>100 cotas - numeradas de 00 a 99</li>
+                                      <li>1.000 cotas - numeradas de 000 a 999</li>
+                                      <li>10.000 cotas - numeradas de 0000 a 9.999</li>
+                                      <li>100.000 cotas - numeradas de 00000 a 99.999</li>
+                                    </ol><br />
+                                    <p>
+                                      ESCOLHA DE NÚMEROS E PAGAMENTO<br />
+                                      Após escolher os números de sua preferência, efetue o pagamento com seu crédito, 
+                                      assim que o pagamento for confirmado, suas cotas estarão disponíveis para 
+                                      participação do sorteio. Agora só aguardar a venda de todas as cotas para a 
+                                      definição da data do sorteio e boa sorte. 
+                                    </p>                                    
+                                    O SORTEIO<br />
+                                    As extrações são realizadas pelo concurso da PowerBall americana uma das maiores 
+                                    e mais respeitadas loterias do mundo, com sorteios todas as segundas, quartas e 
+                                    sábados nos EUA, às 22hs59min (hora local, EDT) o que, devido à diferença de horário, 
+                                    equivale às:  <br />                                 
+                                    <ol>
+                                      <li>21hs59min – Colômbia, Peru, Equador, Mexico.</li>
+                                      <li>22hs59min – Paraguai, Chile, Venezuela, Bolívia.</li>
+                                      <li>23hs59min – Uruguai, Argentina, Brasil.</li>
+                                      <li>04hs59min – África</li>
+                                    </ol>
+                                    <p>
+                                      O produto estará disponível para sorteio toda vez que tiver 100% de suas cotas vendidas. 
+                                      O sistema automaticamente gera o concurso o qual será executado a extração e envia um 
+                                      e-mail para cada participante com informações do concurso. 
+                                    </p>
+                                    <p>
+                                      Os sorteios podem ser acompanhados através do site: https://www.powerball.com/
+                                    </p>
+                                    <p>COMO É FEITO O SORTEIO DAS RIFAS PELA POWERBALL?</p>
+                                    <p>
+                                      Na POWERBALL os sorteios variam da dezena 01 a 69, o sorteio nesse caso é realizado 
+                                      selecionando o segundo algarismo da dezena sorteada sempre da esquerda para direita 
+                                      como segue abaixo: 
+                                    </p>
+                                    Sorteio com 100 cotas<br />
+                                    <img class="raffles-preview" src="%{img1_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das duas primeiras dezenas é 
+                                      gerado a dezena 78, assim nesse exemplo a cota sorteada foi a de número 78. 
+                                    </p>
+                                    Sorteio com 1.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img2_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das três primeiras dezenas é 
+                                      gerado a centena 783, assim nesse exemplo a cota sorteada foi a de número 783. 
+                                    </p>
+                                    Sorteio com 10.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img3_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das quatro primeiras dezenas é 
+                                      gerado a milhar 7.834, assim nesse exemplo a cota sorteada foi a de número 7.834. 
+                                    </p>
+                                    Sorteio com 100.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img4_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das dezenas é gerado 
+                                      a dezena de milhar 78.345, assim nesse exemplo a cota sorteada foi a 
+                                      de número 78.345. 
+                                    </p>
+                                    <p>
+                                      NÚMEROS DISPONÍVEIS
+                                    </p>
+                                    <p>
+                                      Os números disponíveis, são todos os que estão na cor branca na tela de números 
+                                      do sorteio. Esses números encontram-se disponíveis para serem reservados e comprados.
+                                    </p>
+                                    <p>
+                                      NÚMEROS RESERVADOS
+                                    </p>
+                                    <p>
+                                      Os números reservados, são todos os que estão na cor amarela na tela de números do 
+                                      sorteio. Esses números não estão disponíveis para compra por um determinado tempo, 
+                                      esse tempo varia de acordo com a modalidade de pagamento do pedido selecionado pelo 
+                                      participante.
+                                    </p>
+                                    <p>
+                                      NÚMEROS COMPRADOS
+                                    </p>
+                                    <p>
+                                      Os números comprados, são todos os que estão na cor azul na tela de números do sorteio. 
+                                      Esses números são considerados COTAS e encontram-se em um pedido adquirido por um 
+                                      participante.
+                                    </p>
+                                    <p>
+                                      DESCLASSIFICAÇÃO
+                                    </p>
+                                    <p>
+                                      As cotas NÃO podem ser comercializadas (comprada ou vendida) por menores de 18 anos 
+                                      e ou legalmente incapazes. 
+                                      Os Participantes poderão ser desclassificados automaticamente do sorteio em caso de 
+                                      suspeita justificada de fraude ou fraude comprovada, podendo ainda responder nas esferas 
+                                      penal e cível. Haverá a desclassificação dos participantes que não atenderem a quaisquer 
+                                      dos requisitos, termos e condições previstos neste Regulamento, como, por exemplo, a 
+                                      prestação de informações inverídicas, incorretas, incompletas ou equivocadas. 
+                                    </p>
   draw_regulation: Regulamento
   read_more: Ler mais
   available: Disponivel

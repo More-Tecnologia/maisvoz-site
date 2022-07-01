@@ -2,6 +2,8 @@
 
 module Backoffice
   class RafflesController < BackofficeController
+    skip_before_action :authenticate_user!
+
     def index; end
 
     def agreement; end

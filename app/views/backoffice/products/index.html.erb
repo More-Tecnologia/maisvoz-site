@@ -1,44 +1,9 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/adcash/index' %>
 <div class="store-content">
-  <%= render 'backoffice/stores/menu' %>  
+  <%= render 'backoffice/stores/menu' %>
   <%= render 'backoffice/stores/banner', banner: @banner %>
   <div class="store--products__content <%= I18n.locale.downcase %>">
-    <% @products.each do |product| %>    
-      <div class="store--products-item">
-        <div class="store--products-item--header" style="background: <%= product.details %>">
-          <%= product.name %>
-        </div>
-        <ul class="store--products-item--content">
-          <li class="store--products-item--task">
-            <span class="store--products-item--task--number">
-              <%= product.task_per_day %>
-            </span>
-            <span class="store--products-item--task--title">
-              <%= t(:tasks_per_day) %>
-            </span>
-          </li>
-          <li class="store--products-item--border"></li>
-          <li class="store--products-item--earnings">
-            <span class="store--products-item--earnings--number">
-              <%= format_currency(product.earnings_per_campaign / 100.0) %>
-            </span>
-            <span class="store--products-item--earnings--campaign">
-              <%= t(:earnings_by_campaign) %>
-            </span>
-          </li>
-          <li class="store--products-item--price">
-            <span class="store--products-item--price--number">
-              <%= product.price.zero? ? t(:free) : format_currency(product.price) %>
-            </span>
-            <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
-                  class: 'store--products-item--price--buy-button',
-                  method: :post do %>
-              <%= t(:buy) %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-    <% end %>
+    <%= render 'index_product_list' %>
   </div>
 </div>

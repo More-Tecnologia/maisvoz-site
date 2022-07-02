@@ -2077,7 +2077,7 @@ es:
                                               Licencia de Sorteo Internacional en Costa Rica con el número %{raffle_license_number}.
                                             </p>
                                             <p>
-                                              Cada número seleccionado y pagado en %{company_name} se llama COTA <b>COTA</b>.
+                                              Cada número seleccionado y pagado en %{company_name} se llama <b>COTA</b>.
                                             </p>
                                             <p>
                                               Consigue ya tus participaciones en los distintos premios %{company_name}y haz realidad 

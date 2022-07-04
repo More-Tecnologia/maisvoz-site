@@ -26,7 +26,7 @@ module Backoffice
       elsif valid_params[:payment_method] == 'btc'
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
         ExpireOrderWorker.perform_at(Time.now + 3.hour, valid_params[:order].id)
-        RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 3.hour, valid_params[:order].id)
+        RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 2.hour, valid_params[:order].id)
         current_raffles_cart
         render 'backoffice/payment_transactions/show'
       end

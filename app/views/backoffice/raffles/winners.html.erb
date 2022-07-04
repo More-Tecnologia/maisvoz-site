@@ -1,15 +1,8 @@
 <%= stylesheet_link_tag 'click-tok-theme/raffles/winners' %>
 <%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
-<div class="raffle-tickets-header-container">
-  <%= link_to raffles_backoffice_stores_path, class: 'raffle-tickets-return-button' do %>
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-    </svg>
-  <% end %>
-  <h4 class="raffle-tickets--page-title"><%= t(:winners) %></h4>
-</div>
+<%= render 'backoffice/shared/back_and_title', back_path: raffles_backoffice_stores_path,  page_title: t(:winners) %>
 <div class="winners-card-container">
-  <% 7.times do %>
+  <% 3.times do %>
     <ul class="card-item">
       <li>
         <span class="draw-date">10/07/<i>20</i>22</span>
@@ -17,10 +10,9 @@
         <p class="avatar-container">
           <img src="https://i.pravatar.cc/300" class="avatar-image" />
         </p>
-        <span class="winners-name">João Jubileu da Silva Sauro</span>
+        <span class="winners-name">Joana Jubiléia da Silva Sauro</span>
       </li>
       <li>
-        <!--<span>Clique para ir ao site</span>-->
         <a class="draw-link" href="https://www.powerball.com/" target="_blank">Powerball - jun 29, 2022</a>
         <ul class="result-ticket-list">
           <li class="has-arrow">0<b>2</b></li>
@@ -36,7 +28,7 @@
         <p class="product-container">
           <%= image_tag('https://res.cloudinary.com/admoney-online/image/upload/v1652290292/ileudsxeqedxm598tabd.png', class: 'product-image') %>
         </p>
-        <h3 class="raffle-name">Moto PPK</h3>
+        <h3 class="raffle-name">Moto CBTK</h3>
       </li>
     </ul>
   <% end%>

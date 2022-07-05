@@ -1,83 +1,35 @@
-<%= stylesheet_link_tag 'click-tok-theme/orders' %>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-                       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-                       crossorigin="anonymous">
-
-<div class="page">
-  <a class="back-button" href="/backoffice/financial_dashboard?locale=en">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-         fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-
-                                 .708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0
-                                 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-    </svg>
-  </a>
-  <div class="is-page-title">
-    <span class="title">
-      Winners
-    </span>
-    <div class="btn-group dropleft">
-      <button class="btn btn-secondary dropdown-toggle" type="button"
-              id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" style="border-radius: 20px;"
-              background: #30da03; border: none;">
-        <%= t(:filter) %>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button"></button>
-          <button class="dropdown-item" type="button"></button>
-      </div>
-    </div>
-  </div>
-
-  <% @raffles.each do |raffle| %>
-    <div class="raffles-winners-card-order card-order">
-      <div class="row">
-        <div class="column">
-          <%= raffle.winner.decorate.avatar_image_tag %>
-        </div>
-        <div class="column">
-          <div class="row">
-            <div class="card-body">
-              <div><%= t('ID of draw') %></div>
-              <%= raffle.id %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Draw numbers') %></div>
-              <%= raffle.lotto_numbers_combination %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Draw date') %></div>
-              <%= raffle.draw_date %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="card-body">
-              <div><%= t('ID of draw ticket') %></div>
-              <%= raffle.winning_ticket_id %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Number draw ticket') %></div>
-              <%= raffle.lotto_numbers_combination %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Winner name') %></div>
-              <%= raffle.winner.username %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <% if @raffles.none? %>
-    <tr>
-      <td colspan="5" class="text-center"><%= t(:nothing_found) %></td>
-    </tr>
-  <% end %>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= paginate @raffles.finished %>
-    </div>
-  </div>
+<%= stylesheet_link_tag 'click-tok-theme/raffles/winners' %>
+<%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
+<%= render 'backoffice/shared/back_and_title', back_path: raffles_backoffice_stores_path,  page_title: t(:winners) %>
+<div class="winners-card-container">
+  <% 3.times do %>
+    <ul class="card-item">
+      <li>
+        <span class="draw-date">10/07/<i>20</i>22</span>
+        <span class="draw-number">Nº039</span>
+        <p class="avatar-container">
+          <img src="https://i.pravatar.cc/300" class="avatar-image" />
+        </p>
+        <span class="winners-name">Joana Jubiléia da Silva Sauro</span>
+      </li>
+      <li>
+        <a class="draw-link" href="https://www.powerball.com/" target="_blank">Powerball - jun 29, 2022</a>
+        <ul class="result-ticket-list">
+          <li class="has-arrow">0<b>2</b></li>
+          <li class="has-arrow">0<b>9</b></li>
+          <li class="has-arrow">3<b>1</b></li>
+          <li>38</li>
+          <li>45</li>
+          <li>49</li>
+        </ul>
+        <span class="wining-ticket-number"><b>2</b><b>9</b><b>1</b><i class="fa-solid fa-trophy"></i></span>
+      </li>
+      <li>
+        <p class="product-container">
+          <%= image_tag('https://res.cloudinary.com/admoney-online/image/upload/v1652290292/ileudsxeqedxm598tabd.png', class: 'product-image') %>
+        </p>
+        <h3 class="raffle-name">Moto CBTK</h3>
+      </li>
+    </ul>
+  <% end%>
 </div>

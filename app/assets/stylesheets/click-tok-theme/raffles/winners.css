@@ -154,6 +154,7 @@
 
 .card-item > li:nth-of-type(3) {
   width: 28%;
+  justify-content: space-evenly;
 }
 
 .product-container {

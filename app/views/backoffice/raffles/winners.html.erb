@@ -10,22 +10,20 @@
         <p class="avatar-container">
           <img src="<%= raffle.winner.avatar.try(:fullpath) %>" class="avatar-image" />
         </p>
-        <span class="winners-name"><% raffle.winner.name %></span>
+        <span class="winners-name"><%= raffle.winner.name %></span>
       </li>
       <li>
         <a class="draw-link" href="https://www.powerball.com/" target="_blank">Powerball - <%= raffle.draw_date.strftime("%b %d, %Y") %></a>
         <ul class="result-ticket-list">
-          <% raffle.lotto_numbers.each do |number| %>
-            <li class="has-arrow"><b><%= number %></b></li>
-          <% end %>
+          <%= render_lotto_list_item(raffle) %>
         </ul>
-        <span class="wining-ticket-number"><b><%= raffle.lotto_numbers_combination %></b><i class="fa-solid fa-trophy"></i></span>
+        <span class="wining-ticket-number"><%= format_winning_ticket(raffle) %><i class="fa-solid fa-trophy"></i></span>
       </li>
       <li>
         <p class="product-container">
           <%= image_tag(raffle.path, class: 'product-image') %>
         </p>
-        <h3 class="raffle-name"><% raffle.product.name %></h3>
+        <h3 class="raffle-name"><%= raffle.product.name %></h3>
       </li>
     </ul>
   <% end%>

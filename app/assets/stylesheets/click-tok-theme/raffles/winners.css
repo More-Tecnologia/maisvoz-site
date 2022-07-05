@@ -65,9 +65,10 @@
 .winners-name {
   max-width: 100%;
   overflow: hidden;
-  padding: 0 0 0 10%;
+  
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: center;
 }
 
 .card-item > li:nth-of-type(2) {
@@ -119,6 +120,10 @@
 
 .result-ticket-list li:last-of-type {
   background: radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 1) 0%, rgba(121, 9, 9, 1) 100%);
+  color: white;
+}
+
+.result-ticket-list li:last-of-type b {
   color: white;
 }
 

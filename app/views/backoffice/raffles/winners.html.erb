@@ -20,10 +20,11 @@
         <span class="wining-ticket-number"><%= format_winning_ticket(raffle) %><i class="fa-solid fa-trophy"></i></span>
       </li>
       <li>
-        <p class="product-container">
+      
+        <%= link_to backoffice_raffles_ticket_path(raffle), class: "product-container" do %>
           <%= image_tag(raffle.path, class: 'product-image') %>
-        </p>
-        <h3 class="raffle-name"><%= raffle.product.name %></h3>
+        <% end %>
+        <%= link_to raffle.product.name, backoffice_raffles_ticket_path(raffle), class: "raffle-name" %>
       </li>
     </ul>
   <% end%>

@@ -3,7 +3,7 @@
 module Backoffice
   module Admin
     class RafflesController < AdminController
-      before_action :ensure_raffle, only: %i[edit update]
+      before_action :ensure_raffle, only: %i[edit update draw_edit draw]
 
       def index
         @q = Raffle.includes(:product)
@@ -38,11 +38,27 @@ module Backoffice
         render :edit
       end
 
+      def draw_edit; end
+
+      def draw
+        draw_raffle
+        flash[:success] = t(:success_draw)
+        redirect_to backoffice_admin_raffles_path
+      rescue StandardError => e
+        flash[:error] = e.message
+        render :edit
+      end
+
       private
 
       def build_raffle
         Raffles::CreateService.call(raffle_params: valid_raffle_params,
                                     product_params: valid_product_params)
+      end
+
+      def draw_raffle
+        Raffles::DrawService.call(raffle: @raffle,
+                                  raffle_params: valid_draw_params)
       end
 
       def ensure_raffle
@@ -53,6 +69,11 @@ module Backoffice
         Raffles::UpdateService.call(raffle: @raffle,
                                     raffle_params: valid_raffle_params,
                                     product_params: valid_product_params)
+      end
+
+      def valid_draw_params
+        params.reuire(:raffle)
+              .permit(:draw_date, :lotto_numbers)
       end
 
       def valid_product_params

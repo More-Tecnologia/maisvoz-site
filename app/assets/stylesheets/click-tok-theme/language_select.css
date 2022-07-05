@@ -1,73 +1,68 @@
 .language-box {
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .language-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 25px;
-    border-radius: 20px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    justify-content: space-between;
-    padding: 1px;
-    width: 60px;
-    background: whitesmoke;
-    transition: 0.5s;
-    margin-right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 25px;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  justify-content: space-between;
+  padding: 1px;
+  width: 60px;
+  background: whitesmoke;
+  transition: 0.5s;
+  margin-right: 0;
 }
 
 .selected-language {
-    border-radius: 15px;
-    height: 100%;
-    margin: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  border-radius: 15px;
+  height: 100%;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .selected-language img {
-    border-color: #3F3F3F;
-    border-radius: 20px;
-    margin-left: 1px;
-    height: 100%;
-    width: 21px;
-    z-index: 99;
+  border-color: #3f3f3f;
+  border-radius: 20px;
+  margin-left: 1px;
+  height: 100%;
+  width: 21px;
+  z-index: 99;
 }
 
 .selected-language svg {
-    fill: black;
+  fill: black;
 }
 
 .change-language {
-    align-items: center;
-    border-radius: 20px;
-    cursor: pointer;
-    justify-content: flex-end;
-    margin-right: 10px;
-    text-align: center;
-    margin-top: 110px;
-    transition: 0.5s;
-    padding: 10px;
-}
-
-.change-language a {
-
-
+  align-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+  justify-content: flex-end;
+  margin-right: 10px;
+  text-align: center;
+  margin-top: 110px;
+  transition: 0.5s;
+  padding: 10px;
 }
 
 .change-language img {
-    margin-top: 5px;
-    border-radius: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
 }
 
 .flag img {
-    border-radius: 10px;
-    margin-bottom: 5px;
+  border-radius: 10px;
+  margin-bottom: 5px;
 }

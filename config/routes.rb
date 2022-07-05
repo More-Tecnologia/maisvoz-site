@@ -24,7 +24,12 @@ Rails.application.routes.draw do
       end
 
       #Raffles Admin
-      resources :raffles, except: %i[show destroy]
+      resources :raffles, except: %i[show destroy] do
+        member do
+          post :draw
+          get :draw_date
+        end
+      end
 
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]

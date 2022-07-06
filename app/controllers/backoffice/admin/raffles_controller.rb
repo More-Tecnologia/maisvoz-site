@@ -52,12 +52,12 @@ module Backoffice
       private
 
       def build_raffle
-        Raffles::CreateService.call(raffle_params: valid_raffle_params,
+        ::Raffles::CreateService.call(raffle_params: valid_raffle_params,
                                     product_params: valid_product_params)
       end
 
       def draw_raffle
-        Raffles::DrawService.call(raffle: @raffle,
+        ::Raffles::DrawService.call(raffle: @raffle,
                                   raffle_params: valid_draw_params)
       end
 
@@ -66,7 +66,7 @@ module Backoffice
       end
 
       def update_raffle
-        Raffles::UpdateService.call(raffle: @raffle,
+        ::Raffles::UpdateService.call(raffle: @raffle,
                                     raffle_params: valid_raffle_params,
                                     product_params: valid_product_params)
       end

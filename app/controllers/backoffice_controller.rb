@@ -7,7 +7,6 @@ class BackofficeController < ApplicationController
   before_action :authenticate_user!
 
   helper_method :current_order
-  helper_method :current_deposit
   helper_method :current_courses_cart
   helper_method :clean_shopping_cart
 
@@ -19,24 +18,13 @@ class BackofficeController < ApplicationController
    end
   end
 
-  def current_deposit
-    @current_deposit ||= OrderItem.includes(:order)
-                                  .where(product: Product.deposit, order: current_user.orders.cart)
-                                  .order(created_at: :desc)
-                                  .last
-                                  .try(:order) || Order.new(user: current_user, status: :cart)
-    if @current_deposit.order_items.none?
-      @current_deposit.order_items.build(product: Product.deposit.first, quantity: ENV['MIN_DEPOSIT'].to_i)
-    end
-    @current_deposit
-  end
-
   def current_courses_cart
     @current_courses_cart ||= OrderItem.includes(:order)
                                        .where(product: Product.course, order: current_user.orders.cart)
                                        .order(created_at: :desc)
                                        .last
-                                       .try(:order) || Order.new(user: current_user, status: :cart)
+                                       .try(:order) || current_user.orders.includes(:order_items).cart.where(order_items: { id: nil }).last
+    @current_courses_cart ||= Order.new(user: current_user, status: :cart)
   end
 
   def current_ads_cart
@@ -44,16 +32,13 @@ class BackofficeController < ApplicationController
                                    .where(product: Product.publicity, order: current_user.orders.cart)
                                    .order(created_at: :desc)
                                    .last
-                                   .try(:order) || Order.new(user: current_user, status: :cart)
+                                   .try(:order) || current_user.orders.includes(:order_items).cart.where(order_items: { id: nil }).last
+    @current_ads_cart ||= Order.new(user: current_user, status: :cart)
   end
 
   def current_raffles_cart
-    @current_raffles_cart ||= OrderItem.includes(:order)
-                                       .where(product: Product.raffle,
-                                              order: current_user.orders.cart)
-                                       .order(created_at: :desc)
-                                       .last
-                                       .try(:order) || Order.new(user: current_user, status: :cart)
+    @current_raffles_cart ||= OrderItem.includes(:order).where(product: Product.raffle,order: current_user.orders.cart).order(created_at: :desc).last.try(:order) || current_user.orders.includes(:order_items).cart.where(order_items: { id: nil }).last
+    @current_raffles_cart ||= Order.new(user: current_user, status: :cart)
   end
 
   protected def clean_shopping_cart

@@ -1,0 +1,9 @@
+<%= javascript_include_tag 'click-tok-theme/raffles/set_draw_date', defer: true %>
+<%= stylesheet_link_tag 'click-tok-theme/raffles/set_draw_date', defer: true %>
+<div class="draw-date-container">
+  <h4>Escolha uma data</h4>
+  <%= form_for([:backoffice, :admin, @raffle], url: set_draw_date_backoffice_admin_raffle_path, method: :post) do |form| %>
+    <%= form.date_field :draw_date %>
+    <%= form.submit 'Save' %>
+  <% end %>
+</div>

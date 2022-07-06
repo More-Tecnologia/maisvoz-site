@@ -6,7 +6,6 @@ module Raffles
       @raffle = params[:raffle]
       @raffle_params = params[:raffle_params]
       @lotto_numbers_combination = lotto_numbers_combination
-      p @lotto_numbers_combination
     end
 
     private

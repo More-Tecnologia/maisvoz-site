@@ -1,5 +1,0 @@
-<%= form_for([:backoffice, :admin, @raffle], url: draw_backoffice_admin_raffle_path, method: :post) do |form| %>
-  <%= form.label :lotto_numbers %><%= form.text_field :lotto_numbers %>
-  <%= form.label :draw_date %><%= form.date_field :draw_date %>
-  <%= form.submit 'Save' %>  
-<% end %>

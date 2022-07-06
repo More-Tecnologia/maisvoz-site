@@ -1,0 +1,6 @@
+<%= javascript_include_tag 'click-tok-theme/raffles/draw', defer: true %>
+<%= stylesheet_link_tag 'click-tok-theme/raffles/draw', defer: true %>
+<%= form_for([:backoffice, :admin, @raffle], url: draw_backoffice_admin_raffle_path, method: :post) do |form| %>
+  <%= form.hidden_field :lotto_numbers %>  
+  <%= form.submit 'Save' %>
+<% end %>

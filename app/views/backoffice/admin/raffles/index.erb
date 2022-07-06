@@ -37,18 +37,21 @@
                       <td><%= I18n.t("activerecord.enums.raffle.kind.#{raffle.kind}").humanize %></td>
                       <td><%= raffle.status %></td>
                       <td><%= t(raffle.active) %></td>
-                      <td>
+                      <td>                        
                         <%= link_to edit_backoffice_admin_raffle_path(raffle) do %>
                           <i class="fas fa-edit"></i>
-                        <% end %>                        
+                        <% end %>
+                        <b class="invisible">-</b>
                         <% if raffle.awaiting_draw_date? %>
-                          <b>-</b>
-                          <%= link_to draw_edit_backoffice_admin_raffle_path(raffle) do %>
+                          <%= link_to draw_edit_backoffice_admin_raffle_path(raffle, :command => 'setDrawDate') ,remote: true do %>
+                            <i class="fa-solid fa-calendar-days"></i>
+                          <% end %>
+                        <% elsif raffle.awaiting_draw? %>
+                          <%= link_to draw_edit_backoffice_admin_raffle_path(raffle, :command => 'draw') ,remote: true do %>
                             <i class="fa-solid fa-dice"></i>
-                          <% end %>                          
+                          <% end %>
                         <% else %>
-                          <b class="invisible">-</b>
-                          <i class="fa-solid fa-dice invisible"></i>
+                          <i class="fas fa-edit invisible"></i>
                         <% end %>
                       </td>
                     </tr>
@@ -71,3 +74,4 @@
       </div>
     </div>
   </div>
+  <div class="draw-target"></div>

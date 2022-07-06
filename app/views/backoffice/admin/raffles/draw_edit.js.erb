@@ -1,0 +1,29 @@
+function showDrawModal(modalName){
+    const loadHTML = (partialData) => {
+    const modalTarget = document.querySelector('.draw-target');
+    const body = document.querySelector('body');
+    const backdrop = `<div class="screen-backdrop" onclick="closeDrawModalHandler()"></div>`;
+
+    modalTarget.innerHTML = partialData;
+    body.classList.add('backdrop');
+    body.insertAdjacentHTML('afterbegin', backdrop);
+  };
+  
+  const drawModal = {    
+    draw: () => {
+      loadHTML(`<%= j render 'backoffice/admin/raffles/draw' %>`)
+    },
+    setDrawDate: () => {
+      loadHTML(`<%= j render 'backoffice/admin/raffles/set_draw_date' %>`)
+    }
+  };
+
+  return drawModal[modalName]();
+};
+
+function closeDrawModalHandler (){
+  document.querySelector('.draw-target').innerHTML = '';
+  document.querySelector('body').classList.remove('backdrop');
+  document.querySelector('.screen-backdrop').remove()
+}
+showDrawModal('<%= params[:command] %>');

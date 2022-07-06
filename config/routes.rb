@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       resources :raffles, except: %i[show destroy] do
         member do
           post :draw
-          get :draw_date
+          get :draw_edit
         end
       end
 

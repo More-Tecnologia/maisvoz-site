@@ -42,11 +42,9 @@ module Backoffice
 
       def draw
         draw_raffle
-        flash[:success] = t(:success_draw)
+        flash[:success] = t(:successfully_draw)
         redirect_to backoffice_admin_raffles_path
-      rescue StandardError => e
-        flash[:error] = e.message
-        render :edit
+      
       end
 
       private
@@ -57,7 +55,7 @@ module Backoffice
       end
 
       def draw_raffle
-        Raffles::DrawService.call(raffle: @raffle,
+        ::Raffles::DrawService.call(raffle: @raffle,
                                   raffle_params: valid_draw_params)
       end
 
@@ -72,8 +70,9 @@ module Backoffice
       end
 
       def valid_draw_params
-        params.reuire(:raffle)
-              .permit(:draw_date, :lotto_numbers)
+        params.require(:raffle)
+              .permit(:draw_date)
+              .merge(lotto_numbers: params[:raffle][:lotto_numbers].split(','))
       end
 
       def valid_product_params

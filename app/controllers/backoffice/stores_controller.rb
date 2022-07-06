@@ -32,15 +32,15 @@ module Backoffice
     end
 
     def raffles
-      @packages = Product.raffle
+      @packages = Product.includes(:raffle)
+                         .raffle
                          .active
-                         .includes(:raffle)
-                         .order(:price_cents)
+                         .order("raffles.max_ticket_number  desc")
       #TODO: Create a query to get the raffles with lass thickets available
       @banner = Product.raffle
-                       .active
                        .includes(:raffle)
-                       .limit(4)
+                       .active
+                       .shuffle[0..4]
     end
   end
 end

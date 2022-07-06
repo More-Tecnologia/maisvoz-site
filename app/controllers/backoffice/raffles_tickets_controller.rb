@@ -20,7 +20,8 @@ module Backoffice
         clean_shopping_cart
         clean_courses_cart
         clean_ads_cart
-        Raffles::ReserveTicketsService.call(valid_params)
+        ::Raffles::ReserveTicketsService.call(valid_params)
+        RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 15.minutes, valid_params[:order].id, true)
       end
 
       redirect_to backoffice_raffles_carts_path

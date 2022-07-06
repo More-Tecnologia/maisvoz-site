@@ -19,7 +19,7 @@ module Backoffice
     private
 
     def ensure_contracts
-      @contracts = current_user.bonus_contracts.active.reject(&:max_gains?).sort do |contract, other|
+      @contracts = current_user.bonus_contracts.includes(:order).active.reject(&:max_gains?).sort do |contract, other|
         contract.order_items.last.task_per_day.to_i <=> other.order_items.last.task_per_day.to_i
       end
     end

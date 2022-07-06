@@ -2253,10 +2253,10 @@ es:
   acquired_shares: Ha comprado %{quantity} cupo(s) de rifa
   loading_message: Cargando...
   gallery: Galería
-  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: Ya se ha alcanzado el número máximo actual de boletos comprados con un saldo promocional para el sorteo de %{raffle}
+  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: Ya se ha alcanzado el número máximo actual de boletos comprados con un saldo ADCASH para el sorteo de %{raffle}
   amount_of_tickets_by_promotional_payment_left_html: El valor de los boletos restantes para el sorteo de %{raffle} es solo %{ticket_values}
-  promotional_balance: Saldo promocional
-  doesnt_have_enough_promotional_balance: "No tengo suficiente saldo promocional"
+  promotional_balance: Saldo ADCASH
+  doesnt_have_enough_promotional_balance: "No tengo suficiente saldo ADCASH"
   winners: Ganadores
   see_last_winners: Ver los últimos ganadores
   successfully_draw: Dibujado con éxito

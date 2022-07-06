@@ -2149,7 +2149,7 @@ pt-BR:
   mail_unlock_account: Desbloquear minha conta
   tickets: "Bilhetes"
   home: "Home"
-  earn_card_title: "Ganhe 20% sobre as rifas compradas por seu indicado e 10% sobre o valor do prêmio que eles ganharem."
+  earn_card_title: "Ganhe 10% sobre as rifas compradas por seu indicado e 10% sobre o valor do prêmio que eles ganharem."
   tasks_of_the_day: "Tarefas do Dia"
   account_activated: "Conta ativada"
   activate_your_account_now: "Ative sua conta agora"
@@ -2178,7 +2178,7 @@ pt-BR:
   support_card_title: 'Se você precisar de algo<br>
                        estamos disponíveis para ajudá-lo.'
   just_send_us_a_message: "Basta nos enviar uma mensagem."
-  earn_card_title_white_label: 'Ganhe 20% nas rifas compradas pelo seu indicado e 10% no valor do prêmio que ele ganhar.'
+  earn_card_title_white_label: 'Ganhe 10% nas rifas compradas pelo seu indicado e 10% no valor do prêmio que ele ganhar.'
   account_inactive_text: Ative sua conta para começar a ganhar com %{company_name}
   raffle_id: ID da rifa
   ticket_number: Número do bilhete

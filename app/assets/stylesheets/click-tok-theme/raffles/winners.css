@@ -156,6 +156,7 @@
   width: 28%;
   justify-content: space-evenly;
   align-items: center;
+  overflow: hidden;
 }
 
 .product-container {
@@ -178,8 +179,9 @@
   text-align: center;
   text-decoration: none;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap;  
   width: fit-content;
+  max-width: 100%;
 }
 
 .raffle-name:hover {

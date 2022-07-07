@@ -2240,4 +2240,9 @@ pt-BR:
   doesnt_have_enough_promotional_balance: Não tem saldo ADCASH suficiente
   winners: Ganhadores
   see_last_winners: Veja os últimos ganhadores
-  successfully_draw: Sorteado com sucesso
+  successfully_set_date: Data definida com sucesso.
+  successfully_set_draw_numbers: Números sorteados definidos com sucesso
+  add_lottery_numbers: Adicione os números do sorteio
+  choose_a_date: Escolha uma data
+  this_action_is_irreversible: Essa ação é irreversivel!
+  yes_save_it: Sim, salve

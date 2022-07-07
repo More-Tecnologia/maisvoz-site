@@ -42,15 +42,16 @@ module Backoffice
 
       def set_draw_date
         @raffle.update(valid_draw_params)
-        flash[:success] = t(:success_create)
+        flash[:success] = t(:successfully_set_date)
+        redirect_to backoffice_admin_raffles_path
       end
 
       def draw
         draw_raffle
-        flash[:success] = t(:successfully_draw)
+        flash[:success] = t(:successfully_set_draw_numbers)
         redirect_to backoffice_admin_raffles_path
       rescue StandardError => e
-        flash[:error] = e.message        
+        flash[:error] = e.message
       end
 
       private

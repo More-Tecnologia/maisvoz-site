@@ -1,29 +1,132 @@
-function showDrawModal(modalName){
-    const loadHTML = (partialData) => {
-    const modalTarget = document.querySelector('.draw-target');
-    const body = document.querySelector('body');
-    const backdrop = `<div class="screen-backdrop" onclick="closeDrawModalHandler()"></div>`;
-
-    modalTarget.innerHTML = partialData;
-    body.classList.add('backdrop');
-    body.insertAdjacentHTML('afterbegin', backdrop);
-  };
-  
+function switchDrawAction(modalName){   
   const drawModal = {    
-    draw: () => {
-      loadHTML(`<%= j render 'backoffice/admin/raffles/draw' %>`)
-    },
-    setDrawDate: () => {
-      loadHTML(`<%= j render 'backoffice/admin/raffles/set_draw_date' %>`)
-    }
+    draw: setDrawNumbers,
+    setDrawDate: setDrawDate
   };
 
   return drawModal[modalName]();
 };
+
+function loadHTML(partialData){    
+  const modalTarget = document.querySelector('.draw-target');   
+  const body = document.querySelector('body');
+  const backdrop = `<div class="screen-backdrop" onclick="closeDrawModalHandler()"></div>`;
+  
+  modalTarget.innerHTML = partialData;
+  body.classList.add('backdrop');
+  body.insertAdjacentHTML('afterbegin', backdrop);    
+  document.querySelectorAll('.draw-number')[0]?.focus();   
+};
+
+function askConfirmation(dispatchAction=false){
+  const form = document.querySelector('.draw-form');
+
+    Swal.fire({
+    title: '<%= t(:are_you_sure) %>',
+    text: '<%= t(:this_action_is_irreversible) %>',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '<%= t(:yes_save_it) %>'
+  }).then((result) => {
+    if (result.isConfirmed) { 
+      dispatchAction && dispatchAction();
+      form.submit();
+    }
+  })
+}
+
+function setDrawDate(){
+  loadHTML(`<%= j render 'backoffice/admin/raffles/set_draw_date' %>`);  
+  const submitButton = document.querySelector('.submit-button');
+
+  function drawDateSubmitHandler(){
+    askConfirmation();
+  }
+
+  function validateDate(){
+    const dateInput = document.querySelector('.date-field');
+
+    function onInputHandler(e){
+      if(this.value != ''){
+        document.querySelector('.submit-button').classList.add('active');
+      }else {
+        document.querySelector('.submit-button').classList.remove('active');
+      }
+    }
+
+
+
+    dateInput.oninput = onInputHandler;
+    
+  }
+
+  validateDate();
+  submitButton.onclick = drawDateSubmitHandler;
+};
+
+function setDrawNumbers(){
+  loadHTML(`<%= j render 'backoffice/admin/raffles/draw' %>`);
+
+  function drawFormSubmit(){
+    const btnSubmit = document.querySelector('.submit-button');
+    const form = document.querySelector('.draw-form');
+
+    const submitHandler = (e) => { 
+      function mountLottoNumbers(){
+        const numberInputs = document.querySelectorAll('.draw-number');
+        const lotoNumbersInputs = document.querySelector('.loto-numbers');
+        const lotoNumbers = [];
+        numberInputs.forEach(input => lotoNumbers.push(input.value));
+        lotoNumbersInputs.value = lotoNumbers;  
+      }
+
+      askConfirmation(mountLottoNumbers());      
+    }
+
+    btnSubmit.onclick = submitHandler;  
+  }
+  
+  function validateDrawForm(){
+    const numberInputs = document.querySelectorAll('.draw-number');
+    function onInputHandler(e) {
+      if (this.value.length >= 2) {
+        this.value = this.value.slice(0,2);
+        this.nextElementSibling?.focus();     
+      };
+      
+      this.validity.badInput ? this.value = '' : null;
+  
+      (function checkValidity(){         
+        
+        for (let i = 0; i < numberInputs.length; ++i) {       
+          let isValid = true; 
+                        
+          if(isNaN(+numberInputs[i].value)) isValid = false;      
+          if(+numberInputs[i].value.length != 2) isValid = false;       
+
+          if(isValid){          
+            document.querySelector('.submit-button').classList.add('active');
+          }else{
+            document.querySelector('.submit-button').classList.remove('active');
+            break;
+          }
+        };
+      })()
+    }
+
+    numberInputs.forEach(input => input.oninput = onInputHandler);
+  }
+
+  validateDrawForm();
+  drawFormSubmit();
+}
 
 function closeDrawModalHandler (){
   document.querySelector('.draw-target').innerHTML = '';
   document.querySelector('body').classList.remove('backdrop');
   document.querySelector('.screen-backdrop').remove()
 }
-showDrawModal('<%= params[:command] %>');
+
+switchDrawAction('<%= params[:command] %>');

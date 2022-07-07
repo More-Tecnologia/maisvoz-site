@@ -26,8 +26,9 @@ Rails.application.routes.draw do
       #Raffles Admin
       resources :raffles, except: %i[show destroy] do
         member do
+          get :draw_edit
           post :draw
-          get :draw_date
+          post :set_draw_date
         end
       end
 

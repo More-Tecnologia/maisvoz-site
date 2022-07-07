@@ -13,7 +13,7 @@ module Raffles
     def lotto_numbers_combination
       @raffle_params[:lotto_numbers].reduce('') do |combination, number|
         combination + number[1]
-      end[0...@raffle.max_ticket_number.to_s.length]
+      end[0...@raffle.max_ticket_number.to_s.length - 1].to_i
     end
 
     def call
@@ -34,7 +34,7 @@ module Raffles
     end
 
     def winning_ticket
-      @winning_ticket ||= @raffle.raffles_tickets
+      @winning_ticket ||= @raffle.raffle_tickets
                                  .where(number: @lotto_numbers_combination)
                                  .last
     end

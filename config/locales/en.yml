@@ -2251,3 +2251,9 @@ en:
   doesnt_have_enough_promotional_balance: "Don't have enough ADCASH balance"
   winners: Winners
   see_last_winners: See the latest winners
+  successfully_set_date: Successfully set date
+  successfully_set_draw_numbers: Successfully set drawn numbers
+  add_lottery_numbers: Add lottery numbers
+  choose_a_date: Choose a date
+  this_action_is_irreversible: This action is irreversible!
+  yes_save_it: Yes, save it

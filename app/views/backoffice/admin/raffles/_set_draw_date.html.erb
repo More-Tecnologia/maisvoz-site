@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag 'click-tok-theme/raffles/draw_partials', defer: true %>
+<div class="draw-container">
+<button class="close-draw-modal" onclick="closeDrawModalHandler()">✕</button>
+  <h4><%= t(:choose_a_date) %></h4>
+  <%= form_for([:backoffice, :admin, @raffle], url: set_draw_date_backoffice_admin_raffle_path, method: :post, html: {class: 'draw-form'}) do |form| %>
+    <div class="draw-number-container">
+      <%= form.date_field :draw_date, class: 'date-field' %>
+    </div>
+    <span class="submit-button"><%= t(:save) %></span>
+  <% end %>
+</div>

@@ -2271,11 +2271,11 @@ en:
   result_announcement_html: |
                               The happy winner of the <b>%{raffle_name}</b>, was COTA
                               <b>%{winning_ticket}</b>,
-                              para %{winner_city}, %{winner_country}.
+                              para %{winner_country}.
                               Check <a href="%{company_site}">%{company_name}</a>'s official link
   result_title: Notifying the winning QUOTA
   draw_scheduling_title: Scheduling the draw
   scheduling_announcement_html: |
                                   The Raffle of <b>%{raffle_name}</b>,
-                                  is scheduled for <b>%{draw_date}</b> at 22h59min EST.
+                                  is scheduled for <b>%{draw_date}</b> at %{draw_time}.
                                   Check the official lottery link <a href="https://www.powerball.com">www.powerball.com</a>

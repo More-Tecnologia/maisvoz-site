@@ -223,7 +223,7 @@
     <li><%= t('attributes.product') %>: <b><%= @raffle.product.name %></b></li>      
     <li>ID: <b><%= @raffle.product.hashid %></b></li>
     <li><%= t(:draw_date) %>: <b><%= @raffle.draw_date.strftime("%d/%m/%Y") %><br /></b></li>
-    <li><%= t(:draw_time) %>: <b>22h59min EST</b></li>
+    <li><%= t(:draw_time) %>: <b><%= ENV["LOTTERY_DRAW_TIME"] %> </b></li>
     <li><%= t(:drawn_quota) %>: <b><%= ApplicationController.helpers.raffle_ticket_number_format(@raffle.winning_ticket) %></b></li>
   </ul> 
 </div>

@@ -70,13 +70,14 @@
   <p>
     <%= t(:scheduling_announcement_html, 
           draw_date: @raffle.draw_date.strftime("%d/%m/%Y"),
-          raffle_name: @raffle.product.name) %>   
+          raffle_name: @raffle.product.name,
+          draw_time: ENV["LOTTERY_DRAW_TIME"]) %>   
   </p>    
   <p><%= t(:draw_data) %></p>  
   <ul class="product-info">
     <li><%= t('attributes.product') %>: <b><%= @raffle.product.name %></b></li>      
     <li>ID: <b><%= @raffle.product.hashid %></b></li>
     <li><%= t(:draw_date) %>: <b><%= @raffle.draw_date.strftime("%d/%m/%Y") %><br /></b></li>
-    <li><%= t(:draw_time) %>: <b>22h59min EST</b></li>
+    <li><%= t(:draw_time) %>: <b><%= ENV["LOTTERY_DRAW_TIME"] %> </b></li>
   </ul> 
 </div>

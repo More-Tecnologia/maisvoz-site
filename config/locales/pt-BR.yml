@@ -2259,11 +2259,11 @@ pt-BR:
   result_announcement_html: |
                               O feliz ganhador do(a) <b>%{raffle_name}</b>, foi a COTA
                               <b>%{winning_ticket}</b>,
-                              para %{winner_city}, %{winner_country}. Confira no link oficial da 
+                              para %{winner_country}. Confira no link oficial da 
                               <a href="%{company_site}">%{company_name}</a>
   result_title: Comunicando a COTA ganhadora
   draw_scheduling_title: Agendamento do sorteio
   scheduling_announcement_html: |
                                   O Sorteio do(a) <b>%{raffle_name}</b>,
-                                  está agendado para <b>%{draw_date}</b> as 22h59min EST.
+                                  está agendado para <b>%{draw_date}</b> as %{draw_time}.
                                   Confira no link oficial do sorteio <a href="https://www.powerball.com">www.powerball.com</a>

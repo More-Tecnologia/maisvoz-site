@@ -2281,7 +2281,7 @@ es:
                               para %{winner_city}, %{winner_country}. Revisa el enlace oficial 
                               <a href="%{company_site}">%{company_name}</a>
   result_title: Notificación de la COTA ganadora
-  draw_scheduling: Programación de sorteos
+  draw_scheduling_title: Programación de sorteos
   scheduling_announcement_html: |
                                   La rifa de <b>%{raffle_name}</b>,
                                   está programado para el <b>%{draw_date}</b> a las 22h59min EST.

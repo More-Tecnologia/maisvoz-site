@@ -2274,7 +2274,7 @@ en:
                               para %{winner_city}, %{winner_country}.
                               Check <a href="%{company_site}">%{company_name}</a>'s official link
   result_title: Notifying the winning QUOTA
-  draw_scheduling: Scheduling the draw
+  draw_scheduling_title: Scheduling the draw
   scheduling_announcement_html: |
                                   The Raffle of <b>%{raffle_name}</b>,
                                   is scheduled for <b>%{draw_date}</b> at 22h59min EST.

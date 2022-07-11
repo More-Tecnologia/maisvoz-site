@@ -64,17 +64,15 @@
   }
 </style>
 <div class="mail-container">
-  <div class="image-container">
-  </div>
   <h1>
-    <%= t(:draw_scheduling) %> 
+    <%= t(:draw_scheduling_title) %> 
   </h1>
   <p>
     <%= t(:scheduling_announcement_html, 
           draw_date: @raffle.draw_date.strftime("%d/%m/%Y"),
           raffle_name: @raffle.product.name) %>   
   </p>    
-    <p><%= t(:draw_data) %></p>  
+  <p><%= t(:draw_data) %></p>  
   <ul class="product-info">
     <li><%= t('attributes.product') %>: <b><%= @raffle.product.name %></b></li>      
     <li>ID: <b><%= @raffle.product.hashid %></b></li>

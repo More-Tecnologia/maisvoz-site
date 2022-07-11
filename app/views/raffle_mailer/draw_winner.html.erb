@@ -197,8 +197,6 @@
   }
 </style>
 <div class="mail-container">
-  <div class="image-container">
-  </div>
   <h1>
     <%= t(:winner_title) %>   
   </h1> 
@@ -216,10 +214,10 @@
   <p><%= t(:draw_data) %></p>
    <div class="lottery-result">    
     <a class="draw-link" href="https://www.powerball.com/" target="_blank">Powerball - <%= @raffle.draw_date.strftime("%b %d, %Y") %></a>
-        <ul class="result-ticket-list">
-          <%= ApplicationController.helpers.render_lotto_list_item(@raffle) %>
-        </ul>
-        <span class="wining-ticket-number"><%= ApplicationController.helpers.format_winning_ticket(@raffle) %></span>
+    <ul class="result-ticket-list">
+      <%= ApplicationController.helpers.render_lotto_list_item(@raffle) %>
+    </ul>
+    <span class="wining-ticket-number"><%= ApplicationController.helpers.format_winning_ticket(@raffle) %></span>
   </div>  
   <ul class="product-info">
     <li><%= t('attributes.product') %>: <b><%= @raffle.product.name %></b></li>      

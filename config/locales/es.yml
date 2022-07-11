@@ -2284,5 +2284,5 @@ es:
   draw_scheduling_title: Programación de sorteos
   scheduling_announcement_html: |
                                   La rifa de <b>%{raffle_name}</b>,
-                                  está programado para el <b>%{draw_date}</b> a las %{draw_time}.
-                                  Consulta el enlace oficial del sorteo <a href="https://www.powerball.com">www.powerball.com</a> 
+                                  está programado para el <b>%{draw_date}</b> a las %{lotery_draw_time}.
+                                  Consulta el enlace oficial del sorteo <a href="%{lotery_website}">%{lotery_name}</a> 

@@ -113,7 +113,7 @@
   hr {
     color: #00de28;
     margin-bottom: 1em;
-  }  
+  }
 
   ul {
     list-style: none;
@@ -125,20 +125,20 @@
   }
 
   .result-ticket-list {
-  column-gap: 0.5em;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+    column-gap: 0.5em;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
   }
 
   .draw-link {
-  border-bottom: 1px solid transparent;
-  color: #da1734;
-  margin-bottom: 0.5em;
-  width: max-content;
+    border-bottom: 1px solid transparent;
+    color: #da1734;
+    margin-bottom: 0.5em;
+    width: max-content;
   }
 
-    .result-ticket-list li {
+  .result-ticket-list li {
     align-items: center;
     background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(176, 176, 176, 1) 100%);
     border-radius: 50%;
@@ -198,9 +198,9 @@
 </style>
 <div class="mail-container">
   <h1>
-    <%= t(:winner_title) %>   
-  </h1> 
-  <p>   
+    <%= t(:winner_title) %>
+  </h1>
+  <p>
     <%= t(:winner_announcement_html,
       raffle_winner: @raffle.winner.name, 
       raffle_name: @raffle.product.name,
@@ -208,22 +208,23 @@
       company_site: ENV["COMPANY_DOMAIN_SITE"],
       company_name: SystemConfiguration.company_name) %>
   </p>
-  <p> 
+  <p>
     <%= t(:winner_congratulations, company_name: SystemConfiguration.company_name) %>
   </p>
   <p><%= t(:draw_data) %></p>
-   <div class="lottery-result">    
+  <div class="lottery-result">
     <a class="draw-link" href="https://www.powerball.com/" target="_blank">Powerball - <%= @raffle.draw_date.strftime("%b %d, %Y") %></a>
     <ul class="result-ticket-list">
       <%= ApplicationController.helpers.render_lotto_list_item(@raffle) %>
     </ul>
     <span class="wining-ticket-number"><%= ApplicationController.helpers.format_winning_ticket(@raffle) %></span>
-  </div>  
+  </div>
   <ul class="product-info">
-    <li><%= t('attributes.product') %>: <b><%= @raffle.product.name %></b></li>      
+    <li><%= t('attributes.product') %>: <b><%= @raffle.product.name %></b></li>
     <li>ID: <b><%= @raffle.product.hashid %></b></li>
-    <li><%= t(:draw_date) %>: <b><%= @raffle.draw_date.strftime("%d/%m/%Y") %><br /></b></li>
+    <li><%= t(:draw_date) %>: <b><%= @raffle.draw_date.strftime("%d/%m/%Y") %><br />
+      </b></li>
     <li><%= t(:draw_time) %>: <b><%= ENV["LOTTERY_DRAW_TIME"] %> </b></li>
     <li><%= t(:drawn_quota) %>: <b><%= ApplicationController.helpers.raffle_ticket_number_format(@raffle.winning_ticket) %></b></li>
-  </ul> 
+  </ul>
 </div>

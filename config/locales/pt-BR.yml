@@ -2265,5 +2265,5 @@ pt-BR:
   draw_scheduling_title: Agendamento do sorteio
   scheduling_announcement_html: |
                                   O Sorteio do(a) <b>%{raffle_name}</b>,
-                                  está agendado para <b>%{draw_date}</b> as %{draw_time}.
-                                  Confira no link oficial do sorteio <a href="https://www.powerball.com">www.powerball.com</a>
+                                  está agendado para <b>%{draw_date}</b> as %{lotery_draw_time}.
+                                  Confira no link oficial do sorteio <a href="%{lotery_website}">%{lotery_name}</a>

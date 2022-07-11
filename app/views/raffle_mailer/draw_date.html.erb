@@ -71,7 +71,9 @@
     <%= t(:scheduling_announcement_html, 
           draw_date: @raffle.draw_date.strftime("%d/%m/%Y"),
           raffle_name: @raffle.product.name,
-          draw_time: ENV["LOTTERY_DRAW_TIME"]) %>   
+          lotery_draw_time: ENV["LOTTERY_DRAW_TIME"],
+          lotery_website: ENV["LOTTERY_WEBSITE"],
+          lotery_name: ENV["LOTTERY_NAME"]) %>
   </p>    
   <p><%= t(:draw_data) %></p>  
   <ul class="product-info">

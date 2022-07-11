@@ -2258,3 +2258,24 @@ en:
   this_action_is_irreversible: This action is irreversible!
   yes_save_it: Yes, save it
   your_tickets: Your tickets 
+  winner_title: Notifying the winner 
+  winner_announcement_html: |
+                              Hello %{raffle_winner}, congratulations you were the lucky winner of the <b>%{raffle_name}</b>,
+                              with the QUOTA <b>%{winning_ticket}</b>.
+                              In the near future, <a href="%{company_site}">%{company_name}</a> will contact you to
+                              schedule the delivery of your prize.
+  winner_congratulations: Congratulations and keep using %{company_name} to make your dreams come true.
+  draw_data: Draw data
+  draw_time: Draw time
+  drawn_quota: Drawn quota
+  result_announcement_html: |
+                              The happy winner of the <b>%{raffle_name}</b>, was COTA
+                              <b>%{winning_ticket}</b>,
+                              para %{winner_city}, %{winner_country}.
+                              Check <a href="%{company_site}">%{company_name}</a>'s official link
+  result_title: Notifying the winning QUOTA
+  draw_scheduling: Scheduling the draw
+  scheduling_announcement_html: |
+                                  The Raffle of <b>%{raffle_name}</b>,
+                                  is scheduled for <b>%{draw_date}</b> at 22h59min EST.
+                                  Check the official lottery link <a href="https://www.powerball.com">www.powerball.com</a>

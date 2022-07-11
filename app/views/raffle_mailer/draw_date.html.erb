@@ -4,6 +4,17 @@
     padding: 0;
   }
 
+  a {
+    color: #FFF;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  a:hover {
+    border-bottom: 1px solid #00de28;
+    color: #00de28;
+  }
+
   .mail-container {
     font-family: sans-serif;
     font-size: calc(0.6rem + 0.3vw);
@@ -43,6 +54,10 @@
     min-width: 100px;
   }
 
+  ul {
+    list-style: none;
+  }
+
   hr {
     color: #00de28;
     margin-bottom: 1em;
@@ -52,22 +67,18 @@
   <div class="image-container">
   </div>
   <h1>
-    <%= t(:draw_date)%>
-    <%= @raffle.draw_date.strftime("%d/%m/%Y") %>
+    <%= t(:draw_scheduling) %> 
   </h1>
   <p>
-    <%= t(:hello)%>, <%= @user.name %>!
-  </p>
-  <p>
-    <%= t(:order_made_message) %>
-  </p>
-  <div class="product-info">
-    <span>ID: <%= @raffle.product.hashid %></span>
-    <h4><%= @raffle.product.name %></h4>
-  </div>
-  <div class="product-image-container">
-    <%= image_tag(@raffle.path, class: 'product-image') %>
-  </div>
-  <div class="logo-container">
-  </div>
+    <%= t(:scheduling_announcement_html, 
+          draw_date: @raffle.draw_date.strftime("%d/%m/%Y"),
+          raffle_name: @raffle.product.name) %>   
+  </p>    
+    <p><%= t(:draw_data) %></p>  
+  <ul class="product-info">
+    <li><%= t('attributes.product') %>: <b><%= @raffle.product.name %></b></li>      
+    <li>ID: <b><%= @raffle.product.hashid %></b></li>
+    <li><%= t(:draw_date) %>: <b><%= @raffle.draw_date.strftime("%d/%m/%Y") %><br /></b></li>
+    <li><%= t(:draw_time) %>: <b>22h59min EST</b></li>
+  </ul> 
 </div>

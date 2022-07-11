@@ -17,7 +17,7 @@ module Backoffice
     end
     
     def raffle_ticket_number_format(ticket)
-      format("%0#{ticket.raffle.max_ticket_number.to_s.size}d", ticket.number % (ticket.raffle.max_ticket_number * 10))
+      format("%0#{(ticket.raffle.max_ticket_number.to_s.size - 1)}d", ticket.number % ((ticket.raffle.max_ticket_number - 1) * 10))
     end
 
     def raffle_ticket_status(ticket)

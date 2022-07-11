@@ -12,7 +12,7 @@ module Backoffice
       end
 
       def format_winning_ticket(raffle)
-        raffle.lotto_numbers_combination
+        raffle_ticket_number_format(raffle.winning_ticket)
               .chars
               .map { |num| "<b>#{num}</b>" }
               .join('')

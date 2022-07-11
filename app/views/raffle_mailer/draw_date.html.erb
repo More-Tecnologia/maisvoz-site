@@ -1,0 +1,85 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    border-bottom: 1px solid transparent;
+    color: #FFF;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom: 1px solid #00de28;
+    color: #00de28;
+  }
+
+  .mail-container {
+    font-family: sans-serif;
+    font-size: calc(0.6rem + 0.3vw);
+    margin: 0 auto;
+    max-width: 800px;
+    width: 80%;
+  }
+
+  h1 {
+    color: #00de28;
+    font-size: 3.3em;
+    font-weight: 800;
+    margin: 2em 0 1em 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: #888;
+    font-size: 1.4em;
+    margin: 0 0 1em 0;
+  }
+
+  h4 {
+    font-size: 1.4em;
+  }
+
+  .product-image-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .product-image {
+    max-width: 300px;
+    min-width: 100px;
+    width: 80%;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  hr {
+    color: #00de28;
+    margin-bottom: 1em;
+  }
+</style>
+<div class="mail-container">
+  <h1>
+    <%= t(:draw_scheduling_title) %> 
+  </h1>
+  <p>
+    <%= t(:scheduling_announcement_html, 
+          draw_date: @raffle.draw_date.strftime("%d/%m/%Y"),
+          raffle_name: @raffle.product.name,
+          lotery_draw_time: ENV["LOTTERY_DRAW_TIME"],
+          lotery_website: ENV["LOTTERY_WEBSITE"],
+          lotery_name: ENV["LOTTERY_NAME"]) %>
+  </p>    
+  <p><%= t(:draw_data) %></p>  
+  <ul class="product-info">
+    <li><%= t('attributes.product') %>: <b><%= @raffle.product.name %></b></li>      
+    <li>ID: <b><%= @raffle.product.hashid %></b></li>
+    <li><%= t(:draw_date) %>: <b><%= @raffle.draw_date.strftime("%d/%m/%Y") %><br /></b></li>
+    <li><%= t(:draw_time) %>: <b><%= ENV["LOTTERY_DRAW_TIME"] %> </b></li>
+  </ul> 
+</div>

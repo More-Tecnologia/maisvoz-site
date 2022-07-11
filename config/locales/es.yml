@@ -2264,3 +2264,24 @@ es:
   choose_a_date: Elige una fecha
   this_action_is_irreversible: Esta acción es irreversible!
   yes_save_it: Sí, guárdalo
+  winner_title: Notificando al ganador
+  winner_announcement_html: |
+                              Hola %{raffle_winner}, felicidades por ser el afortunado ganador de <b>%{raffle_name}</b>,
+                              con la CUOTA <b>%{winning_ticket}</b>.
+                              Pronto <a href="%{company_site}">%{company_name}</a> se comunicará con usted,
+                              para programar la entrega de tu premio.
+  winner_congratulations: Felicidades y sigue usando %{company_name} para hacer tus sueños realidad.
+  draw_data: Dibujar datos
+  draw_time: Tiempo de dibujar
+  quota_drawn: Cuota extraída
+  result_announcement_html: |
+                              El feliz ganador del <b>%{raffle_name}</b>, fue COTA
+                              <b>%{winning_ticket}</b>,
+                              para %{winner_country}. Revisa el enlace oficial 
+                              <a href="%{company_site}">%{company_name}</a>
+  result_title: Notificación de la COTA ganadora
+  draw_scheduling_title: Programación de sorteos
+  scheduling_announcement_html: |
+                                  La rifa de <b>%{raffle_name}</b>,
+                                  está programado para el <b>%{draw_date}</b> a las %{lotery_draw_time}.
+                                  Consulta el enlace oficial del sorteo <a href="%{lotery_website}">%{lotery_name}</a> 

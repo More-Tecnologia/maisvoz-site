@@ -19,7 +19,12 @@ module Raffles
     def call
       ActiveRecord::Base.transaction do
         update_raffle
+        draw_winner_mailer
       end
+    end
+
+    def draw_winner_mailer
+      RaffleMailer.draw_winner(@raffle).deliver_later
     end
 
     def update_raffle

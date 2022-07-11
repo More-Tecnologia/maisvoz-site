@@ -41,14 +41,19 @@ module Backoffice
       def draw_edit; end
 
       def set_draw_date
-        @raffle.update(valid_draw_params)
-        flash[:success] = t(:successfully_set_date)
+        if @raffle.update(valid_draw_params)
+          flash[:success] = t(:successfully_set_date)
+          ::Raffles::TicketOwnerMailerService.call(raffle: @raffle, mailer_action: :draw_date)          
+        else
+          flash[:error] = @raffle.errors.full_messages.join(', ')
+        end
         redirect_to backoffice_admin_raffles_path
       end
 
       def draw
         draw_raffle
         flash[:success] = t(:successfully_set_draw_numbers)
+        ::Raffles::TicketOwnerMailerService.call(raffle: @raffle, mailer_action: :draw_result)
         redirect_to backoffice_admin_raffles_path
       rescue StandardError => e
         flash[:error] = e.message

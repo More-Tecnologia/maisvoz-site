@@ -1,9 +1,3 @@
-<%= stylesheet_link_tag 'click-tok-theme/dashboard/banners' %>
-<%= stylesheet_link_tag 'click-tok-theme/libraries/owlcarousel/owl.carousel.min' %>
-<%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
-<%= javascript_include_tag 'click-tok-theme/libraries/owlcarousel/owl.carousel.min.js', defer: true %>
-<%= javascript_include_tag 'click-tok-theme/tasks/banners', defer: true %>
-
 <div class="owl-carousel dashboard-banner-container <%= defined?(premium) ? 'dashboard-banner-container-premium' : 'dashboard-banner-container-basic' %>">
   <% banners.shuffle.last(12).each do |banner| %>    
     <%= link_to backoffice_banner_clicks_path(banner_id: banner.id), 

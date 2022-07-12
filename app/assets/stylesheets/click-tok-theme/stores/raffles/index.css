@@ -1,3 +1,30 @@
+.link-winners {
+  align-items: center;
+  color: #24aa01;
+  display: flex;
+  font-weight: 600;
+  margin: 20px 0;  
+  width: max-content;
+}
+
+.link-winners span {
+  border-bottom: 1px solid transparent;
+}
+
+.link-winners:hover span {
+  border-color: #24aa01;
+}
+
+.link-winners i.fa-trophy {
+  color: #e7ae05;
+  margin-right: 10px;
+}
+
+.link-winners i.fa-angles-left {  
+  font-size: 0.5em;
+  margin-left: 5px;  
+}
+
 .store-raffles-container {
   align-items: baseline;
   column-gap: 10.6%;
@@ -16,9 +43,18 @@
   width: 44.7%;
 }
 
-.store-raffle-item-image {
+.store-raffle-item-image-container{
   display: block;
-  margin: 0 auto 1.4em auto;
+  margin: 0 auto 1em auto;
+}
+
+.store-raffle-item-image-container:hover{
+  opacity: .8;
+}
+
+.store-raffle-item-image {
+  display: block;  
+  margin: 0;
   max-height: 8.5em;
   max-width: 100%;
 }
@@ -30,7 +66,7 @@
 .store-raffle-item-score {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.4em;
+  margin-bottom: 1em;
 }
 
 .store-raffle-item-score li {
@@ -66,7 +102,7 @@
 }
 
 .store-raffle-item-score li:last-child b {
-  background: linear-gradient(to bottom, #00de28, #07cd2b);
+  background: linear-gradient(to bottom, #006fde, #0777cd);
   color: white;
 }
 
@@ -135,6 +171,19 @@
 .store-raffle-item-footer button:active {
   font-size: 0.65em;
   margin-right: 0.3em;
+}
+
+@media (max-width: 430px) {
+  .store-raffles-container {
+    column-gap: 6.5%;
+    font-size: calc(0.9rem + 1.4vw);
+    justify-content: center;
+  }
+  .store-raffle-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 @media (min-width: 800px) {

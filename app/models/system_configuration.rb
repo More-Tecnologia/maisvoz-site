@@ -1,6 +1,13 @@
 # frozen_string_lditeral: true
 
 class SystemConfiguration < ApplicationRecord
+  if ENV['ENABLE_ATTACHMENT']
+    has_attachment :banner_email, accept: %i[jpg png svg]
+    has_attachment :external_logo, accept: %i[jpg png svg]
+    has_attachment :logo, accept: %i[jpg png svg]
+    has_attachment :favico, accept: %i[ico]
+  end
+
   validates :company_name, presence: true
 
   scope :active, -> { where(active: true) }
@@ -22,10 +29,42 @@ class SystemConfiguration < ApplicationRecord
       false
     end
 
+    def banner_email
+      return unless table_exists?
+
+      active_config&.banner_email&.fullpath.presence || 'banners/white-label-email.png'
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
+    def base_host
+      return ENV['BASE_HOST'] unless table_exists?
+
+      active_config&.base_host
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
     def company_name
       return ENV['COMPANY_NAME'] unless table_exists?
 
-      active_config.try(:company_name).presence
+      active_config&.company_name
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
+    def external_logo
+      return unless table_exists?
+
+      active_config&.external_logo&.fullpath.presence || 'white-label-logo.png'
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
+    def favico
+      return unless table_exists?
+
+      active_config&.favico&.fullpath.presence || 'favicon-whitelabel.ico'
     rescue ActiveRecord::NoDatabaseError
       false
     end
@@ -38,24 +77,56 @@ class SystemConfiguration < ApplicationRecord
       false
     end
 
+    def raffle_license_number
+      return unless table_exists?
+
+      active_config&.raffle_license_number || ENV['RAFFLE_LICENSE_NUMBER']
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
+    def logo
+      return unless table_exists?
+
+      active_config&.logo&.fullpath.presence || 'logo-white-white-label.png'
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
+    def raffles_direct_commission_bonus
+      return unless table_exists?
+
+      active_config&.raffles_direct_commission_bonus || ENV['RAFFLE_DIRECT_COMMISSION_BONUS']
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
     def reputation?
       return ActiveModel::Type::Boolean.new.cast(ENV['REPUTATION']) unless table_exists?
 
-      active_config.reputation
+      active_config&.reputation
     rescue ActiveRecord::NoDatabaseError
       false
     end
 
     def taxable_fee
-      return (active_config.taxable_fee / 100) if table_exists? && active_config.taxable_fee.present?
+      return (active_config&.taxable_fee / 100) if table_exists? && active_config.taxable_fee.present?
 
       ENV['SYSTEM_FEE']
     rescue ActiveRecord::NoDatabaseError
       false
     end
 
+    def whitelabel?
+      return unless table_exists?
+
+      active_config.whitelabel if active_config.respond_to?(:whitelabel)
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
+
     def withdrawal_fee
-      return active_config.withdrawal_fee if table_exists? && active_config.withdrawal_fee.present?
+      return active_config&.withdrawal_fee if table_exists? && active_config.withdrawal_fee.present?
 
       ENV['WITHDRAWAL_FEE']
     rescue ActiveRecord::NoDatabaseError

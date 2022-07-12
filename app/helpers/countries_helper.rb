@@ -246,4 +246,12 @@ module CountriesHelper
      ["Zambia", "ZM"],
      ["Zimbabwe", "ZW"]]
   end
+
+  def priority_countries
+    if SystemConfiguration.whitelabel?
+      ['BR']
+    else
+      []
+    end
+  end
 end

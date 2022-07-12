@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
                          Ticket.where(user: current_user)
                                .active
                                .answered.any?
-    request.env['omniauth.origin'] || stored_location_for(resource) || backoffice_home_index_path
+    if params[:raffle].present?
+      redirect_to raffle_tickets_path(params[:raffle][:id])
+    else
+      dashboard_direction(current_user)
+    end
   end
 
   def set_locale
@@ -48,5 +52,17 @@ class ApplicationController < ActionController::Base
   def redirect_to_banners
     show_daily_task_alert
     redirect_to backoffice_banners_path
+  end
+
+  def dashboard_direction(user)
+    if user.admin?
+      backoffice_admin_dashboard_index_path
+    else
+      if SystemConfiguration.whitelabel?
+        raffles_backoffice_stores_path
+      else
+        backoffice_dashboard_index_path
+      end
+    end
   end
 end

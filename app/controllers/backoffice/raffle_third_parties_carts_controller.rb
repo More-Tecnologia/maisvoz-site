@@ -3,6 +3,8 @@
 module Backoffice
   class RaffleThirdPartiesCartsController < BackofficeController
     def show
+      redirect root_path unless ApplicationController.helpers.package_buyer?(current_user)
+
       @order = Order.joins(:products)
                     .pending_payment
                     .where.not(user: current_user)

@@ -18,7 +18,11 @@
             <%= banner_items.title %>
           </h4>
           <span class="store-banner-description">
+          <% if banner_item.raffle.present? %>
+            <%= banner_item.raffle.short_description %>
+          <% else %>
             <%= banner_items.description %>
+          <% end %>
           </span>
           <div class="store-banner-footer">
             <p class="store-banner-footer-box">

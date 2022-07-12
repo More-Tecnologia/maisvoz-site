@@ -24,7 +24,13 @@ Rails.application.routes.draw do
       end
 
       #Raffles Admin
-      resources :raffles, except: %i[show destroy]
+      resources :raffles, except: %i[show destroy] do
+        member do
+          get :draw_edit
+          post :draw
+          post :set_draw_date
+        end
+      end
 
       # Shopping Admin
       resources :careers, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -155,6 +161,7 @@ Rails.application.routes.draw do
     resource :cart, only: %i[show create]
     resource :checkout, only: :update
     resources :order_items, only: [:create, :update, :destroy]
+    resource :pagstar_pix_notifications, only: [:create]
     resources :payment_transactions, only: [:show]
     resource :payment_block_checkout, only: [:new]
     resource :payment_block_notification, only: [:create]
@@ -237,7 +244,11 @@ Rails.application.routes.draw do
 
     resource :raffles_checkout, only: :create
     resource :raffles_carts, only: %i[show destroy]
-    resources :raffles_tickets, only: %i[index show create]
+    resources :raffles_tickets, only: %i[index show create] do
+      member do 
+        get :tickets
+      end
+    end
     resource :raffle_third_parties_checkout, only: :create
     resource :raffle_third_parties_carts, only: :show
   end
@@ -271,6 +282,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :sessions, only: :create
+  resources :register, only: :create
+
   devise_for(:users,
              controllers: {
               sessions: 'users/sessions',
@@ -282,11 +296,19 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'backoffice/home#index'
+      if SystemConfiguration.whitelabel?
+        root 'backoffice/stores#raffles'
+      else
+        root 'backoffice/home#index'
+      end
     end
 
     unauthenticated do
-      root 'users/sessions#new'
+      if SystemConfiguration.whitelabel?
+        root 'backoffice/stores#raffles'
+      else
+        root 'backoffice/products#index'
+      end
     end
   end
 end

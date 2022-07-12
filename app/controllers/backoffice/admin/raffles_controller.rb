@@ -3,7 +3,7 @@
 module Backoffice
   module Admin
     class RafflesController < AdminController
-      before_action :ensure_raffle, only: %i[edit update]
+      before_action :ensure_raffle, only: %i[edit update draw_edit draw set_draw_date]
 
       def index
         @q = Raffle.includes(:product)
@@ -38,11 +38,37 @@ module Backoffice
         render :edit
       end
 
+      def draw_edit; end
+
+      def set_draw_date
+        if @raffle.update(valid_draw_params)
+          flash[:success] = t(:successfully_set_date)
+          ::Raffles::TicketOwnerMailerService.call(raffle: @raffle, mailer_action: :draw_date)          
+        else
+          flash[:error] = @raffle.errors.full_messages.join(', ')
+        end
+        redirect_to backoffice_admin_raffles_path
+      end
+
+      def draw
+        draw_raffle
+        flash[:success] = t(:successfully_set_draw_numbers)
+        ::Raffles::TicketOwnerMailerService.call(raffle: @raffle, mailer_action: :draw_result)
+        redirect_to backoffice_admin_raffles_path
+      rescue StandardError => e
+        flash[:error] = e.message
+      end
+
       private
 
       def build_raffle
-        Raffles::CreateService.call(raffle_params: valid_raffle_params,
+        ::Raffles::CreateService.call(raffle_params: valid_raffle_params,
                                     product_params: valid_product_params)
+      end
+
+      def draw_raffle
+        ::Raffles::DrawService.call(raffle: @raffle,
+                                    raffle_params: { lotto_numbers: params[:raffle][:lotto_numbers].split(',') })
       end
 
       def ensure_raffle
@@ -50,9 +76,15 @@ module Backoffice
       end
 
       def update_raffle
-        Raffles::UpdateService.call(raffle: @raffle,
+        ::Raffles::UpdateService.call(raffle: @raffle,
                                     raffle_params: valid_raffle_params,
                                     product_params: valid_product_params)
+      end
+
+      def valid_draw_params
+        params.require(:raffle)
+              .permit(:draw_date)
+              .merge(status: :awaiting_draw)
       end
 
       def valid_product_params
@@ -63,7 +95,8 @@ module Backoffice
 
       def valid_raffle_params
         params.require(:raffle)
-              .permit(:title, :max_ticket_number, :kind, :thumb)
+              .permit(:title, :max_ticket_number, :thumb, images: [])
+              .merge(kind: :flex)
       end
     end
   end

@@ -1,11 +1,19 @@
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/index' %>
+<%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
 <%= render 'menu' %>
-<%= render 'banner',  banner: @banner %>                      
+<%= render 'banner',  banner: @banner %>    
+<%= link_to winners_backoffice_raffles_path, class: 'link-winners' do %>
+<i class="fa-solid fa-trophy"></i>
+<span><%= t(:see_last_winners) %></span>
+<i class="fa-solid fa-angles-left"></i>
+<% end %>
 <section class="store-content store-raffles-container">
   <% @packages.each do |package| %>
     <div class="store-raffle-item">
-      <%= image_tag(package.raffle.path, class: 'store-raffle-item-image') %>
+      <%= link_to backoffice_raffles_ticket_path(package.raffle), class: 'store-raffle-item-image-container' do %>
+        <%= image_tag(package.raffle.path, class: 'store-raffle-item-image') %>
+      <% end %>
       <div class="store-raffle-item-info">
         <ul class="store-raffle-item-score">
           <li>

@@ -2,28 +2,156 @@
   <div class="text-left m-t-30">
     <table class="table table-striped">
       <tr>
-        <td class="table-valign"><strong class='cell'><%= f.label :company_name %></strong></td>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:banner_email) %></strong></td>
+        <td><%= f.attachinary_file_field :banner_email, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:external_logo) %></strong></td>
+        <td><%= f.attachinary_file_field :external_logo, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:logo) %></strong></td>
+        <td><%= f.attachinary_file_field :logo, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:favico) %></strong></td>
+        <td><%= f.attachinary_file_field :favico, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:base_host) %></strong></td>
+        <td><%= f.text_field :base_host, class: 'form-control', placeholder: t(:base_host) %></td>
+      </tr>
+            <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:authorization_key) %></strong></td>
+        <td><%= f.text_field :authorization_key, class: 'form-control', placeholder: t(:authorization_key) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:company_name) %></strong></td>
         <td><%= f.text_field :company_name, class: 'form-control', placeholder: t(:company_name) %></td>
       </tr>
       <tr>
-        <td class="table-valign"><strong class='cell'> <%= f.label :withdrawal_fee %></strong></td>
-        <td><%= f.number_field :withdrawal_fee, class: 'form-control' %></td>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:sender_email) %></strong></td>
+        <td><%= f.text_field :sender_email, class: 'form-control', placeholder: t(:sender_email) %></td>
       </tr>
       <tr>
-        <td class="table-valign"><strong class='cell'> <%= f.label :taxable_fee %></strong></td>
-        <td><%= f.number_field :taxable_fee, class: 'form-control' %></td>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:cloudinary_url) %></strong></td>
+        <td><%= f.text_field :cloudinary_url, class: 'form-control', placeholder: t(:cloudinary_url) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:company_domain_site) %></strong></td>
+        <td><%= f.text_field :company_domain_site, class: 'form-control', placeholder: t(:company_domain_site) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:contact_email) %></strong></td>
+        <td><%= f.text_field :contact_email, class: 'form-control', placeholder: t(:contact_email) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:current_currency) %></strong></td>
+        <td><%= f.text_field :current_currency, class: 'form-control', placeholder: t(:current_currency) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:current_digital_currency) %></strong></td>
+        <td><%= f.text_field :current_digital_currency, class: 'form-control', placeholder: t(:current_digital_currency) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:financial_email) %></strong></td>
+        <td><%= f.text_field :financial_email, class: 'form-control', placeholder: t(:financial_email) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:gateway_wallet_url) %></strong></td>
+        <td><%= f.text_field :gateway_wallet_url, class: 'form-control', placeholder: t(:gateway_wallet_url) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:pagstar_access_key) %></strong></td>
+        <td><%= f.text_field :pagstar_access_key, class: 'form-control', placeholder: t(:pagstar_access_key) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:pagstar_api_url) %></strong></td>
+        <td><%= f.text_field :pagstar_api_url, class: 'form-control', placeholder: t(:pagstar_api_url) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:pagstar_callback) %></strong></td>
+        <td><%= f.text_field :pagstar_callback, class: 'form-control', placeholder: t(:pagstar_callback) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:pagstar_login) %></strong></td>
+        <td><%= f.text_field :pagstar_login, class: 'form-control', placeholder: t(:pagstar_login) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:pagstar_tenant_id) %></strong></td>
+        <td><%= f.text_field :pagstar_tenant_id, class: 'form-control', placeholder: t(:pagstar_tenant_id) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:sender_email) %></strong></td>
+        <td><%= f.text_field :sender_email, class: 'form-control', placeholder: t(:sender_email) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:payment_block_authorization_key) %></strong></td>
+        <td><%= f.text_field :payment_block_authorization_key, class: 'form-control', placeholder: t(:payment_block_authorization_key) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:payment_block_checkout_url) %></strong></td>
+        <td><%= f.text_field :payment_block_checkout_url, class: 'form-control', placeholder: t(:payment_block_checkout_url) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:morenwm_customer_admin) %></strong></td>
+        <td><%= f.text_field :morenwm_customer_admin, class: 'form-control', placeholder: t(:morenwm_customer_admin) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:morenwm_customer_username) %></strong></td>
+        <td><%= f.text_field :morenwm_customer_username, class: 'form-control', placeholder: t(:morenwm_customer_username) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'><%= f.label t(:morenwm_username) %></strong></td>
+        <td><%= f.text_field :morenwm_username, class: 'form-control', placeholder: t(:morenwm_username) %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:raffle_license_number) %></strong></td>
+        <td><%= f.text_field :raffle_license_number, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:raffles_direct_commission_bonus) %></strong></td>
+        <td><%= f.text_field :raffles_direct_commission_bonus, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:withdrawal_fee) %></strong></td>
+        <td><%= f.number_field :withdrawal_fee, class: 'form-control', step: :any %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:taxable_fee) %></strong></td>
+        <td><%= f.number_field :taxable_fee, class: 'form-control', step: :any %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:max_ticket_per_order) %></strong></td>
+        <td><%= f.number_field :max_ticket_per_order, class: 'form-control', step: 1 %></td>
+      </tr>
+      <tr>
+        <td class="table-valign"><strong class='cell'> <%= f.label t(:withdraw_minimum_value) %></strong></td>
+        <td><%= f.number_field :withdraw_minimum_value, class: 'form-control', step: 1 %></td>
       </tr>
       <tr>
         <td style="vertical-align: middle; text-align: center;">
-          <%= f.label :reputation %>
+          <%= f.label t(:reputation) %>
         </td>
         <td> <%= f.check_box :reputation %></td>
       </tr>
       <tr>
         <td style="vertical-align: middle; text-align: center;">
-          <%= f.label :active %>
+          <%= f.label t(:active) %>
         </td>
         <td> <%= f.check_box :active %></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle; text-align: center;">
+          <%= f.label t(:whitelabel) %>
+        </td>
+        <td> <%= f.check_box :whitelabel %></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle; text-align: center;">
+          <%= f.label t(:uptime) %>
+        </td>
+        <td> <%= f.check_box :uptime %></td>
       </tr>
     </table>
     <%= f.submit class: 'btn btn-primary pull-right' %>

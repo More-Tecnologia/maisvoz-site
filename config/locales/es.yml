@@ -465,6 +465,7 @@ es:
       show:
         title: Pago
         transfer_note_html: "Transferir <strong>%{value}</strong> a la siguiente dirección"
+        transfer_note_pix_html: "Transferir <strong>%{value}</strong> a la siguiente pix"
         transfer_rate_warning_html: 'Para agilizar la identificación del pago, recomendamos utilizar el <strong>Express Rate<strong>'
     order_items:
       update:
@@ -687,6 +688,7 @@ es:
             Complete el pago y espere a que se procese.
   devise_mailer:
     reset_password_instructions:
+      title: Instrucciones para restablecer la contraseña
       order_link: Ha solicitado un enlace para cambiar su contraseña. Puedes cambiarlo a través del siguiente enlace.
       password_reset: Cambiar mi contraseña
       order_alert: Si no lo solicitó, ignore este correo electrónico.<br>
@@ -695,8 +697,6 @@ es:
       title: Instrucciones de confirmación
     unlock_instructions:
       title: Instrucciones de desbloqueo
-    reset_password_instructions:
-      title: Instrucciones para restablecer la contraseña
     email_change:
       title: Cambio de correo electrónico
   date:
@@ -1673,7 +1673,7 @@ es:
   available_dollar: 'Disponible: $'
   n_of_campaign: Nº de campañas
   payment_method: Método de pago
-  pix: PRÓXIMAMENTE
+  pix: Pix
   filter: Filtrar
   new_phone: Teléfono nuevo
   withdrawal_value: Ingrese el monto del retiro
@@ -1718,8 +1718,9 @@ es:
   master_leader: Líder maestro
   congratulations: Felicidades!!
   account_ready_text: Tu cuenta está lista para ganar dólares todos los días.
+  account_ready_text_white_label: Tu cuenta está lista para jugar todos los días.
   almost_done: Casi termino!!
-  account_inactive_text: Activa tu cuenta para empezar a ganar dinero con ADmoney
+  account_inactive_text: Activa tu cuenta para empezar a ganar con %{company_name}
   active_account: Cuenta activa
   validated_account: Cuenta validada
   tasks_of_the_day: Tareas del dia
@@ -1731,8 +1732,8 @@ es:
   withdrawals_home_card_title: Realice retiros en BTC siempre que alcance su saldo disponible.
   you_can_accelerate_your_earnings: Puedes acelerar tus ganancias
   indicating_company_name_to_your_friends: Indicando %{company_name} a tus amigos.
-  earn_card_title: 'Gana un 10% en tus indicaciones directas y un 15%
-                    en sus ganancias de las tareas.'
+  earn_card_title: 'Gane un 10% en boletos de rifa comprados por su nominado y un 10% en el monto del premio que ganó.'
+  earn_card_title_white_label: 'Gane un 10% en boletos de rifa comprados por su nominado y un 10% en el monto del premio que ganó.'
   copy_indication_card_text: 'Copie el enlace de su indicación en el botón lateral
                               y envíelo a tantos amigos como sea posible.'
   support_card_title: 'Si necesitas algo<br>
@@ -1786,8 +1787,6 @@ es:
   approved_balance: Saldo aprobado
   processing: 'Procesando'
   export_only_wallets: Exportar solo billeteras
-
-
   total_requests: Solicitudes totales
   open_requests: Solicitudes abiertas
   sales_amount: Cantidad de ventas
@@ -1925,3 +1924,364 @@ es:
   top_deal: Mejor oferta
   last_numbers: Últimos números
   free: Gratis
+  raffles_agreement_contract_html: | 
+                                    <p>
+                                      %{company_name} es una plataforma RIFAS totalmente digital, con sorteos diarios donde puedes
+                                      Puedes comprar el ticket del producto que quieras.
+                                    </p>
+                                    <p>
+                                      %{company_name} es una empresa con sede administrativa en Uruguay Licencia
+                                      Sorteo Internacional N° %{raffle_license_number}.
+                                    </p>
+                                    <p>
+                                      Compra tus acciones en %{company_name} RIFA y haz tu sueño realidad con las diversas
+                                      Productos disponibles para sorteo.
+                                    </p>
+                                    <p>
+                                      Cada número seleccionado y pagado dentro de la RIFA ahora se llama
+                                      <b>CUOTA</b>.
+                                    </p>
+                                      Los <b>RIFAS</b> se generan según las siguientes cuotas:
+                                    <ol>
+                                      <li>100 cuotas - numeradas del 00 al 99</li>
+                                      <li>1000 acciones - numeradas del 000 al 999</li>
+                                      <li>10.000 acciones - numeradas del 0.000 al 9.999</li>
+                                      <li>100.000 acciones - numeradas del 00.000 al 99.999</li>
+                                    </ol>
+                                    <p>
+                                      ELECCIÓN DE NÚMEROS Y PAGO<br />
+                                      Después de elegir los números de su preferencia, realice el pago con tarjeta de crédito.
+                                      crédito o Pix, una vez confirmado el pago, sus cuotas serán
+                                      confirmado, ahora solo queda esperar el cierre de la RIFA para definir la fecha
+                                      del sorteo y mucha suerte.
+                                    </p>
+                                    <p>
+                                      EL SORTEO<br />
+                                      Los sorteos de extracciones los realiza el certamen QUINA, uno de los
+                                      Loterías Caixa Econômica Federal. RIFA estará disponible para rifa
+                                      cada vez que tengas el 100% de tus cuotas vendidas. El sistema automáticamente
+                                      cierra la RIFA envía un correo electrónico a cada participante con la fecha y hora de la
+                                      sorteo de premios.
+                                    </p>
+                                    <p>
+                                      QUINA realiza sorteos de extracciones, seis días a la semana, de lunes a
+                                      sábado, a excepción de los domingos. Si hay alguna festividad importante en
+                                      fecha del sorteo, el mismo se realiza al día siguiente, a excepción de
+                                      Los domingos, si el día festivo cae en sábado, el sorteo se realizará el
+                                      lunes siguiente.
+                                    </p>
+                                    <p>
+                                      El sorteo se podrá seguir a través de la página web:
+                                      https://loterias.caixa.gov.br/Paginas/Quina.aspx
+                                    </p>
+                                    <p>¿CÓMO SE REALIZA EL SORTEO DE LA RIFA POR QUINA?</p>
+                                    <p>
+                                      En QUINA los sorteos van desde diez 01 hasta 80, el sorteo de RIFA en este caso es
+                                      se realiza seleccionando la segunda cifra de las diez extraídas siempre de la
+                                      de izquierda a derecha de la siguiente manera:
+                                    </p>
+                                    RIFAS con 100 quotas<br />
+                                    <img class="raffles-preview" src="%{img1_path}" />
+                                    <p>
+                                      Mirando de izquierda a derecha el segundo dígito de los dos primeros
+                                      decenas se genera a diez 78, por lo que en este ejemplo la cuota extraída fue
+                                      numero 78
+                                    </p>
+                                    RIFAS con 1.000 quotas<br />
+                                    <img class="raffles-preview" src="%{img2_path}" />
+                                    <p>
+                                      Mirando de izquierda a derecha el segundo dígito de los tres primeros
+                                      decenas se genera una centena 783, por lo que en este ejemplo la cuota extraída fue
+                                      número 783.
+                                    </p>
+                                    Usando 10,000 cuotas<br />
+                                    <img class="raffles-preview" src="%{img3_path}" />
+                                    <p>
+                                      Mirando de izquierda a derecha el segundo dígito de los cuatro primeros
+                                      decenas se genera a 7.834 mil, por lo que en este ejemplo las probabilidades sorteadas fueron
+                                      número 7.834.
+                                    </p>
+                                    RIFAS con 100.000 quotas<br />
+                                    <img class="raffles-preview" src="%{img4_path}" />
+                                    <p>
+                                      Mirando de izquierda a derecha se genera el segundo dígito de las decenas
+                                      los diez mil 78.345, por lo que en este ejemplo la cuota sorteada fue el número
+                                      78,345.
+                                    </p>
+                                    <p>
+                                      NÚMEROS RESERVADOS
+                                    </p>
+                                    <p>
+                                      Los números RESERVADOS son todos los que están en color amarillo en la pantalla de números
+                                      del sorteo Estos números no están disponibles para la compra por un determinado
+                                      tiempo, este tiempo varía según el método de pago del pedido
+                                      seleccionado por el participante.
+                                    </p>
+                                    <p>
+                                      Modalidade de pagamento PIX: o participante ao escolher essa modalidade de 
+                                      pagamento para seu pedido, fica com os números selecionados em RESERVADO no 
+                                      período de uma hora. Caso o pagamento do pedido não seja executado nesse tempo, os 
+                                      números selecionados para o pedido, voltaram para DISPONÍVEL, podendo assim 
+                                      serem selecionados novamente. Em qualquer momento desse tempo em que o 
+                                      participante executar o pagamento e o mesmo, for devidamente confirmado, os números
+                                      selecionados para o pedido passam de RESERVADO para COMPRADO e o 
+                                      participante recebe um e-mail com o código do pedido, e os números que foram 
+                                      selecionados.
+                                    </p>
+                                    <p>
+                                      Forma de pago PIX: el participante, al elegir esta forma de pago,
+                                      pago de su pedido, mantenga los números seleccionados en RESERVADO el
+                                      período de una hora. Si el pago de la orden no se ejecuta dentro de ese tiempo, el
+                                      números seleccionados para el pedido, devueltos a DISPONIBLE, pudiendo así
+                                      ser seleccionado de nuevo. En cualquier momento durante ese tiempo cuando el
+                                      participante ejecuta el pago y el mismo, es debidamente confirmado, los números
+                                      seleccionados para el pedido van de RESERVADO a COMPRADO y el
+                                      participante recibe un correo electrónico con el código de pedido y los números que fueron
+                                      seleccionado.
+                                    </p>
+                                    <p>
+                                      NÚMEROS COMPRADOS
+                                    </p>
+                                    <p>
+                                      Los números COMPRADOS son todos aquellos en color azul en la pantalla de números del
+                                      sorteo de premios. Estos números se consideran CUOTAS y se encuentran en un pedido
+                                      adquirida por un participante.
+                                    </p>
+                                    <p>
+                                      RETIRO Y DEVOLUCIÓN DE VALORES<br />
+                                      Después de adquirir las acciones, el partícipe ya no podrá retirar ni
+                                      solicitar un reembolso. En el momento de la compra en la pantalla de pago hay
+                                      su pie de página la información de no devolución de valores.
+                                    </p>
+                                    <p>
+                                      DESCLASIFICACIÓN<br />
+                                      Este sorteo NO puede ser vendido (comprado o vendido) por menores de edad
+                                      18 años y/o incapacitado legalmente.
+                                    </p>
+                                    <p>
+                                      Os Participantes poderão ser desclassificados automaticamente desta RIFA em
+                                      caso de suspeita justificada de fraude ou fraude comprovada, podendo ainda
+                                      responder nas esferas penal e cível. Haverá a desclassificação dos
+                                      participantes que não atenderem a quaisquer dos requisitos, termos e condições
+                                      previstos neste Regulamento, como, por exemplo, a prestação de informações
+                                      inverídicas, incorretas, incompletas ou equivocadas.
+                                    </p>
+  raffles_agreement_contract_admoney_html: | 
+                                            <p>
+                                              %{company_name} tiene en su plataforma, una ficha de sorteos, totalmente 
+                                              digital, con varios productos. 
+                                            </p>
+                                            <p>
+                                              La plataforma %{company_name} cuenta con sede administrativa en Uruguay y 
+                                              Licencia de Sorteo Internacional en Costa Rica con el número %{raffle_license_number}.
+                                            </p>
+                                            <p>
+                                              Cada número seleccionado y pagado en %{company_name} se llama <b>COTA</b>.
+                                            </p>
+                                            <p>
+                                              Consigue ya tus participaciones en los distintos premios %{company_name}y haz realidad 
+                                              tus sueños con los distintos productos disponibles en la plataforma.
+                                            </p>
+                                            Los sorteos se generan de acuerdo con las siguientes probabilidades:
+                                            <ol>
+                                              <li>100 acciones - numeradas del 00 al 99</li>
+                                              <li>1.000 acciones - numeradas del 000 al 999</li>
+                                              <li>10.000 acciones - numeradas del 0000 al 9.999</li>
+                                              <li>100.000 acciones - numeradas del 00000 al 99.999</li>
+                                            </ol><br />
+                                            <p>
+                                              ELECCIÓN DE NÚMEROS Y PAGO<br />
+                                              Luego de elegir los números de tu preferencia, realiza el pago con tu crédito, en cuanto 
+                                              se confirme el pago, tus cupos estarán disponibles para participar en el sorteo. Ahora 
+                                              solo queda esperar a la venta de todas las acciones para definir la fecha del 
+                                              sorteo y mucha suerte.
+                                            </p>                                    
+                                            LA RIFA<br />
+                                            Los sorteos los lleva a cabo el concurso American PowerBall, una de las loterías más grandes 
+                                            y respetadas del mundo, con sorteos todos los lunes, miércoles y sábados en USA, a las 22:59 
+                                            (hora local, EDT) que, debido a la diferencia horaria, es equivalente a:<br />                                 
+                                            <ol>
+                                              <li>21:59 – Colombia, Perú, Ecuador, México.</li>
+                                              <li>22:59 – Paraguay, Chile, Venezuela, Bolivia.</li>
+                                              <li>23:59 – Uruguay, Argentina, Brasil.</li>
+                                              <li>04:59 – África</li>
+                                            </ol>
+                                            <p>
+                                              El producto estará disponible para sorteo siempre que se venda el 100% de sus cuotas. 
+                                              El sistema genera automáticamente el concurso el cual será extraído y envía un correo 
+                                              electrónico a cada participante con la información del concurso. 
+                                            </p>
+                                            <p>
+                                              El sorteo se podrá seguir a través de la página web: https://www.powerball.com/
+                                            </p>
+                                            <p>¿CÓMO SE REALIZA EL SORTEO DE LA RIFA POR POWERBALL?</p>
+                                            <p>
+                                              En POWERBALL los sorteos varían desde diez 01 hasta 69, el sorteo en este caso se realiza 
+                                              seleccionando el segundo dígito de los diez sorteados siempre de izquierda a derecha 
+                                              de la siguiente manera:
+                                            </p>
+                                            Sorteo con 100 participaciones<br />
+                                            <img class="raffles-preview" src="%{img1_path}" />
+                                            <p>
+                                              Mirando de izquierda a derecha, el segundo dígito de las dos primeras decenas genera 
+                                              la decena 78, por lo que en este ejemplo el número extraído fue 78.
+                                            </p>
+                                            Sorteo con 1.000 acciones<br />
+                                            <img class="raffles-preview" src="%{img2_path}" />
+                                            <p>
+                                              Mirando de izquierda a derecha, el segundo dígito de las tres primeras decenas genera 
+                                              la centena 783, por lo que en este ejemplo el número extraído fue 783. 
+                                            </p>
+                                            Sorteo con 10.000 acciones<br />
+                                            <img class="raffles-preview" src="%{img3_path}" />
+                                            <p>
+                                              Mirando de izquierda a derecha, el segundo dígito de las primeras cuatro decenas genera 
+                                              el mil 7.834, por lo que en este ejemplo las probabilidades sorteadas fueron 7.834.
+                                            </p>
+                                            Sorteo con 100.000 acciones<br />
+                                            <img class="raffles-preview" src="%{img4_path}" />
+                                            <p>
+                                              Mirando de izquierda a derecha, el segundo dígito de las decenas genera las decenas de 
+                                              mil 78.345, por lo que en este ejemplo la cuota extraída fue el número 78.345.
+                                            </p>
+                                            <p>
+                                              NÚMEROS DISPONIBLES
+                                            </p>
+                                            <p>
+                                              Los números disponibles son todos los que están en color blanco en la pantalla de números 
+                                              del sorteo. Estos números están disponibles para reserva y compra.
+                                            </p>
+                                            <p>
+                                              NÚMEROS RESERVADOS
+                                            </p>
+                                            <p>
+                                              Los números RESERVADOS son todos los que están en color amarillo en la pantalla de números 
+                                              del sorteo. Estos números no están disponibles para la compra por un tiempo determinado, este 
+                                              tiempo varía según el método de pago del pedido seleccionado por el participante.
+                                            </p>
+                                            <p>
+                                              NÚMEROS COMPRADOS
+                                            </p>
+                                            <p>
+                                              Los números COMPRADOS son todos los que aparecen en color azul en la pantalla de números del 
+                                              sorteo. Estos números se consideran CUOTAS y se encuentran en un pedido comprado por un participante.
+                                            </p>
+                                            <p>
+                                              DESCLASIFICACIÓN
+                                            </p>
+                                            <p>
+                                              Las cuotas NO pueden ser negociadas (compradas o vendidas) por personas menores de 18 años o incapacitadas 
+                                              legalmente. Los participantes podrán ser automáticamente excluidos del sorteo en caso de 
+                                              sospecha justificada de fraude o fraude probado, pudiendo responder también en los ámbitos 
+                                              penal y civil. Los participantes que no cumplan con alguno de los requisitos, términos y condiciones 
+                                              establecidos en este Reglamento serán descalificados, como por ejemplo, proporcionando información 
+                                              falsa, incorrecta, incompleta o engañosa.
+                                            </p>                                    
+  draw_regulation: Regulación
+  read_more: Lee mas
+  available: Disponible
+  reserved: Reservada
+  purchased: Comprado
+  selected_numbers: Números seleccionados
+  clear: Eliminar
+  choose_one_number: Elige un número
+  random: Aleatorio
+  number: Número
+  numbers: Números
+  add: Agregar
+  go_to_payment: ir al pago
+  document_id: Identidad
+  id_or_name_blank: El nombre o identidad está en blanco
+  your_tickets: Tus entradas
+  hello: Hola
+  order_made_message: A adelante se encuentran los números de sus boletos, debe pagar para garantizar los números.
+  order_paid_message: A adelante se encuentran los números de sus boletos, échales un vistazo a continuación. Ahora solo espera el día del sorteo.
+  my_tickets: Mis entradas
+  already_have_account: ¿Ya tienes una cuenta?
+  create_your_account: ¡Crea tu cuenta ahora mismo!
+  wrong_user_or_password: El nombre de usuario y/o la contraseña son incorrectos
+  payment_method_blank: Seleccione un método de pago para continuar
+  home: "Home"
+  premium_account: "Cuenta privilegiada"
+  raffle_id: ID de la rifa
+  ticket_number: Numero de ticket
+  awaiting_draw: Sorteo pendiente
+  not_awarded: No adjudicado
+  awarded: Galardonado
+  draw_date: Fecha del sorteo
+  raffle_name: Nombre de la rifa
+  raffle_status: Estado de la rifa
+  my_numbers: Mis numeros
+  raffles_direct_commission_bonus: Bonos de comisión de sorteo directo
+  success_create_configuration: Configuración creada con éxito
+  success_update_configuration: Configuración actualizada exitosamente
+  success_inactivate_configuration: Configuración deshabilitada con éxito
+  banner_email: Banner de correo electrónico
+  external_logo: Logotipo externo
+  logo: Logo
+  base_host: Base host
+  raffle_license_number: Número de licencia de la rifa
+  raffles_direct_commission_bonus: Porcentaje de comisión de sorteo directo
+  reputation: Reputación
+  taxable_fee: Tarifa del sistema
+  whitelabel: Whitelabel
+  favico: Favico
+  authorization_key: Clave de autorización del sistema
+  cloudinary_url: URL de la cloudinary
+  company_domain_site: Página web de la compañía
+  contact_email: Email de contato
+  current_currency: Moneda actual
+  current_digital_currency: Criptomoneda actual
+  financial_email: Correo electrónico financiero
+  gateway_wallet_url: URL de notificación de puerta de enlace
+  pagstar_access_key: Clave de acceso a Pagstar
+  pagstar_api_url: URL de la API de Pagstar
+  pagstar_callback: URL de notificación de Pagstar
+  pagstar_login: Login de la Pagstar
+  pagstar_tenant_id: Tenant ID de la Pagstar
+  payment_block_authorization_key: Clave de acceso Gateway Plisio
+  payment_block_checkout_url: URL de puerta de enlace de Plisio
+  max_ticket_per_order: Número máximo de entradas por pedido
+  morenwm_customer_admin: Nombre de usuario del sistema
+  morenwm_customer_username: Nombre de usuario del administrador
+  morenwm_username: Nombre de usuario principal
+  sender_email: Email del Envío
+  uptime: Sistema activo
+  withdraw_minimum_value: Cantidad mínima de retiro
+  earnings_per_campaign: Ganancias por campaña (Céntimos)
+  acquired_shares: Ha comprado %{quantity} cupo(s) de rifa
+  loading_message: Cargando...
+  gallery: Galería
+  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: Ya se ha alcanzado el número máximo actual de boletos comprados con un saldo ADCASH para el sorteo de %{raffle}
+  amount_of_tickets_by_promotional_payment_left_html: El valor de los boletos restantes para el sorteo de %{raffle} es solo %{ticket_values}
+  promotional_balance: Saldo ADCASH
+  doesnt_have_enough_promotional_balance: "No tengo suficiente saldo ADCASH"
+  winners: Ganadores
+  see_last_winners: Ver los últimos ganadores
+  successfully_set_date: Establecer fecha con éxito
+  successfully_set_draw_numbers: Establecer correctamente los números sorteados
+  add_lottery_numbers: Añadir números de lotería
+  choose_a_date: Elige una fecha
+  this_action_is_irreversible: Esta acción es irreversible!
+  yes_save_it: Sí, guárdalo
+  winner_title: Notificando al ganador
+  winner_announcement_html: |
+                              Hola %{raffle_winner}, felicidades por ser el afortunado ganador de <b>%{raffle_name}</b>,
+                              con la CUOTA <b>%{winning_ticket}</b>.
+                              Pronto <a href="%{company_site}">%{company_name}</a> se comunicará con usted,
+                              para programar la entrega de tu premio.
+  winner_congratulations: Felicidades y sigue usando %{company_name} para hacer tus sueños realidad.
+  draw_data: Dibujar datos
+  draw_time: Tiempo de dibujar
+  quota_drawn: Cuota extraída
+  result_announcement_html: |
+                              El feliz ganador del <b>%{raffle_name}</b>, fue COTA
+                              <b>%{winning_ticket}</b>,
+                              para %{winner_country}. Revisa el enlace oficial 
+                              <a href="%{company_site}">%{company_name}</a>
+  result_title: Notificación de la COTA ganadora
+  draw_scheduling_title: Programación de sorteos
+  scheduling_announcement_html: |
+                                  La rifa de <b>%{raffle_name}</b>,
+                                  está programado para el <b>%{draw_date}</b> a las %{lotery_draw_time}.
+                                  Consulta el enlace oficial del sorteo <a href="%{lotery_website}">%{lotery_name}</a> 

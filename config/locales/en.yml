@@ -465,6 +465,7 @@ en:
       show:
         title: Payment
         transfer_note_html: "Transfer <strong>%{value}</strong> to the address below"
+        transfer_note_pix_html: "Transfer <strong>%{value}</strong> to the pix below"
         transfer_rate_warning_html: 'To speed up payment identification, we recommend using the <strong>Express Rate<strong>'
     order_items:
       update:
@@ -687,6 +688,7 @@ en:
             Complete payment and wait for processing.
   devise_mailer:
     reset_password_instructions:
+      title: Reset password instructions
       order_link: You requested a link to change your password. You can change it via the link below.
       password_reset: Change my password
       order_alert: If you did not request it, please ignore this email.<br>
@@ -695,8 +697,6 @@ en:
       title: Confirmation Instructions
     unlock_instructions:
       title: Unlock Instructions
-    reset_password_instructions:
-      title: Reset password instructions
     email_change:
       title: Email change
   date:
@@ -826,6 +826,8 @@ en:
       coinpayments: 'Error on create transaction: %{error}.'
       payment_gateway_transaction: 'Error on create payment transaction: %{error}.'
       duplicated_free_product: FREE product already purchased
+      pagstar:
+        token: 'The following errors were encountered when requesting the connection: %{error}'
     financial: Financial
     financial_entries: Financial History
     manage_withdrawals: Manage Withdraws
@@ -1673,7 +1675,7 @@ en:
   available_dollar: 'Available: $'
   n_of_campaign: Nº of campaigns
   payment_method: Payment method
-  pix: COMING SOON
+  pix: Pix
   filter: Filter
   new_phone: New phone
   withdrawal_value: Enter the withdraw amount
@@ -1717,9 +1719,9 @@ en:
   country: Country
   master_leader: Master Leader
   congratulations: Congratulations!!
-  account_ready_text: Your account is ready to earn dollars every day.
+  account_ready_text: Your account is ready to play every day.
   almost_done: Almost done!!
-  account_inactive_text: Activate your account to start earning money with ADmoney
+  account_inactive_text: Activate your account to start earning with %{company_name}
   active_account: Active Account
   validated_account: Validated account
   tasks_of_the_day: Tasks of the day
@@ -1731,8 +1733,8 @@ en:
   withdrawals_home_card_title: Make withdraws in BTC whenever your available balance reaches.
   you_can_accelerate_your_earnings: You can accelerate your earnings
   indicating_company_name_to_your_friends: Indicating %{company_name} to your friends.
-  earn_card_title: 'Earn 10% on your direct indications and 15%
-                    on their earnings from tasks.'
+  earn_card_title: 'Earn 10% on raffle tickets purchased by your nominee and 10% on the prize amount they won.'
+  earn_card_title_white_label: 'Earn 10% on raffle tickets purchased by your nominee and 10% on the prize amount they won.'
   copy_indication_card_text: 'Copy your indication link on the button on the side
                               and send it to as many friends as possible.'
   support_card_title: 'If you need something<br>
@@ -1928,3 +1930,352 @@ en:
   top_deal: Top deal
   last_numbers: Last numbers
   free: Free
+  raffles_agreement_contract_html: |
+                                    <p>
+                                      %{company_name} is a fully digital DRAW platform, with daily draws, where you can buy a ticket of
+                                      the product you want.
+                                    </p>
+                                    <p>
+                                      %{company_name}'s is a company with its administrative headquarters in Uruguay License
+                                      International Draw No. %{raffle_license_number}.
+                                    </p>
+                                    <p>
+                                      Get your shares in the Perform Dream RAFFLES now and make your dream come true with the various
+                                      products available for raffle.
+                                    </p>
+                                    <p>Each selected and paid number within the DRAW is called a <b>SHARE</b>.</p>
+                                    <b>DRAWS</b> are generated according to the following shares:
+                                    <ol>
+                                      <li>100 shares - numbered from 00 to 99</li>
+                                      <li>1,000 shares - numbered from 000 to 999</li>
+                                      <li>10,000 shares - numbered from 0,000 to 9,999</li>
+                                      <li>100,000 shares - numbered from 00,000 to 99,999</li>
+                                    </ol>
+                                    <p>
+                                      CHOICE OF NUMBERS AND PAYMENT<br />
+                                      After choosing the numbers you want, make the payment by credit card or
+                                      PIX, as soon as the payment is confirmed, your shares will be sorted out, now
+                                      just wait for the DRAW to close, define the date of draw and good luck.
+                                    </p>
+                                    <p>
+                                      THE DRAW<br />
+                                      The draws for extractions are carried out by the QUINA lottery, one of the
+                                      lotteries from Caixa Econômica Federal. The DRAW will be available to be drawn
+                                      whenever 100% of its shares are sold. The system automatically closes the DRAW
+                                      and sends an email to each participant with the date and time of the drawing.
+                                    </p>
+                                    <p>
+                                      QUINA carries out the draws for extractions, six days a week, from Monday to
+                                      Saturday, with the exception of Sundays. If there is an important holiday on
+                                      the date of the draw, it is held on the following day, with the
+                                      exception of Sundays, if the holiday falls on a Saturday, the draw is held on
+                                      the following Monday.
+                                    </p>
+                                    <p>
+                                      The draws can be followed through the website:
+                                      https://loterias.caixa.gov.br/Paginas/Quina.aspx
+                                    </p>
+                                    <p>HOW IS THE DRAW DONE BY THE QUINA?</p>
+                                    <p>
+                                      At QUINA, the draws range from ten 01 to 80, the DRAW draw in this case is
+                                      carried out by selecting the second digit of the tens drawn, always from left to
+                                      right as follows:
+                                    </p>
+                                    DRAWS with 100 shares<br />
+                                    <img class='raffles-preview' src='%{img1_path}' />
+                                    <p>
+                                      Looking from left to right, the second digit of the first two tens generates
+                                      the ten 78, so in this example the number drawn was 78.
+                                    </p>
+                                    DRAWS with 1,000 shares<br />
+                                    <img class='raffles-preview' src='%{img2_path}' />
+                                    <p>
+                                      Looking from left to right, the second digit of the first three tens generates
+                                      the hundred 783, so in this example the number drawn was 783.
+                                    </p>
+                                    Using 10,000 shares<br />
+                                    <img class='raffles-preview' src='%{img3_path}' />
+                                    <p>
+                                      Looking from left to right, the second digit of the first four tens generates
+                                      the thousand 7,834, so in this example the odds drawn were 7,834.
+                                    </p>
+                                    RAFFLE with 100,000 shares<br />
+                                    <img class='raffles-preview' src='%{img4_path}' />
+                                    <p>
+                                      Looking from left to right, the second digit of the tens generates the tens of
+                                      thousands 78,345, so in this example the share drawn was the number 78,345.
+                                    </p>
+                                    <p>
+                                      RESERVED NUMBERS
+                                    </p>
+                                    <p>
+                                      The RESERVED numbers are all the ones that are in yellow color on the numbers screen
+                                      of the draw. These numbers are not available for purchase by a certain
+                                      time, this time varies according to the payment method of the order
+                                      selected by the participant.
+                                    </p>
+                                    <p>
+                                      PIX payment method: the participant, when choosing this payment method,
+                                      payment for your order, keep the numbers selected in RESERVED on
+                                      one hour period. If payment for the order is not executed within that time, the
+                                      numbers selected for the order, returned to AVAILABLE, thus being able to
+                                      be selected again. At any time during that time when the
+                                      participant execute the payment and the same, is duly confirmed, the numbers
+                                      selected for the order go from RESERVED to PURCHASED and the
+                                      participant receives an email with the order code, and the numbers that were
+                                      selected.
+                                    </p>
+                                    <p>
+                                      Reserved numbers with BITCOIN payments: the participant when choosing
+                                      this method of payment for your order, you keep the numbers selected in
+                                      RESERVED within three hours. If payment for the order is not
+                                      executed in that time, the numbers selected for the order, returned to
+                                      AVAILABLE, so they can be selected again. At any time
+                                      of that time in which the participant executes the payment and the same is duly
+                                      confirmed, the numbers selected for the order change from RESERVED to
+                                      PURCHASED and the participant receives an email with the order code, and the
+                                      that were selected.
+                                    </p>
+                                    <p>
+                                      PURCHASED NUMBERS
+                                    </p>
+                                    <p>
+                                      The PURCHASED numbers are all the ones that are in blue color on the number screen of the
+                                      prize draw. These numbers are considered SHARE and are found in an order
+                                      acquired by a participant.
+                                    </p>
+                                    <p>
+                                      WITHDRAWAL AND REFUND OF VALUES<br />
+                                      After acquiring the shares, the participant will no longer be able to withdraw
+                                      or request a refund. At the time of purchase, on the checkout screen, there is
+                                      in its footer the information of non-return of values.
+                                    </p>
+                                    <p>
+                                      DECLASSIFICATION<br />
+                                      This DRAW CANNOT be sold (bought or sold) by persons under 18 years of age
+                                      or legally incapable.
+                                    </p>
+                                    <p>
+                                      Participants may be automatically disqualified from this DRAWS in case of
+                                      justified suspicion of fraud or proven fraud, and may also respond in the
+                                      criminal and civil spheres. Participants who do not meet any of the
+                                      requirements, terms and conditions set forth in this regulation will be
+                                      disqualified, such as, for example, providing untrue, incorrect, incomplete or
+                                      misleading information.
+                                    </p>
+  raffles_agreement_contract_admoney_html: | 
+                                            <p>
+                                              %{company_name} has on it's platform, a sweepstakes tab, totally 
+                                              digital, with several products. 
+                                            </p>
+                                            <p>
+                                              The %{company_name} platform has administrative headquarters in Uruguay 
+                                              and an International Sweepstakes License in Costa Rica under the 
+                                              number %{raffle_license_number}.
+                                            </p>
+                                            <p>
+                                              Each selected and paid number on %{company_name} is called <b>COTA</b>.
+                                            </p>
+                                            <p>
+                                              Get your shares now in the many %{company_name} awards and make 
+                                              your dreams come true with the various products available on the platform. 
+                                            </p>
+                                            Sweepstakes are generated according to the following odds:
+                                            <ol>
+                                              <li>100 shares - numbered from 00 to 99</li>
+                                              <li>1,000 shares - numbered from 000 to 999</li>
+                                              <li>10,000 shares - numbered from 0000 to 9,999</li>
+                                              <li>100,000 shares - numbered from 00000 to 99,999</li>
+                                            </ol><br />
+                                            <p>
+                                              CHOICE OF NUMBERS AND PAYMENT<br />
+                                              After choosing the numbers of your preference, make the payment with your credit, 
+                                              as soon as the payment is confirmed, your quotas will be available for participation 
+                                              in the draw. Now just wait for the sale of all shares to define the date of the draw 
+                                              and good luck. 
+                                            </p>                                    
+                                            THE RAFFLE<br />
+                                            The draws are carried out by the American PowerBall contest, one of the largest and most 
+                                            respected lotteries in the world, with draws every Monday, Wednesday and Saturday in 
+                                            the USA, at 22:59 (local time, EDT) which, due to the time difference, is equivalent to 
+                                            the:  <br />                                 
+                                            <ol>
+                                              <li>21:59 – Colombia, Peru, Ecuador, Mexico.</li>
+                                              <li>22:59 – Paraguay, Chile, Venezuela, Bolivia.</li>
+                                              <li>23:59 – Uruguay, Argentina, Brazil.</li>
+                                              <li>04:59 – Africa</li>
+                                            </ol>
+                                            <p>
+                                              The product will be available for drawing whenever 100% of its quotas are sold. 
+                                              The system automatically generates the contest which will be extracted and sends 
+                                              an email to each participant with the contest information. 
+                                            </p>
+                                            <p>
+                                              The sweepstakes can be followed through the website: https://www.powerball.com/
+                                            </p>
+                                            <p>HOW IS THE RAFFLE GIVEAWAY DONE BY POWERBALL?</p>
+                                            <p>
+                                              At POWERBALL, the draws vary from ten 01 to 69, the draw in this case is carried 
+                                              out by selecting the second digit of the ten drawn always from left to right as follows:
+                                            </p>
+                                            Raffle with 100 shares<br />
+                                            <img class="raffles-preview" src="%{img1_path}" />
+                                            <p>
+                                              Looking from left to right, the second digit of the first two tens generates the ten 78, 
+                                              so in this example the number drawn was 78.
+                                            </p>
+                                            Raffle with 1,000 shares<br />
+                                            <img class="raffles-preview" src="%{img2_path}" />
+                                            <p>
+                                              Looking from left to right, the second digit of the first three tens generates the hundred 
+                                              783, so in this example the number drawn was 783. 
+                                            </p>
+                                            Raffle with 10,000 shares<br />
+                                            <img class="raffles-preview" src="%{img3_path}" />
+                                            <p>
+                                              Looking from left to right, the second digit of the first four tens generates the 
+                                              thousand 7,834, so in this example the odds drawn were 7,834.
+                                            </p>
+                                            Raffle with 100,000 shares<br />
+                                            <img class="raffles-preview" src="%{img4_path}" />
+                                            <p>
+                                              Looking from left to right, the second digit of the tens generates the tens of thousands 
+                                              78,345, so in this example the quota drawn was the number 78,345. 
+                                            </p>
+                                            <p>
+                                              AVAILABLE NUMBERS
+                                            </p>
+                                            <p>
+                                              The available numbers are all the ones that are in white color on the draw numbers screen. 
+                                              These numbers are available for reservation and purchase.
+                                            </p>
+                                            <p>
+                                              RESERVED NUMBERS
+                                            </p>
+                                            <p>
+                                              The RESERVED numbers are all the ones that are in yellow color on the draw numbers screen. 
+                                              These numbers are not available for purchase for a certain time, this time varies according 
+                                              to the payment method of the order selected by the participant.
+                                            </p>
+                                            <p>
+                                              NUMBERS PURCHASED
+                                            </p>
+                                            <p>
+                                              The PURCHASED numbers are all those in blue color on the draw numbers screen. These numbers 
+                                              are considered QUOTAS and are found in an order purchased by a participant.
+                                            </p>
+                                            <p>
+                                              DECLASSIFICATION
+                                            </p>
+                                            <p>
+                                              Quotas can NOT be traded (bought or sold) by persons under 18 years of age or legally incapable. 
+                                              Participants may be automatically disqualified from the draw in case of justified suspicion of 
+                                              fraud or proven fraud, and may also respond in the criminal and civil spheres. Participants who 
+                                              do not meet any of the requirements, terms and conditions set forth in this Regulation will be 
+                                              disqualified, such as, for example, providing untrue, incorrect, incomplete or misleading information.
+                                            </p>
+  draw_regulation: Regulation                            
+  read_more: Read more
+  available: Available
+  reserved: Reserved
+  purchased: Purchased
+  selected_numbers: Selected numbers
+  clear: Clear
+  choose_one_number: Choose one number
+  random: Random
+  raffle_number: Number
+  raffle_numbers: Numbers
+  add: Add
+  go_to_payment: Go to payment
+  document_id: ID
+  id_or_name_blank: Name or ID is blank
+  already_have_account: Already have account
+  create_your_account: Create your account right now!
+  wrong_user_or_password: Username and/or password are incorrect
+  payment_method_blank: Please select a payment method to continue
+  home: "Home"
+  premium_account: "Premium account"
+  raffle_id: Raffle ID
+  ticket_number: Ticket Number
+  awaiting_draw: Awaiting draw
+  not_awarded: Not awarded
+  awarded: Awarded
+  draw_date: Draw date
+  raffle_name: Raffle Name
+  raffle_status: Raffle Status
+  my_numbers: My numbers
+  raffles_direct_commission_bonus: Direct raffle commission bonuses
+  base_host: Base host
+  success_create_configuration: Configuration created successfully
+  success_update_configuration: Configuration updated successfully
+  success_inactivate_configuration: Configuration disabled successfully
+  banner_email: Email Banner
+  external_logo: External logo
+  logo: Logo
+  base_host: Base host
+  raffle_license_number: Raffle license number
+  raffles_direct_commission_bonus: Direct raffle commission percentage
+  reputation: Reputation
+  taxable_fee: Taxable fee
+  whitelabel: Whitelabel
+  favico: Favico
+  authorization_key: System authorization key
+  cloudinary_url: Cloudinary URL
+  company_domain_site: Company website
+  contact_email: Contact e-mail
+  current_currency: Current currency
+  current_digital_currency: Current crypto currency
+  financial_email: Financial email
+  gateway_wallet_url: Notification Gateway URL
+  pagstar_access_key: Pagstar access key
+  pagstar_api_url: Pagstar API URL
+  pagstar_callback: Pagstar Notification URL
+  pagstar_login: Pagstar login
+  pagstar_tenant_id: Pagstar Tenant ID
+  payment_block_authorization_key: Gateway Plisio Access Key
+  payment_block_checkout_url: Plisio Gateway URL
+  max_ticket_per_order: Maximum number of tickets per order
+  morenwm_customer_admin: System Username
+  morenwm_customer_username: Administrator Username
+  morenwm_username: Main user name
+  sender_email: Sending email
+  uptime: Uptime
+  withdraw_minimum_value: Minimum withdraw amount
+  earnings_per_campaign: Earnings per campaign (Cents)
+  acquired_shares: You have purchased %{quantity} raffle quota(s)
+  loading_message: Loading...
+  gallery: Gallery
+  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: The current maximum number of tickets purchased with a ADCASH balance has already been reached for the %{raffle} raffle
+  amount_of_tickets_by_promotional_payment_left_html: The value of tickets remaining for the %{raffle} raffle is only %{ticket_values}
+  promotional_balance: ADCASH balance
+  doesnt_have_enough_promotional_balance: "Don't have enough ADCASH balance"
+  winners: Winners
+  see_last_winners: See the latest winners
+  successfully_set_date: Successfully set date
+  successfully_set_draw_numbers: Successfully set drawn numbers
+  add_lottery_numbers: Add lottery numbers
+  choose_a_date: Choose a date
+  this_action_is_irreversible: This action is irreversible!
+  yes_save_it: Yes, save it
+  your_tickets: Your tickets 
+  winner_title: Notifying the winner 
+  winner_announcement_html: |
+                              Hello %{raffle_winner}, congratulations you were the lucky winner of the <b>%{raffle_name}</b>,
+                              with the QUOTA <b>%{winning_ticket}</b>.
+                              In the near future, <a href="%{company_site}">%{company_name}</a> will contact you to
+                              schedule the delivery of your prize.
+  winner_congratulations: Congratulations and keep using %{company_name} to make your dreams come true.
+  draw_data: Draw data
+  draw_time: Draw time
+  drawn_quota: Drawn quota
+  result_announcement_html: |
+                              The happy winner of the <b>%{raffle_name}</b>, was COTA
+                              <b>%{winning_ticket}</b>,
+                              para %{winner_country}.
+                              Check <a href="%{company_site}">%{company_name}</a>'s official link
+  result_title: Notifying the winning QUOTA
+  draw_scheduling_title: Scheduling the draw
+  scheduling_announcement_html: |
+                                  The Raffle of <b>%{raffle_name}</b>,
+                                  is scheduled for <b>%{draw_date}</b> at %{lotery_draw_time}.
+                                  Check the official lottery link <a href="%{lotery_website}">%{lotery_name}</a>

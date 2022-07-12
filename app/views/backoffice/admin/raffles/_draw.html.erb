@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag 'click-tok-theme/raffles/draw_partials', defer: true %>
+<div class="draw-container">
+  <button class="close-draw-modal" onclick="closeDrawModalHandler()">✕</button>
+  <h4><%= t(:add_lottery_numbers) %></h4>
+  <%= form_for([:backoffice, :admin, @raffle], url: draw_backoffice_admin_raffle_path, method: :post, html: {class: 'draw-form'}) do |form| %>
+    <%= form.hidden_field :lotto_numbers, class: 'loto-numbers' %>
+    <div class="draw-number-container">
+      <input type="number" class="draw-number-0 draw-number" min="0" max="99" required />      
+      <input type="number" class="draw-number-1 draw-number" min="0" max="99" required />
+      <input type="number" class="draw-number-2 draw-number" min="0" max="99" required />
+      <input type="number" class="draw-number-3 draw-number" min="0" max="99" required />
+      <input type="number" class="draw-number-4 draw-number" min="0" max="99" required />
+      <input type="number" class="draw-number-5 draw-number" min="0" max="99" required />
+    </div>    
+    <span class="submit-button"><%= t(:save) %></span>
+  <% end %>
+</div>

@@ -9,7 +9,7 @@ class RaffleTicket < ApplicationRecord
 
   has_one :awarded_raffle, class_name: 'Raffle', foreign_key: :winning_ticket_id
 
-  validates :number, presence: true, numericality: { greater_than: 0 },
+  validates :number, presence: true, numericality: { greater_than_or_equal_to: 0 },
             uniqueness: { scope: :raffle, message: I18n.t(:ticket_already_taken) }
   validates :order_item, presence: true, if: :owned?
   validates :raffle, presence: true

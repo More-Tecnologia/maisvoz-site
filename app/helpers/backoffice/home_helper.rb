@@ -13,5 +13,18 @@ module Backoffice
     def activation_email_time
       seconds_to_hms((current_user.confirmation_sent_at + 1.day) - Time.now)
     end
+
+    def home_active_condition?
+      if SystemConfiguration.whitelabel?
+        current_user.raffle_tickets
+                    .acquired
+                    .includes(:raffle)
+                    .where
+                    .not(raffles: { status: [:pending, :finished] })
+                    .any?
+      else
+        current_user.active?
+      end
+    end
   end
 end

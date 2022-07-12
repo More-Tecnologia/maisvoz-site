@@ -2,14 +2,16 @@
 
 module Backoffice
   class RafflesTicketsController < BackofficeController
+    skip_before_action :authenticate_user!, only: %i[show tickets]
+
     def index
-      @q = current_user.raffle_tickets
-                       .includes(:raffle)
-                       .ransack(params)
-      @raffles_tickets = @q.result
-                           .order(created_at: :desc)
-                           .page(params[:page])
-                           .per(10)
+      @q = Raffle.includes(:raffle_tickets)
+                 .where(raffle_tickets: { id: current_user.raffle_tickets })
+                 .ransack(params[:q])
+      @raffles = @q.result
+                   .order(created_at: :desc)
+                   .page(params[:page])
+                   .per(10)
     end
 
     def create
@@ -18,7 +20,8 @@ module Backoffice
         clean_shopping_cart
         clean_courses_cart
         clean_ads_cart
-        Raffles::ReserveTicketsService.call(valid_params)
+        ::Raffles::ReserveTicketsService.call(valid_params)
+        RemoveReservedRaffleTicketsWorker.perform_at(Time.now + 15.minutes, valid_params[:order].id, true)
       end
 
       redirect_to backoffice_raffles_carts_path
@@ -30,13 +33,23 @@ module Backoffice
 
     def show
       @raffle = Raffle.find_by_hashid(params[:id])
+      @raffle_number = Raffle.find_by_hashid(params[:id]).light_raffle_tickets
+    end
+
+    def tickets
+      render json: { 
+        data: Raffle.find_by_hashid(params[:id])
+                    .light_raffle_tickets
+                    .sort_by { |ticket| ticket.number.to_i }
+                    .map { |ticket| [ticket.number.to_i, RaffleTicket.statuses[ticket.status]] }
+      }
     end
 
     private
 
     def valid_params
       params.require(:raffle)
-            .permit(:numbers, :random_number_quantity)
+            .permit(:numbers)
             .merge(country: params[:country],
                    order: current_raffles_cart,
                    product: @raffle.product)

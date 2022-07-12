@@ -1,8 +1,13 @@
 <%= stylesheet_link_tag 'click-tok-theme/simple_header' %>
-
 <div class="simple-header">
   <%= render 'layouts/shared/language_select' %>
   <div class="simple-header-logo">
-    <%= image_tag('logo.png', alt: SystemConfiguration.company_name, 'stroke-width' => '2' ) %>
+    <%= link_to root_path do %>
+      <% if SystemConfiguration.whitelabel? %>
+        <%= image_tag(SystemConfiguration.external_logo, alt: SystemConfiguration.company_name, 'stroke-width' => '2' ) %>
+      <% else %>
+        <%= image_tag('logo.png', alt: SystemConfiguration.company_name, 'stroke-width' => '2' ) %>
+      <% end %>
+    <% end %>
   </div>
 </div>

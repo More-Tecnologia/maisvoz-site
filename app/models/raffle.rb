@@ -4,6 +4,7 @@ class Raffle < ApplicationRecord
   include Hashid::Rails
 
   has_attachment :thumb, accept: %i[jpg png]
+  has_attachments :images, accept: %i[jpg png]
 
   enum kind: { automatic: 0, manual: 1, flex: 2 }
   enum status: { started: 0, awaiting_draw_date: 1, awaiting_draw: 2,
@@ -22,7 +23,7 @@ class Raffle < ApplicationRecord
   validates :lotto_numbers_combination, presence: true, if: :drawn?
   validates :max_ticket_number, numericality: { greater_than: 0 }
   validates :product, presence: true
-  validates :raffle_tickets, length: { maximum: :max_ticket_number }
+  validates :raffle_tickets, length: { maximum: :max_ticket_number }, on: :create
   validates :title, presence: true
   validates :winner, presence: true, if: :drawn?
   validates :winning_ticket, presence: true, if: :drawn?

@@ -29,9 +29,14 @@ module Backoffice
         Payment::BalanceService.call(order: @order)
         clean_shopping_cart
         redirect_to backoffice_order_path(@order)
+      elsif valid_params[:payment_method] == 'pix'
+        @payment_transaction = Payment::Pagstar::PixCheckoutService.call(valid_params)
+        ExpireOrderWorker.perform_at(Time.now + 1.hour, valid_params[:order].id)
+        clean_shopping_cart
+        render 'backoffice/payment_transactions/show'
       else
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
-        ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)
+        ExpireOrderWorker.perform_at(Time.now + 2.hour, valid_params[:order].id)
         clean_shopping_cart
         render 'backoffice/payment_transactions/show'
       end

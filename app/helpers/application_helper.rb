@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def admoney?
+    ActiveModel::Type::Boolean.new.cast(ENV['ADMONEY'])
+  end
+
   def flash_class(level)
     case level
     when 'notice' then 'info'
@@ -108,6 +112,14 @@ module ApplicationHelper
 
   def batch_action_checkbox_child(withdrawal)
     check_box_tag :select, withdrawal.id, false, class: 'child'
+  end
+
+  def pagstar_active?
+    ActiveModel::Type::Boolean.new.cast(ENV['PAGSTAR_ACTIVE'])
+  end
+
+  def promotional_balance?
+    ActiveModel::Type::Boolean.new.cast(ENV['PROMOTIONAL_BALANCE'])
   end
 
   private

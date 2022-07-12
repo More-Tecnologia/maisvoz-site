@@ -1,83 +1,31 @@
-<%= stylesheet_link_tag 'click-tok-theme/orders' %>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-                       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-                       crossorigin="anonymous">
-
-<div class="page">
-  <a class="back-button" href="/backoffice/financial_dashboard?locale=en">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-         fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-
-                                 .708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0
-                                 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-    </svg>
-  </a>
-  <div class="is-page-title">
-    <span class="title">
-      Winners
-    </span>
-    <div class="btn-group dropleft">
-      <button class="btn btn-secondary dropdown-toggle" type="button"
-              id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false" style="border-radius: 20px;"
-              background: #30da03; border: none;">
-        <%= t(:filter) %>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button"></button>
-          <button class="dropdown-item" type="button"></button>
-      </div>
-    </div>
-  </div>
-
+<%= stylesheet_link_tag 'click-tok-theme/raffles/winners' %>
+<%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
+<%= render 'backoffice/shared/back_and_title', back_path: raffles_backoffice_stores_path,  page_title: t(:winners) %>
+<div class="winners-card-container">
   <% @raffles.each do |raffle| %>
-    <div class="raffles-winners-card-order card-order">
-      <div class="row">
-        <div class="column">
-          <%= raffle.winner.decorate.avatar_image_tag %>
-        </div>
-        <div class="column">
-          <div class="row">
-            <div class="card-body">
-              <div><%= t('ID of draw') %></div>
-              <%= raffle.id %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Draw numbers') %></div>
-              <%= raffle.lotto_numbers_combination %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Draw date') %></div>
-              <%= raffle.draw_date %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="card-body">
-              <div><%= t('ID of draw ticket') %></div>
-              <%= raffle.winning_ticket_id %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Number draw ticket') %></div>
-              <%= raffle.lotto_numbers_combination %>
-            </div>
-            <div class="card-body">
-              <div><%= t('Winner name') %></div>
-              <%= raffle.winner.username %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  <% if @raffles.none? %>
-    <tr>
-      <td colspan="5" class="text-center"><%= t(:nothing_found) %></td>
-    </tr>
-  <% end %>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= paginate @raffles.finished %>
-    </div>
-  </div>
+    <ul class="card-item">
+      <li>
+        <span class="draw-date"><%= raffle.draw_date %></span>
+        <span class="draw-number">Nº<%= raffle.id %></span>
+        <p class="avatar-container">
+          <img src="<%= raffle.winner.avatar.try(:fullpath) %>" class="avatar-image" />
+        </p>
+        <span class="winners-name"><%= raffle.winner.name %></span>
+      </li>
+      <li>
+        <a class="draw-link" href="https://www.powerball.com/" target="_blank">Powerball - <%= raffle.draw_date.strftime("%b %d, %Y") %></a>
+        <ul class="result-ticket-list">
+          <%= render_lotto_list_item(raffle) %>
+        </ul>
+        <span class="wining-ticket-number"><%= format_winning_ticket(raffle) %><i class="fa-solid fa-trophy"></i></span>
+      </li>
+      <li>
+      
+        <%= link_to backoffice_raffles_ticket_path(raffle), class: "product-container" do %>
+          <%= image_tag(raffle.path, class: 'product-image') %>
+        <% end %>
+        <%= link_to raffle.product.name, backoffice_raffles_ticket_path(raffle), class: "raffle-name" %>
+      </li>
+    </ul>
+  <% end%>
 </div>

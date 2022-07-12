@@ -1,10 +1,11 @@
 module Backoffice
   class ProductsController < BackofficeController
+    skip_before_action :authenticate_user!, only: :index
     before_action :ensure_user_consumidor, only: :show
     before_action :redirect_back_if_deposit_product, only: :show
 
     def index
-      @products = Product.deposit.active.order(:price_cents)
+      @products = Product.where(kind: [:deposit, :crypto]).active.order(:price_cents)
       #TODO: Create a query to get the product one level uper than the current sined by the user 
       @banner = Product.deposit.active.limit(4)
     end

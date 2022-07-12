@@ -15,6 +15,7 @@ module Raffles
       ActiveRecord::Base.transaction do
         update_product!
         update_raffle!
+        update_raffle_tickets if @raffle.max_ticket_number != @raffle.raffle_tickets.count
       end
     end
 
@@ -24,6 +25,10 @@ module Raffles
 
     def update_raffle!
       @raffle.update!(@raffle_params)
+    end
+
+    def update_raffle_tickets
+      RaffleTicketUpdateWorker.perform_async(@raffle.id)
     end
   end
 end

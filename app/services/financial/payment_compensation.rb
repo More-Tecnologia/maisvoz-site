@@ -25,9 +25,9 @@ module Financial
         update_user_purchase_flags
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user if deposit_product
+        activate_user if (deposit_product || crypto_product)
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
-        user.empreendedor! if deposit_product && user.consumidor?
+        user.empreendedor! if (deposit_product || crypto_product) && user.consumidor?
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
         create_pool_point_for_user if enabled_bonification
@@ -35,12 +35,14 @@ module Financial
         propagate_products_scores if enabled_bonification
         upgrade_career_from(user.sponsor)
         upgrade_career_from(user) if deposit_product
+        add_promotional_bonus if deposit_product
         propagate_bonuses if enabled_bonification
         propagate_course_payment if course_product
         create_vouchers if voucher_product
-        create_bonus_contract if deposit_product
+        create_bonus_contract if deposit_product || crypto_product
         process_reserved_raffle_tickets if raffle_product
-        propagate_master_bonus unless free_product || course_product || raffle_product
+        propagate_raffle_bonus_payment if raffle_product && enabled_bonification
+        propagate_master_bonus if deposit_product
         enroll_student_on_course if course_product
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         remove_user_from_free_product_list if order.total_cents.positive? && user.interspire_code.present?
@@ -102,6 +104,14 @@ module Financial
       end
     end
 
+    def propagate_raffle_bonus_payment
+      order.order_items.each do |order_item|
+        if order_item.raffle_ticket.present?
+         RafflesDirectWorker.perform_async(order_item.raffle_ticket.id)
+        end
+      end
+    end
+
     def enroll_student_on_course
       Courses::EnrollStudentService.call(student: order.user, courses: order.products.map(&:course))
     end
@@ -116,8 +126,16 @@ module Financial
 
     def process_reserved_raffle_tickets
       order.order_items.each do |order_item|
-        ProcessReservedRaffleTicketWorker.perform_async(order_item.raffle_ticket
-                                                                  .id)
+        if order_item.raffle_ticket.present?
+          ProcessReservedRaffleTicketWorker.perform_async(order_item.raffle_ticket
+                                                                    .id)
+        else
+          user.financial_transactions
+              .create(spreader: User.find_morenwm_customer_admin,
+                      financial_reason: FinancialReason.credit_for_payment_of_expired_order,
+                      cent_amount: (order_item.total_cents / 100),
+                      moneyflow: :credit)
+        end
       end
     end
 
@@ -154,6 +172,11 @@ module Financial
       Financial::CreatorActivationOrderService.call(user: user)
     end
 
+    def add_promotional_bonus
+      user.increment(:brute_promotional_balance, (@order.total_cents / 100))
+      user.increment(:promotional_balance, (@order.total_cents / 100)).save!
+    end
+
     def add_product_bonus_to_order
       product_bonus = user.current_trail.product_bonus
       order.order_items.create!(quantity: 1,
@@ -186,6 +209,10 @@ module Financial
 
     def deposit_product
       @deposit_product ||= order.products.detect(&:deposit?)
+    end
+
+    def crypto_product
+      @crypto_product ||= order.products.detect(&:crypto?)
     end
 
     def raffle_product

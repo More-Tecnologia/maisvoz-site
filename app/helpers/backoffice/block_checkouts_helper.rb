@@ -2,9 +2,16 @@ require 'rqrcode'
 
 module Backoffice
   module BlockCheckoutsHelper
-
     def format_digital_currency(amount)
       ENV['CURRENT_DIGITAL_CURRENCY'] + ' ' + amount.to_s
+    end
+
+    def format_whitelabel_currency(amount)
+      unless SystemConfiguration.whitelabel?
+        amount = amount * ENV['BRL_USD_FACTOR'].to_i
+      end
+
+      ENV['CURRENT_CURRENCY'] + ' ' + amount.to_s
     end
 
     def generate_qr_code(text)
@@ -27,6 +34,5 @@ module Backoffice
       src = "data:image/png;base64,#{qr_code_base64}"
       image_tag src
     end
-
   end
 end

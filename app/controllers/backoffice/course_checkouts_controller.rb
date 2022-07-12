@@ -3,11 +3,16 @@
 module Backoffice
   class CourseCheckoutsController < BackofficeController
     def create
-      if valid_params[:payment_method] == 'balance'
+      if valid_params[:payment_method] == 'balance' && current_user.orders.completed.includes(order_items: :product).where(order_items: { products: { kind: :deposit }}).any?
         @order = current_courses_cart
         Payment::BalanceService.call(order: @order)
         clean_courses_cart
         redirect_to backoffice_order_path(@order)
+      elsif valid_params[:payment_method] == 'pix'
+        @payment_transaction = Payment::Pagstar::PixCheckoutService.call(valid_params)
+        ExpireOrderWorker.perform_at(Time.now + 1.hour, valid_params[:order].id)
+        clean_courses_cart
+        render 'backoffice/payment_transactions/show'
       else
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
         ExpireOrderWorker.perform_at(Time.now + 5.hour, valid_params[:order].id)

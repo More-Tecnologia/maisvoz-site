@@ -9,7 +9,7 @@ module Raffles
     private
 
     def call
-      (1..@raffle.max_ticket_number).each do |number|
+      (0...@raffle.max_ticket_number).each do |number|
         create_raffle_ticket!(number)
       end
     end

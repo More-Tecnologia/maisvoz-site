@@ -1,10 +1,14 @@
 module Backoffice
   class StoresController < EntrepreneurController
+    skip_before_action :authenticate_user!
+
     def games; end
 
     def course
       @course = Course.find_by_hashid(params[:id])
-      redirect_to backoffice_course_path(@course) if @course.in?(current_user.courses)
+      return unless user_signed_in? && @course.in?(current_user.courses)
+
+      redirect_to backoffice_course_path(@course)
     end
 
     def courses
@@ -28,15 +32,15 @@ module Backoffice
     end
 
     def raffles
-      @packages = Product.raffle
+      @packages = Product.includes(:raffle)
+                         .raffle
                          .active
-                         .includes(:raffle)
-                         .order(:price_cents)
+                         .order("raffles.max_ticket_number  desc")
       #TODO: Create a query to get the raffles with lass thickets available
       @banner = Product.raffle
-                       .active
                        .includes(:raffle)
-                       .limit(4)
+                       .active
+                       .shuffle[0..4]
     end
   end
 end

@@ -1,0 +1,108 @@
+.regulation-backdrop {
+  background: rgba(50, 50, 50, 0.6);
+  height: 100vh;
+  position: fixed;
+  width: 100vw;
+  z-index: 100;
+}
+
+body.backdrop {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.modal-regulation {
+  background: white;
+  border-radius: 25px;
+  display: none;
+  filter: none;
+  font-size: calc(0.7rem + 0.5vw);
+  height: 90%;
+  left: 50%;
+  max-width: 800px;
+  overflow: hidden;
+  padding: 1.5em;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  z-index: 101;
+}
+
+.modal-regulation.open {
+  display: block;
+}
+
+.modal-close-button {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 800;
+  position: absolute;
+  right: 2em;
+  top: 2em;
+}
+
+.modal-close-button:hover {
+  color: #333;
+}
+
+.modal-regulation-header {
+  margin-bottom: 30px;
+}
+
+.modal-regulation-image {
+  display: block;
+  margin: 0 auto;
+  margin: 30px auto 50px auto;
+  width: 50%;
+}
+
+.modal-regulation-title {
+  align-items: center;
+  background: linear-gradient(to bottom, #00de2c, #00de28);
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  font-size: 1em;
+  font-weight: 800;
+  height: 50px;
+  justify-content: center;
+  line-height: 1em;
+  text-align: center;
+  width: 100%;
+}
+
+.modal-regulation-text {
+  color: #999;
+  font-size: 0.9em;
+  height: 70%;
+  overflow-y: scroll;
+  padding-bottom: 20%;
+}
+
+.modal-regulation-text p {
+  margin-bottom: 20px;
+}
+
+.modal-regulation-text .raffles-preview{
+  width: 40%;
+}
+
+.modal-regulation-text ol {
+  list-style: decimal;
+  margin: 0 0 0.3em 4em;
+}
+
+.modal-regulation-text li {
+  margin-bottom: 0.1em;
+}
+
+@media (min-width: 1500px) {
+  .modal-regulation {
+    font-size: 1rem;
+  }
+}

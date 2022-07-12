@@ -4,101 +4,181 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" /><!--[if !mso]><!-->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" /><!--<![endif]-->
-<%= stylesheet_link_tag 'click-tok-theme/email' %>
-    <style type="text/css">
-      span, h2 {
-        text-align: justify;
-        font-size: 1.2em;
-      }
-    </style>
-  </head>
-  <body style="background: #ebeff2;">
-    <div class="container"
-        style=" display: flex;
-                justify-content: space-around;
-                align-items: center;
-                flex-direction: column;
-                background: white;
-                box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
-                border-radius: 10px;
-                font-family: 'Lato', sans-serif;
-                background-image: url('https://mlgbzz6iaqdd.i.optimole.com/XzaT3g-ka1kldGy/w:auto/h:auto/q:74/https://djcleanto.com.br/wp-content/uploads/2014/01/black-background-hd-images.jpg');
-                color: white;
-                width: 100%;
-                padding: 0;
-                "
-    >
-      <div class="topo" style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                width: 100%;
-                height: auto;
-      ">
-        <div class="banner-admoney" style="width: 100%; height: auto;">
-          <img src="<%= image_url('banners/email.png') %>" alt="" style="width: 100%; height: auto;">
-        </div>
-      </div>
-      <div class="conteudo"
-            style="
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
+      <%= stylesheet_link_tag 'click-tok-theme/email' %>
+      <style type="text/css">
+        span, h2 {
+          text-align: justify;
+          font-size: 1.2em;
+        }
+      </style>
+    </head>
+    <% if SystemConfiguration.whitelabel? %>
+      <div class="container"
+          style=" display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            background: white;
+            box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+            border-radius: 10px;
+            font-family: 'Lato', sans-serif;
+            background-image: url('https://mlgbzz6iaqdd.i.optimole.com/XzaT3g-ka1kldGy/w:auto/h:auto/q:74/https://djcleanto.com.br/wp-content/uploads/2014/01/black-background-hd-images.jpg');            
+            color: white;
             width: 100%;
-            height: 705px;">
-        <div class="conteudo-item"
-              style="
-              width: 450px;
+            padding: 0;
+        ">
+        <div class="topo"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 100%;
               height: auto;
-              margin-left: auto;
-              margin-right: auto;
-              margin-top: 13%;
-              "
-        >
-          <%= yield %>
+          ">
+          <div class="banner-admoney" style="width: auto; height: auto; margin:0 auto;">
+            <img src="<%= image_url(SystemConfiguration.banner_email) %>" alt="" style="height: auto; max-height: 400px; margin:0 auto;">
+          </div>
         </div>
-      </div>
-      <div class="rodape"
-           style="
-           width: 100%;
-           height: auto;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          "
-
-      >
-
-        <h2 style="
+        <div class="conteudo"
+            style="
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+              width: 100%;
+            ">
+          <div class="conteudo-item"
+              style="
+                width: 450px;
+                height: auto;
+                margin-left: auto;
+                margin-right: auto;
+            ">
+            <%= yield %>
+          </div>
+        </div>
+        <div class="rodape"
+          style="
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        ">
+          <h2 style="
             color: white;
             font-weight: bold;
-        ">
-          <%= ENV["COMPANY_DOMAIN_SITE"] %>
-        </h2>
-        <hr style="
-              height: 2px;
-              width: 100%;
-              background: #34EF00;
-              border: 0;
-              margin-bottom: 5px;
-            "
-        />
-        <p style="
+          ">
+            <%= ENV["COMPANY_DOMAIN_SITE"] %>
+          </h2>
+          <hr style="
+            height: 2px;
+            width: 100%;
+            background: #34EF00;
+            border: 0;
+            margin-bottom: 5px;
+          "/>
+          <p style="
             margin-bottom: 0;
             margin-bottom: 5px;
-        "
-        >
-          <strong> <%= t('mailer.no-reply') %></strong>
-        </p>
-        <p style="
-              margin-bottom: 0;
-              margin-bottom: 5px;
-            "
-
-        > <%= t('mailer.doubt', contact_email: ENV["CONTACT_EMAIL"]) %> </p>
+        ">
+            <strong> <%= t('mailer.no-reply') %></strong>
+          </p>
+          <p style="
+            margin-bottom: 0;
+            margin-bottom: 5px;
+            text-align: center;
+          ">
+            <%= t('mailer.doubt', contact_email: ENV["CONTACT_EMAIL"]) %>
+          </p>
+        </div>
       </div>
-    </div>
-  </body>
+    </body>
+  <% else %>
+    <body style="background: #ebeff2;">
+      <div class="container"
+          style=" display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            background: white;
+            box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+            border-radius: 10px;
+            font-family: 'Lato', sans-serif;
+            background-image: url('https://mlgbzz6iaqdd.i.optimole.com/XzaT3g-ka1kldGy/w:auto/h:auto/q:74/https://djcleanto.com.br/wp-content/uploads/2014/01/black-background-hd-images.jpg');            
+            color: white;
+            width: 100%;
+            padding: 0;
+        ">
+        <div class="topo"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              width: 100%;
+              height: auto;
+          ">
+          <div class="banner-admoney" style="width: 100%; height: auto;">
+            <img src="<%= image_url('banners/email.png') %>" alt="" style="width: 100%; height: auto;">
+          </div>
+        </div>
+        <div class="conteudo"
+            style="
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+              width: 100%;              
+            ">
+          <div class="conteudo-item"
+              style="
+                max-width: 1280px;
+                height: auto;
+                margin-left: auto;
+                margin-right: auto;                
+            ">
+            <%= yield %>
+          </div>
+        </div>
+        <div class="rodape"
+          style="
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        ">
+          <h2 style="
+            color: white;
+            font-weight: bold;
+          ">
+            <%= ENV["COMPANY_DOMAIN_SITE"] %>
+          </h2>
+          <hr style="
+            height: 2px;
+            width: 100%;
+            background: #34EF00;
+            border: 0;
+            margin-bottom: 5px;
+          "/>
+          <p style="
+            margin-bottom: 0;
+            margin-bottom: 5px;
+        ">
+            <strong> <%= t('mailer.no-reply') %></strong>
+          </p>
+          <p style="
+            margin-bottom: 0;
+            margin-bottom: 5px;
+            text-align: center;
+          ">
+            <%= t('mailer.doubt', contact_email: ENV["CONTACT_EMAIL"]) %>
+          </p>
+        </div>        
+        
+      </div>
+    </body>
+  <% end %>
 </html>

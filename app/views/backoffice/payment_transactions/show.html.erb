@@ -2,72 +2,110 @@
                         integrity: 'sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU',
                         crossorigin: 'anonymous' %>
 <%= stylesheet_link_tag 'click-tok-theme/app' %>
-
 <div class="row">
+  <div class="back-button-container">
+    <a class="back-button" href="/">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg>
+    </a>
+  </div>
   <div class="d-flex flex-column align-items-center">
-    <div class="card-box">
-      <div class="box-top">
-        <div class="request-box">
+    <div class="card-box box-btc-pix">
+      <div class="box-top-btc-pix">     
+        <div class="request-box-btc-pix">
+          <div class="request-strip">
             <h1><strong><%= t(:request_number) %></strong></h1>
-            <span class="pull-right" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
+          </div>
+          <div class="content-box">
+            <span class="pull-right request-number" style="float: right;"> <%= @payment_transaction.order.hashid %></span>
+          </div>
         </div>
-        <div class="request-box">
-            <h4>
-            <p><strong><%= t(:package_value) %></strong></p>
-              <i class="fas fa-dollar-sign"></i>
-              <%= number_to_currency(@payment_transaction.order.total, unit: '') %>
+        <div class="request-box-btc-pix">
+            <div class="request-strip">
+              <h1><strong><%= t(:package_value) %></strong></h1>
+            </div>
+            <div class="content-box">
+              <span class="request-number">R$<%= number_to_currency(@payment_transaction.order.total, unit: '') %></span>
               <br>
               <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
-                <i class="fab fa-btc"></i>
-                <%= format_digital_currency(@payment_transaction.amount) %>
+                <span class="request-btc">
+                  <i class="fab fa-btc"></i>
+                  <%= format_digital_currency(@payment_transaction.amount) %>
+                </span>
               <% end %>
-            </h4>
+            </div>
         </div>
       </div>
       <div class="row m-t-30">
         <% if @payment_transaction.order.shipping > 0 %>
-        <div class="col-md-12">
-          <div class="col-md-1">
-            <h3> <%= Order.human_attribute_name(:shipping) %> </h3>
-          </div>
-          <div class="col-md-11">
-            <h3> <%= number_to_currency(@payment_transaction.order.shipping,
+          <div class="col-md-12">
+            <div class="col-md-1">
+              <h3> <%= Order.human_attribute_name(:shipping) %> </h3>
+            </div>
+            <div class="col-md-11">
+              <h3> <%= number_to_currency(@payment_transaction.order.shipping,
                                         unit: ENV['CURRENT_CURRENCY']) %> </h3>
+            </div>
           </div>
-        </div>
         <% end %>
-
       </div>
       <div class="box-bottom">
         <div class='row text-center'>
           <div class='col-md-12'>
             <h5 class="purple">
-              <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@payment_transaction.amount)) %>
+              <% if @payment_transaction.order.btc? %>
+                <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@payment_transaction.amount)) %>
+              <% elsif @payment_transaction.order.pix? %>
+                <%= t('backoffice.payment_transactions.show.transfer_note_pix_html', value: format_whitelabel_currency(@payment_transaction.amount)) %>
+              <% end %>
             </h5>
-            <h6 class='text-click pink'>
-              <i class="fas fa-exclamation-triangle"></i>
-              <%= t('backoffice.payment_transactions.show.transfer_rate_warning_html') %>
-            </h6>
+            <% if @payment_transaction.order.btc? %>
+              <h6 class='text-click pink'>
+                <i class="fas fa-exclamation-triangle"></i>
+                <%= t('backoffice.payment_transactions.show.transfer_rate_warning_html') %>
+              </h6>
+            <% end %>
           </div>
         </div>
         <div class='row text-center'>
           <span class="text-center">
-            <%= render_qr_code_img(@payment_transaction.wallet_address) if @payment_transaction.wallet_address.present? %>
+            <% if @payment_transaction.order.btc? %>
+              <%= render_qr_code_img(@payment_transaction.wallet_address) if @payment_transaction.wallet_address.present? %>
+            <% elsif @payment_transaction.order.pix? %>
+              <%= image_tag(@payment_transaction.qr_code_url) %>
+            <% end %>
           </span> <br>
           <span class="purple text-center" id="wallet-address"><%= @payment_transaction.wallet_address %></span>
         </div>
         <div class="row text-center">
           <div class="">
-            <%= copier_button(@payment_transaction.wallet_address, '#wallet-address') %>
+            <% if @payment_transaction.order.btc? %>
+              <%= copier_button(@payment_transaction.provider_response['wallet_address'], '#wallet-address') %>
+            <% elsif @payment_transaction.order.pix? %>
+              <%= copier_button(@payment_transaction.provider_response['pix_key'], '#wallet-address') %>
+            <% end %>
           </div>
         </div>
         <br>
-        <div class="row text-center">
-          <h6 class="">
-            <%= t(:order_expire_warning, time: seconds_to_hms((@payment_transaction.order.created_at + 5.hours) - Time.now)) %>
-          </h6>
-        </div>
+        <% if @payment_transaction.order.payment_type.in?(['btc', 'pix']) %>
+          <div class="row text-center">
+            <% btc = (@payment_transaction.order.created_at + 3.hours) - Time.now %>
+            <% pix = (@payment_transaction.order.created_at + 1.hours) - Time.now %>
+            <% order = @payment_transaction.order.btc? ?  btc : pix %>
+            <h6 class="">
+              <% if order > 0 %>
+                <%= t(:order_expire_warning, time: seconds_to_hms(order)) %>
+              <% else %>
+                <%= t(:order_expired) %>
+              <% end %>
+            </h6>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
+<div class="full-size">
+  <%= render('backoffice/shared/ticket_numbers', orders: @payment_transaction.order) if @payment_transaction.order.products.raffle.any? %>
 </div>

@@ -95,7 +95,7 @@ pt-BR:
         user:
           attributes:
             email:
-              taken: Este email já está sendo utilizado
+              taken: já está sendo utilizado
             password_confirmation:
               confirmation: Senhas diferentes
             registration_type:
@@ -464,6 +464,7 @@ pt-BR:
       show:
         title: Pagamento
         transfer_note_html: "Transfira <strong>%{value}</strong> para o endereço abaixo"
+        transfer_note_pix_html: "Transfira <strong>%{value}</strong> para o pix abaixo"
         transfer_rate_warning_html: 'Para agilizar a identificação do pagamento, recomendamos utilizar a <strong>Taxa Expressa<strong>'
     order_items:
       update:
@@ -704,10 +705,17 @@ pt-BR:
               %{company_name}'
   devise_mailer:
     reset_password_instructions:
+      title: Redefinir instruções de senha
       order_link: Você solicitou um link para alterar sua senha. Você pode alterá-la através do link abaixo.
       password_reset: Alterar minha senha
       order_alert: Se não foi você que solicitou, por favor ignore este e-mail.<br>
                    Sua senha não irá mudar até que você acesse o link acima e crie uma nova.
+    confirmation_instructions:
+      title: Instruções de confirmação
+    unlock_instructions:
+      title: Instruções de desbloqueio
+    email_change:
+      title: Mudança de email
   date:
     abbr_day_names:
     - Dom
@@ -835,6 +843,8 @@ pt-BR:
       coinpayments: 'Erro ao criar transação: %{error}.'
       payment_gateway_transaction: 'Erro ao criar transação de pagamento: %{error}.'
       duplicated_free_product: Produto FREE ja compro
+      pagstar:
+        token: 'Os seguintes erros foram encontrados ao solicitar a conexão: %{error}'
     financial: Financeiro
     financial_entries: Histórico Financeiro
     manage_withdrawals: Gerenciar Saques
@@ -1170,7 +1180,7 @@ pt-BR:
         didnt_receive_instructions: Não recebeu instruções de confirmação?
         forgot_password: Esqueceu sua senha?
         login: Login
-        sign_up: Cadastrar
+        sign_up: Cadastre-se
         unlock_instructions: Não recebeu as instruções de desbloqueio?
     registrations:
       edit:
@@ -1682,8 +1692,8 @@ pt-BR:
   available: Disponiveis
   n_of_campaign: Nº de campanhas
   payment_method: Forma de pagamento
-  pix: EM BREVE
-  filter: Filtro
+  pix: Pix
+  filter: Filtrar
   new_phone: Novo telefone
   withdrawal_value: Digite o valor do saque
   select_receive_form: Selecione a forma de recebimento
@@ -1702,7 +1712,6 @@ pt-BR:
   active_until: Ativo até
   eth: ETH
   export_only_wallets: Exportar apenas carteiras
-
   total_requests: Total de solicitações
   open_requests: Solicitações abertas
   sales_amount: Quantidade de vendas
@@ -1850,3 +1859,411 @@ pt-BR:
   top_deal: Melhor oferta
   last_numbers: Últimos números
   free: Grátis
+  raffles_agreement_contract_html: | 
+                                    <p>
+                                      A %{company_name} trata-se de uma plataforma de RIFAS totalmente digital, com sorteios diários onde você
+                                      pode comprar o ticket do produto que desejar.
+                                    </p>
+                                    <p>
+                                      %{company_name} é uma empresa com sua sede administrativa no Uruguai Licença 
+                                      Internacional de Sorteios N° %{raffle_license_number}.
+                                    </p>
+                                    <p>
+                                      Adquira já suas cotas nas RIFAS da %{company_name} e realize seu sonho com os diversos
+                                      produtos disponíveis para sorteio.
+                                    </p>
+                                    <p>
+                                      Cada número selecionado e pago dentro na RIFA, passa a ser chamado de
+                                      <b>COTA</b>.
+                                    </p>
+                                    As <b>RIFAS</b> são geradas de acordo com as seguintes cotas:
+                                    <ol>
+                                      <li>100 cotas - numeradas de 00 a 99</li>
+                                      <li>1.000 cotas - numeradas de 000 a 999</li>
+                                      <li>10.000 cotas - numeradas de 0.000 a 9.999</li>
+                                      <li>100.000 cotas - numeradas de 00.000 a 99.999</li>
+                                    </ol>
+                                    <p>
+                                      ESCOLHA DE NUMEROS E PAGAMENTO<br />
+                                      Após escolher os números de sua preferência, efetue o pagamento via cartão de
+                                      crédito ou Pix, assim que o pagamento for confirmado, suas cotas estarão
+                                      confirmadas, agora só aguardar o fechamento da RIFA para a definição da data
+                                      do sorteio e boa sorte.
+                                    </p>
+                                    <p>
+                                      O SORTEIO<br />
+                                      Os sorteios das extrações são realizados pelo concurso da QUINA uma das
+                                      Loterias da Caixa Econômica Federal. A RIFA estará disponível para sorteio
+                                      toda vez que tiver 100% de suas cotas vendidas. O sistema automaticamente
+                                      fecha a RIFA envia um e-mail para cada participante com data e hora do
+                                      sorteio.
+                                    </p>
+                                    <p>
+                                      A QUINA realiza os sorteios das extrações, seis dias da semana, de segunda a
+                                      sábado, tendo como exceção os domingos. Caso haja algum feriado importante na
+                                      data do sorteio, o mesmo é realizado no dia subsequente com exceção dos
+                                      domingos, caso o feriado caia em um sábado o sorteio é realizado na
+                                      segunda-feira subsequente.
+                                    </p>
+                                    <p>
+                                      Os sorteios podem ser acompanhados através do site:
+                                      https://loterias.caixa.gov.br/Paginas/Quina.aspx
+                                    </p>
+                                    <p>COMO É FEITO O SORTEIO DAS RIFAS PELA QUINA?</p>
+                                    <p>
+                                      Na QUINA os sorteios variam da dezena 01 a 80, o sorteio da RIFA nesse caso é
+                                      realizado selecionando o segundo algarismo da dezena sorteada sempre da
+                                      esquerda para direita como segue abaixo:
+                                    </p>
+                                    RIFAS com 100 cotas<br />
+                                    <img class="raffles-preview" src="%{img1_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das duas primeiras
+                                      dezenas é gerado a dezena 78, assim nesse exemplo a cota sorteada foi a de
+                                      número 78.
+                                    </p>
+                                    RIFAS com 1.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img2_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das três primeiras
+                                      dezenas é gerado a centena 783, assim nesse exemplo a cota sorteada foi a de
+                                      número 783.
+                                    </p>
+                                    Utilizando 10.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img3_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das quatro primeiras
+                                      dezenas é gerado a milhar 7.834, assim nesse exemplo a cota sorteada foi a de
+                                      número 7.834.
+                                    </p>
+                                    RIFAS com 100.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img4_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das dezenas é gerado
+                                      a dezena de milhar 78.345, assim nesse exemplo a cota sorteada foi a de número
+                                      78.345.
+                                    </p>
+                                    <p>
+                                      NÚMEROS RESERVADO
+                                    </p>
+                                    <p>
+                                      Os números RESERVADO, são todos os que estão na cor amarela na tela de números 
+                                      do sorteio. Esses números não estão disponíveis para compra por um determinado 
+                                      tempo, esse tempo varia de acordo com a modalidade de pagamento do pedido 
+                                      selecionado pelo participante.
+                                    </p>
+                                    <p>
+                                      Modalidade de pagamento PIX: o participante ao escolher essa modalidade de 
+                                      pagamento para seu pedido, fica com os números selecionados em RESERVADO no 
+                                      período de uma hora. Caso o pagamento do pedido não seja executado nesse tempo, os 
+                                      números selecionados para o pedido, voltaram para DISPONÍVEL, podendo assim 
+                                      serem selecionados novamente. Em qualquer momento desse tempo em que o 
+                                      participante executar o pagamento e o mesmo, for devidamente confirmado, os números
+                                      selecionados para o pedido passam de RESERVADO para COMPRADO e o 
+                                      participante recebe um e-mail com o código do pedido, e os números que foram 
+                                      selecionados.
+                                    </p>
+                                    <p>
+                                      Os números COMPRADO, são todos os que estão na cor azul na tela de números do 
+                                      sorteio. Esses números são considerados COTAS e encontram-se em um pedido 
+                                      adquirido por um participante.
+                                    </p>
+                                    <p>
+                                      Números reservados com pagamentos em BITICOIN:  o participante ao escolher
+                                      essa modalidade de pagamento para seu pedido, fica com os números selecionados em 
+                                      RESERVADO no período de três horas. Caso o pagamento do pedido não seja 
+                                      executado nesse tempo, os números selecionados para o pedido, voltaram para 
+                                      DISPONÍVEL, podendo assim serem selecionados novamente. Em qualquer momento 
+                                      desse tempo em que o participante executar o pagamento e o mesmo, for devidamente 
+                                      confirmado, os números selecionados para o pedido passam de RESERVADO para 
+                                      COMPRADO e o participante recebe um e-mail com o código do pedido, e os números 
+                                      que foram selecionados.
+                                    </p>
+                                    <p>
+                                      DESISTÊNCIA E DEVOLUÇÃO DE VALORES<br />
+                                      AApós a aquisição das cotas, o participante não poderá mais desistir ou
+                                      solicitar devolução de valores. No momento da compra na tela de checkout há em
+                                      seu rodapé a informação de não devolução de valores.
+                                    </p>
+                                    <p>
+                                      DESCLASSIFICAÇÃO<br />
+                                      Está rifa NÃO poderá ser comercializada (comprada ou vendida) por menores de
+                                      18 anos e ou incapazes legalmente.
+                                    </p>
+                                    <p>
+                                      Os Participantes poderão ser desclassificados automaticamente desta RIFA em
+                                      caso de suspeita justificada de fraude ou fraude comprovada, podendo ainda
+                                      responder nas esferas penal e cível. Haverá a desclassificação dos
+                                      participantes que não atenderem a quaisquer dos requisitos, termos e condições
+                                      previstos neste Regulamento, como, por exemplo, a prestação de informações
+                                      inverídicas, incorretas, incompletas ou equivocadas.
+                                    </p>
+  raffles_agreement_contract_admoney_html: | 
+                                    <p>
+                                      A %{company_name} possui em sua plataforma, uma aba de sorteios, totalmente digital, 
+                                      com diversos produtos. 
+                                    </p>
+                                    <p>
+                                      A plataforma %{company_name} possui sede administrativa no Uruguai e Licença Internacional 
+                                      de Sorteios na Costa Rica sob o número %{raffle_license_number}.
+                                    </p>
+                                    <p>
+                                      Cada número selecionado e pago na %{company_name}, passa a ser chamado <b>COTA</b>.
+                                    </p>
+                                    <p>
+                                      Adquira já suas cotas nos diversos prêmios da %{company_name} e realize seus
+                                      sonhos com os diversos produtos disponíveis na plataforma. 
+                                    </p>
+                                    Os sorteios são gerados de acordo com as seguintes cotas:
+                                    <ol>
+                                      <li>100 cotas - numeradas de 00 a 99</li>
+                                      <li>1.000 cotas - numeradas de 000 a 999</li>
+                                      <li>10.000 cotas - numeradas de 0000 a 9.999</li>
+                                      <li>100.000 cotas - numeradas de 00000 a 99.999</li>
+                                    </ol><br />
+                                    <p>
+                                      ESCOLHA DE NÚMEROS E PAGAMENTO<br />
+                                      Após escolher os números de sua preferência, efetue o pagamento com seu crédito, 
+                                      assim que o pagamento for confirmado, suas cotas estarão disponíveis para 
+                                      participação do sorteio. Agora só aguardar a venda de todas as cotas para a 
+                                      definição da data do sorteio e boa sorte. 
+                                    </p>                                    
+                                    O SORTEIO<br />
+                                    As extrações são realizadas pelo concurso da PowerBall americana uma das maiores 
+                                    e mais respeitadas loterias do mundo, com sorteios todas as segundas, quartas e 
+                                    sábados nos EUA, às 22hs59min (hora local, EDT) o que, devido à diferença de horário, 
+                                    equivale às:  <br />                                 
+                                    <ol>
+                                      <li>21hs59min – Colômbia, Peru, Equador, Mexico.</li>
+                                      <li>22hs59min – Paraguai, Chile, Venezuela, Bolívia.</li>
+                                      <li>23hs59min – Uruguai, Argentina, Brasil.</li>
+                                      <li>04hs59min – África</li>
+                                    </ol>
+                                    <p>
+                                      O produto estará disponível para sorteio toda vez que tiver 100% de suas cotas vendidas. 
+                                      O sistema automaticamente gera o concurso o qual será executado a extração e envia um 
+                                      e-mail para cada participante com informações do concurso. 
+                                    </p>
+                                    <p>
+                                      Os sorteios podem ser acompanhados através do site: https://www.powerball.com/
+                                    </p>
+                                    <p>COMO É FEITO O SORTEIO DAS RIFAS PELA POWERBALL?</p>
+                                    <p>
+                                      Na POWERBALL os sorteios variam da dezena 01 a 69, o sorteio nesse caso é realizado 
+                                      selecionando o segundo algarismo da dezena sorteada sempre da esquerda para direita 
+                                      como segue abaixo: 
+                                    </p>
+                                    Sorteio com 100 cotas<br />
+                                    <img class="raffles-preview" src="%{img1_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das duas primeiras dezenas é 
+                                      gerado a dezena 78, assim nesse exemplo a cota sorteada foi a de número 78. 
+                                    </p>
+                                    Sorteio com 1.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img2_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das três primeiras dezenas é 
+                                      gerado a centena 783, assim nesse exemplo a cota sorteada foi a de número 783. 
+                                    </p>
+                                    Sorteio com 10.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img3_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das quatro primeiras dezenas é 
+                                      gerado a milhar 7.834, assim nesse exemplo a cota sorteada foi a de número 7.834. 
+                                    </p>
+                                    Sorteio com 100.000 cotas<br />
+                                    <img class="raffles-preview" src="%{img4_path}" />
+                                    <p>
+                                      Observando da esquerda para a direita o segundo algarismo das dezenas é gerado 
+                                      a dezena de milhar 78.345, assim nesse exemplo a cota sorteada foi a 
+                                      de número 78.345. 
+                                    </p>
+                                    <p>
+                                      NÚMEROS DISPONÍVEIS
+                                    </p>
+                                    <p>
+                                      Os números disponíveis, são todos os que estão na cor branca na tela de números 
+                                      do sorteio. Esses números encontram-se disponíveis para serem reservados e comprados.
+                                    </p>
+                                    <p>
+                                      NÚMEROS RESERVADOS
+                                    </p>
+                                    <p>
+                                      Os números reservados, são todos os que estão na cor amarela na tela de números do 
+                                      sorteio. Esses números não estão disponíveis para compra por um determinado tempo, 
+                                      esse tempo varia de acordo com a modalidade de pagamento do pedido selecionado pelo 
+                                      participante.
+                                    </p>
+                                    <p>
+                                      NÚMEROS COMPRADOS
+                                    </p>
+                                    <p>
+                                      Os números comprados, são todos os que estão na cor azul na tela de números do sorteio. 
+                                      Esses números são considerados COTAS e encontram-se em um pedido adquirido por um 
+                                      participante.
+                                    </p>
+                                    <p>
+                                      DESCLASSIFICAÇÃO
+                                    </p>
+                                    <p>
+                                      As cotas NÃO podem ser comercializadas (comprada ou vendida) por menores de 18 anos 
+                                      e ou legalmente incapazes. 
+                                      Os Participantes poderão ser desclassificados automaticamente do sorteio em caso de 
+                                      suspeita justificada de fraude ou fraude comprovada, podendo ainda responder nas esferas 
+                                      penal e cível. Haverá a desclassificação dos participantes que não atenderem a quaisquer 
+                                      dos requisitos, termos e condições previstos neste Regulamento, como, por exemplo, a 
+                                      prestação de informações inverídicas, incorretas, incompletas ou equivocadas. 
+                                    </p>
+  draw_regulation: Regulamento
+  read_more: Ler mais
+  available: Disponivel
+  reserved: Reservado
+  purchased: Comprado
+  selected_numbers: Números selecionados
+  clear: Limpar
+  choose_one_number: Escolha um número
+  random: Aleatório
+  raffle_numbers: Números
+  raffle_number: Número
+  add: Adicionar
+  go_to_payment: Ir para pagamento
+  request_withdraw: Solicitar saque
+  document_id: CPF
+  id_or_name_blank: Nome ou CPF está em branco
+  your_tickets: Seus bilhetes
+  hello: Olá
+  order_made_message: Segue a seguir os números de seus bilhetes, você precisa pagar para garantir os numeros.
+  order_paid_message: Segue a seguir os números de seus bilhetes, confira abaixo. Agora é só esperar o dia do sorteio.
+  my_tickets: Meus bilhetes
+  already_have_account: Já possui conta?
+  create_your_account: Crie sua conta agora mesmo!
+  wrong_user_or_password: O usuário e/ou senha estão incorretos
+  payment_method_blank: Selecione um método de pagamento para continuar
+  order_expire_warning: O pedido expirará em %{time}
+  dear_associate: Caro associado
+  confirm_instructions_text: 'Você pode confirmar sua conta de e-mail através do link abaixo:'
+  confirm_account: 'Confirmar minha conta'
+  change_password_text: "Estamos entrando em contato para notificá-lo de que sua senha foi alterada."
+  mail_locked_text: Sua conta foi bloqueada devido a um número excessivo de tentativas de login sem sucesso
+  mail_locked_ins: "Clique no link abaixo para desbloquear sua conta:"
+  mail_unlock_account: Desbloquear minha conta
+  tickets: "Bilhetes"
+  home: "Home"
+  earn_card_title: "Ganhe 10% sobre as rifas compradas por seu indicado e 10% sobre o valor do prêmio que eles ganharem."
+  tasks_of_the_day: "Tarefas do Dia"
+  account_activated: "Conta ativada"
+  activate_your_account_now: "Ative sua conta agora"
+  validated_account: "Conta validada"
+  validate_your_account: "Valide sua conta"
+  modal_email_confirmation_text: "Oi. Enviamos-lhe um e-mail para concluir a validação da sua conta. Por favor, clique no link para concluir o processo.
+                                  Se nosso e-mail foi para a caixa de SPAM, marque-o como confiável. Assim, você será o primeiro a receber novidades sobre nossa plataforma."
+  congratulations: "Parabéns!!"
+  almost_done: "Quase pronto!"
+  modal_already_send_email_confirmation_title: "O email de confirmação já foi enviado"
+  modal_already_send_email_confirmation_text: "Seu e-mail de confirmação já foi enviado, você pode enviar outro em %{time}"
+  modal_email_confirmation_title: "Email de confirmação enviado"
+  my_balance: "Meu saldo é:"
+  minimum_required_for_withdrawal: "Mínimo necessário para retirada:"
+  withdraw: "Sacar"
+  withdrawals_home_card_title: "Faça saques em BTC sempre que seu saldo disponível atingir 100%."
+  value_to_min_withdrawal_text: "Restam apenas <strong> %{value_to_min_withdrawal} </strong> para você completar o mínimo de <strong> %{withdrawal_min_value} </strong> e fazer seu saque."
+  you_already_have_a_balance_available_for_withdrawal: "Você já tem um saldo disponível para saque."
+  premium_account: "Conta premium"
+  account_ready_text: "Sua conta está pronta para ganhar dolares todos os dias."
+  account_ready_text_white_label: "Sua conta está pronta para jogar todos os dias."
+  you_can_accelerate_your_earnings: "Você pode acelerar seus ganhos"
+  indicating_company_name_to_your_friends: "Indicando %{company_name} para seus amigos"
+  copy_indication_card_text: 'Copie seu link de indicação no botão ao lado
+                              e envie para o maior número de amigos possíveis.'
+  support_card_title: 'Se você precisar de algo<br>
+                       estamos disponíveis para ajudá-lo.'
+  just_send_us_a_message: "Basta nos enviar uma mensagem."
+  earn_card_title_white_label: 'Ganhe 10% nas rifas compradas pelo seu indicado e 10% no valor do prêmio que ele ganhar.'
+  account_inactive_text: Ative sua conta para começar a ganhar com %{company_name}
+  raffle_id: ID da rifa
+  ticket_number: Número do bilhete
+  awaiting_draw: Aguardando sorteio
+  not_awarded: Não premiado
+  awarded: Premiado
+  draw_date: Data do sorteio
+  raffle_name: Nome da rifa
+  raffle_status: Status da rifa
+  my_numbers: Meus números
+  raffles_direct_commission_bonus: Bônus de comissão direta de sorteios
+  company_name: Nome da empresa
+  success_create_configuration: Configuração criada com sucesso
+  success_update_configuration: Configuração atualizada com sucesso
+  success_inactivate_configuration: Configuração inativada com sucesso
+  banner_email: Banner do email
+  external_logo: Logo externa
+  logo: Logo
+  base_host: Base host
+  raffle_license_number: Número de licensa da Rifa
+  raffles_direct_commission_bonus: Porcentagem de comissão direta das rifas
+  reputation: Reputação
+  taxable_fee: Taxa do sistema
+  whitelabel: Whitelabel
+  favico: Favico
+  authorization_key: Chave de autorização do Sistema
+  cloudinary_url: URL da cloudinary
+  company_domain_site: Site da empresa
+  contact_email: Email de contato
+  current_currency: Moeda atual
+  current_digital_currency: Moeda cripto atual
+  financial_email: Email financeiro
+  gateway_wallet_url: URL de notificação do gateway
+  pagstar_access_key: Chave de acesso da Pagstar
+  pagstar_api_url: URL da api da Pagstar
+  pagstar_callback: URL de notificação da Pagstar
+  pagstar_login: Login da Pagstar
+  pagstar_tenant_id: Tenant ID da Pagstar
+  payment_block_authorization_key: Chave de acesso do Gateway Plisio
+  payment_block_checkout_url: URL do Gateway Plisio
+  max_ticket_per_order: Número máximo de bilhetes por pedido
+  morenwm_customer_admin: Nome de usuário do Sistema
+  morenwm_customer_username: Nome de usuário do Administrador
+  morenwm_username: Nome do usuário principal
+  sender_email: Email de envio
+  uptime: Sistema ativo
+  withdraw_minimum_value: Valor mínimo de saque
+  earnings_per_campaign: Ganhos por campanha (Centavos)
+  congratulations_payment_approved: Parabéns, agora é só aguardar o sorteio e torcer para que a seu número seja o premiado!
+  request_number: Número da solicitação
+  package_value: Valor do pacote
+  acquired_shares: Você adquiriu %{quantity} cota(s) da rifa
+  waiting_payment: Aguardando pagamento
+  loading_message: Carregando...
+  gallery: Galeria
+  current_maximum_amount_of_tickets_reached_by_promotional_payment_html: O máximo atual de bilhetes adquiridos com saldo ADCASH já foi atingido para a rifa %{raffle}
+  amount_of_tickets_by_promotional_payment_left_html: O valor de bilhetes restantes para a rifa %{raffle} é de apenas %{ticket_values}
+  promotional_balance: Saldo ADCASH
+  doesnt_have_enough_promotional_balance: Não tem saldo ADCASH suficiente
+  winners: Ganhadores
+  see_last_winners: Veja os últimos ganhadores
+  successfully_set_date: Data definida com sucesso.
+  successfully_set_draw_numbers: Números sorteados definidos com sucesso
+  add_lottery_numbers: Adicione os números do sorteio
+  choose_a_date: Escolha uma data
+  this_action_is_irreversible: Essa ação é irreversivel!
+  yes_save_it: Sim, salve
+  winner_title: Comunicando o ganhador 
+  winner_announcement_html: |
+                              Olá %{raffle_winner}, parabéns você foi o feliz ganhador do(a) <b>%{raffle_name}</b>,
+                              com a COTA <b>%{winning_ticket}</b>.
+                              Dentre em breve a <a href="%{company_site}">%{company_name}</a> entrará em contato com você,
+                              para agendar a entrega do seu prêmio.
+  winner_congratulations: Parabéns e continue utilizando a %{company_name} para realizar seus sonhos.
+  draw_data: Dados do sorteio
+  draw_time: Horario do sorteio
+  quota_drawn: Cota sorteada
+  result_announcement_html: |
+                              O feliz ganhador do(a) <b>%{raffle_name}</b>, foi a COTA
+                              <b>%{winning_ticket}</b>,
+                              para %{winner_country}. Confira no link oficial da 
+                              <a href="%{company_site}">%{company_name}</a>
+  result_title: Comunicando a COTA ganhadora
+  draw_scheduling_title: Agendamento do sorteio
+  scheduling_announcement_html: |
+                                  O Sorteio do(a) <b>%{raffle_name}</b>,
+                                  está agendado para <b>%{draw_date}</b> as %{lotery_draw_time}.
+                                  Confira no link oficial do sorteio <a href="%{lotery_website}">%{lotery_name}</a>

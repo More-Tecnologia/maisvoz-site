@@ -27,17 +27,10 @@
           <%= f.input :description, as: :text, label: t('attributes.product_description') %>
           <%= f.input :short_description %>
           <%= f.input :category_id, collection: Category.all, label: t('attributes.category') %><br>
-          <%= image_tag(@product.main_photo_path, class: 'thumb-lg') if @product.main_photo.attached? && @product.main_photo.id %>
+          <%= image_tag(@product.main_photo_path, class: 'thumb-lg') %>
           <%= f.input :main_photo, as: :file, label: t('obligatory_main_photo'), hint: main_photo_hint %>
           <% @product.photos.each do |photo| %>
-            <%= image_tag(url_for(photo), class: 'thumb-lg') if photo.content_type.in?(%('image/jpeg image/png')) %>
-            <span>
-              <%= link_to delete_photo_attachment_backoffice_admin_product_path(photo.id),
-                      method: :delete,
-                      data: { confirm: t('confirm_delete_photo') } do %>
-                      <i class="fas fa-trash" style="color:gray"></i>
-              <% end if photo.id %>
-            </span>
+            <%= image_tag(photo.fullpath, class: 'thumb-lg') %>
           <% end %>
           <%= f.input :photos, input_html: { multiple: true },
                                as: :file,

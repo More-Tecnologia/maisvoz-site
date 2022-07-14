@@ -55,17 +55,17 @@ class Order < ApplicationRecord
                        promotional_balance: 'promotional_balance' }
 
   has_many :order_items, dependent: :destroy
-  has_many :pv_histories
-  has_many :bonus, class_name: 'Bonus'
-  has_many :pv_activity_histories
-  has_many :scores
-  has_many :financial_transactions
-  has_many :ads, class_name: 'Banner'
+  has_many :pv_histories, dependent: :destroy
+  has_many :bonus, class_name: 'Bonus', dependent: :destroy
+  has_many :pv_activity_histories, dependent: :destroy
+  has_many :scores, dependent: :destroy
+  has_many :financial_transactions, dependent: :destroy
+  has_many :ads, class_name: 'Banner', dependent: :destroy
   has_many :products, through: :order_items
 
-  has_one :payment_transaction
-  has_one :bonus_contract
-  has_one :address
+  has_one :payment_transaction, dependent: :destroy
+  has_one :bonus_contract, dependent: :destroy
+  has_one :address, dependent: :destroy
 
   belongs_to :user
   belongs_to :payable, polymorphic: true, optional: true

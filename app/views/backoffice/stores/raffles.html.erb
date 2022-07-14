@@ -12,7 +12,7 @@
   <% @packages.each do |package| %>
     <div class="store-raffle-item">
       <%= link_to backoffice_raffles_ticket_path(package.raffle), class: 'store-raffle-item-image-container' do %>
-        <%= image_tag(package.raffle.path, class: 'store-raffle-item-image') %>
+        <%= image_tag(package.main_photo_path, class: 'store-raffle-item-image') %>
       <% end %>
       <div class="store-raffle-item-info">
         <ul class="store-raffle-item-score">

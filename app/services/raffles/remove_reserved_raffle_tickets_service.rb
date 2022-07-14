@@ -11,8 +11,7 @@ module Raffles
     def call
       order_items.each do |order_item|
         order_item.raffle_ticket.update(reseted_raffle_ticket_attributes) if order_item.raffle_ticket.present?
-      end
-      order_items.destroy_all
+      end     
     end
 
     def order_items

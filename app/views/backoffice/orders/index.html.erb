@@ -1,59 +1,53 @@
-<%= stylesheet_link_tag 'click-tok-theme/orders' %>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-<div class="page">
-  <a class="back-button" href="/backoffice/financial_dashboard?locale=en">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-    </svg>
-  </a>
-  <div class="card-order">
-    <div class="is-page-title">
-      <span class="title">
-        <%= t('defaults.my_orders') %>
-      </span>
-      <div class="btn-group dropleft">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius: 20px;
-        background: #30da03;
-        border: none;">
-            <%= t(:filter) %>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <button class="dropdown-item" type="button"><%= link_to t(:all), backoffice_orders_path %></button>
-          <% (Order.statuses.keys - ['cart']).each do |k| %>
-            <button class="dropdown-item" type="button"><%= link_to t(k), backoffice_orders_path(status: k) %></button>
-          <% end %>
-        </div>
-      </div>
+<%= stylesheet_link_tag 'click-tok-theme/orders_page' %>
+<%= stylesheet_link_tag 'click-tok-theme/orders/index' %>
+<%= javascript_include_tag 'click-tok-theme/orders/index', defer: true %>
+<%= javascript_include_tag 'https://kit.fontawesome.com/4d5efdc352.js', defer: true %>
+<%= render 'backoffice/shared/back_and_title',back_path: backoffice_financial_dashboard_index_path ,page_title: t('defaults.my_orders') %>
+<div class="order-page">
+  <div class="order-filter-container">
+    <button class="order-filter-button">
+      <i class="fa-solid fa-filter"></i>
+      <%= t(:filter) %>
+    </button>
+    <div class="order-filter-dropdown">
+      <%= link_to t(:all), backoffice_orders_path %>
+      <% (Order.statuses.keys - ['cart']).each do |k| %>
+        <%= link_to t(k), backoffice_orders_path(status: k) %>
+      <% end %>
     </div>
+  </div>
+  <div class="order-list">
     <% @orders.each do |order| %>
-    <div class="th-history-list">
-      <div class="th-history-task-title wr-title">
-        <span class="th-history-task-id">
-          <%= order.hashid %>
-        </span>
-        <%= link_to order.order_items.first.product.name, backoffice_order_path(order) %> <br>
-        <%= order.created_at.strftime('%d %b') %>
-      </div>
-      <div class="th-history-task-status">
-        <div class="th-history-task-date">
-          <%= order.created_at.strftime('%d/%m/%y') %>
+      <div class="order-card-item">
+        <div class="order-date">
+          <span><i><%= order.hashid %></i> - <%= order.created_at.strftime('%d %b').upcase %></span>
+          <span><%= t(order.payment_type).upcase %> - <b class="<%= order.status %>"><%= t(order.status).upcase %></b></span>
         </div>
-        <div class="wr-align">
-          <div class="th-history-task-status-action <%= order_status_style_class(order) %>">
-            <%= t(order.status) %>
+        <div class="order-products">
+          <% order.products.uniq.each do |item| %>
+            <div class="product-item">
+              <div class="product-left">
+                <%= link_to item.name, order_product_path(item),  class: "product-title" %>
+                <div class="image-and-info-container">
+                  <%= link_to order_product_path(item), class:'product-image-container' do %>                  
+                    <%= order_product_image(item) %>                 
+                  <% end %>
+                  <ul class="product-info">
+                    <li>
+                      <%= OrderItem.where(product: item, order: order).size %> Tickets adquiridos
+                    </li>
+                    <li>
+                      Aguardando venda dos tickets
+                    </li>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
-          <div class="wr-amount">
-            <%= number_to_currency order.total %>
+          <div class="order-last-container">
+            <span class="order-total-price"><%= format_currency(order.total) %></span>
+            <%= link_to 'Ver pedido', backoffice_order_path(order), class: 'see-order-button' if order.order_items.any? %>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= paginate @orders %>
-    </div>
-  </div>
-</div>

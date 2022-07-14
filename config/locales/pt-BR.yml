@@ -391,6 +391,9 @@ pt-BR:
     crypto_amount: Cripto
   backoffice:
     orders:
+      index:
+        product_description:
+          course: 5curso
       show:
         invoice: Fatura
         order_date: Data da fatura

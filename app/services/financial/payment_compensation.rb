@@ -2,6 +2,13 @@ module Financial
   class PaymentCompensation
     prepend SimpleCommand
 
+    FIRST_BUY_PRODUCTS = {
+      1 => 6,
+      2 => 15,
+      3 => 40,
+      4 => 120
+    }
+
     def initialize(order, enabled_bonification = true)
       @order = order
       @user  = order.user
@@ -21,13 +28,13 @@ module Financial
 
     def compensate_order
       ActiveRecord::Base.transaction do
+        create_bonus_first_buy if first_buy_products? && first_buy? && deposit_product
         create_order_payment
-        update_user_purchase_flags
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user if (deposit_product || crypto_product)
+        activate_user if (deposit_product || free_product)
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
-        user.empreendedor! if (deposit_product || crypto_product) && user.consumidor?
+        user.empreendedor! if (deposit_product || free_product) && user.consumidor?
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
         create_pool_point_for_user if enabled_bonification
@@ -39,7 +46,7 @@ module Financial
         propagate_bonuses if enabled_bonification
         propagate_course_payment if course_product
         create_vouchers if voucher_product
-        create_bonus_contract if deposit_product || crypto_product
+        create_bonus_contract if deposit_product || free_product
         process_reserved_raffle_tickets if raffle_product
         propagate_raffle_bonus_payment if raffle_product && enabled_bonification
         propagate_master_bonus if deposit_product
@@ -122,6 +129,29 @@ module Financial
 
     def create_system_fee
       Financial::CreatorSystemFeeService.call(order: order)
+    end
+
+    def first_buy?
+      user.orders
+          .joins(order_items: :product)
+          .where(order_items: { product: Product.deposit })
+          .completed
+          .none?
+    end
+
+    def first_buy_products?
+      order.order_items
+           .includes(:product)
+           .where(products: { code: [1, 2, 3, 4]})
+           .any?
+    end
+
+    def create_bonus_first_buy
+      user.financial_transactions
+          .create(spreader: User.find_morenwm_customer_admin,
+                  financial_reason: FinancialReason.credit_for_payment_by_first_buy,
+                  cent_amount: FIRST_BUY_PRODUCTS[order.order_items.last.product.code],
+                  moneyflow: :credit)
     end
 
     def process_reserved_raffle_tickets
@@ -220,7 +250,7 @@ module Financial
     end
 
     def free_product
-      order.products.detect(&:free_product?)
+      order.products.detect(&:free?)
     end
 
     def new_trail?

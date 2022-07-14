@@ -267,4 +267,8 @@ class FinancialReason < ApplicationRecord
   def self.order_payment_with_promotional_balance
     @@order_payment_with_promotional_balance ||= find_by(code: '7300')
   end
+
+  def self.credit_for_payment_by_first_buy
+    @@credit_for_payment_by_first_buy ||= find_by(code: '7500')
+  end
 end

@@ -1,8 +1,13 @@
+.order-page {
+  position: relative;  
+}
+
 .order-filter-container {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
-  position: relative;
+  top: -46px; 
+  right: 0; 
+  position: absolute;
 }
 
 .order-filter-button {

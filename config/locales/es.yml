@@ -386,6 +386,24 @@ es:
     crypto_amount: Cripto
   backoffice:
     orders:
+      index:
+        product_description:
+          deposit: "%{data} tasks per day" 
+          raffle: "%{data} boletos comprados" 
+          publicity: "%{data} clics en anuncios"
+          course: "%{data} lecciónes"
+        product_status:
+            deposit: Actividades disponibles todos los días
+            free: Actividades disponibles todos los días
+            raffle: 
+              started: Entradas disponibles para la compra
+              awaiting_draw_date: Esperando la fecha del sorteo
+              awaiting_draw: Esperando el dia del sorteo
+              pending: Organizar entrega de premios
+              finished: Dibujo terminado
+            publicity: Paquete de publicidad disponible
+            course: Lecciones disponibles
+        see_order: Ver pedido
       show:
         invoice: Factura
         order_date: Fecha de la factura

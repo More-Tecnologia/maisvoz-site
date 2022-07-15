@@ -393,7 +393,22 @@ pt-BR:
     orders:
       index:
         product_description:
-          course: 5curso
+          deposit: "%{data} tarefas por dia" 
+          raffle: "%{data} tickets adquiridos" 
+          publicity: "%{data} cliques no anúncio"
+          course: "%{data} aulas"
+        product_status:
+            deposit: Atividades disponiveis diariamente
+            free: Atividades disponiveis diariamente
+            raffle: 
+              started: Tickets disponíveis para compra
+              awaiting_draw_date: Escolhendo data do sorteio
+              awaiting_draw: Aguardando dia do sorteio
+              pending: Organizando entrega do premio
+              finished: Sorteio finalizado
+            publicity: Pacote de publicidade disponível 
+            course: Aulas disponíveis
+        see_order: Ver pedido
       show:
         invoice: Fatura
         order_date: Data da fatura

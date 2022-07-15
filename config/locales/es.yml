@@ -393,15 +393,15 @@ es:
           publicity: "%{data} clics en anuncios"
           course: "%{data} lecciónes"
         product_status:
-            deposit: Actividades disponibles todos los días
-            free: Actividades disponibles todos los días
+            deposit: Paquete de recarga
+            free: Paquete de recarga gratis
             raffle: 
               started: Entradas disponibles para la compra
               awaiting_draw_date: Esperando la fecha del sorteo
               awaiting_draw: Esperando el dia del sorteo
               pending: Organizar entrega de premios
               finished: Dibujo terminado
-            publicity: Paquete de publicidad disponible
+            publicity: Paquete publicitario
             course: Lecciones disponibles
         see_order: Ver pedido
       show:

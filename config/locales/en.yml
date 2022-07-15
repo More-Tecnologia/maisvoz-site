@@ -393,15 +393,15 @@ en:
           publicity: "%{data} ad clicks"
           course: "%{data} lections"
         product_status:
-            deposit: Activities available daily
-            free: Activities available daily
+            deposit: Recharge package
+            free: Free recharge package
             raffle: 
               started: Tickets available for purchase
               awaiting_draw_date: Choosing the draw date
               awaiting_draw: Awaiting draw day
               pending: Organizing award delivery
               finished: Draw finished
-            publicity: Advertising package available
+            publicity: Advertising package
             course: Lections available
         see_order: See order
       show:

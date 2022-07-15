@@ -386,6 +386,24 @@ en:
     crypto_amount: Crypto
   backoffice:
     orders:
+      index:
+        product_description:
+          deposit: "%{data} tasks per day" 
+          raffle: "%{data} tickets purchased" 
+          publicity: "%{data} ad clicks"
+          course: "%{data} lections"
+        product_status:
+            deposit: Recharge package
+            free: Free recharge package
+            raffle: 
+              started: Tickets available for purchase
+              awaiting_draw_date: Choosing the draw date
+              awaiting_draw: Awaiting draw day
+              pending: Organizing award delivery
+              finished: Draw finished
+            publicity: Advertising package
+            course: Lections available
+        see_order: See order
       show:
         invoice: Invoice
         order_date: Invoice date

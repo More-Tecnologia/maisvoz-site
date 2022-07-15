@@ -5,9 +5,9 @@
 .order-filter-container {
   display: flex;
   justify-content: flex-end;
-  top: -46px; 
-  right: 0; 
   position: absolute;
+  right: 0; 
+  top: -46px; 
 }
 
 .order-filter-button {

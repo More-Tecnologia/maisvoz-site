@@ -3,9 +3,10 @@ module Backoffice
     before_action :ensure_status, only: :index
 
     def index
-      @orders = current_user.orders.__send__(params[:status].to_sym)
+      @orders = current_user.orders.includes([:order_items])
+                                   .__send__(params[:status].to_sym)
                                    .where.not(status: :cart)
-                                   .order(created_at: :desc)
+                                   .order(created_at: :desc)                                   
                                    .page(params[:page])
                                    .per(10)
     end

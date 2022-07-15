@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="order-list">
-    <% @orders.each do |order| %>
+    <% @orders.includes([:products]).each do |order| %>
       <div class="order-card-item">
         <div class="order-date">
           <span><i><%= order.hashid %></i> - <%= order.created_at.strftime('%d %b').upcase %></span>

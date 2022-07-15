@@ -23,7 +23,7 @@ module Backoffice
         when 'publicity'
           product.clicks
         when 'raffle'
-          OrderItem.includes([:order_items]).where(product: product, order: order).size
+          OrderItem.where(product: product, order: order).size
         end
       end
 

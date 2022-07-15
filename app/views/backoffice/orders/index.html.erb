@@ -29,25 +29,26 @@
               <div class="product-left">
                 <%= link_to item.name, order_product_path(item),  class: "product-title" %>
                 <div class="image-and-info-container">
-                  <%= link_to order_product_path(item), class:'product-image-container' do %>                  
-                    <%= order_product_image(item) %>                 
+                  <%= link_to order_product_path(item), class:'product-image-container' do %>
+                    <%= image_tag(item.main_photo_path, class: 'product-image') %>
                   <% end %>
                   <ul class="product-info">
                     <li>
-                      <%= OrderItem.where(product: item, order: order).size %> Tickets adquiridos
+                      <%= t("backoffice.orders.index.product_description.#{item.kind}", data: order_product_info_by_kind(order, item)) %>
                     </li>
                     <li>
-                      Aguardando venda dos tickets
+                      <%= t("backoffice.orders.index.product_status.#{get_product_statuses(item)}")%>
                     </li>
-                  </div>
+                  </ul>
                 </div>
               </div>
-            <% end %>
-          </div>
-          <div class="order-last-container">
-            <span class="order-total-price"><%= format_currency(order.total) %></span>
-            <%= link_to 'Ver pedido', backoffice_order_path(order), class: 'see-order-button' if order.order_items.any? %>
-          </div>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+        <div class="order-last-container">
+          <span class="order-total-price"><%= format_currency(order.total) %></span>
+          <%= link_to t('backoffice.orders.index.see_order'), backoffice_order_path(order), class: 'see-order-button' if order.order_items.any? %>
+        </div>
+      </div>
+    <% end %>
+  </div>

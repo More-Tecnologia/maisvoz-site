@@ -177,6 +177,7 @@
   height: 6em;
   justify-content: center;
   width: 6em;
+  overflow: hidden;
 }
 
 .product-image {

@@ -1,13 +1,15 @@
 module Backoffice
   class OrdersController < BackofficeController
+
     before_action :ensure_status, only: :index
 
     def index
-      @orders = current_user.orders.__send__(params[:status].to_sym)
-                                   .where.not(status: :cart)
-                                   .order(created_at: :desc)
-                                   .page(params[:page])
-                                   .per(10)
+      @orders = current_user.orders.includes([:order_items])
+                            .__send__(params[:status].to_sym)
+                            .where.not(status: :cart)
+                            .order(created_at: :desc)
+                            .page(params[:page])
+                            .per(10)
     end
 
     def show
@@ -37,9 +39,7 @@ module Backoffice
     private
 
     def ensure_status
-      if params[:status].nil?
-        params[:status] = 'all'
-      end
+      params[:status] = 'all' if params[:status].nil?
     end
 
   end

@@ -2,12 +2,13 @@ module Financial
   class PaymentCompensation
     prepend SimpleCommand
 
-    FIRST_BUY_PRODUCTS = {
+    FREE_PRODUCT_BONUS_AMOUNT = 20
+    FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS = {
       1 => 6,
       2 => 15,
       3 => 40,
       4 => 120
-    }
+    }.freeze
 
     def initialize(order, enabled_bonification = true)
       @order = order
@@ -29,6 +30,7 @@ module Financial
     def compensate_order
       ActiveRecord::Base.transaction do
         create_bonus_first_buy if first_buy_products? && first_buy? && deposit_product
+        create_free_product_bonus if free_product
         create_order_payment
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
@@ -54,6 +56,7 @@ module Financial
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         remove_user_from_free_product_list if order.total_cents.positive? && user.interspire_code.present?
         notify_user_by_email_about_paid_order
+        transform_free_bonus if eligible_for_free_bonus?
       end
     end
 
@@ -147,11 +150,13 @@ module Financial
     end
 
     def create_bonus_first_buy
-      user.financial_transactions
-          .create(spreader: User.find_morenwm_customer_admin,
-                  financial_reason: FinancialReason.credit_for_payment_by_first_buy,
-                  cent_amount: FIRST_BUY_PRODUCTS[order.order_items.last.product.code],
-                  moneyflow: :credit)
+      user.increment(:brute_promotional_balance, FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[order.order_items.last.product.code])
+      user.increment(:promotional_balance, FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[order.order_items.last.product.code]).save!
+    end
+
+    def create_free_product_bonus
+      user.increment(:brute_promotional_balance, FREE_PRODUCT_BONUS_AMOUNT)
+      user.increment(:promotional_balance, FREE_PRODUCT_BONUS_AMOUNT).save!
     end
 
     def process_reserved_raffle_tickets
@@ -211,6 +216,30 @@ module Financial
       product_bonus = user.current_trail.product_bonus
       order.order_items.create!(quantity: 1,
                                 product: product_bonus) if product_bonus
+    end
+
+    def eligible_for_free_bonus?
+      Order.where(user: user.sponsor.sponsored.active.select(:id)).any?
+    end
+
+    def transform_free_bonus
+      sponsor = user.sponsor
+      if sponsor.promotional_balance >= FREE_PRODUCT_BONUS_AMOUNT
+        sponsor.decrement(:promotional_balance, FREE_PRODUCT_BONUS_AMOUNT).save!
+        sponsor.financial_transactions
+               .create(spreader: User.find_morenwm_customer_admin,
+                       financial_reason: FinancialReason.credit_for_payment_by_first_buy,
+                       cent_amount: FREE_PRODUCT_BONUS_AMOUNT,
+                       moneyflow: :credit)
+      else
+        remaning_balance = sponsor.promotional_balance
+        sponsor.decrement(:promotional_balance, remaning_balance).save!
+        sponsor.financial_transactions
+               .create(spreader: User.find_morenwm_customer_admin,
+                       financial_reason: FinancialReason.credit_for_payment_by_first_buy,
+                       cent_amount: remaning_balance,
+                       moneyflow: :credit)
+      end
     end
 
     def adhesion_product

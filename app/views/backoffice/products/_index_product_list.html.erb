@@ -3,42 +3,81 @@
   <div class="store--products-item product-<%= product_number %>" data-product="<%= product_number %>">
     <div class="store--products-item--header" style="background: <%= product.details %>">
       <%= product.name %>
-    </div>
-    <ul class="store--products-item--content ">
-      <li class="store--products-item--task">
-        <span class="store--products-item--task--number">
-          <%= product.task_per_day %>
-        </span>
-        <span class="store--products-item--task--title">
-          <%= t(:tasks_per_day) %>
-        </span>
-      </li>
-      <li class="store--products-item--border"></li>
-      <li class="store--products-item--earnings">
-        <span class="store--products-item--earnings--number">
-          <%= format_currency(product.earnings_per_campaign / 100.0) %>
-        </span>
-        <span class="store--products-item--earnings--campaign">
-          <%= t(:earnings_by_campaign) %>
-        </span>
-      </li>
-      <li class="store--products-item--price">
-        <span class="store--products-item--price--number">
-          <%= product.price.zero? ? t(:free) : format_currency(product.price) %>
-        </span>
-        <% if user_signed_in? %>
-          <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
-                    class: 'store--products-item--price--buy-button',
-                    method: :post do %>
-            <%= t(:buy) %>
-          <% end %>
-        <% else %>
-          <span class="store--products-item--price--buy-button" onclick="publicLoginRegister.buyAdcashHandler('product-<%= product_number %>')">
-            <%= t(:buy) %>
+    </div>   
+    <% if product.free? && is_free_product_available(current_user) %>
+      <ul class="store--products-item--content">
+        <li class="store--products-item--task">
+          <span class="store--products-item--task--number">
+            <%= t('backoffice.products.activate') %>
           </span>
-        <% end %>
-      </li>
-    </ul>
+          <span class="store--products-item--task--title">
+            <%= t('backoffice.products.win') %>
+          </span>
+        </li>
+        <li class="store--products-item--border"></li>
+        <li class="store--products-item--earnings">
+          <span class="store--products-item--earnings--number">  
+                   
+            <b>$</b><%= SharedHelper::FREE_PRODUCT_BONUS_AMOUNT %><i>00</i>
+          </span>
+          <span class="store--products-item--earnings--campaign">
+            <%= t('backoffice.products.balance_adcash') %>
+          </span>
+        </li>
+        <li class="store--products-item--price">
+          <span class="store--products-item--price--number">
+            <%= t(:free) %>
+          </span>
+          <% if user_signed_in? %>
+            <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
+                      class: 'store--products-item--price--buy-button',
+                      method: :post do %>
+              <%= t('backoffice.products.activate') %>
+            <% end %>
+          <% else %>
+            <span class="store--products-item--price--buy-button" onclick="publicLoginRegister.buyAdcashHandler('product-<%= product_number %>')">
+              <%= t('backoffice.products.activate') %>
+            </span>
+          <% end %>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="store--products-item--content">
+        <li class="store--products-item--task">
+          <span class="store--products-item--task--number">
+            <%= product.task_per_day %>
+          </span>
+          <span class="store--products-item--task--title">
+            <%= t(:tasks_per_day) %>
+          </span>
+        </li>
+        <li class="store--products-item--border"></li>
+        <li class="store--products-item--earnings">
+          <span class="store--products-item--earnings--number">
+            <%= format_currency(product.earnings_per_campaign / 100.0) %>
+          </span>
+          <span class="store--products-item--earnings--campaign">
+            <%= t(:earnings_by_campaign) %>
+          </span>
+        </li>
+        <li class="store--products-item--price">
+          <span class="store--products-item--price--number">
+            <%= product.price.zero? ? t(:free) : format_currency(product.price) %>
+          </span>
+          <% if user_signed_in? %>
+            <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
+                      class: 'store--products-item--price--buy-button',
+                      method: :post do %>
+              <%= t(:buy) %>
+            <% end %>
+          <% else %>
+            <span class="store--products-item--price--buy-button" onclick="publicLoginRegister.buyAdcashHandler('product-<%= product_number %>')">
+              <%= t(:buy) %>
+            </span>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
   </div>
   <% product_number = product_number + 1 %>
 <% end %>

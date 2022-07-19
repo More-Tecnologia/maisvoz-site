@@ -31,5 +31,9 @@ module Backoffice
 
       Product.where(id: records_array.map{ |product| product["product_id"] })
     end
+
+    def is_free_product_available(user)
+      !user.orders.includes(:products).where(products: {kind: :free}).any?
+    end
   end
 end

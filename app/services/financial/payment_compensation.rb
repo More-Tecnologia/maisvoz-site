@@ -232,7 +232,7 @@ module Financial
 
     def eligible_for_free_bonus?
       Order.joins(:products)
-           .where(user: (user.sponsor.sponsored.active.select(:id) - user))
+           .where(user: (user.sponsor.sponsored.active.select(:id) - [user]))
            .where('products.price_cents >  5000')
            .where(products: { kind: :deposit })
            .any?

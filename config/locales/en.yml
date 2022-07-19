@@ -668,6 +668,11 @@ en:
         finished_at: Finished at
         action: Action
         view: View
+    products:
+      activate: Activate
+      win: Win
+      balance_adcash: Balance Adcash
+      activate: Activate
   balanced_strategy: Balanced
   buy_cart:
     updated: Cart updated

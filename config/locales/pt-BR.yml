@@ -2285,3 +2285,4 @@ pt-BR:
                                   O Sorteio do(a) <b>%{raffle_name}</b>,
                                   está agendado para <b>%{draw_date}</b> as %{lotery_draw_time}.
                                   Confira no link oficial do sorteio <a href="%{lotery_website}">%{lotery_name}</a>
+  minimum_expend_to_use_promotional_balance: É necessário usar ao menos 5 dolares em compras na plataforma para conseguir utilizar esta opção.

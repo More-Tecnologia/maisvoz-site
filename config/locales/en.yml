@@ -2297,3 +2297,4 @@ en:
                                   The Raffle of <b>%{raffle_name}</b>,
                                   is scheduled for <b>%{draw_date}</b> at %{lotery_draw_time}.
                                   Check the official lottery link <a href="%{lotery_website}">%{lotery_name}</a>
+  minimum_expend_to_use_promotional_balance: It is necessary to spend at least 5 dollars in purchases on the platform to be able to use this option.

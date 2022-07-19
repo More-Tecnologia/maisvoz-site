@@ -2302,4 +2302,5 @@ es:
   scheduling_announcement_html: |
                                   La rifa de <b>%{raffle_name}</b>,
                                   está programado para el <b>%{draw_date}</b> a las %{lotery_draw_time}.
-                                  Consulta el enlace oficial del sorteo <a href="%{lotery_website}">%{lotery_name}</a> 
+                                  Consulta el enlace oficial del sorteo <a href="%{lotery_website}">%{lotery_name}</a>
+  minimum_expend_to_use_promotional_balance: Es necesario gastar al menos 5 dólares en compras en la plataforma para poder utilizar esta opción.

@@ -46,7 +46,7 @@ module Backoffice
       return unless params[:payment_method] == 'promotional_balance'
       return if current_user.orders.where(payment_type: [:btc, :admin, :pix]).completed.sum(:total_cents) >= 500
 
-      flash[:error] =I18n.t(:minimun_expend_to_use_promotional_balance)
+      flash[:error] =I18n.t(:minimum_expend_to_use_promotional_balance)
       redirect_to backoffice_raffles_carts_path
     end
 

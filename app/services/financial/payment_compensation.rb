@@ -32,7 +32,6 @@ module Financial
       ActiveRecord::Base.transaction do
         create_bonus_first_buy if first_buy_products? && first_buy? && deposit_product
         create_free_product_bonus if free_product
-        transform_free_bonus if eligible_for_free_bonus? && free_product_counting? && free_bonus_elegible_sponsor?
         create_order_payment
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
@@ -58,6 +57,7 @@ module Financial
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         remove_user_from_free_product_list if order.total_cents.positive? && user.interspire_code.present?
         notify_user_by_email_about_paid_order
+        transform_free_bonus if eligible_for_free_bonus? && free_product_counting? && free_bonus_elegible_sponsor? && havent_received_free_bonus?
       end
     end
 
@@ -220,12 +220,13 @@ module Financial
     end
 
     def free_bonus_elegible_sponsor?
-      user.sponsor.created_at + FREE_BONUS_USER_CREATION_SPAN >= Time.now
+      free = user.sponsor.orders.includes(:products).where(products: { kind: :free }).last
+      free.present? && (free.paid_at + FREE_BONUS_USER_CREATION_SPAN) >= Time.now
     end
 
     def free_product_counting?
       order.products
-           .where('products.price_cents >  5000')
+           .where('products.price_cents >=  5000')
            .where(products: { kind: :deposit })
            .any?
     end
@@ -233,7 +234,7 @@ module Financial
     def eligible_for_free_bonus?
       Order.joins(:products)
            .where(user: (user.sponsor.sponsored.active.select(:id) - [user]))
-           .where('products.price_cents >  5000')
+           .where('products.price_cents >=  5000')
            .where(products: { kind: :deposit })
            .any?
     end
@@ -256,6 +257,13 @@ module Financial
                        cent_amount: remaning_balance,
                        moneyflow: :credit)
       end
+    end
+
+    def havent_received_free_bonus?
+      user.sponsor
+          .financial_transactions
+          .where(financial_reason: FinancialReason.credit_for_payment_by_first_buy)
+          .none?
     end
 
     def adhesion_product

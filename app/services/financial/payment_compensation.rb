@@ -32,6 +32,7 @@ module Financial
       ActiveRecord::Base.transaction do
         create_bonus_first_buy if first_buy_products? && first_buy? && deposit_product
         create_free_product_bonus if free_product
+        transform_free_bonus if eligible_for_free_bonus? && free_product_counting? && free_bonus_elegible_sponsor? && havent_received_free_bonus?
         create_order_payment
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
@@ -57,7 +58,6 @@ module Financial
         create_system_fee if order.products.any?(&:system_taxable) && enabled_bonification
         remove_user_from_free_product_list if order.total_cents.positive? && user.interspire_code.present?
         notify_user_by_email_about_paid_order
-        transform_free_bonus if eligible_for_free_bonus? && free_product_counting? && free_bonus_elegible_sponsor? && havent_received_free_bonus?
       end
     end
 

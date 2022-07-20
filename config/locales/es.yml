@@ -669,8 +669,8 @@ es:
         action: Acción
         view: Vista
     products:
-      activate: Ative
-      win: Ganhe
+      activate: Activar
+      win: Ganar
       balance_adcash: Saldo Adcash
       activate_button: Ativar
       adcash_credit: Crédito Adcash
@@ -1944,7 +1944,7 @@ es:
   premium_ads: Anuncios premium
   basic_ads: Anuncios basicos  
   task_per_day: Tarea por dia
-  tasks_per_day: Tareas por dia
+  tasks_per_day: tareas por dia
   top_deal: Mejor oferta
   last_numbers: Últimos números
   free: Gratis

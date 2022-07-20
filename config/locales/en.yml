@@ -669,11 +669,11 @@ en:
         action: Action
         view: View
     products:
-      activate: Activar
-      win: Ganar
+      activate: Activate
+      win: Win
       balance_adcash: Balance Adcash
-      activate_button: Activar
-      adcash_credit: Crédito Adcash
+      activate_button: Activate
+      adcash_credit: Adcash Credit
   balanced_strategy: Balanced
   buy_cart:
     updated: Cart updated
@@ -1949,8 +1949,8 @@ en:
   store_raffle_price: Price
   premium_ads: Premium ads
   basic_ads: Basic ads
-  task_per_day: Task per day
-  tasks_per_day: Tasks per day
+  task_per_day: task per day
+  tasks_per_day: tasks per day
   top_deal: Top deal
   last_numbers: Last numbers
   free: Free

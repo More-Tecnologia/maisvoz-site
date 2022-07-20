@@ -683,8 +683,8 @@ pt-BR:
         view: Visualizar
         no_data: Nenhum Resultado
     products:
-      activate: Ative
-      win: Ganhe
+      activate: Ativar
+      win: Ganar
       balance_adcash: Saldo Adcash
       activate_button: Ativar
       adcash_credit: Crédito Adcash
@@ -1879,7 +1879,7 @@ pt-BR:
   premium_ads: Anúncios premium
   basic_ads: Anúncios básicos
   task_per_day: Tarefa por dia
-  tasks_per_day: Tarefas por dia
+  tasks_per_day: tarefas por dia
   top_deal: Melhor oferta
   last_numbers: Últimos números
   free: Grátis

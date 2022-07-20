@@ -669,10 +669,11 @@ en:
         action: Action
         view: View
     products:
-      activate: Activate
-      win: Win
+      activate: Activar
+      win: Ganar
       balance_adcash: Balance Adcash
-      activate: Activate
+      activate_button: Activar
+      adcash_credit: Crédito Adcash
   balanced_strategy: Balanced
   buy_cart:
     updated: Cart updated

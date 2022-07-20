@@ -668,6 +668,12 @@ es:
         finished_at: Terminado en
         action: Acción
         view: Vista
+    products:
+      activate: Ative
+      win: Ganhe
+      balance_adcash: Saldo Adcash
+      activate_button: Ativar
+      adcash_credit: Crédito Adcash
   balanced_strategy: Equilibrado
   buy_cart:
     updated: Carrito actualizado

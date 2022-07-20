@@ -683,8 +683,8 @@ pt-BR:
         view: Visualizar
         no_data: Nenhum Resultado
     products:
-      activate: Ativar
-      win: Ganar
+      activate: Ative
+      win: Ganhe
       balance_adcash: Saldo Adcash
       activate_button: Ativar
       adcash_credit: Crédito Adcash

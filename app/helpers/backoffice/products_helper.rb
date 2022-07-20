@@ -8,6 +8,10 @@ module Backoffice
       "#{Product::PHOTO_WIDTH} x #{Product::PHOTO_HEIGHT} (#{t('backoffice.admin.media_files.form.maximum_number_of_photos', maximum_number: Product::MAXIMUM_NUMBER_OF_PHOTOS)})"
     end
 
+    def calc_product_credit(product)
+      format_currency(product.price + SharedHelper::FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[product.code].to_f)
+    end
+
     def product_descriptions(product)
       positions = (1..Product::MAXIMUM_NUMBER_OF_PRODUCT_DESCRIPTIONS).to_a
       positions.map do |i|

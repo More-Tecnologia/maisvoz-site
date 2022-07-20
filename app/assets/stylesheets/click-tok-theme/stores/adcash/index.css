@@ -10,6 +10,11 @@
   flex-grow: 1;
 }
 
+.store--products-item--task.spaced {
+  padding-bottom: 10px;
+  row-gap: 2px;
+}
+
 .store--products-item--task--number {
   font-size: 2.2em;
   font-weight: 600;
@@ -63,6 +68,10 @@
 
 .store--products-item--earnings--campaign {
   white-space: nowrap;
+}
+
+.store--products-item--earnings--campaign.small {
+  font-size: 0.95em;
 }
 
 .store--products-item--price {

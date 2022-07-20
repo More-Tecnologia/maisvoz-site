@@ -33,7 +33,11 @@ module Backoffice
     end
 
     def is_free_product_available(user)
-      !user.orders.includes(:products).where(products: {kind: :free}).any?
+      if(user)
+        !user.orders.includes(:products).where(products: {kind: :free}).any?
+      else
+        true
+      end
     end
   end
 end

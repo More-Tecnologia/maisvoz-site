@@ -1,10 +1,10 @@
 <% product_number = 0 %>
 <% @products.each do |product| %>
-  <div class="store--products-item product-<%= product_number %>" data-product="<%= product_number %>">
-    <div class="store--products-item--header" style="background: <%= product.details %>">
-      <%= product.name %>
-    </div>   
-    <% if product.free? && is_free_product_available(current_user) %>
+  <% if product.free? && is_free_product_available(current_user) %>
+    <div class="store--products-item free product-<%= product_number %>" data-product="<%= product_number %>">
+      <div class="store--products-item--header" style="background: <%= product.details %>">
+        <%= product.name %>
+      </div>
       <ul class="store--products-item--content">
         <li class="store--products-item--task">
           <span class="store--products-item--task--number">
@@ -16,8 +16,7 @@
         </li>
         <li class="store--products-item--border"></li>
         <li class="store--products-item--earnings">
-          <span class="store--products-item--earnings--number">  
-                   
+          <span class="store--products-item--earnings--number">
             <b>$</b><%= SharedHelper::FREE_PRODUCT_BONUS_AMOUNT %><i>00</i>
           </span>
           <span class="store--products-item--earnings--campaign">
@@ -41,7 +40,12 @@
           <% end %>
         </li>
       </ul>
-    <% else %>
+    </div>
+  <% else %>
+    <div class="store--products-item product-<%= product_number %>" data-product="<%= product_number %>">
+      <div class="store--products-item--header" style="background: <%= product.details %>">
+        <%= product.name %>
+      </div>
       <ul class="store--products-item--content">
         <li class="store--products-item--task">
           <span class="store--products-item--task--number">
@@ -62,7 +66,7 @@
         </li>
         <li class="store--products-item--price">
           <span class="store--products-item--price--number">
-            <%= product.price.zero? ? t(:free) : format_currency(product.price) %>
+            <%= format_currency(product.price) %>
           </span>
           <% if user_signed_in? %>
             <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
@@ -77,7 +81,7 @@
           <% end %>
         </li>
       </ul>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   <% product_number = product_number + 1 %>
 <% end %>

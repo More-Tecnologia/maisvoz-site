@@ -1,6 +1,7 @@
 <% product_number = 0 %>
 <% @products.each do |product| %>
-  <% if product.free? %>    
+  <% if product.free? %>
+    <% next if user_signed_in? && free_product_purchased? %>
     <div class="store--products-item free product-<%= product_number %>" data-product="<%= product_number %>">
       <div class="store--products-item--header" style="background: <%= product.details %>">
         <%= product.name %>

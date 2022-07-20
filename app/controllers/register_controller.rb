@@ -8,7 +8,7 @@ class RegisterController < ApplicationController
     if user.save
       sign_in(user)
       @user = user
-      @products = Product.where(kind: [:deposit, :crypto]).active.order(:price_cents)
+      @products = Product.where(kind: [:deposit, :free]).active.order(:price_cents)
     else
       @error = user.errors.full_messages.join("  <br> ").html_safe
     end

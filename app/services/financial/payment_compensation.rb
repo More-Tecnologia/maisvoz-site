@@ -1,16 +1,7 @@
 module Financial
   class PaymentCompensation
     prepend SimpleCommand
-
-    FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS = {
-      1 => 6,
-      2 => 15,
-      3 => 40,
-      4 => 120
-    }.freeze
-    FREE_BONUS_USER_CREATION_SPAN = 14.days
-    FREE_PRODUCT_BONUS_AMOUNT = 20
-
+  
     def initialize(order, enabled_bonification = true)
       @order = order
       @user  = order.user
@@ -151,13 +142,13 @@ module Financial
     end
 
     def create_bonus_first_buy
-      user.increment(:brute_promotional_balance, FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[order.order_items.last.product.code])
-      user.increment(:promotional_balance, FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[order.order_items.last.product.code]).save!
+      user.increment(:brute_promotional_balance, SharedHelper::FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[order.order_items.last.product.code])
+      user.increment(:promotional_balance, SharedHelper::FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[order.order_items.last.product.code]).save!
     end
 
     def create_free_product_bonus
-      user.increment(:brute_promotional_balance, FREE_PRODUCT_BONUS_AMOUNT)
-      user.increment(:promotional_balance, FREE_PRODUCT_BONUS_AMOUNT).save!
+      user.increment(:brute_promotional_balance, SharedHelper::FREE_PRODUCT_BONUS_AMOUNT)
+      user.increment(:promotional_balance, SharedHelper::FREE_PRODUCT_BONUS_AMOUNT).save!
     end
 
     def process_reserved_raffle_tickets
@@ -221,7 +212,7 @@ module Financial
 
     def free_bonus_elegible_sponsor?
       free = user.sponsor.orders.includes(:products).where(products: { kind: :free }).last
-      free.present? && (free.paid_at + FREE_BONUS_USER_CREATION_SPAN) >= Time.now
+      free.present? && (free.paid_at + SharedHelper::FREE_BONUS_USER_CREATION_SPAN) >= Time.now
     end
 
     def free_product_counting?
@@ -241,12 +232,12 @@ module Financial
 
     def transform_free_bonus
       sponsor = user.sponsor
-      if sponsor.promotional_balance >= FREE_PRODUCT_BONUS_AMOUNT
-        sponsor.decrement(:promotional_balance, FREE_PRODUCT_BONUS_AMOUNT).save!
+      if sponsor.promotional_balance >= SharedHelper::FREE_PRODUCT_BONUS_AMOUNT
+        sponsor.decrement(:promotional_balance, SharedHelper::FREE_PRODUCT_BONUS_AMOUNT).save!
         sponsor.financial_transactions
                .create(spreader: User.find_morenwm_customer_admin,
                        financial_reason: FinancialReason.credit_for_payment_by_first_buy,
-                       cent_amount: FREE_PRODUCT_BONUS_AMOUNT,
+                       cent_amount: SharedHelper::FREE_PRODUCT_BONUS_AMOUNT,
                        moneyflow: :credit)
       else
         remaning_balance = sponsor.promotional_balance

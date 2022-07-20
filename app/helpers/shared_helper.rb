@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 module SharedHelper
+  FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS = {
+    1 => 6,
+    2 => 15,
+    3 => 40,
+    4 => 120
+  }.freeze
+  FREE_BONUS_USER_CREATION_SPAN = 14.days
+  FREE_PRODUCT_BONUS_AMOUNT = 20
+
   def css_class_by_path(path, class_name = 'active')
     class_name if request.path == path
   end

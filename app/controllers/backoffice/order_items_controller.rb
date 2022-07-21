@@ -14,6 +14,7 @@ module Backoffice
       end
       redirect_to backoffice_cart_path
     end
+    
 
     def update
       order = current_order

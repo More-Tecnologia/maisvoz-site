@@ -29,7 +29,7 @@
             <%= t(:free) %>
           </span>
           <% if user_signed_in? %>
-            <%= link_to backoffice_order_items_path(product: {id: product.hashid}),
+            <%= link_to activate_free_backoffice_cart_path(product: {id: product.hashid}),
                       class: 'store--products-item--price--buy-button',
                       method: :post do %>
               <%= t('backoffice.products.activate_button') %>

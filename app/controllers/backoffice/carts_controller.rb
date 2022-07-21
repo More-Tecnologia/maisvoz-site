@@ -1,5 +1,15 @@
 module Backoffice
   class CartsController < BackofficeController
+
+    def activate_free      
+      clean_shopping_cart
+      clean_ads_cart
+      clean_courses_cart
+      clean_raffles_cart
+      command = Shopping::AddToCart.call(current_order, product_params[:id], params[:country])
+         
+    end
+
     def show
       redirect_to backoffice_products_path unless current_order.order_items.any?
 

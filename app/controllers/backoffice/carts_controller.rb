@@ -1,5 +1,26 @@
 module Backoffice
   class CartsController < BackofficeController
+    def activate_free
+      if free_product_already_purchased?
+        @result = t('defaults.errors.duplicated_free_product')
+      else
+        add_cart = Shopping::AddToCart.call(current_order, 1, params[:country])
+        if add_cart.success?
+          current_order.update!(status: :pending_payment, payment_type: :free)
+          current_order.create_payment_transaction!(amount: 0,
+                                                    transaction_id: SecureRandom.hex,
+                                                    wallet_address: SecureRandom.hex)
+          command = Financial::PaymentCompensation.call(current_order)
+          if command.success?
+            clean_shopping_cart
+            @result = 'success'
+          end
+        else
+          @result = t(command.errors)
+        end
+      end
+    end
+
     def show
       redirect_to backoffice_products_path unless current_order.order_items.any?
 
@@ -7,24 +28,7 @@ module Backoffice
     end
 
     def create
-      if current_order.products.first == Product.first
-        if free_product_already_purchased?
-          flash[:alert] = t('defaults.errors.duplicated_free_product')
-          redirect_back(fallback_location: backoffice_dashboard_index_path) and return
-        end
-        current_order.update!(status: :pending_payment, payment_type: :free)
-        current_order.create_payment_transaction!(amount: 0,
-                                                  transaction_id: SecureRandom.hex,
-                                                  wallet_address: SecureRandom.hex)
-        command = Financial::PaymentCompensation.call(current_order)
-        if command.success?
-          clean_shopping_cart
-          flash[:success] = I18n.t('defaults.free_product')
-          redirect_to backoffice_dashboard_index_path
-        else
-          redirect_back(fallback_location: backoffice_products_path)
-        end
-      elsif valid_params[:payment_method] == 'balance'
+      if valid_params[:payment_method] == 'balance'
         @order = current_order
         Payment::BalanceService.call(order: @order)
         clean_shopping_cart
@@ -36,12 +40,12 @@ module Backoffice
         render 'backoffice/payment_transactions/show'
       else
         @payment_transaction = Payment::BlockCheckoutService.call(valid_params)
-        ExpireOrderWorker.perform_at(Time.now + 2.hour, valid_params[:order].id)
+        ExpireOrderWorker.perform_at(Time.now + 2.hours, valid_params[:order].id)
         clean_shopping_cart
         render 'backoffice/payment_transactions/show'
       end
-    rescue StandardError => error
-      flash[:error] = error.message
+    rescue StandardError => e
+      flash[:error] = e.message
       render :show
     end
 
@@ -53,10 +57,10 @@ module Backoffice
     end
 
     def free_product_already_purchased?
-       OrderItem.includes(:product, :order)
-                .where(order: Order.paid, 'orders.user': current_user)
-                .where(product: Product.first)
-                .any?
+      OrderItem.includes(:product, :order)
+               .where(order: Order.paid, 'orders.user': current_user)
+               .where(product: Product.first)
+               .any?
     end
   end
 end

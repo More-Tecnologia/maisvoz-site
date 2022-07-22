@@ -510,6 +510,11 @@ pt-BR:
         purchase_resume: Resumo da Compra
         total: Total
         shipping_address: Endereço de Entrega
+      activate_free:
+        confirmation_title: Ativado com sucesso!
+        confirmation_text_html: "Pacote <b>Free</b> ativado"
+        got_to_dashboard: Ir para o painel de usuario
+        keep_buying: Continuar comprando
     product_checkouts:
       new:
         purchase_resume: Resumo de Compra

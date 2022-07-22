@@ -11,11 +11,16 @@ module Raffles
     def call
       order_items.each do |order_item|
         order_item.raffle_ticket.update(reseted_raffle_ticket_attributes) if order_item.raffle_ticket.present?
-      end     
+      end
+      order_items.where('created_at < ?', (Time.now - ENV["CART_TIMEOUT"].to_i.minutes)).destroy_all if @order.cart? && (order_items.last.created_at + ENV["CART_TIMEOUT"].to_i.minutes < Time.now)
     end
 
     def order_items
-      @order.order_items
+      if @order.cart?
+        @order.order_items.where('created_at < ?', (Time.now - ENV["CART_TIMEOUT"].to_i.minutes))
+      else
+        @order.order_items
+      end
     end
 
     def reseted_raffle_ticket_attributes

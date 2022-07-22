@@ -62,6 +62,5 @@ module Backoffice
                .where(product: Product.first)
                .any?
     end
-
   end
 end

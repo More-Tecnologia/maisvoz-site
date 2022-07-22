@@ -29,9 +29,9 @@
             <%= t(:free) %>
           </span>
           <% if user_signed_in? %>
-            <%= link_to activate_free_backoffice_cart_path(product: {id: product.hashid}),
+            <%= link_to activate_free_backoffice_cart_path,
                       class: 'store--products-item--price--buy-button',
-                      method: :post do %>
+                      method: :post, remote: true do %>
               <%= t('backoffice.products.activate_button') %>
             <% end %>
           <% else %>

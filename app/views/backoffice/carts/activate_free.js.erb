@@ -1,0 +1,51 @@
+function showSweetAlert(result){
+  const action = result == 'success' ? result : 'error';
+
+  const switchAction = {
+    error,
+    success
+  }
+
+  function error () {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: result
+    })
+  }
+
+  function success(){
+    Swal.fire({
+      title: '<%= t('backoffice.carts.activate_free.confirmation_title') %>',
+      icon: 'success',
+      html:
+        '<%= t('backoffice.carts.activate_free.confirmation_text_html') %>',
+      showCloseButton: true,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText:
+        '<%= t('backoffice.carts.activate_free.got_to_dashboard') %>',
+      confirmButtonColor: '#00d928',
+      confirmButtonAriaLabel: 'Thumbs up, great!',
+      cancelButtonText:
+        '<%= t('backoffice.carts.activate_free.keep_buying') %>',
+      cancelButtonColor: '#00d928',
+      cancelButtonAriaLabel: 'Thumbs up'
+    }).then(
+      result => {
+        if(result.isConfirmed) window.location = '<%= backoffice_home_index_path %>';
+        else removeFreeCard();
+      }
+    )
+  }
+
+  return switchAction[action]()
+}
+
+
+function removeFreeCard(){
+  const freeCard = document.querySelector('.store--products-item.free');
+  freeCard?.remove();
+}
+
+showSweetAlert('<%= @result %>')

@@ -15,7 +15,6 @@ module Backoffice
       redirect_to backoffice_cart_path
     end
     
-
     def update
       order = current_order
       order_item = order.order_items.find(order_item_params[:id])

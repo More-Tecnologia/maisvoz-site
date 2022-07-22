@@ -1,6 +1,5 @@
 module Backoffice
   class CartsController < BackofficeController
-
     def activate_free
       if free_product_already_purchased?
         @result = t('defaults.errors.duplicated_free_product')

@@ -412,6 +412,8 @@ en:
         taxes: Taxes
         title: Invoice
         confirm_bill: Are you sure you want to bill this order?
+    raffles_carts:
+      balance_adcash_bubble: Make a purchase of at least $5 to release 20$ in ADCASH balance.
     withdrawals:
       index:
         no_data: No withdraws made

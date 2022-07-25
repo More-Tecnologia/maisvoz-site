@@ -412,6 +412,8 @@ es:
         taxes: Impuestos
         title: Factura
         confirm_bill: ¿Estás seguro de que quieres facturar este pedido?
+    raffles_carts:
+      balance_adcash_bubble: Realiza una compra de al menos $5 para liberar 20$ en saldo ADCASH.
     withdrawals:
       index:
         no_data: No se realizan retiros

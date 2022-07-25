@@ -1,6 +1,9 @@
 <%= stylesheet_link_tag 'click-tok-theme/cart' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/shared/index' %>
 <%= stylesheet_link_tag 'click-tok-theme/stores/raffles/raffles_carts/show' %>
+<%= stylesheet_link_tag 'click-tok-theme/raffles_carts/show' %>
+<%= javascript_include_tag 'click-tok-theme/raffles_carts/show', defer: true %>
+
   <div class="raffle-tickets-header-container">
     <%= link_to raffles_backoffice_stores_path, class: 'back-button' do %>
       <svg xmlns="http://www.w3.org/2000/svg"
@@ -72,6 +75,14 @@
       <% end %>
       <% if promotional_balance? && current_user.orders.where(payment_type: [:btc, :admin, :pix]).completed.sum(:total_cents) >= 500 %>
         <div class="btn btn-tab" onclick="showPromotionalBalanceInput()">
+          <%= image_tag('icons/troca1.png', class: 'icons') %>
+          <%= t(:promotional_balance) %>
+        </div>
+      <% else %>        
+        <div class="btn disabled">
+          <div class="speech-bubble active">
+            Faça uma compra de no minimo 5 dolares para liberar 20$ em saldo ADCASH.
+          </div>
           <%= image_tag('icons/troca1.png', class: 'icons') %>
           <%= t(:promotional_balance) %>
         </div>

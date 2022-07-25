@@ -511,6 +511,11 @@ en:
         purchase_resume: Purchase Resume
         total: Total
         shipping_address: Shipping Address
+      activate_free:
+        confirmation_title: Activated Successfully!
+        confirmation_text_html: "Package <b>Free</b> activated"
+        got_to_dashboard: Go to dashboard
+        keep_buying: Keep buying
     product_checkouts:
       new:
         purchase_resume: Purchase Resume

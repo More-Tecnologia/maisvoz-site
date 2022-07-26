@@ -1,0 +1,78 @@
+.ch-payment-buttons-area {
+  align-items: center;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.ch-payment-buttons-area .btn {
+  width: 100%;
+}
+
+.ch-payment-buttons-area .btn.disabled {
+  background: #ccc;
+  opacity: 1;
+  position: relative;
+}
+
+.speech-bubble {
+  background: #ffe342;
+  border-radius: 10px;
+  bottom: calc(100% + 11px);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: #7a6801;
+  font-size: 0.8em;
+  font-weight: 400;
+  left: 20%;
+  max-width: 80%;
+  min-width: 250px;
+  opacity: 0;
+  padding: 20px 10px;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  transition: opacity 0.3s, box-shadow 0.3s;
+  width: 340px;
+  z-index: 1;
+}
+
+.speech-bubble.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.speech-bubble.active:hover {
+  box-shadow: rgba(0, 0, 0, 0.44) 0px 3px 10px;
+}
+
+.speech-bubble::before {
+  color: #947e00;
+  content: "✕";
+  font-size: 0.8em;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+
+.speech-bubble.active:hover::before {
+  color: #9b4b00;
+}
+
+.speech-bubble::after {
+  background: #ffe342;
+  bottom: -9px;
+  box-shadow: rgba(0, 0, 0, 0.24) 4px 4px 3px;
+  content: "";
+  height: 20px;
+  left: 15%;
+  position: absolute;
+  transform: rotate(50deg);
+  width: 20px;
+}
+
+@media (min-width: 720px) {
+  .ch-payment-buttons-area {
+    align-items: center;
+    flex-direction: row;
+    row-gap: 0;
+  }
+}

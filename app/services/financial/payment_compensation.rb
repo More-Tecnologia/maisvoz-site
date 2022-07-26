@@ -1,7 +1,7 @@
 module Financial
   class PaymentCompensation
     prepend SimpleCommand
-
+  
     def initialize(order, enabled_bonification = true)
       @order = order
       @user  = order.user
@@ -21,13 +21,15 @@ module Financial
 
     def compensate_order
       ActiveRecord::Base.transaction do
+        create_bonus_first_buy if first_buy_products? && first_buy? && deposit_product
+        create_free_product_bonus if free_product
+        transform_free_bonus if eligible_for_free_bonus? && free_product_counting? && free_bonus_elegible_sponsor? && havent_received_free_bonus?
         create_order_payment
-        update_user_purchase_flags
         upgrade_user_trail if upgraded_trail?
         update_user_purchase_flags
-        activate_user if (deposit_product || crypto_product)
+        activate_user if (deposit_product || free_product)
         activate_user_until! if activation_product && validates_code_of?(activation_product) && enabled_activation?
-        user.empreendedor! if (deposit_product || crypto_product) && user.consumidor?
+        user.empreendedor! if (deposit_product || free_product) && user.consumidor?
         insert_into_binary_tree if user.out_binary_tree? && adhesion_product
         qualify_sponsor if !user.sponsor_is_binary_qualified? && user.active && enabled_binary?
         create_pool_point_for_user if enabled_bonification
@@ -39,7 +41,7 @@ module Financial
         propagate_bonuses if enabled_bonification
         propagate_course_payment if course_product
         create_vouchers if voucher_product
-        create_bonus_contract if deposit_product || crypto_product
+        create_bonus_contract if deposit_product || free_product
         process_reserved_raffle_tickets if raffle_product
         propagate_raffle_bonus_payment if raffle_product && enabled_bonification
         propagate_master_bonus if deposit_product
@@ -124,6 +126,31 @@ module Financial
       Financial::CreatorSystemFeeService.call(order: order)
     end
 
+    def first_buy?
+      user.orders
+          .joins(order_items: :product)
+          .where(order_items: { product: Product.deposit })
+          .completed
+          .none?
+    end
+
+    def first_buy_products?
+      order.order_items
+           .includes(:product)
+           .where(products: { code: [1, 2, 3, 4]})
+           .any?
+    end
+
+    def create_bonus_first_buy
+      user.increment(:brute_promotional_balance, SharedHelper::FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[order.order_items.last.product.code])
+      user.increment(:promotional_balance, SharedHelper::FIRST_BUY_BONUS_AMOUNT_BY_PRODUCTS[order.order_items.last.product.code]).save!
+    end
+
+    def create_free_product_bonus
+      user.increment(:brute_promotional_balance, SharedHelper::FREE_PRODUCT_BONUS_AMOUNT)
+      user.increment(:promotional_balance, SharedHelper::FREE_PRODUCT_BONUS_AMOUNT).save!
+    end
+
     def process_reserved_raffle_tickets
       order.order_items.each do |order_item|
         if order_item.raffle_ticket.present?
@@ -183,6 +210,53 @@ module Financial
                                 product: product_bonus) if product_bonus
     end
 
+    def free_bonus_elegible_sponsor?
+      free = user.sponsor.orders.includes(:products).where(products: { kind: :free }).last
+      free.present? && (free.paid_at + SharedHelper::FREE_BONUS_USER_CREATION_SPAN) >= Time.now
+    end
+
+    def free_product_counting?
+      order.products
+           .where('products.price_cents >=  5000')
+           .where(products: { kind: :deposit })
+           .any?
+    end
+
+    def eligible_for_free_bonus?
+      Order.joins(:products)
+           .where(user: (user.sponsor.sponsored.active.select(:id) - [user]))
+           .where('products.price_cents >=  5000')
+           .where(products: { kind: :deposit })
+           .any?
+    end
+
+    def transform_free_bonus
+      sponsor = user.sponsor
+      if sponsor.promotional_balance >= SharedHelper::FREE_PRODUCT_BONUS_AMOUNT
+        sponsor.decrement(:promotional_balance, SharedHelper::FREE_PRODUCT_BONUS_AMOUNT).save!
+        sponsor.financial_transactions
+               .create(spreader: User.find_morenwm_customer_admin,
+                       financial_reason: FinancialReason.credit_for_payment_by_first_buy,
+                       cent_amount: SharedHelper::FREE_PRODUCT_BONUS_AMOUNT,
+                       moneyflow: :credit)
+      else
+        remaning_balance = sponsor.promotional_balance
+        sponsor.decrement(:promotional_balance, remaning_balance).save!
+        sponsor.financial_transactions
+               .create(spreader: User.find_morenwm_customer_admin,
+                       financial_reason: FinancialReason.credit_for_payment_by_first_buy,
+                       cent_amount: remaning_balance,
+                       moneyflow: :credit)
+      end
+    end
+
+    def havent_received_free_bonus?
+      user.sponsor
+          .financial_transactions
+          .where(financial_reason: FinancialReason.credit_for_payment_by_first_buy)
+          .none?
+    end
+
     def adhesion_product
       @adhesion_product ||= order.products.detect(&:adhesion?)
     end
@@ -220,7 +294,7 @@ module Financial
     end
 
     def free_product
-      order.products.detect(&:free_product?)
+      order.products.detect(&:free?)
     end
 
     def new_trail?

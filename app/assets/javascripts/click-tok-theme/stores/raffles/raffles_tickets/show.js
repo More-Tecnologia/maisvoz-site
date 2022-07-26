@@ -78,7 +78,7 @@ function raffleTickets(ticketsData) {
   // Objects
   const baseSettings = {
     filterOptions: { available: 0, reserved: 1, purched: 2 },
-    maxSelectedTickets: 10,
+    maxSelectedTickets: 100000,
     paginationSize: 200,
   };
 

@@ -76,7 +76,7 @@ module Backoffice
                                  .paid
                                  .map(&:order_items)
                                  .flatten
-                                 .all? { |x| x.product.free_product? }
+                                 .all? { |x| x.product.free? }
     end
 
     def send_current_user_to_interspire

@@ -386,6 +386,24 @@ en:
     crypto_amount: Crypto
   backoffice:
     orders:
+      index:
+        product_description:
+          deposit: "%{data} tasks per day" 
+          raffle: "%{data} tickets purchased" 
+          publicity: "%{data} ad clicks"
+          course: "%{data} lections"
+        product_status:
+            deposit: Recharge package
+            free: Free recharge package
+            raffle: 
+              started: Tickets available for purchase
+              awaiting_draw_date: Choosing the draw date
+              awaiting_draw: Awaiting draw day
+              pending: Organizing award delivery
+              finished: Draw finished
+            publicity: Advertising package
+            course: Lections available
+        see_order: See order
       show:
         invoice: Invoice
         order_date: Invoice date
@@ -394,6 +412,8 @@ en:
         taxes: Taxes
         title: Invoice
         confirm_bill: Are you sure you want to bill this order?
+    raffles_carts:
+      balance_adcash_bubble: Make a purchase of at least $5 to release 20$ in ADCASH balance.
     withdrawals:
       index:
         no_data: No withdraws made
@@ -493,6 +513,11 @@ en:
         purchase_resume: Purchase Resume
         total: Total
         shipping_address: Shipping Address
+      activate_free:
+        confirmation_title: Activated Successfully!
+        confirmation_text_html: "Package <b>Free</b> activated"
+        got_to_dashboard: Go to dashboard
+        keep_buying: Keep buying
     product_checkouts:
       new:
         purchase_resume: Purchase Resume
@@ -650,6 +675,12 @@ en:
         finished_at: Finished at
         action: Action
         view: View
+    products:
+      activate: Activate
+      win: Win
+      balance_adcash: Balance Adcash
+      activate_button: Activate
+      adcash_credit: Adcash Credit
   balanced_strategy: Balanced
   buy_cart:
     updated: Cart updated
@@ -1925,8 +1956,8 @@ en:
   store_raffle_price: Price
   premium_ads: Premium ads
   basic_ads: Basic ads
-  task_per_day: Task per day
-  tasks_per_day: Tasks per day
+  task_per_day: task per day
+  tasks_per_day: tasks per day
   top_deal: Top deal
   last_numbers: Last numbers
   free: Free
@@ -2279,3 +2310,4 @@ en:
                                   The Raffle of <b>%{raffle_name}</b>,
                                   is scheduled for <b>%{draw_date}</b> at %{lotery_draw_time}.
                                   Check the official lottery link <a href="%{lotery_website}">%{lotery_name}</a>
+  minimum_expend_to_use_promotional_balance: It is necessary to spend at least 5 dollars in purchases on the platform to be able to use this option.

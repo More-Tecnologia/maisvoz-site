@@ -8,11 +8,11 @@ class Product < ApplicationRecord
 
   enum kind: %i[detached adhesion activation voucher
                 subscription deposit course publicity crypto
-                raffle]
+                raffle free]
   enum paid_by: [:paid_by_user, :paid_by_company]
 
-  has_one_attached :main_photo
-  has_many_attached :photos
+  has_attachment :main_photo
+  has_attachments :photos
 
   belongs_to :category
   belongs_to :trail, optional: true
@@ -67,8 +67,14 @@ class Product < ApplicationRecord
   delegate :short_description, to: :course, prefix: true, allow_nil: true
 
   def main_photo_path
-    return ActionController::Base.helpers.asset_path('fallback/default_product.png') if !main_photo.attached?
-    Rails.application.routes.url_helpers.rails_blob_path(main_photo, only_path: true)
+    case self
+    when proc(&:course?)
+      course.path
+    when proc(&:raffle?)
+      raffle.path
+    else
+      main_photo.try(:fullpath) || ActionController::Base.helpers.asset_path('fallback/default_product.png')
+    end
   end
 
   def regular?
@@ -105,9 +111,5 @@ class Product < ApplicationRecord
         errors.add(:photos, I18n.t('activerecord.errors.models.product.attributes.photos.types'))
       end
     end
-  end
-
-  def free_product?
-    self == self.class.first
   end
 end

@@ -2,7 +2,7 @@ class BonusContract < ApplicationRecord
   include Hashid::Rails
 
   RENTABILITY_DAYS_COUNT = 365
-  FREE_PRODUCT_EARNING = 7.5
+  FREE_PRODUCT_EARNING = 0
 
   belongs_to :order
   belongs_to :user
@@ -77,7 +77,7 @@ class BonusContract < ApplicationRecord
   end
 
   def free_product?
-    price.zero?
+    order_items.last.product.free?
   end
 
   def price

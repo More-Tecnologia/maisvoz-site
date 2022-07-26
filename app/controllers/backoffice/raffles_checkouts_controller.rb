@@ -5,6 +5,7 @@ module Backoffice
     before_action :format_document_id
     before_action :ensure_name_and_id
     before_action :ensure_payment_method
+    before_action :ensure_minimun_expend_to_use_promotional_balance
 
     def create
       if valid_params[:payment_method] == 'balance' && current_user.orders.completed.includes(order_items: :product).where(order_items: { products: { kind: :deposit }}).any?
@@ -39,6 +40,14 @@ module Backoffice
 
     def format_document_id
       @document_id = params[:document_id]&.gsub(/\D+/, '')
+    end
+
+    def ensure_minimun_expend_to_use_promotional_balance
+      return unless params[:payment_method] == 'promotional_balance'
+      return if current_user.orders.where(payment_type: [:btc, :admin, :pix]).completed.sum(:total_cents) >= 500
+
+      flash[:error] =I18n.t(:minimum_expend_to_use_promotional_balance)
+      redirect_to backoffice_raffles_carts_path
     end
 
     def ensure_name_and_id

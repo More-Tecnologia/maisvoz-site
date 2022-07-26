@@ -391,6 +391,24 @@ pt-BR:
     crypto_amount: Cripto
   backoffice:
     orders:
+      index:
+        product_description:
+          deposit: "%{data} tarefas por dia" 
+          raffle: "%{data} tickets adquiridos" 
+          publicity: "%{data} cliques no anúncio"
+          course: "%{data} aulas"
+        product_status:
+            deposit: Pacote de recarga
+            free: Pacote de recarga grátis
+            raffle: 
+              started: Tickets disponíveis para compra
+              awaiting_draw_date: Escolhendo data do sorteio
+              awaiting_draw: Aguardando dia do sorteio
+              pending: Organizando entrega do premio
+              finished: Sorteio finalizado
+            publicity: Pacote de publicidade 
+            course: Aulas disponíveis
+        see_order: Ver pedido
       show:
         invoice: Fatura
         order_date: Data da fatura
@@ -399,6 +417,8 @@ pt-BR:
         taxes: Impostos
         title: Fatura
         confirm_bill: Tem certeza que deseja faturar este pedido?
+    raffles_carts:
+      balance_adcash_bubble: Faça uma compra de no minimo $5 para liberar 20$ em saldo ADCASH.
     withdrawals:
       index:
         no_data: Nenhum saque realizado
@@ -492,6 +512,11 @@ pt-BR:
         purchase_resume: Resumo da Compra
         total: Total
         shipping_address: Endereço de Entrega
+      activate_free:
+        confirmation_title: Ativado com sucesso!
+        confirmation_text_html: "Pacote <b>Free</b> ativado"
+        got_to_dashboard: Ir para o painel de usuario
+        keep_buying: Continuar comprando
     product_checkouts:
       new:
         purchase_resume: Resumo de Compra
@@ -664,6 +689,12 @@ pt-BR:
         action: Ação
         view: Visualizar
         no_data: Nenhum Resultado
+    products:
+      activate: Ative
+      win: Ganhe
+      balance_adcash: Saldo Adcash
+      activate_button: Ativar
+      adcash_credit: Crédito Adcash
   balanced_strategy: Balanceado
   buy_cart:
     updated: Carrinho atualizado
@@ -1855,7 +1886,7 @@ pt-BR:
   premium_ads: Anúncios premium
   basic_ads: Anúncios básicos
   task_per_day: Tarefa por dia
-  tasks_per_day: Tarefas por dia
+  tasks_per_day: tarefas por dia
   top_deal: Melhor oferta
   last_numbers: Últimos números
   free: Grátis
@@ -2267,3 +2298,4 @@ pt-BR:
                                   O Sorteio do(a) <b>%{raffle_name}</b>,
                                   está agendado para <b>%{draw_date}</b> as %{lotery_draw_time}.
                                   Confira no link oficial do sorteio <a href="%{lotery_website}">%{lotery_name}</a>
+  minimum_expend_to_use_promotional_balance: É necessário usar ao menos 5 dolares em compras na plataforma para conseguir utilizar esta opção.

@@ -158,7 +158,9 @@ Rails.application.routes.draw do
 
     # Shopping
     resources :products, only: [:index, :show]
-    resource :cart, only: %i[show create]
+    resource :cart, only: %i[show create] do
+      post :activate_free
+    end
     resource :checkout, only: :update
     resources :order_items, only: [:create, :update, :destroy]
     resource :pagstar_pix_notifications, only: [:create]

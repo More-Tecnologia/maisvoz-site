@@ -9,4 +9,3 @@
 
     disabledButton.onclick = event => bubble.classList.add('active');
 })()
-

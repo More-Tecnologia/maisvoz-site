@@ -3,7 +3,8 @@ const login_register_ajax = () => {
   const getCurrentPage = () => {
   const page = window.location.pathname.split('/')[2];
   if(page) return page;
-  else return 'products';  
+  else return 'raffles_tickets';  
+  console.log(page);
 }
 
 const pageActionSwitch = () => {
@@ -14,7 +15,7 @@ const pageActionSwitch = () => {
       const selectedProduct = document.querySelector('.store--products-item.selected-card');
       const selectedProductNumber = selectedProduct != undefined ? selectedProduct.dataset.product : false;        
       container.innerHTML = '';
-      container.insertAdjacentHTML('beforeend',`<%= j render 'backoffice/products/index_product_list' %>`);
+      container.insertAdjacentHTML('beforeend',`<%= j render 'backoffice/products/index_product_list' if @products.present? %>`);
 
       if(selectedProductNumber){        
         const buyButton = document.querySelector(`.product-${selectedProductNumber} .store--products-item--price--buy-button`);

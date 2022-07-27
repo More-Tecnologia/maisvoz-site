@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     if params[:raffle].present?
       redirect_to raffle_tickets_path(params[:raffle][:id])
     else
-      dashboarddirection(current_user)
+      dashboard_direction(current_user)
     end
   end
 
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
       if SystemConfiguration.whitelabel?
         raffles_backoffice_stores_path
       else
-        backoffice_dashboard_index_path
+        raffles_backoffice_stores_path
       end
     end
   end

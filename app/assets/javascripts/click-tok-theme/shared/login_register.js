@@ -65,7 +65,7 @@ const publicLoginRegister = {};
 
   buttons.loginToggle.addEventListener("click", selectLoginHandler);
   buttons.registerToggle.addEventListener("click", selectRegisterHandler);
-  buttons.mainLogin.addEventListener("click", openMainModalHendler);
+  buttons.mainLogin?.addEventListener("click", openMainModalHendler);
   buttons.close.addEventListener("click", publicLoginRegister.closeModalHandler);
   buttons.goToPaiment && buttons.goToPaiment.addEventListener("click", openModalHendler);
 })();

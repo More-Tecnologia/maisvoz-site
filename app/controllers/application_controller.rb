@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
       if SystemConfiguration.whitelabel?
         raffles_backoffice_stores_path
       else
-        backoffice_dashboard_index_path
+        raffles_backoffice_stores_path
       end
     end
   end

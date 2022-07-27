@@ -4,7 +4,7 @@
     <ul class="main-list">
       <% if user_signed_in? %>
         <% if current_user.empreendedor? || current_user.consumidor? %>
-          <li class="list menu-selected">
+          <li class="list <%= "#{css_class_by_path('/backoffice/home')} #{css_class_by_path('/')}" %>">
             <%= link_to backoffice_home_index_path, class:"link-nav" do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -23,7 +23,7 @@
             <% end %>
           </li>
         <% else %>
-          <li class="list">
+          <li class="list <%= css_class_by_path('/backoffice/admin/dashboard') %>">
             <%= link_to dashboard_direction(current_user), class:"link-nav" do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -88,7 +88,7 @@
           </li>
         <% end %>
         <% if current_user.admin? %>
-          <li class="list">
+          <li class="list <%= css_class_by_path('/backoffice/support/users') %>">
             <%= link_to backoffice_support_users_path, class:"link-nav" do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -107,7 +107,7 @@
             <% end %>
           </li>
         <% else %>
-          <li class="list">
+          <li class="list <%= css_class_by_path('/backoffice/dashboard') %>">
             <%= link_to dashboard_direction(current_user), class:"link-nav" do %>
               <div class="svg">
                 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -171,7 +171,7 @@
             <% end %>
           </li>
         <% end %>
-        <li class="list">
+        <li class="list <%= "#{css_class_by_path('/backoffice/products')} #{css_class_by_path('/backoffice/stores/raffles')} #{css_class_by_path('/backoffice/stores/courses')} #{css_class_by_path('/backoffice/stores/ads')}" %>">
           <%= link_to main_store_path, class:"link-nav" do %>
             <div class="svg">
               <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -198,7 +198,7 @@
             <%= t(:shop) %>
           <% end %>
         </li>
-        <li class="list">
+        <li class="list <%= css_class_by_path('/backoffice/financial_dashboard') %>">
           <%= link_to backoffice_financial_dashboard_index_path, class:"link-nav" do %>
             <div class="svg">
               <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -217,7 +217,7 @@
             <%= t('defaults.financial') %>
           <% end %>
         </li>
-        <li class="list">
+        <li class="list <%= css_class_by_path('/backoffice/team_dashboard') %>">
           <%= link_to backoffice_team_dashboard_index_path, class:"link-nav" do %>
             <div class="svg">
               <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

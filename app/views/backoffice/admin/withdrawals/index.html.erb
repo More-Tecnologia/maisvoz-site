@@ -95,7 +95,7 @@
                       <th><%= link_to withdraw.user.username, backoffice_support_user_path(withdraw.user) %></th>
                       <th><%= link_to withdraw.user.email, backoffice_support_user_path(withdraw.user) %></th>
                       <th>
-                        <%= link_to(withdraw.wallet,
+                        <%= link_to(withdraw.pix? ? withdraw.user.pix_wallet : withdraw.user.wallet_address,
                                     '',
                                     data: { toggle: "modal", target: "#modal-#{withdraw.hashid}" }) %>
                       </th>
@@ -162,10 +162,10 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title"><%= withdraw.user.wallet_address %></h4>
+                            <h4 class="modal-title"><%= withdraw.pix? ? withdraw.user.pix_wallet : withdraw.user.wallet_address %></h4>
                           </div>
                           <div class="modal-body">
-                            <%= render_qr_code_img(withdraw.user.wallet_address) %>
+                            <%= render_qr_code_img(withdraw.pix? ? withdraw.user.pix_wallet : withdraw.user.wallet_address) %>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('close') %></button>

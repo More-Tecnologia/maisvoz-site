@@ -14,7 +14,7 @@ class Withdrawal < ApplicationRecord
                 :waiting,
                 :canceled,
                 :processing]
-  enum payment_method: [:usd, :btc, :eth]
+  enum payment_method: [:usd, :btc, :eth, :pix]
 
   scope :created_after, ->(days) { where(created_at: days.days.ago.beginning_of_day..Time.now) }
 

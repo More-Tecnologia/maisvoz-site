@@ -10,7 +10,7 @@ class Ticket < ApplicationRecord
 	belongs_to :attendant_user, class_name: 'User',
 	                            optional: true
 
-	has_many :interactions
+	has_many :interactions, dependent: :destroy
 
 	has_many_attached :files
 

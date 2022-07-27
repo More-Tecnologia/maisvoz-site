@@ -10,7 +10,7 @@ module Webhooks
 
       def initialize(params)
         @order = params[:order]
-        @value = (@order.total_cents * ENV['BRL_USD_FACTOR'].to_i) / 100
+        @value = (@order.total_cents * ENV['BRL_USD_FACTOR'].to_f) / 100
       end
 
       private

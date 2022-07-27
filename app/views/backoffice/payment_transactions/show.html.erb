@@ -26,13 +26,15 @@
               <h1><strong><%= t(:package_value) %></strong></h1>
             </div>
             <div class="content-box">
-              <span class="request-number">R$<%= number_to_currency(@payment_transaction.order.total, unit: '') %></span>
+              <span class="request-number"><%= format_currency_with_separator(@payment_transaction.order.total) %></span>
               <br>
               <% if ENV['CURRENT_DIGITAL_CURRENCY'].present? %>
+               <% if @payment_transaction.order.btc? %>
                 <span class="request-btc">
-                  <i class="fab fa-btc"></i>
-                  <%= format_digital_currency(@payment_transaction.amount) %>
-                </span>
+                  <i class="fab fa-btc"></i>                 
+                    <%= format_digital_currency(@payment_transaction.amount) %>                  
+                  </span>
+                <% end %>
               <% end %>
             </div>
         </div>
@@ -57,7 +59,7 @@
               <% if @payment_transaction.order.btc? %>
                 <%= t('backoffice.payment_transactions.show.transfer_note_html', value: format_digital_currency(@payment_transaction.amount)) %>
               <% elsif @payment_transaction.order.pix? %>
-                <%= t('backoffice.payment_transactions.show.transfer_note_pix_html', value: format_whitelabel_currency(@payment_transaction.amount)) %>
+                <%= t('backoffice.payment_transactions.show.transfer_note_pix_html', value: format_whitelabel_currency(@payment_transaction.amount, 'BRL')) %>
               <% end %>
             </h5>
             <% if @payment_transaction.order.btc? %>

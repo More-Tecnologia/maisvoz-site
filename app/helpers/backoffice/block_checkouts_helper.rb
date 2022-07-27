@@ -6,12 +6,17 @@ module Backoffice
       ENV['CURRENT_DIGITAL_CURRENCY'] + ' ' + amount.to_s
     end
 
-    def format_whitelabel_currency(amount)
+    def format_whitelabel_currency(amount, currency = ENV['CURRENT_CURRENCY'])
       unless SystemConfiguration.whitelabel?
         amount = amount * ENV['BRL_USD_FACTOR'].to_i
       end
 
-      ENV['CURRENT_CURRENCY'] + ' ' + amount.to_s
+      case currency
+      when 'USD'
+        symbol = format_usd_currency(amount).html_safe
+      when 'BRL'
+        full_number = format_brl_currency(amount).html_safe
+      end
     end
 
     def generate_qr_code(text)

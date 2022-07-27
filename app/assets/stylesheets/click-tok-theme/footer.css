@@ -99,8 +99,8 @@
   color: #3f3f3f;
 }
 
-.menu-selected a,
-.menu-selected svg {
+.list.active a,
+.list.active svg {
   color: #53f001;
   fill: #53f001;
 }
@@ -196,12 +196,6 @@
   transition: 0.5s;
 }
 
-.main-list li.active .svg {
-  border-radius: 50px;
-  position: relative;
-  transform: translateY(-27px);
-  z-index: 5;
-}
 
 .svg {
   fill: white;
@@ -209,10 +203,6 @@
   width: 20px;
 }
 
-.main-list li.active .svg svg {
-  fill: #3f3f3f;
-  position: relative;
-}
 
 .indicator {
   background: #53f001;

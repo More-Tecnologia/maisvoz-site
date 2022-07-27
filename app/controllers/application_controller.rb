@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     if params[:raffle].present?
       redirect_to raffle_tickets_path(params[:raffle][:id])
     else
-      dashboard_direction(current_user)
+      dashboarddirection(current_user)
     end
   end
 

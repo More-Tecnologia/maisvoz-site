@@ -21,8 +21,16 @@ class RegisterController < ApplicationController
   end
 
   def valid_params
+    unless cookies[:token].present?
+      cookies[:token] = { value: params[:token], expires: Time.now + 15.days }
+    end
+    sponsor = if cookies[:token].present?
+                User.find_by(token: cookies[:token])
+              else
+                User.find_morenwm_customer_user
+              end
     params.require(:user)
           .permit(:country, :email, :username, :password, :password_confirmation)
-          .merge(sponsor: User.find_morenwm_customer_user)
+          .merge(sponsor: sponsor)
   end
 end

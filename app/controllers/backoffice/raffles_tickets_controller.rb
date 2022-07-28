@@ -32,6 +32,9 @@ module Backoffice
     end
 
     def show
+      unless cookies[:token].present?
+        cookies[:token] = { value: params[:token], expires: Time.now + 15.days }
+      end
       @raffle = Raffle.find_by_hashid(params[:id])
       @raffle_number = Raffle.find_by_hashid(params[:id]).light_raffle_tickets
     end

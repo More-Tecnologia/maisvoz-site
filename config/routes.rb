@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   mount Attachinary::Engine => '/attachinary'
 
+  resources :contact_mail, only: :create
+
   resources :shop, only: [:index, :show]
   resources :bradesco_check_order, only: :index
   resources :maintenances, only: :index
